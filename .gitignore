@@ -1,0 +1,34 @@
+# Xcode noise
+build/*
+*.pbxuser
+*.mode1v3
+*.xcuserstate
+
+!default.pbxuser
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+#old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+
+Manifest.lock
+Podfile.lock
+
+.dropbox
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+fastlane/derived_data_path/
+
+
+/Pods
