@@ -16,6 +16,8 @@
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
 		8857205B275234C400B4B00C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8857205A275234C400B4B00C /* HomeView.swift */; };
 		8857205D275239D800B4B00C /* DosesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8857205C275239D800B4B00C /* DosesView.swift */; };
+		88EF203127526746006037CF /* Drug-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Drug-CoreDataHelpers.swift */; };
+		88EF2033275268B1006037CF /* Doses-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF2032275268B1006037CF /* Doses-CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		8857205A275234C400B4B00C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8857205C275239D800B4B00C /* DosesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosesView.swift; sourceTree = "<group>"; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88EF203027526746006037CF /* Drug-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drug-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		88EF2032275268B1006037CF /* Doses-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Doses-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88572054275139DD00B4B00C /* DataController.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
+				88EF203027526746006037CF /* Drug-CoreDataHelpers.swift */,
+				88EF2032275268B1006037CF /* Doses-CoreDataHelpers.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -160,8 +166,10 @@
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
+				88EF203127526746006037CF /* Drug-CoreDataHelpers.swift in Sources */,
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
+				88EF2033275268B1006037CF /* Doses-CoreDataHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
