@@ -11,6 +11,9 @@
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
 		88321429275120D60026D85F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321428275120D60026D85F /* Preview Assets.xcassets */; };
+		88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88572051275133A700B4B00C /* Main.xcdatamodeld */; };
+		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
+		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88321428275120D60026D85F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8832142A275120D60026D85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88572052275133A700B4B00C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
+		88572054275139DD00B4B00C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
+		88572058275233A300B4B00C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -27,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,17 +46,21 @@
 			children = (
 				88321420275120D40026D85F /* PainMedsBuddy */,
 				889A8D86275122DA00AB1868 /* PainMedsBuddy.app */,
+				88572057275233A300B4B00C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		88321420275120D40026D85F /* PainMedsBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88321423275120D40026D85F /* ContentView.swift */,
 				88321425275120D60026D85F /* Assets.xcassets */,
 				8832142A275120D60026D85F /* Info.plist */,
 				88321427275120D60026D85F /* Preview Content */,
+				88572051275133A700B4B00C /* Main.xcdatamodeld */,
+				88572054275139DD00B4B00C /* DataController.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -59,6 +71,14 @@
 				88321428275120D60026D85F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		88572057275233A300B4B00C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88572058275233A300B4B00C /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
+				88572055275139DD00B4B00C /* DataController.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 			);
@@ -259,9 +281,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PainMedsBuddy/PainMedsBuddy.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PainMedsBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = M3R45325T7;
+				DEVELOPMENT_TEAM = LW3B6G4NK9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PainMedsBuddy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -271,6 +295,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mclapps.PainMedsBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -281,9 +306,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PainMedsBuddy/PainMedsBuddy.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PainMedsBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = M3R45325T7;
+				DEVELOPMENT_TEAM = LW3B6G4NK9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PainMedsBuddy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -293,6 +320,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mclapps.PainMedsBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -320,6 +348,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		88572051275133A700B4B00C /* Main.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				88572052275133A700B4B00C /* Main.xcdatamodel */,
+			);
+			currentVersion = 88572052275133A700B4B00C /* Main.xcdatamodel */;
+			path = Main.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 88321416275120D40026D85F /* Project object */;
 }
