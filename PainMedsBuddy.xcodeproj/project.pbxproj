@@ -15,7 +15,7 @@
 		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
 		8857205B275234C400B4B00C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8857205A275234C400B4B00C /* HomeView.swift */; };
-		8857205D275239D800B4B00C /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8857205C275239D800B4B00C /* InstructionsView.swift */; };
+		8857205D275239D800B4B00C /* DosesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8857205C275239D800B4B00C /* DosesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
 		88572058275233A300B4B00C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8857205A275234C400B4B00C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		8857205C275239D800B4B00C /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
+		8857205C275239D800B4B00C /* DosesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosesView.swift; sourceTree = "<group>"; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,7 +66,7 @@
 				88321427275120D60026D85F /* Preview Content */,
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88572054275139DD00B4B00C /* DataController.swift */,
-				8857205C275239D800B4B00C /* InstructionsView.swift */,
+				8857205C275239D800B4B00C /* DosesView.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
-				8857205D275239D800B4B00C /* InstructionsView.swift in Sources */,
+				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,

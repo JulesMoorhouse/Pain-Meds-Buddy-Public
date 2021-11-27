@@ -41,17 +41,16 @@ class DataController: ObservableObject {
     func createSampleData() throws {
         let viewContext = container.viewContext
 
-        for i in 1...5 {
-            let instruction = Instruction(context: viewContext)
-            instruction.title = "Instruction \(i)"
-            instruction.creationDate = Date()
-            instruction.taken = Bool.random()
+        for i in 1...20 {
+            let dose = Doses(context: viewContext)
+            dose.takenDate = Date()
+            dose.taken = Bool.random()
             
             // one to one relationship
             let drug = Drug(context: viewContext)
-            drug.title = "Drug example"
+            drug.title = "Drug example \(i)"
             drug.creationDate = Date()
-            drug.instruction = instruction
+            drug.dose = dose
             drug.priority = Int16.random(in: 1...3)
         }
         
@@ -73,7 +72,7 @@ class DataController: ObservableObject {
         let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
         _ = try? container.viewContext.execute(batchDeleteRequest1)
         
-        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Instruction.fetchRequest()
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Doses.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
     }
