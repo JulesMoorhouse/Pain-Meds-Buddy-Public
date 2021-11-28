@@ -47,11 +47,11 @@ class DataController: ObservableObject {
             dose.taken = Bool.random()
             
             // one to one relationship
-            let drug = Drug(context: viewContext)
-            drug.title = "Drug example \(i)"
-            drug.creationDate = Date()
-            drug.dose = dose
-            drug.priority = Int16.random(in: 1...3)
+            let medication = Medication(context: viewContext)
+            medication.title = "Medication example \(i)"
+            medication.creationDate = Date()
+            medication.dose = dose
+            medication.priority = Int16.random(in: 1...3)
         }
         
         try viewContext.save()
@@ -68,7 +68,7 @@ class DataController: ObservableObject {
     }
     
     func deleteAll() {
-        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Drug.fetchRequest()
+        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Medication.fetchRequest()
         let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
         _ = try? container.viewContext.execute(batchDeleteRequest1)
         

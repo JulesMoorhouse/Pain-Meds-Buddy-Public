@@ -7,17 +7,17 @@
         <attribute name="gapPeriod" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="taken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drug" inverseName="dose" inverseEntity="Drug"/>
+        <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="dose" inverseEntity="Medication"/>
     </entity>
-    <entity name="Drug" representedClassName="Drug" syncable="YES" codeGenerationType="class">
+    <entity name="Medication" representedClassName="Medication" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="detail" optional="YES" attributeType="String"/>
         <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doses" inverseName="drug" inverseEntity="Doses"/>
+        <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doses" inverseName="medication" inverseEntity="Doses"/>
     </entity>
     <elements>
         <element name="Doses" positionX="-63" positionY="-18" width="128" height="134"/>
-        <element name="Drug" positionX="-54" positionY="-9" width="128" height="104"/>
+        <element name="Medication" positionX="-54" positionY="-9" width="128" height="104"/>
     </elements>
 </model>

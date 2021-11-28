@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DosesView: View {
+    static let takenTag: String? = "Taken"
+    static let notTakenTag: String? = "NotTaken"
+    
     let showTakenDoses: Bool
     
     let doses: FetchRequest<Doses>
@@ -24,8 +27,10 @@ struct DosesView: View {
         NavigationView {
             List {
                 ForEach(doses.wrappedValue) { dose in
-                    Section(header: Text(dose.drug?.title ?? "")) {
-                        Text(dose.taken == true ? "Taken" : "Not taken")
+                    if let med = dose.medication {
+                        Section(header: Text(med.medicationTitle)) {
+                            Text(dose.dosesTaken ? "Taken" : "Not taken")
+                        }
                     }
                 }
             }
