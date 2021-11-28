@@ -8,10 +8,13 @@
 import Foundation
 
 extension Doses {
-    var dosesDetail: String {
-        detail ?? ""
+    var dosesTitle: String {
+        title ?? ""
     }
-    
+
+    var dosesUnit: String {
+        unit ?? ""
+    }
     var dosesAmount: Decimal {
         (amount ?? 0.0) as Decimal
     }
@@ -37,7 +40,11 @@ extension Doses {
         let viewContext = controller.container.viewContext
         
         let doses = Doses(context: viewContext)
-        doses.detail = "Example dosage"
+        doses.title = "Example dosage"
+        doses.unit = "mg"
+        doses.amount = 100
+        doses.color = "Light Blue"
+        doses.gapPeriod = 20.0
         doses.taken = true
         doses.takenDate = Date()
         

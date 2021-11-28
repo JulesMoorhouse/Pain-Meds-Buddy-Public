@@ -27,15 +27,15 @@ struct DosesView: View {
         NavigationView {
             List {
                 ForEach(doses.wrappedValue) { dose in
-                    if let med = dose.medication {
-                        Section(header: Text(med.medicationTitle)) {
-                                MedicationRowView(medication: med)
+                    if let med = dose.med {
+                        Section(header: Text(med.medDefaultTitle)) {
+                                MedsRowView(med: med)
                        }
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationTitle(showTakenDoses ? "Taken Meds" : "Meds to take")
+            .navigationTitle(showTakenDoses ? "Taken Med" : "Med to take")
         }
     }
 }
