@@ -29,8 +29,8 @@ struct DosesView: View {
                 ForEach(doses.wrappedValue) { dose in
                     if let med = dose.medication {
                         Section(header: Text(med.medicationTitle)) {
-                            Text(dose.dosesTaken ? "Taken" : "Not taken")
-                        }
+                                MedicationRowView(medication: med)
+                       }
                     }
                 }
             }

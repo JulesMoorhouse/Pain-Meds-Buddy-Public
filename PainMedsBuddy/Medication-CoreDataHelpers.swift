@@ -27,7 +27,7 @@ extension Medication {
         let medication = Medication(context: viewContext)
         medication.title = "Example med"
         medication.detail = "This is an exmaple med"
-        medication.priority = 3
+        medication.sequence = 3
         medication.creationDate = Date()
         
         return medication

@@ -51,7 +51,7 @@ class DataController: ObservableObject {
             medication.title = "Medication example \(i)"
             medication.creationDate = Date()
             medication.dose = dose
-            medication.priority = Int16.random(in: 1...3)
+            medication.sequence = Int16.random(in: 1...3)
         }
         
         try viewContext.save()
