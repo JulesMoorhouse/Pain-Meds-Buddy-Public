@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Doses" representedClassName="Doses" syncable="YES" codeGenerationType="class">
+    <entity name="Dose" representedClassName="Dose" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="gapPeriod" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
@@ -18,10 +18,10 @@
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="remaining" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sequence" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
-        <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doses" inverseName="med" inverseEntity="Doses"/>
+        <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Doses" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Med" positionX="-54" positionY="-9" width="128" height="149"/>
     </elements>
 </model>

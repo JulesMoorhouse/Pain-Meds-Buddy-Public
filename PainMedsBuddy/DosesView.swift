@@ -13,13 +13,13 @@ struct DosesView: View {
     
     let showTakenDoses: Bool
     
-    let doses: FetchRequest<Doses>
+    let doses: FetchRequest<Dose>
     
     init(showTakenDoses: Bool) {
         self.showTakenDoses = showTakenDoses
         
-        doses = FetchRequest<Doses>(entity: Doses.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Doses.takenDate, ascending: false)
+        doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
+            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
         ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
     }
     

@@ -42,7 +42,7 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
 
         for i in 1...20 {
-            let dose = Doses(context: viewContext)
+            let dose = Dose(context: viewContext)
             dose.takenDate = Date()
             dose.taken = Bool.random()
             
@@ -76,7 +76,7 @@ class DataController: ObservableObject {
         let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
         _ = try? container.viewContext.execute(batchDeleteRequest1)
         
-        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Doses.fetchRequest()
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Dose.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
     }

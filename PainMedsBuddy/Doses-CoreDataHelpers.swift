@@ -7,48 +7,48 @@
 
 import Foundation
 
-extension Doses {
-    var dosesTitle: String {
+extension Dose {
+    var doseTitle: String {
         title ?? ""
     }
 
-    var dosesUnit: String {
+    var doseUnit: String {
         unit ?? ""
     }
-    var dosesAmount: Decimal {
+    var doseAmount: Decimal {
         (amount ?? 0.0) as Decimal
     }
     
-    var dosesColor: String {
+    var doseColor: String {
         color ?? "Light Blue"
     }
     
-    var dosesGapPeriod: Decimal {
+    var doseGapPeriod: Decimal {
         (gapPeriod ?? 0.0) as Decimal
     }
     
-    var dosesTakenDate: Date {
+    var doseTakenDate: Date {
         takenDate ?? Date()
     }
 
-    var dosesTaken: Bool {
+    var doseTaken: Bool {
         taken
     }
     
-    static var example: Doses {
+    static var example: Dose {
         let controller =  DataController(inMemory: true)
         let viewContext = controller.container.viewContext
         
-        let doses = Doses(context: viewContext)
-        doses.title = "Example dosage"
-        doses.unit = "mg"
-        doses.amount = 100
-        doses.color = "Light Blue"
-        doses.gapPeriod = 20.0
-        doses.taken = true
-        doses.takenDate = Date()
+        let dose = Dose(context: viewContext)
+        dose.title = "Example dosage"
+        dose.unit = "mg"
+        dose.amount = 100
+        dose.color = "Light Blue"
+        dose.gapPeriod = 20.0
+        dose.taken = true
+        dose.takenDate = Date()
         
-        return doses
+        return dose
     }
 }
 
