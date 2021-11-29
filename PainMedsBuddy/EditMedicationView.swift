@@ -33,21 +33,21 @@ struct EditMedsView: View {
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                TextField("Default Text", text: $defaultTitle)
-                TextField("Default Unit", text: $defaultUnit)
-                TextField("Default Amount", value: $defaultAmount, formatter: NumberFormatter())
-                TextField("Remaining", value: $remaining, formatter: NumberFormatter())
-                TextField("Sequence", value: $sequence, formatter: NumberFormatter())
+                TextField("Default Text", text: $defaultTitle.onChange(update))
+                TextField("Default Unit", text: $defaultUnit.onChange(update))
+                TextField("Default Amount", value: $defaultAmount.onChange(update), formatter: NumberFormatter())
+                TextField("Remaining", value: $remaining.onChange(update), formatter: NumberFormatter())
+                TextField("Sequence", value: $sequence.onChange(update), formatter: NumberFormatter())
             }
             
             Section(header: Text("Notes")) {
-                TextField("", text: $notes)
+                TextField("", text: $notes.onChange(update))
                     .lineLimit(nil)
             }
 
         }
         .navigationTitle("Edit Med")
-        .onDisappear(perform: update)
+        .onDisappear(perform: dataController.save)
     }
     
     func update() {
