@@ -12,6 +12,8 @@ struct EditMedsView: View {
 
     @EnvironmentObject var dataController: DataController
     
+    let types = ["mg", "ml", "pills"]
+
     @State private var defaultTitle: String
     @State private var defaultUnit: String
     @State private var defaultAmount: Decimal
@@ -34,7 +36,13 @@ struct EditMedsView: View {
         Form {
             Section(header: Text("Basic settings")) {
                 TextField("Default Text", text: $defaultTitle.onChange(update))
-                TextField("Default Unit", text: $defaultUnit.onChange(update))
+                
+                Picker("Default Unit", selection: $defaultUnit.onChange(update)) {
+                    ForEach(types, id: \.self) {
+                        Text($0)
+                    }
+                }
+                
                 TextField("Default Amount", value: $defaultAmount.onChange(update), formatter: NumberFormatter())
                 TextField("Remaining", value: $remaining.onChange(update), formatter: NumberFormatter())
                 TextField("Sequence", value: $sequence.onChange(update), formatter: NumberFormatter())

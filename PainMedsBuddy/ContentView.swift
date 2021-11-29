@@ -19,18 +19,25 @@ struct ContentView: View {
                     Text("Home")
                 }
             
-            DosesView(showTakenDoses: false)
-                .tag(DosesView.notTakenTag)
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                    Text("Not Taken")
-                }
+//            DosesView(showTakenDoses: false)
+//                .tag(DosesView.notTakenTag)
+//                .tabItem {
+//                    Image(systemName: "list.bullet")
+//                    Text("Not Taken")
+//                }
             
             DosesView(showTakenDoses: true)
                 .tag(DosesView.takenTag)
                 .tabItem {
                     Image(systemName: "checkmark")
-                    Text("Taken")
+                    Text("History")
+                }
+            
+            MedicationsView()
+                .tag(MedicationsView.MedicationsTag)
+                .tabItem {
+                    Image(systemName: "pills.fill")
+                    Text("Medication")
                 }
         }
     }
