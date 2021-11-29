@@ -4,6 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
+// This view shows all the taken doses of medication
 
 import SwiftUI
 
@@ -27,9 +28,6 @@ struct DosesView: View {
         NavigationView {
             List {
                 ForEach(doses.wrappedValue) { dose in
-                    if let med = dose.med {
-                        MedsRowView(med: med)
-                    }
                 }
             }
             .navigationTitle(showTakenDoses ? "History" : "Missed")

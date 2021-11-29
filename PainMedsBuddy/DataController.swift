@@ -45,6 +45,9 @@ class DataController: ObservableObject {
             let dose = Dose(context: viewContext)
             dose.takenDate = Date()
             dose.taken = Bool.random()
+            dose.title = "Paracetomol"
+            dose.amount = NSDecimalNumber(value: Int16.random(in: 100...600))
+            dose.unit = "mg"
             
             // one to one relationship
             let med = Med(context: viewContext)

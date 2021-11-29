@@ -4,6 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
+// This view shows all the available medication
 
 import SwiftUI
 

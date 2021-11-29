@@ -4,6 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
+// This view is a row shown on the MedicationView.
 
 import SwiftUI
 

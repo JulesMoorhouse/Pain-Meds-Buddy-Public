@@ -4,6 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
+// This view is main view in the app.
 
 import SwiftUI
 
