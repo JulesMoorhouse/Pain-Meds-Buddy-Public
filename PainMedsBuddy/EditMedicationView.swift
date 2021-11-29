@@ -33,18 +33,18 @@ struct EditMedsView: View {
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                TextField("Med name", text: $defaultTitle)
-                TextField("Description", text: $defaultUnit)
-
+                TextField("Default Text", text: $defaultTitle)
+                TextField("Default Unit", text: $defaultUnit)
+                TextField("Default Amount", value: $defaultAmount, formatter: NumberFormatter())
+                TextField("Remaining", value: $remaining, formatter: NumberFormatter())
+                TextField("Sequence", value: $sequence, formatter: NumberFormatter())
             }
             
-            Section {
-                Picker("Sequence", selection: $sequence) {
-                    ForEach(1 ..< 100) {
-                        Text("\($0)")
-                    }
-                }
+            Section(header: Text("Notes")) {
+                TextField("", text: $notes)
+                    .lineLimit(nil)
             }
+
         }
         .navigationTitle("Edit Med")
         .onDisappear(perform: update)
