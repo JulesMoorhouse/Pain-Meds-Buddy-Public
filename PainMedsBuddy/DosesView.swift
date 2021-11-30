@@ -28,6 +28,7 @@ struct DosesView: View {
         NavigationView {
             List {
                 ForEach(doses.wrappedValue) { dose in
+                    DoseRowView(dose: dose)
                 }
             }
             .navigationTitle(showTakenDoses ? "History" : "Missed")

@@ -9,12 +9,16 @@
 import SwiftUI
 
 struct DoseRowView: View {
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
 
     var body: some View {
         NavigationLink(destination:
-            EditDoseView(dose: dose)) {
-                Text(dose.doseTitle)
+            EditDoseView(dataController: dataController, dose: dose)
+                .environmentObject(dataController)
+        ) {
+            Text(dose.doseTitle)
         }
     }
 }
