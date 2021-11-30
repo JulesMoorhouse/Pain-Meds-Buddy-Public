@@ -15,12 +15,18 @@ struct DoseEditView: View {
     @EnvironmentObject var dataController: DataController
     @FetchRequest private var meds: FetchedResults<Med>
 
-    @State private var takenDate: Date
     @State private var selectedMed = Med()
+    @State private var title: String
+    @State private var unit: String
+    @State private var amount: Decimal
+    @State private var takenDate: Date
 
     init(dataController: DataController, dose: Dose) {
         self.dose = dose
 
+        _title = State(wrappedValue: dose.doseTitle)
+        _unit = State(wrappedValue: dose.doseUnit)
+        _amount = State(wrappedValue: dose.doseAmount)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
         let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
@@ -47,16 +53,12 @@ struct DoseEditView: View {
                 fatalError("Error loading data")
             }
         }
-
-        _takenDate = State(wrappedValue: dose.doseTakenDate)
     }
 
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                DatePicker("Please enter a time", selection: $takenDate, displayedComponents: .hourAndMinute)
-                // .labelsHidden()
-                // .datePickerStyle(WheelDatePickerStyle())
+                DatePicker("Date Time", selection: $takenDate)
 
                 NavigationLink(destination:
                     MedSelectView(meds: meds,
@@ -76,8 +78,11 @@ struct DoseEditView: View {
     func update() {
         dose.objectWillChange.send()
 
-        dose.takenDate = takenDate
+        dose.title = title
+        dose.unit = unit
+        dose.amount = NSDecimalNumber(decimal: amount)
         dose.med = selectedMed
+        dose.takenDate = takenDate
     }
 }
 
