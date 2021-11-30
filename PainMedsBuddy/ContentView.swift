@@ -34,8 +34,8 @@ struct ContentView: View {
                     Text("History")
                 }
             
-            MedicationsView()
-                .tag(MedicationsView.MedicationsTag)
+            MedsView()
+                .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: "pills.fill")
                     Text("Medication")

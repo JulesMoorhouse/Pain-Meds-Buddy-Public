@@ -1,5 +1,5 @@
 //
-//  Doses-CoreDataHelpers.swift
+//  Dose-CoreDataHelpers.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.

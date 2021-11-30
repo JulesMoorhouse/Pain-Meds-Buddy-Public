@@ -1,5 +1,5 @@
 //
-//  EditDoseView.swift
+//  DoseMedEditView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-struct EditDoseMedView: View {
+struct DoseMedEditView: View {
     let dose: Dose
     let med: Med
     
@@ -67,8 +67,8 @@ struct EditDoseMedView: View {
     }
 }
 
-struct EditDoseMedView_Previews: PreviewProvider {
+struct DoseMedEditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditDoseMedView(dose: Dose.example, med: Med.example)
+        DoseMedEditView(dose: Dose.example, med: Med.example)
     }
 }

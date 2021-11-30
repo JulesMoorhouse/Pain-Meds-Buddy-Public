@@ -1,5 +1,5 @@
 //
-//  EditMedsView.swift
+//  MedEditView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct EditMedsView: View {
+struct MedEditView: View {
     let med: Med
 
     @EnvironmentObject var dataController: DataController
@@ -71,8 +71,8 @@ struct EditMedsView: View {
     }
 }
 
-struct EditMedsView_Previews: PreviewProvider {
+struct MedEditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditMedsView(med: Med.example)
+        MedEditView(med: Med.example)
     }
 }

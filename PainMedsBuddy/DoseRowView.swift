@@ -15,7 +15,7 @@ struct DoseRowView: View {
 
     var body: some View {
         NavigationLink(destination:
-            EditDoseView(dataController: dataController, dose: dose)
+            DoseEditView(dataController: dataController, dose: dose)
                 .environmentObject(dataController)
         ) {
             Text(dose.doseTitle)

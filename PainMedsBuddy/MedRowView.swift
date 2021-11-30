@@ -1,5 +1,5 @@
 //
-//  MedsRowView.swift
+//  MedRowView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -8,18 +8,18 @@
 
 import SwiftUI
 
-struct MedsRowView: View {
+struct MedRowView: View {
     @ObservedObject var med: Med
 
     var body: some View {
-        NavigationLink(destination: EditMedsView(med: med)) {
+        NavigationLink(destination: MedEditView(med: med)) {
             Text(med.medDefaultTitle)
         }
     }
 }
 
-struct MedsRowView_Previews: PreviewProvider {
+struct MedRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MedsRowView(med: Med.example)
+        MedRowView(med: Med.example)
     }
 }

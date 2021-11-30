@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct MedicationsView: View {
-    static let MedicationsTag: String? = "Medications"
+struct MedsView: View {
+    static let MedsTag: String? = "Medications"
     
     let meds: FetchRequest<Med>
     
@@ -22,7 +22,7 @@ struct MedicationsView: View {
         NavigationView {
             List {
                 ForEach(meds.wrappedValue) { med in
-                    MedsRowView(med: med)
+                    MedRowView(med: med)
                 }
             }
             .navigationTitle("Medications")
@@ -34,7 +34,7 @@ struct MedicationsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        MedicationsView()
+        MedsView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

@@ -1,5 +1,5 @@
 //
-//  EditDoseView.swift
+//  DoseEditView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -9,7 +9,7 @@
 import CoreData
 import SwiftUI
 
-struct EditDoseView: View {
+struct DoseEditView: View {
     let dose: Dose
 
     @EnvironmentObject var dataController: DataController
@@ -81,11 +81,11 @@ struct EditDoseView: View {
     }
 }
 
-struct EditDoseView_Previews: PreviewProvider {
+struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        EditDoseView(dataController: dataController, dose: Dose.example)
+        DoseEditView(dataController: dataController, dose: Dose.example)
             .environmentObject(dataController)
     }
 }
