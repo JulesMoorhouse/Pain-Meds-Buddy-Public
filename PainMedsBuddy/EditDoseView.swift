@@ -58,16 +58,15 @@ struct EditDoseView: View {
                 // .labelsHidden()
                 // .datePickerStyle(WheelDatePickerStyle())
 
-                Picker("Medication", selection: $selectedMed.onChange(update)) {
-                    ForEach(meds) { (thisMed: Med) in
-                        // HStack {
-                        Text(thisMed.medDefaultTitle)
-                            //  Spacer()
-                            // Text("\(thisMed.remaining)")
-                            //    }
-                            .tag(thisMed)
-                    }
-                }
+                NavigationLink(destination:
+                    MedSelectView(meds: meds,
+                                  selectedMed: $selectedMed.onChange(update)),
+                    label: {
+                        HStack {
+                            TwoColumnView(col1: "Medication",
+                                          col2: selectedMed.medDefaultTitle)
+                        }
+                    })
             }
             .navigationTitle("Edit Dose")
             .onDisappear(perform: dataController.save)
