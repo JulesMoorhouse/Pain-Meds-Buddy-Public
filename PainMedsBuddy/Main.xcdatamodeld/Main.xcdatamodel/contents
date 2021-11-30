@@ -7,21 +7,22 @@
         <attribute name="taken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="unit" optional="YES" attributeType="String"/>
         <relationship name="med" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Med" inverseName="dose" inverseEntity="Med"/>
     </entity>
     <entity name="Med" representedClassName="Med" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="defaultTitle" optional="YES" attributeType="String"/>
-        <attribute name="defaultUnit" optional="YES" attributeType="String"/>
+        <attribute name="dosage" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="form" optional="YES" attributeType="String"/>
+        <attribute name="measure" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="remaining" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sequence" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Dose" positionX="-63" positionY="-18" width="128" height="149"/>
-        <element name="Med" positionX="-54" positionY="-9" width="128" height="149"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="Med" positionX="-54" positionY="-9" width="128" height="179"/>
     </elements>
 </model>

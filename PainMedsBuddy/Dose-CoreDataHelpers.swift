@@ -12,9 +12,6 @@ extension Dose {
         title ?? ""
     }
 
-    var doseUnit: String {
-        unit ?? ""
-    }
     var doseAmount: Decimal {
         (amount ?? 0.0) as Decimal
     }
@@ -40,8 +37,7 @@ extension Dose {
         let viewContext = controller.container.viewContext
         
         let dose = Dose(context: viewContext)
-        dose.title = "Example dosage"
-        dose.unit = "mg"
+        dose.title = "Paracetomol"
         dose.amount = 100
         dose.color = "Light Blue"
         dose.gapPeriod = 20.0

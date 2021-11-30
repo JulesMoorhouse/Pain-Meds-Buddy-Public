@@ -47,16 +47,19 @@ class DataController: ObservableObject {
             let dose = Dose(context: viewContext)
             dose.takenDate = Date()
             dose.taken = Bool.random()
-            dose.title = "Paracetomol"
+            dose.title = "Paracetomol \(i)"
             dose.amount = NSDecimalNumber(value: Int16.random(in: 100...600))
-            dose.unit = "mg"
+            dose.color = "Light Blue"
+            dose.gapPeriod = 20
             
             // one to one relationship
             let med = Med(context: viewContext)
             med.defaultTitle = "Med example \(i)"
             med.notes = "This is an exmaple med \(i)"
-            med.defaultUnit = "mg"
-            med.defaultAmount = 100
+            med.defaultAmount = 1
+            med.dosage = 300
+            med.measure = "mg"
+            med.form = "Pill"
             med.remaining = 99
             med.creationDate = Date()
             med.dose = dose

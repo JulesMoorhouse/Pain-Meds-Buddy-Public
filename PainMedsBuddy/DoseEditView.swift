@@ -17,16 +17,20 @@ struct DoseEditView: View {
 
     @State private var selectedMed = Med()
     @State private var title: String
-    @State private var unit: String
     @State private var amount: Decimal
+    @State private var color: String
+    @State private var gapPeriod: Decimal
+    @State private var taken: Bool
     @State private var takenDate: Date
 
     init(dataController: DataController, dose: Dose) {
         self.dose = dose
 
         _title = State(wrappedValue: dose.doseTitle)
-        _unit = State(wrappedValue: dose.doseUnit)
         _amount = State(wrappedValue: dose.doseAmount)
+        _color = State(wrappedValue: dose.doseColor)
+        _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
+        _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
         let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
@@ -61,7 +65,7 @@ struct DoseEditView: View {
                 DatePicker("Date Time", selection: $takenDate)
 
                 NavigationLink(destination:
-                    MedSelectView(meds: meds,
+                    DoseMedSelectView(meds: meds,
                                   selectedMed: $selectedMed.onChange(update)),
                     label: {
                         HStack {
@@ -79,9 +83,11 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.title = title
-        dose.unit = unit
         dose.amount = NSDecimalNumber(decimal: amount)
+        dose.color = color
+        dose.gapPeriod = NSDecimalNumber(decimal: gapPeriod)
         dose.med = selectedMed
+        dose.taken = taken
         dose.takenDate = takenDate
     }
 }

@@ -20,7 +20,7 @@
 		88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C982754EE620055BD9B /* DoseRowView.swift */; };
 		88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */; };
 		88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */; };
-		88AB7CA127566B3F0055BD9B /* MedSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CA027566B3F0055BD9B /* MedSelectView.swift */; };
+		88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Med-CoreDataHelpers.swift */; };
@@ -46,7 +46,7 @@
 		88AB7C982754EE620055BD9B /* DoseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseRowView.swift; sourceTree = "<group>"; };
 		88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEditView.swift; sourceTree = "<group>"; };
 		88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnView.swift; sourceTree = "<group>"; };
-		88AB7CA027566B3F0055BD9B /* MedSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSelectView.swift; sourceTree = "<group>"; };
+		88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseMedSelectView.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88EF203027526746006037CF /* Med-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Med-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				88EF203027526746006037CF /* Med-CoreDataHelpers.swift */,
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
-				88AB7CA027566B3F0055BD9B /* MedSelectView.swift */,
+				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
 				88B6E8342754D84700790A14 /* MedsView.swift */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
@@ -189,7 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88AB7CA127566B3F0055BD9B /* MedSelectView.swift in Sources */,
+				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,

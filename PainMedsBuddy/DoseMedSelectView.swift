@@ -1,5 +1,5 @@
 //
-//  MedSelectView.swift
+//  DoseMedSelectView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MedSelectView: View {
+struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var meds: FetchedResults<Med>
@@ -18,7 +18,7 @@ struct MedSelectView: View {
             ForEach(0 ..< meds.count) { index in
                 HStack {
                     TwoColumnView(col1: self.meds[index].medDefaultTitle,
-                                  col2: "\(self.meds[index].remaining) \(self.meds[index].medDefaultUnit)")
+                                  col2: "\(self.meds[index].remaining) \(self.meds[index].medForm)")
 
                     if self.selectedMed == meds[index] {
                         Image(systemName: "checkmark")
@@ -36,8 +36,8 @@ struct MedSelectView: View {
     }
 }
 
-//struct MedSelectView_Previews: PreviewProvider {
+//struct DoseMedSelectView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MedSelectView()
+//        DoseMedSelectView()
 //    }
 //}
