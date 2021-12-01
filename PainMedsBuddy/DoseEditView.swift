@@ -17,9 +17,9 @@ struct DoseEditView: View {
 
     @State private var selectedMed = Med()
     @State private var title: String
-    @State private var amount: Decimal
+    @State private var amount: String
     @State private var color: String
-    @State private var gapPeriod: Decimal
+    @State private var gapPeriod: String
     @State private var taken: Bool
     @State private var takenDate: Date
 
@@ -83,9 +83,9 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.title = title
-        dose.amount = NSDecimalNumber(decimal: amount)
+        dose.amount = NSDecimalNumber(string: amount)
         dose.color = color
-        dose.gapPeriod = NSDecimalNumber(decimal: gapPeriod)
+        dose.gapPeriod = NSDecimalNumber(string: gapPeriod)
         dose.med = selectedMed
         dose.taken = taken
         dose.takenDate = takenDate

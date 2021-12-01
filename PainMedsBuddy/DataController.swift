@@ -48,7 +48,7 @@ class DataController: ObservableObject {
             dose.takenDate = Date()
             dose.taken = Bool.random()
             dose.title = "Paracetomol \(i)"
-            dose.amount = NSDecimalNumber(value: Int16.random(in: 100...600))
+            dose.amount = NSDecimalNumber(value: Double.random(in: 100...600))
             dose.color = "Light Blue"
             dose.gapPeriod = 20
             

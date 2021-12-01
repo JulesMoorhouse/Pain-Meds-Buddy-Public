@@ -12,12 +12,12 @@ extension Med {
         defaultTitle ?? ""
     }
 
-    var medDefaultAmount: Decimal {
-        (defaultAmount ?? 0.0) as Decimal
+    var medDefaultAmount: String {
+        "\(String(describing: defaultAmount ?? 0.0))"
     }
 
-    var medDosage: Decimal {
-        (dosage ?? 0.0) as Decimal
+    var medDosage: String {
+        "\(String(describing: dosage ?? 0.0))"
     }
     
     var medForm: String {
@@ -34,6 +34,10 @@ extension Med {
     
     var medCreationDate: Date {
         creationDate ?? Date()
+    }
+    
+    var display: String {
+        "\(medDefaultAmount) x \(medDosage) \(measure ?? "") \(form ?? "")"
     }
     
     static var example: Med {

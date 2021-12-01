@@ -15,9 +15,10 @@ struct MedEditView: View {
     
     let types = ["mg", "ml", "Tspn"]
 
+    
     @State private var defaultTitle: String
-    @State private var defaultAmount: Decimal
-    @State private var dosage: Decimal
+    @State private var defaultAmount: String
+    @State private var dosage: String
     @State private var measure: String
     @State private var form: String
     @State private var notes: String
@@ -42,9 +43,11 @@ struct MedEditView: View {
             Section(header: Text("Basic settings")) {
                 TextField("Default Text", text: $defaultTitle.onChange(update))
                 
-                TextField("Default Amount", value: $defaultAmount.onChange(update), formatter: NumberFormatter())
+                TextField("Default Amount", text: $defaultAmount.onChange(update))
+                    .keyboardType(.decimalPad)
                 
-                TextField("Dosage", value: $dosage.onChange(update), formatter: NumberFormatter())
+                TextField("Dosage", text: $dosage.onChange(update))
+                    .keyboardType(.decimalPad)
                 
                 Picker("Measure", selection: $measure.onChange(update)) {
                     ForEach(types, id: \.self) {
@@ -54,13 +57,15 @@ struct MedEditView: View {
                 TextField("Form", text: $form.onChange(update))
 
                 TextField("Remaining", value: $remaining.onChange(update), formatter: NumberFormatter())
+                    .keyboardType(.numberPad)
                 
                 TextField("Sequence", value: $sequence.onChange(update), formatter: NumberFormatter())
+                    .keyboardType(.numberPad)
             }
             
-//            Section(header: Text("Example")) {
-//                Text(display())
-//            }
+            Section(header: Text("Example")) {
+                Text(med.display)
+            }
             
             Section(header: Text("Notes")) {
                 TextField("", text: $notes.onChange(update))
@@ -72,16 +77,12 @@ struct MedEditView: View {
         .onDisappear(perform: dataController.save)
     }
     
-//    func display() -> String {
-//        "\(NSDecimalNumber(decimal:defaultAmount).stringValue) x \(NSDecimalNumber(decimal: dosage).stringValue) \(measure) \(form)"
-//    }
-    
     func update() {
         med.dose?.objectWillChange.send()
         
         med.defaultTitle = defaultTitle
-        med.defaultAmount = NSDecimalNumber(decimal: defaultAmount)
-        med.dosage = NSDecimalNumber(decimal: dosage)
+        med.defaultAmount = NSDecimalNumber(string: defaultAmount)
+        med.dosage = NSDecimalNumber(string: dosage)
         med.measure = measure
         med.form = form
         med.notes = notes

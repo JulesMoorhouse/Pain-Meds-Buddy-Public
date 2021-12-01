@@ -12,16 +12,16 @@ extension Dose {
         title ?? ""
     }
 
-    var doseAmount: Decimal {
-        (amount ?? 0.0) as Decimal
+    var doseAmount: String {
+        "\(String(describing: amount ?? 0.0))"
     }
     
     var doseColor: String {
         color ?? "Light Blue"
     }
     
-    var doseGapPeriod: Decimal {
-        (gapPeriod ?? 0.0) as Decimal
+    var doseGapPeriod: String {
+        "\(String(describing: gapPeriod ?? 0.0))"
     }
     
     var doseTakenDate: Date {
