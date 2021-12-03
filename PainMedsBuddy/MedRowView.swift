@@ -13,7 +13,12 @@ struct MedRowView: View {
 
     var body: some View {
         NavigationLink(destination: MedEditView(med: med)) {
-            Text(med.medDefaultTitle)
+            VStack(alignment: .leading) {
+                Text(med.medDefaultTitle)
+                Text("\(med.remaining) \(med.medForm)")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
         }
     }
 }

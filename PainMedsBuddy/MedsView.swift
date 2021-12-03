@@ -25,6 +25,7 @@ struct MedsView: View {
                     MedRowView(med: med)
                 }
             }
+            .listStyle(InsetGroupedListStyle())
             .navigationTitle("Medications")
         }
     }

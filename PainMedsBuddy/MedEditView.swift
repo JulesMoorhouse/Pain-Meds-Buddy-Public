@@ -64,7 +64,7 @@ struct MedEditView: View {
             }
             
             Section(header: Text("Example")) {
-                Text(med.display)
+                Text(med.medDisplay)
             }
             
             Section(header: Text("Notes")) {

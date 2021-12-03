@@ -43,9 +43,12 @@ class DataController: ObservableObject {
     func createSampleData() throws {
         let viewContext = container.viewContext
 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
         for i in 1...20 {
             let dose = Dose(context: viewContext)
-            dose.takenDate = Date()
+            dose.takenDate = formatter.date(from: (i % 2 == 0) ? "2021/12/02 11:00" : "2021/12/01 11:00")
             dose.taken = Bool.random()
             dose.title = "Paracetomol \(i)"
             dose.amount = NSDecimalNumber(value: Double.random(in: 100...600))

@@ -16,6 +16,7 @@ struct DosesView: View {
     
     let doses: FetchRequest<Dose>
     
+    
     init(showTakenDoses: Bool) {
         self.showTakenDoses = showTakenDoses
         
@@ -24,13 +25,29 @@ struct DosesView: View {
         ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
     }
     
+    func resultsToDictionary(_ result: FetchedResults<Dose>) -> [[Dose]] {
+        return Dictionary(grouping: result) { ( sequence: Dose) in
+            sequence.doseFormattedMYTakenDate
+        }.values.map{$0}
+    }
+    
+    func rowsView(section: [Dose]) -> some View {
+        ForEach(section, id: \.self) { dose in
+            DoseRowView(dose: dose)
+        }
+    }
+    
     var body: some View {
-        NavigationView {
+        let data: [[Dose]] = resultsToDictionary(self.doses.wrappedValue)
+        return NavigationView {
             List {
-                ForEach(doses.wrappedValue) { dose in
-                    DoseRowView(dose: dose)
+                ForEach(data, id: \.self) { (section: [Dose]) in
+                    Section(header: Text(section[0].doseFormattedMYTakenDate)) {
+                        self.rowsView(section: section)
+                    }
                 }
             }
+            .listStyle(InsetGroupedListStyle())
             .navigationTitle(showTakenDoses ? "History" : "Missed")
         }
     }

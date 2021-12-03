@@ -36,7 +36,7 @@ extension Med {
         creationDate ?? Date()
     }
     
-    var display: String {
+    var medDisplay: String {
         "\(medDefaultAmount) x \(medDosage) \(measure ?? "") \(form ?? "")"
     }
     

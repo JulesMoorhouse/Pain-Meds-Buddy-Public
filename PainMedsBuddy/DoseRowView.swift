@@ -18,7 +18,15 @@ struct DoseRowView: View {
             DoseEditView(dataController: dataController, dose: dose)
                 .environmentObject(dataController)
         ) {
-            Text(dose.doseTitle)
+            VStack(alignment: .leading) {
+                Text(dose.doseTitle)
+                Text(dose.doseDisplay)
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                Text(dose.doseFormattedTakenDate)
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
         }
     }
 }

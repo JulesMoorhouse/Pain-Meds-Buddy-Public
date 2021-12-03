@@ -32,13 +32,39 @@ extension Dose {
         taken
     }
     
+    var doseFormattedTakenDate: String {
+        if let date = takenDate {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
+            return formatter.string(from: date)
+        } else {
+            return "No date"
+        }
+    }
+
+    var doseFormattedMYTakenDate: String {
+        if let date = takenDate {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter.string(from: date)
+        } else {
+            return "No date"
+        }
+    }
+    
+    var doseDisplay: String {
+        "\(doseAmount) x \(self.med?.medDosage ?? "0") \(self.med?.measure ?? "") \(self.med?.form ?? "")"
+    }
+    
     static var example: Dose {
         let controller =  DataController(inMemory: true)
         let viewContext = controller.container.viewContext
         
         let dose = Dose(context: viewContext)
         dose.title = "Paracetomol"
-        dose.amount = 100
+        dose.amount = 1
         dose.color = "Light Blue"
         dose.gapPeriod = 20.0
         dose.taken = true
