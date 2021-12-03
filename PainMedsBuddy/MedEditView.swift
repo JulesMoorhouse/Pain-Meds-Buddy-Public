@@ -43,33 +43,68 @@ struct MedEditView: View {
             Section(header: Text("Basic settings")) {
                 TextField("Default Text", text: $defaultTitle.onChange(update))
                 
-                TextField("Default Amount", text: $defaultAmount.onChange(update))
-                    .keyboardType(.decimalPad)
+                HStack {
+                    Text("Default Amount")
+                    Spacer()
+                    TextField("1", text: $defaultAmount.onChange(update))
+                        .keyboardType(.decimalPad)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
                 
-                TextField("Dosage", text: $dosage.onChange(update))
-                    .keyboardType(.decimalPad)
+                HStack {
+                    Text("Dosage")
+                    Spacer()
+                    TextField("300", text: $dosage.onChange(update))
+                        .keyboardType(.decimalPad)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
                 
                 Picker("Measure", selection: $measure.onChange(update)) {
                     ForEach(types, id: \.self) {
                         Text($0)
                     }
                 }
-                TextField("Form", text: $form.onChange(update))
-
-                TextField("Remaining", value: $remaining.onChange(update), formatter: NumberFormatter())
-                    .keyboardType(.numberPad)
                 
-                TextField("Sequence", value: $sequence.onChange(update), formatter: NumberFormatter())
-                    .keyboardType(.numberPad)
+                HStack {
+                    Text("Form")
+                    Spacer()
+                    TextField("Pill", text: $form.onChange(update))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
+                
+                HStack {
+                    Text("Remaining")
+                    Spacer()
+                    TextField("84", value: $remaining.onChange(update), formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
+                
+                HStack {
+                    Text("Sequence")
+                    Spacer()
+                    TextField("1", value: $sequence.onChange(update), formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
             }
             
-            Section(header: Text("Example")) {
-                Text(med.medDisplay)
+            Section(header: Text("Example Dosage")) {
+                HStack {
+                    Spacer()
+                    Text(med.medDisplay)
+                        .multilineTextAlignment(.trailing)
+                        .foregroundColor(.secondary)
+                }
             }
             
             Section(header: Text("Notes")) {
-                TextField("", text: $notes.onChange(update))
-                    .lineLimit(nil)
+                TextEditor(text: $notes.onChange(update))
             }
 
         }

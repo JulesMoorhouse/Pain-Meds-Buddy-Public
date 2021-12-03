@@ -66,17 +66,37 @@ struct DoseEditView: View {
 
                 NavigationLink(destination:
                     DoseMedSelectView(meds: meds,
-                                  selectedMed: $selectedMed.onChange(update)),
+                                      selectedMed: $selectedMed.onChange(update)),
                     label: {
                         HStack {
                             TwoColumnView(col1: "Medication",
                                           col2: selectedMed.medDefaultTitle)
                         }
+
                     })
+
+                HStack {
+                    Text("Amount")
+                    Spacer()
+                    TextField("1", text: $amount.onChange(update))
+                        .keyboardType(.decimalPad)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
             }
-            .navigationTitle("Edit Dose")
-            .onDisappear(perform: dataController.save)
+            Section(header: Text("Dosage")) {
+                HStack {
+                    Spacer()
+                    Text(dose.doseDisplay)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                        //.background(Color.blue)
+                }
+
+            }
         }
+        .navigationTitle("Edit Dose")
+        .onDisappear(perform: dataController.save)
     }
 
     func update() {
