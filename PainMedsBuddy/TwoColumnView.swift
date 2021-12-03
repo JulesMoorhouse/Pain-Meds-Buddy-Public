@@ -14,9 +14,9 @@ struct TwoColumnView: View {
     var body: some View {
         Group {
             Text(col1)
+                .foregroundColor(.secondary)
             Spacer()
             Text(col2)
-                .foregroundColor(.secondary)
         }
     }
 }

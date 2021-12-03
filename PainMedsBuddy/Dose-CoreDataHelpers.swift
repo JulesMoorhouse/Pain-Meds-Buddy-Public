@@ -54,8 +54,17 @@ extension Dose {
         }
     }
     
+    var doseTotalDosage: String {
+        let temp = ((amount ?? 0.0) as Decimal) * ((self.med?.dosage ?? 0) as Decimal)
+        return "\(temp)"
+    }
+    
+    var doseDisplayFull: String {
+        "\(doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "") = \(doseTotalDosage)\(self.med?.measure ?? "")"
+    }
+
     var doseDisplay: String {
-        "\(doseAmount) x \(self.med?.medDosage ?? "0") \(self.med?.measure ?? "") \(self.med?.form ?? "")"
+        "\(doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "")"
     }
     
     static var example: Dose {

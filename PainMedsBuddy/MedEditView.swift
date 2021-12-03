@@ -45,51 +45,56 @@ struct MedEditView: View {
                 
                 HStack {
                     Text("Default Amount")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("1", text: $defaultAmount.onChange(update))
                         .keyboardType(.decimalPad)
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
+                    Text(med.medForm)
                 }
                 
                 HStack {
                     Text("Dosage")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("300", text: $dosage.onChange(update))
                         .keyboardType(.decimalPad)
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
+                    Text(med.medMeasure)
                 }
                 
                 Picker("Measure", selection: $measure.onChange(update)) {
                     ForEach(types, id: \.self) {
                         Text($0)
+                            .foregroundColor(.primary)
                     }
                 }
+                .foregroundColor(.secondary)
                 
                 HStack {
                     Text("Form")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("Pill", text: $form.onChange(update))
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                 }
                 
                 HStack {
                     Text("Remaining")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("84", value: $remaining.onChange(update), formatter: NumberFormatter())
                         .keyboardType(.numberPad)
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
+                    Text(med.medForm)
                 }
                 
                 HStack {
                     Text("Sequence")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("1", value: $sequence.onChange(update), formatter: NumberFormatter())
                         .keyboardType(.numberPad)
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                 }
             }

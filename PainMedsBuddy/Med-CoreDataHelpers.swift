@@ -36,8 +36,13 @@ extension Med {
         creationDate ?? Date()
     }
     
+    var medTotalDosage: String {
+        let temp = ((defaultAmount ?? 0.0) as Decimal) * ((dosage ?? 0) as Decimal)
+        return "\(temp)"
+    }
+    
     var medDisplay: String {
-        "\(medDefaultAmount) x \(medDosage) \(measure ?? "") \(form ?? "")"
+        "\(medDefaultAmount) x \(medDosage)\(measure ?? "") \(form ?? "") = \(medTotalDosage)\(measure ?? "")"
     }
     
     static var example: Med {

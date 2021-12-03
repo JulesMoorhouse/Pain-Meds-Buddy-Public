@@ -63,10 +63,11 @@ struct DoseEditView: View {
         Form {
             Section(header: Text("Basic settings")) {
                 DatePicker("Date Time", selection: $takenDate)
+                    .foregroundColor(.secondary)
 
                 NavigationLink(destination:
                     DoseMedSelectView(meds: meds,
-                                      selectedMed: $selectedMed.onChange(update)),
+                                      selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
                             TwoColumnView(col1: "Medication",
@@ -77,17 +78,18 @@ struct DoseEditView: View {
 
                 HStack {
                     Text("Amount")
+                        .foregroundColor(.secondary)
                     Spacer()
                     TextField("1", text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
-                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
+                    Text(dose.med?.medForm ?? "")
                 }
             }
             Section(header: Text("Dosage")) {
                 HStack {
                     Spacer()
-                    Text(dose.doseDisplay)
+                    Text(dose.doseDisplayFull)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                         //.background(Color.blue)
@@ -99,10 +101,18 @@ struct DoseEditView: View {
         .onDisappear(perform: dataController.save)
     }
 
+    func selectionChanged() {
+        
+        dose.title = selectedMed.defaultTitle
+        dose.amount = selectedMed.defaultAmount
+        amount = "\(selectedMed.medDefaultAmount)"
+        
+        update()
+    }
+    
     func update() {
         dose.objectWillChange.send()
 
-        dose.title = title
         dose.amount = NSDecimalNumber(string: amount)
         dose.color = color
         dose.gapPeriod = NSDecimalNumber(string: gapPeriod)
