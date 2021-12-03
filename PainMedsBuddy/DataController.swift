@@ -52,7 +52,6 @@ class DataController: ObservableObject {
             dose.taken = Bool.random()
             dose.title = "Paracetomol \(i)"
             dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
-            dose.color = "Light Blue"
             dose.gapPeriod = 20
             
             // one to one relationship
@@ -61,6 +60,7 @@ class DataController: ObservableObject {
             med.notes = "This is an exmaple med \(i)"
             med.defaultAmount = 1
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100...600))
+            med.color = "Light Blue"
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = 99

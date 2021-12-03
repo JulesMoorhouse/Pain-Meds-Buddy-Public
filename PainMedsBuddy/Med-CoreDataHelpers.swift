@@ -8,6 +8,8 @@
 import Foundation
 
 extension Med {
+    static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
+    
     var medDefaultTitle: String {
         defaultTitle ?? ""
     }
@@ -16,6 +18,10 @@ extension Med {
         "\(String(describing: defaultAmount ?? 0.0))"
     }
 
+    var medColor: String {
+        color ?? "Light Blue"
+    }
+    
     var medDosage: String {
         "\(String(describing: dosage ?? 0.0))"
     }
@@ -53,6 +59,7 @@ extension Med {
         med.defaultTitle = "Example med"
         med.notes = "This is an exmaple med"
         med.defaultAmount = 1
+        med.color = "Light Blue"
         med.dosage = 300
         med.measure = "mg"
         med.form = "Pill"

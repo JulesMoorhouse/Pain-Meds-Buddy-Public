@@ -13,22 +13,22 @@ struct DoseEditView: View {
     let dose: Dose
 
     @EnvironmentObject var dataController: DataController
+    @Environment(\.presentationMode) var presentationMode
     @FetchRequest private var meds: FetchedResults<Med>
 
     @State private var selectedMed = Med()
     @State private var title: String
     @State private var amount: String
-    @State private var color: String
     @State private var gapPeriod: String
     @State private var taken: Bool
     @State private var takenDate: Date
-
+    @State private var showingDeleteConfirm = false
+    
     init(dataController: DataController, dose: Dose) {
         self.dose = dose
 
         _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
-        _color = State(wrappedValue: dose.doseColor)
         _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
         _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
@@ -86,6 +86,7 @@ struct DoseEditView: View {
                     Text(dose.med?.medForm ?? "")
                 }
             }
+            
             Section(header: Text("Dosage")) {
                 HStack {
                     Spacer()
@@ -96,9 +97,23 @@ struct DoseEditView: View {
                 }
 
             }
+            Section {
+                Button(dose.taken ? "Missed this dose" : "Taken dose") {
+                    dose.taken.toggle()
+                    update()
+                }
+                
+                Button("Delete this Dose") {
+                    showingDeleteConfirm.toggle()
+                }
+                .accentColor(.red)
+            }
         }
         .navigationTitle("Edit Dose")
         .onDisappear(perform: dataController.save)
+        .alert(isPresented: $showingDeleteConfirm) {
+            Alert(title: Text("Delete dose?"), message: Text("Are you sure you want to delete this does?"), primaryButton: .default(Text("Delete") , action: delete), secondaryButton: .cancel())
+        }
     }
 
     func selectionChanged() {
@@ -114,11 +129,15 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.amount = NSDecimalNumber(string: amount)
-        dose.color = color
         dose.gapPeriod = NSDecimalNumber(string: gapPeriod)
         dose.med = selectedMed
         dose.taken = taken
         dose.takenDate = takenDate
+    }
+    
+    func delete() {
+        dataController.delete(dose)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

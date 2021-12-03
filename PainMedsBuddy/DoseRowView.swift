@@ -20,6 +20,7 @@ struct DoseRowView: View {
         ) {
             VStack(alignment: .leading) {
                 Text(dose.doseTitle)
+                    .foregroundColor(Color(dose.med?.color ?? "Black"))
                 Text(dose.doseDisplay)
                     .foregroundColor(.secondary)
                     .font(.caption)

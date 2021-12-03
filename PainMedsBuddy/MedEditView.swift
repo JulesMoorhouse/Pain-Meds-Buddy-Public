@@ -13,11 +13,9 @@ struct MedEditView: View {
 
     @EnvironmentObject var dataController: DataController
     
-    let types = ["mg", "ml", "Tspn"]
-
-    
     @State private var defaultTitle: String
     @State private var defaultAmount: String
+    @State private var color: String
     @State private var dosage: String
     @State private var measure: String
     @State private var form: String
@@ -25,11 +23,18 @@ struct MedEditView: View {
     @State private var remaining: Int
     @State private var sequence: Int
     
+    let types = ["mg", "ml", "Tspn"]
+
+    let colorColumns = [
+        GridItem(.adaptive(minimum: 44))
+    ]
+    
     init(med: Med) {
         self.med = med
         
         _defaultTitle = State(wrappedValue: med.medDefaultTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
+        _color = State(wrappedValue: med.medColor)
         _dosage = State(wrappedValue: med.medDosage)
         _measure = State(wrappedValue: med.medMeasure)
         _form = State(wrappedValue: med.medForm)
@@ -108,6 +113,29 @@ struct MedEditView: View {
                 }
             }
             
+            Section(header: Text("Colour")) {
+                LazyVGrid(columns: colorColumns) {
+                    ForEach(Med.colors, id: \.self) { item in
+                        ZStack {
+                            Color(item)
+                                .aspectRatio(1, contentMode: .fit)
+                                .cornerRadius(6)
+                            
+                            if item == color {
+                                Image(systemName: "checkmark.circle")
+                                    .foregroundColor(.white)
+                                    .font(.largeTitle)
+                            }
+                        }
+                        .onTapGesture {
+                            color = item
+                            update()
+                        }
+                    }
+                }
+                .padding(.vertical)
+            }
+            
             Section(header: Text("Notes")) {
                 TextEditor(text: $notes.onChange(update))
             }
@@ -122,6 +150,7 @@ struct MedEditView: View {
         
         med.defaultTitle = defaultTitle
         med.defaultAmount = NSDecimalNumber(string: defaultAmount)
+        med.color = color
         med.dosage = NSDecimalNumber(string: dosage)
         med.measure = measure
         med.form = form

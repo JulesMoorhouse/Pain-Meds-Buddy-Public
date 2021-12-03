@@ -17,8 +17,10 @@ struct DoseMedSelectView: View {
         Form {
             ForEach(0 ..< meds.count) { index in
                 HStack {
-                    TwoColumnView(col1: self.meds[index].medDefaultTitle,
-                                  col2: "\(self.meds[index].remaining) \(self.meds[index].medForm)")
+                    Text(self.meds[index].medDefaultTitle)
+                        .foregroundColor(Color(self.meds[index].color ?? "Black"))
+                    Spacer()
+                    Text("\(self.meds[index].remaining) \(self.meds[index].medForm)")
 
                     if self.selectedMed == meds[index] {
                         Image(systemName: "checkmark")

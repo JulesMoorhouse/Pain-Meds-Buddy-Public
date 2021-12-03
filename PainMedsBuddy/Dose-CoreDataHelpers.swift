@@ -16,10 +16,6 @@ extension Dose {
         "\(String(describing: amount ?? 0.0))"
     }
     
-    var doseColor: String {
-        color ?? "Light Blue"
-    }
-    
     var doseGapPeriod: String {
         "\(String(describing: gapPeriod ?? 0.0))"
     }
@@ -74,7 +70,6 @@ extension Dose {
         let dose = Dose(context: viewContext)
         dose.title = "Paracetomol"
         dose.amount = 1
-        dose.color = "Light Blue"
         dose.gapPeriod = 20.0
         dose.taken = true
         dose.takenDate = Date()
