@@ -11,7 +11,8 @@ import SwiftUI
 
 struct DoseEditView: View {
     let dose: Dose
-
+    let add: Bool
+    
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
     @FetchRequest private var meds: FetchedResults<Med>
@@ -24,9 +25,11 @@ struct DoseEditView: View {
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
     
-    init(dataController: DataController, dose: Dose) {
+    init(dataController: DataController, dose: Dose, add: Bool) {
+        
         self.dose = dose
-
+        self.add = add
+        
         _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
         _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
@@ -35,7 +38,7 @@ struct DoseEditView: View {
 
         let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+            NSSortDescriptor(keyPath: \Med.creationDate, ascending: false)
         ]
 
         self._meds = FetchRequest(fetchRequest: fetchRequest)
@@ -109,7 +112,7 @@ struct DoseEditView: View {
                 .accentColor(.red)
             }
         }
-        .navigationTitle("Edit Dose")
+        .navigationTitle(add ? "Add Dose" : "Edit Dose")
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text("Delete dose?"), message: Text("Are you sure you want to delete this does?"), primaryButton: .default(Text("Delete") , action: delete), secondaryButton: .cancel())
@@ -145,7 +148,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController, dose: Dose.example)
+        DoseEditView(dataController: dataController, dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }

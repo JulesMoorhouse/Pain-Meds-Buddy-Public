@@ -7,19 +7,19 @@
 
 import Foundation
 
-extension Dose {
+extension Dose: Comparable {
     var doseTitle: String {
-        title ?? ""
+        title ?? "New Medication"
     }
 
     var doseAmount: String {
         "\(String(describing: amount ?? 0.0))"
     }
-    
+
     var doseGapPeriod: String {
         "\(String(describing: gapPeriod ?? 0.0))"
     }
-    
+
     var doseTakenDate: Date {
         takenDate ?? Date()
     }
@@ -27,7 +27,7 @@ extension Dose {
     var doseTaken: Bool {
         taken
     }
-    
+
     var doseFormattedTakenDate: String {
         if let date = takenDate {
             let formatter = DateFormatter()
@@ -49,33 +49,35 @@ extension Dose {
             return "No date"
         }
     }
-    
+
     var doseTotalDosage: String {
         let temp = ((amount ?? 0.0) as Decimal) * ((self.med?.dosage ?? 0) as Decimal)
         return "\(temp)"
     }
-    
+
     var doseDisplayFull: String {
-        "\(doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "") = \(doseTotalDosage)\(self.med?.measure ?? "")"
+        "\(self.doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "") = \(self.doseTotalDosage)\(self.med?.measure ?? "")"
     }
 
     var doseDisplay: String {
-        "\(doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "")"
+        "\(self.doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "")"
     }
-    
+
+    public static func < (lhs: Dose, rhs: Dose) -> Bool {
+        lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
+    }
+
     static var example: Dose {
-        let controller =  DataController(inMemory: true)
+        let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
-        
+
         let dose = Dose(context: viewContext)
         dose.title = "Paracetomol"
         dose.amount = 1
         dose.gapPeriod = 20.0
         dose.taken = true
         dose.takenDate = Date()
-        
+
         return dose
     }
 }
-
-

@@ -15,12 +15,14 @@ struct DoseRowView: View {
 
     var body: some View {
         NavigationLink(destination:
-            DoseEditView(dataController: dataController, dose: dose)
+            DoseEditView(dataController: dataController, dose: dose, add: false)
                 .environmentObject(dataController)
+                .environment(\.managedObjectContext, viewContext)
+
         ) {
             VStack(alignment: .leading) {
                 Text(dose.doseTitle)
-                    .foregroundColor(Color(dose.med?.color ?? "Black"))
+                    .foregroundColor(Color(dose.med?.color ?? "Dark Blue"))
                 Text(dose.doseDisplay)
                     .foregroundColor(.secondary)
                     .font(.caption)

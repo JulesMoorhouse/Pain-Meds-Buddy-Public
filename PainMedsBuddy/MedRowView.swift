@@ -15,7 +15,7 @@ struct MedRowView: View {
         NavigationLink(destination: MedEditView(med: med)) {
             VStack(alignment: .leading) {
                 Text(med.medDefaultTitle)
-                    .foregroundColor(Color(med.color ?? "Black"))
+                    .foregroundColor(Color(med.color ?? "Dark Blue"))
                 Text("\(med.remaining) \(med.medForm)")
                     .foregroundColor(.secondary)
                     .font(.caption)
