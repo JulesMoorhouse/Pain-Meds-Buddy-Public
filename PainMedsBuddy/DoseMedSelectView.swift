@@ -11,7 +11,7 @@ struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var meds: FetchedResults<Med>
-    @Binding var selectedMed: Med
+    @Binding var selectedMedIndex: Int
 
     var body: some View {
         Form {
@@ -22,7 +22,7 @@ struct DoseMedSelectView: View {
                     Spacer()
                     Text("\(self.meds[index].remaining) \(self.meds[index].medForm)")
 
-                    if self.selectedMed == meds[index] {
+                    if self.selectedMedIndex == index {
                         Image(systemName: "checkmark")
                             .foregroundColor(Color.blue)
                     }
@@ -30,7 +30,7 @@ struct DoseMedSelectView: View {
                 .contentShape(Rectangle())
                 .foregroundColor(.primary)
                 .onTapGesture {
-                    self.selectedMed = meds[index]
+                    self.selectedMedIndex = index
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }
