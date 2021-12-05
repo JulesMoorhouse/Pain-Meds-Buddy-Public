@@ -56,13 +56,22 @@ extension Dose: Comparable {
     }
 
     var doseDisplayFull: String {
-        "\(self.doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "") = \(self.doseTotalDosage)\(self.med?.measure ?? "")"
+        
+        return Dose.displayFull(amount: self.doseAmount,
+                                dosage: self.med?.medDosage ?? "0",
+                                totalDosage: self.doseTotalDosage,
+                                measure: self.med?.measure ?? "",
+                                form: self.med?.form ?? "")
     }
 
     var doseDisplay: String {
         "\(self.doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "")"
     }
 
+    public static func displayFull(amount: String, dosage: String, totalDosage: String, measure: String, form: String) -> String {
+        return "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
+
+    }
     public static func < (lhs: Dose, rhs: Dose) -> Bool {
         lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
     }

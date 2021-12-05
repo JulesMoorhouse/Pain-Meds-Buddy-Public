@@ -49,6 +49,7 @@ struct DosesView: View {
                 dataController.delete(item)
             }
             dataController.save()
+            dataController.container.viewContext.processPendingChanges()
         }
     }
     
@@ -64,16 +65,17 @@ struct DosesView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
+            .background(
+                NavigationLink(destination: DoseAddView()
+                    .environment(\.managedObjectContext, managedObjectContext)
+                    .environmentObject(dataController),
+                    isActive: $showAddView) {
+                        EmptyView()
+                }
+            )
             .navigationTitle(showTakenDoses ? "History" : "Missed")
             .toolbar {
-                Button {
-                    withAnimation {
-                        let dose = Dose(context: managedObjectContext)
-                        dose.taken = true
-                        dose.takenDate = Date()
-                        dataController.save()
-                    }
-                } label: {
+                Button(action: { self.showAddView = true }) {
                     Label("Add Dose", systemImage: "plus")
                 }
             }

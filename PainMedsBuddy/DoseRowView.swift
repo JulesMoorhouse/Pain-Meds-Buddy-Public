@@ -13,11 +13,13 @@ struct DoseRowView: View {
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
 
+    @State var showEditView = false
+
     var body: some View {
         NavigationLink(destination:
             DoseEditView(dataController: dataController, dose: dose, add: false)
                 .environmentObject(dataController)
-                .environment(\.managedObjectContext, viewContext)
+                        .environment(\.managedObjectContext, viewContext), isActive: $showEditView
 
         ) {
             VStack(alignment: .leading) {

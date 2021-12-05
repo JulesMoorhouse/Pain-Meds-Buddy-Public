@@ -17,8 +17,8 @@ struct DoseEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @FetchRequest private var meds: FetchedResults<Med>
 
-    @State private var selectedMedIndex = 0
-    @State private var selectedMedTitle = ""
+    @State private var selectedMed = Med()
+    @State private var title: String
     @State private var amount: String
     @State private var gapPeriod: String
     @State private var taken: Bool
@@ -29,6 +29,7 @@ struct DoseEditView: View {
         self.dose = dose
         self.add = add
 
+        _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
         _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
         _taken = State(wrappedValue: dose.doseTaken)
@@ -46,19 +47,14 @@ struct DoseEditView: View {
             let tempMeds = try dataController.container.viewContext.fetch(fetchRequest)
             if tempMeds.count > 0 {
                 if let currentMed = dose.med {
-                    let index = tempMeds.firstIndex(of: currentMed)
-                    if let index = index {
-                        self._selectedMedIndex = State(wrappedValue: index)
-                        _selectedMedTitle = State(wrappedValue: currentMed.medDefaultTitle)
-                        found = true
-                    }
+                    initSelection(med: currentMed)
+                    found = true
                 }
 
                 if !found {
-                    let first = tempMeds.first!
-                    let index: Int = tempMeds.firstIndex(of: first)!
-                    self._selectedMedIndex = State(wrappedValue: index)
-                    _selectedMedTitle = State(wrappedValue: first.medDefaultTitle)
+                    if let first = tempMeds.first {
+                        initSelection(med: first)
+                    }
                 }
             }
         } catch {
@@ -74,11 +70,11 @@ struct DoseEditView: View {
 
                 NavigationLink(destination:
                     DoseMedSelectView(meds: meds,
-                                      selectedMedIndex: $selectedMedIndex.onChange(selectionChanged)),
+                                      selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
                             TwoColumnView(col1: "Medication",
-                                          col2: $selectedMedTitle.wrappedValue)
+                                          col2: title)
                         }
 
                     })
@@ -90,23 +86,21 @@ struct DoseEditView: View {
                     TextField("1", text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
-                    Text(dose.med?.medForm ?? "")
+                    Text(selectedMed.medForm)
                 }
             }
 
             Section(header: Text("Dosage")) {
                 HStack {
                     Spacer()
-                    Text(dose.doseDisplayFull)
+                    Text(display())
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                    // .background(Color.blue)
                 }
             }
             Section {
-                Button(dose.taken ? "Missed this dose" : "Taken dose") {
-                    dose.taken.toggle()
-                    update()
+                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
+                    $taken.wrappedValue.toggle()
                 }
 
                 Button("Delete this Dose") {
@@ -116,19 +110,41 @@ struct DoseEditView: View {
             }
         }
         .navigationTitle(add ? "Add Dose" : "Edit Dose")
-        .onDisappear(perform: dataController.save)
+        .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
-            Alert(title: Text("Delete dose?"), message: Text("Are you sure you want to delete this does?"), primaryButton: .default(Text("Delete"), action: delete), secondaryButton: .cancel())
+            Alert(title: Text("Delete dose?"),
+                  message: Text("Are you sure you want to delete this does?"),
+                  primaryButton: .default(Text("Delete"), action: delete),
+                  secondaryButton: .cancel())
         }
     }
 
+    mutating func initSelection(med: Med) {
+        _selectedMed = State(wrappedValue: med)
+        if add {
+            _amount = State(wrappedValue: med.medDefaultAmount)
+        }
+    }
+
+    func display() -> String {
+        let amt = Decimal(string: amount) ?? 0.0
+        let dsg = Decimal(string: selectedMed.medDosage) ?? 0.0
+        let temp = (amt * dsg)
+
+        return Dose.displayFull(amount: amount,
+                                dosage: selectedMed.medDosage,
+                                totalDosage: "\(temp)",
+                                measure: selectedMed.measure ?? "",
+                                form: selectedMed.form ?? "")
+    }
+
     func selectionChanged() {
-        let med = meds[selectedMedIndex]
+        let med = selectedMed
 
         dose.title = med.defaultTitle
         dose.amount = med.defaultAmount
 
-        selectedMedTitle = med.medDefaultTitle
+        title = med.medDefaultTitle
         amount = "\(med.medDefaultAmount)"
 
         dose.med = med
@@ -148,6 +164,11 @@ struct DoseEditView: View {
     func delete() {
         dataController.delete(dose)
         presentationMode.wrappedValue.dismiss()
+    }
+
+    func save() {
+        dose.med = selectedMed
+        dataController.save()
     }
 }
 
