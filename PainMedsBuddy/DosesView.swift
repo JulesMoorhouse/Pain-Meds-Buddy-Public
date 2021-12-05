@@ -28,10 +28,15 @@ struct DosesView: View {
         ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
     }
     
-    func resultsToDictionary(_ result: FetchedResults<Dose>) -> [[Dose]] {
-        return Dictionary(grouping: result) { (sequence: Dose) in
+    // Results to an array of section arrays
+    func resultsToArray(_ result: FetchedResults<Dose>) -> [[Dose]] {
+        let dict = Dictionary(grouping: result) { (sequence: Dose) in
             sequence.doseFormattedMYTakenDate
-        }.values.map{$0}
+        }
+
+        let sorted = dict.sorted(by: { $0.key > $1.key })
+
+        return sorted.map { $0.value }
     }
     
     func rowsView(section: [Dose]) -> some View {
@@ -48,7 +53,8 @@ struct DosesView: View {
     }
     
     var body: some View {
-        let data: [[Dose]] = resultsToDictionary(self.doses.wrappedValue)
+        let data: [[Dose]] = resultsToArray(self.doses.wrappedValue)
+        
         return NavigationView {
             List {
                 ForEach(data, id: \.self) { (section: [Dose]) in
@@ -60,16 +66,16 @@ struct DosesView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationTitle(showTakenDoses ? "History" : "Missed")
             .toolbar {
-                    Button {
-                        withAnimation {
-                            let dose = Dose(context: managedObjectContext)
-                            dose.taken = true
-                            dose.takenDate = Date()
-                            dataController.save()
-                        }
-                    } label: {
-                        Label("Add Dose", systemImage: "plus")
+                Button {
+                    withAnimation {
+                        let dose = Dose(context: managedObjectContext)
+                        dose.taken = true
+                        dose.takenDate = Date()
+                        dataController.save()
                     }
+                } label: {
+                    Label("Add Dose", systemImage: "plus")
+                }
             }
         }
     }
