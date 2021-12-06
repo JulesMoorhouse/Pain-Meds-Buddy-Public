@@ -7,11 +7,26 @@
 // This view is main view in the app.
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
+    
+    var meds = [Med]()
+    
+    init(dataController: DataController) {
+        let medsFetchrequest: NSFetchRequest<Med> = Med.fetchRequest()
+        medsFetchrequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+        ]
+        
+        do {
+            self.meds = try dataController.container.viewContext.fetch(medsFetchrequest)
+        }
+        catch { }
+    }
     
     var body: some View {
         TabView(selection: $selectedView) {
@@ -22,14 +37,14 @@ struct ContentView: View {
                     Text("Home")
                 }
                  
-            DosesView(dataController: dataController, showTakenDoses: true)
+            DosesView(dataController: dataController, meds: meds, showTakenDoses: true)
                 .tag(DosesView.takenTag)
                 .tabItem {
                     Image(systemName: "checkmark")
                     Text("History")
                 }
 
-            MedsView()
+            MedsView(meds: meds)
                 .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: "pills.fill")
@@ -43,7 +58,7 @@ struct ContentView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     
     static var previews: some View {
-        ContentView()
+        ContentView(dataController: dataController)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

@@ -20,24 +20,15 @@ struct DosesView: View {
     @State var showAddView = false
 
     let doses: FetchRequest<Dose>
-    var meds = [Med]()
+    let meds: [Med]
     
-    init(dataController: DataController, showTakenDoses: Bool) {
+    init(dataController: DataController, meds: [Med], showTakenDoses: Bool) {
         self.showTakenDoses = showTakenDoses
+        self.meds = meds
         
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
         ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
-        
-        let medsFetchrequest: NSFetchRequest<Med> = Med.fetchRequest()
-        medsFetchrequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
-        ]
-        
-        do {
-            self.meds = try dataController.container.viewContext.fetch(medsFetchrequest)
-        }
-        catch { }
     }
     
     // Results to an array of section arrays
@@ -100,7 +91,7 @@ struct DosesView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     
     static var previews: some View {
-        DosesView(dataController: dataController, showTakenDoses: false)
+        DosesView(dataController: dataController, meds: [Med()], showTakenDoses: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

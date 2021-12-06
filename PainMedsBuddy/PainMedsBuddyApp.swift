@@ -19,7 +19,7 @@ struct PainMedsBuddyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(dataController: dataController)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification), perform: save)

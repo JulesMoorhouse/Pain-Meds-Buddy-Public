@@ -13,6 +13,11 @@ struct DoseMedSelectView: View {
     let meds: [Med]
     @Binding var selectedMed: Med
 
+    init(meds: [Med], selectedMed: Binding<Med>) {
+        self.meds = meds.allMeds()
+        _selectedMed = selectedMed
+    }
+    
     var body: some View {
         Form {
             ForEach(0 ..< meds.count) { index in

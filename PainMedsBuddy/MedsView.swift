@@ -11,17 +11,15 @@ import SwiftUI
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
     
-    let meds: FetchRequest<Med>
+    let meds: [Med]
     
-    init() {
-        meds = FetchRequest<Med>(entity: Med.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
-        ])
+    init(meds: [Med]) {
+        self.meds = meds.allMeds()
     }
     var body: some View {
         NavigationView {
             List {
-                ForEach(meds.wrappedValue, id: \.self) { med in
+                ForEach(meds, id: \.self) { med in
                     MedRowView(med: med)
                 }
             }
@@ -35,7 +33,7 @@ struct MedicationsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        MedsView()
+        MedsView(meds: [Med()])
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
