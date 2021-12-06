@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view shows a summary on medication which has or can be taken next
+// INFO: This view shows a summary on medication which has or can be taken next
 
 import SwiftUI
 

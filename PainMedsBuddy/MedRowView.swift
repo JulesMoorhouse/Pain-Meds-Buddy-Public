@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view is a row shown on the MedicationView.
+// INFO: This view is a row shown on the MedicationView.
 
 import SwiftUI
 
@@ -12,14 +12,12 @@ struct MedRowView: View {
     @ObservedObject var med: Med
 
     var body: some View {
-        NavigationLink(destination: MedEditView(med: med)) {
-            VStack(alignment: .leading) {
-                Text(med.medDefaultTitle)
-                    .foregroundColor(Color(med.color ?? "Dark Blue"))
-                Text("\(med.remaining) \(med.medForm)")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
+        VStack(alignment: .leading) {
+            Text(med.medDefaultTitle)
+                .foregroundColor(Color(med.color ?? Med.defaultColor))
+            Text("\(med.remaining) \(med.medForm)")
+                .foregroundColor(.secondary)
+                .font(.caption)
         }
     }
 }

@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view is shown via the MedicationView to allow editing of medication
+// INFO: This view is shown via the MedicationView to allow editing of medication
 
 import SwiftUI
 

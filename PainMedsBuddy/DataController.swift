@@ -54,7 +54,7 @@ class DataController: ObservableObject {
             dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
             dose.gapPeriod = 20
             
-            // one to one relationship
+            // INFO: One to one relationship
             let med = Med(context: viewContext)
             med.defaultTitle = "Med example \(i)"
             med.notes = "This is an exmaple med \(i)"

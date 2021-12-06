@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view shows all the available medication
+// INFO: This view shows all the available medication
 
 import SwiftUI
 
@@ -25,14 +25,16 @@ struct MedsView: View {
             ZStack {
                 List {
                     ForEach(items(), id: \.self) { med in
-                        MedRowView(med: med)
+                        NavigationLink(destination: MedEditView(med: med)) {
+                            MedRowView(med: med)
+                        }
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
                 .disabled($showingSortOrder.wrappedValue == true)
         
                 if $showingSortOrder.wrappedValue == true {
-                    popUpView()
+                    MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
                 }
             }
             .navigationTitle("Medications")
@@ -46,6 +48,7 @@ struct MedsView: View {
         }
     }
     
+    // TODO: This will move later
     func items() -> [Med] {
         switch sortOrder {
         case .title:
@@ -55,50 +58,6 @@ struct MedsView: View {
         default:
             return meds.allMedsDefaultSorted
         }
-        
-    }
-    
-    func popUpButton(_ text: String) -> some View {
-        Text(text)
-            .padding(10)
-            .frame(width: 150)
-            .overlay(
-                        RoundedRectangle(cornerRadius: 10.0)
-                            .stroke(lineWidth: 2.0)
-                    )
-    }
-    
-    func popUpView() -> some View {
-        VStack(spacing: 10) {
-            Text("Sort Order")
-                .bold()
-            
-            Spacer()
-            
-            Button(action: {
-                sortOrder = .optimzed
-                showingSortOrder = false
-            }) {
-                popUpButton("Optimized")
-            }
-            Button(action: {
-                sortOrder = .creationDate
-                showingSortOrder = false
-            }) {
-                popUpButton("Created Date")
-            }
-            Button(action: {
-                sortOrder = .title
-                showingSortOrder = false
-            }) {
-                popUpButton("Title")
-            }
-        }
-        .padding()
-        .frame(width: 240, height: 220)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(radius: 20)
     }
 }
 

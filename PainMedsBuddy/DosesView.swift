@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view shows all the taken doses of medication
+// INFO: This view shows all the taken doses of medication
 
 import SwiftUI
 import CoreData
@@ -31,13 +31,13 @@ struct DosesView: View {
         ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
     }
     
-    // Results to an array of section arrays
+    // INFO: Results to an array of section arrays
     func resultsToArray(_ result: FetchedResults<Dose>) -> [[Dose]] {
         let dict = Dictionary(grouping: result) { (sequence: Dose) in
             sequence.doseFormattedMYTakenDate
         }
 
-        // Sory by key aka doseFormattedMYTakenDate
+        // INFO: Sort by key aka doseFormattedMYTakenDate
         let sorted = dict.sorted(by: { $0.key > $1.key })
 
         return sorted.map { $0.value }

@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view allows editing of the dose and selection / re-selection of a med
+// INFO: This view allows editing of the dose and selection / re-selection of a med
 
 import CoreData
 import SwiftUI

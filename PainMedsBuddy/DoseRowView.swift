@@ -4,7 +4,7 @@
 //
 //  Created by Jules Moorhouse.
 //
-// This view is a row used on the DoseView
+// INFO: This view is a row used on the DoseView
 
 import SwiftUI
 
@@ -24,7 +24,7 @@ struct DoseRowView: View {
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
                 VStack(alignment: .leading) {
                     Text(dose.doseTitle)
-                        .foregroundColor(Color(dose.med?.color ?? "Dark Blue"))
+                        .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
                     Text(dose.doseDisplay)
                         .foregroundColor(.secondary)
                         .font(.caption)

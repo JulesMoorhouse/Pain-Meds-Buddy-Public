@@ -13,7 +13,7 @@ struct PainMedsBuddyApp: App {
     
     init() {
         let dataController = DataController()
-        // Assign StateObject
+        // INFO: Assign StateObject
         _dataController = StateObject(wrappedValue: dataController)
     }
     

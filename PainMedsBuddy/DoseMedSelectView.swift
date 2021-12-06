@@ -11,21 +11,23 @@ struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
 
     let meds: [Med]
+    
     @Binding var selectedMed: Med
-
+    @State private var showingSortOrder = false
+    @State private var sortOrder = Med.SortOrder.optimzed
+    
     init(meds: [Med], selectedMed: Binding<Med>) {
         self.meds = meds.allMedsDefaultSorted
         _selectedMed = selectedMed
     }
-    
+
     var body: some View {
         Form {
             ForEach(0 ..< meds.count) { index in
                 HStack {
-                    Text(self.meds[index].medDefaultTitle)
-                        .foregroundColor(Color(self.meds[index].color ?? "Black"))
+                    MedRowView(med: self.meds[index])
+
                     Spacer()
-                    Text("\(self.meds[index].remaining) \(self.meds[index].medForm)")
 
                     if self.selectedMed == meds[index] {
                         Image(systemName: "checkmark")
@@ -43,8 +45,8 @@ struct DoseMedSelectView: View {
     }
 }
 
-//struct DoseMedSelectView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DoseMedSelectView()
-//    }
-//}
+ struct DoseMedSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        DoseMedSelectView(meds: [Med()], selectedMed: .constant(Med()))
+    }
+ }
