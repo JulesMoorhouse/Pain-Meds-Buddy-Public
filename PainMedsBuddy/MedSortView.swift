@@ -12,7 +12,7 @@ struct MedSortView: View {
     @Binding var showingSortOrder: Bool
 
     var body: some View {
-        PopUpView(text: "Sort Order") {
+        PopUpView(text: "Sort Order", content: {
             Button(action: {
                 sortOrder = .optimzed
                 showingSortOrder = false
@@ -36,7 +36,14 @@ struct MedSortView: View {
                 PopUpButtonView(text: "Title")
             }
             .disabled(sortOrder == .title)
-        }
+        }, close: {
+            Button(action: {
+                showingSortOrder = false
+            }, label: {
+                Image(systemName: "xmark")
+                    .font(.headline)
+            })
+        })
     }
 }
 
