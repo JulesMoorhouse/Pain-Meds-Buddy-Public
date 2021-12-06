@@ -14,7 +14,7 @@ struct DoseMedSelectView: View {
     @Binding var selectedMed: Med
 
     init(meds: [Med], selectedMed: Binding<Med>) {
-        self.meds = meds.allMeds()
+        self.meds = meds.allMedsDefaultSorted
         _selectedMed = selectedMed
     }
     

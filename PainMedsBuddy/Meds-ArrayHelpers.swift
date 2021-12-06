@@ -8,8 +8,12 @@
 import Foundation
 
 extension Array where Element: Med {
-    func allMeds() -> [Med] {
-        return self.sorted { (first: Med, second: Med) in
+    var allMeds: [Med] {
+        self
+    }
+    
+    var allMedsDefaultSorted: [Med] {
+        allMeds.sorted { (first: Med, second: Med) in
             if first.remaining > second.remaining {
                 return true
             } else if first.remaining < second.remaining {
