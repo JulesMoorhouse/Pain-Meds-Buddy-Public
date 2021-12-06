@@ -42,6 +42,14 @@ extension Med {
         creationDate ?? Date()
     }
     
+    var medRemaining: String {
+        "\(String(describing: remaining))"
+    }
+    
+    var medSequence: String {
+        "\(String(describing: sequence))"
+    }
+    
     var medTotalDosage: String {
         let temp = ((defaultAmount ?? 0.0) as Decimal) * ((dosage ?? 0) as Decimal)
         return "\(temp)"

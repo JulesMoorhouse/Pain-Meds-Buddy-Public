@@ -13,7 +13,7 @@ struct DoseEditView: View {
     let dose: Dose
     let add: Bool
     let meds: [Med]
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
 
@@ -25,30 +25,30 @@ struct DoseEditView: View {
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
-    init(dataController: DataController, meds: [Med], dose: Dose, add: Bool) {
+    init(meds: [Med], dose: Dose, add: Bool) {
         self.dose = dose
         self.add = add
         self.meds = meds
-        
+
         _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
         _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
         _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-            var found = false
-            if meds.count > 0 {
-                if let currentMed = dose.med {
-                    initSelection(med: currentMed)
-                    found = true
-                }
+        var found = false
+        if meds.count > 0 {
+            if let currentMed = dose.med {
+                initSelection(med: currentMed)
+                found = true
+            }
 
-                if !found {
-                    if let first = meds.first {
-                        initSelection(med: first)
-                    }
+            if !found {
+                if let first = meds.first {
+                    initSelection(med: first)
                 }
             }
+        }
     }
 
     var body: some View {
@@ -165,7 +165,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController, meds: [Med()], dose: Dose.example, add: false)
+        DoseEditView(meds: [Med()], dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }

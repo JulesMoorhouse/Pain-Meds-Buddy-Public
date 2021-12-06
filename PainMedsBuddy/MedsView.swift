@@ -21,7 +21,7 @@ struct MedsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(meds.wrappedValue) { med in
+                ForEach(meds.wrappedValue, id: \.self) { med in
                     MedRowView(med: med)
                 }
             }

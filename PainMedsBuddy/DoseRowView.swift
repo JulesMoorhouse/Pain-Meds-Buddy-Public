@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DoseRowView: View {
     let meds: [Med]
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
@@ -19,21 +19,19 @@ struct DoseRowView: View {
 
     var body: some View {
         NavigationLink(destination:
-                        DoseEditView(dataController: dataController, meds: meds, dose: dose, add: false)
+            DoseEditView(meds: meds, dose: dose, add: false)
                 .environmentObject(dataController)
-                        .environment(\.managedObjectContext, viewContext), isActive: $showEditView
-
-        ) {
-            VStack(alignment: .leading) {
-                Text(dose.doseTitle)
-                    .foregroundColor(Color(dose.med?.color ?? "Dark Blue"))
-                Text(dose.doseDisplay)
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-                Text(dose.doseFormattedTakenDate)
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
+                .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
+                VStack(alignment: .leading) {
+                    Text(dose.doseTitle)
+                        .foregroundColor(Color(dose.med?.color ?? "Dark Blue"))
+                    Text(dose.doseDisplay)
+                        .foregroundColor(.secondary)
+                        .font(.caption)
+                    Text(dose.doseFormattedTakenDate)
+                        .foregroundColor(.secondary)
+                        .font(.caption)
+                }
         }
     }
 }

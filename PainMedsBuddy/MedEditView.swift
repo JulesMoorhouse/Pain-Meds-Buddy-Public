@@ -20,8 +20,8 @@ struct MedEditView: View {
     @State private var measure: String
     @State private var form: String
     @State private var notes: String
-    @State private var remaining: Int
-    @State private var sequence: Int
+    @State private var remaining: String
+    @State private var sequence: String
     
     let types = ["mg", "ml", "Tspn"]
 
@@ -39,8 +39,8 @@ struct MedEditView: View {
         _measure = State(wrappedValue: med.medMeasure)
         _form = State(wrappedValue: med.medForm)
         _notes = State(wrappedValue: med.medNotes)
-        _remaining = State(wrappedValue: Int(med.remaining))
-        _sequence = State(wrappedValue: Int(med.sequence))
+        _remaining = State(wrappedValue: med.medRemaining)
+        _sequence = State(wrappedValue: med.medSequence)
     }
     
     var body: some View {
@@ -88,7 +88,7 @@ struct MedEditView: View {
                     Text("Remaining")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("84", value: $remaining.onChange(update), formatter: NumberFormatter())
+                    TextField("84", text: $remaining.onChange(update))
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medForm)
@@ -98,7 +98,7 @@ struct MedEditView: View {
                     Text("Sequence")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("1", value: $sequence.onChange(update), formatter: NumberFormatter())
+                    TextField("1", text: $sequence.onChange(update))
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                 }
@@ -155,8 +155,8 @@ struct MedEditView: View {
         med.measure = measure
         med.form = form
         med.notes = notes
-        med.remaining = Int16(remaining)
-        med.sequence = Int16(sequence)
+        med.remaining = Int16(remaining) ?? 0
+        med.sequence = Int16(sequence) ?? 0
     }
 }
 

@@ -81,28 +81,28 @@
 		88321420275120D40026D85F /* PainMedsBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
-				8832142A275120D60026D85F /* Info.plist */,
+				88321425275120D60026D85F /* Assets.xcassets */,
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
+				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
 				88321423275120D40026D85F /* ContentView.swift */,
 				88572054275139DD00B4B00C /* DataController.swift */,
 				88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */,
+				88AB7CA6275D351A0055BD9B /* DoseAddView.swift */,
 				88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */,
 				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
 				8857205A275234C400B4B00C /* HomeView.swift */,
+				8832142A275120D60026D85F /* Info.plist */,
+				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88EF203027526746006037CF /* Med-CoreDataHelpers.swift */,
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88B6E8342754D84700790A14 /* MedsView.swift */,
+				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
-				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
-				88321425275120D60026D85F /* Assets.xcassets */,
-				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88321427275120D60026D85F /* Preview Content */,
-				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
-				88AB7CA6275D351A0055BD9B /* DoseAddView.swift */,
+				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";

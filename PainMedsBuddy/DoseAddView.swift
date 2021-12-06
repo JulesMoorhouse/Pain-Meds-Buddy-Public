@@ -19,7 +19,7 @@ struct DoseAddView: View {
         dose.takenDate = Date()
         dataController.save()
         
-        return DoseEditView(dataController: dataController, meds: meds, dose: dose, add: true)
+        return DoseEditView(meds: meds, dose: dose, add: true)
     }
 }
 
