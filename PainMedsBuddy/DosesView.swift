@@ -6,8 +6,8 @@
 //
 // INFO: This view shows all the taken doses of medication
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct DosesView: View {
     static let takenTag: String? = "Taken"
@@ -84,6 +84,7 @@ struct DosesView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
