@@ -12,10 +12,10 @@ import SwiftUI
 struct DoseEditView: View {
     let dose: Dose
     let add: Bool
-
+    let meds: [Med]
+    
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
-    @FetchRequest private var meds: FetchedResults<Med>
 
     @State private var selectedMed = Med()
     @State private var title: String
@@ -25,41 +25,30 @@ struct DoseEditView: View {
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
-    init(dataController: DataController, dose: Dose, add: Bool) {
+    init(dataController: DataController, meds: [Med], dose: Dose, add: Bool) {
         self.dose = dose
         self.add = add
-
+        self.meds = meds
+        
         _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
         _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
         _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-        let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
-        fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.creationDate, ascending: false)
-        ]
-
-        self._meds = FetchRequest(fetchRequest: fetchRequest)
-
-        do {
             var found = false
-            let tempMeds = try dataController.container.viewContext.fetch(fetchRequest)
-            if tempMeds.count > 0 {
+            if meds.count > 0 {
                 if let currentMed = dose.med {
                     initSelection(med: currentMed)
                     found = true
                 }
 
                 if !found {
-                    if let first = tempMeds.first {
+                    if let first = meds.first {
                         initSelection(med: first)
                     }
                 }
             }
-        } catch {
-            fatalError("Error loading data")
-        }
     }
 
     var body: some View {
@@ -176,7 +165,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController, dose: Dose.example, add: false)
+        DoseEditView(dataController: dataController, meds: [Med()], dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }

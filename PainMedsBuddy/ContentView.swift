@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         TabView(selection: $selectedView) {
@@ -19,21 +21,14 @@ struct ContentView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            
-//            DosesView(showTakenDoses: false)
-//                .tag(DosesView.notTakenTag)
-//                .tabItem {
-//                    Image(systemName: "list.bullet")
-//                    Text("Not Taken")
-//                }
-            
-            DosesView(showTakenDoses: true)
+                 
+            DosesView(dataController: dataController, showTakenDoses: true)
                 .tag(DosesView.takenTag)
                 .tabItem {
                     Image(systemName: "checkmark")
                     Text("History")
                 }
-            
+
             MedsView()
                 .tag(MedsView.MedsTag)
                 .tabItem {

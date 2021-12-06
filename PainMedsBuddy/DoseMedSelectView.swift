@@ -10,7 +10,7 @@ import SwiftUI
 struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    var meds: FetchedResults<Med>
+    let meds: [Med]
     @Binding var selectedMed: Med
 
     var body: some View {

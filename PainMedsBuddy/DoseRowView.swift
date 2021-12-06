@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct DoseRowView: View {
+    let meds: [Med]
+    
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
@@ -17,7 +19,7 @@ struct DoseRowView: View {
 
     var body: some View {
         NavigationLink(destination:
-            DoseEditView(dataController: dataController, dose: dose, add: false)
+                        DoseEditView(dataController: dataController, meds: meds, dose: dose, add: false)
                 .environmentObject(dataController)
                         .environment(\.managedObjectContext, viewContext), isActive: $showEditView
 
@@ -38,6 +40,6 @@ struct DoseRowView: View {
 
 struct DoseRowView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseRowView(dose: Dose.example)
+        DoseRowView(meds: [Med()], dose: Dose.example)
     }
 }

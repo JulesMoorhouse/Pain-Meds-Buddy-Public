@@ -72,10 +72,11 @@ extension Dose: Comparable {
         return "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
 
     }
+    
     public static func < (lhs: Dose, rhs: Dose) -> Bool {
         lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
     }
-
+    
     static var example: Dose {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
