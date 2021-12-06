@@ -12,6 +12,9 @@ struct PopUpView<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
+
+        Color.black.opacity(0.2).ignoresSafeArea()
+        
         VStack(spacing: 10) {
             Text(text)
                 .bold()
@@ -31,7 +34,9 @@ struct PopUpView<Content: View>: View {
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
         PopUpView(text: "Hello") {
-            EmptyView()
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Text("Button 1")
+            })
         }
     }
 }

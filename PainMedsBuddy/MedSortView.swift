@@ -19,19 +19,25 @@ struct MedSortView: View {
             }) {
                 PopUpButtonView(text: "Optimized")
             }
+            .disabled(sortOrder == .optimzed)
+
             Button(action: {
                 sortOrder = .creationDate
                 showingSortOrder = false
             }) {
                 PopUpButtonView(text: "Created Date")
             }
+            .disabled(sortOrder == .creationDate)
+
             Button(action: {
                 sortOrder = .title
                 showingSortOrder = false
             }) {
                 PopUpButtonView(text: "Title")
             }
-        }    }
+            .disabled(sortOrder == .title)
+        }
+    }
 }
 
 struct MedSortView_Previews: PreviewProvider {

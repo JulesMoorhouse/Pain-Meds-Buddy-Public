@@ -107,6 +107,7 @@
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */,
+				88AB7CAE275E87340055BD9B /* MedSortView.swift */,
 				88B6E8342754D84700790A14 /* MedsView.swift */,
 				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
@@ -114,7 +115,6 @@
 				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 				88321427275120D60026D85F /* Preview Content */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
-				88AB7CAE275E87340055BD9B /* MedSortView.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
