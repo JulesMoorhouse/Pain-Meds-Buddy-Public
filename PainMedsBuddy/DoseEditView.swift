@@ -17,8 +17,7 @@ struct DoseEditView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
 
-    // TODO: Need to change this to use init and default state
-    @State private var selectedMed = Med()
+    @State private var selectedMed: Med
     @State private var title: String
     @State private var amount: String
     @State private var gapPeriod: String
@@ -26,7 +25,7 @@ struct DoseEditView: View {
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
-    init(meds: [Med], dose: Dose, add: Bool) {
+    init(dataController: DataController, meds: [Med], dose: Dose, add: Bool) {
         self.dose = dose
         self.add = add
         self.meds = meds
@@ -39,15 +38,19 @@ struct DoseEditView: View {
 
         if meds.count > 0 {
             if let currentMed = dose.med {
+                _selectedMed = State(wrappedValue: currentMed)
                 initSelection(med: currentMed)
                 return
             }
 
             if let first = meds.first {
+                _selectedMed = State(wrappedValue: first)
                 initSelection(med: first)
                 return
             }
         }
+        
+        _selectedMed = State(wrappedValue: Med(context: dataController.container.viewContext))
     }
 
     var body: some View {
@@ -108,7 +111,6 @@ struct DoseEditView: View {
     }
 
     mutating func initSelection(med: Med) {
-        _selectedMed = State(wrappedValue: med)
         if add {
             _amount = State(wrappedValue: med.medDefaultAmount)
         }
@@ -164,7 +166,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(meds: [Med()], dose: Dose.example, add: false)
+        DoseEditView(dataController: dataController,  meds: [Med()], dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }
