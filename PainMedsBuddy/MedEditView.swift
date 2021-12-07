@@ -115,7 +115,8 @@ struct MedEditView: View {
                 }
             }
             
-            Section(header: Text("Colour")) {
+            Section(header: Text("Symbol")) {
+                Text("Colour")
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Med.colors, id: \.self) { item in
                         ZStack {
@@ -136,6 +137,10 @@ struct MedEditView: View {
                     }
                 }
                 .padding(.vertical)
+                
+                Text("Image")
+                SymbolsView()
+                    .padding(.vertical)
             }
             
             Section(header: Text("Notes")) {

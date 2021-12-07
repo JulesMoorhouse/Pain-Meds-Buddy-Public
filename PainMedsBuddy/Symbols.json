@@ -1,0 +1,59 @@
+[
+   {
+      "name": "pills"
+   },
+   {
+      "name": "pills.fill"
+   },
+   {
+      "name": "bandage"
+   },
+   {
+      "name": "bandage.fill"
+   },
+   {
+      "name": "circle"
+   },
+   {
+      "name": "circle.fill"
+   },
+   {
+      "name": "capsule"
+   },
+   {
+      "name": "capsule.fill"
+   },
+   {
+      "name": "diamond"
+   },
+   {
+      "name": "diamond.fill"
+   },
+   {
+      "name": "oval.portrait"
+   },
+   {
+      "name": "oval.portrait.fill"
+   },
+   {
+      "name": "drop"
+   },
+   {
+      "name": "drop.fill"
+   },
+   {
+      "name": "leaf"
+   },
+   {
+      "name": "leaf.fill"
+   },
+   {
+      "name": "eyedropper.full"
+   },
+   {
+      "name": "cross.case"
+   },
+   {
+      "name": "cross.case.fill"
+   }
+]
