@@ -13,8 +13,13 @@ struct MedsView: View {
     
     let meds: [Med]
     
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
+    @State var showAddView = false
     
     init(meds: [Med]) {
         self.meds = meds.allMedsDefaultSorted
@@ -30,11 +35,20 @@ struct MedsView: View {
                     ZStack {
                         List {
                             ForEach(self.meds.sortedItems(using: sortOrder), id: \.self) { med in
-                                NavigationLink(destination: MedEditView(med: med)) {
+                                NavigationLink(destination: MedEditView(med: med, add: false)) {
                                     MedRowView(med: med)
                                 }
                             }
-                            // TODO: Add on delete, rememeberto use sortedItem(using func
+                            .onDelete { offsets in
+                                let allItems = self.meds.sortedItems(using: sortOrder)
+                                
+                                for offset in offsets {
+                                    let item = allItems[offset]
+                                    dataController.delete(item)
+                                }
+                                dataController.save()
+                                dataController.container.viewContext.processPendingChanges()
+                            }
                         }
                         .listStyle(InsetGroupedListStyle())
                         .disabled($showingSortOrder.wrappedValue == true)
@@ -43,12 +57,27 @@ struct MedsView: View {
                             MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
                         }
                     }
+                    .background(
+                        NavigationLink(destination: MedAddView()
+                            .environment(\.managedObjectContext, managedObjectContext)
+                            .environmentObject(dataController),
+                            isActive: $showAddView) {
+                                EmptyView()
+                        }
+                    )
                     .toolbar {
-                        //TODO: Add add view
-                        Button(action: {
-                            self.showingSortOrder = true
-                        }) {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: { self.showAddView = true }) {
+                                Label("Add Med", systemImage: "plus")
+                            }
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: {
+                                self.showingSortOrder = true
+                            }) {
+                                Label("Sort", systemImage: "arrow.up.arrow.down")
+                            }
                         }
                     }
                 }

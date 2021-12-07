@@ -14,6 +14,7 @@ struct ContentView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    // TODO: This almost certainly needs moving back to the list views below as deletes aren't showing in the meds view, need to investigate
     var meds = [Med]()
     
     init(dataController: DataController) {

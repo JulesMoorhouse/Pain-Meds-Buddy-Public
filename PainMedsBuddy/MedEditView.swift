@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MedEditView: View {
     let med: Med
+    let add: Bool
 
     @EnvironmentObject var dataController: DataController
     
@@ -29,8 +30,9 @@ struct MedEditView: View {
         GridItem(.adaptive(minimum: 44))
     ]
     
-    init(med: Med) {
+    init(med: Med, add: Bool) {
         self.med = med
+        self.add = add
         
         _defaultTitle = State(wrappedValue: med.medDefaultTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
@@ -141,7 +143,7 @@ struct MedEditView: View {
             }
 
         }
-        .navigationTitle("Edit Med")
+        .navigationTitle(add ? "Add Med" : "Edit Med")
         .onDisappear(perform: dataController.save)
     }
     
@@ -162,6 +164,6 @@ struct MedEditView: View {
 
 struct MedEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MedEditView(med: Med.example)
+        MedEditView(med: Med.example, add: false)
     }
 }

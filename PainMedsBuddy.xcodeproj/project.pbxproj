@@ -28,6 +28,7 @@
 		88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAE275E87340055BD9B /* MedSortView.swift */; };
 		88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */; };
 		88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */; };
+		88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB6275F7BE60055BD9B /* MedAddView.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Med-CoreDataHelpers.swift */; };
@@ -61,6 +62,7 @@
 		88AB7CAE275E87340055BD9B /* MedSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSortView.swift; sourceTree = "<group>"; };
 		88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		88AB7CB6275F7BE60055BD9B /* MedAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAddView.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88EF203027526746006037CF /* Med-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Med-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */,
 				88AB7CA6275D351A0055BD9B /* DoseAddView.swift */,
 				88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */,
+				88AB7CB6275F7BE60055BD9B /* MedAddView.swift */,
 				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
@@ -232,6 +235,7 @@
 				88AB7CA9275E31900055BD9B /* Meds-ArrayHelpers.swift in Sources */,
 				88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */,
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,
+				88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 				88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */,
 			);
