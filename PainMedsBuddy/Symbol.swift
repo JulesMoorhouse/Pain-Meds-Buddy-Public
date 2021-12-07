@@ -13,4 +13,5 @@ struct Symbol: Decodable, Identifiable {
     
     static let allSymbols = Bundle.main.decode([Symbol].self, from: "Symbols.json")
     static let example = allSymbols[0]
+    static let first = allSymbols[0]
 }

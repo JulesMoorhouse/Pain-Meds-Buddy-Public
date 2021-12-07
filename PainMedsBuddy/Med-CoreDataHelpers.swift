@@ -27,6 +27,10 @@ extension Med {
     var medColor: String {
         color ?? "Light Blue"
     }
+
+    var medSymbol: String {
+        symbol ?? "pills"
+    }
     
     var medDosage: String {
         "\(String(describing: dosage ?? 0.0))"
@@ -73,12 +77,13 @@ extension Med {
         med.defaultTitle = "Example med"
         med.notes = "This is an exmaple med"
         med.defaultAmount = 1
-        med.color = "Light Blue"
+        med.color = Med.colors.randomElement()
         med.dosage = 300
         med.measure = "mg"
         med.form = "Pill"
         med.sequence = 3
         med.remaining = 99
+        med.symbol = Symbol.allSymbols.randomElement()?.id
         med.creationDate = Date()
         
         return med

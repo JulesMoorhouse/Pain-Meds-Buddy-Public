@@ -8,24 +8,39 @@
 import SwiftUI
 
 struct SymbolsView: View {
-    
+    let colour: Color
     let size: CGFloat = 70
+    
+    @Binding var selectedSymbol: String
     
     var columns: [GridItem] {
         [GridItem(.adaptive(minimum: size, maximum: size))]
     }
+    
+    init(colour: Color, selectedSymbol: Binding<String>) {
+        self.colour = colour
+        _selectedSymbol = selectedSymbol
+    }
+    
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(Symbol.allSymbols) { symbol in
-                Button {
-                    //
-                } label: {
+                ZStack {
                     Image(systemName: symbol.name)
                         .resizable()
                         .scaledToFit()
                         .padding()
                         .frame(width: size, height: size)
-                        .foregroundColor(Color.secondary.opacity(0.5))
+                        .foregroundColor(colour)
+                    
+                    if symbol.id == selectedSymbol {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(Color.black)
+                    }
+                }
+                .onTapGesture {
+                    selectedSymbol = symbol.id
                 }
             }
         }
@@ -34,6 +49,6 @@ struct SymbolsView: View {
 
 struct SymbolsView_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolsView()
+        SymbolsView(colour: Color.red, selectedSymbol: .constant("pills"))
     }
 }

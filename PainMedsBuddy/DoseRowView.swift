@@ -24,9 +24,7 @@ struct DoseRowView: View {
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
             
             HStack {
-                Image(systemName: "pills.fill")
-                    .font(.title)
-                    .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
+                MedSymbolView(med: dose.med ?? Med.example)
                 
                 Spacer()
                     .frame(width: 10)

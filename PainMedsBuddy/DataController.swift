@@ -60,12 +60,13 @@ class DataController: ObservableObject {
             med.notes = "This is an exmaple med \(i)"
             med.defaultAmount = 1
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100...600))
-            med.color = "Light Blue"
+            med.color = Med.colors.randomElement()
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = 99
             med.creationDate = Date()
             med.dose = dose
+            med.symbol = Symbol.allSymbols.randomElement()?.id
             med.sequence = Int16.random(in: 1...3)
         }
         
@@ -90,5 +91,9 @@ class DataController: ObservableObject {
         let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Dose.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
+    }
+    
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 }

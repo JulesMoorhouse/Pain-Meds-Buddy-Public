@@ -12,12 +12,19 @@ struct MedRowView: View {
     @ObservedObject var med: Med
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(med.medDefaultTitle)
-                .foregroundColor(Color(med.color ?? Med.defaultColor))
-            Text("\(med.remaining) \(med.medForm)")
-                .foregroundColor(.secondary)
-                .font(.caption)
+        HStack {
+            MedSymbolView(med: med)
+
+            Spacer()
+                .frame(width: 10)
+
+            VStack(alignment: .leading) {
+                Text(med.medDefaultTitle)
+                    .foregroundColor(Color(med.color ?? Med.defaultColor))
+                Text("\(med.remaining) \(med.medForm)")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
         }
     }
 }

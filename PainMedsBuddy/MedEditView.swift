@@ -17,6 +17,7 @@ struct MedEditView: View {
     @State private var defaultTitle: String
     @State private var defaultAmount: String
     @State private var color: String
+    @State private var symbol: String
     @State private var dosage: String
     @State private var measure: String
     @State private var form: String
@@ -37,6 +38,7 @@ struct MedEditView: View {
         _defaultTitle = State(wrappedValue: med.medDefaultTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
         _color = State(wrappedValue: med.medColor)
+        _symbol = State(wrappedValue: med.medSymbol)
         _dosage = State(wrappedValue: med.medDosage)
         _measure = State(wrappedValue: med.medMeasure)
         _form = State(wrappedValue: med.medForm)
@@ -139,7 +141,7 @@ struct MedEditView: View {
                 .padding(.vertical)
                 
                 Text("Image")
-                SymbolsView()
+                SymbolsView(colour: Color($color.wrappedValue), selectedSymbol: $symbol.onChange(update))
                     .padding(.vertical)
             }
             
@@ -158,6 +160,7 @@ struct MedEditView: View {
         med.defaultTitle = defaultTitle
         med.defaultAmount = NSDecimalNumber(string: defaultAmount)
         med.color = color
+        med.symbol = symbol
         med.dosage = NSDecimalNumber(string: dosage)
         med.measure = measure
         med.form = form
