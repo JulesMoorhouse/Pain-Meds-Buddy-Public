@@ -14,6 +14,12 @@ extension Array where Element: Med {
     
     var allMedsDefaultSorted: [Med] {
         allMeds.sorted { (first: Med, second: Med) in
+            if first.sequence > second.sequence {
+                return true
+            } else if first.sequence < second.sequence {
+                return false
+            }
+            
             if first.remaining > second.remaining {
                 return true
             } else if first.remaining < second.remaining {
@@ -26,13 +32,18 @@ extension Array where Element: Med {
                 return false
             }
 
-            if first.sequence > second.sequence {
-                return true
-            } else if first.sequence < second.sequence {
-                return false
-            }
-
             return first.medCreationDate < second.medCreationDate
+        }
+    }
+    
+    public func sortedItems(using sortOrder: Med.SortOrder) -> [Med] {
+        switch sortOrder {
+        case .title:
+            return allMeds.sorted(by: \Med.medDefaultTitle)
+        case .creationDate:
+            return allMeds.sorted(by: \Med.medCreationDate)
+        default:
+            return allMeds.allMedsDefaultSorted
         }
     }
 }

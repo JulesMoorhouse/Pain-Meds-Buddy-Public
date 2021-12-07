@@ -24,7 +24,7 @@ struct DoseMedSelectView: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(Array(items().enumerated()), id: \.offset) { index, med in
+                ForEach(Array(self.meds.sortedItems(using: sortOrder).enumerated()), id: \.offset) { index, med in
                     HStack {
                         MedRowView(med: med)
 
@@ -57,18 +57,6 @@ struct DoseMedSelectView: View {
             }) {
                 Label("Sort", systemImage: "arrow.up.arrow.down")
             }
-        }
-    }
-
-    // TODO: This will move later
-    func items() -> [Med] {
-        switch sortOrder {
-        case .title:
-            return meds.allMeds.sorted { $0.medDefaultTitle < $1.medDefaultTitle }
-        case .creationDate:
-            return meds.allMeds.sorted { $0.medCreationDate < $1.medCreationDate }
-        default:
-            return meds.allMedsDefaultSorted
         }
     }
 }

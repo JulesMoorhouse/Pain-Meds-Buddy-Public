@@ -8,9 +8,10 @@
 import Foundation
 
 extension Med {
-    enum SortOrder {
+    public enum SortOrder {
         case optimzed, title, creationDate
     }
+    
     static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
     
     static let defaultColor = "Dark Blue"

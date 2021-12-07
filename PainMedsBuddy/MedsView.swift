@@ -24,7 +24,7 @@ struct MedsView: View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(items(), id: \.self) { med in
+                    ForEach(self.meds.sortedItems(using: sortOrder), id: \.self) { med in
                         NavigationLink(destination: MedEditView(med: med)) {
                             MedRowView(med: med)
                         }
@@ -45,18 +45,6 @@ struct MedsView: View {
                     Label("Sort", systemImage: "arrow.up.arrow.down")
                 }
             }
-        }
-    }
-    
-    // TODO: This will move later
-    func items() -> [Med] {
-        switch sortOrder {
-        case .title:
-            return meds.allMeds.sorted { $0.medDefaultTitle < $1.medDefaultTitle }
-        case .creationDate:
-            return meds.allMeds.sorted { $0.medCreationDate < $1.medCreationDate }
-        default:
-            return meds.allMedsDefaultSorted
         }
     }
 }
