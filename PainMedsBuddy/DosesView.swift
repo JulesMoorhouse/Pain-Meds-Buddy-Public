@@ -61,14 +61,21 @@ struct DosesView: View {
         let data: [[Dose]] = resultsToArray(self.doses.wrappedValue)
         
         return NavigationView {
-            List {
-                ForEach(data, id: \.self) { (section: [Dose]) in
-                    Section(header: Text(section[0].doseFormattedMYTakenDate)) {
-                        self.rowsView(section: section)
+            Group {
+                if data.isEmpty {
+                    PlaceholderView(text: "There's nothing here right now!",
+                               imageString: "pills")
+                } else {
+                    List {
+                        ForEach(data, id: \.self) { (section: [Dose]) in
+                            Section(header: Text(section[0].doseFormattedMYTakenDate)) {
+                                self.rowsView(section: section)
+                            }
+                        }
                     }
+                    .listStyle(InsetGroupedListStyle())
                 }
             }
-            .listStyle(InsetGroupedListStyle())
             .background(
                 NavigationLink(destination: DoseAddView(meds: meds)
                     .environment(\.managedObjectContext, managedObjectContext)
@@ -83,6 +90,9 @@ struct DosesView: View {
                     Label("Add Dose", systemImage: "plus")
                 }
             }
+            
+            PlaceholderView(text: "Please select or add a dose", imageString: "eyedropper.halffull")
+            
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

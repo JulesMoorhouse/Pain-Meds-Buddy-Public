@@ -22,29 +22,40 @@ struct MedsView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                List {
-                    ForEach(self.meds.sortedItems(using: sortOrder), id: \.self) { med in
-                        NavigationLink(destination: MedEditView(med: med)) {
-                            MedRowView(med: med)
+            Group {
+                if self.meds.isEmpty {
+                    PlaceholderView(text: "There's nothing here right now!",
+                               imageString: "pills")
+                } else {
+                    ZStack {
+                        List {
+                            ForEach(self.meds.sortedItems(using: sortOrder), id: \.self) { med in
+                                NavigationLink(destination: MedEditView(med: med)) {
+                                    MedRowView(med: med)
+                                }
+                            }
+                            // TODO: Add on delete, rememeberto use sortedItem(using func
+                        }
+                        .listStyle(InsetGroupedListStyle())
+                        .disabled($showingSortOrder.wrappedValue == true)
+        
+                        if $showingSortOrder.wrappedValue == true {
+                            MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
+                        }
+                    }
+                    .toolbar {
+                        //TODO: Add add view
+                        Button(action: {
+                            self.showingSortOrder = true
+                        }) {
+                            Label("Sort", systemImage: "arrow.up.arrow.down")
                         }
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
-                .disabled($showingSortOrder.wrappedValue == true)
-        
-                if $showingSortOrder.wrappedValue == true {
-                    MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
-                }
             }
             .navigationTitle("Medications")
-            .toolbar {
-                Button(action: {
-                    self.showingSortOrder = true
-                }) {
-                    Label("Sort", systemImage: "arrow.up.arrow.down")
-                }
-            }
+            
+            PlaceholderView(text: "Please select or add a medication", imageString: "eyedropper.halffull")
         }
     }
 }

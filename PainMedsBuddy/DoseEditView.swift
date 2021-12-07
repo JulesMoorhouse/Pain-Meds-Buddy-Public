@@ -17,6 +17,7 @@ struct DoseEditView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
 
+    // TODO: Need to change this to use init and default state
     @State private var selectedMed = Med()
     @State private var title: String
     @State private var amount: String
@@ -36,17 +37,15 @@ struct DoseEditView: View {
         _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-        var found = false
         if meds.count > 0 {
             if let currentMed = dose.med {
                 initSelection(med: currentMed)
-                found = true
+                return
             }
 
-            if !found {
-                if let first = meds.first {
-                    initSelection(med: first)
-                }
+            if let first = meds.first {
+                initSelection(med: first)
+                return
             }
         }
     }

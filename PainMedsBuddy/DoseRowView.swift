@@ -22,6 +22,15 @@ struct DoseRowView: View {
             DoseEditView(meds: meds, dose: dose, add: false)
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
+            
+            HStack {
+                Image(systemName: "pills.fill")
+                    .font(.title)
+                    .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
+                
+                Spacer()
+                    .frame(width: 10)
+                
                 VStack(alignment: .leading) {
                     Text(dose.doseTitle)
                         .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
@@ -32,6 +41,7 @@ struct DoseRowView: View {
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
+            }
         }
     }
 }
