@@ -17,7 +17,7 @@ struct DosesView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     let showTakenDoses: Bool
-    @State var showAddView = false
+    @State private var showAddView = false
 
     let doses: FetchRequest<Dose>
     let meds: [Med]

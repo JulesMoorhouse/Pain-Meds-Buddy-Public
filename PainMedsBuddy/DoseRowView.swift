@@ -15,7 +15,7 @@ struct DoseRowView: View {
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
 
-    @State var showEditView = false
+    @State private var showEditView = false
 
     var body: some View {
         NavigationLink(destination:

@@ -11,15 +11,14 @@ import SwiftUI
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
     
-    let meds: [Med]
+    @State private var meds: [Med]
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
-    @State var showAddView = false
+    @State private var showAddView = false
     
     init(meds: [Med]) {
         self.meds = meds.allMedsDefaultSorted
@@ -45,6 +44,11 @@ struct MedsView: View {
                                 for offset in offsets {
                                     let item = allItems[offset]
                                     dataController.delete(item)
+                                    
+                                    // Bug fix
+                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
+                                        self.meds.remove(at: itemToRemoveIndex)
+                                    }
                                 }
                                 dataController.save()
                                 dataController.container.viewContext.processPendingChanges()
