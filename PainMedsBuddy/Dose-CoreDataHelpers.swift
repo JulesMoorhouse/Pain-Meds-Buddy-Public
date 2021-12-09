@@ -8,16 +8,9 @@
 import Foundation
 
 extension Dose: Comparable {
-    var doseTitle: String {
-        title ?? "New Medication"
-    }
 
     var doseAmount: String {
         "\(String(describing: amount ?? 0.0))"
-    }
-
-    var doseGapPeriod: String {
-        "\(String(describing: gapPeriod ?? 0.0))"
     }
 
     var doseTakenDate: Date {
@@ -82,9 +75,7 @@ extension Dose: Comparable {
         let viewContext = controller.container.viewContext
 
         let dose = Dose(context: viewContext)
-        dose.title = "Paracetomol"
         dose.amount = 1
-        dose.gapPeriod = 20.0
         dose.taken = true
         dose.takenDate = Date()
 

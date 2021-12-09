@@ -14,7 +14,7 @@ struct MedEditView: View {
 
     @EnvironmentObject var dataController: DataController
     
-    @State private var defaultTitle: String
+    @State private var title: String
     @State private var defaultAmount: String
     @State private var color: String
     @State private var symbol: String
@@ -35,7 +35,7 @@ struct MedEditView: View {
         self.med = med
         self.add = add
         
-        _defaultTitle = State(wrappedValue: med.medDefaultTitle)
+        _title = State(wrappedValue: med.medTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
         _color = State(wrappedValue: med.medColor)
         _symbol = State(wrappedValue: med.medSymbol)
@@ -50,7 +50,7 @@ struct MedEditView: View {
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                TextField("Default Text", text: $defaultTitle.onChange(update))
+                TextField("Default Text", text: $title.onChange(update))
                 
                 HStack {
                     Text("Default Amount")
@@ -157,7 +157,7 @@ struct MedEditView: View {
     func update() {
         med.dose?.objectWillChange.send()
         
-        med.defaultTitle = defaultTitle
+        med.title = title
         med.defaultAmount = NSDecimalNumber(string: defaultAmount)
         med.color = color
         med.symbol = symbol

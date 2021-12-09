@@ -18,9 +18,7 @@ struct DoseEditView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @State private var selectedMed: Med
-    @State private var title: String
     @State private var amount: String
-    @State private var gapPeriod: String
     @State private var taken: Bool
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
@@ -30,9 +28,7 @@ struct DoseEditView: View {
         self.add = add
         self.meds = meds
 
-        _title = State(wrappedValue: dose.doseTitle)
         _amount = State(wrappedValue: dose.doseAmount)
-        _gapPeriod = State(wrappedValue: dose.doseGapPeriod)
         _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
@@ -65,7 +61,7 @@ struct DoseEditView: View {
                     label: {
                         HStack {
                             TwoColumnView(col1: "Medication",
-                                          col2: title)
+                                          col2: selectedMed.medTitle)
                         }
 
                     })
@@ -131,10 +127,8 @@ struct DoseEditView: View {
     func selectionChanged() {
         let med = selectedMed
 
-        dose.title = med.defaultTitle
         dose.amount = med.defaultAmount
 
-        title = med.medDefaultTitle
         amount = "\(med.medDefaultAmount)"
 
         dose.med = med
@@ -146,7 +140,6 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.amount = NSDecimalNumber(string: amount)
-        dose.gapPeriod = NSDecimalNumber(string: gapPeriod)
         dose.taken = taken
         dose.takenDate = takenDate
     }

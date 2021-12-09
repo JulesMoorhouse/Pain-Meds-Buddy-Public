@@ -2,28 +2,28 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Dose" representedClassName="Dose" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="gapPeriod" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="taken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="med" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Med" inverseName="dose" inverseEntity="Med"/>
     </entity>
     <entity name="Med" representedClassName="Med" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="defaultTitle" optional="YES" attributeType="String"/>
         <attribute name="dosage" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="durationGap" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="form" optional="YES" attributeType="String"/>
         <attribute name="measure" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="remaining" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sequence" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Dose" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="Med" positionX="-54" positionY="-9" width="128" height="209"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="Med" positionX="-54" positionY="-9" width="128" height="239"/>
     </elements>
 </model>

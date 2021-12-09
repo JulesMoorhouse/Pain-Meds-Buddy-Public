@@ -26,9 +26,9 @@ extension Array where Element: Med {
                 return false
             }
 
-            if first.medDefaultTitle > second.medDefaultTitle {
+            if first.medTitle > second.medTitle {
                 return true
-            } else if first.medDefaultTitle < second.medDefaultTitle {
+            } else if first.medTitle < second.medTitle {
                 return false
             }
 
@@ -39,7 +39,7 @@ extension Array where Element: Med {
     public func sortedItems(using sortOrder: Med.SortOrder) -> [Med] {
         switch sortOrder {
         case .title:
-            return allMeds.sorted(by: \Med.medDefaultTitle)
+            return allMeds.sorted(by: \Med.medTitle)
         case .creationDate:
             return allMeds.sorted(by: \Med.medCreationDate)
         default:

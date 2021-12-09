@@ -16,8 +16,8 @@ extension Med {
     
     static let defaultColor = "Dark Blue"
     
-    var medDefaultTitle: String {
-        defaultTitle ?? ""
+    var medTitle: String {
+        title ?? ""
     }
 
     var medDefaultAmount: String {
@@ -69,16 +69,30 @@ extension Med {
         "\(medDefaultAmount) x \(medDosage)\(measure ?? "") \(form ?? "") = \(medTotalDosage)\(measure ?? "")"
     }
     
+    var medDurationToTime: [Int] {
+        let hours = Int(duration / 60);
+        let minutes = Int(duration % 60);
+        return [hours, minutes];
+    }
+
+    var medDurationGapToTime: [Int] {
+        let hours = Int(durationGap / 60);
+        let minutes = Int(durationGap % 60);
+        return [hours, minutes];
+    }
+    
     static var example: Med {
         let controller =  DataController(inMemory: true)
         let viewContext = controller.container.viewContext
         
         let med = Med(context: viewContext)
-        med.defaultTitle = "Example med"
+        med.title = "Example med"
         med.notes = "This is an exmaple med"
         med.defaultAmount = 1
         med.color = Med.colors.randomElement()
         med.dosage = 300
+        med.duration = 240
+        med.durationGap = 0
         med.measure = "mg"
         med.form = "Pill"
         med.sequence = 3

@@ -50,13 +50,11 @@ class DataController: ObservableObject {
             let dose = Dose(context: viewContext)
             dose.takenDate = formatter.date(from: (i % 2 == 0) ? "2021/12/02 11:00" : "2021/12/01 11:00")
             dose.taken = Bool.random()
-            dose.title = "Paracetomol \(i)"
             dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
-            dose.gapPeriod = 20
             
             // INFO: One to one relationship
             let med = Med(context: viewContext)
-            med.defaultTitle = "Med example \(i)"
+            med.title = "Med example \(i)"
             med.notes = "This is an exmaple med \(i)"
             med.defaultAmount = 1
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100...600))
@@ -64,6 +62,8 @@ class DataController: ObservableObject {
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = 99
+            med.duration = 240
+            med.durationGap = 0
             med.creationDate = Date()
             med.dose = dose
             med.symbol = Symbol.allSymbols.randomElement()?.id

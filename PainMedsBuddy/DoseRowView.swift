@@ -30,7 +30,7 @@ struct DoseRowView: View {
                     .frame(width: 10)
                 
                 VStack(alignment: .leading) {
-                    Text(dose.doseTitle)
+                    Text(dose.med?.medTitle ?? "")
                         .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
                     Text(dose.doseDisplay)
                         .foregroundColor(.secondary)
