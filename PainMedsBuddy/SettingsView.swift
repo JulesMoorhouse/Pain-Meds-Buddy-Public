@@ -11,6 +11,8 @@ import SwiftUI
 struct SettingsView: View {
     static let SettingsTag: String? = "Settings"
 
+    @EnvironmentObject var dataController: DataController
+
     var body: some View {
         NavigationView {
             Form {
@@ -21,6 +23,11 @@ struct SettingsView: View {
                         Text("Acknowledgements")
 
                     })
+                
+                 Button("Add Example Data") {
+                    dataController.deleteAll()
+                    try? dataController.createSampleData()
+                 }
             }
             .navigationTitle("Settings")
         }
