@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AckGen",
+        "repositoryURL": "https://github.com/MartinP7r/AckGen.git",
+        "state": {
+          "branch": null,
+          "revision": "02fd7f75c36c4be919de1cfef967e4ee83b0dfa6",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "CircularProgress",
+        "repositoryURL": "https://github.com/ArnavMotwani/CircularProgressSwiftUI.git",
+        "state": {
+          "branch": null,
+          "revision": "bf4a30764dd341e2f403437dce578fd885d11912",
+          "version": "1.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

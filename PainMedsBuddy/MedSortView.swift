@@ -10,14 +10,14 @@ import SwiftUI
 struct MedSortView: View {
     @Binding var sortOrder: Med.SortOrder
     @Binding var showingSortOrder: Bool
-
+    
     var body: some View {
         PopUpView(text: "Sort Order", content: {
             Button(action: {
                 sortOrder = .optimzed
                 showingSortOrder = false
             }) {
-                PopUpButtonView(text: "Optimized")
+                ButtonBorderView(text: "Optimized")
             }
             .disabled(sortOrder == .optimzed)
 
@@ -25,7 +25,7 @@ struct MedSortView: View {
                 sortOrder = .creationDate
                 showingSortOrder = false
             }) {
-                PopUpButtonView(text: "Created Date")
+                ButtonBorderView(text: "Created Date")
             }
             .disabled(sortOrder == .creationDate)
 
@@ -33,7 +33,7 @@ struct MedSortView: View {
                 sortOrder = .title
                 showingSortOrder = false
             }) {
-                PopUpButtonView(text: "Title")
+                ButtonBorderView(text: "Title")
             }
             .disabled(sortOrder == .title)
         }, close: {

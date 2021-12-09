@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,7 +23,7 @@
 		88AB7CA5275A5A760055BD9B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88AB7CA4275A5A760055BD9B /* Colors.xcassets */; };
 		88AB7CA7275D351A0055BD9B /* DoseAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CA6275D351A0055BD9B /* DoseAddView.swift */; };
 		88AB7CA9275E31900055BD9B /* Meds-ArrayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */; };
-		88AB7CAB275E83910055BD9B /* PopUpButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAA275E83910055BD9B /* PopUpButtonView.swift */; };
+		88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */; };
 		88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAC275E83D60055BD9B /* PopUpView.swift */; };
 		88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAE275E87340055BD9B /* MedSortView.swift */; };
 		88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */; };
@@ -36,6 +36,14 @@
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93090275FCED000A98708 /* MedSymbolView.swift */; };
+		88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color-Additions.swift */; };
+		88E9309C2760A4B900A98708 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309B2760A4B900A98708 /* AckGen */; };
+		88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309D2760A4B900A98708 /* AckGenUI */; };
+		88E930A22760A63E00A98708 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930A12760A63E00A98708 /* SettingsView.swift */; };
+		88E930A52760A8B300A98708 /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 88E930A42760A8B300A98708 /* CircularProgress */; };
+		88E930AA2760C6E500A98708 /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E930A92760C6E500A98708 /* Acknowledgements.plist */; };
+		88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AB2760D8F800A98708 /* DoseProgressView.swift */; };
+		88E930AE2760D98800A98708 /* DoseProgressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AD2760D98800A98708 /* DoseProgressItem.swift */; };
 		88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Med-CoreDataHelpers.swift */; };
 		88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */; };
 		88EF20372753B215006037CF /* MedEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF20362753B215006037CF /* MedEditView.swift */; };
@@ -62,7 +70,7 @@
 		88AB7CA4275A5A760055BD9B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		88AB7CA6275D351A0055BD9B /* DoseAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseAddView.swift; sourceTree = "<group>"; };
 		88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meds-ArrayHelpers.swift"; sourceTree = "<group>"; };
-		88AB7CAA275E83910055BD9B /* PopUpButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpButtonView.swift; sourceTree = "<group>"; };
+		88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBorderView.swift; sourceTree = "<group>"; };
 		88AB7CAC275E83D60055BD9B /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		88AB7CAE275E87340055BD9B /* MedSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSortView.swift; sourceTree = "<group>"; };
 		88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
@@ -75,6 +83,11 @@
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
+		88E93092275FD7CC00A98708 /* Color-Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
+		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		88E930A92760C6E500A98708 /* Acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Acknowledgements.plist; sourceTree = SOURCE_ROOT; };
+		88E930AB2760D8F800A98708 /* DoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseProgressView.swift; sourceTree = "<group>"; };
+		88E930AD2760D98800A98708 /* DoseProgressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseProgressItem.swift; sourceTree = "<group>"; };
 		88EF203027526746006037CF /* Med-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Med-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dose-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF20362753B215006037CF /* MedEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditView.swift; sourceTree = "<group>"; };
@@ -87,6 +100,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
+				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
+				88E930A52760A8B300A98708 /* CircularProgress in Frameworks */,
+				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,9 +121,12 @@
 		88321420275120D40026D85F /* PainMedsBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				88E930A92760C6E500A98708 /* Acknowledgements.plist */,
 				88321425275120D60026D85F /* Assets.xcassets */,
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
+				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
+				88E93092275FD7CC00A98708 /* Color-Additions.swift */,
 				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
 				88321423275120D40026D85F /* ContentView.swift */,
 				88572054275139DD00B4B00C /* DataController.swift */,
@@ -115,6 +134,8 @@
 				88AB7CA6275D351A0055BD9B /* DoseAddView.swift */,
 				88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */,
 				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
+				88E930AD2760D98800A98708 /* DoseProgressItem.swift */,
+				88E930AB2760D8F800A98708 /* DoseProgressView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
 				8857205A275234C400B4B00C /* HomeView.swift */,
@@ -131,10 +152,10 @@
 				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
-				88AB7CAA275E83910055BD9B /* PopUpButtonView.swift */,
 				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 				88321427275120D60026D85F /* Preview Content */,
 				88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */,
+				88E930A12760A63E00A98708 /* SettingsView.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
@@ -169,12 +190,18 @@
 				8832141A275120D40026D85F /* Sources */,
 				8832141B275120D40026D85F /* Frameworks */,
 				8832141C275120D40026D85F /* Resources */,
+				88E930A02760A51600A98708 /* Run Script - AckGen */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PainMedsBuddy;
+			packageProductDependencies = (
+				88E9309B2760A4B900A98708 /* AckGen */,
+				88E9309D2760A4B900A98708 /* AckGenUI */,
+				88E930A42760A8B300A98708 /* CircularProgress */,
+			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +229,10 @@
 				Base,
 			);
 			mainGroup = 88321415275120D40026D85F;
+			packageReferences = (
+				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
+				88E930A32760A8B300A98708 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
+			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
 			projectRoot = "";
@@ -216,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E930AA2760C6E500A98708 /* Acknowledgements.plist in Resources */,
 				88AB7CA5275A5A760055BD9B /* Colors.xcassets in Resources */,
 				88AB7CBD275FB17F0055BD9B /* Symbols.json in Resources */,
 				88321429275120D60026D85F /* Preview Assets.xcassets in Resources */,
@@ -225,13 +257,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88E930A02760A51600A98708 /* Run Script - AckGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - AckGen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DIR=$PROJECT_TEMP_DIR/../../../SourcePackages/checkouts/AckGen\nif [ -d \"$DIR\" ]; then\n  cd $DIR\n  SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n  swift run ackgen\nelse\n  echo \"warning: AckGen not found. Please install the package via SPM (https://github.com/MartinP7r/AckGen#installation)\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8832141A275120D40026D85F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E930AE2760D98800A98708 /* DoseProgressItem.swift in Sources */,
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
-				88AB7CAB275E83910055BD9B /* PopUpButtonView.swift in Sources */,
+				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
 				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
@@ -239,11 +293,14 @@
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */,
+				88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */,
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
+				88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
+				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
@@ -452,6 +509,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MartinP7r/AckGen.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		88E930A32760A8B300A98708 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ArnavMotwani/CircularProgressSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88E9309B2760A4B900A98708 /* AckGen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */;
+			productName = AckGen;
+		};
+		88E9309D2760A4B900A98708 /* AckGenUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */;
+			productName = AckGenUI;
+		};
+		88E930A42760A8B300A98708 /* CircularProgress */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88E930A32760A8B300A98708 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */;
+			productName = CircularProgress;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		88572051275133A700B4B00C /* Main.xcdatamodeld */ = {
