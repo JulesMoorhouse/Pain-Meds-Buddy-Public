@@ -26,7 +26,9 @@ struct ContentView: View {
         do {
             self.meds = try dataController.container.viewContext.fetch(medsFetchRequest)
         }
-        catch { }
+        catch {
+            print("Error getting data for meds \(error.localizedDescription)")
+        }
     }
     
     var body: some View {
@@ -38,18 +40,18 @@ struct ContentView: View {
                     Text("Home")
                 }
                  
-            DosesView(dataController: dataController, meds: meds, showTakenDoses: true)
-                .tag(DosesView.takenTag)
+            DosesView(dataController: dataController, meds: meds, showElapsedDoses: true)
+                .tag(DosesView.elapsedTag)
                 .tabItem {
                     Image(systemName: "checkmark")
                     Text("History")
                 }
 
-            DosesView(dataController: dataController, meds: meds, showTakenDoses: false)
-                .tag(DosesView.takenTag)
+            DosesView(dataController: dataController, meds: meds, showElapsedDoses: false)
+                .tag(DosesView.elapsedTag)
                 .tabItem {
-                    Image(systemName: "xmark")
-                    Text("Not Taken")
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                    Text("In Progress")
                 }
             
             MedsView(meds: meds)

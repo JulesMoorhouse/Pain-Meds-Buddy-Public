@@ -15,7 +15,7 @@ struct DoseAddView: View {
 
     var body: some View {
         let dose = Dose(context: managedObjectContext)
-        dose.taken = true
+        dose.elapsed = false
         dose.takenDate = Date()
         dataController.save()
         

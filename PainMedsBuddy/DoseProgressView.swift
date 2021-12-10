@@ -18,6 +18,16 @@ struct DoseProgressView: View {
 
     var debug = false
     
+    var countDown: String {
+        let hours = Int((item.count) / 60);
+        let minutes = Int((item.count) % 60);
+        
+        return "\(hours):\(minutes):00"
+        
+//        return item.count.secondsToTime
+
+    }
+    
     var body: some View {
         ZStack {
             
@@ -55,7 +65,7 @@ struct DoseProgressView: View {
                     ButtonBorderView(text: "Take Next", width: 100)
                         .disabled(item.total > item.count)
                 }
-                Text("00:00:00")
+                Text(countDown)
             }
             .padding(.bottom, 30)
         }

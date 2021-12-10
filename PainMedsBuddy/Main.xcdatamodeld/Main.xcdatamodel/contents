@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Dose" representedClassName="Dose" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="taken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="elapsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="med" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Med" inverseName="dose" inverseEntity="Med"/>
     </entity>

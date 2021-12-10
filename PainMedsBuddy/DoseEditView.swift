@@ -19,7 +19,7 @@ struct DoseEditView: View {
 
     @State private var selectedMed: Med
     @State private var amount: String
-    @State private var taken: Bool
+    //@State private var taken: Bool
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
@@ -29,7 +29,7 @@ struct DoseEditView: View {
         self.meds = meds
 
         _amount = State(wrappedValue: dose.doseAmount)
-        _taken = State(wrappedValue: dose.doseTaken)
+        //_taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
         if meds.count > 0 {
@@ -86,9 +86,9 @@ struct DoseEditView: View {
                 }
             }
             Section {
-                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
-                    $taken.wrappedValue.toggle()
-                }
+//                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
+//                    $taken.wrappedValue.toggle()
+//                }
 
                 Button("Delete this Dose") {
                     showingDeleteConfirm.toggle()
@@ -140,7 +140,7 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.amount = NSDecimalNumber(string: amount)
-        dose.taken = taken
+        //dose.taken = taken
         dose.takenDate = takenDate
     }
 

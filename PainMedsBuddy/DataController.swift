@@ -49,7 +49,7 @@ class DataController: ObservableObject {
         for i in 1...20 {
             let dose = Dose(context: viewContext)
             dose.takenDate = formatter.date(from: (i % 2 == 0) ? "2021/12/02 11:00" : "2021/12/01 11:00")
-            dose.taken = Bool.random()
+            dose.elapsed = Bool.random()
             dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
             
             // INFO: One to one relationship
@@ -62,8 +62,8 @@ class DataController: ObservableObject {
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = 99
-            med.duration = 240
-            med.durationGap = 0
+            med.duration = Int16("04:00:00".timeToSeconds)
+            med.durationGap = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date()
             med.lastTakenDate = Date()
             med.dose = dose

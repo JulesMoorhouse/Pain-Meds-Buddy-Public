@@ -84,6 +84,16 @@ extension Med {
         let minutes = Int(durationGap % 60);
         return [hours, minutes];
     }
+
+    var medTotalDurationToTime: [Int] {
+        let hours = Int((duration + durationGap) / 60);
+        let minutes = Int((duration + durationGap) % 60);
+        return [hours, minutes];
+    }
+    
+    var medTotalDuration: Int {
+        Int(duration ) + Int(durationGap )
+    }
     
     static var example: Med {
         let controller =  DataController(inMemory: true)

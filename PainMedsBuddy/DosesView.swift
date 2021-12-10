@@ -10,25 +10,25 @@ import CoreData
 import SwiftUI
 
 struct DosesView: View {
-    static let takenTag: String? = "Taken"
+    static let elapsedTag: String? = "InProgress"
     static let notTakenTag: String? = "NotTaken"
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    let showTakenDoses: Bool
+    let showElapsedDoses: Bool
     @State private var showAddView = false
 
     let doses: FetchRequest<Dose>
     let meds: [Med]
     
-    init(dataController: DataController, meds: [Med], showTakenDoses: Bool) {
-        self.showTakenDoses = showTakenDoses
+    init(dataController: DataController, meds: [Med], showElapsedDoses: Bool) {
+        self.showElapsedDoses = showElapsedDoses
         self.meds = meds
         
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
-        ], predicate: NSPredicate(format: "taken = %d", showTakenDoses))
+        ], predicate: NSPredicate(format: "elapsed = %d", showElapsedDoses))
     }
     
     // INFO: Results to an array of section arrays
@@ -84,7 +84,7 @@ struct DosesView: View {
                         EmptyView()
                 }
             )
-            .navigationTitle(showTakenDoses ? "History" : "Missed")
+            .navigationTitle(showElapsedDoses ? "History" : "In Progress")
             .toolbar {
                 Button(action: { self.showAddView = true }) {
                     Label("Add Dose", systemImage: "plus")
@@ -102,7 +102,7 @@ struct DosesView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     
     static var previews: some View {
-        DosesView(dataController: dataController, meds: [Med()], showTakenDoses: false)
+        DosesView(dataController: dataController, meds: [Med()], showElapsedDoses: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
