@@ -10,8 +10,8 @@ import CoreData
 import SwiftUI
 
 struct DosesView: View {
-    static let elapsedTag: String? = "InProgress"
-    static let notTakenTag: String? = "NotTaken"
+    static let inProgressTag: String? = "InProgress"
+    static let historyTag: String? = "History"
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext

@@ -15,12 +15,8 @@ struct HomeView: View {
 
     @EnvironmentObject var dataController: DataController
 
-//    @FetchRequest(entity: Dose.entity(),
-//                  sortDescriptors: [NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)],
-//                  predicate: NSPredicate(format: "taken = false")) var doses: FetchedResults<Dose>
-
     let meds: [Med]
-    @State private var doses = [Dose]()
+    var doses = [Dose]()
 
     let listRows = 3
 
@@ -42,7 +38,7 @@ struct HomeView: View {
         dosesFetchRequest.predicate = NSPredicate(format: "elapsed = false")
         do {
             self.doses = try dataController.container.viewContext.fetch(dosesFetchRequest)
-            print("Dose count = \(self.doses.count)")
+            print("Dose count = \(doses.count)")
         } catch {
             print("Error getting data for doses \(error.localizedDescription)")
         }
@@ -55,31 +51,18 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: columns) {
                             ForEach(doses, id: \.self) { item in
-                            //ForEach(0 ..< 4) { index in
-                                //Text("rem=\(item.doseTimeRemaining) tot=\(item.doseTotalTime)")
+                                //Text("taken=\(item.doseTimeRemainingInt) elapsed=\(item.doseElapsedInt) tot=\(item.doseTotalTime)")
                                 DoseProgressView(item: DoseProgressItem(
                                     size: size,
-                                    count: item.doseTimeRemaining,
+                                    elapsed: item.doseElapsedInt,
+                                    remaining: item.doseTimeRemainingInt,
                                     total: item.doseTotalTime,
-                                    labelMed: item.med?.medTitle ?? "xxx",
+                                    labelMed: item.med?.medTitle ?? "",
                                     labelDose: item.doseDisplay))
-                                
-//                                DoseProgressView(item: DoseProgressItem(
-//                                    size: size,
-//                                    count: count,
-//                                    total: total,
-//                                    labelMed: (index % 2 == 0) ? "Codeine Phosphate" : "Paracetomol",
-//                                    labelDose: "1 x 300mg Pill"))
                             }
                         }
                         .fixedSize(horizontal: false, vertical: true)
                         .padding([.horizontal, .top])
-                    }
-
-                    HStack {
-                        Button("Decrease", action: { self.count -= 1 })
-                        Spacer()
-                        Button("Increase", action: { self.count += 1 })
                     }
 
                     VStack(alignment: .leading) {

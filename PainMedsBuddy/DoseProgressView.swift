@@ -9,7 +9,7 @@ import CircularProgress
 import SwiftUI
 
 struct DoseProgressView: View {
-    let item: DoseProgressItem
+    var item: DoseProgressItem
 
     let gradient = LinearGradient(
         gradient: Gradient(colors:
@@ -19,13 +19,7 @@ struct DoseProgressView: View {
     var debug = false
     
     var countDown: String {
-        let hours = Int((item.count) / 60);
-        let minutes = Int((item.count) % 60);
-        
-        return "\(hours):\(minutes):00"
-        
-//        return item.count.secondsToTime
-
+        item.remaining.secondsToTime
     }
     
     var body: some View {
@@ -33,7 +27,7 @@ struct DoseProgressView: View {
             
             VStack(alignment: .center) {
                 CircularProgressView(
-                    count: item.count,
+                    count: item.elapsed,
                     total: item.total,
                     progress: item.progress,
                     fill: gradient,
@@ -63,7 +57,7 @@ struct DoseProgressView: View {
                     
                 }) {
                     ButtonBorderView(text: "Take Next", width: 100)
-                        .disabled(item.total > item.count)
+                        .disabled(item.total > item.remaining)
                 }
                 Text(countDown)
             }

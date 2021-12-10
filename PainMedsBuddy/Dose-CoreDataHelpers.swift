@@ -28,19 +28,20 @@ extension Dose: Comparable {
     var doseElapsedDate: Date? {
         if elapsed == false {
             if let duration = self.med?.medTotalDuration {
-                //let (hours, minutes, _) = duration.secondsToHoursMinutesSeconds
-
                 let modifiedDate = self.doseTakenDate.addingTimeInterval(TimeInterval(duration))
-                
-                //var modifiedDate: Date = Calendar.current.date(byAdding: .hour, value: hours, to: self.doseTakenDate)
-
-                //modifiedDate = Calendar.current.date(byAdding: .minute, value: minutes, to: modifiedDate)
 
                 return modifiedDate
             }
         }
 
         return nil
+    }
+
+    var doseElapsedInt: Int {
+        if elapsed == false {
+            return Int(Date().timeIntervalSince(self.doseTakenDate))
+        }
+        return 0
     }
 
     var doseShowHaveElapsed: Bool {
@@ -53,7 +54,7 @@ extension Dose: Comparable {
         return false
     }
 
-    var doseTimeRemaining: Int {
+    var doseTimeRemainingInt: Int {
         if elapsed == false {
             if let date = self.doseElapsedDate {
                 return Int(date.timeIntervalSince(Date()))

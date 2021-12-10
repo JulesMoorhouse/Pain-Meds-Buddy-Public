@@ -41,14 +41,14 @@ struct ContentView: View {
                 }
                  
             DosesView(dataController: dataController, meds: meds, showElapsedDoses: true)
-                .tag(DosesView.elapsedTag)
+                .tag(DosesView.historyTag)
                 .tabItem {
                     Image(systemName: "checkmark")
                     Text("History")
                 }
 
             DosesView(dataController: dataController, meds: meds, showElapsedDoses: false)
-                .tag(DosesView.elapsedTag)
+                .tag(DosesView.inProgressTag)
                 .tabItem {
                     Image(systemName: "arrow.triangle.2.circlepath")
                     Text("In Progress")
