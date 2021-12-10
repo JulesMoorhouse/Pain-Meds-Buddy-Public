@@ -14,6 +14,7 @@
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="durationGap" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="form" optional="YES" attributeType="String"/>
+        <attribute name="lastTakenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="measure" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="remaining" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -24,6 +25,6 @@
     </entity>
     <elements>
         <element name="Dose" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="Med" positionX="-54" positionY="-9" width="128" height="239"/>
+        <element name="Med" positionX="-54" positionY="-9" width="128" height="254"/>
     </elements>
 </model>

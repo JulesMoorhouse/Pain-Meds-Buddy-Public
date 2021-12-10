@@ -59,8 +59,9 @@ struct DoseProgressView: View {
             }
             .padding(.bottom, 30)
         }
-        .background(Color.secondary.opacity(0.05))
+        .background(Color.secondarySystemGroupedBackground)
         .cornerRadius(15)
+        .shadow(color: Color.black.opacity(0.2), radius: 5)
     }
 }
 

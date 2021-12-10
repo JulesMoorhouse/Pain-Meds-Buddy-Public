@@ -65,6 +65,7 @@ class DataController: ObservableObject {
             med.duration = 240
             med.durationGap = 0
             med.creationDate = Date()
+            med.lastTakenDate = Date()
             med.dose = dose
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.sequence = Int16.random(in: 1...3)

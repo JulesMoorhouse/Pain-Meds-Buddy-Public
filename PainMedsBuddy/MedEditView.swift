@@ -156,7 +156,7 @@ struct MedEditView: View {
     
     func update() {
         med.dose?.objectWillChange.send()
-        
+
         med.title = title
         med.defaultAmount = NSDecimalNumber(string: defaultAmount)
         med.color = color

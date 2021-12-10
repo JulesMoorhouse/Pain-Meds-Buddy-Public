@@ -9,7 +9,7 @@ import Foundation
 
 extension Med {
     public enum SortOrder {
-        case optimzed, title, creationDate
+        case optimzed, title, creationDate, remaining, lastTaken
     }
     
     static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
@@ -46,6 +46,10 @@ extension Med {
     
     var medNotes: String {
         notes ?? ""
+    }
+
+    var medLastTakenDate: Date {
+        lastTakenDate ?? Date()
     }
     
     var medCreationDate: Date {
@@ -99,6 +103,7 @@ extension Med {
         med.remaining = 99
         med.symbol = Symbol.allSymbols.randomElement()?.id
         med.creationDate = Date()
+        med.lastTakenDate = Date()
         
         return med
     }

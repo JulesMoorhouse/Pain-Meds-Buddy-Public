@@ -151,6 +151,7 @@ struct DoseEditView: View {
 
     func save() {
         dose.med = selectedMed
+        dose.med?.lastTakenDate = takenDate
         dataController.save()
     }
 }

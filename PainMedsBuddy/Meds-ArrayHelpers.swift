@@ -20,17 +20,17 @@ extension Array where Element: Med {
                 return false
             }
             
-            if first.remaining > second.remaining {
-                return true
-            } else if first.remaining < second.remaining {
-                return false
-            }
-
-            if first.medTitle > second.medTitle {
-                return true
-            } else if first.medTitle < second.medTitle {
-                return false
-            }
+//            if first.remaining > second.remaining {
+//                return true
+//            } else if first.remaining < second.remaining {
+//                return false
+//            }
+//
+//            if first.medTitle > second.medTitle {
+//                return true
+//            } else if first.medTitle < second.medTitle {
+//                return false
+//            }
 
             return first.medCreationDate < second.medCreationDate
         }
@@ -42,6 +42,10 @@ extension Array where Element: Med {
             return allMeds.sorted(by: \Med.medTitle)
         case .creationDate:
             return allMeds.sorted(by: \Med.medCreationDate)
+        case .remaining:
+            return allMeds.sorted(by: \Med.remaining)
+        case .lastTaken:
+            return allMeds.sorted(by: \Med.medLastTakenDate)
         default:
             return allMeds.allMedsDefaultSorted
         }

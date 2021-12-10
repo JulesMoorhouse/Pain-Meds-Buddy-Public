@@ -18,20 +18,20 @@ struct ContentView: View {
     var meds = [Med]()
     
     init(dataController: DataController) {
-        let medsFetchrequest: NSFetchRequest<Med> = Med.fetchRequest()
-        medsFetchrequest.sortDescriptors = [
+        let medsFetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
+        medsFetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
         ]
         
         do {
-            self.meds = try dataController.container.viewContext.fetch(medsFetchrequest)
+            self.meds = try dataController.container.viewContext.fetch(medsFetchRequest)
         }
         catch { }
     }
     
     var body: some View {
         TabView(selection: $selectedView) {
-            HomeView()
+            HomeView(dataController: dataController, meds: meds)
                 .tag(HomeView.HomeTag)
                 .tabItem {
                     Image(systemName: "house")
@@ -45,6 +45,13 @@ struct ContentView: View {
                     Text("History")
                 }
 
+            DosesView(dataController: dataController, meds: meds, showTakenDoses: false)
+                .tag(DosesView.takenTag)
+                .tabItem {
+                    Image(systemName: "xmark")
+                    Text("Not Taken")
+                }
+            
             MedsView(meds: meds)
                 .tag(MedsView.MedsTag)
                 .tabItem {
