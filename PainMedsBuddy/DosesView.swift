@@ -63,8 +63,8 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text: "There's nothing here right now!",
-                               imageString: "pills")
+                    PlaceholderView(text: meds.count > 0 ? "There's nothing here right now!" : "Please add a medication before adding dose!",
+                                    imageString: "pills")
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -86,13 +86,17 @@ struct DosesView: View {
             )
             .navigationTitle(showElapsedDoses ? "History" : "In Progress")
             .toolbar {
-                Button(action: { self.showAddView = true }) {
-                    Label("Add Dose", systemImage: "plus")
+                if meds.count > 0 {
+                    Button(action: {
+                        self.showAddView = true
+                    
+                    }) {
+                        Label("Add Dose", systemImage: "plus")
+                    }
                 }
             }
             
-            PlaceholderView(text: "Please select or add a dose", imageString: "eyedropper.halffull")
-            
+            PlaceholderView(text: meds.count > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

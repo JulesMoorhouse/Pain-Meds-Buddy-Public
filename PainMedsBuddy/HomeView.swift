@@ -28,6 +28,10 @@ struct HomeView: View {
         [GridItem(.fixed(200))]
     }
 
+    var noData: Bool {
+        doses.count == 0 && canTakeMeds().count == 0 && lowMeds().count == 0
+    }
+
     init(dataController: DataController, meds: [Med]) {
         self.meds = meds.allMedsDefaultSorted
 
@@ -45,72 +49,84 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Current meds")
-                        .foregroundColor(.secondary)
-                        .padding(.leading)
-
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: columns) {
-                            ForEach(doses, id: \.self) { item in
-
-                                DoseProgressView(item: DoseProgressItem(
-                                    size: size,
-                                    elapsed: item.doseElapsedInt,
-                                    remaining: item.doseTimeRemainingInt,
-                                    total: item.doseTotalTime,
-                                    labelMed: item.med?.medTitle ?? MedDefault.title,
-                                                    labelDose: item.doseDisplay)) {
-                                    
-                                    DoseAddView(meds: meds, med: item.med)
-                                }
-                            }
-                        }
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding([.horizontal, .bottom])
-                    }
-
-                    VStack(alignment: .leading) {
+            Group {
+                if noData {
+                    PlaceholderView(text: "There's nothing here right now!",
+                                    imageString: "pills")
+                } else {
+                    ScrollView {
                         VStack(alignment: .leading) {
-                            Text("Recently taken")
-                                .foregroundColor(.secondary)
+                            if doses.count > 0 {
+                                Text("Current meds")
+                                    .foregroundColor(.secondary)
+                                    .padding(.leading)
 
-                            ForEach(canTakeMeds(), id: \.self) { med in
-                                HomeMedRow(med: med, meds: meds)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(2)
-                            }
-                            .panelled()
-                        }
-                        .padding(.bottom)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    LazyHGrid(rows: columns) {
+                                        ForEach(doses, id: \.self) { item in
 
-                        VStack(alignment: .leading) {
-                            Text("Meds munning out")
-                                .foregroundColor(.secondary)
-
-                            ForEach(lowMeds(), id: \.self) { med in
-                                NavigationLink(destination: MedEditView(med: med, add: false)) {
-                                    HStack {
-                                        MedRowView(med: med)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                                        Image(systemName: "chevron.right")
-                                            .font(.body)
-
-                                        Spacer()
-                                            .frame(width: 10)
+                                            DoseProgressView(item: DoseProgressItem(
+                                                size: size,
+                                                elapsed: item.doseElapsedInt,
+                                                remaining: item.doseTimeRemainingInt,
+                                                total: item.doseTotalTime,
+                                                labelMed: item.med?.medTitle ?? MedDefault.title,
+                                                labelDose: item.doseDisplay)) {
+                                                    DoseAddView(meds: meds, med: item.med)
+                                            }
+                                        }
                                     }
-                                    .padding(2)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding([.horizontal, .bottom])
                                 }
                             }
-                            .panelled()
+
+                            VStack(alignment: .leading) {
+                                if canTakeMeds().count > 0 {
+                                    VStack(alignment: .leading) {
+                                        Text("Recently taken")
+                                            .foregroundColor(.secondary)
+
+                                        ForEach(canTakeMeds(), id: \.self) { med in
+                                            HomeMedRow(med: med, meds: meds)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .padding(2)
+                                        }
+                                        .panelled()
+                                    }
+                                    .padding(.bottom)
+                                }
+
+                                if lowMeds().count > 0 {
+                                    VStack(alignment: .leading) {
+                                        Text("Meds munning out")
+                                            .foregroundColor(.secondary)
+
+                                        ForEach(lowMeds(), id: \.self) { med in
+                                            NavigationLink(destination: MedEditView(med: med, add: false)) {
+                                                HStack {
+                                                    MedRowView(med: med)
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                                                    Image(systemName: "chevron.right")
+                                                        .font(.body)
+
+                                                    Spacer()
+                                                        .frame(width: 10)
+                                                }
+                                                .padding(2)
+                                            }
+                                        }
+                                        .panelled()
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
                         }
                     }
-                    .padding(.horizontal)
                 }
             }
-            .background(Color.systemGroupedBackground.ignoresSafeArea())
+            .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
             .navigationTitle("Home")
         }
     }

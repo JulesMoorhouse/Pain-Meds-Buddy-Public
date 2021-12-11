@@ -29,7 +29,7 @@ struct MedsView: View {
             Group {
                 if self.meds.isEmpty {
                     PlaceholderView(text: "There's nothing here right now!",
-                               imageString: "pills")
+                                    imageString: "pills")
                 } else {
                     ZStack {
                         List {
@@ -61,27 +61,29 @@ struct MedsView: View {
                             MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
                         }
                     }
-                    .background(
-                        NavigationLink(destination: MedAddView()
-                            .environment(\.managedObjectContext, managedObjectContext)
-                            .environmentObject(dataController),
-                            isActive: $showAddView) {
-                                EmptyView()
-                        }
-                    )
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(action: { self.showAddView = true }) {
-                                Label("Add Med", systemImage: "plus")
-                            }
-                        }
+                }
+            }
+            .background(
+                NavigationLink(destination: MedAddView()
+                    .environment(\.managedObjectContext, managedObjectContext)
+                    .environmentObject(dataController),
+                    isActive: $showAddView) {
+                        EmptyView()
+                }
+            )
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { self.showAddView = true }) {
+                        Label("Add Med", systemImage: "plus")
+                    }
+                }
                         
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button(action: {
-                                self.showingSortOrder = true
-                            }) {
-                                Label("Sort", systemImage: "arrow.up.arrow.down")
-                            }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if meds.count > 0 {
+                        Button(action: {
+                            self.showingSortOrder = true
+                        }) {
+                            Label("Sort", systemImage: "arrow.up.arrow.down")
                         }
                     }
                 }
