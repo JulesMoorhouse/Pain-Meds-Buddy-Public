@@ -31,9 +31,7 @@ struct PopUpView<Content: View, Close: View>: View {
         }
         .padding()
         .frame(width: width, height: 220)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(radius: 20)
+        .panelled(cornerRadius: 20)
     }
 }
 

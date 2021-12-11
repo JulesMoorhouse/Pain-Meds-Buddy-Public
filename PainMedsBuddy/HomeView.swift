@@ -38,7 +38,6 @@ struct HomeView: View {
         dosesFetchRequest.predicate = NSPredicate(format: "elapsed = false")
         do {
             self.doses = try dataController.container.viewContext.fetch(dosesFetchRequest)
-            print("Dose count = \(doses.count)")
         } catch {
             print("Error getting data for doses \(error.localizedDescription)")
         }
@@ -48,6 +47,10 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
+                    Text("Current meds")
+                        .foregroundColor(.secondary)
+                        .padding(.leading)
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: columns) {
                             ForEach(doses, id: \.self) { item in
@@ -62,31 +65,44 @@ struct HomeView: View {
                             }
                         }
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding([.horizontal, .top])
+                        .padding([.horizontal, .bottom])
                     }
 
                     VStack(alignment: .leading) {
-                        Text("Recently Taken")
-                        ForEach(canTakeMeds(), id: \.self) { med in
-                            NavigationLink(destination: MedEditView(med: med, add: false)) {
+                        VStack(alignment: .leading) {
+                            Text("Recently taken")
+                                .foregroundColor(.secondary)
+
+                            ForEach(canTakeMeds(), id: \.self) { med in
                                 HomeMedRow(med: med)
                                     .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(2)
                             }
+                            .panelled()
                         }
-                        .background(Color.secondarySystemGroupedBackground)
-                        .cornerRadius(5)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5)
+                        .padding(.bottom)
 
-                        Text("Meds Running out")
-                        ForEach(lowMeds(), id: \.self) { med in
-                            NavigationLink(destination: MedEditView(med: med, add: false)) {
-                                MedRowView(med: med)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                        VStack(alignment: .leading) {
+                            Text("Meds munning out")
+                                .foregroundColor(.secondary)
+
+                            ForEach(lowMeds(), id: \.self) { med in
+                                NavigationLink(destination: MedEditView(med: med, add: false)) {
+                                    HStack {
+                                        MedRowView(med: med)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                                        Image(systemName: "chevron.right")
+                                            .font(.body)
+
+                                        Spacer()
+                                            .frame(width: 10)
+                                    }
+                                    .padding(2)
+                                }
                             }
+                            .panelled()
                         }
-                        .background(Color.secondarySystemGroupedBackground)
-                        .cornerRadius(5)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5)
                     }
                     .padding(.horizontal)
                 }
