@@ -60,6 +60,7 @@ struct MedEditView: View {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medForm)
+                        .foregroundColor(.secondary)
                 }
                 
                 HStack {
@@ -70,6 +71,7 @@ struct MedEditView: View {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medMeasure)
+                        .foregroundColor(.secondary)
                 }
                 
                 Picker("Measure", selection: $measure.onChange(update)) {
@@ -96,6 +98,7 @@ struct MedEditView: View {
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medForm)
+                        .foregroundColor(.secondary)
                 }
                 
                 HStack {

@@ -74,6 +74,7 @@ struct DoseEditView: View {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(selectedMed.medForm)
+                        .foregroundColor(.secondary)
                 }
             }
 

@@ -43,12 +43,9 @@ class DataController: ObservableObject {
     func createSampleData() throws {
         let viewContext = container.viewContext
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-        
         for i in 1...20 {
             let dose = Dose(context: viewContext)
-            dose.takenDate = formatter.date(from: (i % 2 == 0) ? "2021/12/10 13:00" : "2021/12/10 14:00")
+            dose.takenDate = (i % 2 == 0) ? Date() : Date.yesterday
             dose.elapsed = Bool.random()
             dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
             
@@ -56,12 +53,12 @@ class DataController: ObservableObject {
             let med = Med(context: viewContext)
             med.title = "Med example \(i)"
             med.notes = "This is an exmaple med \(i)"
-            med.defaultAmount = 1
+            med.defaultAmount = NSDecimalNumber(value: Int16.random(in: 1...10))
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100...600))
             med.color = Med.colors.randomElement()
             med.measure = "mg"
             med.form = "Pills"
-            med.remaining = 99
+            med.remaining = Int16.random(in: 0...99)
             med.duration = Int16("04:00:00".timeToSeconds)
             med.durationGap = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date()
