@@ -22,6 +22,10 @@ struct DoseProgressView: View {
         item.remaining.secondsToTime
     }
     
+    var done: Bool {
+        (item.total > item.elapsed)
+    }
+    
     var body: some View {
         ZStack {
             
@@ -57,9 +61,9 @@ struct DoseProgressView: View {
                     
                 }) {
                     ButtonBorderView(text: "Take Next", width: 100)
-                        .disabled(item.total > item.remaining)
+                        .disabled(done)
                 }
-                Text(countDown)
+                Text(done ? countDown : "Available")
             }
             .padding(.bottom, 30)
         }

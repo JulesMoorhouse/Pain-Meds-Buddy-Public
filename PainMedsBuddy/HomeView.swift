@@ -51,13 +51,13 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: columns) {
                             ForEach(doses, id: \.self) { item in
-                                //Text("taken=\(item.doseTimeRemainingInt) elapsed=\(item.doseElapsedInt) tot=\(item.doseTotalTime)")
+
                                 DoseProgressView(item: DoseProgressItem(
                                     size: size,
                                     elapsed: item.doseElapsedInt,
                                     remaining: item.doseTimeRemainingInt,
                                     total: item.doseTotalTime,
-                                    labelMed: item.med?.medTitle ?? "",
+                                    labelMed: item.med?.medTitle ?? MedDefault.title,
                                     labelDose: item.doseDisplay))
                             }
                         }
@@ -69,15 +69,24 @@ struct HomeView: View {
                         Text("Recently Taken")
                         ForEach(canTakeMeds(), id: \.self) { med in
                             NavigationLink(destination: MedEditView(med: med, add: false)) {
-                                MedRowView(med: med)
+                                HomeMedRow(med: med)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
+                        .background(Color.secondarySystemGroupedBackground)
+                        .cornerRadius(5)
+                        .shadow(color: Color.black.opacity(0.2), radius: 5)
+
                         Text("Meds Running out")
                         ForEach(lowMeds(), id: \.self) { med in
                             NavigationLink(destination: MedEditView(med: med, add: false)) {
                                 MedRowView(med: med)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
+                        .background(Color.secondarySystemGroupedBackground)
+                        .cornerRadius(5)
+                        .shadow(color: Color.black.opacity(0.2), radius: 5)
                     }
                     .padding(.horizontal)
                 }

@@ -24,14 +24,16 @@ struct DoseRowView: View {
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
             
             HStack {
+                // TODO: Replace with something other than example
                 MedSymbolView(med: dose.med ?? Med.example)
                 
                 Spacer()
                     .frame(width: 10)
                 
                 VStack(alignment: .leading) {
-                    Text(dose.med?.medTitle ?? "")
-                        .foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
+                    Text(dose.med?.medTitle ?? MedDefault.title)
+                        //.foregroundColor(Color(dose.med?.color ?? Med.defaultColor))
+                        .foregroundColor(.primary)
                     Text(dose.doseDisplay)
                         .foregroundColor(.secondary)
                         .font(.caption)

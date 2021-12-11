@@ -9,11 +9,11 @@ import Foundation
 
 extension Dose: Comparable {
     var doseAmount: String {
-        "\(String(describing: amount ?? 0.0))"
+        "\(String(describing: amount ?? DoseDefault.amount))"
     }
 
     var doseTakenDate: Date {
-        takenDate ?? Date()
+        takenDate ?? DoseDefault.takenDate
     }
 
     var doseElapsed: Bool {
@@ -22,7 +22,7 @@ extension Dose: Comparable {
 
     // ---
     var doseTotalTime: Int {
-        Int(self.med?.duration ?? 0) + Int(self.med?.durationGap ?? 0)
+        Int(self.med?.duration ?? MedDefault.duration) + Int(self.med?.durationGap ?? MedDefault.durationGap)
     }
 
     var doseElapsedDate: Date? {
@@ -87,20 +87,20 @@ extension Dose: Comparable {
     }
 
     var doseTotalDosage: String {
-        let temp = ((amount ?? 0.0) as Decimal) * ((self.med?.dosage ?? 0) as Decimal)
+        let temp = ((amount ?? DoseDefault.amount) as Decimal) * ((self.med?.dosage ?? MedDefault.dosage) as Decimal)
         return "\(temp)"
     }
 
     var doseDisplayFull: String {
         return Dose.displayFull(amount: self.doseAmount,
-                                dosage: self.med?.medDosage ?? "0",
+                                dosage: self.med?.medDosage ?? "\(MedDefault.dosage)",
                                 totalDosage: self.doseTotalDosage,
-                                measure: self.med?.measure ?? "",
-                                form: self.med?.form ?? "")
+                                measure: self.med?.measure ?? MedDefault.measure,
+                                form: self.med?.form ?? MedDefault.form)
     }
 
     var doseDisplay: String {
-        "\(self.doseAmount) x \(self.med?.medDosage ?? "0")\(self.med?.measure ?? "") \(self.med?.form ?? "")"
+        "\(self.doseAmount) x \(self.med?.medDosage ?? "\(MedDefault.dosage)")\(self.med?.measure ?? MedDefault.measure) \(self.med?.form ?? MedDefault.form)"
     }
 
     public static func displayFull(amount: String, dosage: String, totalDosage: String, measure: String, form: String) -> String {

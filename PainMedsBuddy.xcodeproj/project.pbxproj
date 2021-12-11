@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3912764047900DA06D7 /* HomeMedRow.swift */; };
+		881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39327649C0F00DA06D7 /* MedDefault.swift */; };
+		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
 		88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321421275120D40026D85F /* PainMedsBuddyApp.swift */; };
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
@@ -53,6 +56,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		881BA3912764047900DA06D7 /* HomeMedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMedRow.swift; sourceTree = "<group>"; };
+		881BA39327649C0F00DA06D7 /* MedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedDefault.swift; sourceTree = "<group>"; };
+		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
 		88321421275120D40026D85F /* PainMedsBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyApp.swift; sourceTree = "<group>"; };
 		88321423275120D40026D85F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,17 +142,21 @@
 				88572054275139DD00B4B00C /* DataController.swift */,
 				88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */,
 				88AB7CA6275D351A0055BD9B /* DoseAddView.swift */,
+				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */,
 				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
 				88E930AD2760D98800A98708 /* DoseProgressItem.swift */,
 				88E930AB2760D8F800A98708 /* DoseProgressView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
+				881BA3912764047900DA06D7 /* HomeMedRow.swift */,
 				8857205A275234C400B4B00C /* HomeView.swift */,
 				8832142A275120D60026D85F /* Info.plist */,
+				886C30BD2763913B002A45B1 /* Int-Helper.swift */,
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88EF203027526746006037CF /* Med-CoreDataHelpers.swift */,
 				88AB7CB6275F7BE60055BD9B /* MedAddView.swift */,
+				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */,
@@ -160,12 +170,11 @@
 				88321427275120D60026D85F /* Preview Content */,
 				88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */,
 				88E930A12760A63E00A98708 /* SettingsView.swift */,
+				886C30BB2763912C002A45B1 /* String-Helper.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
-				886C30BB2763912C002A45B1 /* String-Helper.swift */,
-				886C30BD2763913B002A45B1 /* Int-Helper.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -298,13 +307,16 @@
 				88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */,
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
+				881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */,
 				88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */,
 				88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */,
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
+				881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */,
 				88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */,
+				881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */,
 				886C30BC2763912C002A45B1 /* String-Helper.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,

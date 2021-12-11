@@ -10,19 +10,20 @@ import SwiftUI
 struct ButtonBorderView: View {
     let text: String
     let width: CGFloat
+    let font: Font
+    let padding: CGFloat
     
-    init(text: String, width: CGFloat) {
+    init(text: String, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
         self.text = text
         self.width = width
-    }
-
-    init(text: String) {
-        self.init(text: text, width: 150)
+        self.font = font
+        self.padding = padding
     }
     
     var body: some View {
         Text(text)
-            .padding(10)
+            .font(font)
+            .padding(padding)
             .frame(width: width)
             .overlay(
                 RoundedRectangle(cornerRadius: 10.0)

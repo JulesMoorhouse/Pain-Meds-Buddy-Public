@@ -113,15 +113,15 @@ struct DoseEditView: View {
     }
 
     func display() -> String {
-        let amt = Decimal(string: amount) ?? 0.0
-        let dsg = Decimal(string: selectedMed.medDosage) ?? 0.0
+        let amt: Decimal = Decimal(string: amount) ?? 0.0
+        let dsg: Decimal = Decimal(string: selectedMed.medDosage) ?? 0.0
         let temp = (amt * dsg)
 
         return Dose.displayFull(amount: amount,
                                 dosage: selectedMed.medDosage,
                                 totalDosage: "\(temp)",
-                                measure: selectedMed.measure ?? "",
-                                form: selectedMed.form ?? "")
+                                measure: selectedMed.measure ?? MedDefault.measure,
+                                form: selectedMed.form ?? MedDefault.form)
     }
 
     func selectionChanged() {

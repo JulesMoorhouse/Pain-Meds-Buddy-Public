@@ -13,47 +13,56 @@ extension Med {
     }
     
     static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
-    
-    static let defaultColor = "Dark Blue"
-    
+        
     var medTitle: String {
-        title ?? ""
+        title ?? MedDefault.title
     }
 
     var medDefaultAmount: String {
-        "\(String(describing: defaultAmount ?? 0.0))"
+        "\(String(describing: defaultAmount ?? MedDefault.defaultAmount))"
     }
 
     var medColor: String {
-        color ?? "Light Blue"
+        color ?? MedDefault.color
     }
 
     var medSymbol: String {
-        symbol ?? "pills"
+        symbol ?? MedDefault.symbol
     }
     
     var medDosage: String {
-        "\(String(describing: dosage ?? 0.0))"
+        "\(String(describing: dosage ?? MedDefault.dosage))"
     }
     
     var medForm: String {
-        form ?? ""
+        form ?? MedDefault.form
     }
 
     var medMeasure: String {
-        measure ?? ""
+        measure ?? MedDefault.measure
     }
     
     var medNotes: String {
-        notes ?? ""
+        notes ?? MedDefault.notes
     }
 
     var medLastTakenDate: Date {
-        lastTakenDate ?? Date()
+        lastTakenDate ?? MedDefault.lastTakeDate
+    }
+    
+    var medFormattedLastTakenDate: String {
+        if let date = lastTakenDate {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
+            return formatter.string(from: date)
+        } else {
+            return "Not taken yet"
+        }
     }
     
     var medCreationDate: Date {
-        creationDate ?? Date()
+        creationDate ?? MedDefault.createdDate
     }
     
     var medRemaining: String {
@@ -65,12 +74,12 @@ extension Med {
     }
     
     var medTotalDosage: String {
-        let temp = ((defaultAmount ?? 0.0) as Decimal) * ((dosage ?? 0) as Decimal)
+        let temp = ((defaultAmount ?? MedDefault.defaultAmount) as Decimal) * ((dosage ?? MedDefault.dosage) as Decimal)
         return "\(temp)"
     }
     
     var medDisplay: String {
-        "\(medDefaultAmount) x \(medDosage)\(measure ?? "") \(form ?? "") = \(medTotalDosage)\(measure ?? "")"
+        "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(medTotalDosage)\(medMeasure)"
     }
     
     var medDurationToTime: [Int] {

@@ -1,16 +1,15 @@
 //
-//  MedRowView.swift
+//  HomeMedRow.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
 //
-// INFO: This view is a row shown on the MedicationView.
 
 import SwiftUI
 
-struct MedRowView: View {
+struct HomeMedRow: View {
     @ObservedObject var med: Med
-
+    
     var body: some View {
         HStack {
             MedSymbolView(med: med)
@@ -22,16 +21,26 @@ struct MedRowView: View {
                 Text(med.medTitle)
                     //.foregroundColor(Color(med.color ?? Med.defaultColor))
                     .foregroundColor(.primary)
-                Text("\(med.remaining) \(med.medForm)")
+                Text(med.medDisplay)
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                Text(med.medFormattedLastTakenDate)
                     .foregroundColor(.secondary)
                     .font(.caption)
             }
+            
+            Spacer()
+            
+            ButtonBorderView(text: "Take Now", width: 80, font: .footnote, padding: 8)
+            
+            Spacer()
+                .frame(width: 10)
         }
     }
 }
 
-struct MedRowView_Previews: PreviewProvider {
+struct HomeMedRow_Previews: PreviewProvider {
     static var previews: some View {
-        MedRowView(med: Med.example)
+        HomeMedRow(med: Med.example)
     }
 }

@@ -165,8 +165,8 @@ struct MedEditView: View {
         med.measure = measure
         med.form = form
         med.notes = notes
-        med.remaining = Int16(remaining) ?? 0
-        med.sequence = Int16(sequence) ?? 0
+        med.remaining = Int16(remaining) ?? MedDefault.remaining
+        med.sequence = Int16(sequence) ?? MedDefault.sequence
     }
 }
 
