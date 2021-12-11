@@ -77,7 +77,7 @@ struct DosesView: View {
                 }
             }
             .background(
-                NavigationLink(destination: DoseAddView(meds: meds)
+                NavigationLink(destination: DoseAddView(meds: meds, med: nil)
                     .environment(\.managedObjectContext, managedObjectContext)
                     .environmentObject(dataController),
                     isActive: $showAddView) {

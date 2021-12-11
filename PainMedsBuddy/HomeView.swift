@@ -61,7 +61,10 @@ struct HomeView: View {
                                     remaining: item.doseTimeRemainingInt,
                                     total: item.doseTotalTime,
                                     labelMed: item.med?.medTitle ?? MedDefault.title,
-                                    labelDose: item.doseDisplay))
+                                                    labelDose: item.doseDisplay)) {
+                                    
+                                    DoseAddView(meds: meds, med: item.med)
+                                }
                             }
                         }
                         .fixedSize(horizontal: false, vertical: true)
@@ -74,7 +77,7 @@ struct HomeView: View {
                                 .foregroundColor(.secondary)
 
                             ForEach(canTakeMeds(), id: \.self) { med in
-                                HomeMedRow(med: med)
+                                HomeMedRow(med: med, meds: meds)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(2)
                             }

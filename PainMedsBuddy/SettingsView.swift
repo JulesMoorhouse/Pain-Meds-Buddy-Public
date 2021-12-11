@@ -23,11 +23,15 @@ struct SettingsView: View {
                         Text("Acknowledgements")
 
                     })
-                
-                 Button("Add Example Data") {
+
+                Button("Add Example Data") {
                     dataController.deleteAll()
                     try? dataController.createSampleData()
-                 }
+                }
+
+                Button("Delete All Data") {
+                    dataController.deleteAll()
+                }
             }
             .navigationTitle("Settings")
         }

@@ -8,8 +8,10 @@
 import CircularProgress
 import SwiftUI
 
-struct DoseProgressView: View {
+struct DoseProgressView<Content: View>: View {
     var item: DoseProgressItem
+
+    @ViewBuilder var buttonDestination: Content
 
     let gradient = LinearGradient(
         gradient: Gradient(colors:
@@ -57,9 +59,7 @@ struct DoseProgressView: View {
             .frame(minWidth: item.size, minHeight: item.size)
             
             VStack {
-                Button(action: {
-                    
-                }) {
+                NavigationLink(destination: self.buttonDestination) {
                     ButtonBorderView(text: "Take Next", width: 100)
                         .disabled(done)
                 }
@@ -73,6 +73,8 @@ struct DoseProgressView: View {
 
 struct DoseProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseProgressView(item: DoseProgressItem.example)
+        DoseProgressView(item: DoseProgressItem.example) {
+            EmptyView()
+        }
     }
 }
