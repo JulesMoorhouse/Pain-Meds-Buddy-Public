@@ -72,7 +72,7 @@ struct HomeView: View {
                                                 total: item.doseTotalTime,
                                                 labelMed: item.med?.medTitle ?? MedDefault.title,
                                                 labelDose: item.doseDisplay)) {
-                                                    DoseAddView(meds: meds, med: item.med)
+                                                    DoseAddView(med: item.med)
                                             }
                                         }
                                     }

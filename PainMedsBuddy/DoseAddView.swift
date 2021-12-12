@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DoseAddView: View {
-    let meds: [Med]
-
     let med: Med?
 
     @EnvironmentObject var dataController: DataController
@@ -30,6 +28,6 @@ struct DoseAddView: View {
 
 struct DoseAddView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseAddView(meds: [Med()], med: nil)
+        DoseAddView(med: nil)
     }
 }

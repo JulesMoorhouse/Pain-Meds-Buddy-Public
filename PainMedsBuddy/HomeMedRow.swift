@@ -34,7 +34,7 @@ struct HomeMedRow: View {
             Spacer()
 
             NavigationLink(destination:
-                DoseAddView(meds: meds, med: med),
+                DoseAddView(med: med),
                 label: {
                     ButtonBorderView(text: "Take Now", width: 80, font: .footnote, padding: 8)
 
