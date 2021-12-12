@@ -12,7 +12,6 @@ import SwiftUI
 struct DoseEditView: View {
     let dose: Dose
     let add: Bool
-    let meds2: [Med]
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
@@ -24,10 +23,9 @@ struct DoseEditView: View {
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
-    init(dataController: DataController, meds2: [Med], dose: Dose, add: Bool) {
+    init(dataController: DataController, dose: Dose, add: Bool) {
         self.dose = dose
         self.add = add
-        self.meds2 = meds2
 
         _amount = State(wrappedValue: dose.doseAmount)
         // _taken = State(wrappedValue: dose.doseTaken)
@@ -174,7 +172,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController, meds2: [Med()], dose: Dose.example, add: false)
+        DoseEditView(dataController: dataController, dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }

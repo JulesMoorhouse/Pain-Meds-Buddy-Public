@@ -19,7 +19,7 @@ struct DoseRowView: View {
 
     var body: some View {
         NavigationLink(destination:
-            DoseEditView(dataController: dataController, meds2: meds, dose: dose, add: false)
+            DoseEditView(dataController: dataController, dose: dose, add: false)
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
                 HStack {

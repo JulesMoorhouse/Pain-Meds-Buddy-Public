@@ -24,7 +24,7 @@ struct DoseAddView: View {
         }
         dataController.save()
 
-        return DoseEditView(dataController: dataController, meds2: meds, dose: dose, add: true)
+        return DoseEditView(dataController: dataController, dose: dose, add: true)
     }
 }
 
