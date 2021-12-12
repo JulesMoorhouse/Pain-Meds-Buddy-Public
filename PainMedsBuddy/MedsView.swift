@@ -12,12 +12,13 @@ import SwiftUI
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
     
-    @FetchRequest(entity: Med.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: nil) var meds: FetchedResults<Med>
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @FetchRequest(entity: Med.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
+                  predicate: nil) var meds: FetchedResults<Med>
+
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
     @State private var showAddView = false

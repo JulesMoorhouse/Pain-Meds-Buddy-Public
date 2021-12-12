@@ -15,25 +15,9 @@ struct ContentView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    var meds = [Med]()
-    
-    init(dataController: DataController) {
-        let medsFetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
-        medsFetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
-        ]
-        
-        do {
-            self.meds = try dataController.container.viewContext.fetch(medsFetchRequest)
-        }
-        catch {
-            print("Error getting data for meds \(error.localizedDescription)")
-        }
-    }
-    
     var body: some View {
         TabView(selection: $selectedView) {
-            HomeView(dataController: dataController, meds: meds)
+            HomeView(dataController: dataController)
                 .tag(HomeView.HomeTag)
                 .tabItem {
                     Image(systemName: "house")
@@ -76,7 +60,7 @@ struct ContentView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     
     static var previews: some View {
-        ContentView(dataController: dataController)
+        ContentView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

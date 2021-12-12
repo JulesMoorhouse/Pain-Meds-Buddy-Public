@@ -15,7 +15,10 @@ struct HomeView: View {
 
     @EnvironmentObject var dataController: DataController
 
-    let meds: [Med]
+    @FetchRequest(entity: Med.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
+                  predicate: nil) var meds: FetchedResults<Med>
+    
     var doses = [Dose]()
 
     let listRows = 3
@@ -32,9 +35,11 @@ struct HomeView: View {
         doses.count == 0 && canTakeMeds().count == 0 && lowMeds().count == 0
     }
 
-    init(dataController: DataController, meds: [Med]) {
-        self.meds = meds.allMedsDefaultSorted
-
+    var items: [Med] {
+        DataController.resultsToArray(meds).allMeds
+    }
+    
+    init(dataController: DataController) {
         let dosesFetchRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
         dosesFetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
@@ -138,13 +143,13 @@ struct HomeView: View {
 
     func canTakeMeds() -> [Med] {
         // Get unique meds which are currently not elapsed
-        var temp = meds.filter { !uniqueDoseMeds().contains($0) }
+        var temp = items.filter { !uniqueDoseMeds().contains($0) }
         temp = temp.sortedItems(using: .lastTaken)
         return temp.prefix(listRows).map { $0 }
     }
 
     func lowMeds() -> [Med] {
-        let temp = meds.sortedItems(using: .remaining)
+        let temp = items.sortedItems(using: .remaining)
         return temp.prefix(listRows).map { $0 }
     }
 }
@@ -153,7 +158,7 @@ struct HomeView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        HomeView(dataController: dataController, meds: [Med()])
+        HomeView(dataController: dataController)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
