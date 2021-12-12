@@ -54,7 +54,7 @@ struct ContentView: View {
                     Text("In Progress")
                 }
             
-            MedsView(meds: meds)
+            MedsView()
                 .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: "pills.fill")

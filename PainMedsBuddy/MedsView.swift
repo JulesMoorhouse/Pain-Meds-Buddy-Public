@@ -6,13 +6,15 @@
 //
 // INFO: This view shows all the available medication
 
+import CoreData
 import SwiftUI
 
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
     
-    @State private var meds: [Med]
-    
+    @FetchRequest(entity: Med.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
+                  predicate: nil) var meds: FetchedResults<Med>
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -20,8 +22,8 @@ struct MedsView: View {
     @State private var sortOrder = Med.SortOrder.optimzed
     @State private var showAddView = false
     
-    init(meds: [Med]) {
-        self.meds = meds.allMedsDefaultSorted
+    var items: [Med] {
+        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
     
     var body: some View {
@@ -33,22 +35,20 @@ struct MedsView: View {
                 } else {
                     ZStack {
                         List {
-                            ForEach(self.meds.sortedItems(using: sortOrder), id: \.self) { med in
+                            ForEach(items, id: \.self) { med in
                                 NavigationLink(destination: MedEditView(med: med, add: false)) {
                                     MedRowView(med: med)
                                 }
                             }
-                            .onDelete { offsets in
-                                let allItems = self.meds.sortedItems(using: sortOrder)
-                                
+                            .onDelete { offsets in                                
                                 for offset in offsets {
-                                    let item = allItems[offset]
+                                    let item = items[offset]
                                     dataController.delete(item)
                                     
                                     // Bug fix
-                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
-                                        self.meds.remove(at: itemToRemoveIndex)
-                                    }
+//                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
+//                                        self.meds.remove(at: itemToRemoveIndex)
+//                                    }
                                 }
                                 dataController.save()
                                 dataController.container.viewContext.processPendingChanges()
@@ -99,7 +99,7 @@ struct MedicationsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        MedsView(meds: [Med()])
+        MedsView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
