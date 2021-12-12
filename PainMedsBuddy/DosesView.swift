@@ -20,11 +20,14 @@ struct DosesView: View {
     @State private var showAddView = false
 
     let doses: FetchRequest<Dose>
-    let meds: [Med]
     
-    init(dataController: DataController, meds: [Med], showElapsedDoses: Bool) {
+    var medsCount: Int {
+        let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
+        return dataController.count(for: fetchRequest)
+    }
+    
+    init(dataController: DataController, showElapsedDoses: Bool) {
         self.showElapsedDoses = showElapsedDoses
-        self.meds = meds
         
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
@@ -63,7 +66,7 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text: meds.count > 0 ? "There's nothing here right now!" : "Please add a medication before adding dose!",
+                    PlaceholderView(text: medsCount > 0 ? "There's nothing here right now!" : "Please add a medication before adding dose!",
                                     imageString: "pills")
                 } else {
                     List {
@@ -86,7 +89,7 @@ struct DosesView: View {
             )
             .navigationTitle(showElapsedDoses ? "History" : "In Progress")
             .toolbar {
-                if meds.count > 0 {
+                if medsCount > 0 {
                     Button(action: {
                         self.showAddView = true
                     
@@ -96,7 +99,7 @@ struct DosesView: View {
                 }
             }
             
-            PlaceholderView(text: meds.count > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
+            PlaceholderView(text: medsCount > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -106,7 +109,7 @@ struct DosesView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     
     static var previews: some View {
-        DosesView(dataController: dataController, meds: [Med()], showElapsedDoses: false)
+        DosesView(dataController: dataController, showElapsedDoses: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

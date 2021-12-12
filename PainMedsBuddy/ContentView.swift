@@ -40,14 +40,14 @@ struct ContentView: View {
                     Text("Home")
                 }
                  
-            DosesView(dataController: dataController, meds: meds, showElapsedDoses: true)
+            DosesView(dataController: dataController, showElapsedDoses: true)
                 .tag(DosesView.historyTag)
                 .tabItem {
                     Image(systemName: "checkmark")
                     Text("History")
                 }
 
-            DosesView(dataController: dataController, meds: meds, showElapsedDoses: false)
+            DosesView(dataController: dataController, showElapsedDoses: false)
                 .tag(DosesView.inProgressTag)
                 .tabItem {
                     Image(systemName: "arrow.triangle.2.circlepath")
