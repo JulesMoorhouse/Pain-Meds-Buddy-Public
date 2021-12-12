@@ -10,8 +10,6 @@ import SwiftUI
 struct HomeMedRow: View {
     @ObservedObject var med: Med
 
-    let meds: [Med]
-
     var body: some View {
         HStack {
             MedSymbolView(med: med)
@@ -47,6 +45,6 @@ struct HomeMedRow: View {
 
 struct HomeMedRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeMedRow(med: Med.example, meds: [Med()])
+        HomeMedRow(med: Med.example)
     }
 }

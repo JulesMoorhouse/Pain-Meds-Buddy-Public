@@ -88,7 +88,7 @@ struct HomeView: View {
                                             .foregroundColor(.secondary)
 
                                         ForEach(canTakeMeds(), id: \.self) { med in
-                                            HomeMedRow(med: med, meds: meds)
+                                            HomeMedRow(med: med)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                                 .padding(2)
                                         }
