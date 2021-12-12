@@ -73,7 +73,11 @@ class DataController: ObservableObject {
     
     func save() {
         if container.viewContext.hasChanges {
-            try? container.viewContext.save()
+            do {
+                try container.viewContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         }
     }
     
