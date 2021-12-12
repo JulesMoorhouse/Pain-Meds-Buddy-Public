@@ -12,40 +12,53 @@ import SwiftUI
 struct DoseEditView: View {
     let dose: Dose
     let add: Bool
-    let meds: [Med]
+    let meds2: [Med]
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
+    @FetchRequest private var meds: FetchedResults<Med>
 
     @State private var selectedMed: Med
     @State private var amount: String
-    //@State private var taken: Bool
+    // @State private var taken: Bool
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
-    init(dataController: DataController, meds: [Med], dose: Dose, add: Bool) {
+    init(dataController: DataController, meds2: [Med], dose: Dose, add: Bool) {
         self.dose = dose
         self.add = add
-        self.meds = meds
+        self.meds2 = meds2
 
         _amount = State(wrappedValue: dose.doseAmount)
-        //_taken = State(wrappedValue: dose.doseTaken)
+        // _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-        if meds.count > 0 {
-            if let currentMed = dose.med {
-                _selectedMed = State(wrappedValue: currentMed)
-                initSelection(med: currentMed)
-                return
-            }
+        let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+        ]
 
-            if let first = meds.first {
-                _selectedMed = State(wrappedValue: first)
-                initSelection(med: first)
-                return
-            }
+        self._meds = FetchRequest(fetchRequest: fetchRequest)
+
+        if let currentMed = dose.med {
+            _selectedMed = State(wrappedValue: currentMed)
+            initSelection(med: currentMed)
+            return
         }
-        
+
+        do {
+            let tempMeds = try dataController.container.viewContext.fetch(fetchRequest)
+            if tempMeds.count > 0 {
+                if let first = tempMeds.first {
+                    _selectedMed = State(wrappedValue: first)
+                    initSelection(med: first)
+                    return
+                }
+            }
+        } catch {
+            fatalError("Error loading data")
+        }
+
         _selectedMed = State(wrappedValue: Med(context: dataController.container.viewContext))
     }
 
@@ -56,7 +69,7 @@ struct DoseEditView: View {
                     .foregroundColor(.secondary)
 
                 NavigationLink(destination:
-                    DoseMedSelectView(meds: meds,
+                    DoseMedSelectView(meds: meds2,
                                       selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
@@ -114,8 +127,8 @@ struct DoseEditView: View {
     }
 
     func display() -> String {
-        let amt: Decimal = Decimal(string: amount) ?? 0.0
-        let dsg: Decimal = Decimal(string: selectedMed.medDosage) ?? 0.0
+        let amt = Decimal(string: amount) ?? 0.0
+        let dsg = Decimal(string: selectedMed.medDosage) ?? 0.0
         let temp = (amt * dsg)
 
         return Dose.displayFull(amount: amount,
@@ -141,7 +154,7 @@ struct DoseEditView: View {
         dose.objectWillChange.send()
 
         dose.amount = NSDecimalNumber(string: amount)
-        //dose.taken = taken
+        // dose.taken = taken
         dose.takenDate = takenDate
     }
 
@@ -161,7 +174,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController,  meds: [Med()], dose: Dose.example, add: false)
+        DoseEditView(dataController: dataController, meds2: [Med()], dose: Dose.example, add: false)
             .environmentObject(dataController)
     }
 }

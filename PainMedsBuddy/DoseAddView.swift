@@ -9,9 +9,9 @@ import SwiftUI
 
 struct DoseAddView: View {
     let meds: [Med]
-    
+
     let med: Med?
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -23,8 +23,8 @@ struct DoseAddView: View {
             dose.med = med
         }
         dataController.save()
-        
-        return DoseEditView(dataController: dataController, meds: meds, dose: dose, add: true)
+
+        return DoseEditView(dataController: dataController, meds2: meds, dose: dose, add: true)
     }
 }
 
