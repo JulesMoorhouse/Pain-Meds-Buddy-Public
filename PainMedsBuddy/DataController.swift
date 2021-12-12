@@ -94,4 +94,11 @@ class DataController: ObservableObject {
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
+    
+    static func resultsToArray<T>(_ result: FetchedResults<T>) -> [T] {
+        var temp: [T] = []
+        temp = result.map { $0 }
+        
+        return temp
+    }
 }

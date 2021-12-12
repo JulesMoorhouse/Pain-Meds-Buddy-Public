@@ -20,6 +20,6 @@ struct MedDefault {
     static let sequence: Int16 = 0
     static let measure: String = "mg"
     static let form: String = ""
-    static let symbol: String = "Pills"
+    static let symbol: String = "pills"
     static let notes: String = ""
 }
