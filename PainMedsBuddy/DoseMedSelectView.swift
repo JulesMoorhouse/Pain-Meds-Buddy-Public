@@ -9,9 +9,7 @@ import SwiftUI
 
 struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
-    
-    let meds2: [Med]
-    
+        
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
                   predicate: nil) var meds: FetchedResults<Med>
@@ -24,8 +22,8 @@ struct DoseMedSelectView: View {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
     
-    init(meds2: [Med], selectedMed: Binding<Med>) {
-        self.meds2 = []// meds2.allMedsDefaultSorted
+    init(selectedMed: Binding<Med>) {
+        // meds2.allMedsDefaultSorted
 
         _selectedMed = selectedMed
     }
@@ -72,6 +70,6 @@ struct DoseMedSelectView: View {
 
 struct DoseMedSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseMedSelectView(meds2: [Med()], selectedMed: .constant(Med()))
+        DoseMedSelectView(selectedMed: .constant(Med()))
     }
 }

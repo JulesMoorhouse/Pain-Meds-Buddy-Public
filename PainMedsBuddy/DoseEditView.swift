@@ -69,8 +69,7 @@ struct DoseEditView: View {
                     .foregroundColor(.secondary)
 
                 NavigationLink(destination:
-                    DoseMedSelectView(meds2: meds2,
-                                      selectedMed: $selectedMed.onChange(selectionChanged)),
+                    DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
                             TwoColumnView(col1: "Medication",
