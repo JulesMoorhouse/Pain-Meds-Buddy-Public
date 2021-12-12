@@ -18,7 +18,9 @@ struct DoseAddView: View {
         dose.elapsed = false
         dose.takenDate = Date()
         if let med = med {
-            dose.med = med
+            if dose.med != med {
+                dose.med = med
+            }
         }
         dataController.save()
 

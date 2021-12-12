@@ -18,7 +18,7 @@ struct HomeView: View {
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
                   predicate: nil) var meds: FetchedResults<Med>
-    
+
     var doses = [Dose]()
 
     let listRows = 3
@@ -38,7 +38,7 @@ struct HomeView: View {
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds
     }
-    
+
     init(dataController: DataController) {
         let dosesFetchRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
         dosesFetchRequest.sortDescriptors = [

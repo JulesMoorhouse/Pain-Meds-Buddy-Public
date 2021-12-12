@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedSymbolView: View {
     @ObservedObject var med: Med
-    
+
     var body: some View {
         Image(systemName: med.medSymbol)
             .font(.title)

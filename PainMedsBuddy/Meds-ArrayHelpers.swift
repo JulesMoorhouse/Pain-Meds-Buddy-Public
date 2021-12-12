@@ -11,7 +11,7 @@ extension Array where Element: Med {
     var allMeds: [Med] {
         self
     }
-    
+
     var allMedsDefaultSorted: [Med] {
         allMeds.sorted { (first: Med, second: Med) in
             if first.sequence > second.sequence {
@@ -19,7 +19,7 @@ extension Array where Element: Med {
             } else if first.sequence < second.sequence {
                 return false
             }
-            
+
 //            if first.remaining > second.remaining {
 //                return true
 //            } else if first.remaining < second.remaining {
@@ -35,7 +35,7 @@ extension Array where Element: Med {
             return first.medCreationDate < second.medCreationDate
         }
     }
-    
+
     public func sortedItems(using sortOrder: Med.SortOrder) -> [Med] {
         switch sortOrder {
         case .title:

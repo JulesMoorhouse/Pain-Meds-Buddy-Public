@@ -20,6 +20,6 @@ struct Panel: ViewModifier {
 
 extension View {
     func panelled(cornerRadius: CGFloat = 5) -> some View {
-        self.modifier(Panel(cornerRadius: cornerRadius))
+        modifier(Panel(cornerRadius: cornerRadius))
     }
 }

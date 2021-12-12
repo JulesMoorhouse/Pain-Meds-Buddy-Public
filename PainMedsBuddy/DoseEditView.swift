@@ -142,7 +142,9 @@ struct DoseEditView: View {
 
         amount = "\(med.medDefaultAmount)"
 
-        dose.med = med
+        if dose.med != med {
+            dose.med = med
+        }
 
         update()
     }
@@ -161,7 +163,9 @@ struct DoseEditView: View {
     }
 
     func save() {
-        dose.med = selectedMed
+        if dose.med != selectedMed {
+            dose.med = selectedMed
+        }
         dose.med?.lastTakenDate = takenDate
         dataController.save()
         dataController.container.viewContext.processPendingChanges()

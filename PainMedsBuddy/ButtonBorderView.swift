@@ -12,14 +12,14 @@ struct ButtonBorderView: View {
     let width: CGFloat
     let font: Font
     let padding: CGFloat
-    
+
     init(text: String, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
         self.text = text
         self.width = width
         self.font = font
         self.padding = padding
     }
-    
+
     var body: some View {
         Text(text)
             .font(font)

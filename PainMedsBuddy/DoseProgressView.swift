@@ -19,18 +19,17 @@ struct DoseProgressView<Content: View>: View {
         startPoint: .top, endPoint: .top)
 
     var debug = false
-    
+
     var countDown: String {
         item.remaining.secondsToTime
     }
-    
+
     var done: Bool {
-        (item.total > item.elapsed)
+        item.total > item.elapsed
     }
-    
+
     var body: some View {
         ZStack {
-            
             VStack(alignment: .center) {
                 CircularProgressView(
                     count: item.elapsed,
@@ -47,7 +46,7 @@ struct DoseProgressView<Content: View>: View {
                     .multilineTextAlignment(.center)
                     .frame(height: 40)
                     .background(debug ? Color.red : nil)
-                
+
                 Text(item.labelDose)
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -57,7 +56,7 @@ struct DoseProgressView<Content: View>: View {
             }
             .background(debug ? Color.yellow : nil)
             .frame(minWidth: item.size, minHeight: item.size)
-            
+
             VStack {
                 NavigationLink(destination: self.buttonDestination) {
                     ButtonBorderView(text: "Take Next", width: 100)

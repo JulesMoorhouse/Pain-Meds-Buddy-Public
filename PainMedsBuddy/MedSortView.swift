@@ -10,7 +10,7 @@ import SwiftUI
 struct MedSortView: View {
     @Binding var sortOrder: Med.SortOrder
     @Binding var showingSortOrder: Bool
-    
+
     var body: some View {
         PopUpView(text: "Sort Order", content: {
             Button(action: {

@@ -8,7 +8,6 @@
 import Foundation
 
 extension String {
-    
     // HH:mm:ss
     var timeToSeconds: Int {
         let components: Array = self.components(separatedBy: ":")

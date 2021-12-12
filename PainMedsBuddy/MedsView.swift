@@ -41,7 +41,7 @@ struct MedsView: View {
                                     MedRowView(med: med)
                                 }
                             }
-                            .onDelete { offsets in                                
+                            .onDelete { offsets in
                                 for offset in offsets {
                                     let item = items[offset]
                                     dataController.delete(item)

@@ -151,7 +151,6 @@ struct MedEditView: View {
             Section(header: Text("Notes")) {
                 TextEditor(text: $notes.onChange(update))
             }
-
         }
         .navigationTitle(add ? "Add Med" : "Edit Med")
         .onDisappear(perform: dataController.save)

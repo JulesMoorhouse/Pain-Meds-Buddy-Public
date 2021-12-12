@@ -13,20 +13,19 @@ struct PopUpView<Content: View, Close: View>: View {
     @ViewBuilder var close: Close
 
     let width: CGFloat = 240
-    
-    var body: some View {
 
+    var body: some View {
         Color.black.opacity(0.2).ignoresSafeArea()
-        
+
         VStack(spacing: 10) {
             ZStack {
                 Text(text)
                     .bold()
-                close.offset(x: (width/2) - 30)
+                close.offset(x: (width / 2) - 30)
             }
-            
+
             Spacer()
-        
+
             content
         }
         .padding()
@@ -38,11 +37,11 @@ struct PopUpView<Content: View, Close: View>: View {
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
         PopUpView(text: "Hello", content: {
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: /*@START_MENU_TOKEN@*/ {}/*@END_MENU_TOKEN@*/, label: {
                 Text("Button 1")
             })
         }, close: {
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: /*@START_MENU_TOKEN@*/ {}/*@END_MENU_TOKEN@*/, label: {
                 Text("X")
             })
         })

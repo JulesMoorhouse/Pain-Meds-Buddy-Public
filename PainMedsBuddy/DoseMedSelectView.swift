@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
-        
+
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
                   predicate: nil) var meds: FetchedResults<Med>
@@ -21,7 +21,7 @@ struct DoseMedSelectView: View {
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
-    
+
     init(selectedMed: Binding<Med>) {
         // meds2.allMedsDefaultSorted
 
