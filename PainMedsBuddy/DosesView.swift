@@ -45,7 +45,7 @@ struct DosesView: View {
     
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
-            DoseRowView(meds: meds, dose: dose)
+            DoseRowView(dose: dose)
         }
         .onDelete { offsets in
             for offset in offsets {

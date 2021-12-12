@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct DoseRowView: View {
-    let meds: [Med]
-
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var dose: Dose
@@ -47,6 +45,6 @@ struct DoseRowView: View {
 
 struct DoseRowView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseRowView(meds: [Med()], dose: Dose.example)
+        DoseRowView(dose: Dose.example)
     }
 }
