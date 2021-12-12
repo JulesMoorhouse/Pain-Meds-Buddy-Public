@@ -69,7 +69,7 @@ struct DoseEditView: View {
                     .foregroundColor(.secondary)
 
                 NavigationLink(destination:
-                    DoseMedSelectView(meds: meds2,
+                    DoseMedSelectView(meds2: meds2,
                                       selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
@@ -167,6 +167,7 @@ struct DoseEditView: View {
         dose.med = selectedMed
         dose.med?.lastTakenDate = takenDate
         dataController.save()
+        dataController.container.viewContext.processPendingChanges()
     }
 }
 

@@ -9,28 +9,37 @@ import SwiftUI
 
 struct DoseMedSelectView: View {
     @Environment(\.presentationMode) var presentationMode
-
-    let meds: [Med]
+    
+    let meds2: [Med]
+    
+    @FetchRequest(entity: Med.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
+                  predicate: nil) var meds: FetchedResults<Med>
 
     @Binding var selectedMed: Med
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
 
-    init(meds: [Med], selectedMed: Binding<Med>) {
-        self.meds = meds.allMedsDefaultSorted
+    var items: [Med] {
+        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+    }
+    
+    init(meds2: [Med], selectedMed: Binding<Med>) {
+        self.meds2 = []// meds2.allMedsDefaultSorted
+
         _selectedMed = selectedMed
     }
 
     var body: some View {
         ZStack {
             List {
-                ForEach(Array(self.meds.sortedItems(using: sortOrder).enumerated()), id: \.offset) { index, med in
+                ForEach(Array(items.enumerated()), id: \.offset) { index, med in
                     HStack {
                         MedRowView(med: med)
 
                         Spacer()
 
-                        if self.selectedMed == meds[index] {
+                        if self.selectedMed == items[index] {
                             Image(systemName: "checkmark")
                                 .foregroundColor(Color.blue)
                         }
@@ -63,6 +72,6 @@ struct DoseMedSelectView: View {
 
 struct DoseMedSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseMedSelectView(meds: [Med()], selectedMed: .constant(Med()))
+        DoseMedSelectView(meds2: [Med()], selectedMed: .constant(Med()))
     }
 }
