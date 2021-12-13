@@ -13,8 +13,9 @@ struct MedAddView: View {
 
     var body: some View {
         let med = Med(context: managedObjectContext)
-        med.creationDate = Date()
-        dataController.save()
+        MedDefault.setSensibleDefaults(med)
+        // med.creationDate = Date()
+        // dataController.save()
 
         return MedEditView(med: med, add: true)
     }

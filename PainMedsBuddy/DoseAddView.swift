@@ -15,14 +15,14 @@ struct DoseAddView: View {
 
     var body: some View {
         let dose = Dose(context: managedObjectContext)
-        dose.elapsed = false
-        dose.takenDate = Date()
+        DoseDefault.setSensibleDefaults(dose)
+
         if let med = med {
             if dose.med != med {
                 dose.med = med
             }
         }
-        dataController.save()
+        // dataController.save()
 
         return DoseEditView(dataController: dataController, dose: dose, add: true)
     }
