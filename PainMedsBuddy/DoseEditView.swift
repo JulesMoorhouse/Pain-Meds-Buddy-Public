@@ -31,7 +31,7 @@ struct DoseEditView: View {
         // _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-        let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
+        let fetchRequest: NSFetchRequest<Med> = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
         ]

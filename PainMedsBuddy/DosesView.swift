@@ -22,7 +22,7 @@ struct DosesView: View {
     let doses: FetchRequest<Dose>
     
     var medsCount: Int {
-        let fetchRequest: NSFetchRequest<Med> = Med.fetchRequest()
+        let fetchRequest: NSFetchRequest<Med> = NSFetchRequest<Med>(entityName: "Med")
         return dataController.count(for: fetchRequest)
     }
     

@@ -40,7 +40,7 @@ struct HomeView: View {
     }
 
     init(dataController: DataController) {
-        let dosesFetchRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
+        let dosesFetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
         dosesFetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
         ]

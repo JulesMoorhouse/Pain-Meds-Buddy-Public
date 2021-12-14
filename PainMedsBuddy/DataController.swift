@@ -41,7 +41,7 @@ class DataController: ObservableObject {
     }()
     
     func check(for med: Med) -> Bool {
-        let fetchRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
+        let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med == %@", med)
         do {
             let tempDoses = try container.viewContext.fetch(fetchRequest)
@@ -56,7 +56,7 @@ class DataController: ObservableObject {
     }
 
     func check(for meds: [Med]) -> Int {
-        let fetchRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
+        let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med IN %@", meds)
         do {
             let tempDoses = try container.viewContext.fetch(fetchRequest)

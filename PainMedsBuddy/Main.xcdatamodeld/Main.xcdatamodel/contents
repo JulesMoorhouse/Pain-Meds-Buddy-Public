@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Dose" representedClassName="Dose" syncable="YES" codeGenerationType="class">
+    <entity name="Dose" representedClassName=".Dose" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="elapsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="med" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Med" inverseName="dose" inverseEntity="Med"/>
     </entity>
-    <entity name="Med" representedClassName="Med" syncable="YES" codeGenerationType="class">
+    <entity name="Med" representedClassName=".Med" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
@@ -24,7 +24,7 @@
         <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Dose" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="Med" positionX="-54" positionY="-9" width="128" height="254"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="14"/>
+        <element name="Med" positionX="-54" positionY="-9" width="128" height="14"/>
     </elements>
 </model>

@@ -25,12 +25,14 @@ struct MedsView: View {
     @State private var canDelete = false
     @State private var showDeleteDenied = false
 
-    var items: [Med] {
-        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
-    }
+//    var items: [Med] {
+//        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+//    }
     
     var body: some View {
-        NavigationView {
+        let items: [Med] = DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+        
+        return NavigationView {
             Group {
                 if self.meds.isEmpty {
                     PlaceholderView(text: "There's nothing here right now!",
