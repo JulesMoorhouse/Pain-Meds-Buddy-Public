@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum ActiveAlert {
-    case deleteConfirm, durationGapInfo
+    case deleteDenied, durationGapInfo
 }
 
 struct MedEditView: View {
@@ -33,7 +33,7 @@ struct MedEditView: View {
     @State private var sequence: String
     
     @State private var showAlert = false
-    @State private var activeAlert: ActiveAlert = .deleteConfirm
+    @State private var activeAlert: ActiveAlert = .deleteDenied
     @State private var canDelete = false
     
     let types = ["mg", "ml", "Tspn"]
@@ -192,7 +192,7 @@ struct MedEditView: View {
             Section {
                 Button("Delete this med") {
                     canDelete = dataController.check(for: med)
-                    activeAlert = .deleteConfirm
+                    activeAlert = .deleteDenied
                     showAlert.toggle()
                 }
                 .accentColor(.red)
@@ -202,13 +202,10 @@ struct MedEditView: View {
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {
-            case .deleteConfirm:
-                let message = canDelete ? "Are you sure you want to delete this med?" : "Sorry you're using this med with a dose."
-            
+            case .deleteDenied:            
                 return Alert(title: Text("Delete med"),
-                             message: Text(message),
-                             primaryButton: .default(Text("Delete"), action: canDelete ? delete : nil),
-                             secondaryButton: .cancel())
+                             message: Text("Sorry you're using this med with a dose."),
+                             dismissButton: .default(Text("OK")))
             case .durationGapInfo:
                 return Alert(title: Text("Info"),
                              message: Text("A duration gap is an additional time you might wish to add between dosage of medication."),
