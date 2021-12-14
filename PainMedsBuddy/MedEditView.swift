@@ -8,22 +8,33 @@
 
 import SwiftUI
 
+enum ActiveAlert {
+    case deleteConfirm, durationGapInfo
+}
+
 struct MedEditView: View {
     let med: Med
     let add: Bool
 
     @EnvironmentObject var dataController: DataController
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var title: String
     @State private var defaultAmount: String
     @State private var color: String
     @State private var symbol: String
     @State private var dosage: String
+    @State private var duration: String
+    @State private var durationGap: String
     @State private var measure: String
     @State private var form: String
     @State private var notes: String
     @State private var remaining: String
     @State private var sequence: String
+    
+    @State private var showAlert = false
+    @State private var activeAlert: ActiveAlert = .deleteConfirm
+    @State private var canDelete = false
     
     let types = ["mg", "ml", "Tspn"]
 
@@ -40,6 +51,8 @@ struct MedEditView: View {
         _color = State(wrappedValue: med.medColor)
         _symbol = State(wrappedValue: med.medSymbol)
         _dosage = State(wrappedValue: med.medDosage)
+        _duration = State(wrappedValue: med.medDuration)
+        _durationGap = State(wrappedValue: med.medDurationGap)
         _measure = State(wrappedValue: med.medMeasure)
         _form = State(wrappedValue: med.medForm)
         _notes = State(wrappedValue: med.medNotes)
@@ -72,6 +85,30 @@ struct MedEditView: View {
                         .multilineTextAlignment(.trailing)
                     Text(med.medMeasure)
                         .foregroundColor(.secondary)
+                }
+                
+                HStack {
+                    Text("Duration")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    TextField("240", text: $duration.onChange(update))
+                        .multilineTextAlignment(.trailing)
+                }
+                
+                HStack {
+                    Text("Duration gap")
+                        .foregroundColor(.secondary)
+                    
+                    Button(action: {
+                        activeAlert = .durationGapInfo
+                        showAlert.toggle()
+                    }, label: {
+                        Image(systemName: "info.circle")
+                    })
+
+                    Spacer()
+                    TextField("0", text: $durationGap.onChange(update))
+                        .multilineTextAlignment(.trailing)
                 }
                 
                 Picker("Measure", selection: $measure.onChange(update)) {
@@ -151,9 +188,33 @@ struct MedEditView: View {
             Section(header: Text("Notes")) {
                 TextEditor(text: $notes.onChange(update))
             }
+            
+            Section {
+                Button("Delete this med") {
+                    canDelete = dataController.check(for: med)
+                    activeAlert = .deleteConfirm
+                    showAlert.toggle()
+                }
+                .accentColor(.red)
+            }
         }
         .navigationTitle(add ? "Add Med" : "Edit Med")
         .onDisappear(perform: dataController.save)
+        .alert(isPresented: $showAlert) {
+            switch activeAlert {
+            case .deleteConfirm:
+                let message = canDelete ? "Are you sure you want to delete this med?" : "Sorry you're using this med with a dose."
+            
+                return Alert(title: Text("Delete med"),
+                             message: Text(message),
+                             primaryButton: .default(Text("Delete"), action: canDelete ? delete : nil),
+                             secondaryButton: .cancel())
+            case .durationGapInfo:
+                return Alert(title: Text("Info"),
+                             message: Text("A duration gap is an additional time you might wish to add between dosage of medication."),
+                             dismissButton: .default(Text("OK")))
+            }
+        }
     }
     
     func update() {
@@ -164,11 +225,18 @@ struct MedEditView: View {
         med.color = color
         med.symbol = symbol
         med.dosage = NSDecimalNumber(string: dosage)
+        med.duration = Int16(duration) ?? MedDefault.duration
+        med.durationGap = Int16(durationGap) ?? MedDefault.durationGap
         med.measure = measure
         med.form = form
         med.notes = notes
         med.remaining = Int16(remaining) ?? MedDefault.remaining
         med.sequence = Int16(sequence) ?? MedDefault.sequence
+    }
+    
+    func delete() {
+        dataController.delete(med)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

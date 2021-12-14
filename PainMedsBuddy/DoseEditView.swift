@@ -96,21 +96,23 @@ struct DoseEditView: View {
                         .multilineTextAlignment(.trailing)
                 }
             }
-            Section {
-//                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
-//                    $taken.wrappedValue.toggle()
-//                }
+            if !add {
+                Section {
+    //                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
+    //                    $taken.wrappedValue.toggle()
+    //                }
 
-                Button("Delete this Dose") {
-                    showingDeleteConfirm.toggle()
+                    Button("Delete this Dose") {
+                        showingDeleteConfirm.toggle()
+                    }
+                    .accentColor(.red)
                 }
-                .accentColor(.red)
-            }
+                }
         }
         .navigationTitle(add ? "Add Dose" : "Edit Dose")
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
-            Alert(title: Text("Delete dose?"),
+            Alert(title: Text("Delete dose"),
                   message: Text("Are you sure you want to delete this does?"),
                   primaryButton: .default(Text("Delete"), action: delete),
                   secondaryButton: .cancel())
@@ -167,6 +169,7 @@ struct DoseEditView: View {
             dose.med = selectedMed
         }
         dose.med?.lastTakenDate = takenDate
+        dose.med?.remaining -= Int16(amount) ?? 0
         dataController.save()
         dataController.container.viewContext.processPendingChanges()
     }

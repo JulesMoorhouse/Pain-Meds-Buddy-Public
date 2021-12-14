@@ -22,7 +22,9 @@ struct MedsView: View {
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
     @State private var showAddView = false
-    
+    @State private var canDelete = false
+    @State private var showDeleteDenied = false
+
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
@@ -42,17 +44,24 @@ struct MedsView: View {
                                 }
                             }
                             .onDelete { offsets in
-                                for offset in offsets {
-                                    let item = items[offset]
-                                    dataController.delete(item)
+                                let deleteItems = offsets.map { items[$0] }
+                                
+                                let count = dataController.check(for: deleteItems)
+                                if count == 0 {
+                                    for offset in offsets {
+                                        let item = items[offset]
+                                        dataController.delete(item)
                                     
-                                    // Bug fix
+                                        // Bug fix
 //                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
 //                                        self.meds.remove(at: itemToRemoveIndex)
 //                                    }
+                                    }
+                                    dataController.save()
+                                    dataController.container.viewContext.processPendingChanges()
+                                } else {
+                                    showDeleteDenied.toggle()
                                 }
-                                dataController.save()
-                                dataController.container.viewContext.processPendingChanges()
                             }
                         }
                         .listStyle(InsetGroupedListStyle())
@@ -90,6 +99,11 @@ struct MedsView: View {
                 }
             }
             .navigationTitle("Medications")
+            .alert(isPresented: $showDeleteDenied) {
+                Alert(title: Text("Delete dose"),
+                      message: Text("Sorry you can not delete meds used with doses!"),
+                      dismissButton: .default(Text("OK")))
+            }
             
             PlaceholderView(text: "Please select or add a medication", imageString: "eyedropper.halffull")
         }

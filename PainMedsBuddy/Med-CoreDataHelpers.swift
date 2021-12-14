@@ -34,6 +34,14 @@ extension Med {
         "\(String(describing: dosage ?? MedDefault.dosage))"
     }
     
+    var medDuration: String {
+        "\(String(describing: duration))"
+    }
+
+    var medDurationGap: String {
+        "\(String(describing: durationGap))"
+    }
+    
     var medForm: String {
         form ?? MedDefault.form
     }
