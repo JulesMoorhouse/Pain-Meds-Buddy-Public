@@ -80,7 +80,7 @@ struct DoseEditView: View {
                     Text("Amount")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("1", text: $amount.onChange(update))
+                    TextField("e.g. \(DoseDefault.Sensible.amount)", text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(selectedMed.medForm)
@@ -130,10 +130,10 @@ struct DoseEditView: View {
         let dsg = Decimal(string: selectedMed.medDosage) ?? 0.0
         let temp = (amt * dsg)
 
-        return Dose.displayFull(amount: amount,
-                                dosage: selectedMed.medDosage,
+        return Dose.displayFull(amount: "\(amt)",
+                                dosage: "\(dsg)",
                                 totalDosage: "\(temp)",
-                                measure: selectedMed.measure ?? MedDefault.measure,
+                                measure: selectedMed.measure ?? "\(MedDefault.measure)",
                                 form: selectedMed.form ?? MedDefault.form)
     }
 

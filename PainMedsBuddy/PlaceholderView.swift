@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaceholderView: View {
-    let text: String
+    let text: LocalizedStringKey
     let imageString: String
 
     var body: some View {

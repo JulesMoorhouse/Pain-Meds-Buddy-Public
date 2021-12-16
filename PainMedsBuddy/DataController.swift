@@ -40,7 +40,7 @@ class DataController: ObservableObject {
         return dataController
     }()
     
-    func check(for med: Med) -> Bool {
+    func hasRelationship(for med: Med) -> Bool {
         let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med == %@", med)
         do {
@@ -55,7 +55,7 @@ class DataController: ObservableObject {
         return false
     }
 
-    func check(for meds: [Med]) -> Int {
+    func AnyRelationships(for meds: [Med]) -> Int {
         let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med IN %@", meds)
         do {

@@ -48,7 +48,7 @@ struct MedsView: View {
                             .onDelete { offsets in
                                 let deleteItems = offsets.map { items[$0] }
                                 
-                                let count = dataController.check(for: deleteItems)
+                                let count = dataController.AnyRelationships(for: deleteItems)
                                 if count == 0 {
                                     for offset in offsets {
                                         let item = items[offset]

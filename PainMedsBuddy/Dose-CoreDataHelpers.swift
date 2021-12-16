@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Dose: Comparable {
+extension Dose: Comparable, MedProtocol {
     var doseAmount: String {
         "\(String(describing: amount ?? DoseDefault.amount))"
     }
@@ -95,12 +95,12 @@ extension Dose: Comparable {
         return Dose.displayFull(amount: self.doseAmount,
                                 dosage: self.med?.medDosage ?? "\(MedDefault.dosage)",
                                 totalDosage: self.doseTotalDosage,
-                                measure: self.med?.measure ?? MedDefault.measure,
+                                measure: self.med?.measure ?? "\(MedDefault.measure)",
                                 form: self.med?.form ?? MedDefault.form)
     }
 
     var doseDisplay: String {
-        "\(self.doseAmount) x \(self.med?.medDosage ?? "\(MedDefault.dosage)")\(self.med?.measure ?? MedDefault.measure) \(self.med?.form ?? MedDefault.form)"
+        "\(self.doseAmount) x \(self.med?.medDosage ?? "\(MedDefault.dosage)")\(self.med?.measure ?? "\(MedDefault.measure)") \(self.med?.form ?? MedDefault.form)"
     }
 
     public static func displayFull(amount: String, dosage: String, totalDosage: String, measure: String, form: String) -> String {
@@ -111,6 +111,66 @@ extension Dose: Comparable {
         lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
     }
 
+    var medTitle: String {
+        self.med?.medTitle ?? MedDefault.title
+    }
+    
+    var medDefaultAmount: String {
+        "\(String(describing: self.med?.defaultAmount ?? MedDefault.defaultAmount))"
+    }
+    
+    var medColor: String {
+        self.med?.color ?? MedDefault.color
+    }
+    
+    var medSymbol: String {
+        self.med?.symbol ?? MedDefault.symbol
+    }
+    
+    var medDosage: String {
+        "\(String(describing: self.med?.dosage ?? MedDefault.dosage))"
+    }
+    
+    var medDuration: String {
+        "\(String(describing: self.med?.duration))"
+    }
+
+    var medDurationGap: String {
+        "\(String(describing: self.med?.durationGap))"
+    }
+    
+    var medForm: String {
+        self.med?.form ?? MedDefault.form
+    }
+
+    var medMeasure: String {
+        self.med?.measure ?? MedDefault.measure
+    }
+    
+    var medNotes: String {
+        self.med?.notes ?? MedDefault.notes
+    }
+
+    var medLastTakenDate: Date {
+        self.med?.lastTakenDate ?? MedDefault.lastTakeDate
+    }
+    
+    var medCreationDate: Date {
+        self.med?.creationDate ?? MedDefault.createdDate
+    }
+    
+    var medRemaining: String {
+        "\(String(describing: self.med?.remaining))"
+    }
+    
+    var medSequence: String {
+        "\(String(describing: self.med?.sequence))"
+    }
+    
+    var medDisplay: String {
+        "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(String(describing: self.med?.medTotalDosage))\(medMeasure)"
+    }
+    
     static var example: Dose {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext

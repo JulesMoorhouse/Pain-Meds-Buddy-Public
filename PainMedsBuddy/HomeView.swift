@@ -75,7 +75,7 @@ struct HomeView: View {
                                                 elapsed: item.doseElapsedInt,
                                                 remaining: item.doseTimeRemainingInt,
                                                 total: item.doseTotalTime,
-                                                labelMed: item.med?.medTitle ?? MedDefault.title,
+                                                labelMed: item.medTitle,
                                                 labelDose: item.doseDisplay)) {
                                                     DoseAddView(med: item.med)
                                             }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension Med {
+extension Med: MedProtocol {
     public enum SortOrder {
         case optimzed, title, creationDate, remaining, lastTaken
     }
@@ -20,9 +20,18 @@ extension Med {
     }
 
     var medDefaultAmount: String {
-        "\(String(describing: defaultAmount ?? MedDefault.defaultAmount))"
+       "\(medDefaultAmountDecimal)"
     }
 
+    var medDefaultAmountDecimal: Decimal {
+        if let amount = defaultAmount {
+            if !(Double(truncating: amount).isNaN) {
+                return amount as Decimal
+            }
+        }
+        return MedDefault.defaultAmount as Decimal
+    }
+    
     var medColor: String {
         color ?? MedDefault.color
     }
@@ -32,7 +41,16 @@ extension Med {
     }
     
     var medDosage: String {
-        "\(String(describing: dosage ?? MedDefault.dosage))"
+        "\(medDosageDecimal)"
+    }
+
+    var medDosageDecimal: Decimal {
+        if let dosage = dosage {
+            if !(Double(truncating: dosage).isNaN) {
+                return dosage as Decimal
+            }
+        }
+        return MedDefault.dosage as Decimal
     }
     
     var medDuration: String {
@@ -83,8 +101,7 @@ extension Med {
     }
     
     var medTotalDosage: String {
-        let temp = ((defaultAmount ?? MedDefault.defaultAmount) as Decimal) * ((dosage ?? MedDefault.dosage) as Decimal)
-        return "\(temp)"
+        "\(medDefaultAmountDecimal * medDosageDecimal)"
     }
     
     var medDisplay: String {

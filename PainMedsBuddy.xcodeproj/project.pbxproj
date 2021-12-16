@@ -16,6 +16,7 @@
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
 		88321429275120D60026D85F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321428275120D60026D85F /* Preview Assets.xcassets */; };
+		8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840F372276B2F4200821046 /* Med-Protocol.swift */; };
 		88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88572051275133A700B4B00C /* Main.xcdatamodeld */; };
 		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
@@ -69,6 +70,7 @@
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88321428275120D60026D85F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8832142A275120D60026D85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8840F372276B2F4200821046 /* Med-Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Med-Protocol.swift"; sourceTree = "<group>"; };
 		88572052275133A700B4B00C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		88572054275139DD00B4B00C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				88E930A92760C6E500A98708 /* Acknowledgements.plist */,
-				8883BD86276951F700EF6DCD /* Localizable.strings */,
 				88321425275120D60026D85F /* Assets.xcassets */,
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
@@ -161,8 +162,10 @@
 				8857205A275234C400B4B00C /* HomeView.swift */,
 				8832142A275120D60026D85F /* Info.plist */,
 				886C30BD2763913B002A45B1 /* Int-Helper.swift */,
+				8883BD86276951F700EF6DCD /* Localizable.strings */,
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
 				88EF203027526746006037CF /* Med-CoreDataHelpers.swift */,
+				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				88AB7CB6275F7BE60055BD9B /* MedAddView.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88EF20362753B215006037CF /* MedEditView.swift */,
@@ -173,6 +176,7 @@
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
 				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
+				881BA3992764B8B600DA06D7 /* Panel.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
 				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 				88321427275120D60026D85F /* Preview Content */,
@@ -183,7 +187,6 @@
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
-				881BA3992764B8B600DA06D7 /* Panel.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */,
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
+				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
 				881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */,
 				88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */,
 				88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */,

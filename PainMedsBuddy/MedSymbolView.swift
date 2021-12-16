@@ -13,7 +13,7 @@ struct MedSymbolView: View {
     var body: some View {
         Image(systemName: med.medSymbol)
             .font(.title)
-            .foregroundColor(Color(med.color ?? MedDefault.color))
+            .foregroundColor(Color(med.medColor))
             .frame(width: 45, height: 45)
     }
 }

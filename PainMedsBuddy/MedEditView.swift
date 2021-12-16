@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum ActiveAlert {
-    case deleteDenied, durationGapInfo
+    case deleteDenied, deleteConfirmation, durationGapInfo
 }
 
 struct MedEditView: View {
@@ -63,13 +63,13 @@ struct MedEditView: View {
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                TextField("Default Text", text: $title.onChange(update))
+                TextField("e.g. \(MedDefault.Sensible.title)", text: $title.onChange(update))
                 
                 HStack {
                     Text("Default Amount")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("1", text: $defaultAmount.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.defaultAmount)", text: $defaultAmount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medForm)
@@ -80,7 +80,7 @@ struct MedEditView: View {
                     Text("Dosage")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("300", text: $dosage.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.dosage)", text: $dosage.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medMeasure)
@@ -91,7 +91,7 @@ struct MedEditView: View {
                     Text("Duration")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("240", text: $duration.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.duration)", text: $duration.onChange(update))
                         .multilineTextAlignment(.trailing)
                 }
                 
@@ -107,7 +107,7 @@ struct MedEditView: View {
                     })
 
                     Spacer()
-                    TextField("0", text: $durationGap.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.durationGap)", text: $durationGap.onChange(update))
                         .multilineTextAlignment(.trailing)
                 }
                 
@@ -123,7 +123,7 @@ struct MedEditView: View {
                     Text("Form")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("Pill", text: $form.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.form)", text: $form.onChange(update))
                         .multilineTextAlignment(.trailing)
                 }
                 
@@ -131,7 +131,7 @@ struct MedEditView: View {
                     Text("Remaining")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("84", text: $remaining.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.remaining)", text: $remaining.onChange(update))
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                     Text(med.medForm)
@@ -142,7 +142,7 @@ struct MedEditView: View {
                     Text("Sequence")
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("1", text: $sequence.onChange(update))
+                    TextField("e.g. \(MedDefault.Sensible.sequence)", text: $sequence.onChange(update))
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                 }
@@ -191,8 +191,8 @@ struct MedEditView: View {
             
             Section {
                 Button("Delete this med") {
-                    canDelete = dataController.check(for: med)
-                    activeAlert = .deleteDenied
+                    canDelete = dataController.hasRelationship(for: med) == false
+                    activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
                     showAlert.toggle()
                 }
                 .accentColor(.red)
@@ -202,6 +202,11 @@ struct MedEditView: View {
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {
+            case .deleteConfirmation:
+                return Alert(title: Text("Delete med"),
+                      message: Text("Are you sure you want to delete this med?"),
+                      primaryButton: .default(Text("Delete"), action: delete),
+                      secondaryButton: .cancel())
             case .deleteDenied:            
                 return Alert(title: Text("Delete med"),
                              message: Text("Sorry you're using this med with a dose."),
