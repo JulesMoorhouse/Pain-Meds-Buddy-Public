@@ -62,7 +62,7 @@ struct DoseMedSelectView: View {
             Button(action: {
                 self.showingSortOrder = true
             }) {
-                Label("Sort", systemImage: "arrow.up.arrow.down")
+                Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
             }
         }
     }

@@ -29,7 +29,7 @@ struct SettingsView: View {
                     try? dataController.createSampleData()
                 }
 
-                Button("Delete All Data") {
+                Button(NSLocalizedString("Delete All Data", comment: "")) {
                     dataController.deleteAll()
                 }
             }

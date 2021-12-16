@@ -86,7 +86,7 @@ struct MedsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { self.showAddView = true }) {
-                        Label("Add Med", systemImage: "plus")
+                        Label(NSLocalizedString("Add Med", comment: ""), systemImage: "plus")
                     }
                 }
                         
@@ -95,7 +95,7 @@ struct MedsView: View {
                         Button(action: {
                             self.showingSortOrder = true
                         }) {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
+                            Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
                         }
                     }
                 }

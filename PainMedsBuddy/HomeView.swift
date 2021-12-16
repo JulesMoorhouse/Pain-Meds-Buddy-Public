@@ -104,7 +104,7 @@ struct HomeView: View {
 
                                 if lowMeds().count > 0 {
                                     VStack(alignment: .leading) {
-                                        Text("Meds munning out")
+                                        Text("Meds running out")
                                             .foregroundColor(.secondary)
 
                                         ForEach(lowMeds(), id: \.self) { med in

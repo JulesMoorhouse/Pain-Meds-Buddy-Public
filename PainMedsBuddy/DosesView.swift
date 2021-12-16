@@ -87,7 +87,7 @@ struct DosesView: View {
                         EmptyView()
                 }
             )
-            .navigationTitle(showElapsedDoses ? "History" : "In Progress")
+            .navigationTitle(showElapsedDoses ? NSLocalizedString("History", comment: "") : NSLocalizedString("In Progress", comment: ""))
             .toolbar {
                 if medsCount > 0 {
                     Button(action: {

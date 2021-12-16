@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Med {
     public enum SortOrder {

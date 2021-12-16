@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PopUpView<Content: View, Close: View>: View {
-    let text: String
+    let text: LocalizedStringKey
     @ViewBuilder var content: Content
     @ViewBuilder var close: Close
 

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ButtonBorderView: View {
-    let text: String
+    let text: LocalizedStringKey
     let width: CGFloat
     let font: Font
     let padding: CGFloat
 
-    init(text: String, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
+    init(text: LocalizedStringKey, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
         self.text = text
         self.width = width
         self.font = font

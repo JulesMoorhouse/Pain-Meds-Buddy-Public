@@ -198,7 +198,7 @@ struct MedEditView: View {
                 .accentColor(.red)
             }
         }
-        .navigationTitle(add ? "Add Med" : "Edit Med")
+        .navigationTitle(add ? NSLocalizedString("Add Med", comment: "") : NSLocalizedString("Edit Med", comment: ""))
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {

@@ -70,7 +70,7 @@ struct DoseEditView: View {
                     DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
-                            TwoColumnView(col1: "Medication",
+                            TwoColumnView(col1: NSLocalizedString("Medication", comment: ""),
                                           col2: selectedMed.medTitle)
                         }
 
