@@ -23,10 +23,6 @@ struct HomeView: View {
 
     let listRows = 3
 
-    @State var count = 0
-    let size: CGFloat = 150
-    let total = 10
-
     var columns: [GridItem] {
         [GridItem(.fixed(200))]
     }
@@ -69,17 +65,9 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHGrid(rows: columns) {
                                         ForEach(doses, id: \.self) { item in
-                                            
+
                                             if let med = item.med {
-                                                DoseProgressView(item: DoseProgressItem(
-                                                    size: size,
-                                                    elapsed: item.doseElapsedInt,
-                                                    remaining: item.doseTimeRemainingInt,
-                                                    total: item.doseTotalTime,
-                                                    labelMed: med.medTitle,
-                                                    labelDose: item.doseDisplay)) {
-                                                        DoseAddView(med: med)
-                                                }
+                                                DoseProgressView(dose: item, med: med, size: 150)
                                             }
                                         }
                                     }
@@ -136,6 +124,7 @@ struct HomeView: View {
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
             .navigationTitle("Home")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     func uniqueDoseMeds() -> [Med] {

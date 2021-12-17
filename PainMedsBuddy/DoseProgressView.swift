@@ -8,11 +8,11 @@
 import CircularProgress
 import SwiftUI
 
-struct DoseProgressView<Content: View>: View {
-    var item: DoseProgressItem
-
-    @ViewBuilder var buttonDestination: Content
-
+struct DoseProgressView: View {
+    let dose: Dose
+    let med: Med
+    let size: CGFloat
+    
     let gradient = LinearGradient(
         gradient: Gradient(colors:
             [Color.blue, Color.blue]),
@@ -21,33 +21,37 @@ struct DoseProgressView<Content: View>: View {
     var debug = false
 
     var countDown: String {
-        item.remaining.secondsToTime
+        dose.doseTimeRemainingInt.secondsToTime
     }
 
     var done: Bool {
-        item.total > item.elapsed
+        dose.doseTotalTime > dose.doseElapsedInt
+    }
+
+    var progress: CGFloat {
+        return CGFloat(dose.doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
 
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
                 CircularProgressView(
-                    count: item.elapsed,
-                    total: item.total,
-                    progress: item.progress,
+                    count: dose.doseElapsedInt,
+                    total: dose.doseTotalTime,
+                    progress: progress,
                     fill: gradient,
                     lineWidth: 5.0,
                     showText: false)
-                    .frame(width: item.size - 20, height: item.size - 20)
+                    .frame(width: size - 20, height: size - 20)
                     .padding(.top, 10)
 
-                Text(item.labelMed)
+                Text(med.medTitle)
                     .font(.caption)
                     .multilineTextAlignment(.center)
                     .frame(height: 40)
                     .background(debug ? Color.red : nil)
 
-                Text(item.labelDose)
+                Text(dose.doseDisplay)
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -55,10 +59,10 @@ struct DoseProgressView<Content: View>: View {
                     .padding(.bottom, 10)
             }
             .background(debug ? Color.yellow : nil)
-            .frame(minWidth: item.size, minHeight: item.size)
+            .frame(minWidth: size, minHeight: size)
 
             VStack {
-                NavigationLink(destination: self.buttonDestination) {
+                NavigationLink(destination: DoseAddView(med: med)) {
                     ButtonBorderView(text: "Take Next", width: 100)
                 }
                 .disabled(done)
@@ -72,8 +76,6 @@ struct DoseProgressView<Content: View>: View {
 
 struct DoseProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseProgressView(item: DoseProgressItem.example) {
-            EmptyView()
-        }
+        DoseProgressView(dose: Dose.example, med: Med.example, size: 150)
     }
 }
