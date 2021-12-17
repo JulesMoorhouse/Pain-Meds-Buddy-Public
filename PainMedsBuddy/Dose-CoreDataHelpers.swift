@@ -20,7 +20,6 @@ extension Dose: Comparable {
         elapsed
     }
 
-    // ---
     var doseTotalTime: Int {
         Int(self.med?.duration ?? MedDefault.duration) + Int(self.med?.durationGap ?? MedDefault.durationGap)
     }
@@ -37,33 +36,6 @@ extension Dose: Comparable {
         return nil
     }
 
-    var doseElapsedInt: Int {
-        if elapsed == false {
-            return Int(Date().timeIntervalSince(self.doseTakenDate))
-        }
-        return 0
-    }
-
-    var doseShowHaveElapsed: Bool {
-        if elapsed == false {
-            if let date = self.doseElapsedDate {
-                return date <= Date()
-            }
-        }
-
-        return false
-    }
-
-    var doseTimeRemainingInt: Int {
-        if elapsed == false {
-            if let date = self.doseElapsedDate {
-                return Int(date.timeIntervalSince(Date()))
-            }
-        }
-        return 0
-    }
-
-    // ---
     var doseFormattedTakenDate: String {
         if let date = takenDate {
             let formatter = DateFormatter()

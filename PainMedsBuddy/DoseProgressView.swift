@@ -9,7 +9,7 @@ import CircularProgress
 import SwiftUI
 
 struct DoseProgressView: View {
-    let dose: Dose
+    @ObservedObject var dose: Dose
     let med: Med?
 
     let size: CGFloat
@@ -21,23 +21,42 @@ struct DoseProgressView: View {
 
     var debug = false
 
+    @State var nowDate = Date()
+    var timer: Timer {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.nowDate = Date()
+        }
+    }
+
     var countDown: String {
-        dose.doseTimeRemainingInt.secondsToTime
+        if dose.elapsed == false {
+            if let date = dose.doseElapsedDate {
+                return Int(date.timeIntervalSince(nowDate)).secondsToTime
+            }
+        }
+        return "0"
+    }
+    
+    var doseElapsedInt: Int {
+        if dose.elapsed == false {
+            return Int(nowDate.timeIntervalSince(dose.doseTakenDate))
+        }
+        return 0
     }
 
     var done: Bool {
-        dose.doseTotalTime > dose.doseElapsedInt
+        dose.doseTotalTime > doseElapsedInt
     }
 
     var progress: CGFloat {
-        CGFloat(dose.doseElapsedInt) / CGFloat(dose.doseTotalTime)
+        CGFloat(doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
 
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
                 CircularProgressView(
-                    count: dose.doseElapsedInt,
+                    count: doseElapsedInt,
                     total: dose.doseTotalTime,
                     progress: progress,
                     fill: gradient,
@@ -74,6 +93,10 @@ struct DoseProgressView: View {
             .padding(.bottom, 30)
         }
         .panelled(cornerRadius: 15)
+
+        .onAppear(perform: {
+            _ = self.timer
+        })
     }
 }
 
