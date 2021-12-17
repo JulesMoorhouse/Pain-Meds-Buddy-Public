@@ -40,7 +40,7 @@ struct HomeView: View {
     }
 
     init(dataController: DataController) {
-        let dosesFetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
+        let dosesFetchRequest = NSFetchRequest<Dose>(entityName: "Dose")
         dosesFetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
         ]
@@ -69,15 +69,17 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHGrid(rows: columns) {
                                         ForEach(doses, id: \.self) { item in
-
-                                            DoseProgressView(item: DoseProgressItem(
-                                                size: size,
-                                                elapsed: item.doseElapsedInt,
-                                                remaining: item.doseTimeRemainingInt,
-                                                total: item.doseTotalTime,
-                                                labelMed: item.medTitle,
-                                                labelDose: item.doseDisplay)) {
-                                                    DoseAddView(med: item.med)
+                                            
+                                            if let med = item.med {
+                                                DoseProgressView(item: DoseProgressItem(
+                                                    size: size,
+                                                    elapsed: item.doseElapsedInt,
+                                                    remaining: item.doseTimeRemainingInt,
+                                                    total: item.doseTotalTime,
+                                                    labelMed: med.medTitle,
+                                                    labelDose: item.doseDisplay)) {
+                                                        DoseAddView(med: med)
+                                                }
                                             }
                                         }
                                     }

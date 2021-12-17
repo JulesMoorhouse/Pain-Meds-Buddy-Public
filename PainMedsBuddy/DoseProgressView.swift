@@ -60,8 +60,8 @@ struct DoseProgressView<Content: View>: View {
             VStack {
                 NavigationLink(destination: self.buttonDestination) {
                     ButtonBorderView(text: "Take Next", width: 100)
-                        .disabled(done)
                 }
+                .disabled(done)
                 Text(done ? countDown : "Available")
             }
             .padding(.bottom, 30)

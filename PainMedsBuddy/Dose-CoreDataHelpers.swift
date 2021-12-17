@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Dose: Comparable, MedProtocol {
+extension Dose: Comparable {
     var doseAmount: String {
         "\(String(describing: amount ?? DoseDefault.amount))"
     }
@@ -111,66 +111,6 @@ extension Dose: Comparable, MedProtocol {
         lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
     }
 
-    var medTitle: String {
-        self.med?.medTitle ?? MedDefault.title
-    }
-    
-    var medDefaultAmount: String {
-        "\(String(describing: self.med?.defaultAmount ?? MedDefault.defaultAmount))"
-    }
-    
-    var medColor: String {
-        self.med?.color ?? MedDefault.color
-    }
-    
-    var medSymbol: String {
-        self.med?.symbol ?? MedDefault.symbol
-    }
-    
-    var medDosage: String {
-        "\(String(describing: self.med?.dosage ?? MedDefault.dosage))"
-    }
-    
-    var medDuration: String {
-        "\(String(describing: self.med?.duration))"
-    }
-
-    var medDurationGap: String {
-        "\(String(describing: self.med?.durationGap))"
-    }
-    
-    var medForm: String {
-        self.med?.form ?? MedDefault.form
-    }
-
-    var medMeasure: String {
-        self.med?.measure ?? MedDefault.measure
-    }
-    
-    var medNotes: String {
-        self.med?.notes ?? MedDefault.notes
-    }
-
-    var medLastTakenDate: Date {
-        self.med?.lastTakenDate ?? MedDefault.lastTakeDate
-    }
-    
-    var medCreationDate: Date {
-        self.med?.creationDate ?? MedDefault.createdDate
-    }
-    
-    var medRemaining: String {
-        "\(String(describing: self.med?.remaining))"
-    }
-    
-    var medSequence: String {
-        "\(String(describing: self.med?.sequence))"
-    }
-    
-    var medDisplay: String {
-        "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(String(describing: self.med?.medTotalDosage))\(medMeasure)"
-    }
-    
     static var example: Dose {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext

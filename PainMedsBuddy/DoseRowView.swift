@@ -21,22 +21,24 @@ struct DoseRowView: View {
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext), isActive: $showEditView) {
                 HStack {
-                    // TODO: Replace with something other than example
-                    MedSymbolView(med: dose.med ?? Med.example)
+                    if let med = dose.med {
+                        // TODO: Replace with something other than example
+                        MedSymbolView(med: med)
 
-                    Spacer()
-                        .frame(width: 10)
+                        Spacer()
+                            .frame(width: 10)
 
-                    VStack(alignment: .leading) {
-                        Text(dose.medTitle)
-                            // .foregroundColor(Color(dose.medColor))
-                            .foregroundColor(.primary)
-                        Text(dose.doseDisplay)
-                            .foregroundColor(.secondary)
-                            .font(.caption)
-                        Text(dose.doseFormattedTakenDate)
-                            .foregroundColor(.secondary)
-                            .font(.caption)
+                        VStack(alignment: .leading) {
+                            Text(med.medTitle)
+                                // .foregroundColor(Color(dose.medColor))
+                                .foregroundColor(.primary)
+                            Text(dose.doseDisplay)
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                            Text(dose.doseFormattedTakenDate)
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
                     }
                 }
         }
