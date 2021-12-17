@@ -10,9 +10,10 @@ import SwiftUI
 
 struct DoseProgressView: View {
     let dose: Dose
-    let med: Med
+    let med: Med?
+
     let size: CGFloat
-    
+
     let gradient = LinearGradient(
         gradient: Gradient(colors:
             [Color.blue, Color.blue]),
@@ -29,7 +30,7 @@ struct DoseProgressView: View {
     }
 
     var progress: CGFloat {
-        return CGFloat(dose.doseElapsedInt) / CGFloat(dose.doseTotalTime)
+        CGFloat(dose.doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
 
     var body: some View {
@@ -45,7 +46,7 @@ struct DoseProgressView: View {
                     .frame(width: size - 20, height: size - 20)
                     .padding(.top, 10)
 
-                Text(med.medTitle)
+                Text(med?.medTitle ?? "Unknown")
                     .font(.caption)
                     .multilineTextAlignment(.center)
                     .frame(height: 40)
@@ -62,10 +63,12 @@ struct DoseProgressView: View {
             .frame(minWidth: size, minHeight: size)
 
             VStack {
-                NavigationLink(destination: DoseAddView(med: med)) {
-                    ButtonBorderView(text: "Take Next", width: 100)
-                }
-                .disabled(done)
+                NavigationLink(destination:
+                    DoseAddView(med: med),
+                    label: {
+                        ButtonBorderView(text: "Take Next", width: 100)
+                    })
+                    .disabled(done)
                 Text(done ? countDown : "Available")
             }
             .padding(.bottom, 30)

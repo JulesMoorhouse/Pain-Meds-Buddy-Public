@@ -40,7 +40,7 @@ struct HomeView: View {
         dosesFetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
         ]
-        dosesFetchRequest.predicate = NSPredicate(format: "elapsed = false")
+        dosesFetchRequest.predicate = NSPredicate(format: "elapsed == false && med != nil")
         do {
             self.doses = try dataController.container.viewContext.fetch(dosesFetchRequest)
         } catch {
@@ -66,9 +66,7 @@ struct HomeView: View {
                                     LazyHGrid(rows: columns) {
                                         ForEach(doses, id: \.self) { item in
 
-                                            if let med = item.med {
-                                                DoseProgressView(dose: item, med: med, size: 150)
-                                            }
+                                            DoseProgressView(dose: item, med: item.med, size: 150)
                                         }
                                     }
                                     .fixedSize(horizontal: false, vertical: true)
@@ -124,7 +122,6 @@ struct HomeView: View {
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
             .navigationTitle("Home")
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     func uniqueDoseMeds() -> [Med] {
