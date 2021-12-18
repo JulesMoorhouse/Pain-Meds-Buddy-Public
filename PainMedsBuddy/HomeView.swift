@@ -65,7 +65,6 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHGrid(rows: columns) {
                                         ForEach(doses, id: \.self) { item in
-
                                             DoseProgressView(dose: item, med: item.med, size: 150)
                                         }
                                     }

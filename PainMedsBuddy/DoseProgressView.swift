@@ -36,7 +36,7 @@ struct DoseProgressView: View {
         }
         return "0"
     }
-    
+
     var doseElapsedInt: Int {
         if dose.elapsed == false {
             return Int(nowDate.timeIntervalSince(dose.doseTakenDate))
@@ -65,7 +65,7 @@ struct DoseProgressView: View {
                     .frame(width: size - 20, height: size - 20)
                     .padding(.top, 10)
 
-                Text(med?.medTitle ?? "Unknown")
+                Text(med?.medTitle ?? "Unknown Medication")
                     .font(.caption)
                     .multilineTextAlignment(.center)
                     .frame(height: 40)
