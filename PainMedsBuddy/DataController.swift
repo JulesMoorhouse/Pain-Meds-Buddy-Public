@@ -41,7 +41,7 @@ class DataController: ObservableObject {
     }()
     
     func hasRelationship(for med: Med) -> Bool {
-        let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
+        let fetchRequest = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med == %@", med)
         do {
             let tempDoses = try container.viewContext.fetch(fetchRequest)
@@ -56,7 +56,7 @@ class DataController: ObservableObject {
     }
 
     func AnyRelationships(for meds: [Med]) -> Int {
-        let fetchRequest: NSFetchRequest<Dose> = NSFetchRequest<Dose>(entityName: "Dose")
+        let fetchRequest = NSFetchRequest<Dose>(entityName: "Dose")
         fetchRequest.predicate = NSPredicate(format: "med IN %@", meds)
         do {
             let tempDoses = try container.viewContext.fetch(fetchRequest)
@@ -72,12 +72,12 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
 
         for i in 1...20 {
-
-            let linkedDose = Bool.random()
+            // let linkedDose = Bool.random()
             
             // INFO: One to one relationship
             let med = Med(context: viewContext)
-            med.title = "Med example \(i) \(linkedDose ? "linked" : "")"
+            // med.title = "Med example \(i) \(linkedDose ? "linked" : "")"
+            med.title = "Med example \(i)"
             med.notes = "This is an exmaple med \(i)"
             med.defaultAmount = NSDecimalNumber(value: Int16.random(in: 1...10))
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100...600))
@@ -89,14 +89,14 @@ class DataController: ObservableObject {
             med.durationGap = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date()
             med.lastTakenDate = Date()
-            if linkedDose {
-                let dose = Dose(context: viewContext)
-                dose.takenDate = (i % 2 == 0) ? Date() : Date.yesterday
-                dose.elapsed = Bool.random()
-                dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
+            // if linkedDose {
+            let dose = Dose(context: viewContext)
+            dose.takenDate = (i % 2 == 0) ? Date() : Date.yesterday
+            dose.elapsed = Bool.random()
+            dose.amount = NSDecimalNumber(value: Int16.random(in: 1...10))
                 
-                med.dose = dose
-            }
+            med.dose = dose
+            // }
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.sequence = Int16.random(in: 1...3)
         }
@@ -137,5 +137,24 @@ class DataController: ObservableObject {
         temp = result.map { $0 }
         
         return temp
+    }
+    
+    func getFirstMed() -> Med? {
+        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+        ]
+        do {
+            let tempMeds = try container.viewContext.fetch(fetchRequest)
+            if tempMeds.count > 0 {
+                if let first = tempMeds.first {
+                    return first
+                }
+            }
+        } catch {
+            fatalError("Error loading data")
+        }
+        
+        return nil
     }
 }

@@ -34,7 +34,7 @@ struct HomeView: View {
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds
     }
-
+    
     init(dataController: DataController) {
         let dosesFetchRequest = NSFetchRequest<Dose>(entityName: "Dose")
         dosesFetchRequest.sortDescriptors = [

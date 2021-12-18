@@ -51,52 +51,68 @@ struct DoseProgressView: View {
     var progress: CGFloat {
         CGFloat(doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
-
+    
     var body: some View {
-        ZStack {
-            VStack(alignment: .center) {
-                CircularProgressView(
-                    count: doseElapsedInt,
-                    total: dose.doseTotalTime,
-                    progress: progress,
-                    fill: gradient,
-                    lineWidth: 5.0,
-                    showText: false)
-                    .frame(width: size - 20, height: size - 20)
-                    .padding(.top, 10)
+        NavigationLink(destination:
+            DoseAddView(med: med),
+            label: {
+                ZStack {
+                    VStack(alignment: .center) {
+                        CircularProgressView(
+                            count: doseElapsedInt,
+                            total: dose.doseTotalTime,
+                            progress: progress,
+                            fill: gradient,
+                            lineWidth: 5.0,
+                            showText: false)
+                            .frame(width: size - 20, height: size - 20)
+                            .padding(.top, 10)
 
-                Text(med?.medTitle ?? "Unknown Medication")
-                    .font(.caption)
-                    .multilineTextAlignment(.center)
-                    .frame(height: 40)
-                    .background(debug ? Color.red : nil)
+                        Text(med?.medTitle ?? "Unknown Medication")
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .frame(height: 40)
+                            .background(debug ? Color.red : nil)
+                            .foregroundColor(.primary)
 
-                Text(dose.doseDisplay)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .background(debug ? Color.red : nil)
-                    .padding(.bottom, 10)
-            }
-            .background(debug ? Color.yellow : nil)
-            .frame(minWidth: size, minHeight: size)
+                        Text(dose.doseDisplay)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .background(debug ? Color.red : nil)
+                            .padding(.bottom, 10)
+                    }
+                    .background(debug ? Color.yellow : nil)
+                    .frame(minWidth: size, minHeight: size)
 
-            VStack {
-                NavigationLink(destination:
-                    DoseAddView(med: med),
-                    label: {
+                    VStack {
+                        if let med = med {
+                            MedSymbolView(med: med, font: .headline, width: 25, height: 25)
+                                .padding(.horizontal, 5)
+                        }
+                        
                         ButtonBorderView(text: "Take Next", width: 100)
-                    })
-                    .disabled(done)
-                Text(done ? countDown : "Available")
-            }
-            .padding(.bottom, 30)
-        }
-        .panelled(cornerRadius: 15)
 
-        .onAppear(perform: {
-            _ = self.timer
-        })
+                        Text(done ? countDown : "Available")
+                            .foregroundColor(.primary)
+                    }
+                    .padding(.bottom, 70)
+                }
+                .panelled(cornerRadius: 15)
+                .onAppear(perform: {
+                    _ = self.timer
+                })
+
+            })
+            .disabled(done)
+            .accessibilityElement(children: .ignore)
+            .accessibilityRemoveTraits(.isButton)
+            .accessibilityAddTraits( done ? .isStaticText : .isButton)
+            .accessibilityLabel(
+                done
+                ? "\(med?.medTitle ?? "Unknown Medication")), \(dose.doseDisplay), \(countDown) Remaining"
+                : "\(med?.medTitle ?? "Unknown Medication")), \(dose.doseDisplay), Available to take")
+
     }
 }
 

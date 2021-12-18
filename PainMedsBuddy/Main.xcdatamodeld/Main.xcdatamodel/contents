@@ -24,7 +24,7 @@
         <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Dose" positionX="-63" positionY="-18" width="128" height="14"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="Med" positionX="-54" positionY="-9" width="128" height="14"/>
     </elements>
 </model>

@@ -13,6 +13,10 @@ struct DoseAddView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    var firstMed: Med? {
+        dataController.getFirstMed()
+    }
+    
     var body: some View {
         let dose = Dose(context: managedObjectContext)
         DoseDefault.setSensibleDefaults(dose)
@@ -20,6 +24,12 @@ struct DoseAddView: View {
         if let med = med {
             if dose.med != med {
                 dose.med = med
+            }
+        } else {
+            if let first = firstMed {
+                if dose.med != first {
+                    dose.med = first
+                }
             }
         }
         // dataController.save()

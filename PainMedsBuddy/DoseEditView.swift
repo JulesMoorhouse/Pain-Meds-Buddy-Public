@@ -31,7 +31,7 @@ struct DoseEditView: View {
         // _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
-        let fetchRequest: NSFetchRequest<Med> = NSFetchRequest<Med>(entityName: "Med")
+        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
         ]
@@ -44,18 +44,13 @@ struct DoseEditView: View {
             return
         }
 
-        do {
-            let tempMeds = try dataController.container.viewContext.fetch(fetchRequest)
-            if tempMeds.count > 0 {
-                if let first = tempMeds.first {
-                    _selectedMed = State(wrappedValue: first)
-                    initSelection(med: first)
-                    return
-                }
-            }
-        } catch {
-            fatalError("Error loading data")
-        }
+        // Shouldn't need this now
+//        let tempMeds = dataController.getFirstMed()
+//        if let med = tempMeds {
+//            _selectedMed = State(wrappedValue: med)
+//            initSelection(med: med)
+//            return
+//        }
 
         _selectedMed = State(wrappedValue: Med(context: dataController.container.viewContext))
     }
@@ -98,16 +93,16 @@ struct DoseEditView: View {
             }
             if !add {
                 Section {
-    //                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
-    //                    $taken.wrappedValue.toggle()
-    //                }
+                    //                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
+                    //                    $taken.wrappedValue.toggle()
+                    //                }
 
                     Button("Delete this Dose") {
                         showingDeleteConfirm.toggle()
                     }
                     .accentColor(.red)
                 }
-                }
+            }
         }
         .navigationTitle(add ? "Add Dose" : "Edit Dose")
         .onDisappear(perform: save)
