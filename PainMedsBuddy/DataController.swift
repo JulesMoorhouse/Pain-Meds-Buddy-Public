@@ -68,6 +68,35 @@ class DataController: ObservableObject {
         return 0
     }
     
+    func createMed(firstMed: Med?) -> Med {
+        let med: Med
+    
+        if let first = firstMed {
+            med = first
+        } else {
+            let newMed = Med(context: container.viewContext)
+            MedDefault.setSensibleDefaults(newMed)
+            med = newMed
+        }
+    
+        return med
+    }
+    
+    func createMedForDose(dose: Dose, firstMed: Med?) -> Med {
+        let med: Med = createMed(firstMed: firstMed)
+        dose.med = med
+        save()
+        return med
+    }
+    
+    func createDose(firstMed: Med?) -> Dose {
+        let dose = Dose(context: container.viewContext)
+        DoseDefault.setSensibleDefaults(dose)
+        dose.med = createMed(firstMed: firstMed)
+        save()
+        return dose
+    }
+    
     func createSampleData() throws {
         let viewContext = container.viewContext
 

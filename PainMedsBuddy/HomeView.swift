@@ -35,6 +35,10 @@ struct HomeView: View {
         DataController.resultsToArray(meds).allMeds
     }
     
+    var firstMed: Med? {
+        dataController.getFirstMed()
+    }
+    
     init(dataController: DataController) {
         let dosesFetchRequest = NSFetchRequest<Dose>(entityName: "Dose")
         dosesFetchRequest.sortDescriptors = [
@@ -65,7 +69,7 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHGrid(rows: columns) {
                                         ForEach(doses, id: \.self) { item in
-                                            DoseProgressView(dose: item, med: item.med, size: 150)
+                                            DoseProgressView(dose: item, med: item.med ?? dataController.createMedForDose(dose: item, firstMed: firstMed), size: 150)
                                         }
                                     }
                                     .fixedSize(horizontal: false, vertical: true)

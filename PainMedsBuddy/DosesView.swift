@@ -19,6 +19,10 @@ struct DosesView: View {
     let showElapsedDoses: Bool
     @State private var showAddView = false
 
+    var firstMed: Med? {
+        dataController.getFirstMed()
+    }
+    
     let doses: FetchRequest<Dose>
     
     var medsCount: Int {
@@ -80,7 +84,7 @@ struct DosesView: View {
                 }
             }
             .background(
-                NavigationLink(destination: DoseAddView(med: nil)
+                NavigationLink(destination: DoseAddView(med: dataController.createMed(firstMed: firstMed))
                     .environment(\.managedObjectContext, managedObjectContext)
                     .environmentObject(dataController),
                     isActive: $showAddView) {

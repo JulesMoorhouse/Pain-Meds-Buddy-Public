@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DoseProgressView: View {
     @ObservedObject var dose: Dose
-    let med: Med?
+    @ObservedObject var  med: Med
 
     let size: CGFloat
 
@@ -68,7 +68,7 @@ struct DoseProgressView: View {
                             .frame(width: size - 20, height: size - 20)
                             .padding(.top, 10)
 
-                        Text(med?.medTitle ?? "Unknown Medication")
+                        Text(med.medTitle)
                             .font(.caption)
                             .multilineTextAlignment(.center)
                             .frame(height: 40)
@@ -110,8 +110,8 @@ struct DoseProgressView: View {
             .accessibilityAddTraits( done ? .isStaticText : .isButton)
             .accessibilityLabel(
                 done
-                ? "\(med?.medTitle ?? "Unknown Medication")), \(dose.doseDisplay), \(countDown) Remaining"
-                : "\(med?.medTitle ?? "Unknown Medication")), \(dose.doseDisplay), Available to take")
+                ? "\(med.medTitle)), \(dose.doseDisplay), \(countDown) Remaining"
+                : "\(med.medTitle)), \(dose.doseDisplay), Available to take")
 
     }
 }
