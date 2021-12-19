@@ -27,6 +27,10 @@ struct MedRowView: View {
                     .font(.caption)
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            "\(med.medColor) \(med.medSymbolLabel) icon, \(med.medTitle), \(med.remaining) \(med.medForm) remaining"
+        )
     }
 }
 

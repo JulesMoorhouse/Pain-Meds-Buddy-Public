@@ -86,7 +86,11 @@ struct MedsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { self.showAddView = true }) {
-                        Label(NSLocalizedString("Add Med", comment: ""), systemImage: "plus")
+                        if UIAccessibility.isVoiceOverRunning {
+                            Text("Add Med")
+                        } else {
+                            Label("Add Med", systemImage: "plus")
+                        }
                     }
                 }
                         

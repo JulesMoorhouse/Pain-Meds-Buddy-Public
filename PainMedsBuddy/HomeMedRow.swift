@@ -40,6 +40,11 @@ struct HomeMedRow: View {
             Spacer()
                 .frame(width: 10)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(
+            "\(med.medColor) \(med.medSymbolLabel) icon, \(med.medTitle) \(med.medDisplay) taken \(med.medFormattedLastTakenDate), Take Now"
+        )
     }
 }
 

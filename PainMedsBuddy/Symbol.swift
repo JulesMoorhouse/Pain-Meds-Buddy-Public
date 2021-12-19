@@ -10,6 +10,7 @@ import Foundation
 struct Symbol: Decodable, Identifiable {
     var id: String { name }
     let name: String
+    let label: String
 
     static let allSymbols = Bundle.main.decode([Symbol].self, from: "Symbols.json")
     static let example = allSymbols[0]

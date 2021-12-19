@@ -1,59 +1,78 @@
 [
    {
-      "name": "pills"
+      "name": "pills",
+      "label": "pills"
    },
    {
-      "name": "pills.fill"
+      "name": "pills.fill",
+      "label": "pills filled"
    },
    {
-      "name": "bandage"
+      "name": "bandage",
+      "label": "bandage"
    },
    {
-      "name": "bandage.fill"
+      "name": "bandage.fill",
+      "label": "bandage filled"
    },
    {
-      "name": "circle"
+      "name": "circle",
+      "label": "circle"
    },
    {
-      "name": "circle.fill"
+      "name": "circle.fill",
+      "label": "cirlce filled"
    },
    {
-      "name": "capsule"
+      "name": "capsule",
+      "label": "capsule"
    },
    {
-      "name": "capsule.fill"
+      "name": "capsule.fill",
+      "label": "capsule filled"
    },
    {
-      "name": "diamond"
+      "name": "diamond",
+      "label": "diamond"
    },
    {
-      "name": "diamond.fill"
+      "name": "diamond.fill",
+      "label": "diamond filled"
    },
    {
-      "name": "oval.portrait"
+      "name": "oval.portrait",
+      "label": "oval"
    },
    {
-      "name": "oval.portrait.fill"
+      "name": "oval.portrait.fill",
+      "label": "oval filled"
    },
    {
-      "name": "drop"
+      "name": "drop",
+      "label": "drop"
    },
    {
-      "name": "drop.fill"
+      "name": "drop.fill",
+      "label": "drop filled"
    },
    {
-      "name": "leaf"
+      "name": "leaf",
+      "label": "leaf"
    },
    {
-      "name": "leaf.fill"
+      "name": "leaf.fill",
+      "label": "leaf filled"
    },
    {
-      "name": "eyedropper.full"
+      "name": "eyedropper.full",
+      "label": "eye dropper"
    },
    {
-      "name": "cross.case"
+      "name": "cross.case",
+      "label": "med case"
    },
    {
-      "name": "cross.case.fill"
+      "name": "cross.case.fill",
+      "label": "med case filled"
    }
 ]

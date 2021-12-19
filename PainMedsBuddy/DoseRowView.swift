@@ -39,6 +39,10 @@ struct DoseRowView: View {
                                 .foregroundColor(.secondary)
                                 .font(.caption)
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(
+                            "\(med.medColor) \(med.medSymbolLabel) icon, \(med.medTitle) \(med.medDisplay) taken \(med.medFormattedLastTakenDate)"
+                        )
                     }
                 }
         }

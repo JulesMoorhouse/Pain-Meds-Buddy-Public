@@ -22,7 +22,7 @@ struct DosesView: View {
     let doses: FetchRequest<Dose>
     
     var medsCount: Int {
-        let fetchRequest: NSFetchRequest<Med> = NSFetchRequest<Med>(entityName: "Med")
+        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         return dataController.count(for: fetchRequest)
     }
     
@@ -94,14 +94,18 @@ struct DosesView: View {
                         self.showAddView = true
                     
                     }) {
-                        Label("Add Dose", systemImage: "plus")
+                        if UIAccessibility.isVoiceOverRunning {
+                            Text("Add Dose")
+                        } else {
+                            Label("Add Dose", systemImage: "plus")
+                        }
                     }
                 }
             }
             
             PlaceholderView(text: medsCount > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
         }
-        //.navigationViewStyle(StackNavigationViewStyle())
+        // .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -20,12 +20,12 @@ extension Med: MedProtocol {
     }
 
     var medDefaultAmount: String {
-       "\(medDefaultAmountDecimal)"
+        "\(medDefaultAmountDecimal)"
     }
 
     var medDefaultAmountDecimal: Decimal {
         if let amount = defaultAmount {
-            if !(Double(truncating: amount).isNaN) {
+            if !Double(truncating: amount).isNaN {
                 return amount as Decimal
             }
         }
@@ -40,13 +40,21 @@ extension Med: MedProtocol {
         symbol ?? MedDefault.symbol
     }
     
+    var medSymbolLabel: String {
+        let item = Symbol.allSymbols.first(where: { $0.id == medSymbol })
+        if let item = item {
+            return item.label
+        }
+        return ""
+    }
+    
     var medDosage: String {
         "\(medDosageDecimal)"
     }
 
     var medDosageDecimal: Decimal {
         if let dosage = dosage {
-            if !(Double(truncating: dosage).isNaN) {
+            if !Double(truncating: dosage).isNaN {
                 return dosage as Decimal
             }
         }

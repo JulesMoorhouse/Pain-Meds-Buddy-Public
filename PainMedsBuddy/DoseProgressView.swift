@@ -111,8 +111,8 @@ struct DoseProgressView: View {
             .accessibilityAddTraits(done ? .isStaticText : .isButton)
             .accessibilityLabel(
                 done
-                    ? "\(med.medTitle)), \(dose.doseDisplay), \(countDown) Remaining"
-                    : "\(med.medTitle)), \(dose.doseDisplay), Available to take")
+                    ? "\(med.medTitle), \(dose.doseDisplay), \(countDown) Remaining"
+                    : "\(med.medTitle), \(dose.doseDisplay), Available to take")
     }
 }
 
