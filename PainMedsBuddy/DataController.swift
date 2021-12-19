@@ -9,22 +9,31 @@ import CoreData
 import SwiftUI
 
 class DataController: ObservableObject {
-    let container: NSPersistentCloudKitContainer
+    private let _container: NSPersistentCloudKitContainer
+    private let sem = DispatchSemaphore(value: 0)
+
+    var container: NSPersistentContainer {
+        sem.wait()
+        sem.signal()
+        return _container
+    }
     
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Main")
+        _container = NSPersistentCloudKitContainer(name: "Main")
+        let sem = self.sem
         
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
         
-        container.loadPersistentStores { _, error in
-            if let error = error {
+        _container.loadPersistentStores { _, error in
+            sem.signal()
+            if let error = error as NSError? {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
         }
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        _container.viewContext.automaticallyMergesChangesFromParent = true
+        _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
     static var preview: DataController = {
@@ -71,7 +80,7 @@ class DataController: ObservableObject {
     func createMed() -> Med {
         let med: Med
     
-        if let first = self.getFirstMed() {
+        if let first = getFirstMed() {
             med = first
         } else {
             let newMed = Med(context: container.viewContext)
