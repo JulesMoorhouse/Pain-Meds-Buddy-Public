@@ -68,10 +68,10 @@ class DataController: ObservableObject {
         return 0
     }
     
-    func createMed(firstMed: Med?) -> Med {
+    func createMed() -> Med {
         let med: Med
     
-        if let first = firstMed {
+        if let first = self.getFirstMed() {
             med = first
         } else {
             let newMed = Med(context: container.viewContext)
@@ -82,17 +82,21 @@ class DataController: ObservableObject {
         return med
     }
     
-    func createMedForDose(dose: Dose, firstMed: Med?) -> Med {
-        let med: Med = createMed(firstMed: firstMed)
+    func createMedForDose(dose: Dose) -> Med {
+        let med: Med = createMed()
         dose.med = med
         save()
         return med
     }
     
-    func createDose(firstMed: Med?) -> Dose {
+    func createDose(selectedMed: Med?) -> Dose {
         let dose = Dose(context: container.viewContext)
         DoseDefault.setSensibleDefaults(dose)
-        dose.med = createMed(firstMed: firstMed)
+        if let selectedMed = selectedMed {
+            dose.med = selectedMed
+        } else {
+            dose.med = createMed()
+        }
         save()
         return dose
     }

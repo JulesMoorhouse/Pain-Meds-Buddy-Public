@@ -11,12 +11,11 @@ struct DoseAddView: View {
     let med: Med
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
         DoseEditView(
             dataController: dataController,
-            dose: dataController.createDose(firstMed: med),
+            dose: dataController.createDose(selectedMed: med),
             add: true)
     }
 }

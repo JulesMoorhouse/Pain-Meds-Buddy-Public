@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DoseProgressView: View {
     @ObservedObject var dose: Dose
-    @ObservedObject var  med: Med
+    @ObservedObject var med: Med
 
     let size: CGFloat
 
@@ -22,11 +22,7 @@ struct DoseProgressView: View {
     var debug = false
 
     @State var nowDate = Date()
-    var timer: Timer {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.nowDate = Date()
-        }
-    }
+    @State var timer: Timer?
 
     var countDown: String {
         if dose.elapsed == false {
@@ -51,7 +47,7 @@ struct DoseProgressView: View {
     var progress: CGFloat {
         CGFloat(doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
-    
+
     var body: some View {
         NavigationLink(destination:
             DoseAddView(med: med),
@@ -90,7 +86,7 @@ struct DoseProgressView: View {
                             MedSymbolView(med: med, font: .headline, width: 25, height: 25)
                                 .padding(.horizontal, 5)
                         }
-                        
+
                         ButtonBorderView(text: "Take Next", width: 100)
 
                         Text(done ? countDown : "Available")
@@ -100,19 +96,23 @@ struct DoseProgressView: View {
                 }
                 .panelled(cornerRadius: 15)
                 .onAppear(perform: {
-                    _ = self.timer
+                    self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        self.nowDate = Date()
+                    }
                 })
-
+                .onDisappear(perform: {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                })
             })
             .disabled(done)
             .accessibilityElement(children: .ignore)
             .accessibilityRemoveTraits(.isButton)
-            .accessibilityAddTraits( done ? .isStaticText : .isButton)
+            .accessibilityAddTraits(done ? .isStaticText : .isButton)
             .accessibilityLabel(
                 done
-                ? "\(med.medTitle)), \(dose.doseDisplay), \(countDown) Remaining"
-                : "\(med.medTitle)), \(dose.doseDisplay), Available to take")
-
+                    ? "\(med.medTitle)), \(dose.doseDisplay), \(countDown) Remaining"
+                    : "\(med.medTitle)), \(dose.doseDisplay), Available to take")
     }
 }
 

@@ -18,10 +18,6 @@ struct DosesView: View {
     
     let showElapsedDoses: Bool
     @State private var showAddView = false
-
-    var firstMed: Med? {
-        dataController.getFirstMed()
-    }
     
     let doses: FetchRequest<Dose>
     
@@ -84,7 +80,7 @@ struct DosesView: View {
                 }
             }
             .background(
-                NavigationLink(destination: DoseAddView(med: dataController.createMed(firstMed: firstMed))
+                NavigationLink(destination: DoseAddView(med: dataController.createMed())
                     .environment(\.managedObjectContext, managedObjectContext)
                     .environmentObject(dataController),
                     isActive: $showAddView) {
@@ -105,7 +101,7 @@ struct DosesView: View {
             
             PlaceholderView(text: medsCount > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        //.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
