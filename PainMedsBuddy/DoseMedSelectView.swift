@@ -54,6 +54,9 @@ struct DoseMedSelectView: View {
         }
         .navigationTitle("Select Med")
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Color.clear // BugFix: Back button dissapears
+            }
             sortToolbarItem
         }
     }
