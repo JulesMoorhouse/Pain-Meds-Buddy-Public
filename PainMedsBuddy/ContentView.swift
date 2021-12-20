@@ -21,35 +21,35 @@ struct ContentView: View {
                 .tag(HomeView.HomeTag)
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text(.tabTitleHome)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: true)
                 .tag(DosesView.historyTag)
                 .tabItem {
                     Image(systemName: "checkmark")
-                    Text("History")
+                    Text(.tabTitleHistory)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: false)
                 .tag(DosesView.inProgressTag)
                 .tabItem {
                     Image(systemName: "arrow.triangle.2.circlepath")
-                    Text("In Progress")
+                    Text(.tabTitleInProgress)
                 }
 
             MedsView()
                 .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: "pills.fill")
-                    Text("Medication")
+                    Text(.tabTitleMedication)
                 }
 
             SettingsView()
                 .tag(SettingsView.SettingsTag)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    Text(.tabTitleSettings)
                 }
         }
     }

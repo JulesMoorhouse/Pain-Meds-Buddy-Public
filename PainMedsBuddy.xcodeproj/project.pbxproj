@@ -58,6 +58,7 @@
 		88EF20392753BBA0006037CF /* MedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF20382753BBA0006037CF /* MedRowView.swift */; };
 		88F2E989276FD74500081C9C /* HomeRecentMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */; };
 		88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */; };
+		88F2E98E27708AF700081C9C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		88EF20382753BBA0006037CF /* MedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedRowView.swift; sourceTree = "<group>"; };
 		88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentMedsView.swift; sourceTree = "<group>"; };
 		88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLowMedsView.swift; sourceTree = "<group>"; };
+		88F2E98D27708AF700081C9C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				88E930AB2760D8F800A98708 /* DoseProgressView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
+				88F2E98D27708AF700081C9C /* Strings.swift */,
 				881BA3912764047900DA06D7 /* HomeMedRow.swift */,
 				8857205A275234C400B4B00C /* HomeView.swift */,
 				88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */,
@@ -348,6 +351,7 @@
 				88AB7CA7275D351A0055BD9B /* DoseAddView.swift in Sources */,
 				88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */,
 				88AB7CA9275E31900055BD9B /* Meds-ArrayHelpers.swift in Sources */,
+				88F2E98E27708AF700081C9C /* Strings.swift in Sources */,
 				88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */,
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,
 				886C30BE2763913B002A45B1 /* Int-Helper.swift in Sources */,

@@ -57,7 +57,7 @@ struct DoseEditView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Basic settings")) {
+            Section(header: Text(.commonBasicSettings)) {
                 DatePicker("Date Time", selection: $takenDate)
                     .foregroundColor(.secondary)
 
@@ -72,10 +72,11 @@ struct DoseEditView: View {
                     })
 
                 HStack {
-                    Text("Amount")
+                    Text(.doseEditAmount)
                         .foregroundColor(.secondary)
                     Spacer()
-                    TextField("e.g. \(DoseDefault.Sensible.amount)", text: $amount.onChange(update))
+                    
+                    TextField(String(.commonEgNum, values: [DoseDefault.Sensible.doseAmount()]), text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(selectedMed.medForm)
@@ -83,7 +84,7 @@ struct DoseEditView: View {
                 }
             }
 
-            Section(header: Text("Dosage")) {
+            Section(header: Text(.commonDosage)) {
                 HStack {
                     Spacer()
                     Text(display())

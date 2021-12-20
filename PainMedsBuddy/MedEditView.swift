@@ -62,7 +62,7 @@ struct MedEditView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Basic settings")) {
+            Section(header: Text(.commonBasicSettings)) {
                 basicSettingsFields()
             }
             

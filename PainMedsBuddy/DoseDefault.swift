@@ -12,6 +12,10 @@ struct DoseDefault {
         static let amount: NSDecimalNumber = 1
         static let elapsed: Bool = false
         static let takenDate = Date()
+        
+        static func doseAmount() -> String {
+            "\(String(describing: DoseDefault.Sensible.amount))"
+        }
     }
 
     static let amount: NSDecimalNumber = 0
