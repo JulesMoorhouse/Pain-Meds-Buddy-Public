@@ -31,6 +31,21 @@ struct HomeView: View {
         doses.count == 0 && meds.count == 0
     }
 
+    var currentMedCards: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHGrid(rows: columns) {
+                ForEach(doses, id: \.self) { item in
+                    DoseProgressView(
+                        dose: item,
+                        med: item.med ?? dataController.createMedForDose(dose: item),
+                        size: 150)
+                }
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .padding([.horizontal, .bottom])
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Group {
@@ -45,18 +60,7 @@ struct HomeView: View {
                                     .foregroundColor(.secondary)
                                     .padding(.leading)
 
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    LazyHGrid(rows: columns) {
-                                        ForEach(doses, id: \.self) { item in
-                                            DoseProgressView(
-                                                dose: item,
-                                                med: item.med ?? dataController.createMedForDose(dose: item),
-                                                size: 150)
-                                        }
-                                    }
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .padding([.horizontal, .bottom])
-                                }
+                                currentMedCards
                             }
 
                             VStack(alignment: .leading) {

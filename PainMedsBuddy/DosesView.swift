@@ -51,15 +51,10 @@ struct DosesView: View {
             DoseRowView(dose: dose)
         }
         .onDelete { offsets in
-            for offset in offsets {
-                let item = section[offset]
-                dataController.delete(item)
-            }
-            dataController.save()
-            dataController.container.viewContext.processPendingChanges()
+            deleteDose(offsets, from: section)
         }
     }
-    
+
     var body: some View {
         let data: [[Dose]] = resultsToArray(self.doses.wrappedValue)
         
@@ -106,6 +101,15 @@ struct DosesView: View {
             PlaceholderView(text: medsCount > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
         }
         // .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    func deleteDose(_ offsets: IndexSet, from doses: [Dose]) {
+        for offset in offsets {
+            let item = doses[offset]
+            dataController.delete(item)
+        }
+        dataController.save()
+        dataController.container.viewContext.processPendingChanges()
     }
 }
 

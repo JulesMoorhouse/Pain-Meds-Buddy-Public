@@ -25,12 +25,51 @@ struct MedsView: View {
     @State private var canDelete = false
     @State private var showDeleteDenied = false
 
-//    var items: [Med] {
-//        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
-//    }
+    var items: [Med] {
+        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+    }
+    
+    var medsList: some View {
+        List {
+            ForEach(items, id: \.self) { med in
+                NavigationLink(destination: MedEditView(med: med, add: false)) {
+                    MedRowView(med: med)
+                }
+            }
+            .onDelete { offsets in
+                deleteMed(offsets, items: items)
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+        .disabled($showingSortOrder.wrappedValue == true)
+    }
+    
+    var addMedToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: { self.showAddView = true }) {
+                if UIAccessibility.isVoiceOverRunning {
+                    Text("Add Med")
+                } else {
+                    Label("Add Med", systemImage: "plus")
+                }
+            }
+        }
+    }
+    
+    var sortToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            if meds.count > 0 {
+                Button(action: {
+                    self.showingSortOrder = true
+                }) {
+                    Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
+                }
+            }
+        }
+    }
     
     var body: some View {
-        let items: [Med] = DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+//        let items: [Med] = DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
         
         return NavigationView {
             Group {
@@ -39,35 +78,7 @@ struct MedsView: View {
                                     imageString: "pills")
                 } else {
                     ZStack {
-                        List {
-                            ForEach(items, id: \.self) { med in
-                                NavigationLink(destination: MedEditView(med: med, add: false)) {
-                                    MedRowView(med: med)
-                                }
-                            }
-                            .onDelete { offsets in
-                                let deleteItems = offsets.map { items[$0] }
-                                
-                                let count = dataController.AnyRelationships(for: deleteItems)
-                                if count == 0 {
-                                    for offset in offsets {
-                                        let item = items[offset]
-                                        dataController.delete(item)
-                                    
-                                        // Bug fix
-//                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
-//                                        self.meds.remove(at: itemToRemoveIndex)
-//                                    }
-                                    }
-                                    dataController.save()
-                                    dataController.container.viewContext.processPendingChanges()
-                                } else {
-                                    showDeleteDenied.toggle()
-                                }
-                            }
-                        }
-                        .listStyle(InsetGroupedListStyle())
-                        .disabled($showingSortOrder.wrappedValue == true)
+                        medsList
         
                         if $showingSortOrder.wrappedValue == true {
                             MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
@@ -84,25 +95,8 @@ struct MedsView: View {
                 }
             )
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { self.showAddView = true }) {
-                        if UIAccessibility.isVoiceOverRunning {
-                            Text("Add Med")
-                        } else {
-                            Label("Add Med", systemImage: "plus")
-                        }
-                    }
-                }
-                        
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if meds.count > 0 {
-                        Button(action: {
-                            self.showingSortOrder = true
-                        }) {
-                            Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
-                        }
-                    }
-                }
+                addMedToolbarItem
+                sortToolbarItem
             }
             .navigationTitle("Medications")
             .alert(isPresented: $showDeleteDenied) {
@@ -112,6 +106,27 @@ struct MedsView: View {
             }
             
             PlaceholderView(text: "Please select or add a medication", imageString: "eyedropper.halffull")
+        }
+    }
+    
+    func deleteMed(_ offsets: IndexSet, items: [Med]) {
+        let deleteItems = offsets.map { items[$0] }
+        
+        let count = dataController.AnyRelationships(for: deleteItems)
+        if count == 0 {
+            for offset in offsets {
+                let item = items[offset]
+                dataController.delete(item)
+            
+                // Bug fix
+//                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
+//                                        self.meds.remove(at: itemToRemoveIndex)
+//                                    }
+            }
+            dataController.save()
+            dataController.container.viewContext.processPendingChanges()
+        } else {
+            showDeleteDenied.toggle()
         }
     }
 }

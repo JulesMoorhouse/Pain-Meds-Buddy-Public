@@ -28,26 +28,21 @@ struct DoseMedSelectView: View {
         _selectedMed = selectedMed
     }
 
+    var sortToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: {
+                self.showingSortOrder = true
+            }) {
+                Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
+            }
+        }
+    }
+ 
     var body: some View {
         ZStack {
             List {
                 ForEach(Array(items.enumerated()), id: \.offset) { index, med in
-                    HStack {
-                        MedRowView(med: med)
-
-                        Spacer()
-
-                        if self.selectedMed == items[index] {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(Color.blue)
-                        }
-                    }
-                    .contentShape(Rectangle())
-                    .foregroundColor(.primary)
-                    .onTapGesture {
-                        self.selectedMed = med
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
+                    medRow(med: med, index: index)
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -59,11 +54,26 @@ struct DoseMedSelectView: View {
         }
         .navigationTitle("Select Med")
         .toolbar {
-            Button(action: {
-                self.showingSortOrder = true
-            }) {
-                Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
+            sortToolbarItem
+        }
+    }
+    
+    func medRow(med: Med, index: Int) -> some View {
+        HStack {
+            MedRowView(med: med)
+
+            Spacer()
+
+            if self.selectedMed == items[index] {
+                Image(systemName: "checkmark")
+                    .foregroundColor(Color.blue)
             }
+        }
+        .contentShape(Rectangle())
+        .foregroundColor(.primary)
+        .onTapGesture {
+            self.selectedMed = med
+            self.presentationMode.wrappedValue.dismiss()
         }
     }
 }

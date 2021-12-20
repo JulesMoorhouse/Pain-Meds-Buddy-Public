@@ -63,89 +63,7 @@ struct MedEditView: View {
     var body: some View {
         Form {
             Section(header: Text("Basic settings")) {
-                TextField("e.g. \(MedDefault.Sensible.title)", text: $title.onChange(update))
-                
-                HStack {
-                    Text("Default Amount")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.defaultAmount)", text: $defaultAmount.onChange(update))
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                    Text(med.medForm)
-                        .foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Dosage")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.dosage)", text: $dosage.onChange(update))
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                    Text(med.medMeasure)
-                        .foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Duration")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.duration)", text: $duration.onChange(update))
-                        .multilineTextAlignment(.trailing)
-                }
-                
-                HStack {
-                    Text("Duration gap")
-                        .foregroundColor(.secondary)
-                    
-                    Button(action: {
-                        activeAlert = .durationGapInfo
-                        showAlert.toggle()
-                    }, label: {
-                        Image(systemName: "info.circle")
-                    })
-
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.durationGap)", text: $durationGap.onChange(update))
-                        .multilineTextAlignment(.trailing)
-                }
-                
-                Picker("Measure", selection: $measure.onChange(update)) {
-                    ForEach(types, id: \.self) {
-                        Text($0)
-                            .foregroundColor(.primary)
-                    }
-                }
-                .foregroundColor(.secondary)
-                
-                HStack {
-                    Text("Form")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.form)", text: $form.onChange(update))
-                        .multilineTextAlignment(.trailing)
-                }
-                
-                HStack {
-                    Text("Remaining")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.remaining)", text: $remaining.onChange(update))
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.trailing)
-                    Text(med.medForm)
-                        .foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Sequence")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("e.g. \(MedDefault.Sensible.sequence)", text: $sequence.onChange(update))
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.trailing)
-                }
+                basicSettingsFields()
             }
             
             Section(header: Text("Example Dosage")) {
@@ -160,30 +78,7 @@ struct MedEditView: View {
             Section(header: Text("Symbol")) {
                 Text("Colour")
                 LazyVGrid(columns: colorColumns) {
-                    ForEach(Med.colors, id: \.self) { item in
-                        ZStack {
-                            Color(item)
-                                .aspectRatio(1, contentMode: .fit)
-                                .cornerRadius(6)
-                            
-                            if item == color {
-                                Image(systemName: "checkmark.circle")
-                                    .foregroundColor(.white)
-                                    .font(.largeTitle)
-                            }
-                        }
-                        .onTapGesture {
-                            color = item
-                            update()
-                        }
-                        .accessibilityElement(children: .ignore)
-                        .accessibilityAddTraits(
-                            item == color
-                            ? [.isButton, .isSelected]
-                            : [.isButton]
-                        )
-                        .accessibilityLabel(LocalizedStringKey(item))
-                    }
+                    ForEach(Med.colors, id: \.self, content: colourButton)
                 }
                 .padding(.vertical)
                 
@@ -211,10 +106,10 @@ struct MedEditView: View {
             switch activeAlert {
             case .deleteConfirmation:
                 return Alert(title: Text("Delete med"),
-                      message: Text("Are you sure you want to delete this med?"),
-                      primaryButton: .default(Text("Delete"), action: delete),
-                      secondaryButton: .cancel())
-            case .deleteDenied:            
+                             message: Text("Are you sure you want to delete this med?"),
+                             primaryButton: .default(Text("Delete"), action: delete),
+                             secondaryButton: .cancel())
+            case .deleteDenied:
                 return Alert(title: Text("Delete med"),
                              message: Text("Sorry you're using this med with a dose."),
                              dismissButton: .default(Text("OK")))
@@ -246,6 +141,119 @@ struct MedEditView: View {
     func delete() {
         dataController.delete(med)
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func colourButton(for item: String) -> some View {
+        ZStack {
+            Color(item)
+                .aspectRatio(1, contentMode: .fit)
+                .cornerRadius(6)
+            
+            if item == color {
+                Image(systemName: "checkmark.circle")
+                    .foregroundColor(.white)
+                    .font(.largeTitle)
+            }
+        }
+        .onTapGesture {
+            color = item
+            update()
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(
+            item == color
+                ? [.isButton, .isSelected]
+                : [.isButton]
+        )
+        .accessibilityLabel(LocalizedStringKey(item))
+    }
+    
+    func basicSettingsFields() -> some View {
+        Group {
+            TextField("e.g. \(MedDefault.Sensible.title)", text: $title.onChange(update))
+        
+            HStack {
+                Text("Default Amount")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.defaultAmount)", text: $defaultAmount.onChange(update))
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                Text(med.medForm)
+                    .foregroundColor(.secondary)
+            }
+        
+            HStack {
+                Text("Dosage")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.dosage)", text: $dosage.onChange(update))
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                Text(med.medMeasure)
+                    .foregroundColor(.secondary)
+            }
+        
+            HStack {
+                Text("Duration")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.duration)", text: $duration.onChange(update))
+                    .multilineTextAlignment(.trailing)
+            }
+        
+            HStack {
+                Text("Duration gap")
+                    .foregroundColor(.secondary)
+            
+                Button(action: {
+                    activeAlert = .durationGapInfo
+                    showAlert.toggle()
+                }, label: {
+                    Image(systemName: "info.circle")
+                })
+
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.durationGap)", text: $durationGap.onChange(update))
+                    .multilineTextAlignment(.trailing)
+            }
+        
+            Picker("Measure", selection: $measure.onChange(update)) {
+                ForEach(types, id: \.self) {
+                    Text($0)
+                        .foregroundColor(.primary)
+                }
+            }
+            .foregroundColor(.secondary)
+        
+            HStack {
+                Text("Form")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.form)", text: $form.onChange(update))
+                    .multilineTextAlignment(.trailing)
+            }
+        
+            HStack {
+                Text("Remaining")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.remaining)", text: $remaining.onChange(update))
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                Text(med.medForm)
+                    .foregroundColor(.secondary)
+            }
+        
+            HStack {
+                Text("Sequence")
+                    .foregroundColor(.secondary)
+                Spacer()
+                TextField("e.g. \(MedDefault.Sensible.sequence)", text: $sequence.onChange(update))
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+            }
+        }
     }
 }
 
