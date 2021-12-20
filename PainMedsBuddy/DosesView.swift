@@ -61,7 +61,7 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text: medsCount > 0 ? "There's nothing here right now!" : "Please add a medication before adding dose!",
+                    PlaceholderView(text: medsCount > 0 ? Strings.commonEmptyView.rawValue : Strings.commonPleaseAdd.rawValue,
                                     imageString: "pills")
                 } else {
                     List {

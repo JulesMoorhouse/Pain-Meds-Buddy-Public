@@ -108,9 +108,9 @@ struct DoseEditView: View {
         .navigationTitle(add ? "Add Dose" : "Edit Dose")
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
-            Alert(title: Text("Delete dose"),
-                  message: Text("Are you sure you want to delete this does?"),
-                  primaryButton: .default(Text("Delete"), action: delete),
+            Alert(title: Text(.doseEditDeleteDose),
+                  message: Text(.doseEditAreYouSure),
+                  primaryButton: .default(Text(.commonDelete), action: delete),
                   secondaryButton: .cancel())
         }
     }
