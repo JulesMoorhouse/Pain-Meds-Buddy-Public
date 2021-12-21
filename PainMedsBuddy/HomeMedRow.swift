@@ -10,6 +10,20 @@ import SwiftUI
 struct HomeMedRow: View {
     @ObservedObject var med: Med
 
+    var detail: some View {
+        VStack(alignment: .leading) {
+            Text(med.medTitle)
+                // .foregroundColor(Color(med.color ?? Med.defaultColor))
+                .foregroundColor(.primary)
+            Text(med.medDisplay)
+                .foregroundColor(.secondary)
+                .font(.caption)
+            Text(med.medFormattedLastTakenDate)
+                .foregroundColor(.secondary)
+                .font(.caption)
+        }
+    }
+    
     var body: some View {
         HStack {
             MedSymbolView(med: med)
@@ -17,17 +31,7 @@ struct HomeMedRow: View {
             Spacer()
                 .frame(width: 10)
 
-            VStack(alignment: .leading) {
-                Text(med.medTitle)
-                    // .foregroundColor(Color(med.color ?? Med.defaultColor))
-                    .foregroundColor(.primary)
-                Text(med.medDisplay)
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-                Text(med.medFormattedLastTakenDate)
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
+            detail
 
             Spacer()
 

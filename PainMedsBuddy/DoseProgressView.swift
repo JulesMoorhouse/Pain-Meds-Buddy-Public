@@ -48,55 +48,62 @@ struct DoseProgressView: View {
         CGFloat(doseElapsedInt) / CGFloat(dose.doseTotalTime)
     }
 
+    var circle: some View {
+        VStack(alignment: .center) {
+            CircularProgressView(
+                count: doseElapsedInt,
+                total: dose.doseTotalTime,
+                progress: progress,
+                fill: gradient,
+                lineWidth: 5.0,
+                showText: false)
+                .frame(width: size - 20, height: size - 20)
+                .padding(.top, 10)
+
+            Text(med.medTitle)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .frame(height: 40)
+                .background(debug ? Color.red : nil)
+                .foregroundColor(.primary)
+
+            Text(dose.doseDisplay)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .background(debug ? Color.red : nil)
+                .padding(.bottom, 10)
+        }
+        .background(debug ? Color.yellow : nil)
+        .frame(minWidth: size, minHeight: size)
+    }
+    
+    var detail: some View {
+        VStack {
+            if let med = med {
+                MedSymbolView(med: med, font: .headline, width: 25, height: 25)
+                    .padding(.horizontal, 5)
+            }
+
+            ButtonBorderView(
+                text: Strings.homeTakeNext.rawValue,
+                width: 100)
+
+            Text(done
+                    ? countDown
+                    : String(.doseProgressAvailable))
+                .foregroundColor(.primary)
+        }
+        .padding(.bottom, 70)
+    }
+    
     var body: some View {
         NavigationLink(destination:
             DoseAddView(med: med),
             label: {
                 ZStack {
-                    VStack(alignment: .center) {
-                        CircularProgressView(
-                            count: doseElapsedInt,
-                            total: dose.doseTotalTime,
-                            progress: progress,
-                            fill: gradient,
-                            lineWidth: 5.0,
-                            showText: false)
-                            .frame(width: size - 20, height: size - 20)
-                            .padding(.top, 10)
-
-                        Text(med.medTitle)
-                            .font(.caption)
-                            .multilineTextAlignment(.center)
-                            .frame(height: 40)
-                            .background(debug ? Color.red : nil)
-                            .foregroundColor(.primary)
-
-                        Text(dose.doseDisplay)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                            .background(debug ? Color.red : nil)
-                            .padding(.bottom, 10)
-                    }
-                    .background(debug ? Color.yellow : nil)
-                    .frame(minWidth: size, minHeight: size)
-
-                    VStack {
-                        if let med = med {
-                            MedSymbolView(med: med, font: .headline, width: 25, height: 25)
-                                .padding(.horizontal, 5)
-                        }
-
-                        ButtonBorderView(
-                            text: Strings.homeTakeNext.rawValue,
-                            width: 100)
-
-                        Text(done
-                                ? countDown
-                                : String(.doseProgressAvailable))
-                            .foregroundColor(.primary)
-                    }
-                    .padding(.bottom, 70)
+                    circle
+                    detail
                 }
                 .panelled(cornerRadius: 15)
                 .onAppear(perform: {
