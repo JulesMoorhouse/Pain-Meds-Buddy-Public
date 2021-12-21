@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TwoColumnView: View {
-    let col1: String
+    let col1: LocalizedStringKey
     let col2: String
 
     var body: some View {
@@ -22,7 +22,7 @@ struct TwoColumnView: View {
 }
 
 struct TwoColumnView_Previews: PreviewProvider {
-    static var col1 = "Col1"
+    static var col1: LocalizedStringKey = "Col1"
     static var col2 = "Col2"
 
     static var previews: some View {

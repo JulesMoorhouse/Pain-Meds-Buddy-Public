@@ -12,12 +12,12 @@ struct MedSortView: View {
     @Binding var showingSortOrder: Bool
 
     var body: some View {
-        PopUpView(text: "Sort Order", content: {
+        PopUpView(text: Strings.sortSortOrder.rawValue, content: {
             Button(action: {
                 sortOrder = .optimzed
                 showingSortOrder = false
             }) {
-                ButtonBorderView(text: "Optimized")
+                ButtonBorderView(text: Strings.sortOptimized.rawValue)
             }
             .disabled(sortOrder == .optimzed)
 
@@ -25,7 +25,7 @@ struct MedSortView: View {
                 sortOrder = .creationDate
                 showingSortOrder = false
             }) {
-                ButtonBorderView(text: "Created Date")
+                ButtonBorderView(text: Strings.sortCreatedDate.rawValue)
             }
             .disabled(sortOrder == .creationDate)
 
@@ -33,7 +33,7 @@ struct MedSortView: View {
                 sortOrder = .title
                 showingSortOrder = false
             }) {
-                ButtonBorderView(text: "Title")
+                ButtonBorderView(text: Strings.sortTitle.rawValue)
             }
             .disabled(sortOrder == .title)
         }, close: {

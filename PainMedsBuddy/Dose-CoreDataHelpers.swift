@@ -43,7 +43,7 @@ extension Dose: Comparable {
             formatter.timeStyle = .short
             return formatter.string(from: date)
         } else {
-            return "No date"
+            return String(.commonNoDate)
         }
     }
 
@@ -54,7 +54,7 @@ extension Dose: Comparable {
             formatter.timeStyle = .none
             return formatter.string(from: date)
         } else {
-            return "No date"
+            return String(.commonNoDate)
         }
     }
 

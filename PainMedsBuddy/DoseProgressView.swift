@@ -87,9 +87,13 @@ struct DoseProgressView: View {
                                 .padding(.horizontal, 5)
                         }
 
-                        ButtonBorderView(text: "Take Next", width: 100)
+                        ButtonBorderView(
+                            text: Strings.homeTakeNext.rawValue,
+                            width: 100)
 
-                        Text(done ? countDown : "Available")
+                        Text(done
+                                ? countDown
+                                : String(.doseProgressAvailable))
                             .foregroundColor(.primary)
                     }
                     .padding(.bottom, 70)

@@ -100,7 +100,9 @@ struct MedEditView: View {
                 .accentColor(.red)
             }
         }
-        .navigationTitle(add ? NSLocalizedString("Add Med", comment: "") : NSLocalizedString("Edit Med", comment: ""))
+        .navigationTitle(add
+            ? Strings.medEditAddMed.rawValue
+            : Strings.medEditEditMed.rawValue)
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {
@@ -170,13 +172,17 @@ struct MedEditView: View {
     
     func basicSettingsFields() -> some View {
         Group {
-            TextField("e.g. \(MedDefault.Sensible.title)", text: $title.onChange(update))
-        
+            TextField(String(.commonEgString,
+                             values: [MedDefault.Sensible.title]),
+                      text: $title.onChange(update))
+            
             HStack {
                 Text(.medEditDefaultAmount)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.defaultAmount)", text: $defaultAmount.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medDefaultAmount()]),
+                          text: $defaultAmount.onChange(update))
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
                 Text(med.medForm)
@@ -187,7 +193,9 @@ struct MedEditView: View {
                 Text(.commonDosage)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.dosage)", text: $dosage.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medDosage()]),
+                          text: $dosage.onChange(update))
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
                 Text(med.medMeasure)
@@ -198,7 +206,9 @@ struct MedEditView: View {
                 Text(.medEditDuration)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.duration)", text: $duration.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medDuration()]),
+                          text: $duration.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
         
@@ -214,7 +224,9 @@ struct MedEditView: View {
                 })
 
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.durationGap)", text: $durationGap.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medDurationGap()]),
+                          text: $durationGap.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
         
@@ -230,7 +242,9 @@ struct MedEditView: View {
                 Text(.medEditForm)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.form)", text: $form.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.form]),
+                          text: $form.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
         
@@ -238,7 +252,9 @@ struct MedEditView: View {
                 Text(.medEditRemaining)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.remaining)", text: $remaining.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medRemaining()]),
+                          text: $remaining.onChange(update))
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.trailing)
                 Text(med.medForm)
@@ -249,7 +265,9 @@ struct MedEditView: View {
                 Text(.medEditSequence)
                     .foregroundColor(.secondary)
                 Spacer()
-                TextField("e.g. \(MedDefault.Sensible.sequence)", text: $sequence.onChange(update))
+                TextField(String(.commonEgString,
+                                 values: [MedDefault.Sensible.medSequence()]),
+                          text: $sequence.onChange(update))
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.trailing)
             }

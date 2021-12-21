@@ -34,8 +34,12 @@ struct HomeMedRow: View {
             NavigationLink(destination:
                 DoseAddView(med: med),
                 label: {
-                    ButtonBorderView(text: "Take Now", width: 80, font: .footnote, padding: 8)
-
+                    ButtonBorderView(
+                        text: Strings.homeTakeNext.rawValue,
+                        width: 80,
+                        font: .footnote,
+                        padding: 8
+                    )
                 })
             Spacer()
                 .frame(width: 10)
@@ -43,7 +47,12 @@ struct HomeMedRow: View {
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(
-            "\(med.medColor) \(med.medSymbolLabel) icon, \(med.medTitle) \(med.medDisplay) taken \(med.medFormattedLastTakenDate), Take Now"
+            String(.homeAccessibilityIconTakeNow,
+                   values: [med.medColor,
+                            med.medSymbolLabel,
+                            med.medTitle,
+                            med.medDisplay,
+                            med.medFormattedLastTakenDate])
         )
     }
 }

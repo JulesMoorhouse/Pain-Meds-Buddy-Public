@@ -13,12 +13,14 @@ enum Strings: LocalizedStringKey {
     case commonDosage
     case commonEgString
     case commonEgNum
-    case commonOK
-    case commonSort
     case commonEmptyView
+    case commonOK
+    case commonNoDate
+    case commonNotTakenYet
     case commonPleaseSelect
     case commonPleaseAdd
-    
+    case commonSort
+
     case tabTitleHistory
     case tabTitleHome
     case tabTitleInProgress
@@ -35,6 +37,7 @@ enum Strings: LocalizedStringKey {
     case homeAccessibilityIconTakeNow
     case homeAccessibilityAvailable
     
+    case doseProgressAvailable
     case doseProgressUnknownMedication
     case doseProgressAccessibilityAvailable
     case doseProgressAccessibilityRemaining
@@ -162,26 +165,6 @@ extension View {
     }
 }
 
-//extension ModifiedContent where Modifier == AccessibilityAttachmentModifier {
-//    func accessibilityLabel(_ localizedString: Strings) -> ModifiedContent<Content, Modifier> {
-//
-//        let string: String = "\(localizedString.rawValue)"
-//
-//        let output = NSLocalizedString(string, comment: "")
-//
-//        return self.accessibilityLabel(output)
-//    }
-//
-//    func accessibilityLabel(_ localizedString: Strings, values: [String]) -> ModifiedContent<Content, Modifier> {
-//
-//        let string: String = "\(localizedString.rawValue)"
-//
-//        let output = String(format: NSLocalizedString(string, comment: ""), arguments: values)
-//
-//        return self.accessibilityLabel(output)
-//    }
-//}
-
 extension View {
     func accessibilityLabel(_ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
         
@@ -209,5 +192,13 @@ extension String {
         let output = NSLocalizedString(string, comment: "")
         
         self.init(format: output, arguments: values)
+    }
+
+    init(_ localizedString: Strings) {
+        let string: String = "\(localizedString.rawValue)"
+
+        let output = NSLocalizedString(string, comment: "")
+
+        self.init(format: output)
     }
 }

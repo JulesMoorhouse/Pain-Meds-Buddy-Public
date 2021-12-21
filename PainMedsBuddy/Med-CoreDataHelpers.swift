@@ -92,7 +92,7 @@ extension Med: MedProtocol {
             formatter.timeStyle = .short
             return formatter.string(from: date)
         } else {
-            return "Not taken yet"
+            return String(.commonNotTakenYet)
         }
     }
     

@@ -65,7 +65,7 @@ struct DoseEditView: View {
                     DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
                     label: {
                         HStack {
-                            TwoColumnView(col1: NSLocalizedString("Medication", comment: ""),
+                            TwoColumnView(col1: Strings.medEditNewMedication.rawValue,
                                           col2: selectedMed.medTitle)
                         }
 
@@ -75,8 +75,10 @@ struct DoseEditView: View {
                     Text(.doseEditAmount)
                         .foregroundColor(.secondary)
                     Spacer()
-                    
-                    TextField(String(.commonEgNum, values: [DoseDefault.Sensible.doseAmount()]), text: $amount.onChange(update))
+
+                    TextField(String(.commonEgNum,
+                                     values: [DoseDefault.Sensible.doseAmount()]),
+                              text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                     Text(selectedMed.medForm)
@@ -105,7 +107,9 @@ struct DoseEditView: View {
                 }
             }
         }
-        .navigationTitle(add ? "Add Dose" : "Edit Dose")
+        .navigationTitle(add
+            ? Strings.doseEditAddDose.rawValue
+            : Strings.doseEditEditDose.rawValue)
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
