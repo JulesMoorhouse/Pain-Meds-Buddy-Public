@@ -81,11 +81,14 @@ enum Strings: LocalizedStringKey {
     case medEditRemaining
     case medEditSequence
     case medEditSorry
+    case medEditSymbol
     
     case settingsAcknowledgements
     case settingsAddExampleData
     case settingsDeleteAllData
 }
+
+// https://gist.github.com/Jeehut/c8c9a8caf8dc7c02583a4a07dfbb37aa
 
 extension Text {
     init(_ localizedString: Strings) {
@@ -103,6 +106,99 @@ extension Text {
     
     init(_ localizedString: Strings, comment: StaticString) {
         self.init(localizedString.rawValue, tableName: nil, bundle: nil, comment: comment)
+    }
+}
+
+extension Label where Title == Text, Icon == Image {
+    init(_ localizedString: Strings, systemImage name: String) {
+        self.init(localizedString.rawValue, systemImage: name)
+    }
+}
+
+extension Button where Label == Text {
+    init(_ localizedString: Strings, action: @escaping () -> Void) {
+        
+        let string: String = "\(localizedString.rawValue)"
+
+        let output = NSLocalizedString(string, comment: "")
+        
+        self.init(output, action: action)
+    }
+}
+
+extension DatePicker where Label == Text {
+    init(
+        _ localizedString: Strings,
+        selection: Binding<Date>,
+        displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]
+    ) {
+        let string: String = "\(localizedString.rawValue)"
+
+        let output = NSLocalizedString(string, comment: "")
+        
+        self.init(output, selection: selection, displayedComponents: displayedComponents)
+    }
+}
+
+extension Picker where Label == Text {
+    init(_ localizedString: Strings, selection: Binding<SelectionValue>, @ViewBuilder content: () -> Content) {
+        
+        let string: String = "\(localizedString.rawValue)"
+
+        let output = NSLocalizedString(string, comment: "")
+        
+        self.init(output, selection: selection, content: content)
+    }
+}
+
+extension View {
+    func navigationTitle(_ localizedString: Strings) -> some View {
+        
+        let string: String = "\(localizedString.rawValue)"
+
+        let output = NSLocalizedString(string, comment: "")
+        
+        return self.navigationBarTitle(output)
+    }
+}
+
+//extension ModifiedContent where Modifier == AccessibilityAttachmentModifier {
+//    func accessibilityLabel(_ localizedString: Strings) -> ModifiedContent<Content, Modifier> {
+//
+//        let string: String = "\(localizedString.rawValue)"
+//
+//        let output = NSLocalizedString(string, comment: "")
+//
+//        return self.accessibilityLabel(output)
+//    }
+//
+//    func accessibilityLabel(_ localizedString: Strings, values: [String]) -> ModifiedContent<Content, Modifier> {
+//
+//        let string: String = "\(localizedString.rawValue)"
+//
+//        let output = String(format: NSLocalizedString(string, comment: ""), arguments: values)
+//
+//        return self.accessibilityLabel(output)
+//    }
+//}
+
+extension View {
+    func accessibilityLabel(_ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+        
+        let string: String = "\(localizedString.rawValue)"
+       
+        let output = NSLocalizedString(string, comment: "")
+        
+        return self.accessibilityLabel(output)
+    }
+
+    func accessibilityLabel(_ localizedString: Strings, values: [String]) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+        
+        let string: String = "\(localizedString.rawValue)"
+       
+        let output = String(format: NSLocalizedString(string, comment: ""), arguments: values)
+        
+        return self.accessibilityLabel(output)
     }
 }
 

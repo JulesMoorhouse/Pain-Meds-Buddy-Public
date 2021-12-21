@@ -45,18 +45,18 @@ struct HomeView: View {
             .padding([.horizontal, .bottom])
         }
     }
-    
+
     var body: some View {
         NavigationView {
             Group {
                 if noData {
-                    PlaceholderView(text: "There's nothing here right now!",
+                    PlaceholderView(text: Strings.commonEmptyView.rawValue,
                                     imageString: "pills")
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
                             if doses.count > 0 {
-                                Text("Current meds")
+                                Text(.homeCurrentMeds)
                                     .foregroundColor(.secondary)
                                     .padding(.leading)
 
@@ -73,7 +73,7 @@ struct HomeView: View {
                 }
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
-            .navigationTitle("Home")
+            .navigationTitle(.tabTitleHome)
         }
     }
 }

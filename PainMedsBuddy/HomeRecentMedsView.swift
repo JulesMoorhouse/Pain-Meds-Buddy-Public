@@ -23,7 +23,7 @@ struct HomeRecentMedsView: View {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {
-                    Text("Recently taken")
+                    Text(.homeRecentlyTaken)
                         .foregroundColor(.secondary)
 
                     ForEach(canTakeMeds(), id: \.self) { med in

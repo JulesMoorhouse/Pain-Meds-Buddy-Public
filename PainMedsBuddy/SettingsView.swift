@@ -18,22 +18,22 @@ struct SettingsView: View {
             Form {
                 NavigationLink(destination:
                     AcknowledgementsList()
-                        .navigationTitle("Acknowledgements"),
+                        .navigationTitle(.settingsAcknowledgements),
                     label: {
-                        Text("Acknowledgements")
+                        Text(.settingsAcknowledgements)
 
                     })
 
-                Button("Add Example Data") {
+                Button(.settingsAddExampleData) {
                     dataController.deleteAll()
                     try? dataController.createSampleData()
                 }
 
-                Button(NSLocalizedString("Delete All Data", comment: "")) {
+                Button(.settingsDeleteAllData) {
                     dataController.deleteAll()
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(.tabTitleSettings)
         }
     }
 }

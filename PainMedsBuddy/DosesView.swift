@@ -61,8 +61,11 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text: medsCount > 0 ? Strings.commonEmptyView.rawValue : Strings.commonPleaseAdd.rawValue,
-                                    imageString: "pills")
+                    PlaceholderView(text:
+                        medsCount > 0
+                            ? Strings.commonEmptyView.rawValue
+                            : Strings.commonPleaseAdd.rawValue,
+                        imageString: "pills")
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -82,7 +85,10 @@ struct DosesView: View {
                         EmptyView()
                 }
             )
-            .navigationTitle(showElapsedDoses ? NSLocalizedString("History", comment: "") : NSLocalizedString("In Progress", comment: ""))
+            .navigationTitle(
+                showElapsedDoses
+                    ? Strings.tabTitleHistory.rawValue
+                    : Strings.tabTitleInProgress.rawValue)
             .toolbar {
                 if medsCount > 0 {
                     Button(action: {
@@ -90,15 +96,19 @@ struct DosesView: View {
                     
                     }) {
                         if UIAccessibility.isVoiceOverRunning {
-                            Text("Add Dose")
+                            Text(.doseEditAddDose)
                         } else {
-                            Label("Add Dose", systemImage: "plus")
+                            Label(.doseEditAddDose, systemImage: "plus")
                         }
                     }
                 }
             }
             
-            PlaceholderView(text: medsCount > 0 ? "Please select or add a dose" : "Please add a medication before adding dose!", imageString: "eyedropper.halffull")
+            PlaceholderView(text:
+                medsCount > 0
+                    ? Strings.commonPleaseSelect.rawValue
+                    : Strings.commonPleaseAdd.rawValue,
+                imageString: "eyedropper.halffull")
         }
         // .navigationViewStyle(StackNavigationViewStyle())
     }

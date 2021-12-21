@@ -33,7 +33,7 @@ struct DoseMedSelectView: View {
             Button(action: {
                 self.showingSortOrder = true
             }) {
-                Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
+                Label(.commonSort, systemImage: "arrow.up.arrow.down")
             }
         }
     }
@@ -52,7 +52,7 @@ struct DoseMedSelectView: View {
                 MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
             }
         }
-        .navigationTitle("Select Med")
+        .navigationTitle(.selectMedSelectMed)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Color.clear // BugFix: Back button dissapears

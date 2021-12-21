@@ -66,7 +66,7 @@ struct MedEditView: View {
                 basicSettingsFields()
             }
             
-            Section(header: Text("Example Dosage")) {
+            Section(header: Text(.medEditExampleDosage)) {
                 HStack {
                     Spacer()
                     Text(med.medDisplay)
@@ -75,24 +75,24 @@ struct MedEditView: View {
                 }
             }
             
-            Section(header: Text("Symbol")) {
-                Text("Colour")
+            Section(header: Text(.medEditSymbol)) {
+                Text(.medEditColour)
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Med.colors, id: \.self, content: colourButton)
                 }
                 .padding(.vertical)
                 
-                Text("Image")
+                Text(.medEditImage)
                 SymbolsView(colour: Color($color.wrappedValue), selectedSymbol: $symbol.onChange(update))
                     .padding(.vertical)
             }
             
-            Section(header: Text("Notes")) {
+            Section(header: Text(.medEditNotes)) {
                 TextEditor(text: $notes.onChange(update))
             }
             
             Section {
-                Button("Delete this med") {
+                Button(.medEditDeleteThisMed) {
                     canDelete = dataController.hasRelationship(for: med) == false
                     activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
                     showAlert.toggle()
@@ -105,18 +105,18 @@ struct MedEditView: View {
         .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .deleteConfirmation:
-                return Alert(title: Text("Delete med"),
-                             message: Text("Are you sure you want to delete this med?"),
-                             primaryButton: .default(Text("Delete"), action: delete),
+                return Alert(title: Text(.medEditDeleteMed),
+                             message: Text(.medEditAreYouSure),
+                             primaryButton: .default(Text(.commonDelete), action: delete),
                              secondaryButton: .cancel())
             case .deleteDenied:
-                return Alert(title: Text("Delete med"),
-                             message: Text("Sorry you're using this med with a dose."),
-                             dismissButton: .default(Text("OK")))
+                return Alert(title: Text(.medEditDeleteMed),
+                             message: Text(.medEditSorry),
+                             dismissButton: .default(Text(.commonOK)))
             case .durationGapInfo:
-                return Alert(title: Text("Info"),
-                             message: Text("A duration gap is an additional time you might wish to add between dosage of medication."),
-                             dismissButton: .default(Text("OK")))
+                return Alert(title: Text(.medEditInfo),
+                             message: Text(.medEditGapInfo),
+                             dismissButton: .default(Text(.commonOK)))
             }
         }
     }
@@ -173,7 +173,7 @@ struct MedEditView: View {
             TextField("e.g. \(MedDefault.Sensible.title)", text: $title.onChange(update))
         
             HStack {
-                Text("Default Amount")
+                Text(.medEditDefaultAmount)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.defaultAmount)", text: $defaultAmount.onChange(update))
@@ -184,7 +184,7 @@ struct MedEditView: View {
             }
         
             HStack {
-                Text("Dosage")
+                Text(.commonDosage)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.dosage)", text: $dosage.onChange(update))
@@ -195,7 +195,7 @@ struct MedEditView: View {
             }
         
             HStack {
-                Text("Duration")
+                Text(.medEditDuration)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.duration)", text: $duration.onChange(update))
@@ -203,7 +203,7 @@ struct MedEditView: View {
             }
         
             HStack {
-                Text("Duration gap")
+                Text(.medEditDurationGap)
                     .foregroundColor(.secondary)
             
                 Button(action: {
@@ -218,7 +218,7 @@ struct MedEditView: View {
                     .multilineTextAlignment(.trailing)
             }
         
-            Picker("Measure", selection: $measure.onChange(update)) {
+            Picker(.medEditMeasure, selection: $measure.onChange(update)) {
                 ForEach(types, id: \.self) {
                     Text($0)
                         .foregroundColor(.primary)
@@ -227,7 +227,7 @@ struct MedEditView: View {
             .foregroundColor(.secondary)
         
             HStack {
-                Text("Form")
+                Text(.medEditForm)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.form)", text: $form.onChange(update))
@@ -235,7 +235,7 @@ struct MedEditView: View {
             }
         
             HStack {
-                Text("Remaining")
+                Text(.medEditRemaining)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.remaining)", text: $remaining.onChange(update))
@@ -246,7 +246,7 @@ struct MedEditView: View {
             }
         
             HStack {
-                Text("Sequence")
+                Text(.medEditSequence)
                     .foregroundColor(.secondary)
                 Spacer()
                 TextField("e.g. \(MedDefault.Sensible.sequence)", text: $sequence.onChange(update))

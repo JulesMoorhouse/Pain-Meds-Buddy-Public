@@ -58,7 +58,7 @@ struct DoseEditView: View {
     var body: some View {
         Form {
             Section(header: Text(.commonBasicSettings)) {
-                DatePicker("Date Time", selection: $takenDate)
+                DatePicker(.doseEditDateTime, selection: $takenDate)
                     .foregroundColor(.secondary)
 
                 NavigationLink(destination:
@@ -98,7 +98,7 @@ struct DoseEditView: View {
                     //                    $taken.wrappedValue.toggle()
                     //                }
 
-                    Button("Delete this Dose") {
+                    Button(.doseEditDeleteThisDose) {
                         showingDeleteConfirm.toggle()
                     }
                     .accentColor(.red)

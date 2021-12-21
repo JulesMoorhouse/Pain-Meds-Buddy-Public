@@ -22,7 +22,7 @@ struct HomeLowMedsView: View {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {
-                    Text("Meds running out")
+                    Text(.homeMedsRunningOut)
                         .foregroundColor(.secondary)
 
                     ForEach(lowMeds(), id: \.self) { med in

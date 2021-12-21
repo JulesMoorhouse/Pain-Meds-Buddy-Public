@@ -40,8 +40,7 @@ struct DoseRowView: View {
                                 .font(.caption)
                         }
                         .accessibilityElement(children: .ignore)
-                        .accessibilityLabel(
-                            "\(med.medColor) \(med.medSymbolLabel) icon, \(med.medTitle) \(med.medDisplay) taken \(med.medFormattedLastTakenDate)"
+                        .accessibilityLabel(.homeAccessibilityIconTaken, values: [med.medColor, med.medSymbolLabel, med.medTitle, med.medDisplay, med.medFormattedLastTakenDate]
                         )
                     }
                 }

@@ -48,9 +48,9 @@ struct MedsView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: { self.showAddView = true }) {
                 if UIAccessibility.isVoiceOverRunning {
-                    Text("Add Med")
+                    Text(.medEditAddMed)
                 } else {
-                    Label("Add Med", systemImage: "plus")
+                    Label(.medEditAddMed, systemImage: "plus")
                 }
             }
         }
@@ -62,7 +62,7 @@ struct MedsView: View {
                 Button(action: {
                     self.showingSortOrder = true
                 }) {
-                    Label(NSLocalizedString("Sort", comment: ""), systemImage: "arrow.up.arrow.down")
+                    Label(.commonSort, systemImage: "arrow.up.arrow.down")
                 }
             }
         }
@@ -74,7 +74,7 @@ struct MedsView: View {
         return NavigationView {
             Group {
                 if self.meds.isEmpty {
-                    PlaceholderView(text: "There's nothing here right now!",
+                    PlaceholderView(text: Strings.commonEmptyView.rawValue,
                                     imageString: "pills")
                 } else {
                     ZStack {
@@ -98,14 +98,15 @@ struct MedsView: View {
                 addMedToolbarItem
                 sortToolbarItem
             }
-            .navigationTitle("Medications")
+            .navigationTitle(.tabTitleMedication)
             .alert(isPresented: $showDeleteDenied) {
-                Alert(title: Text("Delete dose"),
-                      message: Text("Sorry you can not delete meds used with doses!"),
-                      dismissButton: .default(Text("OK")))
+                Alert(title: Text(.medEditDeleteMed),
+                      message: Text(.medsSorryUsed),
+                      dismissButton: .default(Text(.commonOK)))
             }
             
-            PlaceholderView(text: "Please select or add a medication", imageString: "eyedropper.halffull")
+            PlaceholderView(text: Strings.medsPleaseSelect.rawValue,
+                            imageString: "eyedropper.halffull")
         }
     }
     
