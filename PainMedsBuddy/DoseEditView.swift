@@ -100,7 +100,7 @@ struct DoseEditView: View {
                     //                    $taken.wrappedValue.toggle()
                     //                }
 
-                    Button(.doseEditDeleteThisDose) {
+                    Button(Strings.doseEditDeleteThisDose.rawValue) {
                         showingDeleteConfirm.toggle()
                     }
                     .accentColor(.red)

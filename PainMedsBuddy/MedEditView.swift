@@ -92,7 +92,7 @@ struct MedEditView: View {
             }
             
             Section {
-                Button(.medEditDeleteThisMed) {
+                Button(Strings.medEditDeleteThisMed.rawValue) {
                     canDelete = dataController.hasRelationship(for: med) == false
                     activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
                     showAlert.toggle()

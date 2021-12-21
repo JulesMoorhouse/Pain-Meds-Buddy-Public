@@ -52,7 +52,7 @@ struct DoseMedSelectView: View {
                 MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
             }
         }
-        .navigationTitle(.selectMedSelectMed)
+        .navigationTitle(Strings.selectMedSelectMed.rawValue)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Color.clear // BugFix: Back button dissapears

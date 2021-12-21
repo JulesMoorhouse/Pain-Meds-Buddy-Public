@@ -98,7 +98,7 @@ struct MedsView: View {
                 addMedToolbarItem
                 sortToolbarItem
             }
-            .navigationTitle(.tabTitleMedication)
+            .navigationTitle(Strings.tabTitleMedication.rawValue)
             .alert(isPresented: $showDeleteDenied) {
                 Alert(title: Text(.medEditDeleteMed),
                       message: Text(.medsSorryUsed),

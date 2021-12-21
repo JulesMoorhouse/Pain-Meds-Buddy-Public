@@ -73,7 +73,7 @@ struct HomeView: View {
                 }
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
-            .navigationTitle(.tabTitleHome)
+            .navigationTitle(Strings.tabTitleHome.rawValue)
         }
     }
 }

@@ -18,22 +18,22 @@ struct SettingsView: View {
             Form {
                 NavigationLink(destination:
                     AcknowledgementsList()
-                        .navigationTitle(.settingsAcknowledgements),
+                                .navigationTitle(Strings.settingsAcknowledgements.rawValue),
                     label: {
                         Text(.settingsAcknowledgements)
 
                     })
 
-                Button(.settingsAddExampleData) {
+                Button(Strings.settingsAddExampleData.rawValue) {
                     dataController.deleteAll()
                     try? dataController.createSampleData()
                 }
 
-                Button(.settingsDeleteAllData) {
+                Button(Strings.settingsDeleteAllData.rawValue) {
                     dataController.deleteAll()
                 }
             }
-            .navigationTitle(.tabTitleSettings)
+            .navigationTitle(Strings.tabTitleSettings.rawValue)
         }
     }
 }
