@@ -93,22 +93,36 @@ enum Strings: LocalizedStringKey {
 
 // https://gist.github.com/Jeehut/c8c9a8caf8dc7c02583a4a07dfbb37aa
 
+extension LocalizedStringKey {
+    var stringKey: String {
+        let description = "\(self)"
+
+        let components = description.components(separatedBy: "key: \"")
+            .map { $0.components(separatedBy: "\",") }
+        
+        return components[1][0]
+    }
+}
+    
 extension Text {
     init(_ localizedString: Strings) {
         self.init(localizedString.rawValue)
     }
     
     init(_ localizedString: Strings, values: [String]) {
-        
-        let string: String = "\(localizedString.rawValue)"
-        
-        let output = String(format: NSLocalizedString(string, comment: ""), arguments: values)
+        let output = String(format: NSLocalizedString(
+                                localizedString.rawValue.stringKey,
+                                comment: ""), arguments: values)
 
         self.init(output)
     }
     
     init(_ localizedString: Strings, comment: StaticString) {
-        self.init(localizedString.rawValue, tableName: nil, bundle: nil, comment: comment)
+        self.init(
+            localizedString.rawValue,
+            tableName: nil,
+            bundle: nil,
+            comment: comment)
     }
 }
 
@@ -120,10 +134,9 @@ extension Label where Title == Text, Icon == Image {
 
 extension Button where Label == Text {
     init(_ localizedString: Strings, action: @escaping () -> Void) {
-        
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         self.init(output, action: action)
     }
@@ -135,9 +148,9 @@ extension DatePicker where Label == Text {
         selection: Binding<Date>,
         displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]
     ) {
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         self.init(output, selection: selection, displayedComponents: displayedComponents)
     }
@@ -146,9 +159,9 @@ extension DatePicker where Label == Text {
 extension Picker where Label == Text {
     init(_ localizedString: Strings, selection: Binding<SelectionValue>, @ViewBuilder content: () -> Content) {
         
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         self.init(output, selection: selection, content: content)
     }
@@ -156,10 +169,9 @@ extension Picker where Label == Text {
 
 extension View {
     func navigationTitle(_ localizedString: Strings) -> some View {
-        
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         return self.navigationBarTitle(output)
     }
@@ -167,19 +179,20 @@ extension View {
 
 extension View {
     func accessibilityLabel(_ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
-        
-        let string: String = "\(localizedString.rawValue)"
-       
-        let output = NSLocalizedString(string, comment: "")
+               
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         return self.accessibilityLabel(output)
     }
 
     func accessibilityLabel(_ localizedString: Strings, values: [String]) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
-        
-        let string: String = "\(localizedString.rawValue)"
-       
-        let output = String(format: NSLocalizedString(string, comment: ""), arguments: values)
+               
+        let output = String(format: NSLocalizedString(
+                                localizedString.rawValue.stringKey,
+                                comment: ""),
+                            arguments: values)
         
         return self.accessibilityLabel(output)
     }
@@ -187,17 +200,17 @@ extension View {
 
 extension String {
     init(_ localizedString: Strings, values: [String]) {
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
         
         self.init(format: output, arguments: values)
     }
 
     init(_ localizedString: Strings) {
-        let string: String = "\(localizedString.rawValue)"
-
-        let output = NSLocalizedString(string, comment: "")
+        let output = NSLocalizedString(
+            localizedString.rawValue.stringKey,
+            comment: "")
 
         self.init(format: output)
     }
