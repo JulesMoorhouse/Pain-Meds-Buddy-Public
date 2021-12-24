@@ -26,6 +26,7 @@
 		886C30BE2763913B002A45B1 /* Int-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C30BD2763913B002A45B1 /* Int-Helper.swift */; };
 		8883BD87276951F700EF6DCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8883BD86276951F700EF6DCD /* Localizable.strings */; };
 		889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4CF52775E1B900E3B53B /* VStackFormView.swift */; };
+		889A4D00277622A000E3B53B /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 889A4CFF277622A000E3B53B /* XNavigation */; };
 		88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C982754EE620055BD9B /* DoseRowView.swift */; };
 		88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */; };
 		88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */; };
@@ -127,6 +128,7 @@
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
 				88E930A52760A8B300A98708 /* CircularProgress in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
+				889A4D00277622A000E3B53B /* XNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +239,7 @@
 				88E9309B2760A4B900A98708 /* AckGen */,
 				88E9309D2760A4B900A98708 /* AckGenUI */,
 				88E930A42760A8B300A98708 /* CircularProgress */,
+				889A4CFF277622A000E3B53B /* XNavigation */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -268,6 +271,7 @@
 			packageReferences = (
 				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
 				88E930A32760A8B300A98708 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
+				889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -559,6 +563,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DoubleSymmetry/XNavigation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
 		88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MartinP7r/AckGen.git";
@@ -578,6 +590,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		889A4CFF277622A000E3B53B /* XNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */;
+			productName = XNavigation;
+		};
 		88E9309B2760A4B900A98708 /* AckGen */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */;

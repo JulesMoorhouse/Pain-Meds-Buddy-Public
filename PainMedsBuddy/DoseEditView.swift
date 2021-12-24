@@ -56,7 +56,7 @@ struct DoseEditView: View {
     }
 
     var body: some View {
-        VStackFormView(useForm: !add) {
+        Form {
             Section(header: Text(.commonBasicSettings)) {
                 DatePicker(.doseEditDateTime, selection: $takenDate)
                     .foregroundColor(.secondary)

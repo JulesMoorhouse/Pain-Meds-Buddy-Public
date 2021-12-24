@@ -7,8 +7,11 @@
 
 import CircularProgress
 import SwiftUI
+import XNavigation
 
 struct DoseProgressView: View {
+    @EnvironmentObject var navigation: Navigation
+
     @ObservedObject var dose: Dose
     @ObservedObject var med: Med
 
@@ -77,7 +80,7 @@ struct DoseProgressView: View {
         .background(debug ? Color.yellow : nil)
         .frame(minWidth: size, minHeight: size)
     }
-    
+
     var detail: some View {
         VStack {
             if let med = med {
@@ -85,46 +88,49 @@ struct DoseProgressView: View {
                     .padding(.horizontal, 5)
             }
 
-            ButtonBorderView(
-                text: Strings.homeTakeNext.rawValue,
-                width: 100)
+            Button(action: {
+                navigation.pushView(
+                    DoseAddView(med: med),
+                    animated: true)
+            }) {
+                ButtonBorderView(
+                    text: Strings.homeTakeNext.rawValue,
+                    width: 100)
+            }
 
             Text(done
-                    ? countDown
-                    : String(.doseProgressAvailable))
+                ? countDown
+                : String(.doseProgressAvailable))
                 .foregroundColor(.primary)
         }
         .padding(.bottom, 70)
     }
-    
+
     var body: some View {
-        NavigationLink(destination:
-            DoseAddView(med: med),
-            label: {
-                ZStack {
-                    circle
-                    detail
-                }
-                .panelled(cornerRadius: 15)
-                .onAppear(perform: {
-                    self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                        self.nowDate = Date()
-                    }
-                })
-                .onDisappear(perform: {
-                    self.timer?.invalidate()
-                    self.timer = nil
-                })
-            })
-            .disabled(done)
-            .accessibilityElement(children: .ignore)
-            .accessibilityRemoveTraits(.isButton)
-            .accessibilityAddTraits(done ? .isStaticText : .isButton)
-            .accessibilityLabel(
-                done
-                    ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
-                    : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
-            )
+        ZStack {
+            circle
+            detail
+        }
+        .panelled(cornerRadius: 15)
+        .onAppear(perform: {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.nowDate = Date()
+            }
+        })
+        .onDisappear(perform: {
+            self.timer?.invalidate()
+            self.timer = nil
+        })
+
+        .disabled(done)
+        .accessibilityElement(children: .ignore)
+        .accessibilityRemoveTraits(.isButton)
+        .accessibilityAddTraits(done ? .isStaticText : .isButton)
+        .accessibilityLabel(
+            done
+                ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
+                : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
+        )
     }
 }
 

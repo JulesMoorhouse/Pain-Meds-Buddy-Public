@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import XNavigation
 
 @main
 struct PainMedsBuddyApp: App {
@@ -19,10 +20,13 @@ struct PainMedsBuddyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification), perform: save)
+            WindowReader { window in
+                ContentView()
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .environmentObject(dataController)
+                    .environmentObject(Navigation(window: window!))
+                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification), perform: save)
+            }
         }
     }
 

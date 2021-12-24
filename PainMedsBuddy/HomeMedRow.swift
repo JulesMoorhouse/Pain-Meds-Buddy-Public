@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import XNavigation
 
 struct HomeMedRow: View {
+    @EnvironmentObject var navigation: Navigation
+
     @ObservedObject var med: Med
 
     var detail: some View {
@@ -23,7 +26,7 @@ struct HomeMedRow: View {
                 .font(.caption)
         }
     }
-    
+
     var body: some View {
         HStack {
             MedSymbolView(med: med)
@@ -35,16 +38,20 @@ struct HomeMedRow: View {
 
             Spacer()
 
-            NavigationLink(destination:
-                DoseAddView(med: med),
-                label: {
-                    ButtonBorderView(
-                        text: Strings.homeTakeNext.rawValue,
-                        width: 80,
-                        font: .footnote,
-                        padding: 8
-                    )
-                })
+            Button(action: {
+                navigation.pushView(
+                    DoseAddView(med: med),
+                    animated: true
+                )
+            }) {
+                ButtonBorderView(
+                    text: Strings.homeTakeNext.rawValue,
+                    width: 80,
+                    font: .footnote,
+                    padding: 8
+                )
+            }
+
             Spacer()
                 .frame(width: 10)
         }
