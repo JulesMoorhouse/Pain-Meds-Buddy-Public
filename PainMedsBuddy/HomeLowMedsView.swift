@@ -32,7 +32,8 @@ struct HomeLowMedsView: View {
                         Button(action: {
                             navigation.pushView(
                                 MedEditView(med: med, add: false),
-                                animated: true)
+                                animated: true
+                            )
                         }) {
                             HStack {
                                 MedRowView(med: med)

@@ -28,6 +28,7 @@ struct PlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceholderView(
             text: Strings.commonEmptyView.rawValue,
-            imageString: "pills")
+            imageString: "pills"
+        )
     }
 }

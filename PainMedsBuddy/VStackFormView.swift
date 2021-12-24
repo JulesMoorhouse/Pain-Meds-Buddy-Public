@@ -26,7 +26,7 @@ struct VStackFormView<Content: View>: View {
 
 struct VStackFormView_Previews: PreviewProvider {
     static var previews: some View {
-        VStackFormView(useForm: true){
+        VStackFormView(useForm: true) {
             EmptyView()
         }
     }

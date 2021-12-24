@@ -21,12 +21,13 @@ struct SettingsView: View {
                 Button(action: {
                     navigation.pushView(
                         AcknowledgementsList()
-                            .navigationTitle(Strings.settingsAcknowledgements.rawValue), animated: true)
+                            .navigationTitle(Strings.settingsAcknowledgements.rawValue), animated: true
+                    )
                 }) {
                     HStack {
                         Text(.settingsAcknowledgements)
                             .foregroundColor(Color.primary)
-                        
+
                         Spacer()
 
                         ChevronRightView()

@@ -30,32 +30,32 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
         self.width = width
         self.height = height
     }
-    
+
     var body: some View {
         Color.black.opacity(0.2)
             .ignoresSafeArea()
-        
+
         VStack(spacing: 5) {
             ZStack {
                 HStack {
                     Spacer()
-                
+
                     Text(text)
                         .bold()
-                
+
                     Spacer()
                 }
-                
+
                 HStack {
                     Spacer()
                         .frame(width: 5)
-                    
+
                     leftButton
-                
+
                     Spacer()
-                
+
                     rightButton
-                    
+
                     Spacer()
                         .frame(width: 5)
                 }
@@ -65,7 +65,7 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
                 .frame(height: 5)
 
             content
-            
+
             Spacer()
         }
         .padding()

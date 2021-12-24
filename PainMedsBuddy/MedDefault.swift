@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MedDefault {
     enum Sensible {
-        static let title: String = String(.medEditNewMedication)
+        static let title = String(.medEditNewMedication)
         static let color: String = "Dark Blue"
         static let defaultAmount: NSDecimalNumber = 1.0
         static let lastTakeDate = Date()
@@ -20,11 +20,11 @@ struct MedDefault {
         static let dosage: NSDecimalNumber = 100
         static let remaining: Int16 = 100
         static let sequence: Int16 = 0
-        static let measure: String = String(.medEditMg)
-        static let form: String = String(.medEditPill)
+        static let measure = String(.medEditMg)
+        static let form = String(.medEditPill)
         static let symbol: String = "pills"
         static let notes: String = ""
-        
+
         static func medDefaultAmount() -> String {
             "\(String(describing: MedDefault.Sensible.dosage))"
         }
@@ -36,21 +36,21 @@ struct MedDefault {
         static func medDurationGap() -> String {
             "\(String(describing: MedDefault.Sensible.durationGap))"
         }
-        
+
         static func medDosage() -> String {
             "\(String(describing: MedDefault.Sensible.defaultAmount))"
         }
-        
+
         static func medRemaining() -> String {
             "\(String(describing: MedDefault.Sensible.remaining))"
         }
-        
+
         static func medSequence() -> String {
             "\(String(describing: MedDefault.Sensible.sequence))"
         }
     }
 
-    static let title: String = String(.medEditNewMedication)
+    static let title = String(.medEditNewMedication)
     static let color: String = "Dark Blue"
     static let defaultAmount: NSDecimalNumber = 0.0
     static let lastTakeDate = Date()
@@ -60,7 +60,7 @@ struct MedDefault {
     static let dosage: NSDecimalNumber = 0
     static let remaining: Int16 = 0
     static let sequence: Int16 = 0
-    static let measure: String = String(.medEditMg)
+    static let measure = String(.medEditMg)
     static let form: String = ""
     static let symbol: String = "pills"
     static let notes: String = ""

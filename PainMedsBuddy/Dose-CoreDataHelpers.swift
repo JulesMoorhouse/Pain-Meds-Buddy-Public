@@ -21,13 +21,13 @@ extension Dose: Comparable {
     }
 
     var doseTotalTime: Int {
-        Int(self.med?.duration ?? MedDefault.duration) + Int(self.med?.durationGap ?? MedDefault.durationGap)
+        Int(med?.duration ?? MedDefault.duration) + Int(med?.durationGap ?? MedDefault.durationGap)
     }
 
     var doseElapsedDate: Date? {
         if elapsed == false {
-            if let duration = self.med?.medTotalDuration {
-                let modifiedDate = self.doseTakenDate.addingTimeInterval(TimeInterval(duration))
+            if let duration = med?.medTotalDuration {
+                let modifiedDate = doseTakenDate.addingTimeInterval(TimeInterval(duration))
 
                 return modifiedDate
             }
@@ -59,20 +59,20 @@ extension Dose: Comparable {
     }
 
     var doseTotalDosage: String {
-        let temp = ((amount ?? DoseDefault.amount) as Decimal) * ((self.med?.dosage ?? MedDefault.dosage) as Decimal)
+        let temp = ((amount ?? DoseDefault.amount) as Decimal) * ((med?.dosage ?? MedDefault.dosage) as Decimal)
         return "\(temp)"
     }
 
     var doseDisplayFull: String {
-        return Dose.displayFull(amount: self.doseAmount,
-                                dosage: self.med?.medDosage ?? "\(MedDefault.dosage)",
-                                totalDosage: self.doseTotalDosage,
-                                measure: self.med?.measure ?? "\(MedDefault.measure)",
-                                form: self.med?.form ?? MedDefault.form)
+        return Dose.displayFull(amount: doseAmount,
+                                dosage: med?.medDosage ?? "\(MedDefault.dosage)",
+                                totalDosage: doseTotalDosage,
+                                measure: med?.measure ?? "\(MedDefault.measure)",
+                                form: med?.form ?? MedDefault.form)
     }
 
     var doseDisplay: String {
-        "\(self.doseAmount) x \(self.med?.medDosage ?? "\(MedDefault.dosage)")\(self.med?.measure ?? "\(MedDefault.measure)") \(self.med?.form ?? MedDefault.form)"
+        "\(doseAmount) x \(med?.medDosage ?? "\(MedDefault.dosage)")\(med?.measure ?? "\(MedDefault.measure)") \(med?.form ?? MedDefault.form)"
     }
 
     public static func displayFull(amount: String, dosage: String, totalDosage: String, measure: String, form: String) -> String {

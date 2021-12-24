@@ -10,18 +10,18 @@ import SwiftUI
 struct SymbolsView: View {
     let colour: Color
     let size: CGFloat = 70
-    
+
     @Binding var selectedSymbol: String
-    
+
     var columns: [GridItem] {
         [GridItem(.adaptive(minimum: size, maximum: size))]
     }
-    
+
     init(colour: Color, selectedSymbol: Binding<String>) {
         self.colour = colour
         _selectedSymbol = selectedSymbol
     }
-    
+
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(Symbol.allSymbols) { symbol in
@@ -32,7 +32,7 @@ struct SymbolsView: View {
                         .padding()
                         .frame(width: size, height: size)
                         .foregroundColor(colour)
-                    
+
                     if symbol.id == selectedSymbol {
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(lineWidth: 2)

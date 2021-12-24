@@ -12,7 +12,7 @@ import XNavigation
 
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var navigation: Navigation
@@ -29,7 +29,7 @@ struct MedsView: View {
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
-    
+
     var medsList: some View {
         List {
             ForEach(items, id: \.self) { med in
@@ -49,7 +49,7 @@ struct MedsView: View {
         .listStyle(InsetGroupedListStyle())
         .disabled($showingSortOrder.wrappedValue == true)
     }
-    
+
     var addMedToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: {
@@ -68,7 +68,7 @@ struct MedsView: View {
             }
         }
     }
-    
+
     var sortToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             if meds.count > 0 {
@@ -80,10 +80,10 @@ struct MedsView: View {
             }
         }
     }
-    
+
     var body: some View {
 //        let items: [Med] = DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
-        
+
         return NavigationView {
             Group {
                 if self.meds.isEmpty {
@@ -92,7 +92,7 @@ struct MedsView: View {
                 } else {
                     ZStack {
                         medsList
-        
+
                         if $showingSortOrder.wrappedValue == true {
                             MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
                         }
@@ -109,21 +109,21 @@ struct MedsView: View {
                       message: Text(.medsSorryUsed),
                       dismissButton: .default(Text(.commonOK)))
             }
-            
+
             PlaceholderView(text: Strings.medsPleaseSelect.rawValue,
                             imageString: "eyedropper.halffull")
         }
     }
-    
+
     func deleteMed(_ offsets: IndexSet, items: [Med]) {
         let deleteItems = offsets.map { items[$0] }
-        
-        let count = dataController.AnyRelationships(for: deleteItems)
+
+        let count = dataController.anyRelationships(for: deleteItems)
         if count == 0 {
             for offset in offsets {
                 let item = items[offset]
                 dataController.delete(item)
-            
+
                 // Bug fix
 //                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
 //                                        self.meds.remove(at: itemToRemoveIndex)

@@ -20,7 +20,8 @@ struct DoseProgressView: View {
     let gradient = LinearGradient(
         gradient: Gradient(colors:
             [Color.blue, Color.blue]),
-        startPoint: .top, endPoint: .top)
+        startPoint: .top, endPoint: .top
+    )
 
     var debug = false
 
@@ -59,9 +60,10 @@ struct DoseProgressView: View {
                 progress: progress,
                 fill: gradient,
                 lineWidth: 5.0,
-                showText: false)
-                .frame(width: size - 20, height: size - 20)
-                .padding(.top, 10)
+                showText: false
+            )
+            .frame(width: size - 20, height: size - 20)
+            .padding(.top, 10)
 
             Text(med.medTitle)
                 .font(.caption)
@@ -91,11 +93,13 @@ struct DoseProgressView: View {
             Button(action: {
                 navigation.pushView(
                     DoseAddView(med: med),
-                    animated: true)
+                    animated: true
+                )
             }) {
                 ButtonBorderView(
                     text: Strings.homeTakeNext.rawValue,
-                    width: 100)
+                    width: 100
+                )
             }
 
             Text(done

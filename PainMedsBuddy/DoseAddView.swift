@@ -16,7 +16,8 @@ struct DoseAddView: View {
         DoseEditView(
             dataController: dataController,
             dose: dataController.createDose(selectedMed: med),
-            add: true)
+            add: true
+        )
     }
 }
 

@@ -56,7 +56,8 @@ struct DoseRowView: View {
                              med.medSymbolLabel,
                              med.medTitle,
                              med.medDisplay,
-                             med.medFormattedLastTakenDate])
+                             med.medFormattedLastTakenDate]
+                )
             }
         }
     }

@@ -36,10 +36,10 @@ struct DoseEditView: View {
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
         ]
 
-        self._meds = FetchRequest(fetchRequest: fetchRequest)
+        _meds = FetchRequest(fetchRequest: fetchRequest)
 
         if let currentMed = dose.med {
             _selectedMed = State(wrappedValue: currentMed)
@@ -67,7 +67,8 @@ struct DoseEditView: View {
                 Button(action: {
                     navigation.pushView(
                         DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
-                        animated: true)
+                        animated: true
+                    )
                 }) {
                     HStack {
                         TwoColumnView(col1: Strings.medEditNewMedication.rawValue,

@@ -37,7 +37,7 @@ struct HomeRecentMedsView: View {
             }
         }
     }
-    
+
     func uniqueDoseMeds() -> [Med] {
         let uniqeDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap { $0.med }))
         return uniqeDoseMeds

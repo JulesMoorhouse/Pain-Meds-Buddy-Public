@@ -37,7 +37,7 @@ struct DoseMedSelectView: View {
             }
         }
     }
- 
+
     var body: some View {
         ZStack {
             List {
@@ -60,7 +60,7 @@ struct DoseMedSelectView: View {
             sortToolbarItem
         }
     }
-    
+
     func medRow(med: Med, index: Int) -> some View {
         HStack {
             MedRowView(med: med)

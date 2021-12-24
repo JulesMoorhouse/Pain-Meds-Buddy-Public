@@ -31,21 +31,21 @@ struct MedEditView: View {
     @State private var notes: String
     @State private var remaining: String
     @State private var sequence: String
-    
+
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
     @State private var canDelete = false
-    
+
     let types = ["mg", "ml", "Tspn"]
 
     let colorColumns = [
-        GridItem(.adaptive(minimum: 44))
+        GridItem(.adaptive(minimum: 44)),
     ]
-    
+
     init(med: Med, add: Bool) {
         self.med = med
         self.add = add
-        
+
         _title = State(wrappedValue: med.medTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
         _color = State(wrappedValue: med.medColor)
@@ -59,13 +59,13 @@ struct MedEditView: View {
         _remaining = State(wrappedValue: med.medRemaining)
         _sequence = State(wrappedValue: med.medSequence)
     }
-    
+
     var body: some View {
         Form {
             Section(header: Text(.commonBasicSettings)) {
                 basicSettingsFields()
             }
-            
+
             Section(header: Text(.medEditExampleDosage)) {
                 HStack {
                     Spacer()
@@ -74,23 +74,23 @@ struct MedEditView: View {
                         .foregroundColor(.secondary)
                 }
             }
-            
+
             Section(header: Text(.medEditSymbol)) {
                 Text(.medEditColour)
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Med.colors, id: \.self, content: colourButton)
                 }
                 .padding(.vertical)
-                
+
                 Text(.medEditImage)
                 SymbolsView(colour: Color($color.wrappedValue), selectedSymbol: $symbol.onChange(update))
                     .padding(.vertical)
             }
-            
+
             Section(header: Text(.medEditNotes)) {
                 TextEditor(text: $notes.onChange(update))
             }
-            
+
             Section {
                 Button(Strings.medEditDeleteThisMed.rawValue) {
                     canDelete = dataController.hasRelationship(for: med) == false
@@ -122,7 +122,7 @@ struct MedEditView: View {
             }
         }
     }
-    
+
     func update() {
         med.dose?.objectWillChange.send()
 
@@ -139,18 +139,18 @@ struct MedEditView: View {
         med.remaining = Int16(remaining) ?? MedDefault.remaining
         med.sequence = Int16(sequence) ?? MedDefault.sequence
     }
-    
+
     func delete() {
         dataController.delete(med)
         presentationMode.wrappedValue.dismiss()
     }
-    
+
     func colourButton(for item: String) -> some View {
         ZStack {
             Color(item)
                 .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(6)
-            
+
             if item == color {
                 Image(systemName: "checkmark.circle")
                     .foregroundColor(.white)
@@ -169,13 +169,13 @@ struct MedEditView: View {
         )
         .accessibilityLabel(LocalizedStringKey(item))
     }
-    
+
     func basicSettingsFields() -> some View {
         Group {
             TextField(String(.commonEgString,
                              values: [MedDefault.Sensible.title]),
                       text: $title.onChange(update))
-            
+
             HStack {
                 Text(.medEditDefaultAmount)
                     .foregroundColor(.secondary)
@@ -188,7 +188,7 @@ struct MedEditView: View {
                 Text(med.medForm)
                     .foregroundColor(.secondary)
             }
-        
+
             HStack {
                 Text(.commonDosage)
                     .foregroundColor(.secondary)
@@ -201,7 +201,7 @@ struct MedEditView: View {
                 Text(med.medMeasure)
                     .foregroundColor(.secondary)
             }
-        
+
             HStack {
                 Text(.medEditDuration)
                     .foregroundColor(.secondary)
@@ -211,11 +211,11 @@ struct MedEditView: View {
                           text: $duration.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
-        
+
             HStack {
                 Text(.medEditDurationGap)
                     .foregroundColor(.secondary)
-            
+
                 Button(action: {
                     activeAlert = .durationGapInfo
                     showAlert.toggle()
@@ -229,7 +229,7 @@ struct MedEditView: View {
                           text: $durationGap.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
-        
+
             Picker(.medEditMeasure, selection: $measure.onChange(update)) {
                 ForEach(types, id: \.self) {
                     Text($0)
@@ -237,7 +237,7 @@ struct MedEditView: View {
                 }
             }
             .foregroundColor(.secondary)
-        
+
             HStack {
                 Text(.medEditForm)
                     .foregroundColor(.secondary)
@@ -247,7 +247,7 @@ struct MedEditView: View {
                           text: $form.onChange(update))
                     .multilineTextAlignment(.trailing)
             }
-        
+
             HStack {
                 Text(.medEditRemaining)
                     .foregroundColor(.secondary)
@@ -260,7 +260,7 @@ struct MedEditView: View {
                 Text(med.medForm)
                     .foregroundColor(.secondary)
             }
-        
+
             HStack {
                 Text(.medEditSequence)
                     .foregroundColor(.secondary)

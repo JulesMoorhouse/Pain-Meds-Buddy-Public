@@ -30,7 +30,7 @@ struct PainMedsBuddyApp: App {
         }
     }
 
-    func save(_ note: Notification) {
+    func save(_: Notification) {
         dataController.save()
     }
 }

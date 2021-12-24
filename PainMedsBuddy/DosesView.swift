@@ -13,27 +13,27 @@ import XNavigation
 struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
     static let historyTag: String? = "History"
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var navigation: Navigation
 
-    let showElapsedDoses: Bool    
+    let showElapsedDoses: Bool
     let doses: FetchRequest<Dose>
-    
+
     var medsCount: Int {
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         return dataController.count(for: fetchRequest)
     }
-    
-    init(dataController: DataController, showElapsedDoses: Bool) {
+
+    init(dataController _: DataController, showElapsedDoses: Bool) {
         self.showElapsedDoses = showElapsedDoses
-        
+
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
+            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
         ], predicate: NSPredicate(format: "elapsed = %d", showElapsedDoses))
     }
-    
+
     // INFO: Results to an array of section arrays
     func resultsToArray(_ result: FetchedResults<Dose>) -> [[Dose]] {
         let dict = Dictionary(grouping: result) { (sequence: Dose) in
@@ -45,7 +45,7 @@ struct DosesView: View {
 
         return sorted.map { $0.value }
     }
-    
+
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
             DoseRowView(dose: dose)
@@ -57,7 +57,7 @@ struct DosesView: View {
 
     var body: some View {
         let data: [[Dose]] = resultsToArray(self.doses.wrappedValue)
-        
+
         return NavigationView {
             Group {
                 if data.isEmpty {
@@ -96,7 +96,7 @@ struct DosesView: View {
                     }
                 }
             }
-            
+
             PlaceholderView(text:
                 medsCount > 0
                     ? Strings.commonPleaseSelect.rawValue
@@ -105,7 +105,7 @@ struct DosesView: View {
         }
         // .navigationViewStyle(StackNavigationViewStyle())
     }
-    
+
     func deleteDose(_ offsets: IndexSet, from doses: [Dose]) {
         for offset in offsets {
             let item = doses[offset]
@@ -118,7 +118,7 @@ struct DosesView: View {
 
 struct DosesView_Previews: PreviewProvider {
     static var dataController = DataController.preview
-    
+
     static var previews: some View {
         DosesView(dataController: dataController, showElapsedDoses: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)

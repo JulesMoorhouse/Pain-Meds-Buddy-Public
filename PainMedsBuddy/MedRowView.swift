@@ -26,9 +26,9 @@ struct MedRowView: View {
                     .foregroundColor(.secondary)
                     .font(.caption)
             }
-            
+
             Spacer()
-            
+
             ChevronRightView()
         }
         .accessibilityElement(children: .ignore)

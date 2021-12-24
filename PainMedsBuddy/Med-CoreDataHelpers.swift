@@ -12,9 +12,22 @@ extension Med: MedProtocol {
     public enum SortOrder {
         case optimzed, title, creationDate, remaining, lastTaken
     }
-    
-    static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
-        
+
+    static let colors = [
+        "Pink",
+        "Purple",
+        "Red",
+        "Orange",
+        "Gold",
+        "Green",
+        "Teal",
+        "Light Blue",
+        "Dark Blue",
+        "Midnight",
+        "Dark Gray",
+        "Gray",
+    ]
+
     var medTitle: String {
         title ?? MedDefault.title
     }
@@ -31,7 +44,7 @@ extension Med: MedProtocol {
         }
         return MedDefault.defaultAmount as Decimal
     }
-    
+
     var medColor: String {
         color ?? MedDefault.color
     }
@@ -39,7 +52,7 @@ extension Med: MedProtocol {
     var medSymbol: String {
         symbol ?? MedDefault.symbol
     }
-    
+
     var medSymbolLabel: String {
         let item = Symbol.allSymbols.first(where: { $0.id == medSymbol })
         if let item = item {
@@ -47,7 +60,7 @@ extension Med: MedProtocol {
         }
         return ""
     }
-    
+
     var medDosage: String {
         "\(medDosageDecimal)"
     }
@@ -60,7 +73,7 @@ extension Med: MedProtocol {
         }
         return MedDefault.dosage as Decimal
     }
-    
+
     var medDuration: String {
         "\(String(describing: duration))"
     }
@@ -68,7 +81,7 @@ extension Med: MedProtocol {
     var medDurationGap: String {
         "\(String(describing: durationGap))"
     }
-    
+
     var medForm: String {
         form ?? MedDefault.form
     }
@@ -76,7 +89,7 @@ extension Med: MedProtocol {
     var medMeasure: String {
         measure ?? MedDefault.measure
     }
-    
+
     var medNotes: String {
         notes ?? MedDefault.notes
     }
@@ -84,7 +97,7 @@ extension Med: MedProtocol {
     var medLastTakenDate: Date {
         lastTakenDate ?? MedDefault.lastTakeDate
     }
-    
+
     var medFormattedLastTakenDate: String {
         if let date = lastTakenDate {
             let formatter = DateFormatter()
@@ -95,27 +108,27 @@ extension Med: MedProtocol {
             return String(.commonNotTakenYet)
         }
     }
-    
+
     var medCreationDate: Date {
         creationDate ?? MedDefault.createdDate
     }
-    
+
     var medRemaining: String {
         "\(String(describing: remaining))"
     }
-    
+
     var medSequence: String {
         "\(String(describing: sequence))"
     }
-    
+
     var medTotalDosage: String {
         "\(medDefaultAmountDecimal * medDosageDecimal)"
     }
-    
+
     var medDisplay: String {
         "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(medTotalDosage)\(medMeasure)"
     }
-    
+
     var medDurationToTime: [Int] {
         let hours = Int(duration / 60)
         let minutes = Int(duration % 60)
@@ -133,15 +146,15 @@ extension Med: MedProtocol {
         let minutes = Int((duration + durationGap) % 60)
         return [hours, minutes]
     }
-    
+
     var medTotalDuration: Int {
         Int(duration) + Int(durationGap)
     }
-    
+
     static var example: Med {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
-        
+
         let med = Med(context: viewContext)
         med.title = "Example med"
         med.notes = "This is an exmaple med"
@@ -157,7 +170,7 @@ extension Med: MedProtocol {
         med.symbol = Symbol.allSymbols.randomElement()?.id
         med.creationDate = Date()
         med.lastTakenDate = Date()
-        
+
         return med
     }
 }
