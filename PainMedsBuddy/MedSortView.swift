@@ -36,7 +36,9 @@ struct MedSortView: View {
                 ButtonBorderView(text: Strings.sortTitle.rawValue)
             }
             .disabled(sortOrder == .title)
-        }, close: {
+        },
+        leftButton: {},
+        rightButton: {
             Button(action: {
                 showingSortOrder = false
             }, label: {

@@ -25,6 +25,7 @@
 		886C30BC2763912C002A45B1 /* String-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C30BB2763912C002A45B1 /* String-Helper.swift */; };
 		886C30BE2763913B002A45B1 /* Int-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C30BD2763913B002A45B1 /* Int-Helper.swift */; };
 		8883BD87276951F700EF6DCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8883BD86276951F700EF6DCD /* Localizable.strings */; };
+		889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4CF52775E1B900E3B53B /* VStackFormView.swift */; };
 		88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C982754EE620055BD9B /* DoseRowView.swift */; };
 		88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */; };
 		88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */; };
@@ -82,6 +83,7 @@
 		886C30BB2763912C002A45B1 /* String-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Helper.swift"; sourceTree = "<group>"; };
 		886C30BD2763913B002A45B1 /* Int-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int-Helper.swift"; sourceTree = "<group>"; };
 		8883BD86276951F700EF6DCD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		889A4CF52775E1B900E3B53B /* VStackFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStackFormView.swift; sourceTree = "<group>"; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88AB7C982754EE620055BD9B /* DoseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseRowView.swift; sourceTree = "<group>"; };
 		88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEditView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
+				889A4CF52775E1B900E3B53B /* VStackFormView.swift */,
 			);
 			path = PainMedsBuddy;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 				88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */,
 				88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */,
+				889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
