@@ -10,6 +10,7 @@ import SwiftUI
 struct TwoColumnView: View {
     let col1: LocalizedStringKey
     let col2: String
+    let hasChevron: Bool
 
     var body: some View {
         Group {
@@ -17,6 +18,12 @@ struct TwoColumnView: View {
                 .foregroundColor(.secondary)
             Spacer()
             Text(col2)
+
+            if hasChevron {
+                Image(systemName: "chevron.right")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
         }
     }
 }
@@ -26,6 +33,6 @@ struct TwoColumnView_Previews: PreviewProvider {
     static var col2 = "Col2"
 
     static var previews: some View {
-        TwoColumnView(col1: col1, col2: col2)
+        TwoColumnView(col1: col1, col2: col2, hasChevron: true)
     }
 }

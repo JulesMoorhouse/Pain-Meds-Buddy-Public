@@ -8,6 +8,7 @@
 
 import CoreData
 import SwiftUI
+import XNavigation
 
 struct DoseEditView: View {
     let dose: Dose
@@ -15,6 +16,8 @@ struct DoseEditView: View {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var navigation: Navigation
+
     @FetchRequest private var meds: FetchedResults<Med>
 
     @State private var selectedMed: Med
@@ -61,15 +64,17 @@ struct DoseEditView: View {
                 DatePicker(.doseEditDateTime, selection: $takenDate)
                     .foregroundColor(.secondary)
 
-                NavigationLink(destination:
-                    DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
-                    label: {
-                        HStack {
-                            TwoColumnView(col1: Strings.medEditNewMedication.rawValue,
-                                          col2: selectedMed.medTitle)
-                        }
-
-                    })
+                Button(action: {
+                    navigation.pushView(
+                        DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
+                        animated: true)
+                }) {
+                    HStack {
+                        TwoColumnView(col1: Strings.medEditNewMedication.rawValue,
+                                      col2: selectedMed.medTitle,
+                                      hasChevron: true)
+                    }
+                }
 
                 HStack {
                     Text(.doseEditAmount)
