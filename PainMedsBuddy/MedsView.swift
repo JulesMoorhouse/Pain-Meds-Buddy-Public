@@ -8,20 +8,21 @@
 
 import CoreData
 import SwiftUI
+import XNavigation
 
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+    @EnvironmentObject var navigation: Navigation
+
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
                   predicate: nil) var meds: FetchedResults<Med>
 
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimzed
-    @State private var showAddView = false
     @State private var canDelete = false
     @State private var showDeleteDenied = false
 
@@ -32,7 +33,12 @@ struct MedsView: View {
     var medsList: some View {
         List {
             ForEach(items, id: \.self) { med in
-                NavigationLink(destination: MedEditView(med: med, add: false)) {
+                Button(action: {
+                    navigation.pushView(
+                        MedEditView(med: med, add: false),
+                        animated: true
+                    )
+                }) {
                     MedRowView(med: med)
                 }
             }
@@ -46,7 +52,14 @@ struct MedsView: View {
     
     var addMedToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: { self.showAddView = true }) {
+            Button(action: {
+                navigation.pushView(
+                    MedAddView()
+                        .environment(\.managedObjectContext, managedObjectContext)
+                        .environmentObject(dataController),
+                    animated: true
+                )
+            }) {
                 if UIAccessibility.isVoiceOverRunning {
                     Text(.medEditAddMed)
                 } else {
@@ -86,14 +99,6 @@ struct MedsView: View {
                     }
                 }
             }
-            .background(
-                NavigationLink(destination: MedAddView()
-                    .environment(\.managedObjectContext, managedObjectContext)
-                    .environmentObject(dataController),
-                    isActive: $showAddView) {
-                        EmptyView()
-                }
-            )
             .toolbar {
                 addMedToolbarItem
                 sortToolbarItem

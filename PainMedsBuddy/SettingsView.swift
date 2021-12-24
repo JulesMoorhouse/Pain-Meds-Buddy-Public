@@ -7,22 +7,31 @@
 
 import AckGenUI
 import SwiftUI
+import XNavigation
 
 struct SettingsView: View {
     static let SettingsTag: String? = "Settings"
 
     @EnvironmentObject var dataController: DataController
+    @EnvironmentObject var navigation: Navigation
 
     var body: some View {
         NavigationView {
             Form {
-                NavigationLink(destination:
-                    AcknowledgementsList()
-                                .navigationTitle(Strings.settingsAcknowledgements.rawValue),
-                    label: {
+                Button(action: {
+                    navigation.pushView(
+                        AcknowledgementsList()
+                            .navigationTitle(Strings.settingsAcknowledgements.rawValue), animated: true)
+                }) {
+                    HStack {
                         Text(.settingsAcknowledgements)
+                            .foregroundColor(Color.primary)
+                        
+                        Spacer()
 
-                    })
+                        ChevronRightView()
+                    }
+                }
 
                 Button(Strings.settingsAddExampleData.rawValue) {
                     dataController.deleteAll()

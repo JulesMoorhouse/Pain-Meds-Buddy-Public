@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import XNavigation
 
 struct HomeLowMedsView: View {
+    @EnvironmentObject var navigation: Navigation
+
     let meds: FetchedResults<Med>
 
     var items: [Med] {
@@ -26,13 +29,16 @@ struct HomeLowMedsView: View {
                         .foregroundColor(.secondary)
 
                     ForEach(lowMeds(), id: \.self) { med in
-                        NavigationLink(destination: MedEditView(med: med, add: false)) {
+                        Button(action: {
+                            navigation.pushView(
+                                MedEditView(med: med, add: false),
+                                animated: true)
+                        }) {
                             HStack {
                                 MedRowView(med: med)
                                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                                Image(systemName: "chevron.right")
-                                    .font(.body)
+                                ChevronRightView()
 
                                 Spacer()
                                     .frame(width: 10)

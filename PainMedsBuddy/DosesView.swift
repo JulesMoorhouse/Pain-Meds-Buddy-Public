@@ -8,6 +8,7 @@
 
 import CoreData
 import SwiftUI
+import XNavigation
 
 struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
@@ -15,10 +16,9 @@ struct DosesView: View {
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    let showElapsedDoses: Bool
-    @State private var showAddView = false
-    
+    @EnvironmentObject var navigation: Navigation
+
+    let showElapsedDoses: Bool    
     let doses: FetchRequest<Dose>
     
     var medsCount: Int {
@@ -77,14 +77,6 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .background(
-                NavigationLink(destination: DoseAddView(med: dataController.createMed())
-                    .environment(\.managedObjectContext, managedObjectContext)
-                    .environmentObject(dataController),
-                    isActive: $showAddView) {
-                        EmptyView()
-                }
-            )
             .navigationTitle(
                 showElapsedDoses
                     ? Strings.tabTitleHistory.rawValue
@@ -92,8 +84,9 @@ struct DosesView: View {
             .toolbar {
                 if medsCount > 0 {
                     Button(action: {
-                        self.showAddView = true
-                    
+                        navigation.pushView(DoseAddView(med: dataController.createMed())
+                            .environment(\.managedObjectContext, managedObjectContext)
+                            .environmentObject(dataController))
                     }) {
                         if UIAccessibility.isVoiceOverRunning {
                             Text(.doseEditAddDose)

@@ -20,9 +20,7 @@ struct TwoColumnView: View {
             Text(col2)
 
             if hasChevron {
-                Image(systemName: "chevron.right")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
+                ChevronRightView()
             }
         }
     }
