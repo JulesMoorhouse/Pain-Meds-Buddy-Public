@@ -10,8 +10,8 @@ import CoreData
 import SwiftUI
 import XNavigation
 
-struct DoseEditView: View { // DestinationView {
-    // var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
+struct DoseEditView: View, DestinationView {
+    var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
     let dose: Dose
     let add: Bool
@@ -32,10 +32,12 @@ struct DoseEditView: View { // DestinationView {
         self.dose = dose
         self.add = add
 
-//        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-//            title: NSLocalizedString(DoseEditView.navigationTitle(add: add), comment: ""),
-//            displayMode: .automatic
-//        )
+        let title = String(DoseEditView.navigationTitle(add: add))
+
+        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+            title: title,
+            displayMode: .automatic
+        )
 
         _amount = State(wrappedValue: dose.doseAmount)
         // _taken = State(wrappedValue: dose.doseTaken)
@@ -120,8 +122,7 @@ struct DoseEditView: View { // DestinationView {
                 }
             }
         }
-        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationTitle(DoseEditView.navigationTitle(add: add))
+        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
@@ -137,10 +138,10 @@ struct DoseEditView: View { // DestinationView {
         }
     }
 
-    static func navigationTitle(add: Bool) -> LocalizedStringKey {
+    static func navigationTitle(add: Bool) -> Strings {
         add
-            ? Strings.doseEditAddDose.rawValue
-            : Strings.doseEditEditDose.rawValue
+            ? Strings.doseEditAddDose
+            : Strings.doseEditEditDose
     }
 
     func display() -> String {

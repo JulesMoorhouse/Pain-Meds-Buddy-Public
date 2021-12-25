@@ -13,8 +13,8 @@ enum ActiveAlert {
     case deleteDenied, deleteConfirmation, durationGapInfo
 }
 
-struct MedEditView: View {// DestinationView {
-    // var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
+struct MedEditView: View, DestinationView {
+    var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
     let med: Med
     let add: Bool
@@ -49,10 +49,12 @@ struct MedEditView: View {// DestinationView {
         self.med = med
         self.add = add
 
-//        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-//            title: DoseEditView.navigationTitle(add: add),
-//            displayMode: .automatic
-//        )
+        let title = String(MedEditView.navigationTitle(add: add))
+
+        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+            title: title,
+            displayMode: .automatic
+        )
 
         _title = State(wrappedValue: med.medTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
@@ -110,8 +112,7 @@ struct MedEditView: View {// DestinationView {
                 .accentColor(.red)
             }
         }
-        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationTitle(MedEditView.navigationTitle(add: add))
+        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {
@@ -132,10 +133,10 @@ struct MedEditView: View {// DestinationView {
         }
     }
 
-    static func navigationTitle(add: Bool) -> LocalizedStringKey {
+    static func navigationTitle(add: Bool) -> Strings {
         add
-            ? Strings.medEditAddMed.rawValue
-            : Strings.medEditEditMed.rawValue
+            ? Strings.medEditAddMed
+            : Strings.medEditEditMed
     }
 
     func update() {
