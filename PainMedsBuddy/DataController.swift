@@ -184,7 +184,7 @@ class DataController: ObservableObject {
     func getFirstMed() -> Med? {
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
         ]
         do {
             let tempMeds = try container.viewContext.fetch(fetchRequest)

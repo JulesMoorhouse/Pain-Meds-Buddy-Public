@@ -38,9 +38,9 @@ struct MedsView: View {
                         MedEditView(med: med, add: false),
                         animated: true
                     )
-                }) {
+                }, label: {
                     MedRowView(med: med)
-                }
+                })
             }
             .onDelete { offsets in
                 deleteMed(offsets, items: items)
@@ -59,13 +59,13 @@ struct MedsView: View {
                         .environmentObject(dataController),
                     animated: true
                 )
-            }) {
+            }, label: {
                 if UIAccessibility.isVoiceOverRunning {
                     Text(.medEditAddMed)
                 } else {
                     Label(.medEditAddMed, systemImage: "plus")
                 }
-            }
+            })
         }
     }
 
@@ -74,9 +74,9 @@ struct MedsView: View {
             if meds.count > 0 {
                 Button(action: {
                     self.showingSortOrder = true
-                }) {
+                }, label: {
                     Label(.commonSort, systemImage: "arrow.up.arrow.down")
-                }
+                })
             }
         }
     }

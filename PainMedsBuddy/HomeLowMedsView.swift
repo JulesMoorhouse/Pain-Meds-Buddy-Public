@@ -34,18 +34,16 @@ struct HomeLowMedsView: View {
                                 MedEditView(med: med, add: false),
                                 animated: true
                             )
-                        }) {
+                        }, label: {
                             HStack {
                                 MedRowView(med: med)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-
-                                ChevronRightView()
 
                                 Spacer()
                                     .frame(width: 10)
                             }
                             .padding(2)
-                        }
+                        })
                     }
                     .panelled()
                 }

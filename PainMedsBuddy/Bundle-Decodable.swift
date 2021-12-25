@@ -5,6 +5,8 @@
 //  Created by Jules Moorhouse.
 //
 
+// swiftlint:disable line_length
+
 import Foundation
 
 extension Bundle {

@@ -23,7 +23,7 @@ struct SettingsView: View {
                         AcknowledgementsList()
                             .navigationTitle(Strings.settingsAcknowledgements.rawValue), animated: true
                     )
-                }) {
+                }, label: {
                     HStack {
                         Text(.settingsAcknowledgements)
                             .foregroundColor(Color.primary)
@@ -32,7 +32,7 @@ struct SettingsView: View {
 
                         ChevronRightView()
                     }
-                }
+                })
 
                 Button(Strings.settingsAddExampleData.rawValue) {
                     dataController.deleteAll()

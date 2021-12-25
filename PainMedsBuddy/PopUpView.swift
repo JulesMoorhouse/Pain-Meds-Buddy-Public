@@ -21,8 +21,7 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
          height: CGFloat = 220,
          @ViewBuilder content: () -> Content,
          @ViewBuilder leftButton: () -> LeftButton,
-         @ViewBuilder rightButton: () -> RightButton)
-    {
+         @ViewBuilder rightButton: () -> RightButton) {
         self.text = text
         self.content = content()
         self.leftButton = leftButton()

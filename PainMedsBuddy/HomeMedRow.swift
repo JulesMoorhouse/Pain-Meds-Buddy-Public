@@ -43,14 +43,14 @@ struct HomeMedRow: View {
                     DoseAddView(med: med),
                     animated: true
                 )
-            }) {
+            }, label: {
                 ButtonBorderView(
                     text: Strings.homeTakeNext.rawValue,
                     width: 80,
                     font: .footnote,
                     padding: 8
                 )
-            }
+            })
 
             Spacer()
                 .frame(width: 10)

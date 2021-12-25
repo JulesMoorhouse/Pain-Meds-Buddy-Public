@@ -17,11 +17,13 @@ struct HomeView: View {
 
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: nil) var meds: FetchedResults<Med>
+                  predicate: nil)
+    var meds: FetchedResults<Med>
 
     @FetchRequest(entity: Dose.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)],
-                  predicate: NSPredicate(format: "elapsed == false AND med != nil")) var doses: FetchedResults<Dose>
+                  predicate: NSPredicate(format: "elapsed == false AND med != nil"))
+    var doses: FetchedResults<Dose>
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]

@@ -23,10 +23,9 @@ struct DoseRowView: View {
             navigation.pushView(DoseEditView(dataController: dataController, dose: dose, add: false)
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext))
-        }) {
+        }, label: {
             if let med = dose.med {
                 HStack {
-                    // TODO: Replace with something other than example
                     MedSymbolView(med: med)
 
                     Spacer()
@@ -59,7 +58,7 @@ struct DoseRowView: View {
                              med.medFormattedLastTakenDate]
                 )
             }
-        }
+        })
     }
 }
 

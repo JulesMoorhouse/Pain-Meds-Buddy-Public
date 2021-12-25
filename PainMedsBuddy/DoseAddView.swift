@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import XNavigation
 
 struct DoseAddView: View {
     let med: Med

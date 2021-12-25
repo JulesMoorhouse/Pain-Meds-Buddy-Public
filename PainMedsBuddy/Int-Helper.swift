@@ -15,8 +15,4 @@ extension Int {
         let str = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
         return str
     }
-
-    var secondsToHoursMinutesSeconds: (Int, Int, Int) {
-        return (self / 3600, (self % 3600) / 60, (self % 3600) % 60)
-    }
 }

@@ -25,7 +25,8 @@ struct PainMedsBuddyApp: App {
                     .environment(\.managedObjectContext, dataController.container.viewContext)
                     .environmentObject(dataController)
                     .environmentObject(Navigation(window: window!))
-                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification), perform: save)
+                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
+                               perform: save)
             }
         }
     }

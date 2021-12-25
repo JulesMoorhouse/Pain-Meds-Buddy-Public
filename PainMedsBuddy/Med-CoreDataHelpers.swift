@@ -25,7 +25,7 @@ extension Med: MedProtocol {
         "Dark Blue",
         "Midnight",
         "Dark Gray",
-        "Gray",
+        "Gray"
     ]
 
     var medTitle: String {

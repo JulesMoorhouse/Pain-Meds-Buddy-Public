@@ -13,8 +13,7 @@ extension Sequence {
     }
 
     func sorted<Value>(by keyPath: KeyPath<Element, Value>,
-                       using areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows -> [Element]
-    {
+                       using areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows -> [Element] {
         try sorted {
             try areInIncreasingOrder($0[keyPath: keyPath], $1[keyPath: keyPath])
         }

@@ -95,12 +95,12 @@ struct DoseProgressView: View {
                     DoseAddView(med: med),
                     animated: true
                 )
-            }) {
+            }, label: {
                 ButtonBorderView(
                     text: Strings.homeTakeNext.rawValue,
                     width: 100
                 )
-            }
+            })
 
             Text(done
                 ? countDown
@@ -130,11 +130,13 @@ struct DoseProgressView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
         .accessibilityAddTraits(done ? .isStaticText : .isButton)
-        .accessibilityLabel(
-            done
-                ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
-                : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
-        )
+        .accessibilityLabel(accessibilityLabel())
+    }
+
+    func accessibilityLabel() -> String {
+        done
+            ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
+            : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
     }
 }
 

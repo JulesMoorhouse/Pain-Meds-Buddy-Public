@@ -72,10 +72,16 @@ extension Dose: Comparable {
     }
 
     var doseDisplay: String {
+        // swiftlint:disable:next line_length
         "\(doseAmount) x \(med?.medDosage ?? "\(MedDefault.dosage)")\(med?.measure ?? "\(MedDefault.measure)") \(med?.form ?? MedDefault.form)"
     }
 
-    public static func displayFull(amount: String, dosage: String, totalDosage: String, measure: String, form: String) -> String {
+    public static func displayFull(
+        amount: String,
+        dosage: String,
+        totalDosage: String,
+        measure: String,
+        form: String) -> String {
         return "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
     }
 

@@ -16,26 +16,28 @@ struct MedSortView: View {
             Button(action: {
                 sortOrder = .optimzed
                 showingSortOrder = false
-            }) {
+            }, label: {
                 ButtonBorderView(text: Strings.sortOptimized.rawValue)
-            }
-            .disabled(sortOrder == .optimzed)
+            })
+                .disabled(sortOrder == .optimzed)
+                .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .creationDate
                 showingSortOrder = false
-            }) {
+            }, label: {
                 ButtonBorderView(text: Strings.sortCreatedDate.rawValue)
-            }
-            .disabled(sortOrder == .creationDate)
+            })
+                .disabled(sortOrder == .creationDate)
+                .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .title
                 showingSortOrder = false
-            }) {
+            }, label: {
                 ButtonBorderView(text: Strings.sortTitle.rawValue)
-            }
-            .disabled(sortOrder == .title)
+            })
+                .disabled(sortOrder == .title)
         },
         leftButton: {},
         rightButton: {

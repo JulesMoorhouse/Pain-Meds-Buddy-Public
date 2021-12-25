@@ -7,12 +7,15 @@
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
 import SwiftUI
+import XNavigation
 
 enum ActiveAlert {
     case deleteDenied, deleteConfirmation, durationGapInfo
 }
 
-struct MedEditView: View {
+struct MedEditView: View {// DestinationView {
+    // var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
+
     let med: Med
     let add: Bool
 
@@ -39,12 +42,17 @@ struct MedEditView: View {
     let types = ["mg", "ml", "Tspn"]
 
     let colorColumns = [
-        GridItem(.adaptive(minimum: 44)),
+        GridItem(.adaptive(minimum: 44))
     ]
 
     init(med: Med, add: Bool) {
         self.med = med
         self.add = add
+
+//        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+//            title: DoseEditView.navigationTitle(add: add),
+//            displayMode: .automatic
+//        )
 
         _title = State(wrappedValue: med.medTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
@@ -77,12 +85,14 @@ struct MedEditView: View {
 
             Section(header: Text(.medEditSymbol)) {
                 Text(.medEditColour)
+                    .foregroundColor(.secondary)
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Med.colors, id: \.self, content: colourButton)
                 }
                 .padding(.vertical)
 
                 Text(.medEditImage)
+                    .foregroundColor(.secondary)
                 SymbolsView(colour: Color($color.wrappedValue), selectedSymbol: $symbol.onChange(update))
                     .padding(.vertical)
             }
@@ -100,9 +110,8 @@ struct MedEditView: View {
                 .accentColor(.red)
             }
         }
-        .navigationTitle(add
-            ? Strings.medEditAddMed.rawValue
-            : Strings.medEditEditMed.rawValue)
+        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationTitle(MedEditView.navigationTitle(add: add))
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             switch activeAlert {
@@ -121,6 +130,12 @@ struct MedEditView: View {
                              dismissButton: .default(Text(.commonOK)))
             }
         }
+    }
+
+    static func navigationTitle(add: Bool) -> LocalizedStringKey {
+        add
+            ? Strings.medEditAddMed.rawValue
+            : Strings.medEditEditMed.rawValue
     }
 
     func update() {
@@ -176,59 +191,25 @@ struct MedEditView: View {
                              values: [MedDefault.Sensible.title]),
                       text: $title.onChange(update))
 
-            HStack {
-                Text(.medEditDefaultAmount)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medDefaultAmount()]),
-                          text: $defaultAmount.onChange(update))
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-                Text(med.medForm)
-                    .foregroundColor(.secondary)
-            }
+            rowFields(label: .medEditDefaultAmount,
+                      detailValues: [MedDefault.Sensible.medDefaultAmount()],
+                      binding: $defaultAmount.onChange(update),
+                      keyboardType: .decimalPad)
 
-            HStack {
-                Text(.commonDosage)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medDosage()]),
-                          text: $dosage.onChange(update))
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-                Text(med.medMeasure)
-                    .foregroundColor(.secondary)
-            }
+            rowFields(label: .commonDosage,
+                      detailValues: [MedDefault.Sensible.medDosage()],
+                      binding: $dosage.onChange(update),
+                      keyboardType: .decimalPad)
 
-            HStack {
-                Text(.medEditDuration)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medDuration()]),
-                          text: $duration.onChange(update))
-                    .multilineTextAlignment(.trailing)
-            }
+            rowFields(label: .medEditDuration,
+                      detailValues: [MedDefault.Sensible.medDuration()],
+                      binding: $duration.onChange(update))
 
-            HStack {
-                Text(.medEditDurationGap)
-                    .foregroundColor(.secondary)
-
-                Button(action: {
-                    activeAlert = .durationGapInfo
-                    showAlert.toggle()
-                }, label: {
-                    Image(systemName: "info.circle")
-                })
-
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medDurationGap()]),
-                          text: $durationGap.onChange(update))
-                    .multilineTextAlignment(.trailing)
-            }
+            rowInfoFields(label: .medEditDurationGap,
+                          detailValues: [MedDefault.Sensible.medDurationGap()],
+                          binding: $durationGap.onChange(update),
+                          alertType: .durationGapInfo,
+                          keyboardType: .default)
 
             Picker(.medEditMeasure, selection: $measure.onChange(update)) {
                 ForEach(types, id: \.self) {
@@ -238,39 +219,65 @@ struct MedEditView: View {
             }
             .foregroundColor(.secondary)
 
-            HStack {
-                Text(.medEditForm)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.form]),
-                          text: $form.onChange(update))
-                    .multilineTextAlignment(.trailing)
-            }
+            rowFields(label: .medEditForm,
+                      detailValues: [MedDefault.Sensible.form],
+                      binding: $form.onChange(update))
 
-            HStack {
-                Text(.medEditRemaining)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medRemaining()]),
-                          text: $remaining.onChange(update))
-                    .keyboardType(.numberPad)
-                    .multilineTextAlignment(.trailing)
-                Text(med.medForm)
-                    .foregroundColor(.secondary)
-            }
+            rowFields(label: .medEditRemaining,
+                      detailValues: [MedDefault.Sensible.medRemaining()],
+                      binding: $remaining.onChange(update),
+                      keyboardType: .numberPad)
 
-            HStack {
-                Text(.medEditSequence)
-                    .foregroundColor(.secondary)
-                Spacer()
-                TextField(String(.commonEgString,
-                                 values: [MedDefault.Sensible.medSequence()]),
-                          text: $sequence.onChange(update))
-                    .keyboardType(.numberPad)
-                    .multilineTextAlignment(.trailing)
-            }
+            rowFields(label: .medEditSequence,
+                      detailValues: [MedDefault.Sensible.medSequence()],
+                      binding: $sequence.onChange(update),
+                      keyboardType: .numberPad)
+        }
+    }
+
+    func rowInfoFields(label: Strings,
+                       detailValues: [String],
+                       binding: Binding<String>,
+                       alertType: ActiveAlert,
+                       keyboardType: UIKeyboardType = .default) -> some View
+    {
+        HStack {
+            Text(label)
+                .foregroundColor(.secondary)
+
+            Button(action: {
+                activeAlert = alertType
+                showAlert.toggle()
+            }, label: {
+                Image(systemName: "info.circle")
+            })
+
+            Spacer()
+
+            TextField(String(.commonEgString,
+                             values: detailValues),
+                      text: binding)
+                .keyboardType(keyboardType)
+                .multilineTextAlignment(.trailing)
+        }
+    }
+
+    func rowFields(label: Strings,
+                   detailValues: [String],
+                   binding: Binding<String>,
+                   keyboardType: UIKeyboardType = .default) -> some View
+    {
+        HStack {
+            Text(label)
+                .foregroundColor(.secondary)
+
+            Spacer()
+
+            TextField(String(.commonEgString,
+                             values: detailValues),
+                      text: binding)
+                .keyboardType(keyboardType)
+                .multilineTextAlignment(.trailing)
         }
     }
 }

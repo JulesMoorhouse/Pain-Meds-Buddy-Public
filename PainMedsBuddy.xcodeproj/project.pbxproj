@@ -154,6 +154,7 @@
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
 				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
+				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				88E93092275FD7CC00A98708 /* Color-Additions.swift */,
 				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
 				88321423275120D40026D85F /* ContentView.swift */,
@@ -193,7 +194,6 @@
 				88321427275120D60026D85F /* Preview Content */,
 				88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */,
 				88E930A12760A63E00A98708 /* SettingsView.swift */,
-				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				886C30BB2763912C002A45B1 /* String-Helper.swift */,
 				88F2E98D27708AF700081C9C /* Strings.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
@@ -228,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8832142D275120D60026D85F /* Build configuration list for PBXNativeTarget "PainMedsBuddy" */;
 			buildPhases = (
+				8848D45B277700A300F10DC9 /* SwiftLint */,
 				8832141A275120D40026D85F /* Sources */,
 				8832141B275120D40026D85F /* Frameworks */,
 				8832141C275120D40026D85F /* Resources */,
@@ -302,6 +303,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8848D45B277700A300F10DC9 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		88E930A02760A51600A98708 /* Run Script - AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

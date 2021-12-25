@@ -15,6 +15,7 @@ enum Strings: LocalizedStringKey {
     case commonEgNum
     case commonEmptyView
     case commonOK
+    case commonMedication
     case commonNoDate
     case commonNotTakenYet
     case commonPleaseSelect
@@ -187,8 +188,7 @@ extension View {
 
 extension View {
     func accessibilityLabel(
-        _ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier>
-    {
+        _ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
         let output = NSLocalizedString(
             localizedString.rawValue.stringKey,
             comment: ""
@@ -199,8 +199,7 @@ extension View {
 
     func accessibilityLabel(
         _ localizedString: Strings,
-        values: [String]) -> ModifiedContent<Self, AccessibilityAttachmentModifier>
-    {
+        values: [String]) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
         let output = String(format: NSLocalizedString(
             localizedString.rawValue.stringKey,
             comment: ""

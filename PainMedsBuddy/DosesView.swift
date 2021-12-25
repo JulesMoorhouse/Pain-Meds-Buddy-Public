@@ -30,7 +30,7 @@ struct DosesView: View {
         self.showElapsedDoses = showElapsedDoses
 
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
+            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
         ], predicate: NSPredicate(format: "elapsed = %d", showElapsedDoses))
     }
 
@@ -61,11 +61,8 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text:
-                        medsCount > 0
-                            ? Strings.commonEmptyView.rawValue
-                            : Strings.commonPleaseAdd.rawValue,
-                        imageString: "pills")
+                    PlaceholderView(text: placeHolderEmptyText(),
+                                    imageString: "pills")
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -77,33 +74,45 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .navigationTitle(
-                showElapsedDoses
-                    ? Strings.tabTitleHistory.rawValue
-                    : Strings.tabTitleInProgress.rawValue)
+            .navigationTitle(navigationTitle())
             .toolbar {
                 if medsCount > 0 {
                     Button(action: {
                         navigation.pushView(DoseAddView(med: dataController.createMed())
                             .environment(\.managedObjectContext, managedObjectContext)
                             .environmentObject(dataController))
-                    }) {
+                    }, label: {
                         if UIAccessibility.isVoiceOverRunning {
                             Text(.doseEditAddDose)
                         } else {
                             Label(.doseEditAddDose, systemImage: "plus")
                         }
-                    }
+                    })
                 }
             }
 
-            PlaceholderView(text:
-                medsCount > 0
-                    ? Strings.commonPleaseSelect.rawValue
-                    : Strings.commonPleaseAdd.rawValue,
-                imageString: "eyedropper.halffull")
+            PlaceholderView(text: placeHolderText(),
+                            imageString: "eyedropper.halffull")
         }
         // .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    func placeHolderText() -> LocalizedStringKey {
+        medsCount > 0
+            ? Strings.commonPleaseSelect.rawValue
+            : Strings.commonPleaseAdd.rawValue
+    }
+
+    func navigationTitle() -> LocalizedStringKey {
+        showElapsedDoses
+            ? Strings.tabTitleHistory.rawValue
+            : Strings.tabTitleInProgress.rawValue
+    }
+
+    func placeHolderEmptyText() -> LocalizedStringKey {
+        medsCount > 0
+            ? Strings.commonEmptyView.rawValue
+            : Strings.commonPleaseAdd.rawValue
     }
 
     func deleteDose(_ offsets: IndexSet, from doses: [Dose]) {

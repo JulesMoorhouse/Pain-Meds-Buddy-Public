@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import XNavigation
 
-struct DoseMedSelectView: View {
+struct DoseMedSelectView: View { // DestinationView {
+    // var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+    //    title: String(.selectMedSelectMed),
+    //    displayMode: .automatic)
+
     @Environment(\.presentationMode) var presentationMode
 
     @FetchRequest(entity: Med.entity(),
@@ -32,9 +37,9 @@ struct DoseMedSelectView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: {
                 self.showingSortOrder = true
-            }) {
+            }, label: {
                 Label(.commonSort, systemImage: "arrow.up.arrow.down")
-            }
+            })
         }
     }
 
@@ -52,6 +57,7 @@ struct DoseMedSelectView: View {
                 MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
             }
         }
+        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationTitle(Strings.selectMedSelectMed.rawValue)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

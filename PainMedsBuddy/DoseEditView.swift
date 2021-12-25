@@ -10,7 +10,9 @@ import CoreData
 import SwiftUI
 import XNavigation
 
-struct DoseEditView: View {
+struct DoseEditView: View { // DestinationView {
+    // var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
+
     let dose: Dose
     let add: Bool
 
@@ -30,13 +32,18 @@ struct DoseEditView: View {
         self.dose = dose
         self.add = add
 
+//        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+//            title: NSLocalizedString(DoseEditView.navigationTitle(add: add), comment: ""),
+//            displayMode: .automatic
+//        )
+
         _amount = State(wrappedValue: dose.doseAmount)
         // _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
         ]
 
         _meds = FetchRequest(fetchRequest: fetchRequest)
@@ -69,13 +76,13 @@ struct DoseEditView: View {
                         DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
                         animated: true
                     )
-                }) {
+                }, label: {
                     HStack {
-                        TwoColumnView(col1: Strings.medEditNewMedication.rawValue,
+                        TwoColumnView(col1: Strings.commonMedication.rawValue,
                                       col2: selectedMed.medTitle,
                                       hasChevron: true)
                     }
-                }
+                })
 
                 HStack {
                     Text(.doseEditAmount)
@@ -113,9 +120,8 @@ struct DoseEditView: View {
                 }
             }
         }
-        .navigationTitle(add
-            ? Strings.doseEditAddDose.rawValue
-            : Strings.doseEditEditDose.rawValue)
+        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationTitle(DoseEditView.navigationTitle(add: add))
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
@@ -129,6 +135,12 @@ struct DoseEditView: View {
         if add {
             _amount = State(wrappedValue: med.medDefaultAmount)
         }
+    }
+
+    static func navigationTitle(add: Bool) -> LocalizedStringKey {
+        add
+            ? Strings.doseEditAddDose.rawValue
+            : Strings.doseEditEditDose.rawValue
     }
 
     func display() -> String {
