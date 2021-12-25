@@ -8,10 +8,10 @@
 import SwiftUI
 import XNavigation
 
-struct DoseMedSelectView: View { // DestinationView {
-    // var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-    //    title: String(.selectMedSelectMed),
-    //    displayMode: .automatic)
+struct DoseMedSelectView: View, DestinationView {
+    var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+        title: String(.selectMedSelectMed),
+        displayMode: .automatic)
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -57,8 +57,8 @@ struct DoseMedSelectView: View { // DestinationView {
                 MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
             }
         }
-        // .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationTitle(Strings.selectMedSelectMed.rawValue)
+        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        // .navigationTitle(Strings.selectMedSelectMed.rawValue)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Color.clear // BugFix: Back button dissapears
