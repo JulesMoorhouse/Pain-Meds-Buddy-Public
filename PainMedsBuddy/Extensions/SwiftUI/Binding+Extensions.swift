@@ -1,5 +1,5 @@
 //
-//  Binding-OnChange.swift
+//  Binding+Extensions.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.

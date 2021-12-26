@@ -1,5 +1,5 @@
 //
-//  Int-Helper.swift
+//  Int+Extensions.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
