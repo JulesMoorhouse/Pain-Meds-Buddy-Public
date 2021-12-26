@@ -13,7 +13,7 @@ extension Med: MedProtocol {
         case optimized, title, creationDate, remaining, lastTaken
     }
 
-    static let colors = [
+    static let colours = [
         "Pink",
         "Purple",
         "Red",
@@ -159,7 +159,7 @@ extension Med: MedProtocol {
         med.title = "Example med"
         med.notes = "This is an example med"
         med.defaultAmount = 1
-        med.color = Med.colors.randomElement()
+        med.color = Med.colours.randomElement()
         med.dosage = 300
         med.duration = 240
         med.durationGap = 0

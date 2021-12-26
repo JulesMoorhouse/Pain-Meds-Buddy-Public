@@ -135,7 +135,7 @@ class DataController: ObservableObject {
             med.notes = "This is an exmaple med \(medCounter)"
             med.defaultAmount = NSDecimalNumber(value: Int16.random(in: 1 ... 10))
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100 ... 600))
-            med.color = Med.colors.randomElement()
+            med.color = Med.colours.randomElement()
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = Int16.random(in: 0 ... 99)

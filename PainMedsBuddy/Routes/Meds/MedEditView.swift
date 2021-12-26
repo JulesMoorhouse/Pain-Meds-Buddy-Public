@@ -89,7 +89,7 @@ struct MedEditView: View, DestinationView {
                 Text(.medEditColour)
                     .foregroundColor(.secondary)
                 LazyVGrid(columns: colorColumns) {
-                    ForEach(Med.colors, id: \.self, content: colourButton)
+                    ForEach(Med.colours, id: \.self, content: colourButton)
                 }
                 .padding(.vertical)
 
