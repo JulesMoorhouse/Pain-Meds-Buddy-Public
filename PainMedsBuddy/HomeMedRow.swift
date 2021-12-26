@@ -16,7 +16,6 @@ struct HomeMedRow: View {
     var detail: some View {
         VStack(alignment: .leading) {
             Text(med.medTitle)
-                // .foregroundColor(Color(med.color ?? Med.defaultColor))
                 .foregroundColor(.primary)
             Text(med.medDisplay)
                 .foregroundColor(.secondary)

@@ -14,12 +14,12 @@ struct MedSortView: View {
     var body: some View {
         PopUpView(text: Strings.sortSortOrder.rawValue, content: {
             Button(action: {
-                sortOrder = .optimzed
+                sortOrder = .optimized
                 showingSortOrder = false
             }, label: {
                 ButtonBorderView(text: Strings.sortOptimized.rawValue)
             })
-                .disabled(sortOrder == .optimzed)
+                .disabled(sortOrder == .optimized)
                 .padding(.bottom, 5)
 
             Button(action: {
@@ -53,6 +53,6 @@ struct MedSortView: View {
 
 struct MedSortView_Previews: PreviewProvider {
     static var previews: some View {
-        MedSortView(sortOrder: .constant(Med.SortOrder.optimzed), showingSortOrder: .constant(false))
+        MedSortView(sortOrder: .constant(Med.SortOrder.optimized), showingSortOrder: .constant(false))
     }
 }

@@ -22,7 +22,7 @@ struct MedsView: View {
                   predicate: nil) var meds: FetchedResults<Med>
 
     @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimzed
+    @State private var sortOrder = Med.SortOrder.optimized
     @State private var canDelete = false
     @State private var showDeleteDenied = false
 
@@ -60,6 +60,12 @@ struct MedsView: View {
                     animated: true
                 )
             }, label: {
+                // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
+                // "Add Med" as "Add" no matter what accessibility label
+                // we give this toolbar button when using a label.
+                // As a result, when VoiceOver is running, we use a text
+                // view for the button instead, forcing a correct reading
+                // without losing the original layout.
                 if UIAccessibility.isVoiceOverRunning {
                     Text(.medEditAddMed)
                 } else {
@@ -82,9 +88,7 @@ struct MedsView: View {
     }
 
     var body: some View {
-//        let items: [Med] = DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
-
-        return NavigationView {
+        NavigationView {
             Group {
                 if self.meds.isEmpty {
                     PlaceholderView(text: Strings.commonEmptyView.rawValue,
@@ -123,11 +127,6 @@ struct MedsView: View {
             for offset in offsets {
                 let item = items[offset]
                 dataController.delete(item)
-
-                // Bug fix
-//                                    if let itemToRemoveIndex = self.meds.firstIndex(of: item) {
-//                                        self.meds.remove(at: itemToRemoveIndex)
-//                                    }
             }
             dataController.save()
             dataController.container.viewContext.processPendingChanges()

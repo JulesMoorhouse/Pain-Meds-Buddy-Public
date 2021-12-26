@@ -24,7 +24,6 @@ struct DoseEditView: View, DestinationView {
 
     @State private var selectedMed: Med
     @State private var amount: String
-    // @State private var taken: Bool
     @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
 
@@ -40,7 +39,6 @@ struct DoseEditView: View, DestinationView {
         )
 
         _amount = State(wrappedValue: dose.doseAmount)
-        // _taken = State(wrappedValue: dose.doseTaken)
         _takenDate = State(wrappedValue: dose.doseTakenDate)
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
@@ -55,14 +53,6 @@ struct DoseEditView: View, DestinationView {
             initSelection(med: currentMed)
             return
         }
-
-        // Shouldn't need this now
-//        let tempMeds = dataController.getFirstMed()
-//        if let med = tempMeds {
-//            _selectedMed = State(wrappedValue: med)
-//            initSelection(med: med)
-//            return
-//        }
 
         _selectedMed = State(wrappedValue: Med(context: dataController.container.viewContext))
     }
@@ -111,10 +101,6 @@ struct DoseEditView: View, DestinationView {
             }
             if !add {
                 Section {
-                    //                Button($taken.wrappedValue ? "Missed this dose" : "Taken dose") {
-                    //                    $taken.wrappedValue.toggle()
-                    //                }
-
                     Button(Strings.doseEditDeleteThisDose.rawValue) {
                         showingDeleteConfirm.toggle()
                     }
@@ -174,7 +160,6 @@ struct DoseEditView: View, DestinationView {
         dose.objectWillChange.send()
 
         dose.amount = NSDecimalNumber(string: amount)
-        // dose.taken = taken
         dose.takenDate = takenDate
     }
 

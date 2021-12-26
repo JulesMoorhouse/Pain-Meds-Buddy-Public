@@ -21,15 +21,13 @@ struct DoseMedSelectView: View, DestinationView {
 
     @Binding var selectedMed: Med
     @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimzed
+    @State private var sortOrder = Med.SortOrder.optimized
 
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
     }
 
     init(selectedMed: Binding<Med>) {
-        // meds2.allMedsDefaultSorted
-
         _selectedMed = selectedMed
     }
 
@@ -60,7 +58,7 @@ struct DoseMedSelectView: View, DestinationView {
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Color.clear // BugFix: Back button dissapears
+                Color.clear // BugFix: Back button disappears
             }
             sortToolbarItem
         }

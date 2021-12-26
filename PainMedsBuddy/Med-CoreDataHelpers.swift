@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Med: MedProtocol {
     public enum SortOrder {
-        case optimzed, title, creationDate, remaining, lastTaken
+        case optimized, title, creationDate, remaining, lastTaken
     }
 
     static let colors = [
@@ -157,7 +157,7 @@ extension Med: MedProtocol {
 
         let med = Med(context: viewContext)
         med.title = "Example med"
-        med.notes = "This is an exmaple med"
+        med.notes = "This is an example med"
         med.defaultAmount = 1
         med.color = Med.colors.randomElement()
         med.dosage = 300

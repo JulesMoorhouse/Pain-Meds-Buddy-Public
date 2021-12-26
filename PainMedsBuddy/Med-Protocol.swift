@@ -20,10 +20,8 @@ protocol MedProtocol {
     var medMeasure: String { get }
     var medNotes: String { get }
     var medLastTakenDate: Date { get }
-    // var medFormattedLastTakenDate: String { get }
     var medCreationDate: Date { get }
     var medRemaining: String { get }
     var medSequence: String { get }
-    // var medTotalDosage: String { get }
     var medDisplay: String { get }
 }

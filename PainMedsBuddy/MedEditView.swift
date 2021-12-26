@@ -115,21 +115,25 @@ struct MedEditView: View, DestinationView {
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
-            switch activeAlert {
-            case .deleteConfirmation:
-                return Alert(title: Text(.medEditDeleteMed),
-                             message: Text(.medEditAreYouSure),
-                             primaryButton: .default(Text(.commonDelete), action: delete),
-                             secondaryButton: .cancel())
-            case .deleteDenied:
-                return Alert(title: Text(.medEditDeleteMed),
-                             message: Text(.medEditSorry),
-                             dismissButton: .default(Text(.commonOK)))
-            case .durationGapInfo:
-                return Alert(title: Text(.medEditInfo),
-                             message: Text(.medEditGapInfo),
-                             dismissButton: .default(Text(.commonOK)))
-            }
+            alertOption()
+        }
+    }
+
+    func alertOption() -> Alert {
+        switch activeAlert {
+        case .deleteConfirmation:
+            return Alert(title: Text(.medEditDeleteMed),
+                         message: Text(.medEditAreYouSure),
+                         primaryButton: .default(Text(.commonDelete), action: delete),
+                         secondaryButton: .cancel())
+        case .deleteDenied:
+            return Alert(title: Text(.medEditDeleteMed),
+                         message: Text(.medEditSorry),
+                         dismissButton: .default(Text(.commonOK)))
+        case .durationGapInfo:
+            return Alert(title: Text(.medEditInfo),
+                         message: Text(.medEditGapInfo),
+                         dismissButton: .default(Text(.commonOK)))
         }
     }
 

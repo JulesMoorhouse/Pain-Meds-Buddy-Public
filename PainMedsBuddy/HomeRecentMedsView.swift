@@ -39,12 +39,12 @@ struct HomeRecentMedsView: View {
     }
 
     func uniqueDoseMeds() -> [Med] {
-        let uniqeDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap { $0.med }))
-        return uniqeDoseMeds
+        let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap { $0.med }))
+        return uniqueDoseMeds
     }
 
     func canTakeMeds() -> [Med] {
-        // Get unique meds which are currently not elapsed
+        // INFO" Get unique meds which are currently not elapsed
         var temp = items.filter { !uniqueDoseMeds().contains($0) }
         temp = temp.sortedItems(using: .lastTaken)
         return temp.prefix(listRows).map { $0 }

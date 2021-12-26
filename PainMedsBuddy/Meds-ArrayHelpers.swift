@@ -19,19 +19,6 @@ extension Array where Element: Med {
             } else if first.sequence < second.sequence {
                 return false
             }
-
-//            if first.remaining > second.remaining {
-//                return true
-//            } else if first.remaining < second.remaining {
-//                return false
-//            }
-//
-//            if first.medTitle > second.medTitle {
-//                return true
-//            } else if first.medTitle < second.medTitle {
-//                return false
-//            }
-
             return first.medCreationDate < second.medCreationDate
         }
     }

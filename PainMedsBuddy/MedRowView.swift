@@ -20,7 +20,6 @@ struct MedRowView: View {
 
             VStack(alignment: .leading) {
                 Text(med.medTitle)
-                    // .foregroundColor(Color(med.color ?? Med.defaultColor))
                     .foregroundColor(.primary)
                 Text("\(med.remaining) \(med.medForm)")
                     .foregroundColor(.secondary)
