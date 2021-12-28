@@ -90,7 +90,7 @@ extension Dose: Comparable {
     }
 
     static var example: Dose {
-        let controller = DataController(inMemory: true)
+        let controller = DataController.preview
         let viewContext = controller.container.viewContext
 
         let dose = Dose(context: viewContext)

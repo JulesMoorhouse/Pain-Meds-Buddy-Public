@@ -15,19 +15,25 @@ class DataController: ObservableObject {
     private let _container: NSPersistentCloudKitContainer
     private let semaphore = DispatchSemaphore(value: 0)
 
+    public static let totalSampleMeds = 20
+    public static let totalSampleDoses = 20
+
     var container: NSPersistentContainer {
-        semaphore.wait()
-        semaphore.signal()
+        if !DataController.isUnitTesting {
+            semaphore.wait()
+            semaphore.signal()
+        }
         return _container
     }
 
-    /// Initializes a data controller, either in memory (for temporary use such as testing and previewing).
+    /// Initialises a data controller, either in memory (for temporary use such as testing and previewing).
     /// or on permanent storage (for use in regular app runs).
     ///
     /// Defaults to permanent storage.
     /// - Parameter inMemory: Whether to store data in temporary memory or not.
     init(inMemory: Bool = false) {
-        _container = NSPersistentCloudKitContainer(name: "Main")
+        _container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
+
         let semaphore = self.semaphore
 
         // INFO: For testing and previewing purposes, we create a temporary,
@@ -38,13 +44,19 @@ class DataController: ObservableObject {
         }
 
         _container.loadPersistentStores { _, error in
-            semaphore.signal()
+            if !DataController.isUnitTesting {
+                semaphore.signal()
+            }
             if let error = error as NSError? {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
         _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    }
+
+    private static var isUnitTesting: Bool {
+        return ProcessInfo.processInfo.environment["UNITTEST"] == "1"
     }
 
     static var preview: DataController = {
@@ -54,10 +66,23 @@ class DataController: ObservableObject {
         do {
             try dataController.createSampleData()
         } catch {
-            fatalError("Fatal error crearting preview: \(error.localizedDescription)")
+            fatalError("Fatal error creating preview: \(error.localizedDescription)")
         }
 
         return dataController
+    }()
+
+    /// Cache model so the model does not get called more than once
+    static let model: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            fatalError("Failed to locate model file.")
+        }
+
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failed to load model file.")
+        }
+
+        return managedObjectModel
     }()
 
     // INFO: Returns true if any Dose has a specific med
@@ -128,11 +153,12 @@ class DataController: ObservableObject {
     func createSampleData() throws {
         let viewContext = container.viewContext
 
-        for medCounter in 1 ... 20 {
+        // Remember totalSampleDoses is the same as totalSampleMeds
+        for medCounter in 1 ... DataController.totalSampleMeds {
             // INFO: One to one relationship
             let med = Med(context: viewContext)
             med.title = "Med example \(medCounter)"
-            med.notes = "This is an exmaple med \(medCounter)"
+            med.notes = "This is an example med \(medCounter)"
             med.defaultAmount = NSDecimalNumber(value: Int16.random(in: 1 ... 10))
             med.dosage = NSDecimalNumber(value: Int16.random(in: 100 ... 600))
             med.color = Med.colours.randomElement()

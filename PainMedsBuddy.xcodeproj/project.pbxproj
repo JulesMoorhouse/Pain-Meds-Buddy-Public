@@ -26,6 +26,7 @@
 		8848D4722778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4712778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift */; };
 		8848D47D2778E13000F10DC9 /* PainMedsBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */; };
 		8848D4872778EC3000F10DC9 /* AssetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4862778EC3000F10DC9 /* AssetTest.swift */; };
+		8848D489277913D500F10DC9 /* DoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D488277913D500F10DC9 /* DoseTests.swift */; };
 		88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88572051275133A700B4B00C /* Main.xcdatamodeld */; };
 		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
@@ -34,6 +35,9 @@
 		886C30BC2763912C002A45B1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C30BB2763912C002A45B1 /* String+Extensions.swift */; };
 		886C30BE2763913B002A45B1 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C30BD2763913B002A45B1 /* Int+Extensions.swift */; };
 		8883BD87276951F700EF6DCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8883BD86276951F700EF6DCD /* Localizable.strings */; };
+		8883E39C2779A2A000B9304B /* SymbolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883E39B2779A2A000B9304B /* SymbolTests.swift */; };
+		8883E39E2779FA8800B9304B /* DevelopmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883E39D2779FA8800B9304B /* DevelopmentTests.swift */; };
+		8883E3A2277B474800B9304B /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883E3A1277B474800B9304B /* ExtensionTests.swift */; };
 		889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4CF52775E1B900E3B53B /* VStackFormView.swift */; };
 		889A4D00277622A000E3B53B /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 889A4CFF277622A000E3B53B /* XNavigation */; };
 		889A4D0227764BC500E3B53B /* ChevronRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4D0127764BC500E3B53B /* ChevronRightView.swift */; };
@@ -106,6 +110,7 @@
 		8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyTests.swift; sourceTree = "<group>"; };
 		8848D47E2778E13000F10DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8848D4862778EC3000F10DC9 /* AssetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTest.swift; sourceTree = "<group>"; };
+		8848D488277913D500F10DC9 /* DoseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseTests.swift; sourceTree = "<group>"; };
 		88572052275133A700B4B00C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		88572054275139DD00B4B00C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
@@ -115,6 +120,9 @@
 		886C30BB2763912C002A45B1 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		886C30BD2763913B002A45B1 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8883BD86276951F700EF6DCD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		8883E39B2779A2A000B9304B /* SymbolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTests.swift; sourceTree = "<group>"; };
+		8883E39D2779FA8800B9304B /* DevelopmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentTests.swift; sourceTree = "<group>"; };
+		8883E3A1277B474800B9304B /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		889A4CF52775E1B900E3B53B /* VStackFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStackFormView.swift; sourceTree = "<group>"; };
 		889A4D0127764BC500E3B53B /* ChevronRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronRightView.swift; sourceTree = "<group>"; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +367,10 @@
 			isa = PBXGroup;
 			children = (
 				8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */,
+				8848D488277913D500F10DC9 /* DoseTests.swift */,
+				8883E39B2779A2A000B9304B /* SymbolTests.swift */,
+				8883E3A1277B474800B9304B /* ExtensionTests.swift */,
+				8883E39D2779FA8800B9304B /* DevelopmentTests.swift */,
 				8848D47E2778E13000F10DC9 /* Info.plist */,
 				8848D4862778EC3000F10DC9 /* AssetTest.swift */,
 			);
@@ -487,7 +499,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8848D45B277700A300F10DC9 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -505,7 +517,7 @@
 		};
 		88E930A02760A51600A98708 /* Run Script - AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -517,7 +529,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "DIR=$PROJECT_TEMP_DIR/../../../SourcePackages/checkouts/AckGen\nif [ -d \"$DIR\" ]; then\n  cd $DIR\n  SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n  swift run ackgen\nelse\n  echo \"warning: AckGen not found. Please install the package via SPM (https://github.com/MartinP7r/AckGen#installation)\"\nfi\n";
 		};
@@ -530,7 +542,7 @@
 			files = (
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
-				88AB7CB9275FAA950055BD9B /* Bundle+Extensions.swift in Sources */,
+				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
 				881BA39A2764B8B600DA06D7 /* Panel.swift in Sources */,
@@ -586,8 +598,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8848D489277913D500F10DC9 /* DoseTests.swift in Sources */,
+				8883E39C2779A2A000B9304B /* SymbolTests.swift in Sources */,
 				8848D4872778EC3000F10DC9 /* AssetTest.swift in Sources */,
+				8883E3A2277B474800B9304B /* ExtensionTests.swift in Sources */,
 				8848D47D2778E13000F10DC9 /* PainMedsBuddyTests.swift in Sources */,
+				8883E39E2779FA8800B9304B /* DevelopmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

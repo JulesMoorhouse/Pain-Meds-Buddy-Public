@@ -152,7 +152,7 @@ extension Med: MedProtocol {
     }
 
     static var example: Med {
-        let controller = DataController(inMemory: true)
+        let controller = DataController.preview
         let viewContext = controller.container.viewContext
 
         let med = Med(context: viewContext)
