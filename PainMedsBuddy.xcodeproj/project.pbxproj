@@ -60,6 +60,8 @@
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
 		88B6E8332754CDE500790A14 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding+Extensions.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
+		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
+		88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D05277B6525002B2EC6 /* DecodableString.json */; };
 		88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93090275FCED000A98708 /* MedSymbolView.swift */; };
 		88E93093275FD7CC00A98708 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color+Extensions.swift */; };
 		88E9309C2760A4B900A98708 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309B2760A4B900A98708 /* AckGen */; };
@@ -145,6 +147,8 @@
 		88AB7CC0275FB3150055BD9B /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
+		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
+		88C74D05277B6525002B2EC6 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
 		88E93092275FD7CC00A98708 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 		8848D47B2778E13000F10DC9 /* PainMedsBuddyTests */ = {
 			isa = PBXGroup;
 			children = (
+				88C74D02277B649D002B2EC6 /* Fixtures */,
 				8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */,
 				8848D488277913D500F10DC9 /* DoseTests.swift */,
 				8883E39B2779A2A000B9304B /* SymbolTests.swift */,
@@ -383,6 +388,15 @@
 				88572058275233A300B4B00C /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88C74D02277B649D002B2EC6 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */,
+				88C74D05277B6525002B2EC6 /* DecodableString.json */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +505,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */,
+				88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +558,7 @@
 			files = (
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
-				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
+				88AB7CB9275FAA950055BD9B /* Bundle+Extensions.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
 				881BA39A2764B8B600DA06D7 /* Panel.swift in Sources */,
