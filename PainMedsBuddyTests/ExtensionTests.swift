@@ -70,7 +70,7 @@ class ExtensionTests: XCTestCase {
         )
 
         let changedBinding = binding.onChange(exampleFunctionToCall)
-        
+
         // When
         changedBinding.wrappedValue = "Test"
 

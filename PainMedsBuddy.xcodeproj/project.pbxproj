@@ -51,19 +51,19 @@
 		88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */; };
 		88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAC275E83D60055BD9B /* PopUpView.swift */; };
 		88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAE275E87340055BD9B /* MedSortView.swift */; };
-		88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */; };
+		88AB7CB3275F68260055BD9B /* Sequence-Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */; };
 		88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */; };
 		88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB6275F7BE60055BD9B /* MedAddView.swift */; };
-		88AB7CB9275FAA950055BD9B /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB8275FAA940055BD9B /* Bundle+Extensions.swift */; };
+		88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */; };
 		88AB7CBD275FB17F0055BD9B /* Symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 88AB7CBC275FB17F0055BD9B /* Symbols.json */; };
 		88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CBE275FB2360055BD9B /* Symbol.swift */; };
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
-		88B6E8332754CDE500790A14 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding+Extensions.swift */; };
+		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
 		88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D05277B6525002B2EC6 /* DecodableString.json */; };
 		88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93090275FCED000A98708 /* MedSymbolView.swift */; };
-		88E93093275FD7CC00A98708 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color+Extensions.swift */; };
+		88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color-Additions.swift */; };
 		88E9309C2760A4B900A98708 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309B2760A4B900A98708 /* AckGen */; };
 		88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309D2760A4B900A98708 /* AckGenUI */; };
 		88E930A22760A63E00A98708 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930A12760A63E00A98708 /* SettingsView.swift */; };
@@ -138,19 +138,19 @@
 		88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBorderView.swift; sourceTree = "<group>"; };
 		88AB7CAC275E83D60055BD9B /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		88AB7CAE275E87340055BD9B /* MedSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSortView.swift; sourceTree = "<group>"; };
-		88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
+		88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence-Sorting.swift"; sourceTree = "<group>"; };
 		88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		88AB7CB6275F7BE60055BD9B /* MedAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAddView.swift; sourceTree = "<group>"; };
-		88AB7CB8275FAA940055BD9B /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		88AB7CBC275FB17F0055BD9B /* Symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Symbols.json; sourceTree = "<group>"; };
 		88AB7CBE275FB2360055BD9B /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		88AB7CC0275FB3150055BD9B /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
-		88B6E8322754CDE500790A14 /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
+		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		88C74D05277B6525002B2EC6 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
-		88E93092275FD7CC00A98708 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		88E93092275FD7CC00A98708 /* Color-Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		88E930A92760C6E500A98708 /* Acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Acknowledgements.plist; sourceTree = SOURCE_ROOT; };
 		88E930AB2760D8F800A98708 /* DoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseProgressView.swift; sourceTree = "<group>"; };
@@ -332,10 +332,10 @@
 		8848D4732778A19F00F10DC9 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				88AB7CB8275FAA940055BD9B /* Bundle+Extensions.swift */,
+				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
 				881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */,
 				886C30BD2763913B002A45B1 /* Int+Extensions.swift */,
-				88AB7CB2275F68260055BD9B /* Sequence+Extensions.swift */,
+				88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */,
 				886C30BB2763912C002A45B1 /* String+Extensions.swift */,
 			);
 			path = Foundation;
@@ -344,9 +344,9 @@
 		8848D4742778A1AA00F10DC9 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				88B6E8322754CDE500790A14 /* Binding+Extensions.swift */,
+				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				8848D46B2778A04500F10DC9 /* Button+Extensions.swift */,
-				88E93092275FD7CC00A98708 /* Color+Extensions.swift */,
+				88E93092275FD7CC00A98708 /* Color-Additions.swift */,
 				8848D4692778A03400F10DC9 /* DatePicker+Extensions.swift */,
 				8848D46D2778A05100F10DC9 /* Label+Extensions.swift */,
 				8848D4712778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift */,
@@ -558,7 +558,7 @@
 			files = (
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
-				88AB7CB9275FAA950055BD9B /* Bundle+Extensions.swift in Sources */,
+				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
 				881BA39A2764B8B600DA06D7 /* Panel.swift in Sources */,
@@ -576,7 +576,7 @@
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
 				881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */,
-				88E93093275FD7CC00A98708 /* Color+Extensions.swift in Sources */,
+				88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */,
 				881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */,
 				88F2E989276FD74500081C9C /* HomeRecentMedsView.swift in Sources */,
 				881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */,
@@ -589,7 +589,7 @@
 				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
-				88B6E8332754CDE500790A14 /* Binding+Extensions.swift in Sources */,
+				88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */,
 				88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */,
 				8848D4722778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift in Sources */,
 				889A4D0227764BC500E3B53B /* ChevronRightView.swift in Sources */,
@@ -598,7 +598,7 @@
 				8848D46E2778A05100F10DC9 /* Label+Extensions.swift in Sources */,
 				88AB7CA9275E31900055BD9B /* Meds-ArrayHelpers.swift in Sources */,
 				88F2E98E27708AF700081C9C /* Strings.swift in Sources */,
-				88AB7CB3275F68260055BD9B /* Sequence+Extensions.swift in Sources */,
+				88AB7CB3275F68260055BD9B /* Sequence-Sorting.swift in Sources */,
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,
 				8848D46C2778A04500F10DC9 /* Button+Extensions.swift in Sources */,
 				886C30BE2763913B002A45B1 /* Int+Extensions.swift in Sources */,

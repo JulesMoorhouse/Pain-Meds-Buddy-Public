@@ -1,5 +1,5 @@
 //
-//  Color+Extensions.swift
+//  Color-Additions.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.

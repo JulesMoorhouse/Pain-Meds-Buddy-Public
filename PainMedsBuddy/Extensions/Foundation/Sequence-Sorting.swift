@@ -1,5 +1,5 @@
 //
-//  Sequence+Extensions.swift
+//  Sequence-Sorting.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.

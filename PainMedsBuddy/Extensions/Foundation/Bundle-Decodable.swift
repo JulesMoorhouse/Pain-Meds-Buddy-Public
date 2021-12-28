@@ -1,5 +1,5 @@
 //
-//  Bundle+Extensions.swift
+//  Bundle-Decodable.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
