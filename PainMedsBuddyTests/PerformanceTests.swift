@@ -23,7 +23,7 @@ class PerformanceTests: BaseTestCase {
 
     func testHasRelationshipPerformance() throws {
         // Create a significant amount of test data
-        for _ in 1...100 {
+        for _ in 1...25 {
             try dataController.createSampleData()
         }
 
