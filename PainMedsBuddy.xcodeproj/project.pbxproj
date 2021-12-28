@@ -63,6 +63,7 @@
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
 		88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D05277B6525002B2EC6 /* DecodableString.json */; };
 		88C74D08277B8531002B2EC6 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C74D07277B8531002B2EC6 /* PerformanceTests.swift */; };
+		88C74D10277BAC88002B2EC6 /* PainMedsBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C74D0F277BAC88002B2EC6 /* PainMedsBuddyUITests.swift */; };
 		88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93090275FCED000A98708 /* MedSymbolView.swift */; };
 		88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color-Additions.swift */; };
 		88E9309C2760A4B900A98708 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309B2760A4B900A98708 /* AckGen */; };
@@ -82,6 +83,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		8848D47F2778E13000F10DC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88321416275120D40026D85F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8832141D275120D40026D85F;
+			remoteInfo = PainMedsBuddy;
+		};
+		88C74D12277BAC88002B2EC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 88321416275120D40026D85F /* Project object */;
 			proxyType = 1;
@@ -151,6 +159,9 @@
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		88C74D05277B6525002B2EC6 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		88C74D07277B8531002B2EC6 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
+		88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PainMedsBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88C74D0F277BAC88002B2EC6 /* PainMedsBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyUITests.swift; sourceTree = "<group>"; };
+		88C74D11277BAC88002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
 		88E93092275FD7CC00A98708 /* Color-Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -185,6 +196,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88C74D0A277BAC88002B2EC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -194,8 +212,10 @@
 				88321420275120D40026D85F /* PainMedsBuddy */,
 				889A8D86275122DA00AB1868 /* PainMedsBuddy.app */,
 				8848D47B2778E13000F10DC9 /* PainMedsBuddyTests */,
+				88C74D0E277BAC88002B2EC6 /* PainMedsBuddyUITests */,
 				88572057275233A300B4B00C /* Frameworks */,
 				8848D47A2778E13000F10DC9 /* PainMedsBuddyTests.xctest */,
+				88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -402,6 +422,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		88C74D0E277BAC88002B2EC6 /* PainMedsBuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				88C74D0F277BAC88002B2EC6 /* PainMedsBuddyUITests.swift */,
+				88C74D11277BAC88002B2EC6 /* Info.plist */,
+			);
+			path = PainMedsBuddyUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -448,6 +477,24 @@
 			productReference = 8848D47A2778E13000F10DC9 /* PainMedsBuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		88C74D0C277BAC88002B2EC6 /* PainMedsBuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88C74D14277BAC88002B2EC6 /* Build configuration list for PBXNativeTarget "PainMedsBuddyUITests" */;
+			buildPhases = (
+				88C74D09277BAC88002B2EC6 /* Sources */,
+				88C74D0A277BAC88002B2EC6 /* Frameworks */,
+				88C74D0B277BAC88002B2EC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88C74D13277BAC88002B2EC6 /* PBXTargetDependency */,
+			);
+			name = PainMedsBuddyUITests;
+			productName = PainMedsBuddyUITests;
+			productReference = 88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -461,6 +508,10 @@
 						CreatedOnToolsVersion = 12.5;
 					};
 					8848D4792778E13000F10DC9 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 8832141D275120D40026D85F;
+					};
+					88C74D0C277BAC88002B2EC6 = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = 8832141D275120D40026D85F;
 					};
@@ -486,6 +537,7 @@
 			targets = (
 				8832141D275120D40026D85F /* PainMedsBuddy */,
 				8848D4792778E13000F10DC9 /* PainMedsBuddyTests */,
+				88C74D0C277BAC88002B2EC6 /* PainMedsBuddyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -510,6 +562,13 @@
 			files = (
 				88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */,
 				88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88C74D0B277BAC88002B2EC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +686,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88C74D09277BAC88002B2EC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88C74D10277BAC88002B2EC6 /* PainMedsBuddyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -634,6 +701,11 @@
 			isa = PBXTargetDependency;
 			target = 8832141D275120D40026D85F /* PainMedsBuddy */;
 			targetProxy = 8848D47F2778E13000F10DC9 /* PBXContainerItemProxy */;
+		};
+		88C74D13277BAC88002B2EC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8832141D275120D40026D85F /* PainMedsBuddy */;
+			targetProxy = 88C74D12277BAC88002B2EC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -844,6 +916,44 @@
 			};
 			name = Release;
 		};
+		88C74D15277BAC88002B2EC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M3R45325T7;
+				INFOPLIST_FILE = PainMedsBuddyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mclapps.PainMedsBuddyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PainMedsBuddy;
+			};
+			name = Debug;
+		};
+		88C74D16277BAC88002B2EC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M3R45325T7;
+				INFOPLIST_FILE = PainMedsBuddyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mclapps.PainMedsBuddyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PainMedsBuddy;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -870,6 +980,15 @@
 			buildConfigurations = (
 				8848D4822778E13000F10DC9 /* Debug */,
 				8848D4832778E13000F10DC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88C74D14277BAC88002B2EC6 /* Build configuration list for PBXNativeTarget "PainMedsBuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C74D15277BAC88002B2EC6 /* Debug */,
+				88C74D16277BAC88002B2EC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
