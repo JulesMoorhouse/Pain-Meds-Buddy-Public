@@ -62,6 +62,7 @@
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
 		88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D05277B6525002B2EC6 /* DecodableString.json */; };
+		88C74D08277B8531002B2EC6 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C74D07277B8531002B2EC6 /* PerformanceTests.swift */; };
 		88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93090275FCED000A98708 /* MedSymbolView.swift */; };
 		88E93093275FD7CC00A98708 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E93092275FD7CC00A98708 /* Color-Additions.swift */; };
 		88E9309C2760A4B900A98708 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309B2760A4B900A98708 /* AckGen */; };
@@ -149,6 +150,7 @@
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		88C74D05277B6525002B2EC6 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
+		88C74D07277B8531002B2EC6 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
 		88E93092275FD7CC00A98708 /* Color-Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */,
 				8848D488277913D500F10DC9 /* DoseTests.swift */,
 				8883E39B2779A2A000B9304B /* SymbolTests.swift */,
+				88C74D07277B8531002B2EC6 /* PerformanceTests.swift */,
 				8883E3A1277B474800B9304B /* ExtensionTests.swift */,
 				8883E39D2779FA8800B9304B /* DevelopmentTests.swift */,
 				8848D47E2778E13000F10DC9 /* Info.plist */,
@@ -614,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C74D08277B8531002B2EC6 /* PerformanceTests.swift in Sources */,
 				8848D489277913D500F10DC9 /* DoseTests.swift in Sources */,
 				8883E39C2779A2A000B9304B /* SymbolTests.swift in Sources */,
 				8848D4872778EC3000F10DC9 /* AssetTest.swift in Sources */,
