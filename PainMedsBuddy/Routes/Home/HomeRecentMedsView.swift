@@ -19,7 +19,7 @@ struct HomeRecentMedsView: View {
 
     var body: some View {
         Group {
-            if canTakeMeds().count == 0 {
+            if canTakeMeds().isEmpty {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {

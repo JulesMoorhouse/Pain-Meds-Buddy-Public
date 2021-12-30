@@ -77,7 +77,7 @@ struct MedsView: View {
 
     var sortToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
-            if meds.count > 0 {
+            if !meds.isEmpty {
                 Button(action: {
                     self.showingSortOrder = true
                 }, label: {
@@ -123,6 +123,7 @@ struct MedsView: View {
         let deleteItems = offsets.map { items[$0] }
 
         let count = dataController.anyRelationships(for: deleteItems)
+        // swiftlint:disable:next empty_count
         if count == 0 {
             for offset in offsets {
                 let item = items[offset]

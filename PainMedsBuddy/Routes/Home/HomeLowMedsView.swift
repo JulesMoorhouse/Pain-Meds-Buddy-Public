@@ -22,7 +22,7 @@ struct HomeLowMedsView: View {
 
     var body: some View {
         Group {
-            if lowMeds().count == 0 {
+            if lowMeds().isEmpty {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {

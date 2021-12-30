@@ -246,7 +246,7 @@ class DataController: ObservableObject {
         ]
         do {
             let tempMeds = try container.viewContext.fetch(fetchRequest)
-            if tempMeds.count > 0 {
+            if !tempMeds.isEmpty {
                 if let first = tempMeds.first {
                     return first
                 }

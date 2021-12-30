@@ -30,7 +30,7 @@ struct HomeView: View {
     }
 
     var noData: Bool {
-        doses.count == 0 && meds.count == 0
+        doses.isEmpty && meds.isEmpty
     }
 
     var currentMedCards: some View {
@@ -58,7 +58,7 @@ struct HomeView: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
-                            if doses.count > 0 {
+                            if !doses.isEmpty {
                                 Text(.homeCurrentMeds)
                                     .foregroundColor(.secondary)
                                     .padding(.leading)
