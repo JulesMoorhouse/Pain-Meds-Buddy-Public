@@ -70,7 +70,7 @@ struct DoseEditView: View, DestinationView {
                     )
                 }, label: {
                     HStack {
-                        TwoColumnView(col1: Strings.commonMedication.rawValue,
+                        TwoColumnView(col1: Strings.commonMedications.rawValue,
                                       col2: selectedMed.medTitle,
                                       hasChevron: true)
                     }

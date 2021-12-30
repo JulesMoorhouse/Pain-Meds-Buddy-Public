@@ -15,7 +15,7 @@ enum Strings: LocalizedStringKey {
     case commonEgNum
     case commonEmptyView
     case commonOK
-    case commonMedication
+    case commonMedications
     case commonNoDate
     case commonNotTakenYet
     case commonPleaseSelect
@@ -25,7 +25,7 @@ enum Strings: LocalizedStringKey {
     case tabTitleHistory
     case tabTitleHome
     case tabTitleInProgress
-    case tabTitleMedication
+    case tabTitleMedications
     case tabTitleSettings
 
     case homeCurrentMeds

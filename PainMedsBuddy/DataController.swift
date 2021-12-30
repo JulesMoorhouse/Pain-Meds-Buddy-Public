@@ -50,13 +50,31 @@ class DataController: ObservableObject {
             if let error = error as NSError? {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
+
+            if DataController.isUITesting {
+                self.deleteAll()
+            }
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
         _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 
     private static var isUnitTesting: Bool {
-        return ProcessInfo.processInfo.environment["UNITTEST"] == "1"
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["UNITTEST"] == "1" {
+            return true
+        }
+        #endif
+        return false
+    }
+
+    private static var isUITesting: Bool {
+        #if DEBUG
+        if CommandLine.arguments.contains("enable-ui-testing") {
+            return true
+        }
+        #endif
+        return false
     }
 
     static var preview: DataController = {

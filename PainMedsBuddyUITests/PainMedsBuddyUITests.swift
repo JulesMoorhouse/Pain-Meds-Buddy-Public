@@ -8,35 +8,83 @@
 import XCTest
 
 class PainMedsBuddyUITests: XCTestCase {
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        app = XCUIApplication()
+        app.launchArguments = ["enable-ui-testing"]
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+    func testAppHas5Tabs() throws {
+        XCTAssertEqual(app.tabBars.buttons.count, 5, "There should be 5 tabs in the app.")
+    }
+
+    func testAddMedication() {
+        tapTabMedications()
+
+        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+
+        for addCount in 1 ... 5 {
+            tapMedicationTabAddButton()
+            tapAddMedBackButton()
+
+            XCTAssertEqual(app.tables.cells.count, addCount, "There should be \(addCount) list rows initially.")
         }
+    }
+
+    func testAddDose() {
+        tapTabMedications()
+        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+
+        tapMedicationTabAddButton()
+        tapAddMedBackButton()
+
+        tapTabInProgress()
+        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+
+        tapInProgressAddButton()
+        tapAddDoseBackButton()
+
+        XCTAssertEqual(app.tables.cells.count, 1, "There should be 1 list rows initially.")
+    }
+
+    // These helper methods should not have any parameters and should perform simple actions
+    // and confirm the action occurred
+
+    func tapTabMedications() {
+        app.buttons["Medications"].tap()
+        _ = app.navigationBars["Medications"].waitForExistence(timeout: 10)
+    }
+
+    func tapTabInProgress() {
+        app.buttons["In Progress"].tap()
+        _ = app.navigationBars["In Progress"].waitForExistence(timeout: 10)
+    }
+
+    func tapMedicationTabAddButton() {
+        let medicationScreen = app.navigationBars["Medications"]
+        medicationScreen.buttons["add"].tap()
+        _ = app.navigationBars["Add Med"].waitForExistence(timeout: 10)
+    }
+
+    func tapAddMedBackButton() {
+        let addMedScreen = app.navigationBars["Add Med"]
+        addMedScreen.buttons["Medications"].tap()
+        _ = app.navigationBars["Medications"].waitForExistence(timeout: 10)
+    }
+
+    func tapInProgressAddButton() {
+        let doseScreen = app.navigationBars["In Progress"]
+        doseScreen.buttons["add"].tap()
+        _ = app.navigationBars["Add Dose"].waitForExistence(timeout: 10)
+    }
+
+    func tapAddDoseBackButton() {
+        let addDoseScreen = app.navigationBars["Add Dose"]
+        addDoseScreen.buttons["In Progress"].tap()
+        _ = app.navigationBars["In progress"].waitForExistence(timeout: 10)
     }
 }

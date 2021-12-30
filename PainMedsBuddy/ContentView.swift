@@ -42,7 +42,7 @@ struct ContentView: View {
                 .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: "pills.fill")
-                    Text(.tabTitleMedication)
+                    Text(.tabTitleMedications)
                 }
 
             SettingsView()
