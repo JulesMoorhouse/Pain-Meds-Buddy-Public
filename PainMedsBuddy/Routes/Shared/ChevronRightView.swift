@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChevronRightView: View {
     var body: some View {
-        Image(systemName: "chevron.right")
+        Image(systemName: SFSymbol.chevronRight.systemName)
             .font(.footnote)
             .foregroundColor(.secondary)
     }

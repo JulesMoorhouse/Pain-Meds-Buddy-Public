@@ -77,4 +77,15 @@ class ExtensionTests: XCTestCase {
         // Then
         XCTAssertTrue(onChangeFunctionRun, "The onChange() function must be run when the binding is changed.")
     }
+
+    func testSFSymbolsExist() {
+        let items = SFSymbol.allCases
+
+        for item in items {
+            let image: Image? = UIImage(systemName: item.systemName)
+                .map { _ in Image(systemName: item.systemName) }
+
+            XCTAssertNotNil(image, "SF Symbol \(item.systemName) is not found")
+        }
+    }
 }

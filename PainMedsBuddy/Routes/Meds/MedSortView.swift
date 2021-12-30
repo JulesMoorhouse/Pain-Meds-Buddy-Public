@@ -44,7 +44,7 @@ struct MedSortView: View {
             Button(action: {
                 showingSortOrder = false
             }, label: {
-                Image(systemName: "xmark")
+                Image(systemName: SFSymbol.xMark.systemName)
                     .font(.headline)
             })
         })

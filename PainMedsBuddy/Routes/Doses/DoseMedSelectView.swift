@@ -37,7 +37,7 @@ struct DoseMedSelectView: View, DestinationView {
             Button(action: {
                 self.showingSortOrder = true
             }, label: {
-                Label(.commonSort, systemImage: "arrow.up.arrow.down")
+                Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
             })
         }
     }
@@ -72,7 +72,7 @@ struct DoseMedSelectView: View, DestinationView {
             Spacer()
 
             if self.selectedMed == items[index] {
-                Image(systemName: "checkmark")
+                Image(systemName: SFSymbol.checkmark.systemName)
                     .foregroundColor(Color.blue)
             }
         }

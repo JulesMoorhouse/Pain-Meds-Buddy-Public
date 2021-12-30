@@ -54,7 +54,7 @@ struct HomeView: View {
             Group {
                 if noData {
                     PlaceholderView(text: Strings.commonEmptyView.rawValue,
-                                    imageString: "pills")
+                                    imageString: SFSymbol.pills.systemName)
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {

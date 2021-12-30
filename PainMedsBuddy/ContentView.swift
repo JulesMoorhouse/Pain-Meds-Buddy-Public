@@ -20,35 +20,35 @@ struct ContentView: View {
             HomeView()
                 .tag(HomeView.HomeTag)
                 .tabItem {
-                    Image(systemName: "house")
+                    Image(systemName: SFSymbol.house.systemName)
                     Text(.tabTitleHome)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: true)
                 .tag(DosesView.historyTag)
                 .tabItem {
-                    Image(systemName: "checkmark")
+                    Image(systemName: SFSymbol.checkmark.systemName)
                     Text(.tabTitleHistory)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: false)
                 .tag(DosesView.inProgressTag)
                 .tabItem {
-                    Image(systemName: "arrow.triangle.2.circlepath")
+                    Image(systemName: SFSymbol.arrowTriangle2CirclePath.systemName)
                     Text(.tabTitleInProgress)
                 }
 
             MedsView()
                 .tag(MedsView.MedsTag)
                 .tabItem {
-                    Image(systemName: "pills.fill")
+                    Image(systemName: SFSymbol.pillsFill.systemName)
                     Text(.tabTitleMedications)
                 }
 
             SettingsView()
                 .tag(SettingsView.SettingsTag)
                 .tabItem {
-                    Image(systemName: "gearshape.fill")
+                    Image(systemName: SFSymbol.gearShapeFill.systemName)
                     Text(.tabTitleSettings)
                 }
         }

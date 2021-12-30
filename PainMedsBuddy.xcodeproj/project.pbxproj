@@ -41,6 +41,7 @@
 		889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4CF52775E1B900E3B53B /* VStackFormView.swift */; };
 		889A4D00277622A000E3B53B /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 889A4CFF277622A000E3B53B /* XNavigation */; };
 		889A4D0227764BC500E3B53B /* ChevronRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4D0127764BC500E3B53B /* ChevronRightView.swift */; };
+		889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */; };
 		88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C982754EE620055BD9B /* DoseRowView.swift */; };
 		88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */; };
 		88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */; };
@@ -137,6 +138,7 @@
 		889A4CF52775E1B900E3B53B /* VStackFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStackFormView.swift; sourceTree = "<group>"; };
 		889A4D0127764BC500E3B53B /* ChevronRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronRightView.swift; sourceTree = "<group>"; };
 		889A8D86275122DA00AB1868 /* PainMedsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMedsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		88AB7C982754EE620055BD9B /* DoseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseRowView.swift; sourceTree = "<group>"; };
 		88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEditView.swift; sourceTree = "<group>"; };
 		88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnView.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		8848D4742778A1AA00F10DC9 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */,
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				8848D46B2778A04500F10DC9 /* Button+Extensions.swift */,
 				88E93092275FD7CC00A98708 /* Color-Additions.swift */,
@@ -646,6 +649,7 @@
 				886C30BC2763912C002A45B1 /* String+Extensions.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
+				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,

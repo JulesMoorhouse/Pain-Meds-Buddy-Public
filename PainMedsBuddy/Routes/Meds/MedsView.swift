@@ -69,7 +69,7 @@ struct MedsView: View {
                 if UIAccessibility.isVoiceOverRunning {
                     Text(.medEditAddMed)
                 } else {
-                    Label(.medEditAddMed, systemImage: "plus")
+                    Label(.medEditAddMed, systemImage: SFSymbol.plus.systemName)
                 }
             })
         }
@@ -81,7 +81,7 @@ struct MedsView: View {
                 Button(action: {
                     self.showingSortOrder = true
                 }, label: {
-                    Label(.commonSort, systemImage: "arrow.up.arrow.down")
+                    Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
                 })
             }
         }
@@ -92,7 +92,7 @@ struct MedsView: View {
             Group {
                 if self.meds.isEmpty {
                     PlaceholderView(text: Strings.commonEmptyView.rawValue,
-                                    imageString: "pills")
+                                    imageString: SFSymbol.pills.systemName)
                 } else {
                     ZStack {
                         medsList
@@ -115,7 +115,7 @@ struct MedsView: View {
             }
 
             PlaceholderView(text: Strings.medsPleaseSelect.rawValue,
-                            imageString: "eyedropper.halffull")
+                            imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
     }
 

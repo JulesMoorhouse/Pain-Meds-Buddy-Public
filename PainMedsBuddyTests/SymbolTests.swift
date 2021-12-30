@@ -7,6 +7,7 @@
 
 import CoreData
 @testable import PainMedsBuddy
+import SwiftUI
 import XCTest
 
 class SymbolTests: BaseTestCase {
@@ -15,6 +16,17 @@ class SymbolTests: BaseTestCase {
     func testSymbolIDMatchesName() {
         for symbol in symbols {
             XCTAssertEqual(symbol.id, symbol.name, "Symbol ID should always match its name.")
+        }
+    }
+
+    func testSymbolsLabelsValid() {
+        let symbols = Symbol.allSymbols
+
+        for item in symbols {
+            let image: Image? = UIImage(systemName: item.name)
+                .map { _ in Image(systemName: item.name) }
+
+            XCTAssertNotNil(image, "Symbols.json - An item which contains an invalid SF Symbol - \(item.name)")
         }
     }
 }

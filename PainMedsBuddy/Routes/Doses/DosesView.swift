@@ -62,7 +62,7 @@ struct DosesView: View {
             Group {
                 if data.isEmpty {
                     PlaceholderView(text: placeHolderEmptyText(),
-                                    imageString: "pills")
+                                    imageString: SFSymbol.pills.systemName)
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -91,14 +91,14 @@ struct DosesView: View {
                         if UIAccessibility.isVoiceOverRunning {
                             Text(.doseEditAddDose)
                         } else {
-                            Label(.doseEditAddDose, systemImage: "plus")
+                            Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
                         }
                     })
                 }
             }
 
             PlaceholderView(text: placeHolderText(),
-                            imageString: "eyedropper.halffull")
+                            imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
     }
 

@@ -183,7 +183,7 @@ struct MedEditView: View, DestinationView {
                 .cornerRadius(6)
 
             if item == colour {
-                Image(systemName: "checkmark.circle")
+                Image(systemName: SFSymbol.checkmarkCircle.systemName)
                     .foregroundColor(.white)
                     .font(.largeTitle)
             }
@@ -265,7 +265,7 @@ struct MedEditView: View, DestinationView {
                 activeAlert = alertType
                 showAlert.toggle()
             }, label: {
-                Image(systemName: "info.circle")
+                Image(systemName: SFSymbol.infoCircle.systemName)
             })
 
             Spacer()
