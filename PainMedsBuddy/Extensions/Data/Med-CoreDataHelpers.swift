@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Med: MedProtocol {
     public enum SortOrder {
-        case optimized, title, creationDate, remaining, lastTaken
+        case optimised, title, creationDate, remaining, lastTaken
     }
 
     static let colours = [
@@ -25,7 +25,7 @@ extension Med: MedProtocol {
         "Dark Blue",
         "Midnight",
         "Dark Gray",
-        "Gray"
+        "Gray",
     ]
 
     var medTitle: String {

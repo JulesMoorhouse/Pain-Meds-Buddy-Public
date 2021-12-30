@@ -10,7 +10,7 @@ import SwiftUI
 import XNavigation
 
 enum ActiveAlert {
-    case deleteDenied, deleteConfirmation, durationGapInfo
+    case deleteDenied, deleteConfirmation, durationGapInfo, copied
 }
 
 struct MedEditView: View, DestinationView {
@@ -24,7 +24,7 @@ struct MedEditView: View, DestinationView {
 
     @State private var title: String
     @State private var defaultAmount: String
-    @State private var color: String
+    @State private var colour: String
     @State private var symbol: String
     @State private var dosage: String
     @State private var duration: String
@@ -38,27 +38,30 @@ struct MedEditView: View, DestinationView {
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
     @State private var canDelete = false
+    @State private var hasRelationship = false
 
     let types = ["mg", "ml", "Tspn"]
 
     let colorColumns = [
-        GridItem(.adaptive(minimum: 44))
+        GridItem(.adaptive(minimum: 44)),
     ]
 
-    init(med: Med, add: Bool) {
+    init(dataController: DataController, med: Med, add: Bool) {
         self.med = med
         self.add = add
 
+        _hasRelationship = State(wrappedValue: dataController.hasRelationship(for: med))
+
         let title = String(MedEditView.navigationTitle(add: add))
 
-        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
             displayMode: .automatic
         )
 
         _title = State(wrappedValue: med.medTitle)
         _defaultAmount = State(wrappedValue: med.medDefaultAmount)
-        _color = State(wrappedValue: med.medColor)
+        _colour = State(wrappedValue: med.medColor)
         _symbol = State(wrappedValue: med.medSymbol)
         _dosage = State(wrappedValue: med.medDosage)
         _duration = State(wrappedValue: med.medDuration)
@@ -95,7 +98,7 @@ struct MedEditView: View, DestinationView {
 
                 Text(.medEditImage)
                     .foregroundColor(.secondary)
-                SymbolsView(colour: Color($color.wrappedValue), selectedSymbol: $symbol.onChange(update))
+                SymbolsView(colour: Color($colour.wrappedValue), selectedSymbol: $symbol.onChange(update))
                     .padding(.vertical)
             }
 
@@ -103,14 +106,7 @@ struct MedEditView: View, DestinationView {
                 TextEditor(text: $notes.onChange(update))
             }
 
-            Section {
-                Button(Strings.medEditDeleteThisMed.rawValue) {
-                    canDelete = dataController.hasRelationship(for: med) == false
-                    activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
-                    showAlert.toggle()
-                }
-                .accentColor(.red)
-            }
+            buttonsSection()
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .onDisappear(perform: dataController.save)
@@ -134,6 +130,10 @@ struct MedEditView: View, DestinationView {
             return Alert(title: Text(.medEditInfo),
                          message: Text(.medEditGapInfo),
                          dismissButton: .default(Text(.commonOK)))
+        case .copied:
+            return Alert(title: Text(.medEditInfo),
+                         message: Text(.medEditCopied),
+                         dismissButton: .default(Text(.commonOK)))
         }
     }
 
@@ -146,9 +146,13 @@ struct MedEditView: View, DestinationView {
     func update() {
         med.dose?.objectWillChange.send()
 
+        update(med: med)
+    }
+
+    func update(med: Med) {
         med.title = title
         med.defaultAmount = NSDecimalNumber(string: defaultAmount)
-        med.color = color
+        med.color = colour
         med.symbol = symbol
         med.dosage = NSDecimalNumber(string: dosage)
         med.duration = Int16(duration) ?? MedDefault.duration
@@ -165,25 +169,32 @@ struct MedEditView: View, DestinationView {
         presentationMode.wrappedValue.dismiss()
     }
 
+    func copy() {
+        let newMed = Med(context: dataController.container.viewContext)
+        update(med: newMed)
+        newMed.title = String(.medEditCopiedSuffix, values: [newMed.medTitle])
+        dataController.save()
+    }
+
     func colourButton(for item: String) -> some View {
         ZStack {
             Color(item)
                 .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(6)
 
-            if item == color {
+            if item == colour {
                 Image(systemName: "checkmark.circle")
                     .foregroundColor(.white)
                     .font(.largeTitle)
             }
         }
         .onTapGesture {
-            color = item
+            colour = item
             update()
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(
-            item == color
+            item == colour
                 ? [.isButton, .isSelected]
                 : [.isButton]
         )
@@ -285,10 +296,30 @@ struct MedEditView: View, DestinationView {
                 .multilineTextAlignment(.trailing)
         }
     }
+
+    func buttonsSection() -> some View {
+        Section {
+            Button(Strings.medEditDeleteThisMed.rawValue) {
+                canDelete = hasRelationship == false
+                activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
+                showAlert.toggle()
+            }
+            .accentColor(.red)
+
+            Button(Strings.medEditCopyThisMed.rawValue) {
+                activeAlert = .copied
+                copy()
+                showAlert.toggle()
+            }
+        }
+    }
 }
 
 struct MedEditView_Previews: PreviewProvider {
+    static var dataController = DataController.preview
+
     static var previews: some View {
-        MedEditView(med: Med.example, add: false)
+        MedEditView(dataController: dataController, med: Med.example, add: false)
+            .environmentObject(dataController)
     }
 }

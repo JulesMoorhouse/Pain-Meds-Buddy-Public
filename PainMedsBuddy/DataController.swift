@@ -61,18 +61,18 @@ class DataController: ObservableObject {
 
     private static var isUnitTesting: Bool {
         #if DEBUG
-        if ProcessInfo.processInfo.environment["UNITTEST"] == "1" {
-            return true
-        }
+            if ProcessInfo.processInfo.environment["UNITTEST"] == "1" {
+                return true
+            }
         #endif
         return false
     }
 
     private static var isUITesting: Bool {
         #if DEBUG
-        if CommandLine.arguments.contains("enable-ui-testing") {
-            return true
-        }
+            if CommandLine.arguments.contains("enable-ui-testing") {
+                return true
+            }
         #endif
         return false
     }
@@ -242,7 +242,7 @@ class DataController: ObservableObject {
     func getFirstMed() -> Med? {
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
         ]
         do {
             let tempMeds = try container.viewContext.fetch(fetchRequest)

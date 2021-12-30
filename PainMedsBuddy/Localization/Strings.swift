@@ -53,7 +53,7 @@ enum Strings: LocalizedStringKey {
     case doseEditDeleteThisDose
     case doseEditEditDose
 
-    case sortOptimized
+    case sortOptimised
     case sortCreatedDate
     case sortSortOrder
     case sortTitle
@@ -66,6 +66,9 @@ enum Strings: LocalizedStringKey {
     case medEditAddMed
     case medEditAreYouSure
     case medEditColour
+    case medEditCopyThisMed
+    case medEditCopied
+    case medEditCopiedSuffix
     case medEditDefaultAmount
     case medEditDefaultText
     case medEditDeleteMed

@@ -14,13 +14,13 @@ struct MedSortView: View {
     var body: some View {
         PopUpView(text: Strings.sortSortOrder.rawValue, content: {
             Button(action: {
-                sortOrder = .optimized
+                sortOrder = .optimised
                 showingSortOrder = false
             }, label: {
-                ButtonBorderView(text: Strings.sortOptimized.rawValue)
+                ButtonBorderView(text: Strings.sortOptimised.rawValue)
             })
-                .disabled(sortOrder == .optimized)
-                .padding(.bottom, 5)
+            .disabled(sortOrder == .optimised)
+            .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .creationDate
@@ -28,8 +28,8 @@ struct MedSortView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortCreatedDate.rawValue)
             })
-                .disabled(sortOrder == .creationDate)
-                .padding(.bottom, 5)
+            .disabled(sortOrder == .creationDate)
+            .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .title
@@ -37,7 +37,7 @@ struct MedSortView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortTitle.rawValue)
             })
-                .disabled(sortOrder == .title)
+            .disabled(sortOrder == .title)
         },
         leftButton: {},
         rightButton: {
@@ -53,6 +53,6 @@ struct MedSortView: View {
 
 struct MedSortView_Previews: PreviewProvider {
     static var previews: some View {
-        MedSortView(sortOrder: .constant(Med.SortOrder.optimized), showingSortOrder: .constant(false))
+        MedSortView(sortOrder: .constant(Med.SortOrder.optimised), showingSortOrder: .constant(false))
     }
 }

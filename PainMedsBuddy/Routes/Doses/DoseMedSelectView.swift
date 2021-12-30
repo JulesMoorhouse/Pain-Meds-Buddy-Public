@@ -11,7 +11,8 @@ import XNavigation
 struct DoseMedSelectView: View, DestinationView {
     var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
         title: String(.selectMedSelectMed),
-        displayMode: .automatic)
+        displayMode: .automatic
+    )
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -21,7 +22,7 @@ struct DoseMedSelectView: View, DestinationView {
 
     @Binding var selectedMed: Med
     @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimized
+    @State private var sortOrder = Med.SortOrder.optimised
 
     var items: [Med] {
         DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)

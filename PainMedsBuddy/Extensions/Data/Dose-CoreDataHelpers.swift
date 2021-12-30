@@ -64,11 +64,11 @@ extension Dose: Comparable {
     }
 
     var doseDisplayFull: String {
-        return Dose.displayFull(amount: doseAmount,
-                                dosage: med?.medDosage ?? "\(MedDefault.dosage)",
-                                totalDosage: doseTotalDosage,
-                                measure: med?.measure ?? "\(MedDefault.measure)",
-                                form: med?.form ?? MedDefault.form)
+        Dose.displayFull(amount: doseAmount,
+                         dosage: med?.medDosage ?? "\(MedDefault.dosage)",
+                         totalDosage: doseTotalDosage,
+                         measure: med?.measure ?? "\(MedDefault.measure)",
+                         form: med?.form ?? MedDefault.form)
     }
 
     var doseDisplay: String {
@@ -81,8 +81,9 @@ extension Dose: Comparable {
         dosage: String,
         totalDosage: String,
         measure: String,
-        form: String) -> String {
-        return "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
+        form: String
+    ) -> String {
+        "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
     }
 
     public static func < (lhs: Dose, rhs: Dose) -> Bool {

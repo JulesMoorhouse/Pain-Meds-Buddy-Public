@@ -10,6 +10,7 @@ import XNavigation
 
 struct HomeLowMedsView: View {
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject var dataController: DataController
 
     let meds: FetchedResults<Med>
 
@@ -31,7 +32,7 @@ struct HomeLowMedsView: View {
                     ForEach(lowMeds(), id: \.self) { med in
                         Button(action: {
                             navigation.pushView(
-                                MedEditView(med: med, add: false),
+                                MedEditView(dataController: dataController, med: med, add: false),
                                 animated: true
                             )
                         }, label: {

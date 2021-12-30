@@ -19,9 +19,10 @@ extension View {
     }
 
     func accessibilityLabel(
-        _ localizedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+        _ localisedString: Strings) -> ModifiedContent<Self, AccessibilityAttachmentModifier>
+    {
         let output = NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         )
 
@@ -29,10 +30,11 @@ extension View {
     }
 
     func accessibilityLabel(
-        _ localizedString: Strings,
-        values: [String]) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+        _ localisedString: Strings,
+        values: [String]
+    ) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
         let output = String(format: NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         ),
         arguments: values)

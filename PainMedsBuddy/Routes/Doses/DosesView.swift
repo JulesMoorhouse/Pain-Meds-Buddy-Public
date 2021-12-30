@@ -30,7 +30,7 @@ struct DosesView: View {
         self.showElapsedDoses = showElapsedDoses
 
         doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
+            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
         ], predicate: NSPredicate(format: "elapsed = %d", showElapsedDoses))
     }
 
@@ -43,7 +43,7 @@ struct DosesView: View {
         // INFO: Sort by key aka doseFormattedMYTakenDate
         let sorted = dict.sorted(by: { $0.key > $1.key })
 
-        return sorted.map { $0.value }
+        return sorted.map(\.value)
     }
 
     func rowsView(section: [Dose]) -> some View {

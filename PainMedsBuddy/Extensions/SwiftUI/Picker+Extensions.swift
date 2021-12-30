@@ -10,11 +10,12 @@ import SwiftUI
 
 extension Picker where Label == Text {
     init(
-        _ localizedString: Strings,
+        _ localisedString: Strings,
         selection: Binding<SelectionValue>,
-        @ViewBuilder content: () -> Content) {
+        @ViewBuilder content: () -> Content
+    ) {
         let output = NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         )
 

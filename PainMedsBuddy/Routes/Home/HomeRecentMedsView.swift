@@ -39,7 +39,7 @@ struct HomeRecentMedsView: View {
     }
 
     func uniqueDoseMeds() -> [Med] {
-        let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap { $0.med }))
+        let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap(\.med)))
         return uniqueDoseMeds
     }
 

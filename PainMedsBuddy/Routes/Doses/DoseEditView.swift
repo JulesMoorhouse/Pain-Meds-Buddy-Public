@@ -33,7 +33,7 @@ struct DoseEditView: View, DestinationView {
 
         let title = String(DoseEditView.navigationTitle(add: add))
 
-        self.navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
             displayMode: .automatic
         )
@@ -43,7 +43,7 @@ struct DoseEditView: View, DestinationView {
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false)
+            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
         ]
 
         _meds = FetchRequest(fetchRequest: fetchRequest)

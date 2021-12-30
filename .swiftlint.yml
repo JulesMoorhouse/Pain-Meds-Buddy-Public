@@ -1,6 +1,11 @@
 disabled_rules:
   - opening_brace
+  - trailing_comma
 
 identifier_name:
   excluded:
     - id
+
+type_body_length:
+  - 300 # warning
+  - 400 # error

@@ -22,7 +22,7 @@ struct MedsView: View {
                   predicate: nil) var meds: FetchedResults<Med>
 
     @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimized
+    @State private var sortOrder = Med.SortOrder.optimised
     @State private var canDelete = false
     @State private var showDeleteDenied = false
 
@@ -35,7 +35,7 @@ struct MedsView: View {
             ForEach(items, id: \.self) { med in
                 Button(action: {
                     navigation.pushView(
-                        MedEditView(med: med, add: false),
+                        MedEditView(dataController: dataController, med: med, add: false),
                         animated: true
                     )
                 }, label: {
