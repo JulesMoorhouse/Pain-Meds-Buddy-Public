@@ -70,7 +70,7 @@ struct DoseEditView: View, DestinationView {
                     )
                 }, label: {
                     HStack {
-                        TwoColumnView(col1: Strings.commonMedications.rawValue,
+                        TwoColumnView(col1: Strings.doseEditMedication.rawValue,
                                       col2: selectedMed.medTitle,
                                       hasChevron: true)
                     }
@@ -164,6 +164,15 @@ struct DoseEditView: View, DestinationView {
     }
 
     func delete() {
+        // INFO: Also delete the med if this dose is the only relationship and is hidden.
+        if let med = dose.med {
+            if med.hidden == true {
+                let count = dataController.anyRelationships(for: [med])
+                if count == 1 {
+                    dataController.delete(med)
+                }
+            }
+        }
         dataController.delete(dose)
         presentationMode.wrappedValue.dismiss()
     }

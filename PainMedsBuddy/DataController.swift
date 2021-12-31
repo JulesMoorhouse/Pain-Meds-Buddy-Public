@@ -17,6 +17,7 @@ class DataController: ObservableObject {
 
     public static let totalSampleMeds = 20
     public static let totalSampleDoses = 20
+    public static let useHardDelete = true
 
     var container: NSPersistentContainer {
         if !DataController.isUnitTesting {
@@ -189,6 +190,7 @@ class DataController: ObservableObject {
             med.lastTakenDate = Date()
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.sequence = Int16.random(in: 1 ... 3)
+            med.hidden = false
 
             let dose = Dose(context: viewContext)
             dose.takenDate = (medCounter % 2 == 0) ? Date() : Date.yesterday

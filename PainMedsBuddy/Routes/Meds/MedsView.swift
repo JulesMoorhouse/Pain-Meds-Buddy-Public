@@ -19,7 +19,8 @@ struct MedsView: View {
 
     @FetchRequest(entity: Med.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: nil) var meds: FetchedResults<Med>
+                  predicate: !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil)
+    var meds: FetchedResults<Med>
 
     @State private var showingSortOrder = false
     @State private var sortOrder = Med.SortOrder.optimised

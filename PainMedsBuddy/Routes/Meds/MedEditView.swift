@@ -10,7 +10,7 @@ import SwiftUI
 import XNavigation
 
 enum ActiveAlert {
-    case deleteDenied, deleteConfirmation, durationGapInfo, copied
+    case deleteDenied, deleteConfirmation, durationGapInfo, copied, hiddenTitle
 }
 
 struct MedEditView: View, DestinationView {
@@ -134,6 +134,10 @@ struct MedEditView: View, DestinationView {
             return Alert(title: Text(.medEditInfo),
                          message: Text(.medEditCopied),
                          dismissButton: .default(Text(.commonOK)))
+        case .hiddenTitle:
+            return Alert(title: Text(.medEditInfo),
+                         message: Text(.medEditHiddenTitle),
+                         dismissButton: .default(Text(.commonOK)))
         }
     }
 
@@ -165,7 +169,17 @@ struct MedEditView: View, DestinationView {
     }
 
     func delete() {
-        dataController.delete(med)
+        let count = dataController.anyRelationships(for: [med])
+
+        // INFO: If this med only has 1 relationship and we're
+        // using hard delete, then delete this med. Otherwise
+        // keep the med for use with other doses.
+        if count == 1 || DataController.useHardDelete {
+            dataController.delete(med)
+        } else {
+            update()
+            med.hidden = true
+        }
         presentationMode.wrappedValue.dismiss()
     }
 
@@ -203,9 +217,25 @@ struct MedEditView: View, DestinationView {
 
     func basicSettingsFields() -> some View {
         Group {
-            TextField(String(.commonEgString,
-                             values: [MedDefault.Sensible.title]),
-                      text: $title.onChange(update))
+            HStack {
+                if hasRelationship {
+                    Text($title.wrappedValue)
+                        .foregroundColor(.secondary)
+
+                    Spacer()
+
+                    Button(action: {
+                        activeAlert = .hiddenTitle
+                        showAlert.toggle()
+                    }, label: {
+                        Image(systemName: SFSymbol.infoCircle.systemName)
+                    })
+                } else {
+                    TextField(String(.commonEgString,
+                                     values: [MedDefault.Sensible.title]),
+                              text: $title.onChange(update))
+                }
+            }
 
             rowFields(label: .medEditDefaultAmount,
                       detailValues: [MedDefault.Sensible.medDefaultAmount()],

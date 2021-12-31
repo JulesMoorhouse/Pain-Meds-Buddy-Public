@@ -80,6 +80,7 @@ struct MedDefault {
         med.form = MedDefault.form
         med.symbol = MedDefault.symbol
         med.notes = MedDefault.notes
+        med.hidden = false
     }
 
     static func setSensibleDefaults(_ med: Med) {
@@ -97,5 +98,6 @@ struct MedDefault {
         med.form = MedDefault.Sensible.form
         med.symbol = MedDefault.Sensible.symbol
         med.notes = MedDefault.Sensible.notes
+        med.hidden = false
     }
 }

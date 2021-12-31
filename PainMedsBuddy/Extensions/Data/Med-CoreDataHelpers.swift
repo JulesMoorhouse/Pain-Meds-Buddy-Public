@@ -170,6 +170,7 @@ extension Med: MedProtocol {
         med.symbol = Symbol.allSymbols.randomElement()?.id
         med.creationDate = Date()
         med.lastTakenDate = Date()
+        med.hidden = false
 
         return med
     }
