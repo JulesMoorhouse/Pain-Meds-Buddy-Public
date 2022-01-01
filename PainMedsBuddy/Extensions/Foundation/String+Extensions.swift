@@ -18,18 +18,18 @@ extension String {
         return int
     }
 
-    init(_ localizedString: Strings, values: [String]) {
+    init(_ localisedString: Strings, values: [String]) {
         let output = NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         )
 
         self.init(format: output, arguments: values)
     }
 
-    init(_ localizedString: Strings) {
+    init(_ localisedString: Strings) {
         let output = NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         )
 

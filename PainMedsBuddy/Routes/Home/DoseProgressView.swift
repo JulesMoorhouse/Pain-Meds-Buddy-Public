@@ -131,12 +131,19 @@ struct DoseProgressView: View {
         .accessibilityRemoveTraits(.isButton)
         .accessibilityAddTraits(done ? .isStaticText : .isButton)
         .accessibilityLabel(accessibilityLabel())
+        .accessibilityIdentifier(accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
         done
             ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
             : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
+    }
+
+    func accessibilityIdentifier() -> Strings {
+        done
+            ? .doseProgressAccessibilityRemaining
+            : .doseProgressAccessibilityAvailable
     }
 }
 

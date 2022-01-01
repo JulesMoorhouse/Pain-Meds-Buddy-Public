@@ -213,6 +213,7 @@ struct MedEditView: View, DestinationView {
                 : [.isButton]
         )
         .accessibilityLabel(LocalizedStringKey(item))
+        .accessibility(identifier: item)
     }
 
     func basicSettingsFields() -> some View {

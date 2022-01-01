@@ -61,7 +61,7 @@ struct DosesView: View {
         return NavigationView {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(text: placeHolderEmptyText(),
+                    PlaceholderView(string: placeHolderEmptyText(),
                                     imageString: SFSymbol.pills.systemName)
                 } else {
                     List {
@@ -90,22 +90,26 @@ struct DosesView: View {
                         // without losing the original layout.
                         if UIAccessibility.isVoiceOverRunning {
                             Text(.doseEditAddDose)
+                                .accessibilityIdentifier(.doseEditAddDose)
+
                         } else {
                             Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
+                                .accessibilityIdentifier(.doseEditAddDose)
+
                         }
                     })
                 }
             }
 
-            PlaceholderView(text: placeHolderText(),
+            PlaceholderView(string: placeHolderText(),
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
     }
 
-    func placeHolderText() -> LocalizedStringKey {
+    func placeHolderText() -> Strings {
         medsCount > 0
-            ? Strings.commonPleaseSelect.rawValue
-            : Strings.commonPleaseAdd.rawValue
+            ? .commonPleaseSelect
+            : .commonPleaseAdd
     }
 
     func navigationTitle() -> LocalizedStringKey {
@@ -114,10 +118,10 @@ struct DosesView: View {
             : Strings.tabTitleInProgress.rawValue
     }
 
-    func placeHolderEmptyText() -> LocalizedStringKey {
+    func placeHolderEmptyText() -> Strings {
         medsCount > 0
-            ? Strings.commonEmptyView.rawValue
-            : Strings.commonPleaseAdd.rawValue
+            ? .commonEmptyView
+            : .commonPleaseAdd
     }
 
     func deleteDose(_ offsets: IndexSet, from doses: [Dose]) {

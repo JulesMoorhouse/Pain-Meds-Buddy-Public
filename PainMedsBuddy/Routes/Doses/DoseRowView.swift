@@ -56,6 +56,7 @@ struct DoseRowView: View {
                              med.medDisplay,
                              med.medFormattedLastTakenDate]
                 )
+                .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }
         })
     }

@@ -95,4 +95,8 @@ enum Strings: LocalizedStringKey {
     case settingsAcknowledgements
     case settingsAddExampleData
     case settingsDeleteAllData
+
+    func automatedId() -> String {
+        self.rawValue.stringKey
+    }
 }

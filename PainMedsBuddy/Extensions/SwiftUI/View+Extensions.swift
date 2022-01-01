@@ -41,4 +41,10 @@ extension View {
 
         return accessibilityLabel(output)
     }
+
+    func accessibilityIdentifier(
+        _ identifier: Strings
+    ) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+        accessibilityIdentifier(identifier.automatedId())
+    }
 }

@@ -39,6 +39,7 @@ struct MedRowView: View {
                             med.medRemaining,
                             med.medForm])
         )
+        .accessibilityIdentifier(.homeAccessibilityIconRemaining)
     }
 }
 

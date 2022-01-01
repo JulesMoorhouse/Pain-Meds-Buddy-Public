@@ -53,7 +53,7 @@ struct HomeView: View {
         NavigationView {
             Group {
                 if noData {
-                    PlaceholderView(text: Strings.commonEmptyView.rawValue,
+                    PlaceholderView(string: .commonEmptyView,
                                     imageString: SFSymbol.pills.systemName)
                 } else {
                     ScrollView {

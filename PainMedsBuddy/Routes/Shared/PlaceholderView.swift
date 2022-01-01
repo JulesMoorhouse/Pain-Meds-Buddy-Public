@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaceholderView: View {
-    let text: LocalizedStringKey
+    let string: Strings
     let imageString: String
 
     var body: some View {
@@ -18,8 +18,9 @@ struct PlaceholderView: View {
                 .font(.system(size: 60))
             Spacer()
                 .frame(height: 20)
-            Text(text)
+            Text(String(string))
                 .foregroundColor(.secondary)
+                .accessibilityIdentifier(string)
         }
     }
 }
@@ -27,7 +28,7 @@ struct PlaceholderView: View {
 struct PlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceholderView(
-            text: Strings.commonEmptyView.rawValue,
+            string: Strings.commonEmptyView,
             imageString: SFSymbol.pills.systemName
         )
     }

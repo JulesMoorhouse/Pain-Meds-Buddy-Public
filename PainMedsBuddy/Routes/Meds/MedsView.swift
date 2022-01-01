@@ -69,8 +69,10 @@ struct MedsView: View {
                 // without losing the original layout.
                 if UIAccessibility.isVoiceOverRunning {
                     Text(.medEditAddMed)
+                        .accessibilityIdentifier(.medEditAddMed)
                 } else {
                     Label(.medEditAddMed, systemImage: SFSymbol.plus.systemName)
+                        .accessibilityIdentifier(.medEditAddMed)
                 }
             })
         }
@@ -92,7 +94,7 @@ struct MedsView: View {
         NavigationView {
             Group {
                 if self.meds.isEmpty {
-                    PlaceholderView(text: Strings.commonEmptyView.rawValue,
+                    PlaceholderView(string: .commonEmptyView,
                                     imageString: SFSymbol.pills.systemName)
                 } else {
                     ZStack {
@@ -115,7 +117,7 @@ struct MedsView: View {
                       dismissButton: .default(Text(.commonOK)))
             }
 
-            PlaceholderView(text: Strings.medsPleaseSelect.rawValue,
+            PlaceholderView(string: .medsPleaseSelect,
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
     }

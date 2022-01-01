@@ -64,6 +64,7 @@ struct HomeMedRow: View {
                             med.medDisplay,
                             med.medFormattedLastTakenDate])
         )
+        .accessibilityIdentifier(.homeAccessibilityIconTakeNow)
     }
 }
 
