@@ -77,6 +77,7 @@ struct HomeView: View {
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
             .navigationTitle(Strings.tabTitleHome.rawValue)
+            .navigationBarAccessibilityIdentifier(.tabTitleHome)
         }
     }
 }

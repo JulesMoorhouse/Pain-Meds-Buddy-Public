@@ -109,6 +109,7 @@ struct DoseEditView: View, DestinationView {
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: add))
         .onDisappear(perform: save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),

@@ -74,7 +74,8 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .navigationTitle(navigationTitle())
+            .navigationTitle(navigationTitle().rawValue)
+            .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {
                 if medsCount > 0 {
                     Button(action: {
@@ -112,10 +113,10 @@ struct DosesView: View {
             : .commonPleaseAdd
     }
 
-    func navigationTitle() -> LocalizedStringKey {
+    func navigationTitle() -> Strings {
         showElapsedDoses
-            ? Strings.tabTitleHistory.rawValue
-            : Strings.tabTitleInProgress.rawValue
+            ? .tabTitleHistory
+            : .tabTitleInProgress
     }
 
     func placeHolderEmptyText() -> Strings {

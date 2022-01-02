@@ -1,5 +1,5 @@
 //
-//  Panel.swift
+//  Panel-ViewModifier.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.

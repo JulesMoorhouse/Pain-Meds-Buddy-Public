@@ -58,6 +58,7 @@ struct DoseMedSelectView: View, DestinationView {
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarAccessibilityIdentifier(.selectMedSelectMed)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Color.clear // BugFix: Back button disappears

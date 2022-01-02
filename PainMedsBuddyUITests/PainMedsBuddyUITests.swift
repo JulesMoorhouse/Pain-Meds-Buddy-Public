@@ -51,6 +51,15 @@ class PainMedsBuddyUITests: XCTestCase {
         XCTAssertEqual(app.tables.cells.count, 1, "There should be 1 list rows initially.")
     }
 
+    func testEmptyDoses() {
+
+        let homeScreen = app.buttons["Home"]
+        XCTAssertTrue(homeScreen.exists)
+
+        let someView = app.staticTexts["commonEmptyView"]
+        XCTAssertTrue(someView.exists)
+    }
+
     // These helper methods should not have any parameters and should perform simple actions
     // and confirm the action occurred
 

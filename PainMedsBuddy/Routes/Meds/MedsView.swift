@@ -111,6 +111,7 @@ struct MedsView: View {
                 sortToolbarItem
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
+            .navigationBarAccessibilityIdentifier(.tabTitleMedications)
             .alert(isPresented: $showDeleteDenied) {
                 Alert(title: Text(.medEditDeleteMed),
                       message: Text(.medsSorryUsed),

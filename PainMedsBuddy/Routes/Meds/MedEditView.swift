@@ -109,6 +109,7 @@ struct MedEditView: View, DestinationView {
             buttonsSection()
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: add))
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showAlert) {
             alertOption()

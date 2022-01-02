@@ -21,8 +21,10 @@ struct SettingsView: View {
                 Button(action: {
                     navigation.pushView(
                         AcknowledgementsList()
-                            .navigationTitle(Strings.settingsAcknowledgements.rawValue), animated: true
-                    )
+                            .navigationTitle(Strings.settingsAcknowledgements.rawValue)
+                            .navigationBarAccessibilityIdentifier(.settingsAcknowledgements),
+                        animated: true)
+
                 }, label: {
                     HStack {
                         Text(.settingsAcknowledgements)
@@ -44,6 +46,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(Strings.tabTitleSettings.rawValue)
+            .navigationBarAccessibilityIdentifier(.tabTitleSettings)
         }
     }
 }
