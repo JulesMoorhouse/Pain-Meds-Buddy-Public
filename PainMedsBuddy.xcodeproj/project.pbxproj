@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
+		8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD4278384A70058BD6E /* BasicAction.swift */; };
 		881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3912764047900DA06D7 /* HomeMedRow.swift */; };
 		881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39327649C0F00DA06D7 /* MedDefault.swift */; };
 		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		8809FBD2278309A40058BD6E /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
+		8809FBD4278384A70058BD6E /* BasicAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAction.swift; sourceTree = "<group>"; };
 		881BA3912764047900DA06D7 /* HomeMedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMedRow.swift; sourceTree = "<group>"; };
 		881BA39327649C0F00DA06D7 /* MedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedDefault.swift; sourceTree = "<group>"; };
 		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				88C74D0F277BAC88002B2EC6 /* PainMedsBuddyUITests.swift */,
+				8809FBD4278384A70058BD6E /* BasicAction.swift */,
 				88C74D11277BAC88002B2EC6 /* Info.plist */,
 				8809FBD2278309A40058BD6E /* Elements.swift */,
 			);
@@ -721,6 +724,7 @@
 			files = (
 				889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */,
 				88C74D10277BAC88002B2EC6 /* PainMedsBuddyUITests.swift in Sources */,
+				8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */,
 				8809FBD3278309A40058BD6E /* Elements.swift in Sources */,
 				889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */,
 			);
