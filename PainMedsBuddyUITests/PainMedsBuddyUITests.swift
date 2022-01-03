@@ -19,48 +19,80 @@ class PainMedsBuddyUITests: XCTestCase {
     }
 
     func testAppHas5Tabs() throws {
-        XCTAssertEqual(app.tabBars.buttons.count, 5, "There should be 5 tabs in the app.")
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app.")
     }
 
-    func testAddMedication() {
+    func testAddFiveMedications() {
         tapTabMedications()
 
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
 
         for addCount in 1 ... 5 {
             tapMedicationTabAddButton()
             tapBackButton()
-            _ = Elements.navBarMedications(app) // Confirm on medications screen
+
+            // Confirm on medications screen
+            _ = Elements.navBarMedications(app)
 
             let rowCount = app.tables.cells.count
-            XCTAssertEqual(rowCount, addCount, "There should be \(addCount) list rows initially.")
+
+            XCTAssertEqual(
+                rowCount,
+                addCount,
+                "There should be \(addCount) list rows initially.")
         }
     }
 
     func testAddDose() {
+        // One medication is required
         tapTabMedications()
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
 
         tapMedicationTabAddButton()
         tapBackButton()
-        _ = Elements.navBarMedications(app) // Confirm on medications screen
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
 
         tapTabInProgress()
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
 
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
+
+        // Add a basic dose
         tapInProgressAddButton()
         tapBackButton()
-        _ = Elements.navBarInProgress(app) // Confirm on medications screen
+
+        // Confirm on in progress screen
+        _ = Elements.navBarInProgress(app)
 
         let rowCount = app.tables.cells.count
-        XCTAssertEqual(rowCount, 1, "There should be 1 list rows initially.")
+
+        XCTAssertEqual(
+            rowCount,
+            1,
+            "There should be 1 list rows initially.")
     }
 
     func testEmptyDoses() {
-        let homeScreen: XCUIElement = app.buttons["Home"]
-        XCTAssertTrue(homeScreen.exists)
+        // Confirm on home screen
+        _ = Elements.navBarHome(app)
 
-        let someView = app.staticTexts["commonEmptyView"]
+        let labelId = Strings.commonEmptyView.automatedId()
+        let someView = app.staticTexts[labelId]
+
         XCTAssertTrue(someView.exists)
     }
 
@@ -71,24 +103,32 @@ class PainMedsBuddyUITests: XCTestCase {
     func tapTabMedications() {
         let tab = Elements.tabMedications(app)
         tab.tap()
-        _ = app.navigationBars["Medications"].waitForExistence(timeout: 2)
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
     }
 
     func tapTabInProgress() {
         let tab = Elements.tabInProgress(app)
         tab.tap()
-        _ = app.navigationBars["In Progress"].waitForExistence(timeout: 2)
+
+        // Confirm on in progress screen
+        _ = Elements.navBarInProgress(app)
     }
 
     func tapMedicationTabAddButton() {
         let navBar = Elements.navBarMedications(app)
         navBar.buttons["add"].tap()
-        _ = app.navigationBars["Add Med"].waitForExistence(timeout: 2)
+
+        // Confirm on add med screen
+        _ = Elements.navBarAddMed(app)
     }
 
     func tapInProgressAddButton() {
         let navBar = Elements.navBarInProgress(app)
         navBar.buttons["add"].tap()
-        _ = app.navigationBars["Add Dose"].waitForExistence(timeout: 2)
+
+        // Confirm on add dose screen
+        _ = Elements.navBarAddDose(app)
     }
 }

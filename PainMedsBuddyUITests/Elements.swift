@@ -39,7 +39,11 @@ class Elements: XCTestCase {
         let titleId = Strings.tabTitleMedications.automatedId()
         let medicationScreen = app.navigationBars[titleId]
         _ = medicationScreen.waitForExistence(timeout: 2)
-        XCTAssertTrue(medicationScreen.exists, "\(titleId) navigation bar not found")
+
+        XCTAssertTrue(
+            medicationScreen.exists,
+            "\(titleId) navigation bar not found")
+
         return medicationScreen
     }
 
@@ -47,8 +51,48 @@ class Elements: XCTestCase {
         let titleId = Strings.tabTitleInProgress.automatedId()
         let inProgressScreen = app.navigationBars[titleId]
         _ = inProgressScreen.waitForExistence(timeout: 2)
-        XCTAssertTrue(inProgressScreen.exists, "\(titleId) navigation bar not found")
+
+        XCTAssertTrue(
+            inProgressScreen.exists,
+            "\(titleId) navigation bar not found")
+
         return inProgressScreen
+    }
+
+    static func navBarHome(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.tabTitleHome.automatedId()
+        let homeScreen = app.navigationBars[titleId]
+        _ = homeScreen.waitForExistence(timeout: 2)
+
+        XCTAssertTrue(
+            homeScreen.exists,
+            "\(titleId) navigation bar not found")
+
+        return homeScreen
+    }
+
+    static func navBarAddDose(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.doseEditAddDose.automatedId()
+        let addDoseScreen = app.navigationBars[titleId]
+        _ = addDoseScreen.waitForExistence(timeout: 2)
+
+        XCTAssertTrue(
+            addDoseScreen.exists,
+            "\(titleId) navigation bar not found")
+
+        return addDoseScreen
+    }
+
+    static func navBarAddMed(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.medEditAddMed.automatedId()
+        let addMedScreen = app.navigationBars[titleId]
+        _ = addMedScreen.waitForExistence(timeout: 2)
+
+        XCTAssertTrue(
+            addMedScreen.exists,
+            "\(titleId) navigation bar not found")
+
+        return addMedScreen
     }
     // ---- Screens ----
 }
