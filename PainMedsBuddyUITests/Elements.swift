@@ -35,16 +35,28 @@ class Elements: XCTestCase {
     // ---- Tabs ----
 
     // ---- Screens ----
-    static func navBarMedications(_ app: XCUIApplication) -> XCUIElement {
-        let titleId = Strings.tabTitleMedications.automatedId()
-        let medicationScreen = app.navigationBars[titleId]
-        _ = medicationScreen.waitForExistence(timeout: 1)
+    static func navBarHome(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.tabTitleHome.automatedId()
+        let homeScreen = app.navigationBars[titleId]
+        _ = homeScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
-            medicationScreen.exists,
+            homeScreen.exists,
             "\(titleId) navigation bar not found")
 
-        return medicationScreen
+        return homeScreen
+    }
+
+    static func navBarHistory(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.tabTitleHistory.automatedId()
+        let historyScreen = app.navigationBars[titleId]
+        _ = historyScreen.waitForExistence(timeout: 1)
+
+        XCTAssertTrue(
+            historyScreen.exists,
+            "\(titleId) navigation bar not found")
+
+        return historyScreen
     }
 
     static func navBarInProgress(_ app: XCUIApplication) -> XCUIElement {
@@ -59,16 +71,28 @@ class Elements: XCTestCase {
         return inProgressScreen
     }
 
-    static func navBarHome(_ app: XCUIApplication) -> XCUIElement {
-        let titleId = Strings.tabTitleHome.automatedId()
-        let homeScreen = app.navigationBars[titleId]
-        _ = homeScreen.waitForExistence(timeout: 1)
+    static func navBarMedications(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.tabTitleMedications.automatedId()
+        let medicationScreen = app.navigationBars[titleId]
+        _ = medicationScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
-            homeScreen.exists,
+            medicationScreen.exists,
             "\(titleId) navigation bar not found")
 
-        return homeScreen
+        return medicationScreen
+    }
+
+    static func navBarSettings(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.tabTitleSettings.automatedId()
+        let settingsScreen = app.navigationBars[titleId]
+        _ = settingsScreen.waitForExistence(timeout: 1)
+
+        XCTAssertTrue(
+            settingsScreen.exists,
+            "\(titleId) navigation bar not found")
+
+        return settingsScreen
     }
 
     static func navBarAddDose(_ app: XCUIApplication) -> XCUIElement {

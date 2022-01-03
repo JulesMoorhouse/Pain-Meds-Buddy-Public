@@ -35,6 +35,8 @@ class PainMedsBuddyUITests: XCTestCase {
 
         for addCount in 1 ... 5 {
             tapMedicationTabAddButton()
+
+            // Back button tap on add med screen
             tapBackButton()
 
             // Confirm on medications screen
@@ -59,6 +61,8 @@ class PainMedsBuddyUITests: XCTestCase {
             "There should be no list rows initially.")
 
         tapMedicationTabAddButton()
+
+        // Back button tap on add med screen
         tapBackButton()
 
         // Confirm on medications screen
@@ -73,6 +77,8 @@ class PainMedsBuddyUITests: XCTestCase {
 
         // Add a basic dose
         tapInProgressAddButton()
+
+        // Back button tap on add dose screen
         tapBackButton()
 
         // Confirm on in progress screen
@@ -86,26 +92,115 @@ class PainMedsBuddyUITests: XCTestCase {
             "There should be 1 list rows initially.")
     }
 
-    func testEmptyDoses() {
+    func testEmptyHistory() {
+        tapTabHistory()
+
+        // Confirm on history screen
+        _ = Elements.navBarHistory(app)
+
+        let labelId = Strings.commonPleaseAdd.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        XCTAssertTrue(
+            someView.exists,
+            "History empty placeholder label not showing")
+    }
+
+    func testEmptyInProgress() {
+        tapTabInProgress()
+
+        // Confirm on in progress screen
+        _ = Elements.navBarInProgress(app)
+
+        let labelId = Strings.commonPleaseAdd.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        XCTAssertTrue(
+            someView.exists,
+            "In Progress empty placeholder label not showing")
+    }
+
+    func testEmptyMeds() {
+        tapTabMedications()
+
+        // Confirm on meds screen
+        _ = Elements.navBarMedications(app)
+
+        let labelId = Strings.commonEmptyView.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        XCTAssertTrue(
+            someView.exists,
+            "Medications empty placeholder label not showing")
+    }
+
+    func testEmptyHome() {
         // Confirm on home screen
         _ = Elements.navBarHome(app)
 
         let labelId = Strings.commonEmptyView.automatedId()
         let someView = app.staticTexts[labelId]
 
-        XCTAssertTrue(someView.exists)
+        XCTAssertTrue(
+            someView.exists,
+            "Home empty placeholder label not showing")
     }
+
+    func testMedsHasSort() {
+        tapTabMedications()
+
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
+
+        tapMedicationTabAddButton()
+
+        // Back button tap on add med screen
+        tapBackButton()
+
+        // Confirm on meds screen
+        let navBar = Elements.navBarMedications(app)
+
+        let sortButton = navBar.buttons[Strings.commonSort.automatedId()]
+
+        XCTAssertTrue(
+            sortButton.exists,
+            "Medications sort button not found")
+    }
+
+    func testMedsHasAdd() {}
+
+    func testSettingsHasAcknowledgements() {}
+
+    func testAddDoseDetails() {}
+
+    func testAddMedDetails() {}
+
+    func testHomeHasProgress() {}
+
+    func testHomeHasLowMeds() {}
+
+    func testHomeHasRecentMeds() {}
 
     func tapBackButton() {
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
-    func tapTabMedications() {
-        let tab = Elements.tabMedications(app)
+    func tapTabHome() {
+        let tab = Elements.tabHome(app)
         tab.tap()
 
-        // Confirm on medications screen
-        _ = Elements.navBarMedications(app)
+        // Confirm on home screen
+        _ = Elements.navBarHome(app)
+    }
+
+    func tapTabHistory() {
+        let tab = Elements.tabHistory(app)
+        tab.tap()
+
+        // Confirm on in history screen
+        _ = Elements.navBarHistory(app)
     }
 
     func tapTabInProgress() {
@@ -114,6 +209,14 @@ class PainMedsBuddyUITests: XCTestCase {
 
         // Confirm on in progress screen
         _ = Elements.navBarInProgress(app)
+    }
+
+    func tapTabMedications() {
+        let tab = Elements.tabMedications(app)
+        tab.tap()
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
     }
 
     func tapMedicationTabAddButton() {

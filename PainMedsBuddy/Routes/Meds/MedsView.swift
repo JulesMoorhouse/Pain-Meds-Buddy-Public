@@ -88,11 +88,19 @@ struct MedsView: View {
     var sortToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             if !meds.isEmpty {
-                Button(action: {
-                    self.showingSortOrder = true
-                }, label: {
-                    Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
-                })
+                HStack {
+                    Text("")
+                        .accessibilityHidden(true)
+
+                    Button(action: {
+                        self.showingSortOrder = true
+                    }, label: {
+                        Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
+                            .accessibilityElement()
+                            .accessibility(addTraits: .isButton)
+                            .accessibilityIdentifier(.commonSort)
+                    })
+                }
             }
         }
     }
