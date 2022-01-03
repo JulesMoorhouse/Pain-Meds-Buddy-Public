@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
 		881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3912764047900DA06D7 /* HomeMedRow.swift */; };
 		881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39327649C0F00DA06D7 /* MedDefault.swift */; };
 		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
@@ -105,6 +106,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8809FBD2278309A40058BD6E /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		881BA3912764047900DA06D7 /* HomeMedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMedRow.swift; sourceTree = "<group>"; };
 		881BA39327649C0F00DA06D7 /* MedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedDefault.swift; sourceTree = "<group>"; };
 		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
@@ -232,9 +234,9 @@
 		88321420275120D40026D85F /* PainMedsBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				889C42D52781ACE0003B6ED2 /* Modifiers */,
 				8848D45D2778986B00F10DC9 /* Routes */,
 				8848D45E2778987F00F10DC9 /* Extensions */,
+				889C42D52781ACE0003B6ED2 /* Modifiers */,
 				8848D45C2778980200F10DC9 /* Configuration */,
 				8848D46427789DDB00F10DC9 /* Localization */,
 				88E930A92760C6E500A98708 /* Acknowledgements.plist */,
@@ -449,6 +451,7 @@
 			children = (
 				88C74D0F277BAC88002B2EC6 /* PainMedsBuddyUITests.swift */,
 				88C74D11277BAC88002B2EC6 /* Info.plist */,
+				8809FBD2278309A40058BD6E /* Elements.swift */,
 			);
 			path = PainMedsBuddyUITests;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			files = (
 				889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */,
 				88C74D10277BAC88002B2EC6 /* PainMedsBuddyUITests.swift in Sources */,
+				8809FBD3278309A40058BD6E /* Elements.swift in Sources */,
 				889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
