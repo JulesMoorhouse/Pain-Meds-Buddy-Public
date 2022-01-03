@@ -77,28 +77,36 @@ struct DosesView: View {
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {
-                if medsCount > 0 {
-                    Button(action: {
-                        navigation.pushView(DoseAddView(med: dataController.createMed())
-                            .environment(\.managedObjectContext, managedObjectContext)
-                            .environmentObject(dataController))
-                    }, label: {
-                        // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
-                        // "Add Dose" as "Add" no matter what accessibility label
-                        // we give this toolbar button when using a label.
-                        // As a result, when VoiceOver is running, we use a text
-                        // view for the button instead, forcing a correct reading
-                        // without losing the original layout.
-                        if UIAccessibility.isVoiceOverRunning {
-                            Text(.doseEditAddDose)
-                                .accessibilityIdentifier(.doseEditAddDose)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if medsCount > 0 {
+                        HStack {
+                            Text("")
+                                .accessibilityHidden(true)
 
-                        } else {
-                            Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
-                                .accessibilityIdentifier(.doseEditAddDose)
+                            Button(action: {
+                                navigation.pushView(DoseAddView(med: dataController.createMed())
+                                    .environment(\.managedObjectContext, managedObjectContext)
+                                    .environmentObject(dataController))
+                            }, label: {
+                                // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
+                                // "Add Dose" as "Add" no matter what accessibility label
+                                // we give this toolbar button when using a label.
+                                // As a result, when VoiceOver is running, we use a text
+                                // view for the button instead, forcing a correct reading
+                                // without losing the original layout.
+                                if UIAccessibility.isVoiceOverRunning {
+                                    Text(.doseEditAddDose)
+                                        .accessibilityIdentifier(.doseEditAddDose)
 
+                                } else {
+                                    Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
+                                        .accessibilityElement()
+                                        .accessibility(addTraits: .isButton)
+                                        .accessibilityIdentifier(.doseEditAddDose)
+                                }
+                            })
                         }
-                    })
+                    }
                 }
             }
 

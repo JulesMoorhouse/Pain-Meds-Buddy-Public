@@ -118,7 +118,7 @@ class PainMedsBuddyUITests: XCTestCase {
 
     func tapMedicationTabAddButton() {
         let navBar = Elements.navBarMedications(app)
-        navBar.buttons["add"].tap()
+        navBar.buttons[Strings.medEditAddMed.automatedId()].tap()
 
         // Confirm on add med screen
         _ = Elements.navBarAddMed(app)
@@ -126,7 +126,7 @@ class PainMedsBuddyUITests: XCTestCase {
 
     func tapInProgressAddButton() {
         let navBar = Elements.navBarInProgress(app)
-        navBar.buttons["add"].tap()
+        navBar.buttons[Strings.doseEditAddDose.automatedId()].tap()
 
         // Confirm on add dose screen
         _ = Elements.navBarAddDose(app)

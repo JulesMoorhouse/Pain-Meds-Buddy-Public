@@ -53,28 +53,35 @@ struct MedsView: View {
 
     var addMedToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: {
-                navigation.pushView(
-                    MedAddView()
-                        .environment(\.managedObjectContext, managedObjectContext)
-                        .environmentObject(dataController),
-                    animated: true
-                )
-            }, label: {
-                // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
-                // "Add Med" as "Add" no matter what accessibility label
-                // we give this toolbar button when using a label.
-                // As a result, when VoiceOver is running, we use a text
-                // view for the button instead, forcing a correct reading
-                // without losing the original layout.
-                if UIAccessibility.isVoiceOverRunning {
-                    Text(.medEditAddMed)
-                        .accessibilityIdentifier(.medEditAddMed)
-                } else {
-                    Label(.medEditAddMed, systemImage: SFSymbol.plus.systemName)
-                        .accessibilityIdentifier(.medEditAddMed)
-                }
-            })
+            HStack {
+                Text("")
+                    .accessibilityHidden(true)
+                Button(action: {
+                    navigation.pushView(
+                        MedAddView()
+                            .environment(\.managedObjectContext, managedObjectContext)
+                            .environmentObject(dataController),
+                        animated: true
+                    )
+                }, label: {
+                    // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
+                    // "Add Med" as "Add" no matter what accessibility label
+                    // we give this toolbar button when using a label.
+                    // As a result, when VoiceOver is running, we use a text
+                    // view for the button instead, forcing a correct reading
+                    // without losing the original layout.
+                    if UIAccessibility.isVoiceOverRunning {
+                        Text(.medEditAddMed)
+                            .accessibilityIdentifier(.medEditAddMed)
+                    } else {
+                        Label(.medEditAddMed, systemImage: SFSymbol.plus.systemName)
+                            .accessibilityElement()
+                            .accessibility(addTraits: .isButton)
+                            .accessibilityLabel(.medEditAddMed)
+                            .accessibilityIdentifier(.medEditAddMed)
+                    }
+                })
+            }
         }
     }
 
