@@ -38,7 +38,7 @@ class Elements: XCTestCase {
     static func navBarMedications(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.tabTitleMedications.automatedId()
         let medicationScreen = app.navigationBars[titleId]
-        _ = medicationScreen.waitForExistence(timeout: 2)
+        _ = medicationScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
             medicationScreen.exists,
@@ -50,7 +50,7 @@ class Elements: XCTestCase {
     static func navBarInProgress(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.tabTitleInProgress.automatedId()
         let inProgressScreen = app.navigationBars[titleId]
-        _ = inProgressScreen.waitForExistence(timeout: 2)
+        _ = inProgressScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
             inProgressScreen.exists,
@@ -62,7 +62,7 @@ class Elements: XCTestCase {
     static func navBarHome(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.tabTitleHome.automatedId()
         let homeScreen = app.navigationBars[titleId]
-        _ = homeScreen.waitForExistence(timeout: 2)
+        _ = homeScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
             homeScreen.exists,
@@ -74,7 +74,7 @@ class Elements: XCTestCase {
     static func navBarAddDose(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.doseEditAddDose.automatedId()
         let addDoseScreen = app.navigationBars[titleId]
-        _ = addDoseScreen.waitForExistence(timeout: 2)
+        _ = addDoseScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
             addDoseScreen.exists,
@@ -86,7 +86,7 @@ class Elements: XCTestCase {
     static func navBarAddMed(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.medEditAddMed.automatedId()
         let addMedScreen = app.navigationBars[titleId]
-        _ = addMedScreen.waitForExistence(timeout: 2)
+        _ = addMedScreen.waitForExistence(timeout: 1)
 
         XCTAssertTrue(
             addMedScreen.exists,
