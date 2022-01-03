@@ -45,6 +45,8 @@
 		889C42D1277F9466003B6ED2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42D0277F9466003B6ED2 /* Helpers.swift */; };
 		889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42D62781AD26003B6ED2 /* NavigationBarAccessor.swift */; };
 		889C42D92781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42D82781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift */; };
+		889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
+		889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4712778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift */; };
 		88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C982754EE620055BD9B /* DoseRowView.swift */; };
 		88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9A2754F4F20055BD9B /* DoseEditView.swift */; };
 		88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */; };
@@ -714,7 +716,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */,
 				88C74D10277BAC88002B2EC6 /* PainMedsBuddyUITests.swift in Sources */,
+				889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

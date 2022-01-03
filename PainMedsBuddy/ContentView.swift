@@ -22,7 +22,6 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: SFSymbol.house.systemName)
                     Text(.tabTitleHome)
-                        .accessibilityIdentifier(.tabTitleHome)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: true)
@@ -30,7 +29,6 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: SFSymbol.checkmark.systemName)
                     Text(.tabTitleHistory)
-                        .accessibilityIdentifier(.tabTitleHistory)
                 }
 
             DosesView(dataController: dataController, showElapsedDoses: false)
@@ -38,7 +36,6 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: SFSymbol.arrowTriangle2CirclePath.systemName)
                     Text(.tabTitleInProgress)
-                        .accessibilityIdentifier(.tabTitleInProgress)
                 }
 
             MedsView()
@@ -46,7 +43,6 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: SFSymbol.pillsFill.systemName)
                     Text(.tabTitleMedications)
-                        .accessibilityIdentifier(.tabTitleMedications)
                 }
 
             SettingsView()
@@ -54,7 +50,6 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: SFSymbol.gearShapeFill.systemName)
                     Text(.tabTitleSettings)
-                        .accessibilityIdentifier(.tabTitleSettings)
                 }
         }
     }

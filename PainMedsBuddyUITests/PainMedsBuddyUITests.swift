@@ -52,8 +52,7 @@ class PainMedsBuddyUITests: XCTestCase {
     }
 
     func testEmptyDoses() {
-
-        let homeScreen = app.buttons["Home"]
+        let homeScreen: XCUIElement = app.buttons["Home"]
         XCTAssertTrue(homeScreen.exists)
 
         let someView = app.staticTexts["commonEmptyView"]
@@ -63,13 +62,33 @@ class PainMedsBuddyUITests: XCTestCase {
     // These helper methods should not have any parameters and should perform simple actions
     // and confirm the action occurred
 
+    func elementTabHome() -> XCUIElement {
+        app.tabBars.buttons.element(boundBy: 0)
+    }
+
+    func elementTabHistory() -> XCUIElement {
+        app.tabBars.buttons.element(boundBy: 1)
+    }
+
+    func elementTabInProgress() -> XCUIElement {
+        app.tabBars.buttons.element(boundBy: 2)
+    }
+
+    func elementTabMedications() -> XCUIElement {
+        app.tabBars.buttons.element(boundBy: 3)
+    }
+
+    func elementTabSettings() -> XCUIElement {
+        app.tabBars.buttons.element(boundBy: 4)
+    }
+
     func tapTabMedications() {
-        app.buttons["Medications"].tap()
+        elementTabMedications().tap()
         _ = app.navigationBars["Medications"].waitForExistence(timeout: 10)
     }
 
     func tapTabInProgress() {
-        app.buttons["In Progress"].tap()
+        elementTabInProgress().tap()
         _ = app.navigationBars["In Progress"].waitForExistence(timeout: 10)
     }
 
