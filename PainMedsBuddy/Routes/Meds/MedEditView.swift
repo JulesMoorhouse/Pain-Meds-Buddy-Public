@@ -223,6 +223,7 @@ struct MedEditView: View, DestinationView {
                 if hasRelationship {
                     Text($title.wrappedValue)
                         .foregroundColor(.secondary)
+                        .accessibilityIdentifier(.medEditTitleLabelAID)
 
                     Spacer()
 
@@ -236,6 +237,7 @@ struct MedEditView: View, DestinationView {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
                               text: $title.onChange(update))
+                        .accessibilityIdentifier(.medEditTitleText)
                 }
             }
 
@@ -266,6 +268,7 @@ struct MedEditView: View, DestinationView {
                 }
             }
             .foregroundColor(.secondary)
+            .accessibilityIdentifier(.medEditMeasure)
 
             rowFields(label: .medEditForm,
                       detailValues: [MedDefault.Sensible.form],
@@ -307,6 +310,7 @@ struct MedEditView: View, DestinationView {
                       text: binding)
                 .keyboardType(keyboardType)
                 .multilineTextAlignment(.trailing)
+                .accessibilityIdentifier(label)
         }
     }
 
@@ -326,6 +330,7 @@ struct MedEditView: View, DestinationView {
                       text: binding)
                 .keyboardType(keyboardType)
                 .multilineTextAlignment(.trailing)
+                .accessibilityIdentifier(label)
         }
     }
 
@@ -337,12 +342,14 @@ struct MedEditView: View, DestinationView {
                 showAlert.toggle()
             }
             .accentColor(.red)
+            .accessibilityIdentifier(.medEditDeleteThisMed)
 
             Button(Strings.medEditCopyThisMed.rawValue) {
                 activeAlert = .copied
                 copy()
                 showAlert.toggle()
             }
+            .accessibilityIdentifier(.medEditCopyThisMed)
         }
     }
 }

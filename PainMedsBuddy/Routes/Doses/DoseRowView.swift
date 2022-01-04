@@ -53,8 +53,8 @@ struct DoseRowView: View {
                     values: [med.medColor,
                              med.medSymbolLabel,
                              med.medTitle,
-                             med.medDisplay,
-                             med.medFormattedLastTakenDate]
+                             dose.doseDisplay,
+                             dose.doseFormattedTakenDate]
                 )
                 .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }

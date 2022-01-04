@@ -62,6 +62,7 @@ struct DoseEditView: View, DestinationView {
             Section(header: Text(.commonBasicSettings)) {
                 DatePicker(.doseEditDateTime, selection: $takenDate)
                     .foregroundColor(.secondary)
+                    .accessibilityIdentifier(.doseEditDateTime)
 
                 Button(action: {
                     navigation.pushView(
@@ -75,6 +76,7 @@ struct DoseEditView: View, DestinationView {
                                       hasChevron: true)
                     }
                 })
+                    .accessibilityIdentifier(.doseEditMedication)
 
                 HStack {
                     Text(.doseEditAmount)
@@ -86,6 +88,8 @@ struct DoseEditView: View, DestinationView {
                               text: $amount.onChange(update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
+                        .accessibilityIdentifier(.doseEditAmount)
+
                     Text(selectedMed.medForm)
                         .foregroundColor(.secondary)
                 }

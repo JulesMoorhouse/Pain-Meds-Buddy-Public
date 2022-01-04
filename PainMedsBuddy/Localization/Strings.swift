@@ -63,6 +63,8 @@ enum Strings: LocalizedStringKey {
     case medsSorryUsed
     case medsPleaseSelect
 
+    case medEditTitleLabelAID
+    case medEditTitleText
     case medEditGapInfo
     case medEditAddMed
     case medEditAreYouSure
