@@ -46,6 +46,7 @@ struct HomeView: View {
             }
             .fixedSize(horizontal: false, vertical: true)
             .padding([.horizontal, .bottom])
+            .accessibilityIdentifier(.homeCurrentMeds)
         }
     }
 

@@ -29,27 +29,30 @@ struct HomeLowMedsView: View {
                     Text(.homeMedsRunningOut)
                         .foregroundColor(.secondary)
 
-                    ForEach(lowMeds(), id: \.self) { med in
-                        Button(action: {
-                            navigation.pushView(
-                                MedEditView(dataController: dataController, med: med, add: false),
-                                animated: true
-                            )
-                        }, label: {
-                            HStack {
-                                MedRowView(med: med)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                    LazyVStack {
+                        ForEach(lowMeds(), id: \.self) { med in
+                            Button(action: {
+                                navigation.pushView(
+                                    MedEditView(dataController: dataController, med: med, add: false),
+                                    animated: true
+                                )
+                            }, label: {
+                                HStack {
+                                    MedRowView(med: med)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
 
-                                Spacer()
-                                    .frame(width: 10)
-                            }
-                            .padding(2)
-                        })
+                                    Spacer()
+                                        .frame(width: 10)
+                                }
+                                .padding(2)
+                            })
+                                .panelled()
+                        }
                     }
-                    .panelled()
                 }
             }
         }
+        .accessibilityIdentifier(!lowMeds().isEmpty ? .homeMedsRunningOut : nil)
     }
 
     func lowMeds() -> [Med] {

@@ -203,15 +203,117 @@ class PainMedsBuddyUITests: XCTestCase {
             "Medications add button not found")
     }
 
-    func testSettingsHasAcknowledgements() {}
+    func testSettingsHasAcknowledgements() {
+        // Given
+        BasicAction.tapTabSetting(app)
+
+        let ackButton = app.buttons[Strings.settingsAcknowledgements.automatedId()]
+
+        // Then
+        XCTAssertTrue(
+            ackButton.exists,
+            "Settings acknowledgements button not found")
+    }
 
     func testAddDoseDetails() {}
 
     func testAddMedDetails() {}
 
-    func testHomeHasProgress() {}
+    func testHomeHasProgress() {
+        // Given - One medication is required
+        BasicAction.tapTabMedications(app)
 
-    func testHomeHasLowMeds() {}
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
 
-    func testHomeHasRecentMeds() {}
+        // When
+        BasicAction.tapMedicationTabAddButton(app)
+
+        // Back button tap on add med screen
+        BasicAction.tapBackButton(app)
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
+
+        BasicAction.tapTabInProgress(app)
+
+        // Then
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
+
+        // Add a basic dose
+        BasicAction.tapInProgressAddButton(app)
+
+        // Back button tap on add dose screen
+        BasicAction.tapBackButton(app)
+        
+        BasicAction.tapTabHome(app)
+
+        let section = app.otherElements[Strings.homeCurrentMeds.automatedId()]
+
+        // Then
+        XCTAssertTrue(
+            section.exists,
+            "Home current meds section not showing")
+    }
+
+    func testHomeHasLowMeds() {
+        // Given - One medication is required
+        BasicAction.tapTabMedications(app)
+
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
+
+        // When
+        BasicAction.tapMedicationTabAddButton(app)
+
+        // Back button tap on add med screen
+        BasicAction.tapBackButton(app)
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
+
+        BasicAction.tapTabHome(app)
+
+        let section = app.otherElements[Strings.homeMedsRunningOut.automatedId()]
+
+        // Then
+        XCTAssertTrue(
+            section.exists,
+            "Home low meds section not showing")
+    }
+
+    func testHomeHasRecentMeds() {
+        // Given - One medication is required
+        BasicAction.tapTabMedications(app)
+
+        XCTAssertEqual(
+            app.tables.cells.count,
+            0,
+            "There should be no list rows initially.")
+
+        // When
+        BasicAction.tapMedicationTabAddButton(app)
+
+        // Back button tap on add med screen
+        BasicAction.tapBackButton(app)
+
+        // Confirm on medications screen
+        _ = Elements.navBarMedications(app)
+
+        BasicAction.tapTabHome(app)
+
+        let section = app.otherElements[Strings.homeRecentlyTaken.automatedId()]
+
+        // Then
+        XCTAssertTrue(
+            section.exists,
+            "Home recent meds section not showing")
+    }
 }

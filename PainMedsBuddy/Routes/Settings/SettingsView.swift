@@ -21,8 +21,7 @@ struct SettingsView: View {
                 Button(action: {
                     navigation.pushView(
                         AcknowledgementsList()
-                            .navigationTitle(Strings.settingsAcknowledgements.rawValue)
-                            .navigationBarAccessibilityIdentifier(.settingsAcknowledgements),
+                            .navigationTitle(Strings.settingsAcknowledgements.rawValue),
                         animated: true)
 
                 }, label: {
@@ -34,6 +33,9 @@ struct SettingsView: View {
 
                         ChevronRightView()
                     }
+                    .accessibilityElement()
+                    .accessibility(addTraits: .isButton)
+                    .accessibilityIdentifier(.settingsAcknowledgements)
                 })
 
                 Button(Strings.settingsAddExampleData.rawValue) {

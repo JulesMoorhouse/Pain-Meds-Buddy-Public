@@ -26,16 +26,19 @@ struct HomeRecentMedsView: View {
                     Text(.homeRecentlyTaken)
                         .foregroundColor(.secondary)
 
-                    ForEach(canTakeMeds(), id: \.self) { med in
-                        HomeMedRow(med: med)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(2)
+                    LazyVStack {
+                        ForEach(canTakeMeds(), id: \.self) { med in
+                            HomeMedRow(med: med)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(2)
+                        }
+                        .panelled()
                     }
-                    .panelled()
                 }
                 .padding(.bottom)
             }
         }
+        .accessibilityIdentifier(!canTakeMeds().isEmpty ? .homeRecentlyTaken : nil)
     }
 
     func uniqueDoseMeds() -> [Med] {

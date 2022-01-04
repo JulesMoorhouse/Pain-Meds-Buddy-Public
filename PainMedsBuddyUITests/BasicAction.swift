@@ -12,6 +12,7 @@ class BasicAction: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
+    // ---- tab bar items ----
     static func tapTabHome(_ app: XCUIApplication) {
         let tab = Elements.tabHome(app)
         tab.tap()
@@ -43,6 +44,16 @@ class BasicAction: XCTestCase {
         // Confirm on medications screen
         _ = Elements.navBarMedications(app)
     }
+
+    static func tapTabSetting(_ app: XCUIApplication) {
+        let tab = Elements.tabSettings(app)
+        tab.tap()
+
+        // Confirm on settings screen
+        _ = Elements.navBarSettings(app)
+    }
+
+    // ---- tab bar items ----
 
     static func tapMedicationTabAddButton(_ app: XCUIApplication) {
         let navBar = Elements.navBarMedications(app)

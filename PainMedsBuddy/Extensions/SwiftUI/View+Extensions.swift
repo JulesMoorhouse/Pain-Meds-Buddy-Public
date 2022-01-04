@@ -43,8 +43,11 @@ extension View {
     }
 
     func accessibilityIdentifier(
-        _ identifier: Strings
+        _ identifier: Strings?
     ) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
-        accessibilityIdentifier(identifier.automatedId())
+        if let id = identifier {
+            return accessibilityIdentifier(id.automatedId())
+        }
+        return accessibilityIdentifier("")
     }
 }
