@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HomeRecentMedsView: View {
-    let doses: FetchedResults<Dose>
-    let meds: FetchedResults<Med>
+    let doses: [Dose]
+    let meds: [Med]
 
     var items: [Med] {
-        DataController.resultsToArray(meds).allMeds
+        meds.allMeds
     }
 
     let listRows = 3

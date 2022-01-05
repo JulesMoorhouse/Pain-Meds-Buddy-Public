@@ -29,6 +29,8 @@
 		8848D47D2778E13000F10DC9 /* PainMedsBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */; };
 		8848D4872778EC3000F10DC9 /* AssetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4862778EC3000F10DC9 /* AssetTest.swift */; };
 		8848D489277913D500F10DC9 /* DoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D488277913D500F10DC9 /* DoseTests.swift */; };
+		8852BF432785B9C5000750FB /* DosesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852BF422785B9C5000750FB /* DosesViewModel.swift */; };
+		8852BF452785D648000750FB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852BF442785D648000750FB /* HomeViewModel.swift */; };
 		88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88572051275133A700B4B00C /* Main.xcdatamodeld */; };
 		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
@@ -132,6 +134,8 @@
 		8848D47E2778E13000F10DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8848D4862778EC3000F10DC9 /* AssetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTest.swift; sourceTree = "<group>"; };
 		8848D488277913D500F10DC9 /* DoseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseTests.swift; sourceTree = "<group>"; };
+		8852BF422785B9C5000750FB /* DosesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosesViewModel.swift; sourceTree = "<group>"; };
+		8852BF442785D648000750FB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		88572052275133A700B4B00C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		88572054275139DD00B4B00C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				881BA3912764047900DA06D7 /* HomeMedRow.swift */,
 				88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */,
 				8857205A275234C400B4B00C /* HomeView.swift */,
+				8852BF442785D648000750FB /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				88AB7CA027566B3F0055BD9B /* DoseMedSelectView.swift */,
 				88AB7C982754EE620055BD9B /* DoseRowView.swift */,
 				8857205C275239D800B4B00C /* DosesView.swift */,
+				8852BF422785B9C5000750FB /* DosesViewModel.swift */,
 			);
 			path = Doses;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 			files = (
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
+				8852BF432785B9C5000750FB /* DosesViewModel.swift in Sources */,
 				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
@@ -696,6 +703,7 @@
 				8848D46C2778A04500F10DC9 /* Button+Extensions.swift in Sources */,
 				886C30BE2763913B002A45B1 /* Int+Extensions.swift in Sources */,
 				88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */,
+				8852BF452785D648000750FB /* HomeViewModel.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 				88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */,
 				88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */,

@@ -13,33 +13,23 @@ import SwiftUI
 struct HomeView: View {
     static let HomeTag: String? = "Home"
 
-    @EnvironmentObject var dataController: DataController
-
-    @FetchRequest(entity: Med.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil)
-    var meds: FetchedResults<Med>
-
-    @FetchRequest(entity: Dose.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)],
-                  predicate: NSPredicate(format: "elapsed == false AND med != nil"))
-    var doses: FetchedResults<Dose>
+    @StateObject var viewModel: ViewModel
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]
     }
 
     var noData: Bool {
-        doses.isEmpty && meds.isEmpty
+        viewModel.doses.isEmpty && viewModel.meds.isEmpty
     }
 
     var currentMedCards: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: columns) {
-                ForEach(doses, id: \.self) { item in
+                ForEach(viewModel.doses, id: \.self) { item in
                     DoseProgressView(
                         dose: item,
-                        med: item.med ?? dataController.createMedForDose(dose: item),
+                        med: item.med ?? viewModel.createMedForDose(dose: item),
                         size: 150
                     )
                 }
@@ -59,7 +49,7 @@ struct HomeView: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
-                            if !doses.isEmpty {
+                            if !viewModel.doses.isEmpty {
                                 Text(.homeCurrentMeds)
                                     .foregroundColor(.secondary)
                                     .padding(.leading)
@@ -68,8 +58,8 @@ struct HomeView: View {
                             }
 
                             VStack(alignment: .leading) {
-                                HomeRecentMedsView(doses: doses, meds: meds)
-                                HomeLowMedsView(meds: meds)
+                                HomeRecentMedsView(doses: viewModel.doses, meds: viewModel.meds)
+                                HomeLowMedsView(meds: viewModel.meds)
                             }
                             .padding(.horizontal)
                         }
@@ -81,14 +71,15 @@ struct HomeView: View {
             .navigationBarAccessibilityIdentifier(.tabTitleHome)
         }
     }
+
+    init(dataController: DataController) {
+        let viewModel = ViewModel(dataController: dataController)
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
-        HomeView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+        HomeView(dataController: .preview)
     }
 }

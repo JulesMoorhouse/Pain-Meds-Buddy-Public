@@ -12,10 +12,10 @@ struct HomeLowMedsView: View {
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var dataController: DataController
 
-    let meds: FetchedResults<Med>
+    let meds: [Med]
 
     var items: [Med] {
-        DataController.resultsToArray(meds).allMeds
+        meds.allMeds
     }
 
     let listRows = 3

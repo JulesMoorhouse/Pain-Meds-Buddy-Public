@@ -14,49 +14,22 @@ struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
     static let historyTag: String? = "History"
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @StateObject var viewModel: ViewModel
+//    @EnvironmentObject var dataController: DataController
+//    @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var navigation: Navigation
-
-    let showElapsedDoses: Bool
-    let doses: FetchRequest<Dose>
-
-    var medsCount: Int {
-        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
-        return dataController.count(for: fetchRequest)
-    }
-
-    init(dataController _: DataController, showElapsedDoses: Bool) {
-        self.showElapsedDoses = showElapsedDoses
-
-        doses = FetchRequest<Dose>(entity: Dose.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
-        ], predicate: NSPredicate(format: "elapsed = %d", showElapsedDoses))
-    }
-
-    // INFO: Results to an array of section arrays
-    func resultsToArray(_ result: FetchedResults<Dose>) -> [[Dose]] {
-        let dict = Dictionary(grouping: result) { (sequence: Dose) in
-            sequence.doseFormattedMYTakenDate
-        }
-
-        // INFO: Sort by key aka doseFormattedMYTakenDate
-        let sorted = dict.sorted(by: { $0.key > $1.key })
-
-        return sorted.map(\.value)
-    }
 
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
             DoseRowView(dose: dose)
         }
         .onDelete { offsets in
-            deleteDose(offsets, from: section)
+            viewModel.deleteDose(offsets, from: section)
         }
     }
 
     var body: some View {
-        let data: [[Dose]] = resultsToArray(self.doses.wrappedValue)
+        let data: [[Dose]] = viewModel.resultsToArray()
 
         return NavigationView {
             Group {
@@ -78,15 +51,13 @@ struct DosesView: View {
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if medsCount > 0 {
+                    if viewModel.medsCount > 0 {
                         HStack {
                             Text("")
                                 .accessibilityHidden(true)
 
                             Button(action: {
-                                navigation.pushView(DoseAddView(med: dataController.createMed())
-                                    .environment(\.managedObjectContext, managedObjectContext)
-                                    .environmentObject(dataController))
+                                navigation.pushView(DoseAddView(med: viewModel.createMed()))
                             }, label: {
                                 // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
                                 // "Add Dose" as "Add" no matter what accessibility label
@@ -116,39 +87,32 @@ struct DosesView: View {
     }
 
     func placeHolderText() -> Strings {
-        medsCount > 0
+        viewModel.medsCount > 0
             ? .commonPleaseSelect
             : .commonPleaseAdd
     }
 
     func navigationTitle() -> Strings {
-        showElapsedDoses
+        viewModel.showElapsedDoses
             ? .tabTitleHistory
             : .tabTitleInProgress
     }
 
     func placeHolderEmptyText() -> Strings {
-        medsCount > 0
+        viewModel.medsCount > 0
             ? .commonEmptyView
             : .commonPleaseAdd
     }
 
-    func deleteDose(_ offsets: IndexSet, from doses: [Dose]) {
-        for offset in offsets {
-            let item = doses[offset]
-            dataController.delete(item)
-        }
-        dataController.save()
-        dataController.container.viewContext.processPendingChanges()
+    init(dataController: DataController, showElapsedDoses: Bool) {
+        let viewModel = ViewModel(dataController: dataController, showElapsedDoses: showElapsedDoses)
+
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
 struct DosesView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
-        DosesView(dataController: dataController, showElapsedDoses: false)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+        DosesView(dataController: DataController.preview, showElapsedDoses: false)
     }
 }
