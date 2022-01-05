@@ -13,68 +13,33 @@ import XNavigation
 struct DoseEditView: View, DestinationView {
     var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
-    let dose: Dose
-    let add: Bool
+    @StateObject var viewModel: ViewModel
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigation: Navigation
 
-    @FetchRequest private var meds: FetchedResults<Med>
-
-    @State private var selectedMed: Med
-    @State private var amount: String
-    @State private var takenDate: Date
     @State private var showingDeleteConfirm = false
-
-    init(dataController: DataController, dose: Dose, add: Bool) {
-        self.dose = dose
-        self.add = add
-
-        let title = String(DoseEditView.navigationTitle(add: add))
-
-        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-            title: title,
-            displayMode: .automatic
-        )
-
-        _amount = State(wrappedValue: dose.doseAmount)
-        _takenDate = State(wrappedValue: dose.doseTakenDate)
-
-        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
-        fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
-        ]
-
-        _meds = FetchRequest(fetchRequest: fetchRequest)
-
-        if let currentMed = dose.med {
-            _selectedMed = State(wrappedValue: currentMed)
-            initSelection(med: currentMed)
-            return
-        }
-
-        _selectedMed = State(wrappedValue: Med(context: dataController.container.viewContext))
-    }
 
     var body: some View {
         Form {
             Section(header: Text(.commonBasicSettings)) {
-                DatePicker(.doseEditDateTime, selection: $takenDate)
+                DatePicker(.doseEditDateTime, selection: $viewModel.takenDate.onChange(viewModel.update))
                     .foregroundColor(.secondary)
                     .accessibilityIdentifier(.doseEditDateTime)
 
                 Button(action: {
                     navigation.pushView(
                         DoseMedSelectView(
-                            selectedMed: $selectedMed.onChange(selectionChanged),
-                            dataController: dataController),
+                            selectedMed: $viewModel.selectedMed.onChange(viewModel.selectionChanged),
+                            dataController: dataController
+                        ),
                         animated: true
                     )
                 }, label: {
                     HStack {
                         TwoColumnView(col1: Strings.doseEditMedication.rawValue,
-                                      col2: selectedMed.medTitle,
+                                      col2: viewModel.selectedMed.medTitle,
                                       hasChevron: true)
                     }
                 })
@@ -87,12 +52,12 @@ struct DoseEditView: View, DestinationView {
 
                     TextField(String(.commonEgNum,
                                      values: [DoseDefault.Sensible.doseAmount()]),
-                              text: $amount.onChange(update))
+                              text: $viewModel.amount.onChange(viewModel.update))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .accessibilityIdentifier(.doseEditAmount)
 
-                    Text(selectedMed.medForm)
+                    Text(viewModel.selectedMed.medForm)
                         .foregroundColor(.secondary)
                 }
             }
@@ -105,7 +70,7 @@ struct DoseEditView: View, DestinationView {
                         .multilineTextAlignment(.trailing)
                 }
             }
-            if !add {
+            if !viewModel.add {
                 Section {
                     Button(Strings.doseEditDeleteThisDose.rawValue) {
                         showingDeleteConfirm.toggle()
@@ -115,19 +80,13 @@ struct DoseEditView: View, DestinationView {
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: add))
-        .onDisappear(perform: save)
+        .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
+        .onDisappear(perform: viewModel.save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
                   message: Text(.doseEditAreYouSure),
                   primaryButton: .default(Text(.commonDelete), action: delete),
                   secondaryButton: .cancel())
-        }
-    }
-
-    mutating func initSelection(med: Med) {
-        if add {
-            _amount = State(wrappedValue: med.medDefaultAmount)
         }
     }
 
@@ -138,60 +97,32 @@ struct DoseEditView: View, DestinationView {
     }
 
     func display() -> String {
-        let amt = Decimal(string: amount) ?? 0.0
-        let dsg = Decimal(string: selectedMed.medDosage) ?? 0.0
+        let amt = Decimal(string: viewModel.amount) ?? 0.0
+        let dsg = Decimal(string: viewModel.selectedMed.medDosage) ?? 0.0
         let temp = (amt * dsg)
 
         return Dose.displayFull(amount: "\(amt)",
                                 dosage: "\(dsg)",
                                 totalDosage: "\(temp)",
-                                measure: selectedMed.measure ?? "\(MedDefault.measure)",
-                                form: selectedMed.form ?? MedDefault.form)
-    }
-
-    func selectionChanged() {
-        let med = selectedMed
-
-        dose.amount = med.defaultAmount
-
-        amount = "\(med.medDefaultAmount)"
-
-        if dose.med != med {
-            dose.med = med
-        }
-
-        update()
-    }
-
-    func update() {
-        dose.objectWillChange.send()
-
-        dose.amount = NSDecimalNumber(string: amount)
-        dose.takenDate = takenDate
+                                measure: viewModel.selectedMed.measure ?? "\(MedDefault.measure)",
+                                form: viewModel.selectedMed.form ?? MedDefault.form)
     }
 
     func delete() {
-        // INFO: Also delete the med if this dose is the only relationship and is hidden.
-        if let med = dose.med {
-            if med.hidden == true {
-                let count = dataController.anyRelationships(for: [med])
-                if count == 1 {
-                    dataController.delete(med)
-                }
-            }
-        }
-        dataController.delete(dose)
+        viewModel.delete()
         presentationMode.wrappedValue.dismiss()
     }
 
-    func save() {
-        if dose.med != selectedMed {
-            dose.med = selectedMed
-        }
-        dose.med?.lastTakenDate = takenDate
-        dose.med?.remaining -= Int16(amount) ?? 0
-        dataController.save()
-        dataController.container.viewContext.processPendingChanges()
+    init(dataController: DataController, dose: Dose, add: Bool) {
+        let viewModel = ViewModel(dataController: dataController, dose: dose, add: add)
+        _viewModel = StateObject(wrappedValue: viewModel)
+
+        let title = String(DoseEditView.navigationTitle(add: add))
+
+        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+            title: title,
+            displayMode: .automatic
+        )
     }
 }
 
