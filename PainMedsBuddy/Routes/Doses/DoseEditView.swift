@@ -66,7 +66,9 @@ struct DoseEditView: View, DestinationView {
 
                 Button(action: {
                     navigation.pushView(
-                        DoseMedSelectView(selectedMed: $selectedMed.onChange(selectionChanged)),
+                        DoseMedSelectView(
+                            selectedMed: $selectedMed.onChange(selectionChanged),
+                            dataController: dataController),
                         animated: true
                     )
                 }, label: {

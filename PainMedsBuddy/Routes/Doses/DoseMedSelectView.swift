@@ -14,29 +14,19 @@ struct DoseMedSelectView: View, DestinationView {
         displayMode: .automatic
     )
 
+    @StateObject var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
 
-    @FetchRequest(entity: Med.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil)
-    var meds: FetchedResults<Med>
-
     @Binding var selectedMed: Med
-    @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimised
 
     var items: [Med] {
-        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
-    }
-
-    init(selectedMed: Binding<Med>) {
-        _selectedMed = selectedMed
+        viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
     }
 
     var sortToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: {
-                self.showingSortOrder = true
+                viewModel.showingSortOrder = true
             }, label: {
                 Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
             })
@@ -51,10 +41,10 @@ struct DoseMedSelectView: View, DestinationView {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .disabled($showingSortOrder.wrappedValue == true)
+            .disabled($viewModel.showingSortOrder.wrappedValue == true)
 
-            if $showingSortOrder.wrappedValue == true {
-                MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
+            if viewModel.showingSortOrder == true {
+                MedSortView(sortOrder: $viewModel.sortOrder, showingSortOrder: $viewModel.showingSortOrder)
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
@@ -85,10 +75,17 @@ struct DoseMedSelectView: View, DestinationView {
             self.presentationMode.wrappedValue.dismiss()
         }
     }
+
+    init(selectedMed: Binding<Med>, dataController: DataController) {
+        let viewModel = ViewModel(dataController: dataController)
+
+        _viewModel = StateObject(wrappedValue: viewModel)
+        _selectedMed = selectedMed
+    }
 }
 
 struct DoseMedSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseMedSelectView(selectedMed: .constant(Med()))
+        DoseMedSelectView(selectedMed: .constant(Med()), dataController: DataController.preview)
     }
 }
