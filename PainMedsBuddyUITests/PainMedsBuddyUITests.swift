@@ -306,4 +306,37 @@ class PainMedsBuddyUITests: XCTestCase {
             section.exists,
             "Home recent meds section not showing")
     }
+
+    func testSortOrder() {
+        // To Do
+        // test sort order popup shows and changes sort order of items
+        // do on med select and meds view
+    }
+
+    func testMedSelection() {
+        // To Do
+    }
+
+    func testHomeProgressAvailable() {
+        // To Do
+        // test that the home progress circles, once available
+        // disappear after a set period
+    }
+
+    func testHomeLowMedsAreCorrect() {
+        // To Do
+        // test that only low meds are show at the set low value
+    }
+
+    func testHomeLowMedsShowEditedValues() {
+        // To Do
+    }
+
+    func testHomeRecentMedsShowEditedValues() {
+        // To Do
+    }
+
+    func testHomeInProgressDosesShowEditedValues() {
+        // To Do
+    }
 }
