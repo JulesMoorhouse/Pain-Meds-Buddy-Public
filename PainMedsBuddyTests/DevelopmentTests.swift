@@ -11,21 +11,25 @@ import XCTest
 
 class DevelopmentTests: BaseTestCase {
     func testSampleDataCreationWorks() throws {
-        try dataController.createSampleData()
+        try dataController.createSampleData(
+            medsRequired: 20,
+            medDosesRequired: 20)
 
         XCTAssertEqual(
             dataController.count(for: Med.fetchRequest()),
-            DataController.totalSampleMeds,
-            "There should be \(DataController.totalSampleMeds) sample meds.")
+            20,
+            "There should be \(20) sample meds.")
 
         XCTAssertEqual(
             dataController.count(for: Dose.fetchRequest()),
-            DataController.totalSampleDoses,
-            "There should be \(DataController.totalSampleDoses) sample doses.")
+            20,
+            "There should be \(20) sample doses.")
     }
 
     func testDeleteAllClearsEverything() throws {
-        try dataController.createSampleData()
+        try dataController.createSampleData(
+            medsRequired: 20,
+            medDosesRequired: 20)
         dataController.deleteAll()
 
         XCTAssertEqual(

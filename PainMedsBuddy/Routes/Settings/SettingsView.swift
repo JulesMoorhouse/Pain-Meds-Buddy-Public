@@ -40,7 +40,9 @@ struct SettingsView: View {
 
                 Button(Strings.settingsAddExampleData.rawValue) {
                     dataController.deleteAll()
-                    try? dataController.createSampleData()
+                    try? dataController.createSampleData(
+                        medsRequired: 20,
+                        medDosesRequired: 20)
                 }
 
                 Button(Strings.settingsDeleteAllData.rawValue) {

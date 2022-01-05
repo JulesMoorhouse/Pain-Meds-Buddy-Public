@@ -13,7 +13,9 @@ class PerformanceTests: BaseTestCase {
     func testFistMedPerformance() throws {
         // Create a significant amount of test data
         for _ in 1...100 {
-            try dataController.createSampleData()
+            try dataController.createSampleData(
+                medsRequired: 20,
+                medDosesRequired: 20)
         }
 
         measure {
@@ -24,7 +26,9 @@ class PerformanceTests: BaseTestCase {
     func testHasRelationshipPerformance() throws {
         // Create a significant amount of test data
         for _ in 1...25 {
-            try dataController.createSampleData()
+            try dataController.createSampleData(
+                medsRequired: 20,
+                medDosesRequired: 20)
         }
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
@@ -38,7 +42,9 @@ class PerformanceTests: BaseTestCase {
     func testAnyRelationshipPerformance() throws {
         // Create a significant amount of test data
         for _ in 1...100 {
-            try dataController.createSampleData()
+            try dataController.createSampleData(
+                medsRequired: 20,
+                medDosesRequired: 20)
         }
 
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")

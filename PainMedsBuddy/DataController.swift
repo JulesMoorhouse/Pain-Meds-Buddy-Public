@@ -15,8 +15,6 @@ class DataController: ObservableObject {
     private let _container: NSPersistentCloudKitContainer
     private let semaphore = DispatchSemaphore(value: 0)
 
-    public static let totalSampleMeds = 20
-    public static let totalSampleDoses = 20
     public static let useHardDelete = true
 
     var container: NSPersistentContainer {
@@ -83,7 +81,9 @@ class DataController: ObservableObject {
         let viewContext = dataController.container.viewContext
 
         do {
-            try dataController.createSampleData()
+            try dataController.createSampleData(
+                medsRequired: 20,
+                medDosesRequired: 20)
         } catch {
             fatalError("Fatal error creating preview: \(error.localizedDescription)")
         }
@@ -169,22 +169,38 @@ class DataController: ObservableObject {
 
     /// Creates example meds and doses to make manual testing easier.
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
-    func createSampleData() throws {
+    func createSampleData(medsRequired: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
 
+        struct Drug {
+            var name = ""
+            var mGrams = 0
+            var defAmt: Int16 = 0
+            var duration: Int16 = 0
+        }
+
+        let drugs: [Drug] = [
+            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: ((4 * 60) * 60)),
+            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: ((4 * 60) * 60)),
+            Drug(name: "Gabapentin", mGrams: 300, defAmt: 1, duration: ((8 * 60) * 60)),
+        ]
+
         // Remember totalSampleDoses is the same as totalSampleMeds
-        for medCounter in 1 ... DataController.totalSampleMeds {
+        for _ in 1 ... medsRequired {
+
+            let drug = drugs.randomElement()!
+
             // INFO: One to one relationship
             let med = Med(context: viewContext)
-            med.title = "Med example \(medCounter)"
-            med.notes = "This is an example med \(medCounter)"
-            med.defaultAmount = NSDecimalNumber(value: Int16.random(in: 1 ... 10))
-            med.dosage = NSDecimalNumber(value: Int16.random(in: 100 ... 600))
+            med.title = drug.name
+            med.notes = "Notes about taking \(drug.name) x \(drug.mGrams) Pills"
+            med.defaultAmount = NSDecimalNumber(value: drug.defAmt)
+            med.dosage = NSDecimalNumber(value: drug.mGrams)
             med.color = Med.colours.randomElement()
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = Int16.random(in: 0 ... 99)
-            med.duration = Int16("04:00:00".timeToSeconds)
+            med.duration = drug.duration
             med.durationGap = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date()
             med.lastTakenDate = Date()
@@ -192,12 +208,14 @@ class DataController: ObservableObject {
             med.sequence = Int16.random(in: 1 ... 3)
             med.hidden = false
 
-            let dose = Dose(context: viewContext)
-            dose.takenDate = (medCounter % 2 == 0) ? Date() : Date.yesterday
-            dose.elapsed = Bool.random()
-            dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... 10))
+            for medDoseCounter in 1 ... medDosesRequired {
+                let dose = Dose(context: viewContext)
+                dose.takenDate = (medDoseCounter % 2 == 0) ? Date() : Date.yesterday
+                dose.elapsed = Bool.random()
+                dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
 
-            med.dose = dose
+                dose.med = med
+            }
         }
 
         try viewContext.save()
