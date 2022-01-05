@@ -7,11 +7,10 @@
 
 import CoreData
 import Foundation
-import SwiftUI // Temporary
 
 extension DosesView {
     class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-        let dataController: DataController
+        private let dataController: DataController
 
         let showElapsedDoses: Bool
 
@@ -45,7 +44,7 @@ extension DosesView {
                 try dosesController.performFetch()
                 doses = dosesController.fetchedObjects ?? []
             } catch {
-                print("Failed to fetch our doses!")
+                print("Failed to fetch our doses: \(error)")
             }
         }
 

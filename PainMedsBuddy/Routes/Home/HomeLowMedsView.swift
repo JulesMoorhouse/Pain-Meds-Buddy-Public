@@ -33,7 +33,10 @@ struct HomeLowMedsView: View {
                         ForEach(lowMeds(), id: \.self) { med in
                             Button(action: {
                                 navigation.pushView(
-                                    MedEditView(dataController: dataController, med: med, add: false),
+                                    MedEditView(
+                                        med: med,
+                                        add: false,
+                                        hasRelationship: dataController.hasRelationship(for: med)),
                                     animated: true
                                 )
                             }, label: {

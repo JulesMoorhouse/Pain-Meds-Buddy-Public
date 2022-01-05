@@ -38,7 +38,7 @@ struct ContentView: View {
                     Text(.tabTitleInProgress)
                 }
 
-            MedsView()
+            MedsView(dataController: dataController)
                 .tag(MedsView.MedsTag)
                 .tabItem {
                     Image(systemName: SFSymbol.pillsFill.systemName)

@@ -31,6 +31,7 @@
 		8848D489277913D500F10DC9 /* DoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D488277913D500F10DC9 /* DoseTests.swift */; };
 		8852BF432785B9C5000750FB /* DosesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852BF422785B9C5000750FB /* DosesViewModel.swift */; };
 		8852BF452785D648000750FB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852BF442785D648000750FB /* HomeViewModel.swift */; };
+		8852BF472786063D000750FB /* MedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852BF462786063D000750FB /* MedsViewModel.swift */; };
 		88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88572051275133A700B4B00C /* Main.xcdatamodeld */; };
 		88572055275139DD00B4B00C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88572054275139DD00B4B00C /* DataController.swift */; };
 		88572059275233A300B4B00C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88572058275233A300B4B00C /* CloudKit.framework */; };
@@ -136,6 +137,7 @@
 		8848D488277913D500F10DC9 /* DoseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseTests.swift; sourceTree = "<group>"; };
 		8852BF422785B9C5000750FB /* DosesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosesViewModel.swift; sourceTree = "<group>"; };
 		8852BF442785D648000750FB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		8852BF462786063D000750FB /* MedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsViewModel.swift; sourceTree = "<group>"; };
 		88572052275133A700B4B00C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		88572054275139DD00B4B00C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		885720562752313600B4B00C /* PainMedsBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PainMedsBuddy.entitlements; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88AB7CAE275E87340055BD9B /* MedSortView.swift */,
 				88B6E8342754D84700790A14 /* MedsView.swift */,
+				8852BF462786063D000750FB /* MedsViewModel.swift */,
 			);
 			path = Meds;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,
+				8852BF472786063D000750FB /* MedsViewModel.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
 				88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */,

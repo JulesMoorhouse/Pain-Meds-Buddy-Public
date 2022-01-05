@@ -16,7 +16,7 @@ extension HomeView {
         @Published var doses = [Dose]()
         @Published var meds = [Med]()
 
-        var dataController: DataController
+        private let dataController: DataController
 
         init(dataController: DataController) {
             self.dataController = dataController
@@ -56,7 +56,7 @@ extension HomeView {
                 doses = dosesController.fetchedObjects ?? []
                 meds = medsController.fetchedObjects ?? []
             } catch {
-                print("Failed to fetch initial data.")
+                print("Failed to fetch initial data: \(error)")
             }
         }
 

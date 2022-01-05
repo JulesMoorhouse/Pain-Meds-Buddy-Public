@@ -38,7 +38,6 @@ struct MedEditView: View, DestinationView {
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
     @State private var canDelete = false
-    @State private var hasRelationship = false
 
     let types = ["mg", "ml", "Tspn"]
 
@@ -46,11 +45,12 @@ struct MedEditView: View, DestinationView {
         GridItem(.adaptive(minimum: 44)),
     ]
 
-    init(dataController: DataController, med: Med, add: Bool) {
+    var hasRelationship = false
+
+    init(med: Med, add: Bool, hasRelationship: Bool) {
         self.med = med
         self.add = add
-
-        _hasRelationship = State(wrappedValue: dataController.hasRelationship(for: med))
+        self.hasRelationship = hasRelationship
 
         let title = String(MedEditView.navigationTitle(add: add))
 
@@ -355,10 +355,7 @@ struct MedEditView: View, DestinationView {
 }
 
 struct MedEditView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
-        MedEditView(dataController: dataController, med: Med.example, add: false)
-            .environmentObject(dataController)
+        MedEditView(med: Med.example, add: false, hasRelationship: true)
     }
 }

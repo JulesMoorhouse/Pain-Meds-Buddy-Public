@@ -13,22 +13,11 @@ import XNavigation
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @StateObject var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
 
-    @FetchRequest(entity: Med.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)],
-                  predicate: !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil)
-    var meds: FetchedResults<Med>
-
-    @State private var showingSortOrder = false
-    @State private var sortOrder = Med.SortOrder.optimised
-    @State private var canDelete = false
-    @State private var showDeleteDenied = false
-
     var items: [Med] {
-        DataController.resultsToArray(meds).allMeds.sortedItems(using: sortOrder)
+        viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
     }
 
     var medsList: some View {
@@ -36,7 +25,7 @@ struct MedsView: View {
             ForEach(items, id: \.self) { med in
                 Button(action: {
                     navigation.pushView(
-                        MedEditView(dataController: dataController, med: med, add: false),
+                        MedEditView(med: med, add: false, hasRelationship: viewModel.hasRelationship(med: med)),
                         animated: true
                     )
                 }, label: {
@@ -44,11 +33,11 @@ struct MedsView: View {
                 })
             }
             .onDelete { offsets in
-                deleteMed(offsets, items: items)
+                viewModel.deleteMed(offsets, items: items)
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .disabled($showingSortOrder.wrappedValue == true)
+        .disabled(viewModel.showingSortOrder == true)
     }
 
     var addMedToolbarItem: some ToolbarContent {
@@ -58,9 +47,7 @@ struct MedsView: View {
                     .accessibilityHidden(true)
                 Button(action: {
                     navigation.pushView(
-                        MedAddView()
-                            .environment(\.managedObjectContext, managedObjectContext)
-                            .environmentObject(dataController),
+                        MedAddView(),
                         animated: true
                     )
                 }, label: {
@@ -87,13 +74,13 @@ struct MedsView: View {
 
     var sortToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
-            if !meds.isEmpty {
+            if !viewModel.meds.isEmpty {
                 HStack {
                     Text("")
                         .accessibilityHidden(true)
 
                     Button(action: {
-                        self.showingSortOrder = true
+                        viewModel.showingSortOrder = true
                     }, label: {
                         Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
                             .accessibilityElement()
@@ -108,15 +95,15 @@ struct MedsView: View {
     var body: some View {
         NavigationView {
             Group {
-                if self.meds.isEmpty {
+                if viewModel.meds.isEmpty {
                     PlaceholderView(string: .commonEmptyView,
                                     imageString: SFSymbol.pills.systemName)
                 } else {
                     ZStack {
                         medsList
 
-                        if $showingSortOrder.wrappedValue == true {
-                            MedSortView(sortOrder: $sortOrder, showingSortOrder: $showingSortOrder)
+                        if viewModel.showingSortOrder == true {
+                            MedSortView(sortOrder: $viewModel.sortOrder, showingSortOrder: $viewModel.showingSortOrder)
                         }
                     }
                 }
@@ -127,7 +114,7 @@ struct MedsView: View {
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
-            .alert(isPresented: $showDeleteDenied) {
+            .alert(isPresented: $viewModel.showDeleteDenied) {
                 Alert(title: Text(.medEditDeleteMed),
                       message: Text(.medsSorryUsed),
                       dismissButton: .default(Text(.commonOK)))
@@ -138,30 +125,15 @@ struct MedsView: View {
         }
     }
 
-    func deleteMed(_ offsets: IndexSet, items: [Med]) {
-        let deleteItems = offsets.map { items[$0] }
+    init(dataController: DataController) {
+        let viewModel = ViewModel(dataController: dataController)
 
-        let count = dataController.anyRelationships(for: deleteItems)
-        // swiftlint:disable:next empty_count
-        if count == 0 {
-            for offset in offsets {
-                let item = items[offset]
-                dataController.delete(item)
-            }
-            dataController.save()
-            dataController.container.viewContext.processPendingChanges()
-        } else {
-            showDeleteDenied.toggle()
-        }
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
 struct MedicationsView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
-        MedsView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+        MedsView(dataController: DataController.preview)
     }
 }
