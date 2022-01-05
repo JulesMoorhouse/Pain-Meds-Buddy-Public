@@ -81,9 +81,7 @@ class DataController: ObservableObject {
         let viewContext = dataController.container.viewContext
 
         do {
-            try dataController.createSampleData(
-                medsRequired: 20,
-                medDosesRequired: 20)
+            try dataController.createSampleData()
         } catch {
             fatalError("Fatal error creating preview: \(error.localizedDescription)")
         }
@@ -221,6 +219,9 @@ class DataController: ObservableObject {
         try viewContext.save()
     }
 
+    func createSampleData() throws {
+        try? self.createSampleData(medsRequired: 20, medDosesRequired: 20)
+    }
     /// Saves our Core Data context if there are changes. This silently ignores
     /// any errors caused by saving, but this should be fine because our
     /// attributes are optional.
