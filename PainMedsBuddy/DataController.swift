@@ -170,6 +170,8 @@ class DataController: ObservableObject {
     func createSampleData(medsRequired: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
 
+        let tenDaysAgo = Date() - 10
+
         struct Drug {
             var name = ""
             var mGrams = 0
@@ -187,6 +189,7 @@ class DataController: ObservableObject {
         for _ in 1 ... medsRequired {
 
             let drug = drugs.randomElement()!
+            let createdDate = Date.random(in: tenDaysAgo ..< Date())
 
             // INFO: One to one relationship
             let med = Med(context: viewContext)
@@ -200,15 +203,15 @@ class DataController: ObservableObject {
             med.remaining = Int16.random(in: 0 ... 99)
             med.duration = drug.duration
             med.durationGap = Int16("00:20:00".timeToSeconds)
-            med.creationDate = Date()
-            med.lastTakenDate = Date()
+            med.creationDate = createdDate
+            med.lastTakenDate = Date.random(in: createdDate ..< Date())
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.sequence = Int16.random(in: 1 ... 3)
             med.hidden = false
 
-            for medDoseCounter in 1 ... medDosesRequired {
+            for _ in 1 ... medDosesRequired {
                 let dose = Dose(context: viewContext)
-                dose.takenDate = (medDoseCounter % 2 == 0) ? Date() : Date.yesterday
+                dose.takenDate = Date.random(in: createdDate ..< Date())
                 dose.elapsed = Bool.random()
                 dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
 
@@ -220,7 +223,7 @@ class DataController: ObservableObject {
     }
 
     func createSampleData() throws {
-        try? self.createSampleData(medsRequired: 20, medDosesRequired: 20)
+        try? self.createSampleData(medsRequired: 5, medDosesRequired: 4)
     }
     /// Saves our Core Data context if there are changes. This silently ignores
     /// any errors caused by saving, but this should be fine because our

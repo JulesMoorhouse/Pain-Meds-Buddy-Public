@@ -30,4 +30,16 @@ extension Date {
     var isLastDayOfMonth: Bool {
         dayAfter.month != month
     }
+
+    static func random(in range: Range<Date>) -> Date {
+        Date(
+            timeIntervalSinceNow: .random(
+                in: range.lowerBound.timeIntervalSinceNow ... range.upperBound.timeIntervalSinceNow
+            )
+        )
+    }
+
+    static func - (lhs: Date, rhs: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: -rhs, to: lhs)!
+    }
 }

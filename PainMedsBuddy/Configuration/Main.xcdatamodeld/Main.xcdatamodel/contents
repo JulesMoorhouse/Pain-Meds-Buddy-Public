@@ -22,7 +22,7 @@
         <attribute name="sequence" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="dose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
+        <relationship name="dose" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
         <element name="Dose" positionX="-63" positionY="-18" width="128" height="89"/>

@@ -22,8 +22,8 @@ class DevelopmentTests: BaseTestCase {
 
         XCTAssertEqual(
             dataController.count(for: Dose.fetchRequest()),
-            20,
-            "There should be \(20) sample doses.")
+            20*20,
+            "There should be \(20*20) sample doses.")
     }
 
     func testDeleteAllClearsEverything() throws {

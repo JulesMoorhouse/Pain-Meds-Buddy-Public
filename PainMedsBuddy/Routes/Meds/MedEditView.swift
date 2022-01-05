@@ -149,7 +149,7 @@ struct MedEditView: View, DestinationView {
     }
 
     func update() {
-        med.dose?.objectWillChange.send()
+        // med.dose?.objectWillChange.send()
 
         update(med: med)
     }

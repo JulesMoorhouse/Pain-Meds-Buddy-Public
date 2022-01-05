@@ -211,7 +211,7 @@ class PainMedsBuddyUITests: XCTestCase {
         // tap newly added item on dose list
         app.buttons[Strings.homeAccessibilityIconTaken.automatedId()].tap()
 
-       let textField = app.textFields[Strings.doseEditAmount.automatedId()]
+        let textField = app.textFields[Strings.doseEditAmount.automatedId()]
         textField.press(forDuration: 1.2)
         app.menuItems["Select All"].tap()
 

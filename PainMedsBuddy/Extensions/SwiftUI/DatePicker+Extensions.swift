@@ -10,12 +10,12 @@ import SwiftUI
 
 extension DatePicker where Label == Text {
     init(
-        _ localizedString: Strings,
+        _ localisedString: Strings,
         selection: Binding<Date>,
         displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]
     ) {
         let output = NSLocalizedString(
-            localizedString.rawValue.stringKey,
+            localisedString.rawValue.stringKey,
             comment: ""
         )
 
