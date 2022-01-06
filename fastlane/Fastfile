@@ -1,0 +1,53 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+test_devices = [
+    "iPhone 8"
+]
+
+platform :ios do
+  desc "Generate new localized screenshots"
+  lane :screenshots do
+    #capture_screenshots(scheme: "FastlaneScreenshots")
+
+    scan(
+        scheme: "FastlaneScreenshots", 
+        #derived_data_path: 'fastlane/derived_data_path',
+        build_for_testing: true,
+        configuration: "Debug",
+        devices: test_devices,
+    )
+
+    snapshot(
+        devices: test_devices,
+        languages: [
+            "en-GB",
+        ],
+        scheme: "FastlaneScreenshots",
+        stop_after_first_error: true, 
+        number_of_retries: 3,
+        output_simulator_logs: true,
+        erase_simulator: true,
+        clear_previous_screenshots: true,
+        concurrent_simulators: false,
+        #test_without_building: true, # need to remove when no using ci
+        #derived_data_path: 'fastlane/derived_data_path'
+    )
+
+    #upload_to_app_store(skip_binary_upload: true, skip_metadata: true)
+  end
+end

@@ -36,3 +36,6 @@ opt_in_rules: # some rules are only opt-in
 
 force_try:
   severity: warning # explicitly. Give warning only for force try
+
+excluded:
+  - fastlane

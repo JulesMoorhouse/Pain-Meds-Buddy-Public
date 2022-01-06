@@ -12,7 +12,6 @@ extension Dose: Comparable {
         "\(String(describing: amount ?? DoseDefault.amount))"
     }
 
-    // TODO: Need to remove DoseDefaults throughout this extension !!!
     var doseTakenDate: Date {
         takenDate ?? DoseDefault.takenDate
     }

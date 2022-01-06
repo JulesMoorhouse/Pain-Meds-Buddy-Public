@@ -28,6 +28,27 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "88C74D0C277BAC88002B2EC6"
+               BuildableName = "PainMedsBuddyUITests.xctest"
+               BlueprintName = "PainMedsBuddyUITests"
+               ReferencedContainer = "container:PainMedsBuddy.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BasicAction">
+               </Test>
+               <Test
+                  Identifier = "Elements">
+               </Test>
+               <Test
+                  Identifier = "PainMedsBuddyUITests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
