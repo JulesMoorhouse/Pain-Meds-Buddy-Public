@@ -212,7 +212,7 @@ class PainMedsBuddyUITests: XCTestCase {
         app.buttons[Strings.homeAccessibilityIconTaken.automatedId()].tap()
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
-        textField.press(forDuration: 1.2)
+        textField.press(forDuration: 2.0)
         app.menuItems["Select All"].tap()
 
         // When
@@ -307,36 +307,36 @@ class PainMedsBuddyUITests: XCTestCase {
             "Home recent meds section not showing")
     }
 
-    func testSortOrder() {
+    func TODO_testSortOrder() {
         // To Do
         // test sort order popup shows and changes sort order of items
         // do on med select and meds view
     }
 
-    func testMedSelection() {
+    func TODO_testMedSelection() {
         // To Do
     }
 
-    func testHomeProgressAvailable() {
+    func TODO_testHomeProgressAvailable() {
         // To Do
         // test that the home progress circles, once available
         // disappear after a set period
     }
 
-    func testHomeLowMedsAreCorrect() {
+    func TODO_testHomeLowMedsAreCorrect() {
         // To Do
         // test that only low meds are show at the set low value
     }
 
-    func testHomeLowMedsShowEditedValues() {
+    func TODO_testHomeLowMedsShowEditedValues() {
         // To Do
     }
 
-    func testHomeRecentMedsShowEditedValues() {
+    func TODO_testHomeRecentMedsShowEditedValues() {
         // To Do
     }
 
-    func testHomeInProgressDosesShowEditedValues() {
+    func TODO_testHomeInProgressDosesShowEditedValues() {
         // To Do
     }
 }

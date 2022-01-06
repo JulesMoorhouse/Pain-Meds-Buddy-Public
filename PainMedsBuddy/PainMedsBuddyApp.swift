@@ -17,6 +17,15 @@ struct PainMedsBuddyApp: App {
         _dataController = StateObject(wrappedValue: dataController)
 
         dataController.processDoses()
+
+        #if targetEnvironment(simulator)
+        // Disable hardware keyboards.
+        let setHardwareLayout = NSSelectorFromString("setHardwareLayout:")
+        UITextInputMode.activeInputModes
+            // Filter `UIKeyboardInputMode`s.
+            .filter { $0.responds(to: setHardwareLayout) }
+            .forEach { $0.perform(setHardwareLayout, with: nil) }
+        #endif
     }
 
     var body: some Scene {

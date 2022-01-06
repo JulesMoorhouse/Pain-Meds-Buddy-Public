@@ -499,7 +499,7 @@
 				8832141A275120D40026D85F /* Sources */,
 				8832141B275120D40026D85F /* Frameworks */,
 				8832141C275120D40026D85F /* Resources */,
-				88E930A02760A51600A98708 /* Run Script - AckGen */,
+				88E930A02760A51600A98708 /* AckGen */,
 			);
 			buildRules = (
 			);
@@ -634,7 +634,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8848D45B277700A300F10DC9 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -646,11 +646,11 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		88E930A02760A51600A98708 /* Run Script - AckGen */ = {
+		88E930A02760A51600A98708 /* AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
 			files = (
@@ -659,7 +659,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script - AckGen";
+			name = AckGen;
 			outputFileListPaths = (
 			);
 			outputPaths = (

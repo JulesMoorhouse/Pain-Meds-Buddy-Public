@@ -15,39 +15,72 @@
 
 default_platform(:ios)
 
+screenshot_devices = [
+    "iPhone SE (2nd generation)",
+    "iPhone 8",
+    "iPhone 8 Plus",
+    "iPad Pro (12.9-inch) (4th generation)"
+]
+
 test_devices = [
-    "iPhone 8"
+    #"iPhone SE (2nd generation)",
+    "iPhone 8",
+    #"iPhone 8 Plus",
+    "iPad Pro (12.9-inch) (4th generation)"
 ]
 
 platform :ios do
   desc "Generate new localized screenshots"
   lane :screenshots do
-    #capture_screenshots(scheme: "FastlaneScreenshots")
-
     scan(
         scheme: "FastlaneScreenshots", 
-        #derived_data_path: 'fastlane/derived_data_path',
+        derived_data_path: 'fastlane/derived_data_path',
         build_for_testing: true,
         configuration: "Debug",
-        devices: test_devices,
+        devices: screenshot_devices,
     )
 
     snapshot(
-        devices: test_devices,
+        devices: screenshot_devices,
         languages: [
             "en-GB",
         ],
         scheme: "FastlaneScreenshots",
-        stop_after_first_error: true, 
-        number_of_retries: 3,
+        launch_arguments: ["enable-ui-testing"],
+        stop_after_first_error: false, 
+        number_of_retries: 0,
         output_simulator_logs: true,
         erase_simulator: true,
-        clear_previous_screenshots: true,
-        concurrent_simulators: false,
-        #test_without_building: true, # need to remove when no using ci
-        #derived_data_path: 'fastlane/derived_data_path'
+        clear_previous_screenshots: false,
+        concurrent_simulators: true,
+        test_without_building: true, # need to remove when no using ci
+        derived_data_path: 'fastlane/derived_data_path'
     )
+
+    frame_screenshots(white: true)
 
     #upload_to_app_store(skip_binary_upload: true, skip_metadata: true)
   end
+
+  lane :tests do
+    run_tests(
+        scheme: "PainMedsBuddy",
+        devices: test_devices,
+        code_coverage: true,
+        open_report: true,
+        skip_build: true,
+        output_style: "standard",
+        output_types: "html",
+        skip_detect_devices: true
+    )
+  end
+
+  lane :upmetascreens do
+    deliver(skip_binary_upload: true, skip_app_version_update: true)
+  end
+
+  lane :upmeta do
+    deliver(skip_binary_upload: true, skip_app_version_update: true, skip_screenshots: true)
+  end
+
 end

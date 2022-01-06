@@ -65,6 +65,11 @@
                BlueprintName = "PainMedsBuddyUITests"
                ReferencedContainer = "container:PainMedsBuddy.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SnapshotUITests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

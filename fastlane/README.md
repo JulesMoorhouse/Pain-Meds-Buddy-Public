@@ -23,6 +23,30 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Generate new localized screenshots
 
+### ios tests
+
+```sh
+[bundle exec] fastlane ios tests
+```
+
+
+
+### ios upmetascreens
+
+```sh
+[bundle exec] fastlane ios upmetascreens
+```
+
+
+
+### ios upmeta
+
+```sh
+[bundle exec] fastlane ios upmeta
+```
+
+
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
