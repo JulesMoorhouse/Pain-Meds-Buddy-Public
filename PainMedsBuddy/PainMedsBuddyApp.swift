@@ -15,6 +15,8 @@ struct PainMedsBuddyApp: App {
     init() {
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
+
+        dataController.processDoses()
     }
 
     var body: some Scene {
@@ -28,10 +30,19 @@ struct PainMedsBuddyApp: App {
                     // the foreground app, Use this rather than the scene phase
                     // API so we can port to macOS, where scene phase won't detect
                     // out app losing focus as of macOS 11.1.
-                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
-                               perform: save)
+                    .onReceive(
+                        NotificationCenter.default.publisher(
+                            for: UIApplication.willResignActiveNotification),
+                        perform: save)
+                    .onReceive(NotificationCenter.default.publisher(
+                        for: UIApplication.didBecomeActiveNotification),
+                    perform: processDoses)
             }
         }
+    }
+
+    func processDoses(_: Notification) {
+        dataController.processDoses()
     }
 
     func save(_: Notification) {

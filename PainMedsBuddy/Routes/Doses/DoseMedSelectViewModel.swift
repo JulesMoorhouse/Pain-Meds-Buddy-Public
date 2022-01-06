@@ -39,7 +39,7 @@ extension DoseMedSelectView {
                 try medsController.performFetch()
                 self.meds = medsController.fetchedObjects ?? []
             } catch {
-                print("Failed to fetch our meds: \(error)")
+                print("ERROR: Failed to fetch our meds: \(error)")
             }
         }
     }

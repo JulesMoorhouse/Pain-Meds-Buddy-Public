@@ -112,7 +112,7 @@ class DataController: ObservableObject {
                 return true
             }
         } catch {
-            print("Error checking data for dose \(error.localizedDescription)")
+            print("ERROR: Checking data for dose \(error.localizedDescription)")
         }
 
         return false
@@ -126,7 +126,7 @@ class DataController: ObservableObject {
             let tempDoses = try container.viewContext.fetch(fetchRequest)
             return tempDoses.count
         } catch {
-            print("Error checking data for doses \(error.localizedDescription)")
+            print("ERROR: Checking data for doses \(error.localizedDescription)")
         }
 
         return 0
@@ -180,14 +180,13 @@ class DataController: ObservableObject {
         }
 
         let drugs: [Drug] = [
-            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: ((4 * 60) * 60)),
-            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: ((4 * 60) * 60)),
-            Drug(name: "Gabapentin", mGrams: 300, defAmt: 1, duration: ((8 * 60) * 60)),
+            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60),
+            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: (4 * 60) * 60),
+            Drug(name: "Gabapentin", mGrams: 300, defAmt: 1, duration: (8 * 60) * 60),
         ]
 
         // Remember totalSampleDoses is the same as totalSampleMeds
         for _ in 1 ... medsRequired {
-
             let drug = drugs.randomElement()!
             let createdDate = Date.random(in: tenDaysAgo ..< Date())
 
@@ -223,8 +222,24 @@ class DataController: ObservableObject {
     }
 
     func createSampleData() throws {
-        try? self.createSampleData(medsRequired: 5, medDosesRequired: 4)
+        try? createSampleData(medsRequired: 5, medDosesRequired: 4)
     }
+
+    /// Process any doses which should now be elapsed
+    func processDoses() {
+        let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
+        doseRequest.predicate = NSPredicate(format: "elapsed == false AND med != nil")
+        do {
+            let tempDoses = try container.viewContext.fetch(doseRequest)
+            for dose in tempDoses where dose.doseShouldHaveElapsed {
+                dose.elapsed = true
+            }
+            save()
+        } catch {
+            print("ERROR: Checking data for doses \(error.localizedDescription)")
+        }
+    }
+
     /// Saves our Core Data context if there are changes. This silently ignores
     /// any errors caused by saving, but this should be fine because our
     /// attributes are optional.
@@ -233,7 +248,7 @@ class DataController: ObservableObject {
             do {
                 try container.viewContext.save()
             } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+                print("ERROR: Could not save. \(error), \(error.userInfo)")
             }
         }
     }

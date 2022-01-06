@@ -37,26 +37,15 @@ struct DoseProgressView: View {
         return "0"
     }
 
-    var doseElapsedInt: Int {
-        if dose.elapsed == false {
-            return Int(nowDate.timeIntervalSince(dose.doseTakenDate))
-        }
-        return 0
-    }
-
-    var done: Bool {
-        dose.doseTotalTime > doseElapsedInt
-    }
-
     var progress: CGFloat {
-        CGFloat(doseElapsedInt) / CGFloat(dose.doseTotalTime)
+        CGFloat(dose.doseElapsedSeconds) / CGFloat(dose.doseTotalTimeSeconds)
     }
 
     var circle: some View {
         VStack(alignment: .center) {
             CircularProgressView(
-                count: doseElapsedInt,
-                total: dose.doseTotalTime,
+                count: dose.doseElapsedSeconds,
+                total: dose.doseTotalTimeSeconds,
                 progress: progress,
                 fill: gradient,
                 lineWidth: 5.0,
@@ -102,7 +91,7 @@ struct DoseProgressView: View {
                 )
             })
 
-            Text(done
+            Text(dose.doseShouldHaveElapsed
                 ? countDown
                 : String(.doseProgressAvailable))
                 .foregroundColor(.primary)
@@ -126,22 +115,22 @@ struct DoseProgressView: View {
             self.timer = nil
         })
 
-        .disabled(done)
+        .disabled(dose.doseShouldHaveElapsed)
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
-        .accessibilityAddTraits(done ? .isStaticText : .isButton)
+        .accessibilityAddTraits(dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
         .accessibilityLabel(accessibilityLabel())
         .accessibilityIdentifier(accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
-        done
+        dose.doseShouldHaveElapsed
             ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
             : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
     }
 
     func accessibilityIdentifier() -> Strings {
-        done
+        dose.doseShouldHaveElapsed
             ? .doseProgressAccessibilityRemaining
             : .doseProgressAccessibilityAvailable
     }

@@ -12,6 +12,7 @@ extension Dose: Comparable {
         "\(String(describing: amount ?? DoseDefault.amount))"
     }
 
+    // TODO: Need to remove DoseDefaults throughout this extension !!!
     var doseTakenDate: Date {
         takenDate ?? DoseDefault.takenDate
     }
@@ -20,8 +21,20 @@ extension Dose: Comparable {
         elapsed
     }
 
-    var doseTotalTime: Int {
+    var doseTotalTimeSeconds: Int {
         Int(med?.duration ?? MedDefault.duration) + Int(med?.durationGap ?? MedDefault.durationGap)
+    }
+
+    var doseElapsedSeconds: Int {
+        if elapsed == false {
+            let nowDate = Date()
+            return Int(nowDate.timeIntervalSince(doseTakenDate))
+        }
+        return 0
+    }
+
+    var doseShouldHaveElapsed: Bool {
+        doseTotalTimeSeconds > doseElapsedSeconds
     }
 
     var doseElapsedDate: Date? {

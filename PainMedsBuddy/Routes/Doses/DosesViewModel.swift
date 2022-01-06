@@ -44,7 +44,7 @@ extension DosesView {
                 try dosesController.performFetch()
                 doses = dosesController.fetchedObjects ?? []
             } catch {
-                print("Failed to fetch our doses: \(error)")
+                print("ERROR: Failed to fetch our doses: \(error)")
             }
         }
 

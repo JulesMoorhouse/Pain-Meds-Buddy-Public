@@ -56,7 +56,7 @@ extension HomeView {
                 doses = dosesController.fetchedObjects ?? []
                 meds = medsController.fetchedObjects ?? []
             } catch {
-                print("Failed to fetch initial data: \(error)")
+                print("ERROR: Failed to fetch initial data: \(error)")
             }
         }
 
