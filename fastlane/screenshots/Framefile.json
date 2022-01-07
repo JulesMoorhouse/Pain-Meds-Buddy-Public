@@ -1,0 +1,66 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "keyword": {
+      "font": "./fonts/Noteworthy-Bold.ttf"
+    },
+    "title": {
+      "font": "./fonts/Noteworthy-Bold.ttf",
+      "color": "#545454"
+    },
+    "padding": 50,
+    "background": "./background.jpg",
+    "show_complete_frame": true,
+    "stack_title" : true,
+    "title_below_image": false
+  },
+
+
+  "data": [
+    {
+      "filter": "01-Home",
+      "title": {
+        "padding": 100
+      },
+      "keyword": {
+        "color": "#d21559"
+      }
+    },
+    {
+      "filter": "02-Medications",
+      "title": {
+        "padding": 100
+      },
+      "keyword": {
+        "color": "#feb909"     
+      }
+    },
+    {
+      "filter": "03-AddMed",
+      "title": {
+        "padding": 100
+      },
+      "keyword": {
+        "color": "#aa4dbc"              
+      }
+    },
+    {
+      "filter": "04-History",
+      "title": {
+        "padding": 100
+      },
+      "keyword": {
+        "color": "#d21559"
+      }
+    },
+    {
+      "filter": "05-AddDose",
+      "title": {
+        "padding": 100
+      },
+      "keyword": {
+        "color": "#feb909"     
+      }
+    }  
+  ]
+}

@@ -123,6 +123,7 @@ struct MedsView: View {
             PlaceholderView(string: .medsPleaseSelect,
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
+        .iPadOnlyStackNavigationView()
     }
 
     init(dataController: DataController) {

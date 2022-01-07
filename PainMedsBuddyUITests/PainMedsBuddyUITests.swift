@@ -42,7 +42,7 @@ class PainMedsBuddyUITests: XCTestCase {
             BasicAction.tapBackButton(app)
 
             // Confirm on medications screen
-            _ = Elements.navBarMedications(app)
+            _ = Elements.navBarMedications(app, performTest:  false)
 
             let rowCount = app.tables.cells.count
 
@@ -60,7 +60,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
         BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app)
+        _ = Elements.navBarMedications(app, performTest: false)
         BasicAction.tapTabInProgress(app)
         // --- Should use datafile or data generation / not part of test ---
 
@@ -72,7 +72,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapBackButton(app)
 
         // Confirm on in progress screen
-        _ = Elements.navBarInProgress(app)
+        _ = Elements.navBarInProgress(app, performTest: false)
 
         // When
         let rowCount = app.tables.cells.count
@@ -134,7 +134,8 @@ class PainMedsBuddyUITests: XCTestCase {
 
     func testEmptyHome() {
         // When - Confirm on home screen
-        _ = Elements.navBarHome(app)
+        BasicAction.tapTabHome(app)
+        _ = Elements.navBarHome(app, performTest: false)
 
         let labelId = Strings.commonEmptyView.automatedId()
         let someView = app.staticTexts[labelId]
@@ -152,14 +153,8 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapBackButton(app)
         // --- Should use datafile or data generation / not part of test ---
 
-        // Given
-        // Confirm on meds screen
-        let navBar = Elements.navBarMedications(app)
+        let sortButton = app.buttons[Strings.commonSort.automatedId()]
 
-        // When
-        let sortButton = navBar.buttons[Strings.commonSort.automatedId()]
-
-        // Then
         XCTAssertTrue(
             sortButton.exists,
             "Medications sort button not found")
@@ -201,7 +196,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
         BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app)
+        _ = Elements.navBarMedications(app, performTest: false)
         BasicAction.tapTabInProgress(app)
         BasicAction.tapInProgressAddButton(app)
         BasicAction.tapBackButton(app)
@@ -212,9 +207,9 @@ class PainMedsBuddyUITests: XCTestCase {
         app.buttons[Strings.homeAccessibilityIconTaken.automatedId()].tap()
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
-        textField.press(forDuration: 2.0)
-        app.menuItems["Select All"].tap()
-
+        textField.doubleTap()
+        textField.clearText()
+        
         // When
         app.keys["2"].tap()
         app.keys["9"].tap()
@@ -243,7 +238,10 @@ class PainMedsBuddyUITests: XCTestCase {
 
         // When
         app.keys["space"].tap()
-        app.keys["more"].tap()
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            app.keys["more"].tap()
+        }
         app.keys["2"].tap()
         app.buttons["Return"].tap()
 
@@ -261,7 +259,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
         BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app)
+        _ = Elements.navBarMedications(app, performTest: false)
         BasicAction.tapTabInProgress(app)
         BasicAction.tapInProgressAddButton(app)
         BasicAction.tapBackButton(app)
@@ -280,7 +278,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
         BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app)
+        _ = Elements.navBarMedications(app, performTest: false)
         BasicAction.tapTabHome(app)
         // --- Should use datafile or data generation / not part of test ---
 
@@ -296,7 +294,7 @@ class PainMedsBuddyUITests: XCTestCase {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
         BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app)
+        _ = Elements.navBarMedications(app, performTest: false)
         BasicAction.tapTabHome(app)
         // --- Should use datafile or data generation / not part of test ---
 

@@ -56,8 +56,7 @@ class BasicAction: XCTestCase {
     // ---- tab bar items ----
 
     static func tapMedicationTabAddButton(_ app: XCUIApplication) {
-        let navBar = Elements.navBarMedications(app)
-        navBar.buttons[Strings.medEditAddMed.automatedId()].tap()
+        app.buttons[Strings.medEditAddMed.automatedId()].tap()
 
         // Confirm on add med screen
         _ = Elements.navBarAddMed(app)

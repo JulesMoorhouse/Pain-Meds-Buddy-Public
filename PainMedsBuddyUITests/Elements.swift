@@ -35,62 +35,72 @@ class Elements: XCTestCase {
     // ---- Tabs ----
 
     // ---- Screens ----
-    static func navBarHome(_ app: XCUIApplication) -> XCUIElement {
+    static func navBarHome(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleHome.automatedId()
         let homeScreen = app.navigationBars[titleId]
         _ = homeScreen.waitForExistence(timeout: 1)
 
-        XCTAssertTrue(
-            homeScreen.exists,
-            "\(titleId) navigation bar not found")
+        if performTest {
+            XCTAssertTrue(
+                homeScreen.exists,
+                "\(titleId) navigation bar not found")
+        }
 
         return homeScreen
     }
 
-    static func navBarHistory(_ app: XCUIApplication) -> XCUIElement {
+    static func navBarHistory(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleHistory.automatedId()
         let historyScreen = app.navigationBars[titleId]
         _ = historyScreen.waitForExistence(timeout: 1)
 
-        XCTAssertTrue(
-            historyScreen.exists,
-            "\(titleId) navigation bar not found")
+        if performTest {
+            XCTAssertTrue(
+                historyScreen.exists,
+                "\(titleId) navigation bar not found")
+        }
 
         return historyScreen
     }
 
-    static func navBarInProgress(_ app: XCUIApplication) -> XCUIElement {
+    static func navBarInProgress(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleInProgress.automatedId()
         let inProgressScreen = app.navigationBars[titleId]
         _ = inProgressScreen.waitForExistence(timeout: 1)
 
-        XCTAssertTrue(
-            inProgressScreen.exists,
-            "\(titleId) navigation bar not found")
+        if performTest {
+            XCTAssertTrue(
+                inProgressScreen.exists,
+                "\(titleId) navigation bar not found")
+        }
 
         return inProgressScreen
     }
 
-    static func navBarMedications(_ app: XCUIApplication) -> XCUIElement {
+    static func navBarMedications(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleMedications.automatedId()
         let medicationScreen = app.navigationBars[titleId]
         _ = medicationScreen.waitForExistence(timeout: 1)
 
-        XCTAssertTrue(
-            medicationScreen.exists,
-            "\(titleId) navigation bar not found")
+        if performTest {
+            XCTAssertTrue(
+                medicationScreen.exists,
+                "\(titleId) navigation bar not found")
+        }
 
         return medicationScreen
     }
 
-    static func navBarSettings(_ app: XCUIApplication) -> XCUIElement {
+    static func navBarSettings(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleSettings.automatedId()
         let settingsScreen = app.navigationBars[titleId]
         _ = settingsScreen.waitForExistence(timeout: 1)
 
-        XCTAssertTrue(
-            settingsScreen.exists,
-            "\(titleId) navigation bar not found")
+        if performTest {
+            XCTAssertTrue(
+                settingsScreen.exists,
+                "\(titleId) navigation bar not found")
+        }
 
         return settingsScreen
     }
@@ -118,5 +128,24 @@ class Elements: XCTestCase {
 
         return addMedScreen
     }
+
     // ---- Screens ----
+}
+
+extension XCUIElement {
+    func clearText() {
+        guard let stringValue = value as? String else {
+            return
+        }
+        // workaround for apple bug
+        if let placeholderString = placeholderValue, placeholderString == stringValue {
+            return
+        }
+
+        var deleteString = String()
+        for _ in stringValue {
+            deleteString += XCUIKeyboardKey.delete.rawValue
+        }
+        typeText(deleteString)
+    }
 }

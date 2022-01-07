@@ -70,6 +70,7 @@ struct HomeView: View {
             .navigationTitle(Strings.tabTitleHome.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleHome)
         }
+        .iPadOnlyStackNavigationView()
     }
 
     init(dataController: DataController) {

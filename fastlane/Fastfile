@@ -16,9 +16,9 @@
 default_platform(:ios)
 
 screenshot_devices = [
-    "iPhone SE (2nd generation)",
-    "iPhone 8",
+    "iPhone 11 Pro Max",
     "iPhone 8 Plus",
+    "iPad Pro (12.9-inch) (2nd generation)",
     "iPad Pro (12.9-inch) (4th generation)"
 ]
 
@@ -47,21 +47,19 @@ platform :ios do
         ],
         scheme: "FastlaneScreenshots",
         launch_arguments: ["enable-ui-testing"],
+        #output_directory: "../screenshots/PainMedsBuddy", # Causes FrameIt error
         stop_after_first_error: false, 
         number_of_retries: 0,
         output_simulator_logs: true,
-        erase_simulator: true,
-        clear_previous_screenshots: false,
+        erase_simulator: false,
+        clear_previous_screenshots: true,
         concurrent_simulators: true,
         test_without_building: true, # need to remove when no using ci
         derived_data_path: 'fastlane/derived_data_path'
     )
-
-    frame_screenshots(white: true)
-
-    #upload_to_app_store(skip_binary_upload: true, skip_metadata: true)
   end
 
+  desc "Run tests on multiple devices"
   lane :tests do
     run_tests(
         scheme: "PainMedsBuddy",
@@ -75,12 +73,25 @@ platform :ios do
     )
   end
 
-  lane :upmetascreens do
-    deliver(skip_binary_upload: true, skip_app_version_update: true)
+  desc "Frame localized screenshots"
+  lane :framescreens do
+    frame_screenshots(
+      white: true,
+      path: "/Users/jm/repos/PainMedsBuddy/fastlane/screenshots"
+  #    path: "../screenshots/PainMedsBuddy" # Causes FrameIt error
+    )
   end
 
-  lane :upmeta do
-    deliver(skip_binary_upload: true, skip_app_version_update: true, skip_screenshots: true)
+  desc "Upload localized + framed screenshots"
+  lane :UploadScreens do
+    deliver(
+      submit_for_review: false,
+      force: true,
+      skip_binary_upload: true, 
+      skip_app_version_update: true,
+      overwrite_screenshots: true,
+      skip_metadata: true,
+      skip_screenshots: false
+    )
   end
-
 end

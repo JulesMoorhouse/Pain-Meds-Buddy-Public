@@ -29,23 +29,23 @@ Generate new localized screenshots
 [bundle exec] fastlane ios tests
 ```
 
+Run tests on multiple devices
 
-
-### ios upmetascreens
-
-```sh
-[bundle exec] fastlane ios upmetascreens
-```
-
-
-
-### ios upmeta
+### ios framescreens
 
 ```sh
-[bundle exec] fastlane ios upmeta
+[bundle exec] fastlane ios framescreens
 ```
 
+Frame localized screenshots
 
+### ios UploadScreens
+
+```sh
+[bundle exec] fastlane ios UploadScreens
+```
+
+Upload localized + framed screenshots
 
 ----
 

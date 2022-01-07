@@ -51,7 +51,11 @@ class DataController: ObservableObject {
             }
 
             if DataController.isUITesting {
-                self.deleteAll()
+                do {
+                    try self.createSampleData()
+                } catch {
+                    fatalError("Fatal error creating preview: \(error.localizedDescription)")
+                }
             }
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true

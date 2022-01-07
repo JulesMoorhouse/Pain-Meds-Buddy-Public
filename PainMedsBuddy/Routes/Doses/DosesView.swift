@@ -84,6 +84,7 @@ struct DosesView: View {
             PlaceholderView(string: placeHolderText(),
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
+        .iPadOnlyStackNavigationView()
     }
 
     func placeHolderText() -> Strings {

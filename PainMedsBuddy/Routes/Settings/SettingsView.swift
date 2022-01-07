@@ -50,6 +50,7 @@ struct SettingsView: View {
             .navigationTitle(Strings.tabTitleSettings.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)
         }
+        .iPadOnlyStackNavigationView()
     }
 }
 
