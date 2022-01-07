@@ -42,7 +42,7 @@ class PainMedsBuddyUITests: XCTestCase {
             BasicAction.tapBackButton(app)
 
             // Confirm on medications screen
-            _ = Elements.navBarMedications(app, performTest:  false)
+            _ = Elements.navBarMedications(app, performTest: false)
 
             let rowCount = app.tables.cells.count
 
@@ -209,7 +209,7 @@ class PainMedsBuddyUITests: XCTestCase {
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
         textField.doubleTap()
         textField.clearText()
-        
+
         // When
         app.keys["2"].tap()
         app.keys["9"].tap()
@@ -238,7 +238,7 @@ class PainMedsBuddyUITests: XCTestCase {
 
         // When
         app.keys["space"].tap()
-        
+
         if UIDevice.current.userInterfaceIdiom != .pad {
             app.keys["more"].tap()
         }
