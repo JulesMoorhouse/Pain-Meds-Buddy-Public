@@ -59,7 +59,7 @@ struct DoseMedSelectView: View, DestinationView {
 
     func medRow(med: Med, index: Int) -> some View {
         HStack {
-            MedRowView(med: med)
+            MedRowView(med: med, hasChevron: false)
 
             Spacer()
 

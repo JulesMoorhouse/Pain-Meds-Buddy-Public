@@ -126,7 +126,7 @@ struct DoseProgressView: View {
     func accessibilityLabel() -> String {
         dose.doseShouldHaveElapsed
             ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
-            : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay])
+            : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay, countDown])
     }
 
     func accessibilityIdentifier() -> Strings {

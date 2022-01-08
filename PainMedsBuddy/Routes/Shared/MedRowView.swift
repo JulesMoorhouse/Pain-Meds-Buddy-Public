@@ -10,7 +10,13 @@ import SwiftUI
 
 struct MedRowView: View {
     @ObservedObject var med: Med
+    let hasChevron: Bool
 
+    init (med: Med, hasChevron: Bool = true) {
+        self.med = med
+        self.hasChevron = hasChevron
+    }
+    
     var body: some View {
         HStack {
             MedSymbolView(med: med)
@@ -26,9 +32,11 @@ struct MedRowView: View {
                     .font(.caption)
             }
 
-            Spacer()
+            if hasChevron {
+                Spacer()
 
-            ChevronRightView()
+                ChevronRightView()
+            }
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(
@@ -45,6 +53,6 @@ struct MedRowView: View {
 
 struct MedRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MedRowView(med: Med.example)
+        MedRowView(med: Med.example, hasChevron: true)
     }
 }

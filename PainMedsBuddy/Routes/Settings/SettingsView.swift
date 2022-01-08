@@ -18,33 +18,39 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Button(action: {
-                    navigation.pushView(
-                        AcknowledgementsList()
-                            .navigationTitle(Strings.settingsAcknowledgements.rawValue),
-                        animated: true)
+                Section {
+                    Button(action: {
+                        navigation.pushView(
+                            AcknowledgementsList()
+                                .navigationTitle(Strings.settingsAcknowledgements.rawValue),
+                            animated: true)
 
-                }, label: {
-                    HStack {
-                        Text(.settingsAcknowledgements)
-                            .foregroundColor(Color.primary)
+                    }, label: {
+                        HStack {
+                            Text(.settingsAcknowledgements)
+                                .foregroundColor(Color.primary)
 
-                        Spacer()
+                            Spacer()
 
-                        ChevronRightView()
-                    }
-                    .accessibilityElement()
-                    .accessibility(addTraits: .isButton)
-                    .accessibilityIdentifier(.settingsAcknowledgements)
-                })
-
-                Button(Strings.settingsAddExampleData.rawValue) {
-                    dataController.deleteAll()
-                    try? dataController.createSampleData()
+                            ChevronRightView()
+                        }
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.settingsAcknowledgements)
+                    })
                 }
-
-                Button(Strings.settingsDeleteAllData.rawValue) {
-                    dataController.deleteAll()
+                Section {
+                    Button(Strings.settingsAddExampleData.rawValue) {
+                        dataController.deleteAll()
+                        try? dataController.createSampleData()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+                Section {
+                    Button(Strings.settingsDeleteAllData.rawValue) {
+                        dataController.deleteAll()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .navigationTitle(Strings.tabTitleSettings.rawValue)

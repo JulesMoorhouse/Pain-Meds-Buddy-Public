@@ -19,16 +19,18 @@ struct PlaceholderView: View {
             Spacer()
                 .frame(height: 20)
             Text(String(string))
+                .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
                 .accessibilityIdentifier(string)
         }
+        .padding(.horizontal, 25)
     }
 }
 
 struct PlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceholderView(
-            string: Strings.commonEmptyView,
+            string: .medEditHiddenTitle,
             imageString: SFSymbol.pills.systemName
         )
     }

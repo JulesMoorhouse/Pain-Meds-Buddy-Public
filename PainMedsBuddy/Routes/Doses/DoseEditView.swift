@@ -75,6 +75,7 @@ struct DoseEditView: View, DestinationView {
                     Button(Strings.doseEditDeleteThisDose.rawValue) {
                         showingDeleteConfirm.toggle()
                     }
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .accentColor(.red)
                 }
             }

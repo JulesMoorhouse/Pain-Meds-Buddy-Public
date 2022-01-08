@@ -13,6 +13,7 @@ class ExtensionTests: XCTestCase {
     func testSequenceKeyPathSortingSelf() {
         let items = [1, 4, 3, 2, 5]
         let sortedItems = items.sorted(by: \.self)
+
         XCTAssertEqual(sortedItems, [1, 2, 3, 4, 5], "The sorted numbers must be ascending.")
     }
 
@@ -35,6 +36,7 @@ class ExtensionTests: XCTestCase {
 
     func testBundleDecodingSymbols() {
         let symbols = Bundle.main.decode([Symbol].self, from: "Symbols.json")
+
         XCTAssertFalse(symbols.isEmpty, "Symbols.json should decode to a non-empty array.")
     }
 

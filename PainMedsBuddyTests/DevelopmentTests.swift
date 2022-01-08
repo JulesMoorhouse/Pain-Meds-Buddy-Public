@@ -30,6 +30,7 @@ class DevelopmentTests: BaseTestCase {
         try dataController.createSampleData(
             medsRequired: 20,
             medDosesRequired: 20)
+
         dataController.deleteAll()
 
         XCTAssertEqual(

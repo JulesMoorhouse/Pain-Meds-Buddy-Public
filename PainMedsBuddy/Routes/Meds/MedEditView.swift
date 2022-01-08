@@ -104,6 +104,7 @@ struct MedEditView: View, DestinationView {
 
             Section(header: Text(.medEditNotes)) {
                 TextEditor(text: $notes.onChange(update))
+                    .frame(minHeight: 50)
             }
 
             buttonsSection()
@@ -335,21 +336,27 @@ struct MedEditView: View, DestinationView {
     }
 
     func buttonsSection() -> some View {
-        Section {
-            Button(Strings.medEditDeleteThisMed.rawValue) {
-                canDelete = hasRelationship == false
-                activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
-                showAlert.toggle()
+        Group {
+            Section {
+                Button(Strings.medEditDeleteThisMed.rawValue) {
+                    canDelete = hasRelationship == false
+                    activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
+                    showAlert.toggle()
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .accentColor(.red)
+                .accessibilityIdentifier(.medEditDeleteThisMed)
             }
-            .accentColor(.red)
-            .accessibilityIdentifier(.medEditDeleteThisMed)
 
-            Button(Strings.medEditCopyThisMed.rawValue) {
-                activeAlert = .copied
-                copy()
-                showAlert.toggle()
+            Section {
+                Button(Strings.medEditCopyThisMed.rawValue) {
+                    activeAlert = .copied
+                    copy()
+                    showAlert.toggle()
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .accessibilityIdentifier(.medEditCopyThisMed)
             }
-            .accessibilityIdentifier(.medEditCopyThisMed)
         }
     }
 }
