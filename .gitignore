@@ -33,3 +33,9 @@ fastlane/derived_data_path/
 
 /Pods
 fastlane/screenshots/screenshots.html
+
+!fastlane/screenshots/en-GB/iPhone 11 Pro Max-01-Home.png
+!fastlane/screenshots/en-GB/iPhone 11 Pro Max-02-Medications.png
+!fastlane/screenshots/en-GB/iPhone 11 Pro Max-03-AddMed.png
+!fastlane/screenshots/en-GB/iPhone 11 Pro Max-04-History.png
+!fastlane/screenshots/en-GB/iPhone 11 Pro Max-05-AddDose.png

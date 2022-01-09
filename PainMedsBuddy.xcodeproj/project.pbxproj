@@ -238,12 +238,12 @@
 			isa = PBXGroup;
 			children = (
 				88321420275120D40026D85F /* PainMedsBuddy */,
-				889A8D86275122DA00AB1868 /* PainMedsBuddy.app */,
 				8848D47B2778E13000F10DC9 /* PainMedsBuddyTests */,
 				88C74D0E277BAC88002B2EC6 /* PainMedsBuddyUITests */,
 				88572057275233A300B4B00C /* Frameworks */,
 				8848D47A2778E13000F10DC9 /* PainMedsBuddyTests.xctest */,
 				88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */,
+				889A8D86275122DA00AB1868 /* PainMedsBuddy.app */,
 			);
 			sourceTree = "<group>";
 		};
