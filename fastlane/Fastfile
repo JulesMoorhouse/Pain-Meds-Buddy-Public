@@ -50,6 +50,7 @@ platform :ios do
         #output_directory: "../screenshots/PainMedsBuddy", # Causes FrameIt error
         stop_after_first_error: false, 
         number_of_retries: 0,
+        dark_mode: true,
         output_simulator_logs: true,
         erase_simulator: false,
         clear_previous_screenshots: true,
@@ -76,7 +77,7 @@ platform :ios do
   desc "Frame localized screenshots"
   lane :framescreens do
     frame_screenshots(
-      white: true,
+      white: false,
       path: "/Users/jm/repos/PainMedsBuddy/fastlane/screenshots"
   #    path: "../screenshots/PainMedsBuddy" # Causes FrameIt error
     )

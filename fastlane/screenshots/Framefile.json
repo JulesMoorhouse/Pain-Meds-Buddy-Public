@@ -52,15 +52,6 @@
       "keyword": {
         "color": "#d21559"
       }
-    },
-    {
-      "filter": "05-AddDose",
-      "title": {
-        "padding": 100
-      },
-      "keyword": {
-        "color": "#feb909"     
-      }
-    }  
+    } 
   ]
 }

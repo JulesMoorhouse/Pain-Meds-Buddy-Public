@@ -31,10 +31,7 @@ class SnapshotUITests: XCTestCase {
 
         BasicAction.tapBackButton(app)
 
-        BasicAction.tapTabInProgress(app)
+        BasicAction.tapTabHistory(app)
         snapshot("04-History")
-
-        BasicAction.tapInProgressAddButton(app)
-        snapshot("05-AddDose")
     }
 }

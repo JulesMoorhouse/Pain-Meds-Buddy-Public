@@ -11,6 +11,7 @@ import XNavigation
 @main
 struct PainMedsBuddyApp: App {
     @StateObject var dataController: DataController
+    @State var colourScheme: ColorScheme? = nil
 
     init() {
         let dataController = DataController()
@@ -46,6 +47,7 @@ struct PainMedsBuddyApp: App {
                     .onReceive(NotificationCenter.default.publisher(
                         for: UIApplication.didBecomeActiveNotification),
                     perform: processDoses)
+                // .preferredColorScheme(colourScheme)
             }
         }
     }
