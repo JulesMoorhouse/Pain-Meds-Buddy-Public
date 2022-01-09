@@ -36,7 +36,7 @@ extension HomeView {
             // Construct a fetch request to show all none hidden meds
             let medRequest: NSFetchRequest<Med> = Med.fetchRequest()
             medRequest.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
-            medRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)]
+            medRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
 
             medsController = NSFetchedResultsController(
                 fetchRequest: medRequest,

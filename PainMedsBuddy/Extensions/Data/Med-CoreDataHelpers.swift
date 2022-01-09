@@ -117,10 +117,6 @@ extension Med: MedProtocol {
         "\(String(describing: remaining))"
     }
 
-    var medSequence: String {
-        "\(String(describing: sequence))"
-    }
-
     var medTotalDosage: String {
         "\(medDefaultAmountDecimal * medDosageDecimal)"
     }
@@ -165,7 +161,6 @@ extension Med: MedProtocol {
         med.durationGap = 0
         med.measure = "mg"
         med.form = "Pill"
-        med.sequence = 3
         med.remaining = 99
         med.symbol = Symbol.allSymbols.randomElement()?.id
         med.creationDate = Date()

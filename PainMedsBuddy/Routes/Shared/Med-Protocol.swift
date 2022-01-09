@@ -22,6 +22,5 @@ protocol MedProtocol {
     var medLastTakenDate: Date { get }
     var medCreationDate: Date { get }
     var medRemaining: String { get }
-    var medSequence: String { get }
     var medDisplay: String { get }
 }

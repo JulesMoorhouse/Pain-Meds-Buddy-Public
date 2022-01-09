@@ -19,7 +19,6 @@ struct MedDefault {
         static let durationGap: Int16 = 0
         static let dosage: NSDecimalNumber = 100
         static let remaining: Int16 = 100
-        static let sequence: Int16 = 0
         static let measure = String(.medEditMg)
         static let form = String(.medEditPill)
         static let symbol: String = "pills"
@@ -44,10 +43,6 @@ struct MedDefault {
         static func medRemaining() -> String {
             "\(String(describing: MedDefault.Sensible.remaining))"
         }
-
-        static func medSequence() -> String {
-            "\(String(describing: MedDefault.Sensible.sequence))"
-        }
     }
 
     static let title = String(.medEditNewMedication)
@@ -59,7 +54,6 @@ struct MedDefault {
     static let durationGap: Int16 = 0
     static let dosage: NSDecimalNumber = 0
     static let remaining: Int16 = 0
-    static let sequence: Int16 = 0
     static let measure = String(.medEditMg)
     static let form: String = ""
     static let symbol: String = "pills"
@@ -75,7 +69,6 @@ struct MedDefault {
         med.durationGap = MedDefault.durationGap
         med.dosage = MedDefault.dosage
         med.remaining = MedDefault.remaining
-        med.sequence = MedDefault.sequence
         med.measure = "\(MedDefault.measure)"
         med.form = MedDefault.form
         med.symbol = MedDefault.symbol
@@ -93,7 +86,6 @@ struct MedDefault {
         med.durationGap = MedDefault.Sensible.durationGap
         med.dosage = MedDefault.Sensible.dosage
         med.remaining = MedDefault.Sensible.remaining
-        med.sequence = MedDefault.Sensible.sequence
         med.measure = "\(MedDefault.Sensible.measure)"
         med.form = MedDefault.Sensible.form
         med.symbol = MedDefault.Sensible.symbol

@@ -50,7 +50,12 @@ class DataController: ObservableObject {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
 
+            if DataController.shouldWipeData {
+                self.deleteAll()
+            }
+            
             if DataController.isUITesting {
+                self.deleteAll()
                 do {
                     try self.createSampleData()
                 } catch {
@@ -80,6 +85,15 @@ class DataController: ObservableObject {
         return false
     }
 
+    private static var shouldWipeData: Bool {
+        #if DEBUG
+            if CommandLine.arguments.contains("wipe-data") {
+                return true
+            }
+        #endif
+        return false
+    }
+    
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         let viewContext = dataController.container.viewContext
@@ -209,7 +223,6 @@ class DataController: ObservableObject {
             med.creationDate = createdDate
             med.lastTakenDate = Date.random(in: createdDate ..< Date())
             med.symbol = Symbol.allSymbols.randomElement()?.id
-            med.sequence = Int16.random(in: 1 ... 3)
             med.hidden = false
 
             for _ in 1 ... medDosesRequired {
@@ -285,7 +298,7 @@ class DataController: ObservableObject {
     func getFirstMed() -> Med? {
         let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Med.sequence, ascending: false),
+            NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: false),
         ]
         do {
             let tempMeds = try container.viewContext.fetch(fetchRequest)

@@ -33,7 +33,6 @@ struct MedEditView: View, DestinationView {
     @State private var form: String
     @State private var notes: String
     @State private var remaining: String
-    @State private var sequence: String
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
@@ -70,7 +69,6 @@ struct MedEditView: View, DestinationView {
         _form = State(wrappedValue: med.medForm)
         _notes = State(wrappedValue: med.medNotes)
         _remaining = State(wrappedValue: med.medRemaining)
-        _sequence = State(wrappedValue: med.medSequence)
     }
 
     var body: some View {
@@ -167,7 +165,6 @@ struct MedEditView: View, DestinationView {
         med.form = form
         med.notes = notes
         med.remaining = Int16(remaining) ?? MedDefault.remaining
-        med.sequence = Int16(sequence) ?? MedDefault.sequence
     }
 
     func delete() {
@@ -278,11 +275,6 @@ struct MedEditView: View, DestinationView {
             rowFields(label: .medEditRemaining,
                       detailValues: [MedDefault.Sensible.medRemaining()],
                       binding: $remaining.onChange(update),
-                      keyboardType: .numberPad)
-
-            rowFields(label: .medEditSequence,
-                      detailValues: [MedDefault.Sensible.medSequence()],
-                      binding: $sequence.onChange(update),
                       keyboardType: .numberPad)
         }
     }

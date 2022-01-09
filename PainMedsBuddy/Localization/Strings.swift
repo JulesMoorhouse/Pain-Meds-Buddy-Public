@@ -90,7 +90,6 @@ enum Strings: LocalizedStringKey {
     case medEditNotes
     case medEditPill
     case medEditRemaining
-    case medEditSequence
     case medEditSorry
     case medEditSymbol
 

@@ -22,7 +22,7 @@ extension DoseMedSelectView {
             self.dataController = dataController
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.sequence, ascending: true)]
+            request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
             request.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
 
             self.medsController = NSFetchedResultsController(

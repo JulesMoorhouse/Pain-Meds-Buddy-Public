@@ -14,9 +14,9 @@ extension Array where Element: Med {
 
     var allMedsDefaultSorted: [Med] {
         allMeds.sorted { (first: Med, second: Med) in
-            if first.sequence > second.sequence {
+            if first.medLastTakenDate > second.medLastTakenDate {
                 return true
-            } else if first.sequence < second.sequence {
+            } else if first.medLastTakenDate < second.medLastTakenDate {
                 return false
             }
             return first.medCreationDate < second.medCreationDate
