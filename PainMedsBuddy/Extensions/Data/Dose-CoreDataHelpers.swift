@@ -75,6 +75,16 @@ extension Dose: Comparable {
         return "\(temp)"
     }
 
+    var doseCountDownSeconds: String {
+        if elapsed == false {
+            if let date = doseElapsedDate {
+                let nowDate = Date()
+                return Int(date.timeIntervalSince(nowDate)).secondsToTime
+            }
+        }
+        return "0"
+    }
+    
     var doseDisplayFull: String {
         Dose.displayFull(amount: doseAmount,
                          dosage: med?.medDosage ?? "\(MedDefault.dosage)",

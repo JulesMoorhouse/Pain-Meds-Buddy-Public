@@ -57,12 +57,7 @@ struct HomeMedRow: View {
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(
-            String(.homeAccessibilityIconTakeNow,
-                   values: [med.medColor,
-                            med.medSymbolLabel,
-                            med.medTitle,
-                            med.medDisplay,
-                            med.medFormattedLastTakenDate])
+            InterpolatedStrings.homeAccessibilityIconTakeNow(med: med)
         )
         .accessibilityIdentifier(.homeAccessibilityIconTakeNow)
     }

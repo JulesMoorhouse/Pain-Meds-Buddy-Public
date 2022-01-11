@@ -185,7 +185,7 @@ struct MedEditView: View, DestinationView {
     func copy() {
         let newMed = Med(context: dataController.container.viewContext)
         update(med: newMed)
-        newMed.title = String(.medEditCopiedSuffix, values: [newMed.medTitle])
+        newMed.title = InterpolatedStrings.medEditCopiedSuffix(title: newMed.medTitle)
         dataController.save()
     }
 

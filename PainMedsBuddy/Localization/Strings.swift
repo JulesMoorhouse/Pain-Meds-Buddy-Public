@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Strings: LocalizedStringKey {
+enum Strings: LocalizedStringKey, CaseIterable {
     case commonBasicSettings
     case commonDelete
     case commonDosage

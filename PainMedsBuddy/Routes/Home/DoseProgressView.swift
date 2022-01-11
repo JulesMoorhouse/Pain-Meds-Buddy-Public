@@ -28,15 +28,6 @@ struct DoseProgressView: View {
     @State var nowDate = Date()
     @State var timer: Timer?
 
-    var countDown: String {
-        if dose.elapsed == false {
-            if let date = dose.doseElapsedDate {
-                return Int(date.timeIntervalSince(nowDate)).secondsToTime
-            }
-        }
-        return "0"
-    }
-
     var progress: CGFloat {
         CGFloat(dose.doseElapsedSeconds) / CGFloat(dose.doseTotalTimeSeconds)
     }
@@ -92,7 +83,7 @@ struct DoseProgressView: View {
             })
 
             Text(dose.doseShouldHaveElapsed
-                ? countDown
+                 ? dose.doseCountDownSeconds
                 : String(.doseProgressAvailable))
                 .foregroundColor(.primary)
         }
@@ -125,8 +116,8 @@ struct DoseProgressView: View {
 
     func accessibilityLabel() -> String {
         dose.doseShouldHaveElapsed
-            ? String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, countDown])
-            : String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay, countDown])
+        ? InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
+        : InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
     }
 
     func accessibilityIdentifier() -> Strings {

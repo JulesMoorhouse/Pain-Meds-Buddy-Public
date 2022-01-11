@@ -49,12 +49,7 @@ struct DoseRowView: View {
 
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(
-                    .homeAccessibilityIconTaken,
-                    values: [med.medColor,
-                             med.medSymbolLabel,
-                             med.medTitle,
-                             dose.doseDisplay,
-                             dose.doseFormattedTakenDate]
+                    InterpolatedStrings.homeAccessibilityIconTaken(dose: dose, med: med)
                 )
                 .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }

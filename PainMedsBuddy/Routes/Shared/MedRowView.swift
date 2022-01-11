@@ -40,12 +40,7 @@ struct MedRowView: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(
-            String(.homeAccessibilityIconRemaining,
-                   values: [med.medColor,
-                            med.medSymbolLabel,
-                            med.medTitle,
-                            med.medRemaining,
-                            med.medForm])
+            InterpolatedStrings.homeAccessibilityIconRemaining(med: med)
         )
         .accessibilityIdentifier(.homeAccessibilityIconRemaining)
     }
