@@ -1,6 +1,6 @@
 # Pain Meds Buddy
 
-![Platform](https://img.shields.io/badge/platform-ios-black.svg)  ![iOS Version](https://img.shields.io/badge/iOS-+14.5-green) ![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange) ![Xcode Version](https://img.shields.io/badge/Xcode-12.5%20-blue) ![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=master)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=master)
+![Platform](https://img.shields.io/badge/platform-ios-black.svg)  ![iOS Version](https://img.shields.io/badge/iOS-+14.5-green) ![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange) ![Xcode Version](https://img.shields.io/badge/Xcode-12.5%20-blue) ![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=master)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=master) ![Twitter](https://img.shields.io/twitter/follow/MindwarpJules?style=social)
 
 ## Introduction
 
@@ -128,4 +128,4 @@ Usage is provided under the [MIT License](http://opensource.org/licenses/mit-lic
 I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwithswift.com) for his 100 days courses which I have followed since 2019. 
 
 # Contact
-???
+You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
