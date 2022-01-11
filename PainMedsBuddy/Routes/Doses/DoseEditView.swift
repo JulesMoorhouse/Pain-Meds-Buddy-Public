@@ -43,7 +43,7 @@ struct DoseEditView: View, DestinationView {
                                       hasChevron: true)
                     }
                 })
-                .accessibilityIdentifier(.doseEditMedication)
+                    .accessibilityIdentifier(.doseEditMedication)
 
                 HStack {
                     Text(.doseEditAmount)
@@ -56,6 +56,7 @@ struct DoseEditView: View, DestinationView {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .accessibilityIdentifier(.doseEditAmount)
+                        .textFieldStyle(SelectAllTextFieldStyle())
 
                     Text(viewModel.selectedMed.medForm)
                         .foregroundColor(.secondary)

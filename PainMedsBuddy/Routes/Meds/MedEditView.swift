@@ -236,6 +236,7 @@ struct MedEditView: View, DestinationView {
                                      values: [MedDefault.Sensible.title]),
                               text: $title.onChange(update))
                         .accessibilityIdentifier(.medEditTitleText)
+                        .textFieldStyle(SelectAllTextFieldStyle())
                 }
             }
 
@@ -304,6 +305,8 @@ struct MedEditView: View, DestinationView {
                 .keyboardType(keyboardType)
                 .multilineTextAlignment(.trailing)
                 .accessibilityIdentifier(label)
+                .textFieldStyle(SelectAllTextFieldStyle())
+
         }
     }
 
@@ -324,6 +327,8 @@ struct MedEditView: View, DestinationView {
                 .keyboardType(keyboardType)
                 .multilineTextAlignment(.trailing)
                 .accessibilityIdentifier(label)
+                .textFieldStyle(SelectAllTextFieldStyle())
+
         }
     }
 
