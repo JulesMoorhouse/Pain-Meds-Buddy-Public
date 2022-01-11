@@ -280,6 +280,32 @@ class DataController: ObservableObject {
         DataController.refreshingID = UUID()
     }
 
+    func deleteIterateAll() throws {
+        let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
+        do {
+            let tempDoses = try container.viewContext.fetch(doseRequest)
+            for dose in tempDoses {
+                delete(dose)
+            }
+            save()
+        } catch {
+            print("ERROR: Deleting doses \(error.localizedDescription)")
+        }
+        
+        let medRequest = NSFetchRequest<Med>(entityName: "Med")
+        do {
+            let tempMeds = try container.viewContext.fetch(medRequest)
+            for med in tempMeds {
+                delete(med)
+            }
+            save()
+        } catch {
+            print("ERROR: Deleting meds \(error.localizedDescription)")
+        }
+        
+        DataController.refreshingID = UUID()
+    }
+    
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }

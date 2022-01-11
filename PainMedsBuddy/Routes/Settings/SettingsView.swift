@@ -41,14 +41,14 @@ struct SettingsView: View {
                 }
                 Section {
                     Button(Strings.settingsAddExampleData.rawValue) {
-                        dataController.deleteAll()
+                        try? dataController.deleteIterateAll()
                         try? dataController.createSampleData()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
                 Section {
                     Button(Strings.settingsDeleteAllData.rawValue) {
-                        dataController.deleteAll()
+                        try? dataController.deleteIterateAll()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }

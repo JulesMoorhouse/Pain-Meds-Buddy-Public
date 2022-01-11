@@ -16,6 +16,24 @@ extension HomeView {
         @Published var doses = [Dose]()
         @Published var meds = [Med]()
 
+        var canTakeMeds: [Med] {
+            if !doses.isEmpty, !meds.isEmpty {
+                return getCanTakeMeds(
+                    loadedDoses: dosesController.fetchedObjects ?? [],
+                    loadedMeds: medsController.fetchedObjects ?? []
+                )
+            }
+            return []
+        }
+
+        var lowMeds: [Med] {
+            if !meds.isEmpty {
+                return getLowMeds(
+                    loadedMeds: medsController.fetchedObjects ?? [])
+            }
+            return []
+        }
+
         private let dataController: DataController
 
         init(dataController: DataController) {
@@ -44,7 +62,6 @@ extension HomeView {
                 sectionNameKeyPath: nil,
                 cacheName: nil
             )
-
             super.init()
 
             dosesController.delegate = self
@@ -59,23 +76,23 @@ extension HomeView {
                 print("ERROR: Failed to fetch initial data: \(error)")
             }
         }
-        
-        func canTakeMeds() -> [Med] {
-            let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap(\.med)))
+
+        func getCanTakeMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
+            let uniqueDoseMeds = Array(Set(loadedDoses.filter { $0.med != nil }.compactMap(\.med)))
 
             // INFO" Get unique meds which are currently not elapsed
-            var temp = meds.filter { !uniqueDoseMeds.contains($0) }
+            var temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) }
             temp = temp.sortedItems(using: .lastTaken)
             let count = temp.count == 0 ? 0 : 3
             return temp.prefix(count).map { $0 }
         }
 
-        func lowMeds() -> [Med] {
-            let temp = meds.sortedItems(using: .remaining)
+        func getLowMeds(loadedMeds: [Med]) -> [Med] {
+            let temp = loadedMeds.sortedItems(using: .remaining)
             let count = temp.count == 0 ? 0 : 3
             return temp.prefix(count).map { $0 }
         }
-        
+
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             if let newDoses = controller.fetchedObjects as? [Dose] {
                 doses = newDoses
