@@ -14,15 +14,9 @@ struct HomeLowMedsView: View {
 
     let meds: [Med]
 
-    var items: [Med] {
-        meds.allMeds
-    }
-
-    let listRows = 3
-
     var body: some View {
         Group {
-            if lowMeds().isEmpty {
+            if meds.isEmpty {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {
@@ -30,7 +24,7 @@ struct HomeLowMedsView: View {
                         .foregroundColor(.secondary)
 
                     LazyVStack {
-                        ForEach(lowMeds(), id: \.self) { med in
+                        ForEach(meds, id: \.self) { med in
                             Button(action: {
                                 navigation.pushView(
                                     MedEditView(
@@ -55,12 +49,7 @@ struct HomeLowMedsView: View {
                 }
             }
         }
-        .accessibilityIdentifier(!lowMeds().isEmpty ? .homeMedsRunningOut : nil)
-    }
-
-    func lowMeds() -> [Med] {
-        let temp = items.sortedItems(using: .remaining)
-        return temp.prefix(listRows).map { $0 }
+        .accessibilityIdentifier(!meds.isEmpty ? .homeMedsRunningOut : nil)
     }
 }
 

@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct HomeRecentMedsView: View {
-    let doses: [Dose]
     let meds: [Med]
-
-    var items: [Med] {
-        meds.allMeds
-    }
-
-    let listRows = 3
 
     var body: some View {
         Group {
-            if canTakeMeds().isEmpty {
+            if meds.isEmpty {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {
@@ -27,7 +20,7 @@ struct HomeRecentMedsView: View {
                         .foregroundColor(.secondary)
 
                     LazyVStack {
-                        ForEach(canTakeMeds(), id: \.self) { med in
+                        ForEach(meds, id: \.self) { med in
                             HomeMedRow(med: med)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(2)
@@ -38,19 +31,7 @@ struct HomeRecentMedsView: View {
                 .padding(.bottom)
             }
         }
-        .accessibilityIdentifier(!canTakeMeds().isEmpty ? .homeRecentlyTaken : nil)
-    }
-
-    func uniqueDoseMeds() -> [Med] {
-        let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap(\.med)))
-        return uniqueDoseMeds
-    }
-
-    func canTakeMeds() -> [Med] {
-        // INFO" Get unique meds which are currently not elapsed
-        var temp = items.filter { !uniqueDoseMeds().contains($0) }
-        temp = temp.sortedItems(using: .lastTaken)
-        return temp.prefix(listRows).map { $0 }
+        .accessibilityIdentifier(!meds.isEmpty ? .homeRecentlyTaken : nil)
     }
 }
 

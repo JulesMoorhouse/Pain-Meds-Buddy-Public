@@ -164,13 +164,6 @@ class DataController: ObservableObject {
         return med
     }
 
-    func createMedForDose(dose: Dose) -> Med {
-        let med: Med = createMed()
-        dose.med = med
-        save()
-        return med
-    }
-
     func createDose(selectedMed: Med?) -> Dose {
         let dose = Dose(context: container.viewContext)
         DoseDefault.setSensibleDefaults(dose)

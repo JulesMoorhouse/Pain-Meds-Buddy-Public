@@ -59,11 +59,23 @@ extension HomeView {
                 print("ERROR: Failed to fetch initial data: \(error)")
             }
         }
+        
+        func canTakeMeds() -> [Med] {
+            let uniqueDoseMeds = Array(Set(doses.filter { $0.med != nil }.compactMap(\.med)))
 
-        func createMedForDose(dose: Dose) -> Med {
-            dataController.createMedForDose(dose: dose)
+            // INFO" Get unique meds which are currently not elapsed
+            var temp = meds.filter { !uniqueDoseMeds.contains($0) }
+            temp = temp.sortedItems(using: .lastTaken)
+            let count = temp.count == 0 ? 0 : 3
+            return temp.prefix(count).map { $0 }
         }
 
+        func lowMeds() -> [Med] {
+            let temp = meds.sortedItems(using: .remaining)
+            let count = temp.count == 0 ? 0 : 3
+            return temp.prefix(count).map { $0 }
+        }
+        
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             if let newDoses = controller.fetchedObjects as? [Dose] {
                 doses = newDoses

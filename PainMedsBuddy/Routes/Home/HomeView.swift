@@ -27,11 +27,13 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: columns) {
                 ForEach(viewModel.doses, id: \.self) { item in
-                    DoseProgressView(
-                        dose: item,
-                        med: item.med ?? viewModel.createMedForDose(dose: item),
-                        size: 150
-                    )
+                    if let med = item.med {
+                        DoseProgressView(
+                            dose: item,
+                            med: med,
+                            size: 150
+                        )
+                    }
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -58,8 +60,8 @@ struct HomeView: View {
                             }
 
                             VStack(alignment: .leading) {
-                                HomeRecentMedsView(doses: viewModel.doses, meds: viewModel.meds)
-                                HomeLowMedsView(meds: viewModel.meds)
+                                HomeRecentMedsView(meds: viewModel.canTakeMeds())
+                                HomeLowMedsView(meds: viewModel.lowMeds())
                             }
                             .padding(.horizontal)
                         }
