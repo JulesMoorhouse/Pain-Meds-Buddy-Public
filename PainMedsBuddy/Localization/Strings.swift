@@ -98,6 +98,6 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsDeleteAllData
 
     func automatedId() -> String {
-        self.rawValue.stringKey
+        rawValue.stringKey
     }
 }

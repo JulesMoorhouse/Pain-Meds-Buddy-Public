@@ -16,7 +16,7 @@ class DataController: ObservableObject {
     private let semaphore = DispatchSemaphore(value: 0)
 
     public static let useHardDelete = true
-    
+
     var container: NSPersistentContainer {
         if !DataController.isUnitTesting {
             semaphore.wait()
@@ -288,7 +288,7 @@ class DataController: ObservableObject {
         } catch {
             print("ERROR: Deleting doses \(error.localizedDescription)")
         }
-        
+
         let medRequest = NSFetchRequest<Med>(entityName: "Med")
         do {
             let tempMeds = try container.viewContext.fetch(medRequest)
@@ -298,9 +298,9 @@ class DataController: ObservableObject {
             save()
         } catch {
             print("ERROR: Deleting meds \(error.localizedDescription)")
-        }        
+        }
     }
-    
+
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }

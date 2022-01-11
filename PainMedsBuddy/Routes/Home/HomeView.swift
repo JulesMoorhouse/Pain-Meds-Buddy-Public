@@ -21,8 +21,8 @@ struct HomeView: View {
 
     var noData: Bool {
         viewModel.doses.isEmpty &&
-        viewModel.lowMeds.isEmpty &&
-        viewModel.canTakeMeds.isEmpty
+            viewModel.lowMeds.isEmpty &&
+            viewModel.canTakeMeds.isEmpty
     }
 
     var currentMedCards: some View {

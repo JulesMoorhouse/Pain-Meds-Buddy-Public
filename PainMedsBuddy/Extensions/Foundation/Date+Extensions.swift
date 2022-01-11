@@ -40,6 +40,6 @@ extension Date {
     }
 
     static func - (lhs: Date, rhs: Int) -> Date {
-        return Calendar.current.date(byAdding: .day, value: -rhs, to: lhs)!
+        Calendar.current.date(byAdding: .day, value: -rhs, to: lhs)!
     }
 }

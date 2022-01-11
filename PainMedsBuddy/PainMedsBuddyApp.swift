@@ -11,7 +11,7 @@ import XNavigation
 @main
 struct PainMedsBuddyApp: App {
     @StateObject var dataController: DataController
-    @State var colourScheme: ColorScheme? = nil
+    @State var colourScheme: ColorScheme?
 
     init() {
         let dataController = DataController()
@@ -20,12 +20,12 @@ struct PainMedsBuddyApp: App {
         dataController.processDoses()
 
         #if targetEnvironment(simulator)
-        // Disable hardware keyboards.
-        let setHardwareLayout = NSSelectorFromString("setHardwareLayout:")
-        UITextInputMode.activeInputModes
-            // Filter `UIKeyboardInputMode`s.
-            .filter { $0.responds(to: setHardwareLayout) }
-            .forEach { $0.perform(setHardwareLayout, with: nil) }
+            // Disable hardware keyboards.
+            let setHardwareLayout = NSSelectorFromString("setHardwareLayout:")
+            UITextInputMode.activeInputModes
+                // Filter `UIKeyboardInputMode`s.
+                .filter { $0.responds(to: setHardwareLayout) }
+                .forEach { $0.perform(setHardwareLayout, with: nil) }
         #endif
     }
 
@@ -43,7 +43,8 @@ struct PainMedsBuddyApp: App {
                     .onReceive(
                         NotificationCenter.default.publisher(
                             for: UIApplication.willResignActiveNotification),
-                        perform: save)
+                        perform: save
+                    )
                     .onReceive(NotificationCenter.default.publisher(
                         for: UIApplication.didBecomeActiveNotification),
                     perform: processDoses)

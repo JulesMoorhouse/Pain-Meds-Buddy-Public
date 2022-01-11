@@ -83,7 +83,7 @@ struct DoseProgressView: View {
             })
 
             Text(dose.doseShouldHaveElapsed
-                 ? dose.doseCountDownSeconds
+                ? dose.doseCountDownSeconds
                 : String(.doseProgressAvailable))
                 .foregroundColor(.primary)
         }
@@ -116,8 +116,8 @@ struct DoseProgressView: View {
 
     func accessibilityLabel() -> String {
         dose.doseShouldHaveElapsed
-        ? InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
-        : InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
+            ? InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
+            : InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
     }
 
     func accessibilityIdentifier() -> Strings {

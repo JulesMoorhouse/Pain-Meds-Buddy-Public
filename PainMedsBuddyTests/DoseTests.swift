@@ -13,10 +13,10 @@ class DoseTests: BaseTestCase {
     func testCreatingDosesAndMeds() {
         let targetCount = 10
 
-        for _ in 0..<targetCount {
+        for _ in 0 ..< targetCount {
             let med = Med(context: managedObjectContext)
 
-            for _ in 0..<targetCount {
+            for _ in 0 ..< targetCount {
                 let dose = Dose(context: managedObjectContext)
                 dose.med = med
             }

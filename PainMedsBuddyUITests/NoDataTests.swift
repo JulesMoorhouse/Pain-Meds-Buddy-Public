@@ -22,7 +22,8 @@ class NoDataUITests: XCTestCase {
         XCTAssertEqual(
             app.tabBars.buttons.count,
             5,
-            "There should be 5 tabs in the app.")
+            "There should be 5 tabs in the app."
+        )
     }
 
     func testAddFiveMedications() {
@@ -32,7 +33,8 @@ class NoDataUITests: XCTestCase {
         XCTAssertEqual(
             app.tables.cells.count,
             0,
-            "There should be no list rows initially.")
+            "There should be no list rows initially."
+        )
 
         for addCount in 1 ... 5 {
             // When
@@ -50,7 +52,8 @@ class NoDataUITests: XCTestCase {
             XCTAssertEqual(
                 rowCount,
                 addCount,
-                "There should be \(addCount) list rows initially.")
+                "There should be \(addCount) list rows initially."
+            )
         }
     }
 
@@ -81,7 +84,8 @@ class NoDataUITests: XCTestCase {
         XCTAssertEqual(
             rowCount,
             1,
-            "There should be 1 list rows initially.")
+            "There should be 1 list rows initially."
+        )
     }
 
     func testEmptyHistory() {
@@ -97,7 +101,8 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             someView.exists,
-            "History empty placeholder label not showing")
+            "History empty placeholder label not showing"
+        )
     }
 
     func testEmptyInProgress() {
@@ -113,7 +118,8 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             someView.exists,
-            "In Progress empty placeholder label not showing")
+            "In Progress empty placeholder label not showing"
+        )
     }
 
     func testEmptyMeds() {
@@ -129,7 +135,8 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             someView.exists,
-            "Medications empty placeholder label not showing")
+            "Medications empty placeholder label not showing"
+        )
     }
 
     func testEmptyHome() {
@@ -143,7 +150,8 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             someView.exists,
-            "Home empty placeholder label not showing")
+            "Home empty placeholder label not showing"
+        )
     }
 
     func testMedsHasAdd() {
@@ -153,7 +161,8 @@ class NoDataUITests: XCTestCase {
         XCTAssertEqual(
             app.tables.cells.count,
             0,
-            "There should be no list rows initially.")
+            "There should be no list rows initially."
+        )
 
         // When
         let navBar = Elements.navBarMedications(app)
@@ -162,7 +171,8 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             button.exists,
-            "Medications add button not found")
+            "Medications add button not found"
+        )
     }
 
     func testEditMed() {
@@ -205,6 +215,7 @@ class NoDataUITests: XCTestCase {
         // Then
         XCTAssertTrue(
             ackButton.exists,
-            "Settings acknowledgements button not found")
+            "Settings acknowledgements button not found"
+        )
     }
 }

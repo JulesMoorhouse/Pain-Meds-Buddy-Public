@@ -23,7 +23,8 @@ struct SettingsView: View {
                         navigation.pushView(
                             AcknowledgementsList()
                                 .navigationTitle(Strings.settingsAcknowledgements.rawValue),
-                            animated: true)
+                            animated: true
+                        )
 
                     }, label: {
                         HStack {

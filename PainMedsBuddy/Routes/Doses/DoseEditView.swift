@@ -43,7 +43,7 @@ struct DoseEditView: View, DestinationView {
                                       hasChevron: true)
                     }
                 })
-                    .accessibilityIdentifier(.doseEditMedication)
+                .accessibilityIdentifier(.doseEditMedication)
 
                 HStack {
                     Text(.doseEditAmount)

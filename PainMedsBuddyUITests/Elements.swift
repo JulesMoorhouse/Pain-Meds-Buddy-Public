@@ -43,7 +43,8 @@ class Elements: XCTestCase {
         if performTest {
             XCTAssertTrue(
                 homeScreen.exists,
-                "\(titleId) navigation bar not found")
+                "\(titleId) navigation bar not found"
+            )
         }
 
         return homeScreen
@@ -57,7 +58,8 @@ class Elements: XCTestCase {
         if performTest {
             XCTAssertTrue(
                 historyScreen.exists,
-                "\(titleId) navigation bar not found")
+                "\(titleId) navigation bar not found"
+            )
         }
 
         return historyScreen
@@ -71,7 +73,8 @@ class Elements: XCTestCase {
         if performTest {
             XCTAssertTrue(
                 inProgressScreen.exists,
-                "\(titleId) navigation bar not found")
+                "\(titleId) navigation bar not found"
+            )
         }
 
         return inProgressScreen
@@ -85,7 +88,8 @@ class Elements: XCTestCase {
         if performTest {
             XCTAssertTrue(
                 medicationScreen.exists,
-                "\(titleId) navigation bar not found")
+                "\(titleId) navigation bar not found"
+            )
         }
 
         return medicationScreen
@@ -99,7 +103,8 @@ class Elements: XCTestCase {
         if performTest {
             XCTAssertTrue(
                 settingsScreen.exists,
-                "\(titleId) navigation bar not found")
+                "\(titleId) navigation bar not found"
+            )
         }
 
         return settingsScreen
@@ -112,7 +117,8 @@ class Elements: XCTestCase {
 
         XCTAssertTrue(
             addDoseScreen.exists,
-            "\(titleId) navigation bar not found")
+            "\(titleId) navigation bar not found"
+        )
 
         return addDoseScreen
     }
@@ -124,7 +130,8 @@ class Elements: XCTestCase {
 
         XCTAssertTrue(
             addMedScreen.exists,
-            "\(titleId) navigation bar not found")
+            "\(titleId) navigation bar not found"
+        )
 
         return addMedScreen
     }

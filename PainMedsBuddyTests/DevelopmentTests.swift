@@ -13,35 +13,41 @@ class DevelopmentTests: BaseTestCase {
     func testSampleDataCreationWorks() throws {
         try dataController.createSampleData(
             medsRequired: 20,
-            medDosesRequired: 20)
+            medDosesRequired: 20
+        )
 
         XCTAssertEqual(
             dataController.count(for: Med.fetchRequest()),
             20,
-            "There should be \(20) sample meds.")
+            "There should be \(20) sample meds."
+        )
 
         XCTAssertEqual(
             dataController.count(for: Dose.fetchRequest()),
-            20*20,
-            "There should be \(20*20) sample doses.")
+            20 * 20,
+            "There should be \(20 * 20) sample doses."
+        )
     }
 
     func testDeleteAllClearsEverything() throws {
         try dataController.createSampleData(
             medsRequired: 20,
-            medDosesRequired: 20)
+            medDosesRequired: 20
+        )
 
         dataController.deleteAll()
 
         XCTAssertEqual(
             dataController.count(for: Med.fetchRequest()),
             0,
-            "deleteAll() should leave 0 meds")
+            "deleteAll() should leave 0 meds"
+        )
 
         XCTAssertEqual(
             dataController.count(for: Dose.fetchRequest()),
             0,
-            "deleteAll() should leave 0 doses")
+            "deleteAll() should leave 0 doses"
+        )
     }
 
     func testExampleDoseIsElapsed() {

@@ -5,12 +5,17 @@
 //  Created by Jules Moorhouse.
 //
 
+// swiftlint:disable cyclomatic_complexity
+
 @testable import PainMedsBuddy
 import XCTest
 
 class LocalisedStringTests: BaseTestCase {
     func testInterpolation() {
-        // INFO: As a basic step this test ensure that all localised strings have the correct number of interpolation parameters. Later this could included checks on the actual parameters. Also adding new Strings enum items will cause an error here, so highlighting that new tests should be considered
+        // INFO: As a basic step this test ensure that all localised strings have the
+        // correct number of interpolation parameters. Later this could included checks
+        // on the actual parameters. Also adding new Strings enum items will cause an
+        // error here, so highlighting that new tests should be considered
         let dose = Dose.example
         let med = Med.example
 
@@ -74,12 +79,12 @@ class LocalisedStringTests: BaseTestCase {
                 output =
                     InterpolatedStrings
                         .homeAccessibilityIconTaken(dose: dose, med: med)
-                
+
             case .homeAccessibilityIconTakeNow:
                 output =
                     InterpolatedStrings
                         .homeAccessibilityIconTakeNow(med: med)
-                
+
             case .homeAccessibilityAvailable:
                 output = ""
             case .doseProgressAvailable:
@@ -90,12 +95,12 @@ class LocalisedStringTests: BaseTestCase {
                 output =
                     InterpolatedStrings
                         .doseProgressAccessibilityAvailable(dose: dose, med: med)
-                
+
             case .doseProgressAccessibilityRemaining:
                 output =
                     InterpolatedStrings
                         .doseProgressAccessibilityRemaining(dose: dose, med: med)
-                
+
             case .selectMedSelectMed:
                 output = ""
             case .doseEditAddDose:
@@ -146,9 +151,9 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditCopiedSuffix:
                 output =
-                InterpolatedStrings
-                    .medEditCopiedSuffix(title: "New Medication 1")
-                
+                    InterpolatedStrings
+                        .medEditCopiedSuffix(title: "New Medication 1")
+
             case .medEditDefaultAmount:
                 output = ""
             case .medEditDefaultText:
@@ -197,7 +202,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             }
 
-            if output != "" {
+            if !output.isEmpty {
                 print("\(item.rawValue.stringKey): \(output)")
                 print(" ")
             }

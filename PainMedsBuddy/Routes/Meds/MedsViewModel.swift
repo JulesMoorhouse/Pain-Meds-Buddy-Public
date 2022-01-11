@@ -26,7 +26,7 @@ extension MedsView {
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
             request.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
 
-            self.medsController = NSFetchedResultsController(
+            medsController = NSFetchedResultsController(
                 fetchRequest: request,
                 managedObjectContext: dataController.container.viewContext,
                 sectionNameKeyPath: nil,
@@ -38,7 +38,7 @@ extension MedsView {
 
             do {
                 try medsController.performFetch()
-                self.meds = medsController.fetchedObjects ?? []
+                meds = medsController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch our meds: \(error)")
             }

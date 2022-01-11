@@ -25,7 +25,8 @@ class ExistingDataTests: XCTestCase {
 
         XCTAssertTrue(
             sortButton.exists,
-            "Medications sort button not found")
+            "Medications sort button not found"
+        )
     }
 
     func testEditDose() {
@@ -57,7 +58,8 @@ class ExistingDataTests: XCTestCase {
 
         XCTAssertTrue(
             section.exists,
-            "Home current meds section not showing")
+            "Home current meds section not showing"
+        )
     }
 
     func testHomeHasLowMeds() {
@@ -67,7 +69,8 @@ class ExistingDataTests: XCTestCase {
 
         XCTAssertTrue(
             section.exists,
-            "Home low meds section not showing")
+            "Home low meds section not showing"
+        )
     }
 
     func testHomeHasRecentMeds() {
@@ -77,7 +80,8 @@ class ExistingDataTests: XCTestCase {
 
         XCTAssertTrue(
             section.exists,
-            "Home recent meds section not showing")
+            "Home recent meds section not showing"
+        )
     }
 
     func TODO_testSortOrder() {

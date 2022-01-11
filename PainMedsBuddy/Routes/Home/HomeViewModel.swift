@@ -83,13 +83,13 @@ extension HomeView {
             // INFO" Get unique meds which are currently not elapsed
             var temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) }
             temp = temp.sortedItems(using: .lastTaken)
-            let count = temp.count == 0 ? 0 : 3
+            let count = temp.isEmpty ? 0 : 3
             return temp.prefix(count).map { $0 }
         }
 
         func getLowMeds(loadedMeds: [Med]) -> [Med] {
             let temp = loadedMeds.sortedItems(using: .remaining)
-            let count = temp.count == 0 ? 0 : 3
+            let count = temp.isEmpty ? 0 : 3
             return temp.prefix(count).map { $0 }
         }
 

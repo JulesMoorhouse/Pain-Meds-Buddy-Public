@@ -13,15 +13,15 @@ struct NavigationBarAccessor: UIViewControllerRepresentable {
     private let proxyController = ViewController()
 
     func makeUIViewController(
-        context: UIViewControllerRepresentableContext<NavigationBarAccessor>
+        context _: UIViewControllerRepresentableContext<NavigationBarAccessor>
     ) -> UIViewController {
         proxyController.callback = callback
         return proxyController
     }
 
     func updateUIViewController(
-        _ uiViewController: UIViewController,
-        context: UIViewControllerRepresentableContext<NavigationBarAccessor>
+        _: UIViewController,
+        context _: UIViewControllerRepresentableContext<NavigationBarAccessor>
     ) {}
 
     typealias UIViewControllerType = UIViewController

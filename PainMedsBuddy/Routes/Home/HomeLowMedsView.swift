@@ -30,7 +30,8 @@ struct HomeLowMedsView: View {
                                     MedEditView(
                                         med: med,
                                         add: false,
-                                        hasRelationship: dataController.hasRelationship(for: med)),
+                                        hasRelationship: dataController.hasRelationship(for: med)
+                                    ),
                                     animated: true
                                 )
                             }, label: {
@@ -43,7 +44,7 @@ struct HomeLowMedsView: View {
                                 }
                                 .padding(2)
                             })
-                                .panelled()
+                            .panelled()
                         }
                     }
                 }

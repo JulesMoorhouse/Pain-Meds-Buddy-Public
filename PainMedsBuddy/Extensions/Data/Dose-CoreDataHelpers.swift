@@ -84,7 +84,7 @@ extension Dose: Comparable {
         }
         return "0"
     }
-    
+
     var doseDisplayFull: String {
         Dose.displayFull(amount: doseAmount,
                          dosage: med?.medDosage ?? "\(MedDefault.dosage)",
