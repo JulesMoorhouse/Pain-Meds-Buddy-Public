@@ -12,11 +12,11 @@ struct MedRowView: View {
     @ObservedObject var med: Med
     let hasChevron: Bool
 
-    init (med: Med, hasChevron: Bool = true) {
+    init(med: Med, hasChevron: Bool = true) {
         self.med = med
         self.hasChevron = hasChevron
     }
-    
+
     var body: some View {
         HStack {
             MedSymbolView(med: med)

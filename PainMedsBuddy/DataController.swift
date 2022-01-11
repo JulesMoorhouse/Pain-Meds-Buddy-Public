@@ -53,7 +53,7 @@ class DataController: ObservableObject {
             if DataController.shouldWipeData {
                 self.deleteAll()
             }
-            
+
             if DataController.isUITesting {
                 self.deleteAll()
                 do {
@@ -93,7 +93,7 @@ class DataController: ObservableObject {
         #endif
         return false
     }
-    
+
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         let viewContext = dataController.container.viewContext

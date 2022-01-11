@@ -17,14 +17,14 @@ class NoDataUITests: XCTestCase {
         app.launchArguments = ["wipe-data"]
         app.launch()
     }
-    
+
     func testAppHas5Tabs() throws {
         XCTAssertEqual(
             app.tabBars.buttons.count,
             5,
             "There should be 5 tabs in the app.")
     }
-    
+
     func testAddFiveMedications() {
         // Given
         BasicAction.tapTabMedications(app)
@@ -53,7 +53,7 @@ class NoDataUITests: XCTestCase {
                 "There should be \(addCount) list rows initially.")
         }
     }
-    
+
     func testAddDose() {
         // --- Should use datafile or data generation / not part of test ---
         // Given - One medication is required
@@ -83,7 +83,7 @@ class NoDataUITests: XCTestCase {
             1,
             "There should be 1 list rows initially.")
     }
-    
+
     func testEmptyHistory() {
         // Given
         BasicAction.tapTabHistory(app)
@@ -195,7 +195,7 @@ class NoDataUITests: XCTestCase {
 
         XCTAssertTrue(element.exists, "The edited medication should be visible in the list.")
     }
-    
+
     func testSettingsHasAcknowledgements() {
         // Given
         BasicAction.tapTabSetting(app)

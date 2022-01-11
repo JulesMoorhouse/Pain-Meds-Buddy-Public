@@ -27,7 +27,7 @@ class ExistingDataTests: XCTestCase {
             sortButton.exists,
             "Medications sort button not found")
     }
-    
+
     func testEditDose() {
         // Given
         BasicAction.tapTabInProgress(app)

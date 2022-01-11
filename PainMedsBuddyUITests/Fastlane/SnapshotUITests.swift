@@ -33,5 +33,8 @@ class SnapshotUITests: XCTestCase {
 
         BasicAction.tapTabHistory(app)
         snapshot("04-History")
+
+        BasicAction.tapHistorysAddButton(app)
+        snapshot("05-AddDose")
     }
 }

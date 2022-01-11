@@ -69,4 +69,12 @@ class BasicAction: XCTestCase {
         // Confirm on add dose screen
         _ = Elements.navBarAddDose(app)
     }
+    
+    static func tapHistorysAddButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarHistory(app)
+        navBar.buttons[Strings.doseEditAddDose.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarAddDose(app)
+    }
 }

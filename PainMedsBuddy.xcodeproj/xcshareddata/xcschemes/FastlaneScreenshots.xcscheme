@@ -45,6 +45,12 @@
                   Identifier = "Elements">
                </Test>
                <Test
+                  Identifier = "ExistingDataTests">
+               </Test>
+               <Test
+                  Identifier = "NoDataUITests">
+               </Test>
+               <Test
                   Identifier = "PainMedsBuddyUITests">
                </Test>
             </SkippedTests>
