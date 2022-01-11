@@ -35,7 +35,6 @@ struct MedsView: View {
             .onDelete { offsets in
                 viewModel.deleteMed(offsets, items: items)
             }
-            .id(DataController.refreshingID)
         }
         .listStyle(InsetGroupedListStyle())
         .disabled(viewModel.showingSortOrder == true)

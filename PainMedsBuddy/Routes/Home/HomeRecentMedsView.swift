@@ -25,7 +25,6 @@ struct HomeRecentMedsView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(2)
                         }
-                        .id(DataController.refreshingID)
                         .panelled()
                     }
                 }

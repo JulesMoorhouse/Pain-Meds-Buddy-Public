@@ -45,7 +45,6 @@ struct HomeLowMedsView: View {
                             })
                                 .panelled()
                         }
-                        .id(DataController.refreshingID)
                     }
                 }
             }
