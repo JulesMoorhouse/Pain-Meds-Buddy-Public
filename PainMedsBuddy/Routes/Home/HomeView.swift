@@ -35,6 +35,7 @@ struct HomeView: View {
                         )
                     }
                 }
+                .id(DataController.refreshingID)
             }
             .fixedSize(horizontal: false, vertical: true)
             .padding([.horizontal, .bottom])

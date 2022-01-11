@@ -16,7 +16,8 @@ class DataController: ObservableObject {
     private let semaphore = DispatchSemaphore(value: 0)
 
     public static let useHardDelete = true
-
+    public static var refreshingID = UUID()
+    
     var container: NSPersistentContainer {
         if !DataController.isUnitTesting {
             semaphore.wait()
@@ -275,6 +276,8 @@ class DataController: ObservableObject {
         let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Dose.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
+        
+        DataController.refreshingID = UUID()
     }
 
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {

@@ -39,6 +39,7 @@ struct DoseMedSelectView: View, DestinationView {
                 ForEach(Array(items.enumerated()), id: \.offset) { index, med in
                     medRow(med: med, index: index)
                 }
+                .id(DataController.refreshingID)
             }
             .listStyle(InsetGroupedListStyle())
             .disabled($viewModel.showingSortOrder.wrappedValue == true)

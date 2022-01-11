@@ -43,6 +43,7 @@ struct DosesView: View {
                                 self.rowsView(section: section)
                             }
                         }
+                        .id(DataController.refreshingID)
                     }
                     .listStyle(InsetGroupedListStyle())
                 }
