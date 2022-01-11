@@ -22,6 +22,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonPleaseAdd
     case commonSort
 
+    case titleHome
     case tabTitleHistory
     case tabTitleHome
     case tabTitleInProgress
