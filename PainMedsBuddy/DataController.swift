@@ -54,9 +54,10 @@ class DataController: ObservableObject {
                 self.deleteAll()
             }
 
-            if DataController.isUITesting {
+            if DataController.isUITesting || DataController.isSnapshotUITesting {
                 self.deleteAll()
-                self.handleSampleDataOptions()
+                self.handleSampleDataOptions(
+                    appStore: DataController.isSnapshotUITesting)
             }
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
@@ -81,6 +82,15 @@ class DataController: ObservableObject {
         return false
     }
 
+    private static var isSnapshotUITesting: Bool {
+        #if DEBUG
+            if CommandLine.arguments.contains("enable-snapshot-ui-testing") {
+                return true
+            }
+        #endif
+        return false
+    }
+
     private static var shouldWipeData: Bool {
         #if DEBUG
             if CommandLine.arguments.contains("wipe-data") {
@@ -95,7 +105,7 @@ class DataController: ObservableObject {
         let viewContext = dataController.container.viewContext
 
         do {
-            try dataController.createSampleData()
+            try dataController.createSampleData(appStore: false)
         } catch {
             fatalError("Fatal error creating preview: \(error.localizedDescription)")
         }
@@ -172,33 +182,56 @@ class DataController: ObservableObject {
         return dose
     }
 
+    struct Drug {
+        var name = ""
+        var mGrams = 0
+        var defAmt: Int16 = 0
+        var duration: Int16 = 0
+        var lastTakeDate = Date()
+    }
+
+    func nextAvailableDate(drug: Drug) -> Date {
+        // This will not cater for time asleep, will need those times in a setting in future
+        let tenDaysAgo = Date() - 10
+        let createdDate = Date.random(in: tenDaysAgo ..< Date())
+        var take = Date.random(in: createdDate ..< Date())
+
+        let nextDrugDate = drug.lastTakeDate.adding(seconds: Int(drug.duration))
+        do {
+            if take < nextDrugDate {
+                take = Date.random(in: createdDate ..< Date())
+            }
+        }
+        return take
+    }
+
     /// Creates example meds and doses to make manual testing easier.
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
-    func createSampleData(medsRequired: Int, medDosesRequired: Int) throws {
+    func createSampleData(appStore: Bool, medsRequested: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
 
         let tenDaysAgo = Date() - 10
 
-        struct Drug {
-            var name = ""
-            var mGrams = 0
-            var defAmt: Int16 = 0
-            var duration: Int16 = 0
-        }
-
         let drugs: [Drug] = [
             Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60),
             Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: (4 * 60) * 60),
-            Drug(name: "Gabapentin", mGrams: 300, defAmt: 1, duration: (8 * 60) * 60),
+            Drug(name: "Codeine", mGrams: 30, defAmt: 2, duration: (4 * 60) * 60),
         ]
 
+        let maxMeds = appStore ? min(drugs.count, medsRequested) : medsRequested
         // Remember totalSampleDoses is the same as totalSampleMeds
-        for _ in 1 ... medsRequired {
-            let drug = drugs.randomElement()!
+        for medIndex in 0 ..< maxMeds {
             let createdDate = Date.random(in: tenDaysAgo ..< Date())
+
+            let drug = appStore ? drugs[medIndex] : drugs.randomElement()!
+
+            // Analyse previously taken doses and assign the med.lastTakenDate and the dose.takenDate correctly.
+            // This will have to look at the duration + gap of when meds and the med.lastTakenDate.
+            // The med.lastTakenDate should match the dose.takenDate
 
             // INFO: One to one relationship
             let med = Med(context: viewContext)
+
             med.title = drug.name
             med.notes = "Notes about taking \(drug.name) x \(drug.mGrams) Pills"
             med.defaultAmount = NSDecimalNumber(value: drug.defAmt)
@@ -210,14 +243,25 @@ class DataController: ObservableObject {
             med.duration = drug.duration
             med.durationGap = Int16("00:20:00".timeToSeconds)
             med.creationDate = createdDate
-            med.lastTakenDate = Date.random(in: createdDate ..< Date())
+
+            let nextDate = nextAvailableDate(drug: drug)
+            med.lastTakenDate = nextDate
+
+            if var drugArrayItem = drugs.first(where: { $0.name == drug.name }) {
+                drugArrayItem.lastTakeDate = nextDate
+            }
+
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.hidden = false
 
             if medDosesRequired > 0 {
                 for _ in 1 ... medDosesRequired {
                     let dose = Dose(context: viewContext)
-                    dose.takenDate = Date.random(in: createdDate ..< Date())
+
+                    dose.takenDate = med.medPredictedNextTimeCanTake
+
+                    med.lastTakenDate = dose.takenDate
+
                     dose.elapsed = Bool.random()
                     dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
 
@@ -229,11 +273,14 @@ class DataController: ObservableObject {
         try viewContext.save()
     }
 
-    func createSampleData() throws {
-        try? createSampleData(medsRequired: 5, medDosesRequired: 4)
+    func createSampleData(appStore: Bool) throws {
+        try? createSampleData(
+            appStore: appStore,
+            medsRequested: 5,
+            medDosesRequired: 4)
     }
 
-    private func handleSampleDataOptions() {
+    private func handleSampleDataOptions(appStore: Bool) {
         do {
             if let parameter = CommandLine
                 .arguments
@@ -249,9 +296,11 @@ class DataController: ObservableObject {
                     fatalError("ERROR: You can not create sample data with no doses and no meds!")
                 }
                 try createSampleData(
-                    medsRequired: meds, medDosesRequired: doses)
+                    appStore: appStore,
+                    medsRequested: meds,
+                    medDosesRequired: doses)
             } else {
-                try createSampleData()
+                try createSampleData(appStore: appStore)
             }
         } catch {
             fatalError("Fatal error creating preview: \(error.localizedDescription)")

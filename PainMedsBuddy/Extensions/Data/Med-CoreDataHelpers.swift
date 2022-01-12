@@ -143,6 +143,15 @@ extension Med: MedProtocol {
         return [hours, minutes]
     }
 
+    var medPredictedNextTimeCanTake: Date {
+        // This will not cater for time asleep, will need those times in a setting in future
+        if let date = lastTakenDate {
+            return date.adding(seconds: medTotalDuration)
+        }
+        return Date()
+    }
+
+    /// Return the total time the medication is effective / duration plus any gap
     var medTotalDuration: Int {
         Int(duration) + Int(durationGap)
     }

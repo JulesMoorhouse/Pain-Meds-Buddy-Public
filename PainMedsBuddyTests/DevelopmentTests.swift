@@ -12,7 +12,8 @@ import XCTest
 class DevelopmentTests: BaseTestCase {
     func testSampleDataCreationWorks() throws {
         try dataController.createSampleData(
-            medsRequired: 20,
+            appStore: false,
+            medsRequested: 20,
             medDosesRequired: 20
         )
 
@@ -31,7 +32,8 @@ class DevelopmentTests: BaseTestCase {
 
     func testDeleteAllClearsEverything() throws {
         try dataController.createSampleData(
-            medsRequired: 20,
+            appStore: false,
+            medsRequested: 20,
             medDosesRequired: 20
         )
 

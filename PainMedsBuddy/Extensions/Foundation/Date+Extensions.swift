@@ -31,6 +31,22 @@ extension Date {
         dayAfter.month != month
     }
 
+    func adding(seconds: Int) -> Date {
+        return Calendar.current.date(byAdding: .second, value: seconds, to: self)!
+    }
+
+    func adding(minutes: Int) -> Date {
+        return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
+    }
+
+    func adding(hours: Int) -> Date {
+        return Calendar.current.date(byAdding: .hour, value: hours, to: self)!
+    }
+
+    func adding(days: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+
     static func random(in range: Range<Date>) -> Date {
         Date(
             timeIntervalSinceNow: .random(

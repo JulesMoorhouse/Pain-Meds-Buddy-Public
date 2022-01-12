@@ -14,7 +14,8 @@ class PerformanceTests: BaseTestCase {
         // Create a significant amount of test data
         for _ in 1 ... 100 {
             try dataController.createSampleData(
-                medsRequired: 20,
+                appStore: false,
+                medsRequested: 20,
                 medDosesRequired: 20
             )
         }
@@ -28,7 +29,8 @@ class PerformanceTests: BaseTestCase {
         // Create a significant amount of test data
         for _ in 1 ... 25 {
             try dataController.createSampleData(
-                medsRequired: 20,
+                appStore: false,
+                medsRequested: 20,
                 medDosesRequired: 20
             )
         }
@@ -45,7 +47,8 @@ class PerformanceTests: BaseTestCase {
         // Create a significant amount of test data
         for _ in 1 ... 100 {
             try dataController.createSampleData(
-                medsRequired: 20,
+                appStore: false,
+                medsRequested: 20,
                 medDosesRequired: 20
             )
         }

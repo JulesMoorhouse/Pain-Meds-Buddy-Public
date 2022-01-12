@@ -14,7 +14,7 @@ class SnapshotUITests: XCTestCase {
         continueAfterFailure = false
 
         app = XCUIApplication()
-        app.launchArguments = ["enable-ui-testing"]
+        app.launchArguments = ["enable-snapshot-ui-testing"]
         setupSnapshot(app)
         app.launch()
     }

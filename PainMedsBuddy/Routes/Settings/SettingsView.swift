@@ -43,7 +43,7 @@ struct SettingsView: View {
                 Section {
                     Button(Strings.settingsAddExampleData.rawValue) {
                         try? dataController.deleteIterateAll()
-                        try? dataController.createSampleData()
+                        try? dataController.createSampleData(appStore: false)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
