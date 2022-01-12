@@ -50,6 +50,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonSort:
                 output = ""
+            case .titleHome:
+                output = ""
             case .tabTitleHistory:
                 output = ""
             case .tabTitleHome:

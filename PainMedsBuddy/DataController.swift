@@ -56,11 +56,7 @@ class DataController: ObservableObject {
 
             if DataController.isUITesting {
                 self.deleteAll()
-                do {
-                    try self.createSampleData()
-                } catch {
-                    fatalError("Fatal error creating preview: \(error.localizedDescription)")
-                }
+                self.handleSampleDataOptions()
             }
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
@@ -218,13 +214,15 @@ class DataController: ObservableObject {
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.hidden = false
 
-            for _ in 1 ... medDosesRequired {
-                let dose = Dose(context: viewContext)
-                dose.takenDate = Date.random(in: createdDate ..< Date())
-                dose.elapsed = Bool.random()
-                dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
+            if medDosesRequired > 0 {
+                for _ in 1 ... medDosesRequired {
+                    let dose = Dose(context: viewContext)
+                    dose.takenDate = Date.random(in: createdDate ..< Date())
+                    dose.elapsed = Bool.random()
+                    dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
 
-                dose.med = med
+                    dose.med = med
+                }
             }
         }
 
@@ -233,6 +231,31 @@ class DataController: ObservableObject {
 
     func createSampleData() throws {
         try? createSampleData(medsRequired: 5, medDosesRequired: 4)
+    }
+
+    private func handleSampleDataOptions() {
+        do {
+            if let parameter = CommandLine
+                .arguments
+                .joined(separator: " ")
+                .extractedParameter
+            {
+                let strings: [String] = parameter.components(separatedBy: ",")
+                let numbers: [Int] = strings.map { Int($0)! }
+                let (meds, doses) = (numbers[0], numbers[1])
+                if meds == 0, doses > 0 {
+                    fatalError("ERROR: You can not create sample data with doses and no meds!")
+                } else if meds == 0, doses == 0 {
+                    fatalError("ERROR: You can not create sample data with no doses and no meds!")
+                }
+                try createSampleData(
+                    medsRequired: meds, medDosesRequired: doses)
+            } else {
+                try createSampleData()
+            }
+        } catch {
+            fatalError("Fatal error creating preview: \(error.localizedDescription)")
+        }
     }
 
     /// Process any doses which should now be elapsed

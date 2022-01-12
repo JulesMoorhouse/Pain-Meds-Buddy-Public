@@ -14,7 +14,7 @@ class ExistingDataTests: XCTestCase {
         continueAfterFailure = false
 
         app = XCUIApplication()
-        app.launchArguments = ["enable-ui-testing"]
+        app.launchArguments = ["enable-ui-testing", "[2,2]"]
         app.launch()
     }
 
