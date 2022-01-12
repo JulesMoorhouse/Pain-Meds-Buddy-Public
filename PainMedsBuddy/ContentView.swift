@@ -16,41 +16,44 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
-        TabView(selection: $selectedView) {
-            HomeView(dataController: dataController)
-                .tag(HomeView.HomeTag)
-                .tabItem {
-                    Image(systemName: SFSymbol.house.systemName)
-                    Text(.tabTitleHome)
-                }
+        NavigationView {
+            TabView(selection: $selectedView) {
+                HomeView(dataController: dataController)
+                    .tag(HomeView.HomeTag)
+                    .tabItem {
+                        Image(systemName: SFSymbol.house.systemName)
+                        Text(.tabTitleHome)
+                    }
 
-            DosesView(dataController: dataController, showElapsedDoses: true)
-                .tag(DosesView.historyTag)
-                .tabItem {
-                    Image(systemName: SFSymbol.checkmark.systemName)
-                    Text(.tabTitleHistory)
-                }
+                DosesView(dataController: dataController, showElapsedDoses: true)
+                    .tag(DosesView.historyTag)
+                    .tabItem {
+                        Image(systemName: SFSymbol.checkmark.systemName)
+                        Text(.tabTitleHistory)
+                    }
 
-            DosesView(dataController: dataController, showElapsedDoses: false)
-                .tag(DosesView.inProgressTag)
-                .tabItem {
-                    Image(systemName: SFSymbol.arrowTriangle2CirclePath.systemName)
-                    Text(.tabTitleInProgress)
-                }
+                DosesView(dataController: dataController, showElapsedDoses: false)
+                    .tag(DosesView.inProgressTag)
+                    .tabItem {
+                        Image(systemName: SFSymbol.arrowTriangle2CirclePath.systemName)
+                        Text(.tabTitleInProgress)
+                    }
 
-            MedsView(dataController: dataController)
-                .tag(MedsView.MedsTag)
-                .tabItem {
-                    Image(systemName: SFSymbol.pillsFill.systemName)
-                    Text(.tabTitleMedications)
-                }
+                MedsView(dataController: dataController)
+                    .tag(MedsView.MedsTag)
+                    .tabItem {
+                        Image(systemName: SFSymbol.pillsFill.systemName)
+                        Text(.tabTitleMedications)
+                    }
 
-            SettingsView()
-                .tag(SettingsView.SettingsTag)
-                .tabItem {
-                    Image(systemName: SFSymbol.gearShapeFill.systemName)
-                    Text(.tabTitleSettings)
-                }
+                SettingsView()
+                    .tag(SettingsView.SettingsTag)
+                    .tabItem {
+                        Image(systemName: SFSymbol.gearShapeFill.systemName)
+                        Text(.tabTitleSettings)
+                    }
+            }
+            .navigationBarHidden(true)
         }
     }
 }

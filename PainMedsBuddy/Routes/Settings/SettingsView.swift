@@ -58,6 +58,7 @@ struct SettingsView: View {
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)
         }
         .iPadOnlyStackNavigationView()
+        .navigationBarHidden(true)
     }
 }
 

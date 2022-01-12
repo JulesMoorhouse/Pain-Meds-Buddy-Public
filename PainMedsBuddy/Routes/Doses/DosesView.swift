@@ -85,6 +85,7 @@ struct DosesView: View {
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
         .iPadOnlyStackNavigationView()
+        .navigationBarHidden(true)
     }
 
     func placeHolderText() -> Strings {

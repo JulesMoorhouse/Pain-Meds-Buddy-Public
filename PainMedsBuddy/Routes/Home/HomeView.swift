@@ -75,6 +75,7 @@ struct HomeView: View {
             .navigationBarAccessibilityIdentifier(.titleHome)
         }
         .iPadOnlyStackNavigationView()
+        .navigationBarHidden(true)
     }
 
     init(dataController: DataController) {

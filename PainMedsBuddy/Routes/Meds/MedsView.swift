@@ -124,6 +124,7 @@ struct MedsView: View {
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
         .iPadOnlyStackNavigationView()
+        .navigationBarHidden(true)
     }
 
     init(dataController: DataController) {
