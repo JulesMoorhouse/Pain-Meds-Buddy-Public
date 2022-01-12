@@ -42,10 +42,6 @@ struct DoseMedSelectView: View, DestinationView {
             }
             .listStyle(InsetGroupedListStyle())
             .disabled($viewModel.showingSortOrder.wrappedValue == true)
-
-            if viewModel.showingSortOrder == true {
-                MedSortView(sortOrder: $viewModel.sortOrder, showingSortOrder: $viewModel.showingSortOrder)
-            }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(.selectMedSelectMed)
@@ -54,6 +50,14 @@ struct DoseMedSelectView: View, DestinationView {
                 Color.clear // BugFix: Back button disappears
             }
             sortToolbarItem
+        }
+        .actionSheet(isPresented: $viewModel.showingSortOrder) {
+            ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
+                .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised},
+                .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
+                .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
+                .cancel()
+            ])
         }
     }
 

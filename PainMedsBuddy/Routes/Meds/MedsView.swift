@@ -101,16 +101,20 @@ struct MedsView: View {
                 } else {
                     ZStack {
                         medsList
-
-                        if viewModel.showingSortOrder == true {
-                            MedSortView(sortOrder: $viewModel.sortOrder, showingSortOrder: $viewModel.showingSortOrder)
-                        }
                     }
                 }
             }
             .toolbar {
                 addMedToolbarItem
                 sortToolbarItem
+            }
+            .actionSheet(isPresented: $viewModel.showingSortOrder) {
+                ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
+                    .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised},
+                    .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
+                    .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
+                    .cancel()
+                ])
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
