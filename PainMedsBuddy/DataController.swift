@@ -16,6 +16,7 @@ class DataController: ObservableObject {
     private let semaphore = DispatchSemaphore(value: 0)
 
     public static let useHardDelete = true
+    public static let useAddScreenDefaults = false
 
     var container: NSPersistentContainer {
         if !DataController.isUnitTesting {

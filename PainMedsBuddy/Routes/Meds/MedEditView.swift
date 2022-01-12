@@ -44,6 +44,8 @@ struct MedEditView: View, DestinationView {
         GridItem(.adaptive(minimum: 44)),
     ]
 
+    let showValue: Bool
+
     var hasRelationship = false
 
     init(med: Med, add: Bool, hasRelationship: Bool) {
@@ -53,22 +55,24 @@ struct MedEditView: View, DestinationView {
 
         let title = String(MedEditView.navigationTitle(add: add))
 
+        showValue = !add || DataController.useAddScreenDefaults
+
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
             displayMode: .automatic
         )
 
-        _title = State(wrappedValue: med.medTitle)
-        _defaultAmount = State(wrappedValue: med.medDefaultAmount)
-        _colour = State(wrappedValue: med.medColor)
-        _symbol = State(wrappedValue: med.medSymbol)
-        _dosage = State(wrappedValue: med.medDosage)
-        _duration = State(wrappedValue: med.medDuration)
-        _durationGap = State(wrappedValue: med.medDurationGap)
-        _measure = State(wrappedValue: med.medMeasure)
-        _form = State(wrappedValue: med.medForm)
-        _notes = State(wrappedValue: med.medNotes)
-        _remaining = State(wrappedValue: med.medRemaining)
+        _title = State(wrappedValue: showValue ? med.medTitle : "")
+        _defaultAmount = State(wrappedValue: showValue ? med.medDefaultAmount : "")
+        _colour = State(wrappedValue: showValue ? med.medColor : "")
+        _symbol = State(wrappedValue: showValue ? med.medSymbol : "")
+        _dosage = State(wrappedValue: showValue ? med.medDosage : "")
+        _duration = State(wrappedValue: showValue ? med.medDuration : "")
+        _durationGap = State(wrappedValue: showValue ? med.medDurationGap : "")
+        _measure = State(wrappedValue: showValue ? med.medMeasure : "")
+        _form = State(wrappedValue: showValue ? med.medForm : "")
+        _notes = State(wrappedValue: showValue ? med.medNotes : "")
+        _remaining = State(wrappedValue: showValue ? med.medRemaining : "")
     }
 
     var body: some View {
@@ -231,6 +235,7 @@ struct MedEditView: View, DestinationView {
                     }, label: {
                         Image(systemName: SFSymbol.infoCircle.systemName)
                     })
+                        .buttonStyle(.plain)
                 } else {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
@@ -296,6 +301,7 @@ struct MedEditView: View, DestinationView {
             }, label: {
                 Image(systemName: SFSymbol.infoCircle.systemName)
             })
+                .buttonStyle(.plain)
 
             Spacer()
 
@@ -306,7 +312,6 @@ struct MedEditView: View, DestinationView {
                 .multilineTextAlignment(.trailing)
                 .accessibilityIdentifier(label)
                 .textFieldStyle(SelectAllTextFieldStyle())
-
         }
     }
 
@@ -328,7 +333,6 @@ struct MedEditView: View, DestinationView {
                 .multilineTextAlignment(.trailing)
                 .accessibilityIdentifier(label)
                 .textFieldStyle(SelectAllTextFieldStyle())
-
         }
     }
 
