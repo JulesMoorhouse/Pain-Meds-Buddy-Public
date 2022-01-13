@@ -10,7 +10,11 @@ import SwiftUI
 import XNavigation
 
 enum ActiveAlert {
-    case deleteDenied, deleteConfirmation, durationGapInfo, copied, hiddenTitle
+    case deleteDenied, deleteConfirmation, copied
+}
+
+enum ActivePopup {
+    case durationGapInfo, hiddenTitle
 }
 
 struct MedEditView: View, DestinationView {
@@ -36,6 +40,8 @@ struct MedEditView: View, DestinationView {
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
+    @State private var showPopup = false
+    @State private var activePopup: ActivePopup = .durationGapInfo
     @State private var canDelete = false
 
     let types = ["mg", "ml", "Tspn"]
@@ -76,46 +82,61 @@ struct MedEditView: View, DestinationView {
     }
 
     var body: some View {
-        Form {
-            Section(header: Text(.commonBasicSettings)) {
-                basicSettingsFields()
-            }
+        ZStack {
+            Form {
+                Section(header: Text(.commonBasicSettings)) {
+                    basicSettingsFields()
+                }
 
-            Section(header: Text(.medEditExampleDosage)) {
-                HStack {
-                    Spacer()
-                    Text(med.medDisplay)
-                        .multilineTextAlignment(.trailing)
+                Section(header: Text(.medEditExampleDosage)) {
+                    HStack {
+                        Spacer()
+                        Text(med.medDisplay)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                Section(header: Text(.medEditSymbol)) {
+                    Text(.medEditColour)
                         .foregroundColor(.secondary)
-                }
-            }
-
-            Section(header: Text(.medEditSymbol)) {
-                Text(.medEditColour)
-                    .foregroundColor(.secondary)
-                LazyVGrid(columns: colorColumns) {
-                    ForEach(Med.colours, id: \.self, content: colourButton)
-                }
-                .padding(.vertical)
-
-                Text(.medEditImage)
-                    .foregroundColor(.secondary)
-                SymbolsView(colour: Color($colour.wrappedValue), selectedSymbol: $symbol.onChange(update))
+                    LazyVGrid(columns: colorColumns) {
+                        ForEach(Med.colours, id: \.self, content: colourButton)
+                    }
                     .padding(.vertical)
+
+                    Text(.medEditImage)
+                        .foregroundColor(.secondary)
+                    SymbolsView(colour: Color($colour.wrappedValue), selectedSymbol: $symbol.onChange(update))
+                        .padding(.vertical)
+                }
+
+                Section(header: Text(.medEditNotes)) {
+                    TextEditor(text: $notes.onChange(update))
+                        .frame(minHeight: 50)
+                }
+
+                buttonsSection()
+            }
+            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: add))
+            .onDisappear(perform: dataController.save)
+            .alert(isPresented: $showAlert) {
+                alertOption()
             }
 
-            Section(header: Text(.medEditNotes)) {
-                TextEditor(text: $notes.onChange(update))
-                    .frame(minHeight: 50)
+            if showPopup == true {
+                popupOption()
             }
-
-            buttonsSection()
         }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: add))
-        .onDisappear(perform: dataController.save)
-        .alert(isPresented: $showAlert) {
-            alertOption()
+    }
+
+    func popupOption() -> some View {
+        switch activePopup {
+        case .durationGapInfo:
+            return InfoPopupView(showing: $showPopup, text: Strings.medEditGapInfo.rawValue)
+        case .hiddenTitle:
+            return InfoPopupView(showing: $showPopup, text: Strings.medEditHiddenTitle.rawValue)
         }
     }
 
@@ -130,17 +151,9 @@ struct MedEditView: View, DestinationView {
             return Alert(title: Text(.medEditDeleteMed),
                          message: Text(.medEditSorry),
                          dismissButton: .default(Text(.commonOK)))
-        case .durationGapInfo:
-            return Alert(title: Text(.medEditInfo),
-                         message: Text(.medEditGapInfo),
-                         dismissButton: .default(Text(.commonOK)))
         case .copied:
             return Alert(title: Text(.medEditInfo),
                          message: Text(.medEditCopied),
-                         dismissButton: .default(Text(.commonOK)))
-        case .hiddenTitle:
-            return Alert(title: Text(.medEditInfo),
-                         message: Text(.medEditHiddenTitle),
                          dismissButton: .default(Text(.commonOK)))
         }
     }
@@ -230,12 +243,12 @@ struct MedEditView: View, DestinationView {
                     Spacer()
 
                     Button(action: {
-                        activeAlert = .hiddenTitle
-                        showAlert.toggle()
+                        activePopup = .hiddenTitle
+                        showPopup.toggle()
                     }, label: {
                         Image(systemName: SFSymbol.infoCircle.systemName)
                     })
-                        .buttonStyle(.plain)
+                        .buttonStyle(BorderlessButtonStyle())
                 } else {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
@@ -262,8 +275,10 @@ struct MedEditView: View, DestinationView {
             rowInfoFields(label: .medEditDurationGap,
                           detailValues: [MedDefault.Sensible.medDurationGap()],
                           binding: $durationGap.onChange(update),
-                          alertType: .durationGapInfo,
-                          keyboardType: .default)
+                          keyboardType: .default) {
+                activePopup = .durationGapInfo
+                showPopup.toggle()
+            }
 
             Picker(.medEditMeasure, selection: $measure.onChange(update)) {
                 ForEach(types, id: \.self) {
@@ -288,20 +303,19 @@ struct MedEditView: View, DestinationView {
     func rowInfoFields(label: Strings,
                        detailValues: [String],
                        binding: Binding<String>,
-                       alertType: ActiveAlert,
-                       keyboardType: UIKeyboardType = .default) -> some View
+                       keyboardType: UIKeyboardType = .default,
+                       actionButtonClosure: @escaping () -> Void) -> some View
     {
         HStack {
             Text(label)
                 .foregroundColor(.secondary)
 
             Button(action: {
-                activeAlert = alertType
-                showAlert.toggle()
+                actionButtonClosure()
             }, label: {
                 Image(systemName: SFSymbol.infoCircle.systemName)
             })
-                .buttonStyle(.plain)
+                .buttonStyle(BorderlessButtonStyle())
 
             Spacer()
 

@@ -32,45 +32,49 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
     }
 
     var body: some View {
-        Color.black.opacity(0.2)
-            .ignoresSafeArea()
+        ZStack {
+            Color.black.opacity(0.2)
+                .ignoresSafeArea()
 
-        VStack(spacing: 5) {
-            ZStack {
-                HStack {
-                    Spacer()
+            VStack(spacing: 5) {
+                ZStack {
+                    HStack {
+                        Spacer()
 
-                    Text(text)
-                        .bold()
+                        Text(text)
+                            .bold()
 
-                    Spacer()
+                        Spacer()
+                    }
+
+                    HStack {
+                        Spacer()
+                            .frame(width: 5)
+
+                        leftButton
+
+                        Spacer()
+
+                        rightButton
+
+                        Spacer()
+                            .frame(width: 5)
+                    }
                 }
 
-                HStack {
-                    Spacer()
-                        .frame(width: 5)
+                Spacer()
+                    .frame(height: 5)
 
-                    leftButton
+                content
 
-                    Spacer()
-
-                    rightButton
-
-                    Spacer()
-                        .frame(width: 5)
-                }
+                Spacer()
+                    .frame(height: 5)
             }
-
-            Spacer()
-                .frame(height: 5)
-
-            content
-
-            Spacer()
+            .padding()
+            .frame(width: width) // , height: height)
+            .panelled(cornerRadius: 20)
         }
-        .padding()
-        .frame(width: width, height: height)
-        .panelled(cornerRadius: 20)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

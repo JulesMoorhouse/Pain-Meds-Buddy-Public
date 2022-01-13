@@ -75,6 +75,7 @@
 		88AB7CBD275FB17F0055BD9B /* Symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 88AB7CBC275FB17F0055BD9B /* Symbols.json */; };
 		88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CBE275FB2360055BD9B /* Symbol.swift */; };
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
+		88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E82279026E600DD74FC /* InfoPopupView.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -188,6 +189,7 @@
 		88AB7CBC275FB17F0055BD9B /* Symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Symbols.json; sourceTree = "<group>"; };
 		88AB7CBE275FB2360055BD9B /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		88AB7CC0275FB3150055BD9B /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
+		88B53E82279026E600DD74FC /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
+				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
@@ -724,6 +727,7 @@
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,
+				88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */,
 				8852BF472786063D000750FB /* MedsViewModel.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
