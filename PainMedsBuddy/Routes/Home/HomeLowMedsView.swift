@@ -28,6 +28,7 @@ struct HomeLowMedsView: View {
                             Button(action: {
                                 navigation.pushView(
                                     MedEditView(
+                                        dataController: dataController,
                                         med: med,
                                         add: false,
                                         hasRelationship: dataController.hasRelationship(for: med)
@@ -44,7 +45,7 @@ struct HomeLowMedsView: View {
                                 }
                                 .padding(2)
                             })
-                            .panelled()
+                                .panelled()
                         }
                     }
                 }

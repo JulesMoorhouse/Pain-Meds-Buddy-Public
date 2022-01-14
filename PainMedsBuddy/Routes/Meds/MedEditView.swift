@@ -20,8 +20,7 @@ enum ActivePopup {
 struct MedEditView: View, DestinationView {
     var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
-    let med: Med
-    let add: Bool
+    @StateObject var viewModel: ViewModel
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
@@ -54,33 +53,6 @@ struct MedEditView: View, DestinationView {
 
     var hasRelationship = false
 
-    init(med: Med, add: Bool, hasRelationship: Bool) {
-        self.med = med
-        self.add = add
-        self.hasRelationship = hasRelationship
-
-        let title = String(MedEditView.navigationTitle(add: add))
-
-        showValue = !add || DataController.useAddScreenDefaults
-
-        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-            title: title,
-            displayMode: .automatic
-        )
-
-        _title = State(wrappedValue: showValue ? med.medTitle : "")
-        _defaultAmount = State(wrappedValue: showValue ? med.medDefaultAmount : "")
-        _colour = State(wrappedValue: showValue ? med.medColor : "")
-        _symbol = State(wrappedValue: showValue ? med.medSymbol : "")
-        _dosage = State(wrappedValue: showValue ? med.medDosage : "")
-        _duration = State(wrappedValue: showValue ? med.medDuration : "")
-        _durationGap = State(wrappedValue: showValue ? med.medDurationGap : "")
-        _measure = State(wrappedValue: showValue ? med.medMeasure : "")
-        _form = State(wrappedValue: showValue ? med.medForm : "")
-        _notes = State(wrappedValue: showValue ? med.medNotes : "")
-        _remaining = State(wrappedValue: showValue ? med.medRemaining : "")
-    }
-
     var body: some View {
         ZStack {
             Form {
@@ -91,7 +63,7 @@ struct MedEditView: View, DestinationView {
                 Section(header: Text(.medEditExampleDosage)) {
                     HStack {
                         Spacer()
-                        Text(med.medDisplay)
+                        Text(viewModel.med.medDisplay)
                             .multilineTextAlignment(.trailing)
                             .foregroundColor(.secondary)
                     }
@@ -119,7 +91,7 @@ struct MedEditView: View, DestinationView {
                 buttonsSection()
             }
             .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-            .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: add))
+            .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: viewModel.add))
             .onDisappear(perform: dataController.save)
             .alert(isPresented: $showAlert) {
                 alertOption()
@@ -167,7 +139,7 @@ struct MedEditView: View, DestinationView {
     func update() {
         // med.dose?.objectWillChange.send()
 
-        update(med: med)
+        update(med: viewModel.med)
     }
 
     func update(med: Med) {
@@ -185,16 +157,16 @@ struct MedEditView: View, DestinationView {
     }
 
     func delete() {
-        let count = dataController.anyRelationships(for: [med])
+        let count = dataController.anyRelationships(for: [viewModel.med])
 
         // INFO: If this med only has 1 relationship and we're
         // using hard delete, then delete this med. Otherwise
         // keep the med for use with other doses.
         if count == 1 || DataController.useHardDelete {
-            dataController.delete(med)
+            dataController.delete(viewModel.med)
         } else {
             update()
-            med.hidden = true
+            viewModel.med.hidden = true
         }
         presentationMode.wrappedValue.dismiss()
     }
@@ -374,10 +346,47 @@ struct MedEditView: View, DestinationView {
             }
         }
     }
+
+    init(dataController: DataController, med: Med, add: Bool, hasRelationship: Bool) {
+        let viewModel = ViewModel(
+            dataController: dataController,
+            med: med,
+            add: add,
+            hasRelationship: hasRelationship
+        )
+
+        _viewModel = StateObject(wrappedValue: viewModel)
+
+        let title = String(MedEditView.navigationTitle(add: add))
+
+        showValue = !add || DataController.useAddScreenDefaults
+
+        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+            title: title,
+            displayMode: .automatic
+        )
+
+        _title = State(wrappedValue: showValue ? med.medTitle : "")
+        _defaultAmount = State(wrappedValue: showValue ? med.medDefaultAmount : "")
+        _colour = State(wrappedValue: showValue ? med.medColor : "")
+        _symbol = State(wrappedValue: showValue ? med.medSymbol : "")
+        _dosage = State(wrappedValue: showValue ? med.medDosage : "")
+        _duration = State(wrappedValue: showValue ? med.medDuration : "")
+        _durationGap = State(wrappedValue: showValue ? med.medDurationGap : "")
+        _measure = State(wrappedValue: showValue ? med.medMeasure : "")
+        _form = State(wrappedValue: showValue ? med.medForm : "")
+        _notes = State(wrappedValue: showValue ? med.medNotes : "")
+        _remaining = State(wrappedValue: showValue ? med.medRemaining : "")
+    }
 }
 
 struct MedEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MedEditView(med: Med.example, add: false, hasRelationship: true)
+        MedEditView(
+            dataController: DataController.preview,
+            med: Med.example,
+            add: false,
+            hasRelationship: true
+        )
     }
 }

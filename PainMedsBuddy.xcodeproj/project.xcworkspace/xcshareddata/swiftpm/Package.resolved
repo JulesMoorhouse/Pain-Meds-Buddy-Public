@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "ValidatedPropertyKit",
+        "repositoryURL": "https://github.com/SvenTiigi/ValidatedPropertyKit.git",
+        "state": {
+          "branch": null,
+          "revision": "1fc8adb98ce016700645ef17161c4583a8200cee",
+          "version": "0.0.5"
+        }
+      },
+      {
         "package": "XNavigation",
         "repositoryURL": "https://github.com/DoubleSymmetry/XNavigation.git",
         "state": {

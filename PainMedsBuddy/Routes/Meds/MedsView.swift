@@ -15,6 +15,7 @@ struct MedsView: View {
 
     @StateObject var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject var dataController: DataController
 
     var items: [Med] {
         viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
@@ -25,7 +26,12 @@ struct MedsView: View {
             ForEach(items, id: \.self) { med in
                 Button(action: {
                     navigation.pushView(
-                        MedEditView(med: med, add: false, hasRelationship: viewModel.hasRelationship(med: med)),
+                        MedEditView(
+                            dataController: dataController,
+                            med: med,
+                            add: false,
+                            hasRelationship: viewModel.hasRelationship(med: med)
+                        ),
                         animated: true
                     )
                 }, label: {
@@ -110,7 +116,7 @@ struct MedsView: View {
             }
             .actionSheet(isPresented: $viewModel.showingSortOrder) {
                 ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
-                    .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised},
+                    .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },
                     .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
                     .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
                     .cancel()

@@ -132,7 +132,10 @@ struct DoseEditView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DoseEditView(dataController: dataController, dose: Dose.example, add: false)
+        DoseEditView(
+            dataController: dataController,
+            dose: Dose.example,
+            add: false)
             .environmentObject(dataController)
     }
 }

@@ -17,7 +17,11 @@ struct MedAddView: View {
         // med.creationDate = Date()
         // dataController.save()
 
-        return MedEditView(med: med, add: true, hasRelationship: dataController.hasRelationship(for: med))
+        return MedEditView(
+            dataController: dataController,
+            med: med,
+            add: true,
+            hasRelationship: dataController.hasRelationship(for: med))
     }
 }
 
