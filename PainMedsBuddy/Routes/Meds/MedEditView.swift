@@ -25,18 +25,6 @@ struct MedEditView: View, DestinationView {
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var title: String
-    @State private var defaultAmount: String
-    @State private var colour: String
-    @State private var symbol: String
-    @State private var dosage: String
-    @State private var duration: String
-    @State private var durationGap: String
-    @State private var measure: String
-    @State private var form: String
-    @State private var notes: String
-    @State private var remaining: String
-
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
     @State private var showPopup = false
@@ -48,8 +36,6 @@ struct MedEditView: View, DestinationView {
     let colorColumns = [
         GridItem(.adaptive(minimum: 44)),
     ]
-
-    let showValue: Bool
 
     var hasRelationship = false
 
@@ -79,19 +65,22 @@ struct MedEditView: View, DestinationView {
 
                     Text(.medEditImage)
                         .foregroundColor(.secondary)
-                    SymbolsView(colour: Color($colour.wrappedValue), selectedSymbol: $symbol.onChange(update))
-                        .padding(.vertical)
+                    SymbolsView(
+                        colour: Color($viewModel.colour.wrappedValue),
+                        selectedSymbol: $viewModel.symbol.onChange(viewModel.update)
+                    )
+                    .padding(.vertical)
                 }
 
                 Section(header: Text(.medEditNotes)) {
-                    TextEditor(text: $notes.onChange(update))
+                    TextEditor(text: $viewModel.notes.onChange(viewModel.update))
                         .frame(minHeight: 50)
                 }
 
                 buttonsSection()
             }
             .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-            .navigationBarAccessibilityIdentifier(MedEditView.navigationTitle(add: viewModel.add))
+            .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
             .onDisappear(perform: dataController.save)
             .alert(isPresented: $showAlert) {
                 alertOption()
@@ -130,52 +119,9 @@ struct MedEditView: View, DestinationView {
         }
     }
 
-    static func navigationTitle(add: Bool) -> Strings {
-        add
-            ? Strings.medEditAddMed
-            : Strings.medEditEditMed
-    }
-
-    func update() {
-        // med.dose?.objectWillChange.send()
-
-        update(med: viewModel.med)
-    }
-
-    func update(med: Med) {
-        med.title = title
-        med.defaultAmount = NSDecimalNumber(string: defaultAmount)
-        med.color = colour
-        med.symbol = symbol
-        med.dosage = NSDecimalNumber(string: dosage)
-        med.duration = Int16(duration) ?? MedDefault.duration
-        med.durationGap = Int16(durationGap) ?? MedDefault.durationGap
-        med.measure = measure
-        med.form = form
-        med.notes = notes
-        med.remaining = Int16(remaining) ?? MedDefault.remaining
-    }
-
     func delete() {
-        let count = dataController.anyRelationships(for: [viewModel.med])
-
-        // INFO: If this med only has 1 relationship and we're
-        // using hard delete, then delete this med. Otherwise
-        // keep the med for use with other doses.
-        if count == 1 || DataController.useHardDelete {
-            dataController.delete(viewModel.med)
-        } else {
-            update()
-            viewModel.med.hidden = true
-        }
+        viewModel.deleteMed()
         presentationMode.wrappedValue.dismiss()
-    }
-
-    func copy() {
-        let newMed = Med(context: dataController.container.viewContext)
-        update(med: newMed)
-        newMed.title = InterpolatedStrings.medEditCopiedSuffix(title: newMed.medTitle)
-        dataController.save()
     }
 
     func colourButton(for item: String) -> some View {
@@ -184,19 +130,19 @@ struct MedEditView: View, DestinationView {
                 .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(6)
 
-            if item == colour {
+            if item == viewModel.colour {
                 Image(systemName: SFSymbol.checkmarkCircle.systemName)
                     .foregroundColor(.white)
                     .font(.largeTitle)
             }
         }
         .onTapGesture {
-            colour = item
-            update()
+            viewModel.colour = item
+            viewModel.update()
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(
-            item == colour
+            item == viewModel.colour
                 ? [.isButton, .isSelected]
                 : [.isButton]
         )
@@ -208,7 +154,7 @@ struct MedEditView: View, DestinationView {
         Group {
             HStack {
                 if hasRelationship {
-                    Text($title.wrappedValue)
+                    Text($viewModel.title.wrappedValue)
                         .foregroundColor(.secondary)
                         .accessibilityIdentifier(.medEditTitleLabelAID)
 
@@ -224,7 +170,7 @@ struct MedEditView: View, DestinationView {
                 } else {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
-                              text: $title.onChange(update))
+                              text: $viewModel.title.onChange(viewModel.update))
                         .accessibilityIdentifier(.medEditTitleText)
                         .textFieldStyle(SelectAllTextFieldStyle())
                 }
@@ -232,27 +178,27 @@ struct MedEditView: View, DestinationView {
 
             rowFields(label: .medEditDefaultAmount,
                       detailValues: [MedDefault.Sensible.medDefaultAmount()],
-                      binding: $defaultAmount.onChange(update),
+                      binding: $viewModel.defaultAmount.onChange(viewModel.update),
                       keyboardType: .decimalPad)
 
             rowFields(label: .commonDosage,
                       detailValues: [MedDefault.Sensible.medDosage()],
-                      binding: $dosage.onChange(update),
+                      binding: $viewModel.dosage.onChange(viewModel.update),
                       keyboardType: .decimalPad)
 
             rowFields(label: .medEditDuration,
                       detailValues: [MedDefault.Sensible.medDuration()],
-                      binding: $duration.onChange(update))
+                      binding: $viewModel.duration.onChange(viewModel.update))
 
             rowInfoFields(label: .medEditDurationGap,
                           detailValues: [MedDefault.Sensible.medDurationGap()],
-                          binding: $durationGap.onChange(update),
+                          binding: $viewModel.durationGap.onChange(viewModel.update),
                           keyboardType: .default) {
                 activePopup = .durationGapInfo
                 showPopup.toggle()
             }
 
-            Picker(.medEditMeasure, selection: $measure.onChange(update)) {
+            Picker(.medEditMeasure, selection: $viewModel.measure.onChange(viewModel.update)) {
                 ForEach(types, id: \.self) {
                     Text($0)
                         .foregroundColor(.primary)
@@ -263,11 +209,11 @@ struct MedEditView: View, DestinationView {
 
             rowFields(label: .medEditForm,
                       detailValues: [MedDefault.Sensible.form],
-                      binding: $form.onChange(update))
+                      binding: $viewModel.form.onChange(viewModel.update))
 
             rowFields(label: .medEditRemaining,
                       detailValues: [MedDefault.Sensible.medRemaining()],
-                      binding: $remaining.onChange(update),
+                      binding: $viewModel.remaining.onChange(viewModel.update),
                       keyboardType: .numberPad)
         }
     }
@@ -338,7 +284,7 @@ struct MedEditView: View, DestinationView {
             Section {
                 Button(Strings.medEditCopyThisMed.rawValue) {
                     activeAlert = .copied
-                    copy()
+                    viewModel.copyMed()
                     showAlert.toggle()
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -357,26 +303,12 @@ struct MedEditView: View, DestinationView {
 
         _viewModel = StateObject(wrappedValue: viewModel)
 
-        let title = String(MedEditView.navigationTitle(add: add))
-
-        showValue = !add || DataController.useAddScreenDefaults
+        let title = String(viewModel.navigationTitle(add: add))
 
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
             displayMode: .automatic
         )
-
-        _title = State(wrappedValue: showValue ? med.medTitle : "")
-        _defaultAmount = State(wrappedValue: showValue ? med.medDefaultAmount : "")
-        _colour = State(wrappedValue: showValue ? med.medColor : "")
-        _symbol = State(wrappedValue: showValue ? med.medSymbol : "")
-        _dosage = State(wrappedValue: showValue ? med.medDosage : "")
-        _duration = State(wrappedValue: showValue ? med.medDuration : "")
-        _durationGap = State(wrappedValue: showValue ? med.medDurationGap : "")
-        _measure = State(wrappedValue: showValue ? med.medMeasure : "")
-        _form = State(wrappedValue: showValue ? med.medForm : "")
-        _notes = State(wrappedValue: showValue ? med.medNotes : "")
-        _remaining = State(wrappedValue: showValue ? med.medRemaining : "")
     }
 }
 
