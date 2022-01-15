@@ -67,7 +67,7 @@
 		88AB7CA9275E31900055BD9B /* Meds-ArrayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */; };
 		88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */; };
 		88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAC275E83D60055BD9B /* PopUpView.swift */; };
-		88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAE275E87340055BD9B /* MedSortView.swift */; };
+		88AB7CAF275E87340055BD9B /* MedSortPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CAE275E87340055BD9B /* MedSortPopupView.swift */; };
 		88AB7CB3275F68260055BD9B /* Sequence-Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */; };
 		88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */; };
 		88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB6275F7BE60055BD9B /* MedAddView.swift */; };
@@ -78,6 +78,8 @@
 		88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E82279026E600DD74FC /* InfoPopupView.swift */; };
 		88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E872791704F00DD74FC /* MedEditViewModel.swift */; };
 		88B53E8E279187AB00DD74FC /* ValidatedPropertyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */; };
+		88B53E922793079900DD74FC /* DurationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E912793079900DD74FC /* DurationPopupView.swift */; };
+		88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9427930CAF00DD74FC /* DurationPicker.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -183,7 +185,7 @@
 		88AB7CA8275E31900055BD9B /* Meds-ArrayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meds-ArrayHelpers.swift"; sourceTree = "<group>"; };
 		88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBorderView.swift; sourceTree = "<group>"; };
 		88AB7CAC275E83D60055BD9B /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
-		88AB7CAE275E87340055BD9B /* MedSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSortView.swift; sourceTree = "<group>"; };
+		88AB7CAE275E87340055BD9B /* MedSortPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSortPopupView.swift; sourceTree = "<group>"; };
 		88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence-Sorting.swift"; sourceTree = "<group>"; };
 		88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		88AB7CB6275F7BE60055BD9B /* MedAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAddView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,8 @@
 		88AB7CC0275FB3150055BD9B /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		88B53E82279026E600DD74FC /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
 		88B53E872791704F00DD74FC /* MedEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditViewModel.swift; sourceTree = "<group>"; };
+		88B53E912793079900DD74FC /* DurationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPopupView.swift; sourceTree = "<group>"; };
+		88B53E9427930CAF00DD74FC /* DurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
@@ -354,7 +358,7 @@
 				88AB7CB6275F7BE60055BD9B /* MedAddView.swift */,
 				88EF20362753B215006037CF /* MedEditView.swift */,
 				88B53E872791704F00DD74FC /* MedEditViewModel.swift */,
-				88AB7CAE275E87340055BD9B /* MedSortView.swift */,
+				88AB7CAE275E87340055BD9B /* MedSortPopupView.swift */,
 				88B6E8342754D84700790A14 /* MedsView.swift */,
 				8852BF462786063D000750FB /* MedsViewModel.swift */,
 			);
@@ -372,16 +376,16 @@
 		8848D46327789CCC00F10DC9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				88B53E932793084100DD74FC /* Popups */,
 				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
 				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
-				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
+				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
-				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
@@ -475,6 +479,16 @@
 				880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		88B53E932793084100DD74FC /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				88B53E912793079900DD74FC /* DurationPopupView.swift */,
+				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
+				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
+			);
+			path = Popups;
 			sourceTree = "<group>";
 		};
 		88C74D02277B649D002B2EC6 /* Fixtures */ = {
@@ -718,6 +732,7 @@
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,
+				88B53E922793079900DD74FC /* DurationPopupView.swift in Sources */,
 				889C42D92781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift in Sources */,
 				88572055275139DD00B4B00C /* DataController.swift in Sources */,
 				881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */,
@@ -734,12 +749,13 @@
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
-				88AB7CAF275E87340055BD9B /* MedSortView.swift in Sources */,
+				88AB7CAF275E87340055BD9B /* MedSortPopupView.swift in Sources */,
 				88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */,
 				8852BF472786063D000750FB /* MedsViewModel.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
 				88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */,
+				88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */,
 				88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */,
 				8848D4722778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift in Sources */,
 				889A4D0227764BC500E3B53B /* ChevronRightView.swift in Sources */,

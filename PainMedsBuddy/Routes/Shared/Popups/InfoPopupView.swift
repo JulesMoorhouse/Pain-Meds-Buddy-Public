@@ -24,7 +24,8 @@ struct InfoPopupView: View {
                 Image(systemName: SFSymbol.xMark.systemName)
                     .font(.headline)
             })
-        })
+        },
+        bottomButton: {})
     }
 }
 

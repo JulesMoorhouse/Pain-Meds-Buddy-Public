@@ -79,7 +79,7 @@ extension Dose: Comparable {
         if elapsed == false {
             if let date = doseElapsedDate {
                 let nowDate = Date()
-                return Int(date.timeIntervalSince(nowDate)).secondsToTime
+                return Int(date.timeIntervalSince(nowDate)).secondsToTimeHMS
             }
         }
         return "0"

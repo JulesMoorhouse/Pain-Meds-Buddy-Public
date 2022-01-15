@@ -21,8 +21,8 @@ extension MedEditView {
         @Published var colour: String
         @Published var symbol: String
         @Published var dosage: String
-        @Published var durationDate: Date
-        @Published var durationGapDate: Date
+        @Published var durationDate: Int
+        @Published var durationGapDate: Int
         @Published var measure: String
         @Published var form: String
         @Published var notes: String
@@ -41,8 +41,8 @@ extension MedEditView {
             colour = showValue ? med.medColor : ""
             symbol = showValue ? med.medSymbol : ""
             dosage = showValue ? med.medDosage : ""
-            durationDate = showValue ? Int(med.durationSeconds).secondsToDate : Date().date1970
-            durationGapDate = showValue ? Int(med.durationGapSeconds).secondsToDate : Date().date1970
+            durationDate = showValue ? Int(med.durationSeconds) : 0
+            durationGapDate = showValue ? Int(med.durationGapSeconds) : 0
             measure = showValue ? med.medMeasure : ""
             form = showValue ? med.medForm : ""
             notes = showValue ? med.medNotes : ""
@@ -61,8 +61,8 @@ extension MedEditView {
             med.color = colour
             med.symbol = symbol
             med.dosage = NSDecimalNumber(string: dosage)
-            med.durationSeconds = Int16(durationDate.dateToSeconds)
-            med.durationGapSeconds = Int16(durationGapDate.dateToSeconds)
+            med.durationSeconds = Int16(durationDate)
+            med.durationGapSeconds = Int16(durationGapDate)
             med.measure = measure
             med.form = form
             med.notes = notes

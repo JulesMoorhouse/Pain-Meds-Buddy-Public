@@ -14,7 +14,7 @@ enum ActiveAlert {
 }
 
 enum ActivePopup {
-    case durationGapInfo, hiddenTitle
+    case durationGapInfo, hiddenTitle, durationPicker, durationGapPicker
 }
 
 struct MedEditView: View, DestinationView {
@@ -91,11 +91,31 @@ struct MedEditView: View, DestinationView {
     }
 
     func popupOption() -> some View {
-        switch activePopup {
-        case .durationGapInfo:
-            return InfoPopupView(showing: $showPopup, text: Strings.medEditGapInfo.rawValue)
-        case .hiddenTitle:
-            return InfoPopupView(showing: $showPopup, text: Strings.medEditHiddenTitle.rawValue)
+        VStack {
+            switch activePopup {
+            case .durationGapInfo:
+                InfoPopupView(
+                    showing: $showPopup,
+                    text: Strings.medEditGapInfo.rawValue
+                )
+            case .hiddenTitle:
+                InfoPopupView(
+                    showing: $showPopup,
+                    text: Strings.medEditHiddenTitle.rawValue
+                )
+            case .durationPicker:
+                DurationPopupView(
+                    title: Strings.medEditDuration.rawValue,
+                    showing: $showPopup,
+                    duration: $viewModel.durationDate
+                )
+            case .durationGapPicker:
+                DurationPopupView(
+                    title: Strings.medEditDurationGap.rawValue,
+                    showing: $showPopup,
+                    duration: $viewModel.durationGapDate
+                )
+            }
         }
     }
 
@@ -186,15 +206,17 @@ struct MedEditView: View, DestinationView {
                       keyboardType: .decimalPad,
                       rightDetail: viewModel.measure)
 
-            rowFieldsDate(
-                label: .medEditDuration,
-                binding: $viewModel.durationDate.onChange(viewModel.update)
-            )
+            rowFieldsDate(label: .medEditDuration,
+                          binding: $viewModel.durationDate.onChange(viewModel.update)) {
+                showPopup = true
+                activePopup = .durationPicker
+            }
 
             ZStack(alignment: .leading) {
                 HStack {
                     Text(.medEditDurationGap)
                         .foregroundColor(Color.clear)
+
                     Button(action: {
                         activePopup = .durationGapInfo
                         showPopup.toggle()
@@ -206,7 +228,10 @@ struct MedEditView: View, DestinationView {
                 .frame(width: .infinity)
 
                 rowFieldsDate(label: .medEditDurationGap,
-                              binding: $viewModel.durationGapDate.onChange(viewModel.update))
+                              binding: $viewModel.durationGapDate.onChange(viewModel.update)) {
+                    showPopup = true
+                    activePopup = .durationGapPicker
+                }
             }
 
             Picker(.medEditMeasure, selection: $viewModel.measure.onChange(viewModel.update)) {
@@ -289,16 +314,21 @@ struct MedEditView: View, DestinationView {
     }
 
     func rowFieldsDate(label: Strings,
-                       binding: Binding<Date>) -> some View
+                       binding: Binding<Int>,
+                       actionButtonClosure: @escaping () -> Void) -> some View
     {
         HStack {
-            DatePicker(
-                label,
-                selection: binding,
-                displayedComponents: [.hourAndMinute]
-            )
-            .foregroundColor(.secondary)
-            .accessibilityIdentifier(label)
+            Text(label)
+                .foregroundColor(.secondary)
+
+            Spacer()
+
+            Button(action: {
+                actionButtonClosure()
+            }, label: {
+                Text("\(binding.wrappedValue.secondsToTimeHM)")
+            })
+                .buttonStyle(BorderlessButtonStyle())
         }
     }
 

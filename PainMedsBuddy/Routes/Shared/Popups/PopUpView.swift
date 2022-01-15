@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
+struct PopUpView<Content: View, RightButton: View, LeftButton: View, BottomButton: View>: View {
     let text: LocalizedStringKey
     @ViewBuilder var content: Content
     @ViewBuilder var rightButton: RightButton
     @ViewBuilder var leftButton: LeftButton
+    @ViewBuilder var bottomButton: BottomButton
 
     var width: CGFloat = 240
     var height: CGFloat = 220
@@ -21,12 +22,14 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
          height: CGFloat = 220,
          @ViewBuilder content: () -> Content,
          @ViewBuilder leftButton: () -> LeftButton,
-         @ViewBuilder rightButton: () -> RightButton)
+         @ViewBuilder rightButton: () -> RightButton,
+         @ViewBuilder bottomButton: () -> BottomButton)
     {
         self.text = text
         self.content = content()
         self.leftButton = leftButton()
         self.rightButton = rightButton()
+        self.bottomButton = bottomButton()
         self.width = width
         self.height = height
     }
@@ -69,6 +72,12 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View>: View {
 
                 Spacer()
                     .frame(height: 5)
+
+                if let bottomButton = bottomButton {
+                    bottomButton
+                    Spacer()
+                        .frame(height: 5)
+                }
             }
             .padding()
             .frame(width: width) // , height: height)
@@ -91,6 +100,10 @@ struct PopUpView_Previews: PreviewProvider {
         }, rightButton: {
             Button(action: /*@START_MENU_TOKEN@*/ {}/*@END_MENU_TOKEN@*/, label: {
                 Text("Add")
+            })
+        }, bottomButton: {
+            Button(action: /*@START_MENU_TOKEN@*/ {}/*@END_MENU_TOKEN@*/, label: {
+                Text("OK")
             })
         })
     }

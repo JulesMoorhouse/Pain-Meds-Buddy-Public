@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MedSortView: View {
+struct MedSortPopupView: View {
     @Binding var sortOrder: Med.SortOrder
     @Binding var showingSortOrder: Bool
 
@@ -19,8 +19,8 @@ struct MedSortView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortOptimised.rawValue)
             })
-            .disabled(sortOrder == .optimised)
-            .padding(.bottom, 5)
+                .disabled(sortOrder == .optimised)
+                .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .creationDate
@@ -28,8 +28,8 @@ struct MedSortView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortCreatedDate.rawValue)
             })
-            .disabled(sortOrder == .creationDate)
-            .padding(.bottom, 5)
+                .disabled(sortOrder == .creationDate)
+                .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .title
@@ -37,7 +37,7 @@ struct MedSortView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortTitle.rawValue)
             })
-            .disabled(sortOrder == .title)
+                .disabled(sortOrder == .title)
         },
         leftButton: {},
         rightButton: {
@@ -47,12 +47,13 @@ struct MedSortView: View {
                 Image(systemName: SFSymbol.xMark.systemName)
                     .font(.headline)
             })
-        })
+        },
+        bottomButton: {})
     }
 }
 
-struct MedSortView_Previews: PreviewProvider {
+struct MedSortPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        MedSortView(sortOrder: .constant(Med.SortOrder.optimised), showingSortOrder: .constant(false))
+        MedSortPopupView(sortOrder: .constant(Med.SortOrder.optimised), showingSortOrder: .constant(false))
     }
 }
