@@ -65,8 +65,8 @@ struct MedDefault {
         med.defaultAmount = MedDefault.defaultAmount
         med.lastTakenDate = MedDefault.lastTakeDate
         med.creationDate = MedDefault.createdDate
-        med.duration = MedDefault.duration
-        med.durationGap = MedDefault.durationGap
+        med.durationSeconds = MedDefault.duration
+        med.durationGapSeconds = MedDefault.durationGap
         med.dosage = MedDefault.dosage
         med.remaining = MedDefault.remaining
         med.measure = "\(MedDefault.measure)"
@@ -82,8 +82,8 @@ struct MedDefault {
         med.defaultAmount = MedDefault.Sensible.defaultAmount
         med.lastTakenDate = MedDefault.Sensible.lastTakeDate
         med.creationDate = MedDefault.Sensible.createdDate
-        med.duration = MedDefault.Sensible.duration
-        med.durationGap = MedDefault.Sensible.durationGap
+        med.durationSeconds = MedDefault.Sensible.duration
+        med.durationGapSeconds = MedDefault.Sensible.durationGap
         med.dosage = MedDefault.Sensible.dosage
         med.remaining = MedDefault.Sensible.remaining
         med.measure = "\(MedDefault.Sensible.measure)"

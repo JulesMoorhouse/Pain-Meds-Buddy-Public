@@ -24,9 +24,13 @@ struct DoseEditView: View, DestinationView {
     var body: some View {
         Form {
             Section(header: Text(.commonBasicSettings)) {
-                DatePicker(.doseEditDateTime, selection: $viewModel.takenDate.onChange(viewModel.update))
-                    .foregroundColor(.secondary)
-                    .accessibilityIdentifier(.doseEditDateTime)
+                DatePicker(
+                    .doseEditDateTime,
+                    selection: $viewModel.takenDate.onChange(viewModel.update),
+                    displayedComponents: [.hourAndMinute, .date]
+                )
+                .foregroundColor(.secondary)
+                .accessibilityIdentifier(.doseEditDateTime)
 
                 Button(action: {
                     navigation.pushView(
@@ -135,7 +139,8 @@ struct DoseEditView_Previews: PreviewProvider {
         DoseEditView(
             dataController: dataController,
             dose: Dose.example,
-            add: false)
-            .environmentObject(dataController)
+            add: false
+        )
+        .environmentObject(dataController)
     }
 }

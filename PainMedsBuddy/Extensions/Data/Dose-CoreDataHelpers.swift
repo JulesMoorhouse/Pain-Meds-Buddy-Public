@@ -21,7 +21,7 @@ extension Dose: Comparable {
     }
 
     var doseTotalTimeSeconds: Int {
-        Int(med?.duration ?? MedDefault.duration) + Int(med?.durationGap ?? MedDefault.durationGap)
+        Int(med?.durationSeconds ?? MedDefault.duration) + Int(med?.durationGapSeconds ?? MedDefault.durationGap)
     }
 
     var doseElapsedSeconds: Int {

@@ -76,8 +76,8 @@
 		88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CBE275FB2360055BD9B /* Symbol.swift */; };
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
 		88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E82279026E600DD74FC /* InfoPopupView.swift */; };
-		88B53E862791671800DD74FC /* ValidatedPropertyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E852791671800DD74FC /* ValidatedPropertyKit */; };
 		88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E872791704F00DD74FC /* MedEditViewModel.swift */; };
+		88B53E8E279187AB00DD74FC /* ValidatedPropertyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -225,7 +225,7 @@
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
-				88B53E862791671800DD74FC /* ValidatedPropertyKit in Frameworks */,
+				88B53E8E279187AB00DD74FC /* ValidatedPropertyKit in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 				889A4D00277622A000E3B53B /* XNavigation in Frameworks */,
 			);
@@ -531,7 +531,7 @@
 				88E9309D2760A4B900A98708 /* AckGenUI */,
 				889A4CFF277622A000E3B53B /* XNavigation */,
 				88E705DA27872E73003EB471 /* CircularProgress */,
-				88B53E852791671800DD74FC /* ValidatedPropertyKit */,
+				88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -608,7 +608,7 @@
 				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
 				889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */,
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
-				88B53E842791671800DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
+				88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -1104,7 +1104,7 @@
 				minimumVersion = 0.1.1;
 			};
 		};
-		88B53E842791671800DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */ = {
+		88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SvenTiigi/ValidatedPropertyKit.git";
 			requirement = {
@@ -1136,9 +1136,9 @@
 			package = 889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */;
 			productName = XNavigation;
 		};
-		88B53E852791671800DD74FC /* ValidatedPropertyKit */ = {
+		88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88B53E842791671800DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
+			package = 88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
 			productName = ValidatedPropertyKit;
 		};
 		88E705DA27872E73003EB471 /* CircularProgress */ = {

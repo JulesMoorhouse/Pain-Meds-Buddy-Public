@@ -15,4 +15,10 @@ extension Int {
         let str = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
         return str
     }
+
+    var secondsToDate: Date {
+        let epochTime = TimeInterval(self)
+        let date = Date(timeIntervalSince1970: epochTime)
+        return date
+    }
 }

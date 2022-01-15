@@ -241,8 +241,8 @@ class DataController: ObservableObject {
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = Int16.random(in: 0 ... 99)
-            med.duration = drug.duration
-            med.durationGap = Int16("00:20:00".timeToSeconds)
+            med.durationSeconds = drug.duration
+            med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
             med.creationDate = createdDate
 
             let nextDate = nextAvailableDate(drug: drug)

@@ -37,8 +37,6 @@ struct MedEditView: View, DestinationView {
         GridItem(.adaptive(minimum: 44)),
     ]
 
-    var hasRelationship = false
-
     var body: some View {
         ZStack {
             Form {
@@ -153,7 +151,7 @@ struct MedEditView: View, DestinationView {
     func basicSettingsFields() -> some View {
         Group {
             HStack {
-                if hasRelationship {
+                if viewModel.hasRelationship {
                     Text($viewModel.title.wrappedValue)
                         .foregroundColor(.secondary)
                         .accessibilityIdentifier(.medEditTitleLabelAID)
@@ -179,23 +177,36 @@ struct MedEditView: View, DestinationView {
             rowFields(label: .medEditDefaultAmount,
                       detailValues: [MedDefault.Sensible.medDefaultAmount()],
                       binding: $viewModel.defaultAmount.onChange(viewModel.update),
-                      keyboardType: .decimalPad)
+                      keyboardType: .decimalPad,
+                      rightDetail: viewModel.form)
 
             rowFields(label: .commonDosage,
                       detailValues: [MedDefault.Sensible.medDosage()],
                       binding: $viewModel.dosage.onChange(viewModel.update),
-                      keyboardType: .decimalPad)
+                      keyboardType: .decimalPad,
+                      rightDetail: viewModel.measure)
 
-            rowFields(label: .medEditDuration,
-                      detailValues: [MedDefault.Sensible.medDuration()],
-                      binding: $viewModel.duration.onChange(viewModel.update))
+            rowFieldsDate(
+                label: .medEditDuration,
+                binding: $viewModel.durationDate.onChange(viewModel.update)
+            )
 
-            rowInfoFields(label: .medEditDurationGap,
-                          detailValues: [MedDefault.Sensible.medDurationGap()],
-                          binding: $viewModel.durationGap.onChange(viewModel.update),
-                          keyboardType: .default) {
-                activePopup = .durationGapInfo
-                showPopup.toggle()
+            ZStack(alignment: .leading) {
+                HStack {
+                    Text(.medEditDurationGap)
+                        .foregroundColor(Color.clear)
+                    Button(action: {
+                        activePopup = .durationGapInfo
+                        showPopup.toggle()
+                    }, label: {
+                        Image(systemName: SFSymbol.infoCircle.systemName)
+                    })
+                        .buttonStyle(BorderlessButtonStyle())
+                }
+                .frame(width: .infinity)
+
+                rowFieldsDate(label: .medEditDurationGap,
+                              binding: $viewModel.durationGapDate.onChange(viewModel.update))
             }
 
             Picker(.medEditMeasure, selection: $viewModel.measure.onChange(viewModel.update)) {
@@ -214,7 +225,8 @@ struct MedEditView: View, DestinationView {
             rowFields(label: .medEditRemaining,
                       detailValues: [MedDefault.Sensible.medRemaining()],
                       binding: $viewModel.remaining.onChange(viewModel.update),
-                      keyboardType: .numberPad)
+                      keyboardType: .numberPad,
+                      rightDetail: viewModel.form)
         }
     }
 
@@ -250,7 +262,8 @@ struct MedEditView: View, DestinationView {
     func rowFields(label: Strings,
                    detailValues: [String],
                    binding: Binding<String>,
-                   keyboardType: UIKeyboardType = .default) -> some View
+                   keyboardType: UIKeyboardType = .default,
+                   rightDetail: String? = nil) -> some View
     {
         HStack {
             Text(label)
@@ -265,6 +278,27 @@ struct MedEditView: View, DestinationView {
                 .multilineTextAlignment(.trailing)
                 .accessibilityIdentifier(label)
                 .textFieldStyle(SelectAllTextFieldStyle())
+
+            if let rightDetail = rightDetail {
+                Spacer()
+                    .frame(width: 5)
+                Text(rightDetail)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+
+    func rowFieldsDate(label: Strings,
+                       binding: Binding<Date>) -> some View
+    {
+        HStack {
+            DatePicker(
+                label,
+                selection: binding,
+                displayedComponents: [.hourAndMinute]
+            )
+            .foregroundColor(.secondary)
+            .accessibilityIdentifier(label)
         }
     }
 
@@ -272,7 +306,7 @@ struct MedEditView: View, DestinationView {
         Group {
             Section {
                 Button(Strings.medEditDeleteThisMed.rawValue) {
-                    canDelete = hasRelationship == false
+                    canDelete = viewModel.hasRelationship == false
                     activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
                     showAlert.toggle()
                 }

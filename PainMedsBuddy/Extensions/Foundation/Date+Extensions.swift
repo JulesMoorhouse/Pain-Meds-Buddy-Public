@@ -31,6 +31,17 @@ extension Date {
         dayAfter.month != month
     }
 
+    var date1970: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let date = formatter.date(from: "1970/01/01 00:00:0")!
+        return date
+    }
+
+    var dateToSeconds: Int {
+        return Int(self.timeIntervalSince1970)
+    }
+
     func adding(seconds: Int) -> Date {
         return Calendar.current.date(byAdding: .second, value: seconds, to: self)!
     }

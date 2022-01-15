@@ -75,11 +75,11 @@ extension Med: MedProtocol {
     }
 
     var medDuration: String {
-        "\(String(describing: duration))"
+        "\(String(describing: durationSeconds))"
     }
 
     var medDurationGap: String {
-        "\(String(describing: durationGap))"
+        "\(String(describing: durationGapSeconds))"
     }
 
     var medForm: String {
@@ -126,20 +126,20 @@ extension Med: MedProtocol {
     }
 
     var medDurationToTime: [Int] {
-        let hours = Int(duration / 60)
-        let minutes = Int(duration % 60)
+        let hours = Int(durationSeconds / 60) / 60
+        let minutes = Int(durationSeconds / 60)
         return [hours, minutes]
     }
 
     var medDurationGapToTime: [Int] {
-        let hours = Int(durationGap / 60)
-        let minutes = Int(durationGap % 60)
+        let hours = Int(durationGapSeconds / 60) / 60
+        let minutes = Int(durationGapSeconds / 60)
         return [hours, minutes]
     }
 
     var medTotalDurationToTime: [Int] {
-        let hours = Int((duration + durationGap) / 60)
-        let minutes = Int((duration + durationGap) % 60)
+        let hours = Int((durationSeconds + durationGapSeconds) / 60) / 60
+        let minutes = Int((durationSeconds + durationGapSeconds) / 60)
         return [hours, minutes]
     }
 
@@ -153,7 +153,7 @@ extension Med: MedProtocol {
 
     /// Return the total time the medication is effective / duration plus any gap
     var medTotalDuration: Int {
-        Int(duration) + Int(durationGap)
+        Int(durationSeconds) + Int(durationGapSeconds)
     }
 
     static var example: Med {
@@ -166,8 +166,8 @@ extension Med: MedProtocol {
         med.defaultAmount = 1
         med.color = Med.colours.randomElement()
         med.dosage = 300
-        med.duration = 240
-        med.durationGap = 0
+        med.durationSeconds = (60 * 4) * 60
+        med.durationGapSeconds = 0
         med.measure = "mg"
         med.form = "Pill"
         med.remaining = 99
