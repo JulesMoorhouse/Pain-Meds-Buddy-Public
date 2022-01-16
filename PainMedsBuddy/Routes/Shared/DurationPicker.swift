@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DurationPicker: UIViewRepresentable {
-    @Binding var duration: Int
+    @Binding var duration: String
 
     func makeUIView(context: Context) -> UIDatePicker {
         let datePicker = UIDatePicker()
@@ -21,7 +21,7 @@ struct DurationPicker: UIViewRepresentable {
     }
 
     func updateUIView(_ datePicker: UIDatePicker, context: Context) {
-        datePicker.countDownDuration = TimeInterval(duration)
+        datePicker.countDownDuration = TimeInterval(Int(duration) ?? 0)
     }
 
     func makeCoordinator() -> Coordinator {
@@ -36,13 +36,13 @@ struct DurationPicker: UIViewRepresentable {
         }
 
         @objc func updateDuration(datePicker: UIDatePicker) {
-            parent.duration = Int(datePicker.countDownDuration)
+            parent.duration = "\(Int(datePicker.countDownDuration))"
         }
     }
 }
 
 struct DurationPicker_Previews: PreviewProvider {
     static var previews: some View {
-        DurationPicker(duration: .constant(30))
+        DurationPicker(duration: .constant("30"))
     }
 }

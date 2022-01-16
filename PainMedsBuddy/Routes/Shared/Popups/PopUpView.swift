@@ -83,6 +83,7 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View, BottomButto
             .frame(width: width) // , height: height)
             .panelled(cornerRadius: 20)
         }
+        .dismissKeyboardOnTap()
         .edgesIgnoringSafeArea(.all)
     }
 }

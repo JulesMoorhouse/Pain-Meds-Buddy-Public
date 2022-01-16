@@ -14,7 +14,7 @@ extension HomeView {
         private let medsController: NSFetchedResultsController<Med>
 
         @Published var doses = [Dose]()
-        @Published var meds = [Med]()
+        private var meds = [Med]()
 
         var canTakeMeds: [Med] {
             if !doses.isEmpty, !meds.isEmpty {

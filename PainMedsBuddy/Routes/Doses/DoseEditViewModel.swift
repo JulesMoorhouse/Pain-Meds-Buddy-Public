@@ -10,7 +10,7 @@ import Foundation
 
 extension DoseEditView {
     class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-        let dose: Dose
+        private let dose: Dose
         let add: Bool
 
         @Published var selectedMed: Med
@@ -20,7 +20,7 @@ extension DoseEditView {
         private let dataController: DataController
 
         private let medsController: NSFetchedResultsController<Med>
-        @Published var meds: [Med] = []
+        private var meds: [Med] = []
 
         init(dataController: DataController, dose: Dose, add: Bool) {
             self.dose = dose

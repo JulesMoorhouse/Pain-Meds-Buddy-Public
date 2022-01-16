@@ -77,9 +77,10 @@
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
 		88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E82279026E600DD74FC /* InfoPopupView.swift */; };
 		88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E872791704F00DD74FC /* MedEditViewModel.swift */; };
-		88B53E8E279187AB00DD74FC /* ValidatedPropertyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */; };
 		88B53E922793079900DD74FC /* DurationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E912793079900DD74FC /* DurationPopupView.swift */; };
 		88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9427930CAF00DD74FC /* DurationPicker.swift */; };
+		88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E9A27940E1400DD74FC /* FormValidator */; };
+		88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -197,6 +198,7 @@
 		88B53E872791704F00DD74FC /* MedEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditViewModel.swift; sourceTree = "<group>"; };
 		88B53E912793079900DD74FC /* DurationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPopupView.swift; sourceTree = "<group>"; };
 		88B53E9427930CAF00DD74FC /* DurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
+		88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DismissKeyboardOnTap-ViewModifier.swift"; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
@@ -226,10 +228,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */,
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
-				88B53E8E279187AB00DD74FC /* ValidatedPropertyKit in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 				889A4D00277622A000E3B53B /* XNavigation in Frameworks */,
 			);
@@ -476,6 +478,7 @@
 				889C42D62781AD26003B6ED2 /* NavigationBarAccessor.swift */,
 				881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */,
 				889C42D82781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift */,
+				88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */,
 				880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */,
 			);
 			path = Modifiers;
@@ -545,7 +548,7 @@
 				88E9309D2760A4B900A98708 /* AckGenUI */,
 				889A4CFF277622A000E3B53B /* XNavigation */,
 				88E705DA27872E73003EB471 /* CircularProgress */,
-				88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */,
+				88B53E9A27940E1400DD74FC /* FormValidator */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -622,7 +625,7 @@
 				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
 				889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */,
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
-				88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
+				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -723,6 +726,7 @@
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
+				88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */,
 				88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */,
 				881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */,
 				88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */,
@@ -1120,12 +1124,12 @@
 				minimumVersion = 0.1.1;
 			};
 		};
-		88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */ = {
+		88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SvenTiigi/ValidatedPropertyKit.git";
+			repositoryURL = "https://github.com/ShabanKamell/SwiftUIFormValidator.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.5;
+				minimumVersion = 0.9.0;
 			};
 		};
 		88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */ = {
@@ -1152,10 +1156,10 @@
 			package = 889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */;
 			productName = XNavigation;
 		};
-		88B53E8D279187AB00DD74FC /* ValidatedPropertyKit */ = {
+		88B53E9A27940E1400DD74FC /* FormValidator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88B53E8C279187AB00DD74FC /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
-			productName = ValidatedPropertyKit;
+			package = 88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */;
+			productName = FormValidator;
 		};
 		88E705DA27872E73003EB471 /* CircularProgress */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -87,6 +87,7 @@ struct DoseEditView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
+        .dismissKeyboardOnTap()
         .onDisappear(perform: viewModel.save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),

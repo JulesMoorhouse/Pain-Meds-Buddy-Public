@@ -18,6 +18,21 @@ extension String {
         return int
     }
 
+    var secondsToTimeHMS: String {
+        let hours = (Int(self) ?? 0) / 3600
+        let minutes = (Int(self) ?? 0) / 60 % 60
+        let seconds = (Int(self) ?? 0) % 60
+        let str = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+        return str
+    }
+
+    var secondsToTimeHM: String {
+        let hours = (Int(self) ?? 0) / 3600
+        let minutes = (Int(self) ?? 0) / 60 % 60
+        let str = String(format: "%02i:%02i", hours, minutes)
+        return str
+    }
+
     func check(in string: String, forAnyIn characters: String) -> Bool {
         // create one character set
         let customSet = CharacterSet(charactersIn: characters)
@@ -48,6 +63,10 @@ extension String {
         }
 
         return output.isEmpty ? nil : output
+    }
+
+    var isNumber: Bool {
+        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 
     init(_ localisedString: Strings, values: [String]) {

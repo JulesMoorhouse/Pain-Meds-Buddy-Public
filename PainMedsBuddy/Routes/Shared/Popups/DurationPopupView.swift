@@ -10,7 +10,7 @@ import SwiftUI
 struct DurationPopupView: View {
     let title: LocalizedStringKey
     @Binding var showing: Bool
-    @Binding var duration: Int
+    @Binding var duration: String
 
     var body: some View {
         PopUpView(
@@ -43,6 +43,6 @@ struct DurationPopupView_Previews: PreviewProvider {
         DurationPopupView(
             title: "DURATION",
             showing: .constant(true),
-            duration: .constant(240))
+            duration: .constant("240"))
     }
 }

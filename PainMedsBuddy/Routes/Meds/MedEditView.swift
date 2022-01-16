@@ -6,6 +6,7 @@
 //
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
+import FormValidator
 import SwiftUI
 import XNavigation
 
@@ -30,12 +31,47 @@ struct MedEditView: View, DestinationView {
     @State private var showPopup = false
     @State private var activePopup: ActivePopup = .durationGapInfo
     @State private var canDelete = false
+    @State private var isSaveDisabled = false
 
     let types = ["mg", "ml", "Tspn"]
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 44)),
     ]
+
+    var backBarButtonItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            HStack {
+                Text("")
+                    .accessibilityHidden(true)
+
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Cancel")
+                })
+            }
+        }
+    }
+
+    var saveBarButtonItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            HStack {
+                Text("")
+                    .accessibilityHidden(true)
+
+                Button(action: {
+                    let valid = viewModel.formValidation.triggerValidation()
+                    if valid {
+                        viewModel.save()
+                    }
+                }, label: {
+                    Text("Save")
+                })
+                // .disabled(isSaveDisabled)
+            }
+        }
+    }
 
     var body: some View {
         ZStack {
@@ -47,7 +83,7 @@ struct MedEditView: View, DestinationView {
                 Section(header: Text(.medEditExampleDosage)) {
                     HStack {
                         Spacer()
-                        Text(viewModel.med.medDisplay)
+                        Text(viewModel.example)
                             .multilineTextAlignment(.trailing)
                             .foregroundColor(.secondary)
                     }
@@ -65,13 +101,13 @@ struct MedEditView: View, DestinationView {
                         .foregroundColor(.secondary)
                     SymbolsView(
                         colour: Color($viewModel.colour.wrappedValue),
-                        selectedSymbol: $viewModel.symbol.onChange(viewModel.update)
+                        selectedSymbol: $viewModel.symbol
                     )
                     .padding(.vertical)
                 }
 
                 Section(header: Text(.medEditNotes)) {
-                    TextEditor(text: $viewModel.notes.onChange(viewModel.update))
+                    TextEditor(text: $viewModel.notes)
                         .frame(minHeight: 50)
                 }
 
@@ -79,7 +115,14 @@ struct MedEditView: View, DestinationView {
             }
             .navigationBarTitle(configuration: navigationBarTitleConfiguration)
             .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
-            .onDisappear(perform: dataController.save)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                backBarButtonItem
+                saveBarButtonItem
+            }
+            .onReceive(viewModel.formValidation.$allValid) { isValid in
+                self.isSaveDisabled = !isValid
+            }
             .alert(isPresented: $showAlert) {
                 alertOption()
             }
@@ -88,6 +131,7 @@ struct MedEditView: View, DestinationView {
                 popupOption()
             }
         }
+        // .dismissKeyboardOnTap()
     }
 
     func popupOption() -> some View {
@@ -156,7 +200,6 @@ struct MedEditView: View, DestinationView {
         }
         .onTapGesture {
             viewModel.colour = item
-            viewModel.update()
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(
@@ -188,26 +231,31 @@ struct MedEditView: View, DestinationView {
                 } else {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
-                              text: $viewModel.title.onChange(viewModel.update))
+                              text: $viewModel.title)
                         .accessibilityIdentifier(.medEditTitleText)
                         .textFieldStyle(SelectAllTextFieldStyle())
+                        .validation(viewModel.titleValidation)
                 }
             }
 
             rowFields(label: .medEditDefaultAmount,
                       detailValues: [MedDefault.Sensible.medDefaultAmount()],
-                      binding: $viewModel.defaultAmount.onChange(viewModel.update),
+                      binding: $viewModel.defaultAmount,
                       keyboardType: .decimalPad,
-                      rightDetail: viewModel.form)
+                      rightDetail: viewModel.form,
+                      validationContainer: viewModel.defaultAmountValidator)
 
             rowFields(label: .commonDosage,
                       detailValues: [MedDefault.Sensible.medDosage()],
-                      binding: $viewModel.dosage.onChange(viewModel.update),
+                      binding: $viewModel.dosage,
                       keyboardType: .decimalPad,
-                      rightDetail: viewModel.measure)
+                      rightDetail: viewModel.measure,
+                      validationContainer: viewModel.dosageValidator)
 
-            rowFieldsDate(label: .medEditDuration,
-                          binding: $viewModel.durationDate.onChange(viewModel.update)) {
+            rowFieldsDate(
+                label: .medEditDuration,
+                binding: $viewModel.durationDate, validationContainer: viewModel.durationDateValidator
+            ) {
                 showPopup = true
                 activePopup = .durationPicker
             }
@@ -227,14 +275,17 @@ struct MedEditView: View, DestinationView {
                 }
                 .frame(width: .infinity)
 
-                rowFieldsDate(label: .medEditDurationGap,
-                              binding: $viewModel.durationGapDate.onChange(viewModel.update)) {
+                rowFieldsDate(
+                    label: .medEditDurationGap,
+                    binding: $viewModel.durationGapDate,
+                    validationContainer: nil
+                ) {
                     showPopup = true
                     activePopup = .durationGapPicker
                 }
             }
 
-            Picker(.medEditMeasure, selection: $viewModel.measure.onChange(viewModel.update)) {
+            Picker(.medEditMeasure, selection: $viewModel.measure) {
                 ForEach(types, id: \.self) {
                     Text($0)
                         .foregroundColor(.primary)
@@ -245,13 +296,15 @@ struct MedEditView: View, DestinationView {
 
             rowFields(label: .medEditForm,
                       detailValues: [MedDefault.Sensible.form],
-                      binding: $viewModel.form.onChange(viewModel.update))
+                      binding: $viewModel.form,
+                      validationContainer: viewModel.formValidator)
 
             rowFields(label: .medEditRemaining,
                       detailValues: [MedDefault.Sensible.medRemaining()],
-                      binding: $viewModel.remaining.onChange(viewModel.update),
+                      binding: $viewModel.remaining,
                       keyboardType: .numberPad,
-                      rightDetail: viewModel.form)
+                      rightDetail: viewModel.form,
+                      validationContainer: viewModel.remainingValidator)
         }
     }
 
@@ -288,33 +341,38 @@ struct MedEditView: View, DestinationView {
                    detailValues: [String],
                    binding: Binding<String>,
                    keyboardType: UIKeyboardType = .default,
-                   rightDetail: String? = nil) -> some View
+                   rightDetail: String? = nil,
+                   validationContainer: ValidationContainer) -> some View
     {
         HStack {
-            Text(label)
-                .foregroundColor(.secondary)
-
-            Spacer()
-
-            TextField(String(.commonEgString,
-                             values: detailValues),
-                      text: binding)
-                .keyboardType(keyboardType)
-                .multilineTextAlignment(.trailing)
-                .accessibilityIdentifier(label)
-                .textFieldStyle(SelectAllTextFieldStyle())
-
-            if let rightDetail = rightDetail {
-                Spacer()
-                    .frame(width: 5)
-                Text(rightDetail)
+            HStack {
+                Text(label)
                     .foregroundColor(.secondary)
+
+                Spacer()
+
+                TextField(String(.commonEgString,
+                                 values: detailValues),
+                          text: binding)
+                    .keyboardType(keyboardType)
+                    .multilineTextAlignment(.trailing)
+                    .accessibilityIdentifier(label)
+                    .textFieldStyle(SelectAllTextFieldStyle())
+
+                if let rightDetail = rightDetail {
+                    Spacer()
+                        .frame(width: 5)
+                    Text(rightDetail)
+                        .foregroundColor(.secondary)
+                }
             }
+            .validation(validationContainer)
         }
     }
 
     func rowFieldsDate(label: Strings,
-                       binding: Binding<Int>,
+                       binding: Binding<String>,
+                       validationContainer: ValidationContainer?,
                        actionButtonClosure: @escaping () -> Void) -> some View
     {
         HStack {
@@ -330,19 +388,24 @@ struct MedEditView: View, DestinationView {
             })
                 .buttonStyle(BorderlessButtonStyle())
         }
+        .if(validationContainer != nil) { view in
+            view.validation(validationContainer!)
+        }
     }
 
     func buttonsSection() -> some View {
         Group {
-            Section {
-                Button(Strings.medEditDeleteThisMed.rawValue) {
-                    canDelete = viewModel.hasRelationship == false
-                    activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
-                    showAlert.toggle()
+            if !viewModel.add {
+                Section {
+                    Button(Strings.medEditDeleteThisMed.rawValue) {
+                        canDelete = viewModel.hasRelationship == false
+                        activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
+                        showAlert.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .accentColor(.red)
+                    .accessibilityIdentifier(.medEditDeleteThisMed)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .accentColor(.red)
-                .accessibilityIdentifier(.medEditDeleteThisMed)
             }
 
             Section {
@@ -353,11 +416,12 @@ struct MedEditView: View, DestinationView {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .accessibilityIdentifier(.medEditCopyThisMed)
+                .disabled(isSaveDisabled)
             }
         }
     }
 
-    init(dataController: DataController, med: Med, add: Bool, hasRelationship: Bool) {
+    init(dataController: DataController, med: Med?, add: Bool, hasRelationship: Bool) {
         let viewModel = ViewModel(
             dataController: dataController,
             med: med,

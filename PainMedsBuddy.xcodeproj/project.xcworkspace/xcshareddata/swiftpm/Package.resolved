@@ -20,12 +20,12 @@
         }
       },
       {
-        "package": "ValidatedPropertyKit",
-        "repositoryURL": "https://github.com/SvenTiigi/ValidatedPropertyKit.git",
+        "package": "SwiftUIFormValidator",
+        "repositoryURL": "https://github.com/ShabanKamell/SwiftUIFormValidator.git",
         "state": {
           "branch": null,
-          "revision": "1fc8adb98ce016700645ef17161c4583a8200cee",
-          "version": "0.0.5"
+          "revision": "1691604ff167a17934252421257b1ce2b1c1a7f7",
+          "version": "0.12.4"
         }
       },
       {
