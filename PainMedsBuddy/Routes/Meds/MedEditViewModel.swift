@@ -37,59 +37,84 @@ extension MedEditView {
             self.formValidation.$validationMessages
         }
 
+        // Validator need to return false to return a red message in the ui
+        // Therefore, the logic must return false if there's a problem
         lazy var titleValidation: ValidationContainer = {
-            $title.inlineValidator(
+            var field = String(.medEditTitle)
+            let message = String(.validationTwoLetters,
+                                 values: [field])
+
+            return $title.inlineValidator(
                 form: formValidation,
-                errorMessage: "Title must have at least 2 letters") { value in
+                errorMessage: message) { value in
                     !value.isEmpty && value.count > 2
             }
         }()
 
         lazy var defaultAmountValidator: ValidationContainer = {
-            $defaultAmount.inlineValidator(
+            var field = String(.medEditDefaultAmount)
+            let message = String(.validationOneOrAbove,
+                                 values: [field])
+
+            return $defaultAmount.inlineValidator(
                 form: formValidation,
-                errorMessage: "Default amount must 1 or above") { value in
-                    !value.isEmpty && !value.isNumber
+                errorMessage: message) { value in
+                    value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 
         lazy var dosageValidator: ValidationContainer = {
-            $dosage.inlineValidator(
+            var field = String(.commonDosage)
+            let message = String(.validationOneOrAbove,
+                                 values: [field])
+
+            return $dosage.inlineValidator(
                 form: formValidation,
-                errorMessage: "Dosage must be 1 or above") { value in
-                    !value.isEmpty && !value.isNumber
+                errorMessage: message) { value in
+                    value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 
         lazy var durationDateValidator: ValidationContainer = {
-            $durationDate.inlineValidator(
+            var field = String(.medEditDuration)
+            let message = String(.validationMustSpecify,
+                                 values: [field])
+
+            return $durationDate.inlineValidator(
                 form: formValidation,
-                errorMessage: "Duration must some hours and minutes") { value in
+                errorMessage: message) { value in
                     Int(value) != 0
             }
         }()
 
         lazy var formValidator: ValidationContainer = {
-            $form.inlineValidator(
+            var field = String(.medEditForm)
+            let message = String(.validationMustEmptySuffixS,
+                                 values: [field])
+
+            return $form.inlineValidator(
                 form: formValidation,
-                errorMessage: "Form must not be empty and end with an 's'") { value in
-                    !value.isEmpty && value.count > 2 && value.hasSuffix("s")
+                errorMessage: message) { value in
+                    !value.isEmpty && value.count > 1 && value.hasSuffix("s")
             }
         }()
 
         lazy var remainingValidator: ValidationContainer = {
-            $remaining.inlineValidator(
+            var field = String(.medEditRemaining)
+            let message = String(.validationOneOrAbove,
+                                 values: [field])
+
+            return $remaining.inlineValidator(
                 form: formValidation,
-                errorMessage: "Remaining must be 1 or above") { value in
-                    !value.isEmpty && !value.isNumber
+                errorMessage: message) { value in
+                    value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 
         var example: String {
-            if let med = med {
-                return med.medDisplay
-            }
-            return ""
+            let amount: Int = defaultAmount.isNumber ? Int(defaultAmount) ?? 0 : 0
+            let dose: Int = dosage.isNumber ? Int(dosage) ?? 0 : 0
+            return "\(amount) x \(dose)\(measure) \(form) = \(amount * dose)\(measure)"
         }
 
         init(dataController: DataController, med: Med?, add: Bool, hasRelationship: Bool) {

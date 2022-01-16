@@ -81,6 +81,7 @@
 		88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9427930CAF00DD74FC /* DurationPicker.swift */; };
 		88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E9A27940E1400DD74FC /* FormValidator */; };
 		88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */; };
+		88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -199,6 +200,7 @@
 		88B53E912793079900DD74FC /* DurationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPopupView.swift; sourceTree = "<group>"; };
 		88B53E9427930CAF00DD74FC /* DurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
 		88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DismissKeyboardOnTap-ViewModifier.swift"; sourceTree = "<group>"; };
+		88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
+				88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */,
 				881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */,
 				886C30BD2763913B002A45B1 /* Int+Extensions.swift */,
 				88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */,
@@ -752,6 +755,7 @@
 				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
+				88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */,
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortPopupView.swift in Sources */,
 				88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */,

@@ -48,7 +48,10 @@ struct MedEditView: View, DestinationView {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Text("Cancel")
+                    Text(.commonCancel)
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.commonCancel)
                 })
             }
         }
@@ -64,11 +67,14 @@ struct MedEditView: View, DestinationView {
                     let valid = viewModel.formValidation.triggerValidation()
                     if valid {
                         viewModel.save()
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }, label: {
-                    Text("Save")
+                    Text(.commonSave)
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.commonSave)
                 })
-                // .disabled(isSaveDisabled)
             }
         }
     }
@@ -123,6 +129,7 @@ struct MedEditView: View, DestinationView {
             .onReceive(viewModel.formValidation.$allValid) { isValid in
                 self.isSaveDisabled = !isValid
             }
+            .onReceive(viewModel.formValidation.$validationMessages) { messages in print(messages) }
             .alert(isPresented: $showAlert) {
                 alertOption()
             }
@@ -131,7 +138,6 @@ struct MedEditView: View, DestinationView {
                 popupOption()
             }
         }
-        // .dismissKeyboardOnTap()
     }
 
     func popupOption() -> some View {
@@ -153,12 +159,16 @@ struct MedEditView: View, DestinationView {
                     showing: $showPopup,
                     duration: $viewModel.durationDate
                 )
+                .onAppear { UIApplication.endEditing() }
+                .onTapGesture { UIApplication.endEditing() }
             case .durationGapPicker:
                 DurationPopupView(
                     title: Strings.medEditDurationGap.rawValue,
                     showing: $showPopup,
                     duration: $viewModel.durationGapDate
                 )
+                .onAppear { UIApplication.endEditing() }
+                .onTapGesture { UIApplication.endEditing() }
             }
         }
     }
