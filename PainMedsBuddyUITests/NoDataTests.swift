@@ -40,8 +40,11 @@ class NoDataUITests: XCTestCase {
             // When
             BasicAction.tapMedicationTabAddButton(app)
 
-            // Back button tap on add med screen
-            BasicAction.tapBackButton(app)
+            // Add details
+            // xxx
+
+            // Save button tap on add med screen
+            BasicAction.tapAddDoseSaveButton(app)
 
             // Confirm on medications screen
             _ = Elements.navBarMedications(app, performTest: false)
@@ -55,37 +58,6 @@ class NoDataUITests: XCTestCase {
                 "There should be \(addCount) list rows initially."
             )
         }
-    }
-
-    func testAddDose() {
-        // --- Should use datafile or data generation / not part of test ---
-        // Given - One medication is required
-        BasicAction.tapTabMedications(app)
-        BasicAction.tapMedicationTabAddButton(app)
-        BasicAction.tapBackButton(app)
-        _ = Elements.navBarMedications(app, performTest: false)
-        BasicAction.tapTabInProgress(app)
-        // --- Should use datafile or data generation / not part of test ---
-
-        // Given
-        // Add a basic dose
-        BasicAction.tapInProgressAddButton(app)
-
-        // Back button tap on add dose screen
-        BasicAction.tapBackButton(app)
-
-        // Confirm on in progress screen
-        _ = Elements.navBarInProgress(app, performTest: false)
-
-        // When
-        let rowCount = app.tables.cells.count
-
-        // Then
-        XCTAssertEqual(
-            rowCount,
-            1,
-            "There should be 1 list rows initially."
-        )
     }
 
     func testEmptyHistory() {
@@ -173,37 +145,6 @@ class NoDataUITests: XCTestCase {
             button.exists,
             "Medications add button not found"
         )
-    }
-
-    func testEditMed() {
-        // --- Should specific example data not part of test ---
-        BasicAction.tapTabMedications(app)
-        BasicAction.tapMedicationTabAddButton(app)
-        BasicAction.tapBackButton(app)
-        // --- Should specific example data not part of test ---
-
-        // Given
-        // tap newly added item on medications list
-        app.buttons[Strings.homeAccessibilityIconRemaining.automatedId()].tap()
-
-        app.textFields[Strings.medEditTitleText.automatedId()].tap()
-
-        // When
-        app.keys["space"].tap()
-
-        if UIDevice.current.userInterfaceIdiom != .pad {
-            app.keys["more"].tap()
-        }
-        app.keys["2"].tap()
-        app.buttons["Return"].tap()
-
-        BasicAction.tapBackButton(app)
-
-        // Then
-        let predicate = NSPredicate(format: "label CONTAINS 'New Medication 2'")
-        let element = app.buttons.element(matching: predicate)
-
-        XCTAssertTrue(element.exists, "The edited medication should be visible in the list.")
     }
 
     func testSettingsHasAcknowledgements() {

@@ -123,6 +123,19 @@ class Elements: XCTestCase {
         return addDoseScreen
     }
 
+    static func navBarEditDose(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.doseEditEditDose.automatedId()
+        let editDoseScreen = app.navigationBars[titleId]
+        _ = editDoseScreen.waitForExistence(timeout: 1)
+
+        XCTAssertTrue(
+            editDoseScreen.exists,
+            "\(titleId) navigation bar not found"
+        )
+
+        return editDoseScreen
+    }
+
     static func navBarAddMed(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.medEditAddMed.automatedId()
         let addMedScreen = app.navigationBars[titleId]
@@ -134,6 +147,19 @@ class Elements: XCTestCase {
         )
 
         return addMedScreen
+    }
+
+    static func navBarEditMed(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.medEditEditMed.automatedId()
+        let editMedScreen = app.navigationBars[titleId]
+        _ = editMedScreen.waitForExistence(timeout: 1)
+
+        XCTAssertTrue(
+            editMedScreen.exists,
+            "\(titleId) navigation bar not found"
+        )
+
+        return editMedScreen
     }
 
     // ---- Screens ----

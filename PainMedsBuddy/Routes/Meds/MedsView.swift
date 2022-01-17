@@ -53,7 +53,8 @@ struct MedsView: View {
                     .accessibilityHidden(true)
                 Button(action: {
                     navigation.pushView(
-                        MedAddView(),
+                        MedAddView()
+                            .environmentObject(dataController),
                         animated: true
                     )
                 }, label: {

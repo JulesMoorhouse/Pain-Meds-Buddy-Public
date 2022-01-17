@@ -42,7 +42,7 @@ class ExistingDataTests: XCTestCase {
         app.keys["2"].tap()
         app.keys["9"].tap()
 
-        BasicAction.tapBackButton(app)
+        BasicAction.tapEditDoseSaveButton(app)
 
         // Then
         let predicate = NSPredicate(format: "label CONTAINS '29'")

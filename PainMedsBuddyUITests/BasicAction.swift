@@ -37,7 +37,7 @@ class BasicAction: XCTestCase {
         _ = Elements.navBarInProgress(app)
     }
 
-    static func tapTabMedications(_ app: XCUIApplication) {
+    static func tapTabMedications(_ app: XCUIApplication) { 
         let tab = Elements.tabMedications(app)
         tab.tap()
 
@@ -76,5 +76,45 @@ class BasicAction: XCTestCase {
 
         // Confirm on add dose screen
         _ = Elements.navBarAddDose(app)
+    }
+
+    static func tapAddDoseSaveButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarAddDose(app)
+        navBar.buttons[Strings.commonSave.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarInProgress(app)
+    }
+
+    static func tapEditDoseSaveButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarEditDose(app)
+        navBar.buttons[Strings.commonSave.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarInProgress(app)
+    }
+
+    static func tapEditDoseCancelButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarEditMed(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarInProgress(app)
+    }
+
+    static func tapEditMedSaveButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarEditMed(app)
+        navBar.buttons[Strings.commonSave.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarMedications(app)
+    }
+
+    static func tapAddEditMedCancelButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarAddMed(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarMedications(app)
     }
 }

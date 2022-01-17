@@ -82,6 +82,7 @@
 		88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E9A27940E1400DD74FC /* FormValidator */; };
 		88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */; };
 		88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */; };
+		88B53EA12795931A00DD74FC /* OneMedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53EA02795931A00DD74FC /* OneMedTests.swift */; };
 		88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8322754CDE500790A14 /* Binding-OnChange.swift */; };
 		88B6E8352754D84700790A14 /* MedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6E8342754D84700790A14 /* MedsView.swift */; };
 		88C74D04277B64DC002B2EC6 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */; };
@@ -201,6 +202,7 @@
 		88B53E9427930CAF00DD74FC /* DurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
 		88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DismissKeyboardOnTap-ViewModifier.swift"; sourceTree = "<group>"; };
 		88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		88B53EA02795931A00DD74FC /* OneMedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMedTests.swift; sourceTree = "<group>"; };
 		88B6E8322754CDE500790A14 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		88B6E8342754D84700790A14 /* MedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsView.swift; sourceTree = "<group>"; };
 		88C74D03277B64DC002B2EC6 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */,
 				8809FBD4278384A70058BD6E /* BasicAction.swift */,
 				888FC806278B895A006A3E47 /* NoDataTests.swift */,
+				88B53EA02795931A00DD74FC /* OneMedTests.swift */,
 				88C74D11277BAC88002B2EC6 /* Info.plist */,
 				8809FBD2278309A40058BD6E /* Elements.swift */,
 			);
@@ -815,6 +818,7 @@
 				88DFEA2A2786F93700E3BAFB /* SnapshotHelper.swift in Sources */,
 				888FC807278B895A006A3E47 /* NoDataTests.swift in Sources */,
 				88DFEA2D2786F98100E3BAFB /* SnapshotUITests.swift in Sources */,
+				88B53EA12795931A00DD74FC /* OneMedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
