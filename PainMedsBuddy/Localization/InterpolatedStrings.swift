@@ -9,11 +9,20 @@ import Foundation
 
 struct InterpolatedStrings {
     static func doseProgressAccessibilityRemaining(dose: Dose, med: Med) -> String {
-        String(.doseProgressAccessibilityRemaining, values: [med.medTitle, dose.doseDisplay, dose.doseCountDownSeconds])
+        String(.doseProgressAccessibilityRemaining,
+               values: [
+                   med.medTitle,
+                   dose.doseDisplay,
+                   dose.doseCountDownSeconds(nowDate: Date()),
+               ])
     }
 
     static func doseProgressAccessibilityAvailable(dose: Dose, med: Med) -> String {
-        String(.doseProgressAccessibilityAvailable, values: [med.medTitle, dose.doseDisplay, dose.doseCountDownSeconds])
+        String(.doseProgressAccessibilityAvailable,
+               values: [
+                med.medTitle,
+                dose.doseDisplay,
+                dose.doseCountDownSeconds(nowDate: Date())])
     }
 
     static func homeAccessibilityIconTaken(dose: Dose, med: Med) -> String {

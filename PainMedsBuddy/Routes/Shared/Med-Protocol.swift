@@ -14,8 +14,8 @@ protocol MedProtocol {
     var medColor: String { get }
     var medSymbol: String { get }
     var medDosage: String { get }
-    var medDuration: String { get }
-    var medDurationGap: String { get }
+    var medDurationSeconds: String { get }
+    var medDurationGapSeconds: String { get }
     var medForm: String { get }
     var medMeasure: String { get }
     var medNotes: String { get }

@@ -83,8 +83,8 @@ struct DoseProgressView: View {
             })
 
             Text(dose.doseShouldHaveElapsed
-                ? dose.doseCountDownSeconds
-                : String(.doseProgressAvailable))
+                ? String(.doseProgressAvailable)
+                : dose.doseCountDownSeconds(nowDate: nowDate))
                 .foregroundColor(.primary)
         }
         .padding(.bottom, 70)
@@ -105,25 +105,24 @@ struct DoseProgressView: View {
             self.timer?.invalidate()
             self.timer = nil
         })
-
-        .disabled(dose.doseShouldHaveElapsed)
+        .disabled(!dose.doseShouldHaveElapsed)
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
-        .accessibilityAddTraits(dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
+        .accessibilityAddTraits(dose.doseShouldHaveElapsed ? .isButton : .isStaticText)
         .accessibilityLabel(accessibilityLabel())
         .accessibilityIdentifier(accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
         dose.doseShouldHaveElapsed
-            ? InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
-            : InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
+            ? InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
+            : InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
     }
 
     func accessibilityIdentifier() -> Strings {
         dose.doseShouldHaveElapsed
-            ? .doseProgressAccessibilityRemaining
-            : .doseProgressAccessibilityAvailable
+            ? .doseProgressAccessibilityAvailable
+            : .doseProgressAccessibilityRemaining
     }
 }
 

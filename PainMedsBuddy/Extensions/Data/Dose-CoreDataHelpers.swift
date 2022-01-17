@@ -21,24 +21,29 @@ extension Dose: Comparable {
     }
 
     var doseTotalTimeSeconds: Int {
-        Int(med?.durationSeconds ?? MedDefault.duration) + Int(med?.durationGapSeconds ?? MedDefault.durationGap)
+        if let med = med {
+            let total = Int(med.durationSeconds) + Int(med.durationGapSeconds)
+            return total
+        }
+        return 0
     }
 
     var doseElapsedSeconds: Int {
         if elapsed == false {
             let nowDate = Date()
-            return Int(nowDate.timeIntervalSince(doseTakenDate))
+            let seconds = Int(nowDate.timeIntervalSince(doseTakenDate))
+            return seconds
         }
         return 0
     }
 
     var doseShouldHaveElapsed: Bool {
-        doseTotalTimeSeconds > doseElapsedSeconds
+        doseElapsedSeconds > doseTotalTimeSeconds
     }
 
     var doseElapsedDate: Date? {
         if elapsed == false {
-            if let duration = med?.medTotalDuration {
+            if let duration = med?.medTotalDurationSeconds {
                 let modifiedDate = doseTakenDate.addingTimeInterval(TimeInterval(duration))
 
                 return modifiedDate
@@ -75,7 +80,7 @@ extension Dose: Comparable {
         return "\(temp)"
     }
 
-    var doseCountDownSeconds: String {
+    func doseCountDownSeconds(nowDate: Date) -> String {
         if elapsed == false {
             if let date = doseElapsedDate {
                 let nowDate = Date()

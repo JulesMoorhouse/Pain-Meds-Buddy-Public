@@ -74,11 +74,11 @@ extension Med: MedProtocol {
         return MedDefault.dosage as Decimal
     }
 
-    var medDuration: String {
+    var medDurationSeconds: String {
         "\(String(describing: durationSeconds))"
     }
 
-    var medDurationGap: String {
+    var medDurationGapSeconds: String {
         "\(String(describing: durationGapSeconds))"
     }
 
@@ -146,13 +146,13 @@ extension Med: MedProtocol {
     var medPredictedNextTimeCanTake: Date {
         // This will not cater for time asleep, will need those times in a setting in future
         if let date = lastTakenDate {
-            return date.adding(seconds: medTotalDuration)
+            return date.adding(seconds: medTotalDurationSeconds)
         }
         return Date()
     }
 
     /// Return the total time the medication is effective / duration plus any gap
-    var medTotalDuration: Int {
+    var medTotalDurationSeconds: Int {
         Int(durationSeconds) + Int(durationGapSeconds)
     }
 

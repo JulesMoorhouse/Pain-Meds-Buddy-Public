@@ -131,8 +131,8 @@ extension MedEditView {
                 colour = med.medColor
                 symbol = med.medSymbol
                 dosage = showValue ? med.medDosage : ""
-                durationDate = showValue ? med.medDuration : "0"
-                durationGapDate = showValue ? med.medDurationGap : "0"
+                durationDate = showValue ? med.medDurationSeconds : "0"
+                durationGapDate = showValue ? med.medDurationGapSeconds : "0"
                 measure = med.medMeasure
                 form = showValue ? med.medForm : ""
                 notes = showValue ? med.medNotes : ""
