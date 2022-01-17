@@ -189,6 +189,7 @@ class DataController: ObservableObject {
         var defAmt: Int16 = 0
         var duration: Int16 = 0
         var lastTakeDate = Date()
+        var hasDose: Bool
     }
 
     func nextAvailableDate(drug: Drug) -> Date {
@@ -214,15 +215,27 @@ class DataController: ObservableObject {
         let tenDaysAgo = Date() - 10
 
         let drugs: [Drug] = [
-            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60),
-            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: (4 * 60) * 60),
-            Drug(name: "Codeine", mGrams: 30, defAmt: 2, duration: (4 * 60) * 60),
+            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60, hasDose: true),
+            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: (4 * 60) * 60, hasDose: true),
+            Drug(name: "Codeine", mGrams: 30, defAmt: 2, duration: (4 * 60) * 60, hasDose: false),
         ]
 
         let maxMeds = appStore ? min(drugs.count, medsRequested) : medsRequested
+
+        // Creates some good dates
+        var dates = [Date]()
+        dates.append(Date())
+        dates.append(tenDaysAgo)
+        let amount = maxMeds - 2
+        if amount > 0 {
+            for _ in 0 ... amount {
+                dates.append(Date.random(in: tenDaysAgo ..< Date()))
+            }
+        }
+
         // Remember totalSampleDoses is the same as totalSampleMeds
         for medIndex in 0 ..< maxMeds {
-            let createdDate = Date.random(in: tenDaysAgo ..< Date())
+            let createdDate = dates[medIndex]
 
             let drug = appStore ? drugs[medIndex] : drugs.randomElement()!
 
@@ -255,18 +268,20 @@ class DataController: ObservableObject {
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.hidden = false
 
-            if medDosesRequired > 0 {
-                for _ in 1 ... medDosesRequired {
-                    let dose = Dose(context: viewContext)
+            if drug.hasDose {
+                if medDosesRequired > 0 {
+                    for index in 1 ... medDosesRequired {
+                        let dose = Dose(context: viewContext)
 
-                    dose.takenDate = med.medPredictedNextTimeCanTake
+                        dose.takenDate = med.medPredictedNextTimeCanTake
 
-                    med.lastTakenDate = dose.takenDate
+                        med.lastTakenDate = dose.takenDate
 
-                    dose.elapsed = Bool.random()
-                    dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
+                        dose.elapsed = index == 1 ? false : Bool.random()
+                        dose.amount = NSDecimalNumber(value: Int16.random(in: 1 ... drug.defAmt))
 
-                    dose.med = med
+                        dose.med = med
+                    }
                 }
             }
         }

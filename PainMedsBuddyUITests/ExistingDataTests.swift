@@ -14,7 +14,7 @@ class ExistingDataTests: XCTestCase {
         continueAfterFailure = false
 
         app = XCUIApplication()
-        app.launchArguments = ["enable-ui-testing", "[2,2]"]
+        app.launchArguments = ["enable-ui-testing", "[5,5]"]
         app.launch()
     }
 
@@ -77,6 +77,7 @@ class ExistingDataTests: XCTestCase {
         BasicAction.tapTabHome(app)
 
         let section = app.otherElements[Strings.homeRecentlyTaken.automatedId()]
+        _ = section.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             section.exists,

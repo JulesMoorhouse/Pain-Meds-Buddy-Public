@@ -6,6 +6,8 @@
 //
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
+// swiftlint:disable type_body_length
+
 import FormValidator
 import SwiftUI
 import XNavigation

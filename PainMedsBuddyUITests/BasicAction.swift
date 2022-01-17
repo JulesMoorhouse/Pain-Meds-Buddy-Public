@@ -117,7 +117,7 @@ class BasicAction: XCTestCase {
         // Confirm on add dose screen
         _ = Elements.navBarMedications(app)
     }
-    
+
     static func tapEditMedCancelButton(_ app: XCUIApplication) {
         let navBar = Elements.navBarEditMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()
@@ -125,7 +125,7 @@ class BasicAction: XCTestCase {
         // Confirm on add dose screen
         _ = Elements.navBarMedications(app)
     }
-    
+
     static func tapAddMedCancelButton(_ app: XCUIApplication) {
         let navBar = Elements.navBarAddMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()

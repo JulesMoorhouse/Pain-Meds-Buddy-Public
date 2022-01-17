@@ -42,7 +42,9 @@ extension HomeView {
             // Construct a fetch request to show all none elapsed doses
             let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
             doseRequest.predicate = NSPredicate(format: "elapsed == false AND med != nil")
-            doseRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)]
+            doseRequest.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
+            ]
 
             dosesController = NSFetchedResultsController(
                 fetchRequest: doseRequest,
@@ -53,8 +55,12 @@ extension HomeView {
 
             // Construct a fetch request to show all none hidden meds
             let medRequest: NSFetchRequest<Med> = Med.fetchRequest()
-            medRequest.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
-            medRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
+            medRequest.predicate = !DataController.useHardDelete
+                ? NSPredicate(format: "hidden = false")
+                : nil
+            medRequest.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)
+            ]
 
             medsController = NSFetchedResultsController(
                 fetchRequest: medRequest,
@@ -77,14 +83,17 @@ extension HomeView {
             }
         }
 
+        // INFO: Get a unique list of medications that don't have currently active doses.
         func getCanTakeMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
+            // INFO: Get unique med doses which have med relationships
             let uniqueDoseMeds = Array(Set(loadedDoses.filter { $0.med != nil }.compactMap(\.med)))
 
-            // INFO" Get unique meds which are currently not elapsed
-            var temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) }
-            temp = temp.sortedItems(using: .lastTaken)
-            let count = temp.isEmpty ? 0 : 3
-            return temp.prefix(count).map { $0 }
+            // INFO: Get a list of meds and don't include those unique meds
+
+            let temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) }
+            let sorted = temp.sortedItems(using: .lastTaken)
+            let count = sorted.isEmpty ? 0 : 3
+            return sorted.prefix(count).map { $0 }
         }
 
         func getLowMeds(loadedMeds: [Med]) -> [Med] {
