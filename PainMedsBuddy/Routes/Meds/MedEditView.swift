@@ -131,7 +131,7 @@ struct MedEditView: View, DestinationView {
             .onReceive(viewModel.formValidation.$allValid) { isValid in
                 self.isSaveDisabled = !isValid
             }
-            .onReceive(viewModel.formValidation.$validationMessages) { messages in print(messages) }
+            .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
             .alert(isPresented: $showAlert) { alertOption() }
 
             if showPopup == true {

@@ -11,12 +11,12 @@ import Foundation
 
 extension DoseEditView {
     class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-        private let dose: Dose
+        private var dose: Dose
         let add: Bool
 
         private let dataController: DataController
 
-        private let medsController: NSFetchedResultsController<Med>
+        private var medsController: NSFetchedResultsController<Med>
         private var meds: [Med] = []
 
         @Published var selectedMed: Med
@@ -44,10 +44,16 @@ extension DoseEditView {
             }
         }()
 
-        init(dataController: DataController, dose: Dose, add: Bool) {
-            self.dose = dose
-            self.add = add
+        init(dataController: DataController,
+             selectedMed: Med)
+        {
+            add = true
+            self.selectedMed = selectedMed
             self.dataController = dataController
+            dose = Dose()
+
+            amount = "\(selectedMed.medDefaultAmount)"
+            takenDate = DoseDefault.takenDate
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -60,20 +66,37 @@ extension DoseEditView {
                 cacheName: nil
             )
 
-            if let currentMed = dose.med {
-                selectedMed = currentMed
-                if add {
-                    amount = currentMed.medDefaultAmount
-                }
-            } else {
-                selectedMed = Med(context: dataController.container.viewContext)
-            }
+            super.init()
+            performFetch()
+        }
+
+        init(dataController: DataController,
+             dose: Dose)
+        {
+            self.dose = dose
+            add = false
+            self.dataController = dataController
+            selectedMed = dose.med!
+
+            let request: NSFetchRequest<Med> = Med.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
+            request.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
+
+            medsController = NSFetchedResultsController(
+                fetchRequest: request,
+                managedObjectContext: dataController.container.viewContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
 
             amount = dose.doseAmount
             takenDate = dose.doseTakenDate
 
             super.init()
+            performFetch()
+        }
 
+        func performFetch() {
             medsController.delegate = self
 
             do {
@@ -85,49 +108,59 @@ extension DoseEditView {
         }
 
         func selectionChanged() {
-            let med = selectedMed
+            if !add {
+                dose.amount = selectedMed.defaultAmount
 
-            dose.amount = med.defaultAmount
+                amount = "\(selectedMed.medDefaultAmount)"
 
-            amount = "\(med.medDefaultAmount)"
-
-            if dose.med != med {
-                dose.med = med
+                if dose.med != selectedMed {
+                    dose.med = selectedMed
+                }
+            } else {
+                amount = "\(selectedMed.medDefaultAmount)"
             }
-
-            update()
-        }
-
-        private func update() {
-            dose.objectWillChange.send()
-
-            dose.amount = NSDecimalNumber(string: amount)
-
-            dose.takenDate = takenDate
         }
 
         func delete() {
-            // INFO: Also delete the med if this dose is the only relationship and is hidden.
-            if let med = dose.med {
-                if med.hidden == true {
-                    let count = dataController.anyRelationships(for: [med])
-                    if count == 1 {
-                        dataController.delete(med)
+            if !add {
+                // INFO: Also delete the med if this dose is the only relationship and is hidden.
+                if let med = dose.med {
+                    if med.hidden == true {
+                        let count = dataController.anyRelationships(for: [med])
+                        if count == 1 {
+                            dataController.delete(med)
+                        }
                     }
                 }
+                dataController.delete(dose)
+                // presentationMode.wrappedValue.dismiss()
             }
-            dataController.delete(dose)
-            // presentationMode.wrappedValue.dismiss()
         }
 
         func save() {
-            if dose.med != selectedMed {
+            dose.objectWillChange.send()
+
+            if add {
+                dose = dataController.createDose(selectedMed: selectedMed)
+            } else {
                 dose.med = selectedMed
             }
+
+            dose.amount = NSDecimalNumber(string: amount)
+            dose.takenDate = takenDate
+            dose.elapsed = false
+
             dose.med?.lastTakenDate = takenDate
             dose.med?.remaining -= Int16(amount) ?? 0
+
             dataController.save()
             dataController.container.viewContext.processPendingChanges()
+        }
+
+        func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            if let newMeds = controller.fetchedObjects as? [Med] {
+                meds = newMeds
+            }
         }
     }
 }

@@ -138,7 +138,7 @@ struct DoseEditView: View, DestinationView {
         .onReceive(viewModel.formValidation.$allValid) { isValid in
             self.isSaveDisabled = !isValid
         }
-        .onReceive(viewModel.formValidation.$validationMessages) { messages in print(messages) }
+        .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
                   message: Text(.doseEditAreYouSure),
@@ -170,8 +170,15 @@ struct DoseEditView: View, DestinationView {
         presentationMode.wrappedValue.dismiss()
     }
 
-    init(dataController: DataController, dose: Dose, add: Bool) {
-        let viewModel = ViewModel(dataController: dataController, dose: dose, add: add)
+    init(dataController: DataController,
+         dose: Dose? = nil,
+         selectedMed: Med? = nil,
+         add: Bool)
+    {
+        let viewModel = add
+            ? ViewModel(dataController: dataController, selectedMed: selectedMed!)
+            : ViewModel(dataController: dataController, dose: dose!)
+
         _viewModel = StateObject(wrappedValue: viewModel)
 
         let title = String(DoseEditView.navigationTitle(add: add))
