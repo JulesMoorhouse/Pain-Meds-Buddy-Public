@@ -20,7 +20,7 @@ struct DoseRowView: View {
 
     var body: some View {
         Button(action: {
-            navigation.pushView(DoseEditView(dataController: dataController, dose: dose, add: false)
+            navigation.pushView(DoseEditView(dataController: dataController, dose: dose)
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext))
         }, label: {

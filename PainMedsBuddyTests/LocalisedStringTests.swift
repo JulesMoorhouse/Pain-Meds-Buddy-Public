@@ -26,6 +26,8 @@ class LocalisedStringTests: BaseTestCase {
             switch item {
             case .commonBasicSettings:
                 output = ""
+            case .commonCancel:
+                output = ""
             case .commonDelete:
                 output = ""
             case .commonDosage:
@@ -48,7 +50,17 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonPleaseAdd:
                 output = ""
+            case .commonSave:
+                output = ""
             case .commonSort:
+                output = ""
+            case .validationTwoLetters:
+                output = ""
+            case .validationOneOrAbove:
+                output = ""
+            case .validationMustSpecify:
+                output = ""
+            case .validationMustEmptySuffixS:
                 output = ""
             case .titleHome:
                 output = ""
@@ -195,6 +207,8 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditSorry:
                 output = ""
             case .medEditSymbol:
+                output = ""
+            case .medEditTitle:
                 output = ""
             case .settingsAcknowledgements:
                 output = ""

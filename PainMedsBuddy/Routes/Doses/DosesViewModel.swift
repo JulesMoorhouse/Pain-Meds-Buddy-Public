@@ -15,7 +15,7 @@ extension DosesView {
         let showElapsedDoses: Bool
 
         private let dosesController: NSFetchedResultsController<Dose>
-        private var doses = [Dose]()
+        @Published private var doses = [Dose]()
 
         var medsCount: Int {
             let fetchRequest = NSFetchRequest<Med>(entityName: "Med")

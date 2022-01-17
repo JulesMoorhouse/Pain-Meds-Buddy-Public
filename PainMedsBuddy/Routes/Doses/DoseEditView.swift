@@ -171,17 +171,26 @@ struct DoseEditView: View, DestinationView {
     }
 
     init(dataController: DataController,
-         dose: Dose? = nil,
-         selectedMed: Med? = nil,
-         add: Bool)
+         dose: Dose)
     {
-        let viewModel = add
-            ? ViewModel(dataController: dataController, selectedMed: selectedMed!)
-            : ViewModel(dataController: dataController, dose: dose!)
-
+        let viewModel = ViewModel(dataController: dataController, dose: dose)
         _viewModel = StateObject(wrappedValue: viewModel)
 
-        let title = String(DoseEditView.navigationTitle(add: add))
+        let title = String(DoseEditView.navigationTitle(add: false))
+
+        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
+            title: title,
+            displayMode: .automatic
+        )
+    }
+
+    init(dataController: DataController,
+         selectedMed: Med)
+    {
+        let viewModel = ViewModel(dataController: dataController, selectedMed: selectedMed)
+        _viewModel = StateObject(wrappedValue: viewModel)
+
+        let title = String(DoseEditView.navigationTitle(add: true))
 
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
@@ -196,8 +205,7 @@ struct DoseEditView_Previews: PreviewProvider {
     static var previews: some View {
         DoseEditView(
             dataController: dataController,
-            dose: Dose.example,
-            add: false
+            dose: Dose.example
         )
         .environmentObject(dataController)
     }

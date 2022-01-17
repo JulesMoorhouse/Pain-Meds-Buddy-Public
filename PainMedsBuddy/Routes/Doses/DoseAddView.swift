@@ -16,8 +16,7 @@ struct DoseAddView: View {
     var body: some View {
         DoseEditView(
             dataController: dataController,
-            selectedMed: med,
-            add: true
+            selectedMed: med
         )
     }
 }
