@@ -26,7 +26,7 @@ class NoDataUITests: XCTestCase {
         )
     }
 
-    func testAddFiveMedications() {
+    func testAddTwoMedications() {
         // Given
         BasicAction.tapTabMedications(app)
 
@@ -36,15 +36,64 @@ class NoDataUITests: XCTestCase {
             "There should be no list rows initially."
         )
 
-        for addCount in 1 ... 5 {
+        for addCount in 1 ... 2 {
             // When
             BasicAction.tapMedicationTabAddButton(app)
 
             // Add details
-            // xxx
+            // Title
+            let title = app.textFields[Strings.medEditTitleText.automatedId()]
+            title.doubleTap()
+            title.clearText()
+            "Paracetamol".forEach { char in
+                app.keys["\(char)"].tap()
+            }
+
+            // Default Amount
+            let defaultAmount = app.textFields[Strings.medEditDefaultAmount.automatedId()]
+            defaultAmount.doubleTap()
+            defaultAmount.clearText()
+            "12".forEach { char in
+                app.keys["\(char)"].tap()
+            }
+
+            // Dosage
+            let dosage = app.textFields[Strings.commonDosage.automatedId()]
+            dosage.doubleTap()
+            dosage.clearText()
+            "100".forEach { char in
+                app.keys["\(char)"].tap()
+            }
+
+            // Duration
+            let duration = app.buttons[Strings.medEditDuration.automatedId()]
+            duration.tap()
+            app.swipeUp()
+            let okButton = app.buttons[Strings.commonOK.automatedId()]
+            okButton.tap()
+
+            // Measure
+
+            // Form
+            let form = app.textFields[Strings.medEditForm.automatedId()]
+            form.doubleTap()
+            form.clearText()
+            "Pills".forEach { char in
+                app.keys["\(char)"].tap()
+            }
+
+            // Remaining
+            let remaining = app.textFields[Strings.medEditRemaining.automatedId()]
+            remaining.doubleTap()
+            remaining.clearText()
+            "100".forEach { char in
+                app.keys["\(char)"].tap()
+            }
+
+            app.swipeDown()
 
             // Save button tap on add med screen
-            BasicAction.tapAddDoseSaveButton(app)
+            BasicAction.tapAddMedSaveButton(app)
 
             // Confirm on medications screen
             _ = Elements.navBarMedications(app, performTest: false)

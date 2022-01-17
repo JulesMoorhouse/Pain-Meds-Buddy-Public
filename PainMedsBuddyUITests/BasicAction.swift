@@ -37,7 +37,7 @@ class BasicAction: XCTestCase {
         _ = Elements.navBarInProgress(app)
     }
 
-    static func tapTabMedications(_ app: XCUIApplication) { 
+    static func tapTabMedications(_ app: XCUIApplication) {
         let tab = Elements.tabMedications(app)
         tab.tap()
 
@@ -110,7 +110,23 @@ class BasicAction: XCTestCase {
         _ = Elements.navBarMedications(app)
     }
 
-    static func tapAddEditMedCancelButton(_ app: XCUIApplication) {
+    static func tapAddMedSaveButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarAddMed(app)
+        navBar.buttons[Strings.commonSave.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarMedications(app)
+    }
+    
+    static func tapEditMedCancelButton(_ app: XCUIApplication) {
+        let navBar = Elements.navBarEditMed(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // Confirm on add dose screen
+        _ = Elements.navBarMedications(app)
+    }
+    
+    static func tapAddMedCancelButton(_ app: XCUIApplication) {
         let navBar = Elements.navBarAddMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()
 

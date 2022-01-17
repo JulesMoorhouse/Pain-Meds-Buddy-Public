@@ -392,8 +392,12 @@ struct MedEditView: View, DestinationView {
                 actionButtonClosure()
             }, label: {
                 Text("\(binding.wrappedValue.secondsToTimeHM)")
+                    .buttonStyle(BorderlessButtonStyle())
+                    .accessibilityElement()
+                    .accessibility(addTraits: .isButton)
+                    .accessibilityIdentifier(label)
             })
-                .buttonStyle(BorderlessButtonStyle())
+
         }
         .if(validationContainer != nil) { view in
             view.validation(validationContainer!)

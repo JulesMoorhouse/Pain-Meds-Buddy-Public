@@ -33,6 +33,9 @@ struct DurationPopupView: View {
                     showing = false
                 }, label: {
                     Text(.commonOK)
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.commonOK)
                 })
             })
     }
