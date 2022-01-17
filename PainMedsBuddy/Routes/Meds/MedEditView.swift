@@ -6,6 +6,8 @@
 //
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
+// swiftlint:disable type_body_length
+
 import FormValidator
 import SwiftUI
 import XNavigation
@@ -130,9 +132,7 @@ struct MedEditView: View, DestinationView {
                 self.isSaveDisabled = !isValid
             }
             .onReceive(viewModel.formValidation.$validationMessages) { messages in print(messages) }
-            .alert(isPresented: $showAlert) {
-                alertOption()
-            }
+            .alert(isPresented: $showAlert) { alertOption() }
 
             if showPopup == true {
                 popupOption()
@@ -244,7 +244,7 @@ struct MedEditView: View, DestinationView {
                               text: $viewModel.title)
                         .accessibilityIdentifier(.medEditTitleText)
                         .textFieldStyle(SelectAllTextFieldStyle())
-                        .validation(viewModel.titleValidation)
+                        .validation(viewModel.titleValidator)
                 }
             }
 

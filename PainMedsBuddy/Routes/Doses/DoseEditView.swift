@@ -20,19 +20,61 @@ struct DoseEditView: View, DestinationView {
     @EnvironmentObject var navigation: Navigation
 
     @State private var showingDeleteConfirm = false
+    @State private var isSaveDisabled = false
+
+    var backBarButtonItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            HStack {
+                Text("")
+                    .accessibilityHidden(true)
+
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text(.commonCancel)
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.commonCancel)
+                })
+            }
+        }
+    }
+
+    var saveBarButtonItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            HStack {
+                Text("")
+                    .accessibilityHidden(true)
+
+                Button(action: {
+                    let valid = viewModel.formValidation.triggerValidation()
+                    if valid {
+                        viewModel.save()
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }, label: {
+                    Text(.commonSave)
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(.commonSave)
+                })
+            }
+        }
+    }
 
     var body: some View {
         Form {
             Section(header: Text(.commonBasicSettings)) {
                 DatePicker(
                     .doseEditDateTime,
-                    selection: $viewModel.takenDate.onChange(viewModel.update),
+                    selection: $viewModel.takenDate,
                     displayedComponents: [.hourAndMinute, .date]
                 )
                 .foregroundColor(.secondary)
                 .accessibilityIdentifier(.doseEditDateTime)
 
                 Button(action: {
+                    UIApplication.endEditing()
                     navigation.pushView(
                         DoseMedSelectView(
                             selectedMed: $viewModel.selectedMed.onChange(viewModel.selectionChanged),
@@ -56,11 +98,12 @@ struct DoseEditView: View, DestinationView {
 
                     TextField(String(.commonEgNum,
                                      values: [DoseDefault.Sensible.doseAmount()]),
-                              text: $viewModel.amount.onChange(viewModel.update))
+                              text: $viewModel.amount)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .accessibilityIdentifier(.doseEditAmount)
                         .textFieldStyle(SelectAllTextFieldStyle())
+                        .validation(viewModel.amountValidator)
 
                     Text(viewModel.selectedMed.medForm)
                         .foregroundColor(.secondary)
@@ -87,8 +130,15 @@ struct DoseEditView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
-        .dismissKeyboardOnTap()
-        .onDisappear(perform: viewModel.save)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            backBarButtonItem
+            saveBarButtonItem
+        }
+        .onReceive(viewModel.formValidation.$allValid) { isValid in
+            self.isSaveDisabled = !isValid
+        }
+        .onReceive(viewModel.formValidation.$validationMessages) { messages in print(messages) }
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(title: Text(.doseEditDeleteDose),
                   message: Text(.doseEditAreYouSure),

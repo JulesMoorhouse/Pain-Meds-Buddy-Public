@@ -39,7 +39,7 @@ extension MedEditView {
 
         // Validator need to return false to return a red message in the ui
         // Therefore, the logic must return false if there's a problem
-        lazy var titleValidation: ValidationContainer = {
+        lazy var titleValidator: ValidationContainer = {
             var field = String(.medEditTitle)
             let message = String(.validationTwoLetters,
                                  values: [field])

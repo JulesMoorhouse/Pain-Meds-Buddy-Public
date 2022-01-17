@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import FormValidator
 import Foundation
 
 extension DoseEditView {
@@ -13,14 +14,35 @@ extension DoseEditView {
         private let dose: Dose
         let add: Bool
 
-        @Published var selectedMed: Med
-        @Published var amount: String
-        @Published var takenDate: Date
-
         private let dataController: DataController
 
         private let medsController: NSFetchedResultsController<Med>
         private var meds: [Med] = []
+
+        @Published var selectedMed: Med
+        @Published var amount: String
+        @Published var takenDate: Date
+
+        lazy var formValidation: FormValidation = {
+            FormValidation(validationType: .immediate)
+        }()
+
+        lazy var validationErrors = {
+            self.formValidation.$validationMessages
+        }
+
+        lazy var amountValidator: ValidationContainer = {
+            var field = String(.doseEditAmount)
+            let message = String(.validationOneOrAbove,
+                                 values: [field])
+
+            return $amount.inlineValidator(
+                form: formValidation,
+                errorMessage: message
+            ) { value in
+                value.isNumber && (Int(value) ?? 0) > 0
+            }
+        }()
 
         init(dataController: DataController, dose: Dose, add: Bool) {
             self.dose = dose
@@ -76,7 +98,7 @@ extension DoseEditView {
             update()
         }
 
-        func update() {
+        private func update() {
             dose.objectWillChange.send()
 
             dose.amount = NSDecimalNumber(string: amount)
