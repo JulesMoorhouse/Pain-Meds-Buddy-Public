@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct MedDefault {
-    enum Sensible {
+    struct Sensible {
         static let title = String(.medEditNewMedication)
         static let color: String = "Dark Blue"
         static let defaultAmount: NSDecimalNumber = 1.0

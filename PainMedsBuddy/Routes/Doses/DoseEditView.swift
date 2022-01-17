@@ -96,18 +96,19 @@ struct DoseEditView: View, DestinationView {
                         .foregroundColor(.secondary)
                     Spacer()
 
-                    TextField(String(.commonEgNum,
+                    TextField(String(.commonEgString,
                                      values: [DoseDefault.Sensible.doseAmount()]),
                               text: $viewModel.amount)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .accessibilityIdentifier(.doseEditAmount)
                         .textFieldStyle(SelectAllTextFieldStyle())
-                        .validation(viewModel.amountValidator)
 
                     Text(viewModel.selectedMed.medForm)
                         .foregroundColor(.secondary)
                 }
+                .validation(viewModel.amountValidator)
+
             }
 
             Section(header: Text(.commonDosage)) {

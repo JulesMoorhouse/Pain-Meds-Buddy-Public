@@ -13,7 +13,6 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonDelete
     case commonDosage
     case commonEgString
-    case commonEgNum
     case commonEmptyView
     case commonOK
     case commonMedications

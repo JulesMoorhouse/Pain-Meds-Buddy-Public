@@ -8,7 +8,7 @@
 import Foundation
 
 struct DoseDefault {
-    enum Sensible {
+    struct Sensible {
         static let amount: NSDecimalNumber = 1
         static let elapsed: Bool = false
         static let takenDate = Date()

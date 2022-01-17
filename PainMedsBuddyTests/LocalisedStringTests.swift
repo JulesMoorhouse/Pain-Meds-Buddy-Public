@@ -34,8 +34,6 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonEgString:
                 output = ""
-            case .commonEgNum:
-                output = ""
             case .commonEmptyView:
                 output = ""
             case .commonOK:
