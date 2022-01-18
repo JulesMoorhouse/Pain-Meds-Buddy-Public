@@ -64,10 +64,10 @@ extension Dose: Comparable {
         return String(.commonNoDate)
     }
 
-    var doseFormattedTakenDateShort: String {
+    var doseFormattedTakenTimeShort: String {
         if let date = takenDate {
             let formatter = DateFormatter()
-            formatter.dateStyle = .short
+            formatter.dateStyle = .none
             formatter.timeStyle = .short
             return formatter.string(from: date)
         } else {
@@ -124,7 +124,7 @@ extension Dose: Comparable {
     }
 
     public static func < (lhs: Dose, rhs: Dose) -> Bool {
-        lhs.doseFormattedTakenDateShort < rhs.doseFormattedTakenDateShort
+        lhs.doseFormattedTakenTimeShort < rhs.doseFormattedTakenTimeShort
     }
 
     static var example: Dose {

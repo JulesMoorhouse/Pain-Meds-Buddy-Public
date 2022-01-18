@@ -40,7 +40,7 @@ struct DoseRowView: View {
                         Text(dose.doseDisplay)
                             .foregroundColor(.secondary)
                             .font(.caption)
-                        Text(dose.doseFormattedTakenDateShort)
+                        Text(dose.doseFormattedTakenTimeShort)
                             .foregroundColor(.secondary)
                             .font(.caption)
                     }

@@ -62,6 +62,11 @@ struct SettingsView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
+
+                Section(footer:
+                        Text(Strings.settingsNoResponsibility)
+                        .multilineTextAlignment(.center)
+                ) {}
             }
             .navigationTitle(Strings.tabTitleSettings.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)

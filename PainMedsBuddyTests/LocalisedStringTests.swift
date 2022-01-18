@@ -218,6 +218,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsGenerateTestCrash:
                 output = ""
+            case .settingsNoResponsibility:
+                output = ""
             }
 
             if !output.isEmpty {
