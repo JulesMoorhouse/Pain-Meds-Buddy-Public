@@ -14,7 +14,7 @@ struct DoseMedSelectView: View, DestinationView {
         displayMode: .automatic
     )
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
 
     @Binding var selectedMed: Med

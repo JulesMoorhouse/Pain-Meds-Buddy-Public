@@ -13,7 +13,7 @@ import SwiftUI
 struct HomeView: View {
     static let HomeTag: String? = "Home"
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]

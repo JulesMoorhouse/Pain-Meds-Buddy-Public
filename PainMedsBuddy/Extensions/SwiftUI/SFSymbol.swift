@@ -14,6 +14,7 @@ enum SFSymbol: String, CaseIterable {
     case checkmarkCircle = "checkmark.circle"
     case chevronRight = "chevron.right"
     case eyeDropperHalfFull = "eyedropper.halffull"
+    case exclamationMarkTriangle = "exclamationmark.triangle"
     case gearShapeFill = "gearshape.fill"
     case house
     case infoCircle = "info.circle"

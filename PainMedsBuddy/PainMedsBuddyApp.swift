@@ -11,11 +11,15 @@ import XNavigation
 @main
 struct PainMedsBuddyApp: App {
     @StateObject var dataController: DataController
+    @StateObject var presentableToast: PresentableToast
     @State var colourScheme: ColorScheme?
 
     init() {
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
+
+        let presentableToast = PresentableToast(med: Med())
+        _presentableToast = StateObject(wrappedValue: presentableToast)
 
         dataController.processDoses()
 
@@ -35,6 +39,7 @@ struct PainMedsBuddyApp: App {
                 ContentView()
                     .environment(\.managedObjectContext, dataController.container.viewContext)
                     .environmentObject(dataController)
+                    .environmentObject(presentableToast)
                     .environmentObject(Navigation(window: window!))
                     // INFO: Automatically save when we detect that we are no longer
                     // the foreground app, Use this rather than the scene phase
@@ -43,8 +48,7 @@ struct PainMedsBuddyApp: App {
                     .onReceive(
                         NotificationCenter.default.publisher(
                             for: UIApplication.willResignActiveNotification),
-                        perform: save
-                    )
+                        perform: save)
                     .onReceive(NotificationCenter.default.publisher(
                         for: UIApplication.didBecomeActiveNotification),
                     perform: processDoses)

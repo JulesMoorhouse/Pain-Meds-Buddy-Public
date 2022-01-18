@@ -190,6 +190,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditInfo:
                 output = ""
+            case .medEditLowToast:
+                output = ""
             case .medEditMeasure:
                 output = ""
             case .medEditMg:

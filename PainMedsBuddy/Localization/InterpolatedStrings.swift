@@ -31,7 +31,7 @@ struct InterpolatedStrings {
                         med.medSymbolLabel,
                         med.medTitle,
                         dose.doseDisplay,
-                        dose.doseFormattedTakenDate])
+                        dose.doseFormattedTakenDateShort])
     }
 
     static func homeAccessibilityIconTakeNow(med: Med) -> String {

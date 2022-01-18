@@ -13,11 +13,12 @@ import XNavigation
 struct DoseEditView: View, DestinationView {
     var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject var presentableToast: PresentableToast
 
     @State private var showingDeleteConfirm = false
     @State private var isSaveDisabled = false
@@ -51,6 +52,11 @@ struct DoseEditView: View, DestinationView {
                     if valid {
                         viewModel.save()
                         presentationMode.wrappedValue.dismiss()
+
+                        if viewModel.selectedMed.medIsRunningLow {
+                            self.presentableToast.med = viewModel.selectedMed
+                            self.presentableToast.show = true
+                        }
                     }
                 }, label: {
                     Text(.commonSave)
@@ -108,7 +114,6 @@ struct DoseEditView: View, DestinationView {
                         .foregroundColor(.secondary)
                 }
                 .validation(viewModel.amountValidator)
-
             }
 
             Section(header: Text(.commonDosage)) {

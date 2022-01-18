@@ -53,7 +53,18 @@ extension Dose: Comparable {
         return nil
     }
 
-    var doseFormattedTakenDate: String {
+    var doseFormattedTakenDateLong: String {
+        if let date = takenDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-dd-MM"
+            dateFormatter.locale = Locale.current
+            return dateFormatter.string(from: date)
+        }
+
+        return String(.commonNoDate)
+    }
+
+    var doseFormattedTakenDateShort: String {
         if let date = takenDate {
             let formatter = DateFormatter()
             formatter.dateStyle = .short
@@ -70,9 +81,8 @@ extension Dose: Comparable {
             formatter.dateStyle = .medium
             formatter.timeStyle = .none
             return formatter.string(from: date)
-        } else {
-            return String(.commonNoDate)
         }
+        return String(.commonNoDate)
     }
 
     var doseTotalDosage: String {
@@ -114,7 +124,7 @@ extension Dose: Comparable {
     }
 
     public static func < (lhs: Dose, rhs: Dose) -> Bool {
-        lhs.doseFormattedTakenDate < rhs.doseFormattedTakenDate
+        lhs.doseFormattedTakenDateShort < rhs.doseFormattedTakenDateShort
     }
 
     static var example: Dose {

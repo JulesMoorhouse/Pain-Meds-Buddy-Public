@@ -91,6 +91,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditForm
     case medEditImage
     case medEditInfo
+    case medEditLowToast
     case medEditMeasure
     case medEditMg
     case medEditNewMedication

@@ -23,7 +23,7 @@ enum ActivePopup {
 struct MedEditView: View, DestinationView {
     var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode

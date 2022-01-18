@@ -27,7 +27,9 @@ extension DosesView {
             self.showElapsedDoses = showElapsedDoses
 
             let request: NSFetchRequest<Dose> = Dose.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)]
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
+            ]
             request.predicate = NSPredicate(format: "elapsed = %d", showElapsedDoses)
 
             dosesController = NSFetchedResultsController(
@@ -60,10 +62,10 @@ extension DosesView {
         // INFO: Results to an array of section arrays
         func resultsToArray() -> [[Dose]] {
             let dict = Dictionary(grouping: doses) { (sequence: Dose) in
-                sequence.doseFormattedMYTakenDate
+                sequence.doseFormattedTakenDateLong
             }
 
-            // INFO: Sort by key aka doseFormattedMYTakenDate
+            // INFO: Sort by key aka doseFormattedTakenDateLong
             let sorted = dict.sorted(by: { $0.key > $1.key })
 
             return sorted.map(\.value)

@@ -13,7 +13,7 @@ import XNavigation
 struct MedsView: View {
     static let MedsTag: String? = "Medications"
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var dataController: DataController
 

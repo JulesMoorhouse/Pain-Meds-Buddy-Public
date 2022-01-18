@@ -106,6 +106,8 @@
 		88F2E989276FD74500081C9C /* HomeRecentMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */; };
 		88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */; };
 		88F2E98E27708AF700081C9C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
+		88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 88F493B12796104500E3D4C2 /* SimpleToast */; };
+		88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +227,7 @@
 		88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentMedsView.swift; sourceTree = "<group>"; };
 		88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLowMedsView.swift; sourceTree = "<group>"; };
 		88F2E98D27708AF700081C9C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		88F493B32796B70200E3D4C2 /* PresentableToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +240,7 @@
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
+				88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */,
 				889A4D00277622A000E3B53B /* XNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +393,7 @@
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
+				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
@@ -555,6 +560,7 @@
 				889A4CFF277622A000E3B53B /* XNavigation */,
 				88E705DA27872E73003EB471 /* CircularProgress */,
 				88B53E9A27940E1400DD74FC /* FormValidator */,
+				88F493B12796104500E3D4C2 /* SimpleToast */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -632,6 +638,7 @@
 				889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */,
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
 				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
+				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -697,7 +704,7 @@
 		};
 		88E930A02760A51600A98708 /* AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -709,7 +716,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "DIR=$PROJECT_TEMP_DIR/../../../SourcePackages/checkouts/AckGen\nif [ -d \"$DIR\" ]; then\n  cd $DIR\n  SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n  swift run ackgen\nelse\n  echo \"warning: AckGen not found. Please install the package via SPM (https://github.com/MartinP7r/AckGen#installation)\"\nfi\n";
 		};
@@ -752,6 +759,7 @@
 				8852BF4B27862A64000750FB /* DoseEditViewModel.swift in Sources */,
 				881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */,
 				8848D4702778A06400F10DC9 /* Text+Extensions.swift in Sources */,
+				88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */,
 				886C30BC2763912C002A45B1 /* String+Extensions.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
@@ -1156,6 +1164,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1183,6 +1199,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */;
 			productName = AckGenUI;
+		};
+		88F493B12796104500E3D4C2 /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 

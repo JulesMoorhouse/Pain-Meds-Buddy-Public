@@ -133,7 +133,14 @@ extension DoseEditView {
             dose.elapsed = false
 
             dose.med?.lastTakenDate = takenDate
-            dose.med?.remaining -= Int16(amount) ?? 0
+
+            // NOTE: Ensure remaining is zero or above
+            let remaining = Int(dose.med?.remaining ?? 0)
+            let tempAmount = Int(amount) ?? 0
+
+            if (remaining - tempAmount) >= 0 {
+                dose.med?.remaining -= Int16(tempAmount)
+            }
         }
 
         func save() {
@@ -148,26 +155,6 @@ extension DoseEditView {
             dataController.save()
             dataController.container.viewContext.processPendingChanges()
         }
-
-//        func save() {
-//            if add {
-//                let dose = Dose(context: dataController.container.viewContext)
-//                dose.objectWillChange.send()
-//                DoseDefault.setSensibleDefaults(dose)
-//                dose.med = selectedMed
-//                //let dose = dataController.createDose(selectedMed: selectedMed, shouldSave: false)
-//                update(dose: dose)
-//                dataController.save()
-//            } else {
-//                editedDose!.objectWillChange.send()
-//                editedDose!.med = selectedMed
-//                update(dose: editedDose!)
-//                dataController.save()
-//            }
-//
-//
-//            //dataController.container.viewContext.processPendingChanges()
-//        }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             if let newMeds = controller.fetchedObjects as? [Med] {

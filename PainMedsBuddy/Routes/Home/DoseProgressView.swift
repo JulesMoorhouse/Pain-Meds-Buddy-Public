@@ -128,6 +128,9 @@ struct DoseProgressView: View {
 
 struct DoseProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseProgressView(dose: Dose.example, med: Med.example, size: 150)
+        DoseProgressView(
+            dose: Dose.example,
+            med: Med.example,
+            size: 150)
     }
 }

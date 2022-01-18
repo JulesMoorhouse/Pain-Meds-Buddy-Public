@@ -20,7 +20,10 @@ struct DoseRowView: View {
 
     var body: some View {
         Button(action: {
-            navigation.pushView(DoseEditView(dataController: dataController, dose: dose)
+            navigation.pushView(
+                DoseEditView(
+                    dataController: dataController,
+                    dose: dose)
                 .environmentObject(dataController)
                 .environment(\.managedObjectContext, viewContext))
         }, label: {
@@ -37,7 +40,7 @@ struct DoseRowView: View {
                         Text(dose.doseDisplay)
                             .foregroundColor(.secondary)
                             .font(.caption)
-                        Text(dose.doseFormattedTakenDate)
+                        Text(dose.doseFormattedTakenDateShort)
                             .foregroundColor(.secondary)
                             .font(.caption)
                     }

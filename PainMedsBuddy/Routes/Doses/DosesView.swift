@@ -7,6 +7,7 @@
 // INFO: This view shows all the taken doses of medication
 
 import CoreData
+import SimpleToast
 import SwiftUI
 import XNavigation
 
@@ -14,10 +15,16 @@ struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
     static let historyTag: String? = "History"
 
-    @StateObject var viewModel: ViewModel
-//    @EnvironmentObject var dataController: DataController
-//    @Environment(\.managedObjectContext) var managedObjectContext
+    @StateObject private var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
+
+    @State private var showToast: Bool = false
+    @EnvironmentObject private var presentableToast: PresentableToast
+
+    private let toastOptions = SimpleToastOptions(
+        alignment: .bottom,
+        hideAfter: 5,
+        showBackdrop: false)
 
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
@@ -47,6 +54,18 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
+            .simpleToast(isPresented: $presentableToast.show, options: toastOptions) {
+                HStack {
+                    Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
+                    Text(String(.medEditLowToast, values: [presentableToast.med.medTitle]))
+                        .font(.caption)
+                }
+                .padding()
+                .background(Color.blue.opacity(0.8))
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
+                .padding(.vertical, 5)
+            }
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {
@@ -57,7 +76,9 @@ struct DosesView: View {
                                 .accessibilityHidden(true)
 
                             Button(action: {
-                                navigation.pushView(DoseAddView(med: viewModel.createMed()))
+                                navigation.pushView(
+                                    DoseAddView(
+                                        med: viewModel.createMed()))
                             }, label: {
                                 // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
                                 // "Add Dose" as "Add" no matter what accessibility label

@@ -121,6 +121,21 @@ extension Med: MedProtocol {
         "\(medDefaultAmountDecimal * medDosageDecimal)"
     }
 
+    var medIsRunningLow: Bool {
+        // NOTE: look at remaining amount e.g. 100 pills
+        // look at default amount e.g. 2 pills
+        // divide remain amount by default amount
+        // this will give you number of remaining doses
+        // if this is 5 or below then it's running low
+        let tempRemaining = Int(remaining)
+        let tempDefaultAmount = Int(truncating: defaultAmount ?? MedDefault.defaultAmount)
+        let dosesLeft = tempRemaining / tempDefaultAmount
+
+        let isRunningLow = dosesLeft <= 5
+
+        return isRunningLow
+    }
+
     var medDisplay: String {
         "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(medTotalDosage)\(medMeasure)"
     }
