@@ -23,10 +23,10 @@ class DevelopmentTests: BaseTestCase {
             "There should be \(20) sample meds."
         )
 
-        XCTAssertEqual(
+        XCTAssertNotEqual(
             dataController.count(for: Dose.fetchRequest()),
-            20 * 20,
-            "There should be \(20 * 20) sample doses."
+            20,
+            "There should be greater than \(20) sample doses."
         )
     }
 
