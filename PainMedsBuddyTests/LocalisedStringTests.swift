@@ -216,6 +216,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsDeleteAllData:
                 output = ""
+            case .settingsGenerateTestCrash:
+                output = ""
             }
 
             if !output.isEmpty {

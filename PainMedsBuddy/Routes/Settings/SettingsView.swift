@@ -6,6 +6,7 @@
 //
 
 import AckGenUI
+import AppCenterCrashes
 import SwiftUI
 import XNavigation
 
@@ -47,9 +48,17 @@ struct SettingsView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
+
                 Section {
                     Button(Strings.settingsDeleteAllData.rawValue) {
                         try? dataController.deleteIterateAll()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+
+                Section {
+                    Button(Strings.settingsGenerateTestCrash.rawValue) {
+                        Crashes.generateTestCrash()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }

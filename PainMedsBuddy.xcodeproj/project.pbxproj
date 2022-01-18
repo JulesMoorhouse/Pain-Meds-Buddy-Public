@@ -108,6 +108,8 @@
 		88F2E98E27708AF700081C9C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
 		88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 88F493B12796104500E3D4C2 /* SimpleToast */; };
 		88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToast.swift */; };
+		88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 88F9067E2797460500CBC65E /* AppCenterCrashes */; };
+		88F90682279747B000CBC65E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F90681279747B000CBC65E /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +230,7 @@
 		88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLowMedsView.swift; sourceTree = "<group>"; };
 		88F2E98D27708AF700081C9C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		88F493B32796B70200E3D4C2 /* PresentableToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToast.swift; sourceTree = "<group>"; };
+		88F90681279747B000CBC65E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +241,7 @@
 				88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */,
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
+				88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */,
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 				88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */,
@@ -308,6 +312,7 @@
 				8832142A275120D60026D85F /* Info.plist */,
 				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
+				88F90681279747B000CBC65E /* Secrets.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				88E705DA27872E73003EB471 /* CircularProgress */,
 				88B53E9A27940E1400DD74FC /* FormValidator */,
 				88F493B12796104500E3D4C2 /* SimpleToast */,
+				88F9067E2797460500CBC65E /* AppCenterCrashes */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -639,6 +645,7 @@
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
 				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -770,6 +777,7 @@
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortPopupView.swift in Sources */,
 				88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */,
+				88F90682279747B000CBC65E /* Secrets.swift in Sources */,
 				8852BF472786063D000750FB /* MedsViewModel.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
@@ -1172,6 +1180,14 @@
 				minimumVersion = 0.5.0;
 			};
 		};
+		88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1204,6 +1220,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
+		};
+		88F9067E2797460500CBC65E /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
 		};
 /* End XCSwiftPackageProductDependency section */
 

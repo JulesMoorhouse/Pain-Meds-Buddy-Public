@@ -5,6 +5,7 @@
 //  Created by Jules Moorhouse.
 //
 
+import AppCenterCrashes
 import SwiftUI
 import XNavigation
 
@@ -20,6 +21,10 @@ struct PainMedsBuddyApp: App {
 
         let presentableToast = PresentableToast(med: Med())
         _presentableToast = StateObject(wrappedValue: presentableToast)
+
+        AppCenter.start(
+            withAppSecret: Secrets.appCenterSecret,
+            services: [Crashes.self])
 
         dataController.processDoses()
 

@@ -105,6 +105,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsAcknowledgements
     case settingsAddExampleData
     case settingsDeleteAllData
+    case settingsGenerateTestCrash
 
     func automatedId() -> String {
         rawValue.stringKey
