@@ -9,14 +9,17 @@
 import AckGenUI
 import CoreData
 import SwiftUI
+import Introspect
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @StateObject var tabBarHandler: TabBarHandler
+
     var body: some View {
-        NavigationView {
+        NavigationViewParent {
             TabView(selection: $selectedView) {
                 HomeView(dataController: dataController)
                     .tag(HomeView.HomeTag)
@@ -52,9 +55,18 @@ struct ContentView: View {
                         Image(systemName: SFSymbol.gearShapeFill.systemName)
                         Text(.tabTitleSettings)
                     }
-            }
-            .navigationBarHidden(true)
-        }
+            }.background(Color.green)
+                .introspectTabBarController { tabBarController in
+                    // customise here the UITabBarViewController if you like
+                    self.tabBarHandler.tabBarController = tabBarController
+                }
+        }.background(Color.yellow)
+            .environmentObject(tabBarHandler)
+    }
+
+    init() {
+        let tabBarHandler = TabBarHandler()
+        _tabBarHandler = StateObject(wrappedValue: tabBarHandler)
     }
 }
 

@@ -15,9 +15,10 @@ struct SettingsView: View {
 
     @EnvironmentObject var dataController: DataController
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     var body: some View {
-        NavigationView {
+        NavigationViewChild {
             Form {
                 Section {
                     Button(action: {
@@ -72,7 +73,9 @@ struct SettingsView: View {
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)
         }
         .iPadOnlyStackNavigationView()
-        .navigationBarHidden(true)
+        .onAppear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 }
 

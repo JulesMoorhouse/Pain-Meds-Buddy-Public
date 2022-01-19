@@ -27,6 +27,7 @@ struct MedEditView: View, DestinationView {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
@@ -133,6 +134,12 @@ struct MedEditView: View, DestinationView {
             }
             .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
             .alert(isPresented: $showAlert) { alertOption() }
+            .onAppear(perform: {
+                self.tabBarHandler.hideTabBar()
+            })
+            .onDisappear(perform: {
+                self.tabBarHandler.showTabBar()
+            })
 
             if showPopup == true {
                 popupOption()
@@ -399,7 +406,6 @@ struct MedEditView: View, DestinationView {
                     .accessibility(addTraits: .isButton)
                     .accessibilityIdentifier(label)
             })
-
         }
         .if(validationContainer != nil) { view in
             view.validation(validationContainer!)

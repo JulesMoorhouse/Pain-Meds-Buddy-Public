@@ -17,6 +17,7 @@ struct DosesView: View {
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     @State private var showToast: Bool = false
     @EnvironmentObject private var presentableToast: PresentableToast
@@ -38,7 +39,7 @@ struct DosesView: View {
     var body: some View {
         let data: [[Dose]] = viewModel.resultsToArray()
 
-        return NavigationView {
+        return NavigationViewChild {
             Group {
                 if data.isEmpty {
                     PlaceholderView(string: placeHolderEmptyText(),
@@ -106,7 +107,9 @@ struct DosesView: View {
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
         .iPadOnlyStackNavigationView()
-        .navigationBarHidden(true)
+        .onAppear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     func placeHolderText() -> Strings {

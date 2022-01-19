@@ -110,6 +110,9 @@
 		88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToast.swift */; };
 		88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 88F9067E2797460500CBC65E /* AppCenterCrashes */; };
 		88F90682279747B000CBC65E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F90681279747B000CBC65E /* Secrets.swift */; };
+		88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9069D2798115100CBC65E /* TabBarHandler.swift */; };
+		88F906A12798176200CBC65E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 88F906A02798176200CBC65E /* Introspect */; };
+		88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +234,8 @@
 		88F2E98D27708AF700081C9C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		88F493B32796B70200E3D4C2 /* PresentableToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToast.swift; sourceTree = "<group>"; };
 		88F90681279747B000CBC65E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		88F9069D2798115100CBC65E /* TabBarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHandler.swift; sourceTree = "<group>"; };
+		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */,
+				88F906A12798176200CBC65E /* Introspect in Frameworks */,
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */,
@@ -396,6 +402,7 @@
 				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
+				88F9069D2798115100CBC65E /* TabBarHandler.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
@@ -505,6 +512,7 @@
 				88B53E912793079900DD74FC /* DurationPopupView.swift */,
 				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
 				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
+				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -567,6 +575,7 @@
 				88B53E9A27940E1400DD74FC /* FormValidator */,
 				88F493B12796104500E3D4C2 /* SimpleToast */,
 				88F9067E2797460500CBC65E /* AppCenterCrashes */,
+				88F906A02798176200CBC65E /* Introspect */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -646,6 +655,7 @@
 				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 				88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+				88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -744,6 +754,7 @@
 				881BA39A2764B8B600DA06D7 /* Panel-ViewModifier.swift in Sources */,
 				88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */,
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
+				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
 				88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */,
@@ -785,6 +796,7 @@
 				88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */,
 				88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */,
 				8848D4722778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift in Sources */,
+				88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */,
 				889A4D0227764BC500E3B53B /* ChevronRightView.swift in Sources */,
 				88AB7CA7275D351A0055BD9B /* DoseAddView.swift in Sources */,
 				88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */,
@@ -1188,6 +1200,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1225,6 +1245,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
 			productName = AppCenterCrashes;
+		};
+		88F906A02798176200CBC65E /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

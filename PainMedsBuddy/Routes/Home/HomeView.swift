@@ -14,6 +14,7 @@ struct HomeView: View {
     static let HomeTag: String? = "Home"
 
     @StateObject private var viewModel: ViewModel
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]
@@ -45,7 +46,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationViewChild {
             Group {
                 if noData {
                     PlaceholderView(string: .commonEmptyView,
@@ -75,7 +76,9 @@ struct HomeView: View {
             .navigationBarAccessibilityIdentifier(.titleHome)
         }
         .iPadOnlyStackNavigationView()
-        .navigationBarHidden(true)
+        .onAppear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     init(dataController: DataController) {

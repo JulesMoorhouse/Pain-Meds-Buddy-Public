@@ -19,6 +19,7 @@ struct DoseEditView: View, DestinationView {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var presentableToast: PresentableToast
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     @State private var showingDeleteConfirm = false
     @State private var isSaveDisabled = false
@@ -31,6 +32,7 @@ struct DoseEditView: View, DestinationView {
 
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
+                    self.tabBarHandler.showTabBar()
                 }, label: {
                     Text(.commonCancel)
                         .accessibilityElement()
@@ -52,6 +54,7 @@ struct DoseEditView: View, DestinationView {
                     if valid {
                         viewModel.save()
                         presentationMode.wrappedValue.dismiss()
+                        self.tabBarHandler.showTabBar()
 
                         if viewModel.selectedMed.medIsRunningLow {
                             self.presentableToast.med = viewModel.selectedMed
@@ -151,6 +154,9 @@ struct DoseEditView: View, DestinationView {
                   primaryButton: .default(Text(.commonDelete), action: delete),
                   secondaryButton: .cancel())
         }
+        .onAppear(perform: {
+            self.tabBarHandler.hideTabBar()
+        })
     }
 
     static func navigationTitle(add: Bool) -> Strings {

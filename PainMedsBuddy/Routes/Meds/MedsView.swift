@@ -16,6 +16,7 @@ struct MedsView: View {
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var dataController: DataController
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     var items: [Med] {
         viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
@@ -100,7 +101,7 @@ struct MedsView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationViewChild {
             Group {
                 if viewModel.meds.isEmpty {
                     PlaceholderView(string: .commonEmptyView,
@@ -135,7 +136,9 @@ struct MedsView: View {
                             imageString: SFSymbol.eyeDropperHalfFull.systemName)
         }
         .iPadOnlyStackNavigationView()
-        .navigationBarHidden(true)
+        .onAppear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     init(dataController: DataController) {

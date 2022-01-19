@@ -16,6 +16,7 @@ struct DoseMedSelectView: View, DestinationView {
 
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     @Binding var selectedMed: Med
 
@@ -59,6 +60,9 @@ struct DoseMedSelectView: View, DestinationView {
                 .cancel()
             ])
         }
+        .onAppear(perform: {
+            self.tabBarHandler.hideTabBar()
+        })
     }
 
     func medRow(med: Med, index: Int) -> some View {
