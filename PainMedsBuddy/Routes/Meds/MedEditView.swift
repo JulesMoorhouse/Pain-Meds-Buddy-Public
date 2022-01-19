@@ -116,8 +116,11 @@ struct MedEditView: View, DestinationView {
                 }
 
                 Section(header: Text(.medEditNotes)) {
-                    TextEditor(text: $viewModel.notes)
-                        .frame(minHeight: 50)
+                    TextArea(
+                        Strings.medEditNotesPlaceholder.rawValue,
+                        text: $viewModel.notes
+                    )
+                    .frame(minHeight: 50)
                 }
 
                 buttonsSection()

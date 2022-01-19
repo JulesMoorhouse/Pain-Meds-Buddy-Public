@@ -59,6 +59,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case doseEditDeleteDose
     case doseEditDeleteThisDose
     case doseEditDetails
+    case doseEditDetailsPlaceholder
     case doseEditEditDose
     case doseEditMedication
 
@@ -97,6 +98,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditMg
     case medEditNewMedication
     case medEditNotes
+    case medEditNotesPlaceholder
     case medEditPill
     case medEditRemaining
     case medEditSorry

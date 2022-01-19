@@ -129,8 +129,11 @@ struct DoseEditView: View, DestinationView {
             }
 
             Section(header: Text(.doseEditDetails)) {
-                TextEditor(text: $viewModel.details)
-                    .frame(minHeight: 50)
+                TextArea(
+                    Strings.doseEditDetailsPlaceholder.rawValue,
+                    text: $viewModel.details
+                )
+                .frame(minHeight: 50)
             }
 
             if !viewModel.add {
