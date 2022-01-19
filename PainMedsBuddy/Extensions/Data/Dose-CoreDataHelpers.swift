@@ -68,6 +68,17 @@ extension Dose: Comparable {
         return String(.commonNoDate)
     }
 
+    var doseFormattedTakenDateMedium: String {
+        if let date = takenDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, dd MMMM yyyy HH:mm"
+            dateFormatter.locale = Locale.current
+            return dateFormatter.string(from: date)
+        }
+
+        return String(.commonNoDate)
+    }
+
     var doseFormattedTakenTimeShort: String {
         if let date = takenDate {
             let formatter = DateFormatter()
@@ -113,8 +124,21 @@ extension Dose: Comparable {
     }
 
     var doseDisplay: String {
-        // swiftlint:disable:next line_length
-        "\(doseAmount) x \(med?.medDosage ?? "\(MedDefault.dosage)")\(med?.measure ?? "\(MedDefault.measure)") \(med?.form ?? MedDefault.form)"
+        let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
+        let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
+        let tempForm = med?.form ?? MedDefault.form
+
+        return "\(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
+    }
+
+    var doseSearchableDisplay: String {
+        // name amount x dosage measure form
+        let tempName = med?.medTitle ?? MedDefault.title
+        let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
+        let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
+        let tempForm = med?.form ?? MedDefault.form
+
+        return "\(tempName) - \(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
     }
 
     public static func displayFull(
