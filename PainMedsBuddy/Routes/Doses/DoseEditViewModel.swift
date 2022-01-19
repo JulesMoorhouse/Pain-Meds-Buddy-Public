@@ -22,6 +22,7 @@ extension DoseEditView {
         @Published var selectedMed: Med
         @Published var amount: String
         @Published var takenDate: Date
+        @Published var details: String
 
         lazy var formValidation: FormValidation = {
             FormValidation(validationType: .immediate)
@@ -54,6 +55,7 @@ extension DoseEditView {
 
             amount = "\(selectedMed.medDefaultAmount)"
             takenDate = DoseDefault.takenDate
+            details = DoseDefault.details
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -91,6 +93,7 @@ extension DoseEditView {
 
             amount = dose.doseAmount
             takenDate = dose.doseTakenDate
+            details = dose.doseDetails
 
             super.init()
             performFetch()
@@ -131,6 +134,7 @@ extension DoseEditView {
             dose.amount = NSDecimalNumber(string: amount)
             dose.takenDate = takenDate
             dose.elapsed = false
+            dose.details = details
 
             dose.med?.lastTakenDate = takenDate
 

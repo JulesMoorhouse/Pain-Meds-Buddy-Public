@@ -20,6 +20,10 @@ extension Dose: Comparable {
         elapsed
     }
 
+    var doseDetails: String {
+        details ?? DoseDefault.details
+    }
+
     var doseTotalTimeSeconds: Int {
         if let med = med {
             let total = Int(med.durationSeconds) + Int(med.durationGapSeconds)
@@ -135,6 +139,7 @@ extension Dose: Comparable {
         dose.amount = 1
         dose.elapsed = true
         dose.takenDate = Date()
+        dose.details = "This is an example dose"
 
         return dose
     }

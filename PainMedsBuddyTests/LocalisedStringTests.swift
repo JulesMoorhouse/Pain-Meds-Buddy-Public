@@ -127,6 +127,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .doseEditDeleteThisDose:
                 output = ""
+            case .doseEditDetails:
+                output = ""
             case .doseEditEditDose:
                 output = ""
             case .doseEditMedication:
