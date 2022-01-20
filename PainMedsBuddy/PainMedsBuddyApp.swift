@@ -19,7 +19,7 @@ struct PainMedsBuddyApp: App {
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
 
-        let presentableToast = PresentableToast(med: Med())
+        let presentableToast = PresentableToast()
         _presentableToast = StateObject(wrappedValue: presentableToast)
 
         AppCenter.start(

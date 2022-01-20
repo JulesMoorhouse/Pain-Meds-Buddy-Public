@@ -18,15 +18,8 @@ struct DosesView: View {
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var tabBarHandler: TabBarHandler
-
-    @State private var showToast: Bool = false
     @EnvironmentObject private var presentableToast: PresentableToast
-
-    private let toastOptions = SimpleToastOptions(
-        alignment: .bottom,
-        hideAfter: 5,
-        showBackdrop: false)
-
+    
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
             DoseRowView(dose: dose)
@@ -55,18 +48,7 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .simpleToast(isPresented: $presentableToast.show, options: toastOptions) {
-                HStack {
-                    Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
-                    Text(String(.medEditLowToast, values: [presentableToast.med.medTitle]))
-                        .font(.caption)
-                }
-                .padding()
-                .background(Color.blue.opacity(0.8))
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-                .padding(.vertical, 5)
-            }
+            .toasted(show: $presentableToast.show, message: $presentableToast.message)
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {

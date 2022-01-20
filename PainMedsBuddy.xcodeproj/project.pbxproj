@@ -114,6 +114,7 @@
 		88F906A12798176200CBC65E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 88F906A02798176200CBC65E /* Introspect */; };
 		88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */; };
 		88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A427988F4E00CBC65E /* TextAreaView.swift */; };
+		88F906A92799AB6000CBC65E /* Toast-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +239,7 @@
 		88F9069D2798115100CBC65E /* TabBarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHandler.swift; sourceTree = "<group>"; };
 		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
 		88F906A427988F4E00CBC65E /* TextAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAreaView.swift; sourceTree = "<group>"; };
+		88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast-ViewModifier.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,6 +504,7 @@
 			children = (
 				889C42D62781AD26003B6ED2 /* NavigationBarAccessor.swift */,
 				881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */,
+				88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */,
 				889C42D82781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift */,
 				88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */,
 				880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */,
@@ -748,6 +751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88AB7CA127566B3F0055BD9B /* DoseMedSelectView.swift in Sources */,
+				88F906A92799AB6000CBC65E /* Toast-ViewModifier.swift in Sources */,
 				88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
 				8852BF432785B9C5000750FB /* DosesViewModel.swift in Sources */,

@@ -59,7 +59,8 @@ struct DoseEditView: View, DestinationView {
                         self.tabBarHandler.showTabBar()
 
                         if viewModel.selectedMed.medIsRunningLow {
-                            self.presentableToast.med = viewModel.selectedMed
+                            let message = String(.medEditLowToast, values: [viewModel.selectedMed.medTitle])
+                            self.presentableToast.message = message
                             self.presentableToast.show = true
                         }
                     }

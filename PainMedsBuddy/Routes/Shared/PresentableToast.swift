@@ -9,11 +9,11 @@ import SwiftUI
 
 class PresentableToast: ObservableObject {
     let id = UUID()
-    var med: Med
+    var message = ""
     var show = false
 
-    init(med: Med) {
-        self.med = med
+    init(message: String = "") {
+        self.message = message
         self.show = false
     }
 }
