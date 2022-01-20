@@ -24,6 +24,10 @@ extension Dose: Comparable {
         details ?? DoseDefault.details
     }
 
+    var doseRemindMe: Bool {
+        remindMe
+    }
+
     var doseTotalTimeSeconds: Int {
         if let med = med {
             let total = Int(med.durationSeconds) + Int(med.durationGapSeconds)
@@ -71,7 +75,7 @@ extension Dose: Comparable {
     var doseFormattedTakenDateMedium: String {
         if let date = takenDate {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE, dd MMMM yyyy HH:mm"
+            dateFormatter.dateFormat = "E dd MMM yyyy HH:mm"
             dateFormatter.locale = Locale.current
             return dateFormatter.string(from: date)
         }
@@ -134,11 +138,12 @@ extension Dose: Comparable {
     var doseSearchableDisplay: String {
         // name amount x dosage measure form
         let tempName = med?.medTitle ?? MedDefault.title
-        let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
-        let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
+        // let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
+        // let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
         let tempForm = med?.form ?? MedDefault.form
 
-        return "\(tempName) - \(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
+//        return "\(tempName) - \(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
+        return "\(tempName) - \(doseAmount) \(tempForm)"
     }
 
     public static func displayFull(
@@ -164,6 +169,7 @@ extension Dose: Comparable {
         dose.elapsed = true
         dose.takenDate = Date()
         dose.details = "This is an example dose"
+        dose.remindMe = true
 
         return dose
     }

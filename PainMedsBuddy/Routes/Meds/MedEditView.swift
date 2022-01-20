@@ -428,17 +428,17 @@ struct MedEditView: View, DestinationView {
                     .accentColor(.red)
                     .accessibilityIdentifier(.medEditDeleteThisMed)
                 }
-            }
 
-            Section {
-                Button(Strings.medEditCopyThisMed.rawValue) {
-                    activeAlert = .copied
-                    viewModel.copyMed()
-                    showAlert.toggle()
+                Section {
+                    Button(Strings.medEditCopyThisMed.rawValue) {
+                        activeAlert = .copied
+                        viewModel.copyMed()
+                        showAlert.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .accessibilityIdentifier(.medEditCopyThisMed)
+                    .disabled(isSaveDisabled)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .accessibilityIdentifier(.medEditCopyThisMed)
-                .disabled(isSaveDisabled)
             }
         }
     }

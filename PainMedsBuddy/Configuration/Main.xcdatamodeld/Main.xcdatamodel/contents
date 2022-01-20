@@ -4,6 +4,7 @@
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="elapsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="remindMe" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="takenDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="med" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Med" inverseName="dose" inverseEntity="Med"/>
     </entity>
@@ -25,7 +26,7 @@
         <relationship name="dose" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dose" inverseName="med" inverseEntity="Dose"/>
     </entity>
     <elements>
-        <element name="Dose" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Dose" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="Med" positionX="-54" positionY="-9" width="128" height="254"/>
     </elements>
 </model>

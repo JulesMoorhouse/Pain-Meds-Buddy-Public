@@ -13,6 +13,8 @@ import XNavigation
 struct SettingsView: View {
     static let SettingsTag: String? = "Settings"
 
+    @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
+
     @EnvironmentObject var dataController: DataController
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var tabBarHandler: TabBarHandler
@@ -20,6 +22,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationViewChild {
             Form {
+                Section {
+                    Toggle(Strings.settingsDefaultRemindMe.rawValue,
+                           isOn: $defaultRemindMe)
+                }
+
                 Section {
                     Button(action: {
                         navigation.pushView(
@@ -42,6 +49,7 @@ struct SettingsView: View {
                         .accessibilityIdentifier(.settingsAcknowledgements)
                     })
                 }
+
                 Section {
                     Button(Strings.settingsAddExampleData.rawValue) {
                         try? dataController.deleteIterateAll()
@@ -65,7 +73,7 @@ struct SettingsView: View {
                 }
 
                 Section(footer:
-                        Text(Strings.settingsNoResponsibility)
+                    Text(Strings.settingsNoResponsibility)
                         .multilineTextAlignment(.center)
                 ) {}
             }

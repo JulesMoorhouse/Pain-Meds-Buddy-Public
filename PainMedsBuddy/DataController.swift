@@ -7,6 +7,10 @@
 
 import CoreData
 import SwiftUI
+import UserNotifications
+
+// swiftlint:disable type_body_length
+// swiftlint:disable file_length
 
 /// An environment singleton responsible for managing out Core Data stack, including handling saving,
 /// counting fetch requests, and dealing with sample data.
@@ -23,6 +27,7 @@ class DataController: ObservableObject {
             semaphore.wait()
             semaphore.signal()
         }
+
         return _container
     }
 
@@ -180,6 +185,7 @@ class DataController: ObservableObject {
             dose.med = createMed()
         }
         save()
+
         return dose
     }
 
@@ -211,7 +217,6 @@ class DataController: ObservableObject {
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
     func createSampleData(appStore: Bool, medsRequested: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
-
         let tenDaysAgo = Date() - 10
 
         let drugs: [Drug] = [
@@ -236,7 +241,6 @@ class DataController: ObservableObject {
         // Remember totalSampleDoses is the same as totalSampleMeds
         for medIndex in 0 ..< maxMeds {
             let createdDate = dates[medIndex]
-
             let drug = appStore ? drugs[medIndex] : drugs.randomElement()!
 
             // Analyse previously taken doses and assign the med.lastTakenDate and the dose.takenDate correctly.
@@ -245,7 +249,6 @@ class DataController: ObservableObject {
 
             // INFO: One to one relationship
             let med = Med(context: viewContext)
-
             med.title = drug.name
             med.notes = "Notes about taking \(drug.name) x \(drug.mGrams) Pills"
             med.defaultAmount = NSDecimalNumber(value: drug.defAmt)
@@ -274,15 +277,11 @@ class DataController: ObservableObject {
                         let dose = Dose(context: viewContext)
                         let tempAmount = Int16.random(in: 1 ... drug.defAmt)
                         dose.takenDate = med.medPredictedNextTimeCanTake
-
                         med.lastTakenDate = dose.takenDate
-
                         dose.elapsed = index == 1 ? false : Bool.random()
-
                         dose.amount = NSDecimalNumber(value: tempAmount)
-
                         dose.details = "Notes about - \(drug.name) \(tempAmount) x \(drug.mGrams)mg Pills"
-
+                        dose.remindMe = true
                         dose.med = med
                     }
                 }
@@ -420,5 +419,84 @@ class DataController: ObservableObject {
         }
 
         return nil
+    }
+
+    func addCheckReminders(for dose: Dose, add: Bool, completion: @escaping (Bool) -> Void) {
+        let centre = UNUserNotificationCenter.current()
+
+        centre.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                self.requestNotifications { success in
+                    if success {
+                        if add {
+                            self.placeReminders(for: dose, completion: completion)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            completion(false)
+                        }
+                    }
+                }
+            case .authorized:
+                if add {
+                    self.placeReminders(for: dose, completion: completion)
+                }
+            default:
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }
+    }
+
+    func removeReminders(for dose: Dose) {
+        let centre = UNUserNotificationCenter.current()
+        let id = dose.objectID.uriRepresentation().absoluteString
+
+        centre.removePendingNotificationRequests(withIdentifiers: [id])
+    }
+
+    private func requestNotifications(completion: @escaping (Bool) -> Void) {
+        let centre = UNUserNotificationCenter.current()
+
+        centre.requestAuthorization(options: [.alert, .sound]) { granted, _ in
+            completion(granted)
+        }
+    }
+
+    private func placeReminders(for dose: Dose, completion: @escaping (Bool) -> Void) {
+        if let notificationDate = dose.doseElapsedDate {
+            let content = UNMutableNotificationContent()
+            content.title = dose.doseSearchableDisplay
+            content.subtitle = String(.notificationSubtitle)
+
+            content.sound = .default
+
+            let components = Calendar.current
+                .dateComponents(
+                    [.year, .month, .day, .hour, .minute],
+                    from: notificationDate)
+
+            let trigger = UNCalendarNotificationTrigger(
+                dateMatching: components,
+                repeats: true)
+
+            let id = dose.objectID.uriRepresentation().absoluteString
+            let request = UNNotificationRequest(
+                identifier: id,
+                content: content,
+                trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                }
+            }
+        }
     }
 }

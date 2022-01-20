@@ -19,6 +19,11 @@ extension DatePicker where Label == Text {
             comment: ""
         )
 
-        self.init(output, selection: selection, displayedComponents: displayedComponents)
+        self.init(
+            output,
+            selection: selection,
+            in: ...Date(),
+            displayedComponents: displayedComponents
+        )
     }
 }

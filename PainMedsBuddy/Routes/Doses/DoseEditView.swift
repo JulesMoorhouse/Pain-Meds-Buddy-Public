@@ -15,6 +15,8 @@ struct DoseEditView: View, DestinationView {
 
     @StateObject private var viewModel: ViewModel
 
+    @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigation: Navigation
@@ -117,6 +119,21 @@ struct DoseEditView: View, DestinationView {
                         .foregroundColor(.secondary)
                 }
                 .validation(viewModel.amountValidator)
+
+                Toggle(isOn: $viewModel.remindMe.onChange(remindMeChanged)) {
+                    Text(.doseElapsedReminder)
+                        .foregroundColor(.secondary)
+                        .alert(isPresented: $viewModel.showingNotificationError) {
+                            Alert(
+                                title: Text(.doseElapsedReminderAlertTitle),
+                                message: Text(.doseElapsedReminderAlertMessage),
+                                primaryButton:
+                                .default(Text(.doseElapsedReminderAlertButton),
+                                         action: showAppSettings),
+                                secondaryButton: .cancel()
+                            )
+                        }
+                }
             }
 
             Section(header: Text(.commonDosage)) {
@@ -165,6 +182,10 @@ struct DoseEditView: View, DestinationView {
         }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
+
+            viewModel.remindMe = defaultRemindMe
+
+            self.viewModel.checkNotificationAbility()
         })
     }
 
@@ -191,6 +212,20 @@ struct DoseEditView: View, DestinationView {
         presentationMode.wrappedValue.dismiss()
     }
 
+    func remindMeChanged() {
+        viewModel.checkNotificationAbility()
+    }
+
+    func showAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
+    }
+
     init(dataController: DataController,
          dose: Dose)
     {
@@ -208,7 +243,11 @@ struct DoseEditView: View, DestinationView {
     init(dataController: DataController,
          selectedMed: Med)
     {
-        let viewModel = ViewModel(dataController: dataController, selectedMed: selectedMed)
+        let viewModel = ViewModel(
+            dataController: dataController,
+            selectedMed: selectedMed
+        )
+
         _viewModel = StateObject(wrappedValue: viewModel)
 
         let title = String(DoseEditView.navigationTitle(add: true))

@@ -23,6 +23,8 @@ extension DoseEditView {
         @Published var amount: String
         @Published var takenDate: Date
         @Published var details: String
+        @Published var remindMe: Bool
+        @Published var showingNotificationError: Bool
 
         lazy var formValidation: FormValidation = {
             FormValidation(validationType: .immediate)
@@ -51,11 +53,14 @@ extension DoseEditView {
             add = true
             self.selectedMed = selectedMed
             self.dataController = dataController
+
             editedDose = nil
 
             amount = "\(selectedMed.medDefaultAmount)"
-            takenDate = DoseDefault.takenDate
+            takenDate = Date()
             details = DoseDefault.details
+            remindMe = true
+            showingNotificationError = false
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -94,6 +99,8 @@ extension DoseEditView {
             amount = dose.doseAmount
             takenDate = dose.doseTakenDate
             details = dose.doseDetails
+            remindMe = dose.remindMe
+            showingNotificationError = false
 
             super.init()
             performFetch()
@@ -144,6 +151,30 @@ extension DoseEditView {
 
             if (remaining - tempAmount) >= 0 {
                 dose.med?.remaining -= Int16(tempAmount)
+            }
+
+            dose.remindMe = remindMe
+
+            if remindMe {
+                dataController.addCheckReminders(for: dose, add: true) { success in
+                    if success == false {
+                        self.remindMe = false
+                        self.showingNotificationError = true
+                    }
+                }
+            } else {
+                dataController.removeReminders(for: dose)
+            }
+        }
+
+        func checkNotificationAbility() {
+            if remindMe {
+                dataController.addCheckReminders(for: Dose(), add: false) { success in
+                    if success == false {
+                        self.remindMe = false
+                        self.showingNotificationError = true
+                    }
+                }
             }
         }
 

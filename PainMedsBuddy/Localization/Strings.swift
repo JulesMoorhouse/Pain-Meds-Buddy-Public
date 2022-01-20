@@ -22,19 +22,19 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonPleaseAdd
     case commonSave
     case commonSort
-
+    // --------------------------
     case validationTwoLetters
     case validationOneOrAbove
     case validationMustSpecify
     case validationMustEmptySuffixS
-
+    // --------------------------
     case titleHome
     case tabTitleHistory
     case tabTitleHome
     case tabTitleInProgress
     case tabTitleMedications
     case tabTitleSettings
-
+    // --------------------------
     case homeCurrentMeds
     case homeMedsRunningOut
     case homeRecentlyTaken
@@ -44,17 +44,21 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case homeAccessibilityIconTaken
     case homeAccessibilityIconTakeNow
     case homeAccessibilityAvailable
-
+    // --------------------------
     case doseProgressAvailable
     case doseProgressUnknownMedication
     case doseProgressAccessibilityAvailable
     case doseProgressAccessibilityRemaining
-
+    // --------------------------
     case selectMedSelectMed
-
+    // --------------------------
     case doseEditAddDose
     case doseEditAreYouSure
     case doseEditAmount
+    case doseElapsedReminder
+    case doseElapsedReminderAlertTitle
+    case doseElapsedReminderAlertMessage
+    case doseElapsedReminderAlertButton
     case doseEditDateTime
     case doseEditDeleteDose
     case doseEditDeleteThisDose
@@ -62,16 +66,16 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case doseEditDetailsPlaceholder
     case doseEditEditDose
     case doseEditMedication
-
+    // --------------------------
     case sortOptimised
     case sortCreatedDate
     case sortSortOrder
     case sortTitle
-
+    // --------------------------
     case medsMedications
     case medsSorryUsed
     case medsPleaseSelect
-
+    // --------------------------
     case medEditTitleLabelAID
     case medEditTitleText
     case medEditGapInfo
@@ -104,12 +108,16 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditSorry
     case medEditSymbol
     case medEditTitle
-
+    // --------------------------
     case settingsAcknowledgements
     case settingsAddExampleData
     case settingsDeleteAllData
+    case settingsDefaultRemindMe
     case settingsGenerateTestCrash
     case settingsNoResponsibility
+    // --------------------------
+    case notificationSubtitle
+    // --------------------------
 
     func automatedId() -> String {
         rawValue.stringKey

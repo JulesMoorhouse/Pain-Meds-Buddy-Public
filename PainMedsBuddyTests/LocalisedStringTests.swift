@@ -52,6 +52,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonSort:
                 output = ""
+            // --------------------------
             case .validationTwoLetters:
                 output = ""
             case .validationOneOrAbove:
@@ -60,6 +61,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .validationMustEmptySuffixS:
                 output = ""
+            // --------------------------
             case .titleHome:
                 output = ""
             case .tabTitleHistory:
@@ -72,6 +74,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .tabTitleSettings:
                 output = ""
+            // --------------------------
             case .homeCurrentMeds:
                 output = ""
             case .homeMedsRunningOut:
@@ -99,6 +102,7 @@ class LocalisedStringTests: BaseTestCase {
 
             case .homeAccessibilityAvailable:
                 output = ""
+            // --------------------------
             case .doseProgressAvailable:
                 output = ""
             case .doseProgressUnknownMedication:
@@ -115,11 +119,20 @@ class LocalisedStringTests: BaseTestCase {
 
             case .selectMedSelectMed:
                 output = ""
+            // --------------------------
             case .doseEditAddDose:
                 output = ""
             case .doseEditAreYouSure:
                 output = ""
             case .doseEditAmount:
+                output = ""
+            case .doseElapsedReminder:
+                output = ""
+            case .doseElapsedReminderAlertTitle:
+                output = ""
+            case .doseElapsedReminderAlertMessage:
+                output = ""
+            case .doseElapsedReminderAlertButton:
                 output = ""
             case .doseEditDateTime:
                 output = ""
@@ -135,6 +148,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .doseEditMedication:
                 output = ""
+            // --------------------------
             case .sortOptimised:
                 output = ""
             case .sortCreatedDate:
@@ -143,12 +157,14 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .sortTitle:
                 output = ""
+            // --------------------------
             case .medsMedications:
                 output = ""
             case .medsSorryUsed:
                 output = ""
             case .medsPleaseSelect:
                 output = ""
+            // --------------------------
             case .medEditTitleLabelAID:
                 output = ""
             case .medEditTitleText:
@@ -216,15 +232,21 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditTitle:
                 output = ""
+            // --------------------------
             case .settingsAcknowledgements:
                 output = ""
             case .settingsAddExampleData:
                 output = ""
             case .settingsDeleteAllData:
                 output = ""
+            case .settingsDefaultRemindMe:
+                output = ""
             case .settingsGenerateTestCrash:
                 output = ""
             case .settingsNoResponsibility:
+                output = ""
+            // --------------------------
+            case .notificationSubtitle:
                 output = ""
             }
 
