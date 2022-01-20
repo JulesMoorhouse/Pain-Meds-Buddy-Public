@@ -25,9 +25,10 @@ struct MedEditView: View, DestinationView {
 
     @StateObject private var viewModel: ViewModel
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.presentationMode) private var presentationMode
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var presentableToast: PresentableToast
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteDenied
@@ -127,6 +128,7 @@ struct MedEditView: View, DestinationView {
             }
             .navigationBarTitle(configuration: navigationBarTitleConfiguration)
             .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
+            .toasted(show: $presentableToast.show, message: $presentableToast.message)
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 backBarButtonItem

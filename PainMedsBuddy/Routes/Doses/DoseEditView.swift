@@ -17,11 +17,11 @@ struct DoseEditView: View, DestinationView {
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var navigation: Navigation
-    @EnvironmentObject var presentableToast: PresentableToast
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.presentationMode) private var presentationMode
+    @EnvironmentObject private var navigation: Navigation
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var presentableToast: PresentableToast
 
     @State private var showingDeleteConfirm = false
     @State private var isSaveDisabled = false
@@ -166,6 +166,7 @@ struct DoseEditView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
+        .toasted(show: $presentableToast.show, message: $presentableToast.message)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             backBarButtonItem

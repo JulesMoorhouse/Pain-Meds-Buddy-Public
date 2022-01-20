@@ -14,9 +14,10 @@ struct MedsView: View {
     static let MedsTag: String? = "Medications"
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject var navigation: Navigation
-    @EnvironmentObject var dataController: DataController
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var navigation: Navigation
+    @EnvironmentObject private var dataController: DataController
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var presentableToast: PresentableToast
 
     var items: [Med] {
         viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
@@ -126,6 +127,7 @@ struct MedsView: View {
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
+            .toasted(show: $presentableToast.show, message: $presentableToast.message)
             .alert(isPresented: $viewModel.showDeleteDenied) {
                 Alert(title: Text(.medEditDeleteMed),
                       message: Text(.medsSorryUsed),

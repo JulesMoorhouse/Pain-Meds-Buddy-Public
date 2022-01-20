@@ -16,10 +16,10 @@ struct DosesView: View {
     static let historyTag: String? = "History"
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject var navigation: Navigation
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var navigation: Navigation
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToast
-    
+
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
             DoseRowView(dose: dose)

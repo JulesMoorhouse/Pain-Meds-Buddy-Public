@@ -15,9 +15,10 @@ struct SettingsView: View {
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
-    @EnvironmentObject var dataController: DataController
-    @EnvironmentObject var navigation: Navigation
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var dataController: DataController
+    @EnvironmentObject private var navigation: Navigation
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var presentableToast: PresentableToast
 
     var body: some View {
         NavigationViewChild {
@@ -79,6 +80,7 @@ struct SettingsView: View {
             }
             .navigationTitle(Strings.tabTitleSettings.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)
+            .toasted(show: $presentableToast.show, message: $presentableToast.message)
         }
         .iPadOnlyStackNavigationView()
         .onAppear(perform: {

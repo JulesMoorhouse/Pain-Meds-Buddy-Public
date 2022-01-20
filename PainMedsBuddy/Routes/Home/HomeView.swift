@@ -14,7 +14,8 @@ struct HomeView: View {
     static let HomeTag: String? = "Home"
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var tabBarHandler: TabBarHandler
+    @EnvironmentObject private var presentableToast: PresentableToast
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]
@@ -72,6 +73,7 @@ struct HomeView: View {
                 }
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
+            .toasted(show: $presentableToast.show, message: $presentableToast.message)
             .navigationTitle(Strings.titleHome.rawValue)
             .navigationBarAccessibilityIdentifier(.titleHome)
         }
