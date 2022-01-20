@@ -11,6 +11,8 @@ import XNavigation
 
 @main
 struct PainMedsBuddyApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject var dataController: DataController
     @StateObject var presentableToast: PresentableToast
     @State var colourScheme: ColorScheme?

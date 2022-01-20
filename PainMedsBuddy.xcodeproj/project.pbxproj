@@ -115,6 +115,7 @@
 		88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */; };
 		88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A427988F4E00CBC65E /* TextAreaView.swift */; };
 		88F906A92799AB6000CBC65E /* Toast-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */; };
+		88F906AB2799BBF500CBC65E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906AA2799BBF500CBC65E /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,7 @@
 		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
 		88F906A427988F4E00CBC65E /* TextAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAreaView.swift; sourceTree = "<group>"; };
 		88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast-ViewModifier.swift"; sourceTree = "<group>"; };
+		88F906AA2799BBF500CBC65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
 				88321423275120D40026D85F /* ContentView.swift */,
 				88572054275139DD00B4B00C /* DataController.swift */,
+				88F906AA2799BBF500CBC65E /* AppDelegate.swift */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88321427275120D60026D85F /* Preview Content */,
 			);
@@ -800,6 +803,7 @@
 				8852BF472786063D000750FB /* MedsViewModel.swift in Sources */,
 				8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */,
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
+				88F906AB2799BBF500CBC65E /* AppDelegate.swift in Sources */,
 				88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */,
 				88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */,
 				88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */,
