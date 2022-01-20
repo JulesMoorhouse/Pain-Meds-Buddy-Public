@@ -51,6 +51,9 @@
                   Identifier = "NoDataUITests">
                </Test>
                <Test
+                  Identifier = "OneMedTests">
+               </Test>
+               <Test
                   Identifier = "PainMedsBuddyUITests">
                </Test>
             </SkippedTests>

@@ -82,7 +82,6 @@ struct SettingsView: View {
             .navigationBarAccessibilityIdentifier(.tabTitleSettings)
             .toasted(show: $presentableToast.show, message: $presentableToast.message)
         }
-        .iPadOnlyStackNavigationView()
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
         })

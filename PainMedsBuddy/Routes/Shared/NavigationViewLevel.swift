@@ -18,6 +18,7 @@ struct NavigationViewParent<Content: View>: View {
                 content
             }
             .navigationBarHidden(true)
+            .iPadOnlyStackNavigationView()
         } else {
             VStack {
                 content
@@ -37,11 +38,13 @@ struct NavigationViewChild<Content: View>: View {
                 content
             }
             .navigationBarHidden(true)
+            .iPadOnlyStackNavigationView()
         } else {
             NavigationView {
                 content
             }
             .navigationBarHidden(true)
+            .iPadOnlyStackNavigationView()
         }
     }
 }

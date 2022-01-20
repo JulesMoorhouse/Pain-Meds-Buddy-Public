@@ -77,7 +77,6 @@ struct HomeView: View {
             .navigationTitle(Strings.titleHome.rawValue)
             .navigationBarAccessibilityIdentifier(.titleHome)
         }
-        .iPadOnlyStackNavigationView()
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
         })

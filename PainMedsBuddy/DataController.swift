@@ -289,6 +289,7 @@ class DataController: ObservableObject {
         }
 
         try viewContext.save()
+        processDoses()
     }
 
     func createSampleData(appStore: Bool) throws {
