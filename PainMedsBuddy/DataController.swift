@@ -276,7 +276,7 @@ class DataController: ObservableObject {
                     for index in 1 ... medDosesRequired {
                         let dose = Dose(context: viewContext)
                         let tempAmount = Int16.random(in: 1 ... drug.defAmt)
-                        dose.takenDate = med.medPredictedNextTimeCanTake
+                        dose.takenDate = index == 1 ? Date() : med.medPredictedNextTimeCanTake
                         med.lastTakenDate = dose.takenDate
                         dose.elapsed = index == 1 ? false : Bool.random()
                         dose.amount = NSDecimalNumber(value: tempAmount)

@@ -23,10 +23,11 @@ screenshot_devices = [
 ]
 
 test_devices = [
-    #"iPhone SE (2nd generation)",
-    "iPhone 8",
+    "iPhone SE (2nd generation) (14.5)",
+    "iPhone 8 (15.2)",
     #"iPhone 8 Plus",
-    "iPad Pro (12.9-inch) (4th generation)"
+    "iPad Pro (12.9-inch) (2nd generation) (14.5)",
+    "iPad Pro (12.9-inch) (4th generation) (15.2)"
 ]
 
 platform :ios do
@@ -70,6 +71,10 @@ platform :ios do
         skip_build: true,
         output_style: "standard",
         output_types: "html",
+        suppress_xcode_output: true,
+        ensure_devices_found: true,
+        number_of_retries: 2,
+        fail_build: false,
         skip_detect_devices: true
     )
   end

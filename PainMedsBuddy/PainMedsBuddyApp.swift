@@ -59,7 +59,7 @@ struct PainMedsBuddyApp: App {
                     .onReceive(NotificationCenter.default.publisher(
                         for: UIApplication.didBecomeActiveNotification),
                     perform: processDoses)
-                // .preferredColorScheme(colourScheme)
+                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
             }
         }
     }

@@ -6,8 +6,6 @@
 //
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
-// swiftlint:disable type_body_length
-
 import FormValidator
 import SwiftUI
 import XNavigation
@@ -255,7 +253,7 @@ struct MedEditView: View, DestinationView {
                                      values: [MedDefault.Sensible.title]),
                               text: $viewModel.title)
                         .accessibilityIdentifier(.medEditTitleText)
-                        .autocapitalization(.none)
+                        .autocapitalization(.words)
                         .textFieldStyle(SelectAllTextFieldStyle())
                         .validation(viewModel.titleValidator)
                 }
