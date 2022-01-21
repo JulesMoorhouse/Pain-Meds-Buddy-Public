@@ -71,4 +71,11 @@ extension View {
             self
         }
     }
+
+    func hideKeyboardWhenTappedAround() -> some View {
+        return onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                            to: nil, from: nil, for: nil)
+        }
+    }
 }

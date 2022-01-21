@@ -25,7 +25,7 @@ struct MedDefault {
         static let notes: String = ""
 
         static func medDefaultAmount() -> String {
-            "\(String(describing: MedDefault.Sensible.dosage))"
+            "\(String(describing: MedDefault.Sensible.defaultAmount))"
         }
 
         static func medDuration() -> String {
@@ -37,7 +37,7 @@ struct MedDefault {
         }
 
         static func medDosage() -> String {
-            "\(String(describing: MedDefault.Sensible.defaultAmount))"
+            "\(String(describing: MedDefault.Sensible.dosage))"
         }
 
         static func medRemaining() -> String {

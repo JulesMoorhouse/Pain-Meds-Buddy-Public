@@ -255,6 +255,7 @@ struct MedEditView: View, DestinationView {
                                      values: [MedDefault.Sensible.title]),
                               text: $viewModel.title)
                         .accessibilityIdentifier(.medEditTitleText)
+                        .autocapitalization(.none)
                         .textFieldStyle(SelectAllTextFieldStyle())
                         .validation(viewModel.titleValidator)
                 }
@@ -274,10 +275,9 @@ struct MedEditView: View, DestinationView {
                       rightDetail: viewModel.measure,
                       validationContainer: viewModel.dosageValidator)
 
-            rowFieldsDate(
-                label: .medEditDuration,
-                binding: $viewModel.durationDate, validationContainer: viewModel.durationDateValidator
-            ) {
+            rowFieldsDate(label: .medEditDuration,
+                          binding: $viewModel.durationDate,
+                          validationContainer: viewModel.durationDateValidator) {
                 showPopup = true
                 activePopup = .durationPicker
             }
@@ -296,11 +296,9 @@ struct MedEditView: View, DestinationView {
                         .buttonStyle(BorderlessButtonStyle())
                 }
 
-                rowFieldsDate(
-                    label: .medEditDurationGap,
-                    binding: $viewModel.durationGapDate,
-                    validationContainer: nil
-                ) {
+                rowFieldsDate(label: .medEditDurationGap,
+                              binding: $viewModel.durationGapDate,
+                              validationContainer: nil) {
                     showPopup = true
                     activePopup = .durationGapPicker
                 }
@@ -329,39 +327,11 @@ struct MedEditView: View, DestinationView {
         }
     }
 
-    func rowInfoFields(label: Strings,
-                       detailValues: [String],
-                       binding: Binding<String>,
-                       keyboardType: UIKeyboardType = .default,
-                       actionButtonClosure: @escaping () -> Void) -> some View
-    {
-        HStack {
-            Text(label)
-                .foregroundColor(.secondary)
-
-            Button(action: {
-                actionButtonClosure()
-            }, label: {
-                Image(systemName: SFSymbol.infoCircle.systemName)
-            })
-                .buttonStyle(BorderlessButtonStyle())
-
-            Spacer()
-
-            TextField(String(.commonEgString,
-                             values: detailValues),
-                      text: binding)
-                .keyboardType(keyboardType)
-                .multilineTextAlignment(.trailing)
-                .accessibilityIdentifier(label)
-                .textFieldStyle(SelectAllTextFieldStyle())
-        }
-    }
-
     func rowFields(label: Strings,
                    detailValues: [String],
                    binding: Binding<String>,
                    keyboardType: UIKeyboardType = .default,
+                   autoCapitalisation: UITextAutocapitalizationType = .none,
                    rightDetail: String? = nil,
                    validationContainer: ValidationContainer) -> some View
     {
