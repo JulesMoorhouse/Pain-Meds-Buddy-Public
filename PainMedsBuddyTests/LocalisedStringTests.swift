@@ -237,9 +237,21 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsAddExampleData:
                 output = ""
+            case .settingsAreYouSureDeleteAll:
+                output = ""
+            case .settingsAreYouSureExampleData:
+                output = ""
+            case .settingsAreYouSureCrashTest:
+                output = ""
+            case .settingsCrashTestAlertTitle:
+                output = ""
             case .settingsDeleteAllData:
                 output = ""
+            case .settingsDeleteAllAlertTitle:
+                output = ""
             case .settingsDefaultRemindMe:
+                output = ""
+            case .settingsExampleDataAlertTitle:
                 output = ""
             case .settingsGenerateTestCrash:
                 output = ""

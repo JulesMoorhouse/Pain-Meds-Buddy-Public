@@ -111,8 +111,14 @@ enum Strings: LocalizedStringKey, CaseIterable {
     // --------------------------
     case settingsAcknowledgements
     case settingsAddExampleData
+    case settingsAreYouSureDeleteAll
+    case settingsAreYouSureExampleData
+    case settingsAreYouSureCrashTest
+    case settingsCrashTestAlertTitle
     case settingsDeleteAllData
+    case settingsDeleteAllAlertTitle
     case settingsDefaultRemindMe
+    case settingsExampleDataAlertTitle
     case settingsGenerateTestCrash
     case settingsNoResponsibility
     // --------------------------

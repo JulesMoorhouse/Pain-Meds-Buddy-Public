@@ -12,14 +12,6 @@ import FormValidator
 import SwiftUI
 import XNavigation
 
-enum ActiveAlert {
-    case deleteDenied, deleteConfirmation, copied
-}
-
-enum ActivePopup {
-    case durationGapInfo, hiddenTitle, durationPicker, durationGapPicker
-}
-
 struct MedEditView: View, DestinationView {
     var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
 
@@ -36,6 +28,14 @@ struct MedEditView: View, DestinationView {
     @State private var activePopup: ActivePopup = .durationGapInfo
     @State private var canDelete = false
     @State private var isSaveDisabled = false
+
+    enum ActiveAlert {
+        case deleteDenied, deleteConfirmation, copied
+    }
+
+    enum ActivePopup {
+        case durationGapInfo, hiddenTitle, durationPicker, durationGapPicker
+    }
 
     let types = ["mg", "ml", "Tspn"]
 
@@ -196,18 +196,29 @@ struct MedEditView: View, DestinationView {
     func alertOption() -> Alert {
         switch activeAlert {
         case .deleteConfirmation:
-            return Alert(title: Text(.medEditDeleteMed),
-                         message: Text(.medEditAreYouSure),
-                         primaryButton: .default(Text(.commonDelete), action: delete),
-                         secondaryButton: .cancel())
+            return Alert(
+                title: Text(.medEditDeleteMed),
+                message: Text(.medEditAreYouSure),
+                primaryButton: .default(
+                    Text(.commonDelete),
+                    action: delete
+                ),
+                secondaryButton: .cancel()
+            )
         case .deleteDenied:
-            return Alert(title: Text(.medEditDeleteMed),
-                         message: Text(.medEditSorry),
-                         dismissButton: .default(Text(.commonOK)))
+            return Alert(
+                title: Text(.medEditDeleteMed),
+                message: Text(.medEditSorry),
+                dismissButton: .default(
+                    Text(.commonOK))
+            )
         case .copied:
-            return Alert(title: Text(.medEditInfo),
-                         message: Text(.medEditCopied),
-                         dismissButton: .default(Text(.commonOK)))
+            return Alert(
+                title: Text(.medEditInfo),
+                message: Text(.medEditCopied),
+                dismissButton: .default(
+                    Text(.commonOK))
+            )
         }
     }
 
