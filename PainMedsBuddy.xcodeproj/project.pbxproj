@@ -99,6 +99,9 @@
 		88E930A22760A63E00A98708 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930A12760A63E00A98708 /* SettingsView.swift */; };
 		88E930AA2760C6E500A98708 /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E930A92760C6E500A98708 /* Acknowledgements.plist */; };
 		88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AB2760D8F800A98708 /* DoseProgressView.swift */; };
+		88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */; };
+		88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265B279B1A66001C2C55 /* TimePicker.swift */; };
+		88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */; };
 		88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Med-CoreDataHelpers.swift */; };
 		88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */; };
 		88EF20372753B215006037CF /* MedEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF20362753B215006037CF /* MedEditView.swift */; };
@@ -228,6 +231,9 @@
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		88E930A92760C6E500A98708 /* Acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Acknowledgements.plist; sourceTree = SOURCE_ROOT; };
 		88E930AB2760D8F800A98708 /* DoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseProgressView.swift; sourceTree = "<group>"; };
+		88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditPicker.swift; sourceTree = "<group>"; };
+		88EE265B279B1A66001C2C55 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
+		88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutePicker.swift; sourceTree = "<group>"; };
 		88EF203027526746006037CF /* Med-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Med-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dose-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF20362753B215006037CF /* MedEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditView.swift; sourceTree = "<group>"; };
@@ -418,9 +424,12 @@
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
+				88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88F9069D2798115100CBC65E /* TabBarHandler.swift */,
+				88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */,
 				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
+				88EE265B279B1A66001C2C55 /* TimePicker.swift */,
 				889A4CF52775E1B900E3B53B /* VStackFormView.swift */,
 			);
 			path = Shared;
@@ -766,6 +775,7 @@
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
+				88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
 				88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */,
 				88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */,
@@ -792,7 +802,9 @@
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
 				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
+				88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */,
 				88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */,
+				88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */,
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,
 				88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */,

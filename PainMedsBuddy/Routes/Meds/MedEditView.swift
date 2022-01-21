@@ -6,6 +6,8 @@
 //
 // INFO: This view is shown via the MedicationView to allow editing of medication
 
+// swiftlint:disable type_body_length
+
 import FormValidator
 import SwiftUI
 import XNavigation
@@ -164,21 +166,29 @@ struct MedEditView: View, DestinationView {
                     text: Strings.medEditHiddenTitle.rawValue
                 )
             case .durationPicker:
-                DurationPopupView(
-                    title: Strings.medEditDuration.rawValue,
-                    showing: $showPopup,
-                    duration: $viewModel.durationDate
-                )
-                .onAppear { UIApplication.endEditing() }
-                .onTapGesture { UIApplication.endEditing() }
+                if #available(iOS 15, *) {
+                    EmptyView()
+                } else {
+                    DurationPopupView(
+                        title: Strings.medEditDuration.rawValue,
+                        showing: $showPopup,
+                        duration: $viewModel.durationDate
+                    )
+                    .onAppear { UIApplication.endEditing() }
+                    .onTapGesture { UIApplication.endEditing() }
+                }
             case .durationGapPicker:
-                DurationPopupView(
-                    title: Strings.medEditDurationGap.rawValue,
-                    showing: $showPopup,
-                    duration: $viewModel.durationGapDate
-                )
-                .onAppear { UIApplication.endEditing() }
-                .onTapGesture { UIApplication.endEditing() }
+                if #available(iOS 15, *) {
+                    EmptyView()
+                } else {
+                    DurationPopupView(
+                        title: Strings.medEditDurationGap.rawValue,
+                        showing: $showPopup,
+                        duration: $viewModel.durationGapDate
+                    )
+                    .onAppear { UIApplication.endEditing() }
+                    .onTapGesture { UIApplication.endEditing() }
+                }
             }
         }
     }
@@ -370,15 +380,24 @@ struct MedEditView: View, DestinationView {
 
             Spacer()
 
-            Button(action: {
-                actionButtonClosure()
-            }, label: {
-                Text("\(binding.wrappedValue.secondsToTimeHM)")
+            if #available(iOS 15, *) {
+                HourMinutePicker(duration: binding)
                     .buttonStyle(BorderlessButtonStyle())
                     .accessibilityElement()
                     .accessibility(addTraits: .isButton)
                     .accessibilityIdentifier(label)
-            })
+            } else {
+                Button(action: {
+                    actionButtonClosure()
+                }, label: {
+                    Text("\(binding.wrappedValue.secondsToTimeHM)")
+                        .buttonStyle(BorderlessButtonStyle())
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(label)
+
+                })
+            }
         }
         .if(validationContainer != nil) { view in
             view.validation(validationContainer!)

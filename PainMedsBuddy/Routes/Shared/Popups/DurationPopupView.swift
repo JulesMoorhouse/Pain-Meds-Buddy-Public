@@ -15,9 +15,10 @@ struct DurationPopupView: View {
     var body: some View {
         PopUpView(
             text: title,
-            width: 300,
+            width: 250,
             content: {
-                DurationPicker(duration: $duration)
+                // DurationPicker(duration: $duration)
+                TimeEditPicker(duration: $duration)
             },
             leftButton: {},
             rightButton: {

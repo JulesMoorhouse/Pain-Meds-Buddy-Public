@@ -70,8 +70,11 @@ class NoDataUITests: XCTestCase {
             duration.tap()
             app.swipeUp()
             let okButton = app.buttons[Strings.commonOK.automatedId()]
-            okButton.tap()
 
+            // in iOS 15 dialog isn't used
+            if okButton.exists {
+                okButton.tap()
+            }
             // Measure
 
             // Form
