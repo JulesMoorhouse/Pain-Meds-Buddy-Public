@@ -15,8 +15,6 @@ struct DoseProgressView: View {
     @ObservedObject var dose: Dose
     @ObservedObject var med: Med
 
-    let size: CGFloat
-
     let gradient = LinearGradient(
         gradient: Gradient(colors:
             [Color.blue, Color.blue]),
@@ -42,8 +40,9 @@ struct DoseProgressView: View {
                 lineWidth: 5.0,
                 showText: false
             )
-            .frame(width: size - 20, height: size - 20)
+            .frame(width: 140, height: 130)
             .padding(.top, 10)
+            .background(debug ? Color.red : nil)
 
             Text(med.medTitle)
                 .font(.caption)
@@ -60,7 +59,7 @@ struct DoseProgressView: View {
                 .padding(.bottom, 10)
         }
         .background(debug ? Color.yellow : nil)
-        .frame(minWidth: size, minHeight: size)
+        .frame(minWidth: 155, minHeight: 215)
     }
 
     var detail: some View {
@@ -130,7 +129,7 @@ struct DoseProgressView_Previews: PreviewProvider {
     static var previews: some View {
         DoseProgressView(
             dose: Dose.example,
-            med: Med.example,
-            size: 150)
+            med: Med.example
+        )
     }
 }

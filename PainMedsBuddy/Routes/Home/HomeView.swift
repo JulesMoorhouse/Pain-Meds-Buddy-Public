@@ -34,8 +34,7 @@ struct HomeView: View {
                     if let med = item.med {
                         DoseProgressView(
                             dose: item,
-                            med: med,
-                            size: 150
+                            med: med
                         )
                     }
                 }
