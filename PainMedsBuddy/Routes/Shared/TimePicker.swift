@@ -35,13 +35,15 @@ struct TimePicker: View {
         Group {
             if hours {
                 ForEach(0 ..< 13) {
-                    Text("\(String($0)) hrs")
+                    let label = String(.timePickerHours, values: ["\($0)"])
+                    Text(label)
                         .tag($0)
                         .font(.callout)
                 }
             } else {
                 ForEach(self.min, id: \.self) {
-                    Text("\($0) mins")
+                    let label = String(.timePickerMins, values: ["\($0)"])
+                    Text(label)
                         .tag($0)
                         .font(.callout)
                 }

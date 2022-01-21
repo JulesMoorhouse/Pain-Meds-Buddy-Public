@@ -248,6 +248,11 @@ class LocalisedStringTests: BaseTestCase {
             // --------------------------
             case .notificationSubtitle:
                 output = ""
+            // --------------------------
+            case .timePickerHours:
+                output = ""
+            case .timePickerMins:
+                output = ""
             }
 
             if !output.isEmpty {

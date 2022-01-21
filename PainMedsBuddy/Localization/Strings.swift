@@ -118,6 +118,9 @@ enum Strings: LocalizedStringKey, CaseIterable {
     // --------------------------
     case notificationSubtitle
     // --------------------------
+    case timePickerHours
+    case timePickerMins
+    // --------------------------
 
     func automatedId() -> String {
         rawValue.stringKey
