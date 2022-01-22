@@ -181,4 +181,13 @@ extension XCUIElement {
         }
         typeText(deleteString)
     }
+
+    func selectPicker(value: String, timeout: TimeInterval) {
+        let pickerWheel = pickerWheels.firstMatch
+        let row = pickerWheels[value]
+
+        while !row.waitForExistence(timeout: timeout) {
+            pickerWheel.adjust(toPickerWheelValue: value)
+        }
+    }
 }

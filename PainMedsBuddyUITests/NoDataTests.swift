@@ -68,7 +68,14 @@ class NoDataUITests: XCTestCase {
             // Duration
             let duration = app.buttons[Strings.medEditDuration.automatedId()]
             duration.tap()
-            app.swipeUp()
+
+            let picker = app.pickers[Strings.medEditDurationPickerHourAID.automatedId()]
+            if picker.exists {
+                picker.selectPicker(value: "3 hrs", timeout: 1)
+            } else {
+                app.swipeUp()
+            }
+
             let okButton = app.buttons[Strings.commonOK.automatedId()]
 
             // in iOS 15 dialog isn't used

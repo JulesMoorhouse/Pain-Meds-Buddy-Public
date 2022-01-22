@@ -8,6 +8,9 @@
 import SwiftUI
 
 enum Strings: LocalizedStringKey, CaseIterable {
+    case nothing
+    // --------------------------
+    case commonAdd
     case commonBasicSettings
     case commonCancel
     case commonDelete
@@ -92,7 +95,11 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditDeleteMed
     case medEditDeleteThisMed
     case medEditDurationGap
+    case medEditDurationGapPickerHourAID
+    case medEditDurationGapPickerMinuteAID
     case medEditDuration
+    case medEditDurationPickerHourAID
+    case medEditDurationPickerMinuteAID
     case medEditEditMed
     case medEditHiddenTitle
     case medEditForm

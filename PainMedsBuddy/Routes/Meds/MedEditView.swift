@@ -74,7 +74,7 @@ struct MedEditView: View, DestinationView {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }, label: {
-                    Text(.commonSave)
+                    Text(viewModel.add ? .commonAdd : .commonSave)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
                         .accessibilityIdentifier(.commonSave)
@@ -156,14 +156,18 @@ struct MedEditView: View, DestinationView {
             switch activePopup {
             case .durationGapInfo:
                 InfoPopupView(
-                    showing: $showPopup,
+                    showing: $showPopup, title: Strings.medEditInfo.rawValue,
                     text: Strings.medEditGapInfo.rawValue
                 )
+                .onAppear { UIApplication.endEditing() }
+                .onTapGesture { UIApplication.endEditing() }
             case .hiddenTitle:
                 InfoPopupView(
-                    showing: $showPopup,
+                    showing: $showPopup, title: Strings.medEditInfo.rawValue,
                     text: Strings.medEditHiddenTitle.rawValue
                 )
+                .onAppear { UIApplication.endEditing() }
+                .onTapGesture { UIApplication.endEditing() }
             case .durationPicker:
                 if #available(iOS 15, *) {
                     EmptyView()
@@ -171,7 +175,9 @@ struct MedEditView: View, DestinationView {
                     DurationPopupView(
                         title: Strings.medEditDuration.rawValue,
                         showing: $showPopup,
-                        duration: $viewModel.durationDate
+                        duration: $viewModel.durationDate,
+                        hourAid: .medEditDurationPickerHourAID,
+                        minuteAid: .medEditDurationPickerMinuteAID
                     )
                     .onAppear { UIApplication.endEditing() }
                     .onTapGesture { UIApplication.endEditing() }
@@ -183,7 +189,9 @@ struct MedEditView: View, DestinationView {
                     DurationPopupView(
                         title: Strings.medEditDurationGap.rawValue,
                         showing: $showPopup,
-                        duration: $viewModel.durationGapDate
+                        duration: $viewModel.durationGapDate,
+                        hourAid: .medEditDurationGapPickerHourAID,
+                        minuteAid: .medEditDurationGapPickerMinuteAID
                     )
                     .onAppear { UIApplication.endEditing() }
                     .onTapGesture { UIApplication.endEditing() }
@@ -295,7 +303,10 @@ struct MedEditView: View, DestinationView {
 
             rowFieldsDate(label: .medEditDuration,
                           binding: $viewModel.durationDate,
-                          validationContainer: viewModel.durationDateValidator) {
+
+                          validationContainer: viewModel.durationDateValidator,
+                          hourAid: .medEditDurationPickerHourAID,
+                          minuteAid: .medEditDurationPickerMinuteAID) {
                 showPopup = true
                 activePopup = .durationPicker
             }
@@ -316,7 +327,9 @@ struct MedEditView: View, DestinationView {
 
                 rowFieldsDate(label: .medEditDurationGap,
                               binding: $viewModel.durationGapDate,
-                              validationContainer: nil) {
+                              validationContainer: nil,
+                              hourAid: .medEditDurationGapPickerHourAID,
+                              minuteAid: .medEditDurationGapPickerMinuteAID) {
                     showPopup = true
                     activePopup = .durationGapPicker
                 }
@@ -382,6 +395,8 @@ struct MedEditView: View, DestinationView {
     func rowFieldsDate(label: Strings,
                        binding: Binding<String>,
                        validationContainer: ValidationContainer?,
+                       hourAid: Strings,
+                       minuteAid: Strings,
                        actionButtonClosure: @escaping () -> Void) -> some View
     {
         HStack {
@@ -391,7 +406,9 @@ struct MedEditView: View, DestinationView {
             Spacer()
 
             if #available(iOS 15, *) {
-                HourMinutePicker(duration: binding)
+                HourMinutePicker(duration: binding,
+                                 hourAid: hourAid,
+                                 minuteAid: minuteAid)
                     .buttonStyle(BorderlessButtonStyle())
                     .accessibilityElement()
                     .accessibility(addTraits: .isButton)

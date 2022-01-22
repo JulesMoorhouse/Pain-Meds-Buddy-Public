@@ -12,18 +12,23 @@ struct DurationPopupView: View {
     @Binding var showing: Bool
     @Binding var duration: String
 
+    let hourAid: Strings
+    let minuteAid: Strings
+
     var body: some View {
         PopUpView(
             text: title,
             width: 250,
             content: {
                 // DurationPicker(duration: $duration)
-                TimeEditPicker(duration: $duration)
+                TimeEditPicker(duration: $duration,
+                               hourAid: hourAid,
+                               minuteAid: minuteAid)
             },
             leftButton: {},
             rightButton: {
                 Button(action: {
-                    showing = false
+                    showing.toggle()
                 }, label: {
                     Image(systemName: SFSymbol.xMark.systemName)
                         .font(.headline)
@@ -31,7 +36,7 @@ struct DurationPopupView: View {
             },
             bottomButton: {
                 Button(action: {
-                    showing = false
+                    showing.toggle()
                 }, label: {
                     Text(.commonOK)
                         .accessibilityElement()
@@ -47,6 +52,8 @@ struct DurationPopupView_Previews: PreviewProvider {
         DurationPopupView(
             title: "DURATION",
             showing: .constant(true),
-            duration: .constant("240"))
+            duration: .constant("240"),
+            hourAid: .nothing,
+            minuteAid: .nothing)
     }
 }

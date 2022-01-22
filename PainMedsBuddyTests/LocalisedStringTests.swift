@@ -24,6 +24,10 @@ class LocalisedStringTests: BaseTestCase {
         print("--------")
         for item in Strings.allCases {
             switch item {
+            case .nothing:
+                output = ""
+            case .commonAdd:
+                output = ""
             case .commonBasicSettings:
                 output = ""
             case .commonCancel:
@@ -200,7 +204,15 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditDurationGap:
                 output = ""
+            case .medEditDurationGapPickerHourAID:
+                output = ""
+            case .medEditDurationGapPickerMinuteAID:
+                output = ""
             case .medEditDuration:
+                output = ""
+            case .medEditDurationPickerHourAID:
+                output = ""
+            case .medEditDurationPickerMinuteAID:
                 output = ""
             case .medEditEditMed:
                 output = ""

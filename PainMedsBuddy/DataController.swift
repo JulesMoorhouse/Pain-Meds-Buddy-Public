@@ -97,7 +97,7 @@ class DataController: ObservableObject {
         return false
     }
 
-    private static var shouldWipeData: Bool {
+    static var shouldWipeData: Bool {
         #if DEBUG
             if CommandLine.arguments.contains("wipe-data") {
                 return true

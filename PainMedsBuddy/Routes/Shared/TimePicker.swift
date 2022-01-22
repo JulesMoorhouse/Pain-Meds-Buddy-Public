@@ -14,16 +14,20 @@ struct TimePicker: View {
 
     @Binding var selected: Int
 
+    let aId: Strings
+
     var body: some View {
         if #available(iOS 15, *) {
             Picker("", selection: self.$selected) {
                 contents(hours: hours)
             }
             .pickerStyle(.menu)
+            .accessibility(identifier: aId.automatedId())
         } else {
             Picker("", selection: self.$selected) {
                 contents(hours: hours)
             }
+            .accessibility(identifier: aId.automatedId())
         }
     }
 
@@ -54,6 +58,6 @@ struct TimePicker: View {
 
 struct TimePicker_Previews: PreviewProvider {
     static var previews: some View {
-        TimePicker(hours: true, selected: .constant(5))
+        TimePicker(hours: true, selected: .constant(5), aId: .medEditInfo)
     }
 }

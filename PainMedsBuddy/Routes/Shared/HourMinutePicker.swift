@@ -13,35 +13,46 @@ struct HourMinutePicker: View {
 
     @Binding var duration: String
 
+    let hourAid: Strings
+    let minuteAid: Strings
+
     var body: some View {
         if #available(iOS 15, *) {
             HStack {
                 TimePicker(
                     hours: true,
-                    selected: self.$selectedHour.onChange(update))
+                    selected: self.$selectedHour.onChange(update),
+                    aId: hourAid
+                )
 
                 TimePicker(
                     hours: false,
-                    selected: self.$selectedMinute.onChange(update))
+                    selected: self.$selectedMinute.onChange(update),
+                    aId: minuteAid
+                )
             }
         } else {
             TimePicker(
                 hours: true,
-                selected: self.$selectedHour.onChange(update))
-                .labelsHidden()
-                .fixedSize(horizontal: true, vertical: true)
-                .frame(width: 65, height: 160)
-                .clipped()
-                .background(Color(UIColor.systemBackground))
+                selected: self.$selectedHour.onChange(update),
+                aId: hourAid
+            )
+            .labelsHidden()
+            .fixedSize(horizontal: true, vertical: true)
+            .frame(width: 65, height: 160)
+            .clipped()
+            .background(Color(UIColor.systemBackground))
 
             TimePicker(
                 hours: false,
-                selected: self.$selectedMinute.onChange(update))
-                .labelsHidden()
-                .fixedSize(horizontal: true, vertical: true)
-                .frame(width: 65, height: 160)
-                .clipped()
-                .background(Color(UIColor.systemBackground))
+                selected: self.$selectedMinute.onChange(update),
+                aId: minuteAid
+            )
+            .labelsHidden()
+            .fixedSize(horizontal: true, vertical: true)
+            .frame(width: 65, height: 160)
+            .clipped()
+            .background(Color(UIColor.systemBackground))
         }
     }
 
@@ -56,18 +67,22 @@ struct HourMinutePicker: View {
         return "\(seconds)"
     }
 
-    init(duration: Binding<String>) {
+    init(duration: Binding<String>, hourAid: Strings, minuteAid: Strings) {
         let hours = (Int(duration.wrappedValue) ?? 0) / 3600
         let minutes = (Int(duration.wrappedValue) ?? 0) / 60 % 60
 
         selectedHour = hours
         selectedMinute = minutes
         _duration = duration
+        self.hourAid = hourAid
+        self.minuteAid = minuteAid
     }
 }
 
 struct HourMinutePicker_Previews: PreviewProvider {
     static var previews: some View {
-        HourMinutePicker(duration: .constant("60"))
+        HourMinutePicker(duration: .constant("60"),
+                         hourAid: .nothing,
+                         minuteAid: .nothing)
     }
 }

@@ -11,7 +11,7 @@ struct NavigationBarIdentifier: ViewModifier {
     var identifier: String
 
     func body(content: Content) -> some View {
-        if DataController.isUITesting {
+        if DataController.isUITesting || DataController.shouldWipeData {
             content
                 .background(
                     NavigationBarAccessor {

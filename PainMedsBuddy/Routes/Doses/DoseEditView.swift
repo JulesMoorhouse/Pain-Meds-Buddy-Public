@@ -65,7 +65,7 @@ struct DoseEditView: View, DestinationView {
                         }
                     }
                 }, label: {
-                    Text(.commonSave)
+                    Text(viewModel.add ? .commonAdd : .commonSave)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
                         .accessibilityIdentifier(.commonSave)
