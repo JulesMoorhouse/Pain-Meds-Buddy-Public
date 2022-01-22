@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct NavigationBarAccessor: UIViewControllerRepresentable {
-    var callback: (UINavigationBar?) -> Void
+    var callback: (UINavigationBar) -> Void
     private let proxyController = ViewController()
 
     func makeUIViewController(
@@ -27,11 +27,13 @@ struct NavigationBarAccessor: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
 
     private class ViewController: UIViewController {
-        var callback: (UINavigationBar?) -> Void = { _ in }
+        var callback: (UINavigationBar) -> Void = { _ in }
 
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            callback(navigationController?.navigationBar)
+            if let navBar = navigationController {
+                self.callback(navBar.navigationBar)
+            }
         }
     }
 }

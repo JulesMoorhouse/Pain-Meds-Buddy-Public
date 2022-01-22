@@ -70,7 +70,7 @@ class DataController: ObservableObject {
         _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 
-    private static var isUnitTesting: Bool {
+    static var isUnitTesting: Bool {
         #if DEBUG
             if ProcessInfo.processInfo.environment["UNITTEST"] == "1" {
                 return true
@@ -79,7 +79,7 @@ class DataController: ObservableObject {
         return false
     }
 
-    private static var isUITesting: Bool {
+    static var isUITesting: Bool {
         #if DEBUG
             if CommandLine.arguments.contains("enable-ui-testing") {
                 return true
@@ -88,7 +88,7 @@ class DataController: ObservableObject {
         return false
     }
 
-    private static var isSnapshotUITesting: Bool {
+    static var isSnapshotUITesting: Bool {
         #if DEBUG
             if CommandLine.arguments.contains("enable-snapshot-ui-testing") {
                 return true

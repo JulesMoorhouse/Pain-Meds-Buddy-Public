@@ -11,12 +11,16 @@ struct NavigationBarIdentifier: ViewModifier {
     var identifier: String
 
     func body(content: Content) -> some View {
-        content
-            .background(
-                NavigationBarAccessor {
-                    $0?.accessibilityIdentifier = identifier
-                }
-            )
+        if DataController.isUITesting {
+            content
+                .background(
+                    NavigationBarAccessor {
+                        $0.accessibilityIdentifier = identifier
+                    }
+                )
+        } else {
+            content
+        }
     }
 }
 
