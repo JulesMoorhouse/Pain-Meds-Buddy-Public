@@ -36,6 +36,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonEmptyView:
                 output = ""
+            case .commonExampleDosage:
+                output = ""
             case .commonOK:
                 output = ""
             case .commonMedications:
@@ -144,6 +146,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .doseEditDetailsPlaceholder:
                 output = ""
+            case .doseEditDosageElapsed:
+                output = ""
             case .doseEditEditDose:
                 output = ""
             case .doseEditMedication:
@@ -199,8 +203,6 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditDuration:
                 output = ""
             case .medEditEditMed:
-                output = ""
-            case .medEditExampleDosage:
                 output = ""
             case .medEditHiddenTitle:
                 output = ""

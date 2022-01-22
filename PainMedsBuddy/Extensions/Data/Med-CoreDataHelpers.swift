@@ -100,10 +100,7 @@ extension Med: MedProtocol {
 
     var medFormattedLastTakenDate: String {
         if let date = lastTakenDate {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            formatter.timeStyle = .short
-            return formatter.string(from: date)
+            return date.dateToShortDateTime
         } else {
             return String(.commonNotTakenYet)
         }

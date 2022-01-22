@@ -39,7 +39,14 @@ extension Date {
     }
 
     var dateToSeconds: Int {
-        return Int(self.timeIntervalSince1970)
+        return Int(timeIntervalSince1970)
+    }
+
+    var dateToShortDateTime: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter.string(from: self)
     }
 
     func adding(seconds: Int) -> Date {

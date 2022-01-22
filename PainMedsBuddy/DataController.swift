@@ -189,35 +189,19 @@ class DataController: ObservableObject {
         return dose
     }
 
-    struct Drug {
-        var name = ""
-        var mGrams = 0
-        var defAmt: Int16 = 0
-        var duration: Int16 = 0
-        var lastTakeDate = Date()
-        var hasDose: Bool
-    }
-
-    func nextAvailableDate(drug: Drug) -> Date {
-        // This will not cater for time asleep, will need those times in a setting in future
-        let tenDaysAgo = Date() - 10
-        let createdDate = Date.random(in: tenDaysAgo ..< Date())
-        var take = Date.random(in: createdDate ..< Date())
-
-        let nextDrugDate = drug.lastTakeDate.adding(seconds: Int(drug.duration))
-        do {
-            if take < nextDrugDate {
-                take = Date.random(in: createdDate ..< Date())
-            }
-        }
-        return take
-    }
-
     /// Creates example meds and doses to make manual testing easier.
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
     func createSampleData(appStore: Bool, medsRequested: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
-        let tenDaysAgo = Date() - 10
+
+        struct Drug {
+            var name = ""
+            var mGrams = 0
+            var defAmt: Int16 = 0
+            var duration: Int16 = 0
+            var lastTakeDate = Date()
+            var hasDose: Bool
+        }
 
         let drugs: [Drug] = [
             Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60, hasDose: true),
@@ -227,25 +211,8 @@ class DataController: ObservableObject {
 
         let maxMeds = appStore ? min(drugs.count, medsRequested) : medsRequested
 
-        // Creates some good dates
-        var dates = [Date]()
-        dates.append(Date())
-        dates.append(tenDaysAgo)
-        let amount = maxMeds - 2
-        if amount > 0 {
-            for _ in 0 ... amount {
-                dates.append(Date.random(in: tenDaysAgo ..< Date()))
-            }
-        }
-
-        // Remember totalSampleDoses is the same as totalSampleMeds
         for medIndex in 0 ..< maxMeds {
-            let createdDate = dates[medIndex]
             let drug = appStore ? drugs[medIndex] : drugs.randomElement()!
-
-            // Analyse previously taken doses and assign the med.lastTakenDate and the dose.takenDate correctly.
-            // This will have to look at the duration + gap of when meds and the med.lastTakenDate.
-            // The med.lastTakenDate should match the dose.takenDate
 
             // INFO: One to one relationship
             let med = Med(context: viewContext)
@@ -259,37 +226,57 @@ class DataController: ObservableObject {
             med.remaining = Int16.random(in: 0 ... 99)
             med.durationSeconds = drug.duration
             med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
-            med.creationDate = createdDate
-
-            let nextDate = nextAvailableDate(drug: drug)
-            med.lastTakenDate = nextDate
-
-            if var drugArrayItem = drugs.first(where: { $0.name == drug.name }) {
-                drugArrayItem.lastTakeDate = nextDate
-            }
-
+            med.creationDate = Date().adding(days: -20)
+            med.lastTakenDate = Date().adding(days: -20)
             med.symbol = Symbol.allSymbols.randomElement()?.id
             med.hidden = false
 
             if drug.hasDose {
                 if medDosesRequired > 0 {
-                    for index in 1 ... medDosesRequired {
+                    var takenDates = createSampleTakenDate(amount: medDosesRequired)
+                    for _ in 1 ... medDosesRequired {
                         let dose = Dose(context: viewContext)
+                        dose.med = med
+
                         let tempAmount = Int16.random(in: 1 ... drug.defAmt)
-                        dose.takenDate = index == 1 ? Date() : med.medPredictedNextTimeCanTake
-                        med.lastTakenDate = dose.takenDate
-                        dose.elapsed = index == 1 ? false : Bool.random()
+
+                        let tempTaken: Date = takenDates.first!
+                        dose.takenDate = tempTaken
+                        if tempTaken > med.lastTakenDate! {
+                            med.lastTakenDate = tempTaken
+                        }
+
+                        dose.elapsed = dose.doseElapsedDate == nil
+                            ? true
+                            : dose.doseElapsedDate! < Date()
+
                         dose.amount = NSDecimalNumber(value: tempAmount)
                         dose.details = "Notes about - \(drug.name) \(tempAmount) x \(drug.mGrams)mg Pills"
                         dose.remindMe = true
-                        dose.med = med
+
+                        takenDates.remove(at: 0)
                     }
                 }
             }
         }
 
         try viewContext.save()
-        processDoses()
+    }
+
+    func createSampleTakenDate(amount: Int) -> [Date] {
+        let tenDaysAgo = Date() - 10
+
+        var takenDates = [Date]()
+        takenDates.append(Date().adding(minutes: -Int.random(in: 10 ... 55)))
+        takenDates.append(Date().adding(minutes: -Int.random(in: 60 ... 360)))
+        takenDates.append(tenDaysAgo)
+
+        if amount > 0 {
+            for _ in 0 ... amount {
+                takenDates.append(Date.random(in: tenDaysAgo ..< Date().adding(hours: -4)))
+            }
+        }
+        return takenDates
     }
 
     func createSampleData(appStore: Bool) throws {

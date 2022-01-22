@@ -137,12 +137,11 @@ struct DoseEditView: View, DestinationView {
                 }
             }
 
-            Section(header: Text(.commonDosage)) {
+            Section(header: Text(.commonExampleDosage)) {
                 HStack {
-                    Spacer()
                     Text(display())
                         .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
+                        .multilineTextAlignment(.leading)
                 }
             }
 
@@ -202,11 +201,20 @@ struct DoseEditView: View, DestinationView {
         let dsg = Decimal(string: viewModel.selectedMed.medDosage) ?? 0.0
         let temp = (amt * dsg)
 
-        return Dose.displayFull(amount: "\(amt)",
-                                dosage: "\(dsg)",
-                                totalDosage: "\(temp)",
-                                measure: viewModel.selectedMed.measure ?? "\(MedDefault.measure)",
-                                form: viewModel.selectedMed.form ?? MedDefault.form)
+        let duration = viewModel.selectedMed.medTotalDurationSeconds
+        let elapsingDate = viewModel.takenDate.addingTimeInterval(TimeInterval(duration))
+
+        let elapses = String(.doseEditDosageElapsed, values: [elapsingDate.dateToShortDateTime])
+
+        let doseFull = Dose.displayFull(
+            amount: "\(amt)",
+            dosage: "\(dsg)",
+            totalDosage: "\(temp)",
+            measure: viewModel.selectedMed.measure ?? "\(MedDefault.measure)",
+            form: viewModel.selectedMed.form ?? MedDefault.form
+        )
+
+        return "\(doseFull)\n\(elapses)"
     }
 
     func delete() {

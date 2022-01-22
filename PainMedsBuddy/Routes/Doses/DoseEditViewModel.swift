@@ -82,8 +82,13 @@ extension DoseEditView {
         {
             editedDose = dose
             add = false
-            self.dataController = dataController
             selectedMed = dose.med!
+            amount = dose.doseAmount
+            takenDate = dose.doseTakenDate
+            details = dose.doseDetails
+            remindMe = dose.remindMe
+            showingNotificationError = false
+            self.dataController = dataController
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -95,12 +100,6 @@ extension DoseEditView {
                 sectionNameKeyPath: nil,
                 cacheName: nil
             )
-
-            amount = dose.doseAmount
-            takenDate = dose.doseTakenDate
-            details = dose.doseDetails
-            remindMe = dose.remindMe
-            showingNotificationError = false
 
             super.init()
             performFetch()

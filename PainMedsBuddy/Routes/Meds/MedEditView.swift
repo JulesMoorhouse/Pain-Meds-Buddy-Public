@@ -90,11 +90,10 @@ struct MedEditView: View, DestinationView {
                     basicSettingsFields()
                 }
 
-                Section(header: Text(.medEditExampleDosage)) {
+                Section(header: Text(.commonExampleDosage)) {
                     HStack {
-                        Spacer()
                         Text(viewModel.example)
-                            .multilineTextAlignment(.trailing)
+                            .multilineTextAlignment(.leading)
                             .foregroundColor(.secondary)
                     }
                 }
