@@ -37,8 +37,9 @@ extension MedEditView {
             self.formValidation.$validationMessages
         }
 
-        // Validator need to return false to return a red message in the ui
-        // Therefore, the logic must return false if there's a problem
+        // INFO: Validator need to return false to return a red
+        // message in the ui. Therefore, the logic must return
+        // false if there's a problem
         lazy var titleValidator: ValidationContainer = {
             var field = String(.medEditTitle)
             let message = String(.validationTwoLetters,

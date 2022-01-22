@@ -8,7 +8,8 @@
 import XCTest
 
 class Elements: XCTestCase {
-    // These helper methods should not have any parameters and should perform simple actions
+    // INFO: These helper methods should not have any
+    // parameters and should perform simple actions
     // and confirm the action occurred
 
     // ---- Tabs ----
@@ -170,7 +171,8 @@ extension XCUIElement {
         guard let stringValue = value as? String else {
             return
         }
-        // workaround for apple bug
+
+        // INFO: Workaround for apple bug
         if let placeholderString = placeholderValue, placeholderString == stringValue {
             return
         }

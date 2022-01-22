@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     var timeToSeconds: Int {
-        // HH:mm:ss
+        // NOTE: HH:mm:ss
         let components: Array = self.components(separatedBy: ":")
         let hours = Int(components[0]) ?? 0
         let minutes = Int(components[1]) ?? 0
@@ -34,9 +34,7 @@ extension String {
     }
 
     func check(in string: String, forAnyIn characters: String) -> Bool {
-        // create one character set
         let customSet = CharacterSet(charactersIn: characters)
-        // use the rangeOfCharacter(from: CharacterSet) function
         return string.rangeOfCharacter(from: customSet) != nil
     }
 

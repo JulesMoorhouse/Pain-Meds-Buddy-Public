@@ -11,7 +11,7 @@ import XCTest
 
 class PerformanceTests: BaseTestCase {
     func testFistMedPerformance() throws {
-        // Create a significant amount of test data
+        // INFO: Create a significant amount of test data
         for _ in 1 ... 100 {
             try dataController.createSampleData(
                 appStore: false,
@@ -26,7 +26,7 @@ class PerformanceTests: BaseTestCase {
     }
 
     func testHasRelationshipPerformance() throws {
-        // Create a significant amount of test data
+        // INFO: Create a significant amount of test data
         for _ in 1 ... 25 {
             try dataController.createSampleData(
                 appStore: false,
@@ -44,7 +44,7 @@ class PerformanceTests: BaseTestCase {
     }
 
     func testAnyRelationshipPerformance() throws {
-        // Create a significant amount of test data
+        // INFO: Create a significant amount of test data
         for _ in 1 ... 100 {
             try dataController.createSampleData(
                 appStore: false,

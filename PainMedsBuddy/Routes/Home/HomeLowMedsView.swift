@@ -54,9 +54,3 @@ struct HomeLowMedsView: View {
         .accessibilityIdentifier(!meds.isEmpty ? .homeMedsRunningOut : nil)
     }
 }
-
-// struct HomeLowMedsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeLowMedsView(meds: [Med.example])
-//    }
-// }

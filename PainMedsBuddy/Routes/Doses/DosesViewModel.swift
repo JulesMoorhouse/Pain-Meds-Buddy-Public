@@ -56,7 +56,6 @@ extension DosesView {
                 dataController.delete(item)
             }
             dataController.save()
-            // dataController.container.viewContext.processPendingChanges()
         }
 
         // INFO: Results to an array of section arrays

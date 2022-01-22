@@ -138,11 +138,8 @@ extension Dose: Comparable {
     var doseSearchableDisplay: String {
         // name amount x dosage measure form
         let tempName = med?.medTitle ?? MedDefault.title
-        // let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
-        // let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
         let tempForm = med?.form ?? MedDefault.form
 
-//        return "\(tempName) - \(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
         return "\(tempName) - \(doseAmount) \(tempForm)"
     }
 

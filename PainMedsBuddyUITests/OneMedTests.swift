@@ -20,14 +20,14 @@ class OneMedTests: XCTestCase {
 
     func testAddDose() {
         // Given
-        // Add a basic dose
+        // INFO: Add a basic dose
         BasicAction.tapTabInProgress(app)
         BasicAction.tapInProgressAddButton(app)
 
-        // Back button tap on add dose screen
+        // INFO: Back button tap on add dose screen
         BasicAction.tapAddDoseSaveButton(app)
 
-        // Confirm on in progress screen
+        // INFO: Confirm on in progress screen
         _ = Elements.navBarInProgress(app, performTest: false)
 
         // When
@@ -45,7 +45,7 @@ class OneMedTests: XCTestCase {
         BasicAction.tapTabMedications(app)
 
         // Given
-        // tap newly added item on medications list
+        // INFO: Tap newly added item on medications list
         app.buttons[Strings.homeAccessibilityIconRemaining.automatedId()].tap()
 
         app.textFields[Strings.medEditTitleText.automatedId()].tap()

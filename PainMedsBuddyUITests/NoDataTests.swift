@@ -78,7 +78,7 @@ class NoDataUITests: XCTestCase {
 
             let okButton = app.buttons[Strings.commonOK.automatedId()]
 
-            // in iOS 15 dialog isn't used
+            // INFO: In iOS 15 dialog isn't used
             if okButton.exists {
                 okButton.tap()
             }
@@ -102,10 +102,10 @@ class NoDataUITests: XCTestCase {
 
             app.swipeDown()
 
-            // Save button tap on add med screen
+            // INFO: Save button tap on add med screen
             BasicAction.tapAddMedSaveButton(app)
 
-            // Confirm on medications screen
+            // INFO: Confirm on medications screen
             _ = Elements.navBarMedications(app, performTest: false)
 
             let rowCount = app.tables.cells.count

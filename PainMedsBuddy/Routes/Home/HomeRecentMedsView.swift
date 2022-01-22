@@ -34,9 +34,3 @@ struct HomeRecentMedsView: View {
         .accessibilityIdentifier(!meds.isEmpty ? .homeRecentlyTaken : nil)
     }
 }
-
-// struct HomeRecentMedsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeRecentMedsView(meds: [Med.example])
-//    }
-// }

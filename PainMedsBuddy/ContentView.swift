@@ -57,7 +57,6 @@ struct ContentView: View {
                     }
             }.background(Color.green)
                 .introspectTabBarController { tabBarController in
-                    // customise here the UITabBarViewController if you like
                     self.tabBarHandler.tabBarController = tabBarController
                 }
         }.background(Color.yellow)

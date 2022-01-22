@@ -80,7 +80,7 @@ struct PopUpView<Content: View, RightButton: View, LeftButton: View, BottomButto
                 }
             }
             .padding()
-            .frame(width: width) // , height: height)
+            .frame(width: width)
             .panelled(cornerRadius: 20)
         }
         .dismissKeyboardOnTap()

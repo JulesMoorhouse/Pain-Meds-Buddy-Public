@@ -9,9 +9,6 @@ import CoreData
 import SwiftUI
 import UserNotifications
 
-// swiftlint:disable type_body_length
-// swiftlint:disable file_length
-
 /// An environment singleton responsible for managing out Core Data stack, including handling saving,
 /// counting fetch requests, and dealing with sample data.
 class DataController: ObservableObject {

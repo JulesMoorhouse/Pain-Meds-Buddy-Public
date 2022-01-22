@@ -39,7 +39,7 @@ extension HomeView {
         init(dataController: DataController) {
             self.dataController = dataController
 
-            // Construct a fetch request to show all none elapsed doses
+            // INFO: Construct a fetch request to show all none elapsed doses
             let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
             doseRequest.predicate = NSPredicate(format: "elapsed == false AND med != nil")
             doseRequest.sortDescriptors = [
@@ -53,7 +53,7 @@ extension HomeView {
                 cacheName: nil
             )
 
-            // Construct a fetch request to show all none hidden meds
+            // INFO: Construct a fetch request to show all none hidden meds
             let medRequest: NSFetchRequest<Med> = Med.fetchRequest()
             medRequest.predicate = !DataController.useHardDelete
                 ? NSPredicate(format: "hidden = false")
