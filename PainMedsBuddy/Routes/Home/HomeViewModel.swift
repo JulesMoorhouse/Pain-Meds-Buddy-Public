@@ -97,7 +97,8 @@ extension HomeView {
         }
 
         func getLowMeds(loadedMeds: [Med]) -> [Med] {
-            let temp = loadedMeds.sortedItems(using: .remaining)
+            let temp = loadedMeds.filter { $0.medIsRunningLow == true }
+                .sortedItems(using: .remaining)
             let count = temp.isEmpty ? 0 : 3
             return temp.prefix(count).map { $0 }
         }
