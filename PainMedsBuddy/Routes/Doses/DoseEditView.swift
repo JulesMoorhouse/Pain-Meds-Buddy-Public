@@ -116,7 +116,7 @@ struct DoseEditView: View, DestinationView {
                         .accessibilityIdentifier(.doseEditAmount)
                         .textFieldStyle(SelectAllTextFieldStyle())
 
-                    Text(viewModel.selectedMed.medForm)
+                    Text(viewModel.selectedMed.medFormPlural)
                         .foregroundColor(.secondary)
                 }
                 .validation(viewModel.amountValidator)

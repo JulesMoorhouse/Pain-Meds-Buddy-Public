@@ -16,7 +16,7 @@ protocol MedProtocol {
     var medDosage: String { get }
     var medDurationSeconds: String { get }
     var medDurationGapSeconds: String { get }
-    var medForm: String { get }
+    var medFormPlural: String { get }
     var medMeasure: String { get }
     var medNotes: String { get }
     var medLastTakenDate: Date { get }

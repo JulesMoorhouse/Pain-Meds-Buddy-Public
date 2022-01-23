@@ -82,7 +82,7 @@ extension Med: MedProtocol {
         "\(String(describing: durationGapSeconds))"
     }
 
-    var medForm: String {
+    var medFormPlural: String {
         form ?? MedDefault.form
     }
 
@@ -134,7 +134,13 @@ extension Med: MedProtocol {
     }
 
     var medDisplay: String {
-        "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(medForm) = \(medTotalDosage)\(medMeasure)"
+        let tempForm
+            = Med.formWord(
+                num: Int(medDefaultAmount) ?? 0,
+                word: form ?? MedDefault.form
+            )
+
+        return "\(medDefaultAmount) x \(medDosage)\(medMeasure) \(tempForm) = \(medTotalDosage)\(medMeasure)"
     }
 
     var medDurationToTime: [Int] {
@@ -166,6 +172,15 @@ extension Med: MedProtocol {
     /// Return the total time the medication is effective / duration plus any gap
     var medTotalDurationSeconds: Int {
         Int(durationSeconds) + Int(durationGapSeconds)
+    }
+
+    static func formWord(num: Int, word: String) -> String {
+        if num == 0 {
+            return word
+        } else if num == 1 {
+            return String(word.dropLast())
+        }
+        return word
     }
 
     static var example: Med {

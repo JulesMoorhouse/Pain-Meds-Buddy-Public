@@ -115,7 +115,8 @@ extension MedEditView {
         var example: String {
             let amount: Int = defaultAmount.isNumber ? Int(defaultAmount) ?? 0 : 0
             let dose: Int = dosage.isNumber ? Int(dosage) ?? 0 : 0
-            return "\(amount) x \(dose)\(measure) \(form) = \(amount * dose)\(measure)"
+            let formWord = Med.formWord(num: amount, word: form)
+            return "\(amount) x \(dose)\(measure) \(formWord) = \(amount * dose)\(measure)"
         }
 
         init(dataController: DataController, med: Med?, add: Bool, hasRelationship: Bool) {
@@ -135,7 +136,7 @@ extension MedEditView {
                 durationDate = showValue ? med.medDurationSeconds : "0"
                 durationGapDate = showValue ? med.medDurationGapSeconds : "0"
                 measure = med.medMeasure
-                form = showValue ? med.medForm : ""
+                form = showValue ? med.medFormPlural : ""
                 notes = showValue ? med.medNotes : ""
                 remaining = showValue ? med.medRemaining : ""
             } else {

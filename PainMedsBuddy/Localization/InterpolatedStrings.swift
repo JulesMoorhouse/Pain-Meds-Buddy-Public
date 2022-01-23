@@ -49,7 +49,7 @@ struct InterpolatedStrings {
                         med.medSymbolLabel,
                         med.medTitle,
                         med.medRemaining,
-                        med.medForm])
+                        med.medFormPlural])
     }
 
     static func medEditCopiedSuffix(title: String) -> String {

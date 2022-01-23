@@ -12,9 +12,17 @@ struct MedRowView: View {
     @ObservedObject var med: Med
     let hasChevron: Bool
 
+    private let remainingFormWord: String
+
     init(med: Med, hasChevron: Bool = true) {
         self.med = med
         self.hasChevron = hasChevron
+
+        self.remainingFormWord
+            = Med.formWord(
+                num: Int(med.remaining),
+                word: med.form ?? ""
+            )
     }
 
     var body: some View {
@@ -27,7 +35,7 @@ struct MedRowView: View {
             VStack(alignment: .leading) {
                 Text(med.medTitle)
                     .foregroundColor(.primary)
-                Text("\(med.remaining) \(med.medForm)")
+                Text("\(med.remaining) \(remainingFormWord)")
                     .foregroundColor(.secondary)
                     .font(.caption)
             }

@@ -130,7 +130,11 @@ extension Dose: Comparable {
     var doseDisplay: String {
         let tempDosage = med?.medDosage ?? "\(MedDefault.dosage)"
         let tempMeasure = med?.measure ?? "\(MedDefault.measure)"
-        let tempForm = med?.form ?? MedDefault.form
+        let tempForm
+            = Med.formWord(
+                num: Int(doseAmount) ?? 0,
+                word: med?.form ?? MedDefault.form
+            )
 
         return "\(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
     }
@@ -138,7 +142,11 @@ extension Dose: Comparable {
     var doseSearchableDisplay: String {
         // name amount x dosage measure form
         let tempName = med?.medTitle ?? MedDefault.title
-        let tempForm = med?.form ?? MedDefault.form
+        let tempForm
+            = Med.formWord(
+                num: Int(doseAmount) ?? 0,
+                word: med?.form ?? MedDefault.form
+            )
 
         return "\(tempName) - \(doseAmount) \(tempForm)"
     }
@@ -150,7 +158,12 @@ extension Dose: Comparable {
         measure: String,
         form: String
     ) -> String {
-        "\(amount) x \(dosage)\(measure) \(form) = \(totalDosage)\(measure)"
+        let tempForm
+            = Med.formWord(
+                num: Int(amount) ?? 0,
+                word: form
+            )
+        return "\(amount) x \(dosage)\(measure) \(tempForm) = \(totalDosage)\(measure)"
     }
 
     public static func < (lhs: Dose, rhs: Dose) -> Bool {
