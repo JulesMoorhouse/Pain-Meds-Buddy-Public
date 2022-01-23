@@ -48,7 +48,7 @@ extension MedEditView {
             return $title.inlineValidator(
                 form: formValidation,
                 errorMessage: message) { value in
-                    !value.isEmpty && value.count > 2
+                    !value.isEmpty && value.count > 1
             }
         }()
 

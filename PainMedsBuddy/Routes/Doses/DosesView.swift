@@ -13,7 +13,10 @@ import XNavigation
 
 struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
+    static let inProgressIcon: String = SFSymbol.arrowTriangle2CirclePath.systemName
+
     static let historyTag: String? = "History"
+    static let historyIcon: String = SFSymbol.checkmark.systemName
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var navigation: Navigation
@@ -35,8 +38,11 @@ struct DosesView: View {
         return NavigationViewChild {
             Group {
                 if data.isEmpty {
-                    PlaceholderView(string: placeHolderEmptyText(),
-                                    imageString: SFSymbol.pills.systemName)
+                    PlaceholderView(
+                        string: placeHolderEmptyText(),
+                        imageString: viewModel.showElapsedDoses
+                            ? DosesView.historyIcon
+                            : DosesView.historyIcon)
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -85,8 +91,11 @@ struct DosesView: View {
                 }
             }
 
-            PlaceholderView(string: placeHolderText(),
-                            imageString: SFSymbol.eyeDropperHalfFull.systemName)
+            PlaceholderView(
+                string: placeHolderText(),
+                imageString: viewModel.showElapsedDoses
+                    ? DosesView.historyIcon
+                    : DosesView.historyIcon)
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()

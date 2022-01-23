@@ -22,37 +22,37 @@ struct ContentView: View {
         NavigationViewParent {
             TabView(selection: $selectedView) {
                 HomeView(dataController: dataController)
-                    .tag(HomeView.HomeTag)
+                    .tag(HomeView.homeTag)
                     .tabItem {
-                        Image(systemName: SFSymbol.house.systemName)
+                        Image(systemName: HomeView.homeIcon)
                         Text(.tabTitleHome)
                     }
 
                 DosesView(dataController: dataController, showElapsedDoses: true)
                     .tag(DosesView.historyTag)
                     .tabItem {
-                        Image(systemName: SFSymbol.checkmark.systemName)
+                        Image(systemName: DosesView.historyIcon)
                         Text(.tabTitleHistory)
                     }
 
                 DosesView(dataController: dataController, showElapsedDoses: false)
                     .tag(DosesView.inProgressTag)
                     .tabItem {
-                        Image(systemName: SFSymbol.arrowTriangle2CirclePath.systemName)
+                        Image(systemName: DosesView.inProgressIcon)
                         Text(.tabTitleInProgress)
                     }
 
                 MedsView(dataController: dataController)
-                    .tag(MedsView.MedsTag)
+                    .tag(MedsView.medsTag)
                     .tabItem {
-                        Image(systemName: SFSymbol.pillsFill.systemName)
+                        Image(systemName: MedsView.medsIcon)
                         Text(.tabTitleMedications)
                     }
 
                 SettingsView()
-                    .tag(SettingsView.SettingsTag)
+                    .tag(SettingsView.settingsTag)
                     .tabItem {
-                        Image(systemName: SFSymbol.gearShapeFill.systemName)
+                        Image(systemName: SettingsView.settingsIcon)
                         Text(.tabTitleSettings)
                     }
             }.background(Color.green)

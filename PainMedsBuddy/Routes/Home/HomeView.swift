@@ -11,7 +11,8 @@ import CoreData
 import SwiftUI
 
 struct HomeView: View {
-    static let HomeTag: String? = "Home"
+    static let homeTag: String? = "Home"
+    static let homeIcon: String = SFSymbol.house.systemName
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var tabBarHandler: TabBarHandler
@@ -49,8 +50,10 @@ struct HomeView: View {
         NavigationViewChild {
             Group {
                 if noData {
-                    PlaceholderView(string: .commonEmptyView,
-                                    imageString: SFSymbol.pills.systemName)
+                    PlaceholderView(
+                        string: .commonEmptyView,
+                        imageString: HomeView.homeIcon
+                    )
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {

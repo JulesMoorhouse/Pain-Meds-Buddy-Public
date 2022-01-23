@@ -265,6 +265,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsDefaultRemindMe:
                 output = ""
+            case .settingsDefaultRemindMeFooter:
+                output = ""
             case .settingsExampleDataAlertTitle:
                 output = ""
             case .settingsGenerateTestCrash:

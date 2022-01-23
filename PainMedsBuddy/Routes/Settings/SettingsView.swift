@@ -11,7 +11,8 @@ import SwiftUI
 import XNavigation
 
 struct SettingsView: View {
-    static let SettingsTag: String? = "Settings"
+    static let settingsTag: String? = "Settings"
+    static let settingsIcon: String = SFSymbol.gearShapeFill.systemName
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
@@ -31,7 +32,7 @@ struct SettingsView: View {
         NavigationViewChild {
             ZStack {
                 Form {
-                    Section {
+                    Section(footer: Text(Strings.settingsDefaultRemindMeFooter)) {
                         Toggle(Strings.settingsDefaultRemindMe.rawValue,
                                isOn: $defaultRemindMe)
                     }

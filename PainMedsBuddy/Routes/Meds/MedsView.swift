@@ -11,7 +11,8 @@ import SwiftUI
 import XNavigation
 
 struct MedsView: View {
-    static let MedsTag: String? = "Medications"
+    static let medsTag: String? = "Medications"
+    static let medsIcon: String = SFSymbol.pillsFill.systemName
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var navigation: Navigation
@@ -105,8 +106,10 @@ struct MedsView: View {
         NavigationViewChild {
             Group {
                 if viewModel.meds.isEmpty {
-                    PlaceholderView(string: .commonEmptyView,
-                                    imageString: SFSymbol.pills.systemName)
+                    PlaceholderView(
+                        string: .commonEmptyView,
+                        imageString: MedsView.medsIcon
+                    )
                 } else {
                     ZStack {
                         medsList
@@ -134,8 +137,10 @@ struct MedsView: View {
                       dismissButton: .default(Text(.commonOK)))
             }
 
-            PlaceholderView(string: .medsPleaseSelect,
-                            imageString: SFSymbol.eyeDropperHalfFull.systemName)
+            PlaceholderView(
+                string: .medsPleaseSelect,
+                imageString: MedsView.medsIcon
+            )
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
