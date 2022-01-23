@@ -33,7 +33,7 @@ struct HomeView: View {
             LazyHGrid(rows: columns) {
                 ForEach(viewModel.doses, id: \.self) { item in
                     if let med = item.med {
-                        DoseProgressView(
+                        HomeDoseProgressView(
                             dose: item,
                             med: med
                         )

@@ -98,7 +98,7 @@
 		88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */ = {isa = PBXBuildFile; productRef = 88E9309D2760A4B900A98708 /* AckGenUI */; };
 		88E930A22760A63E00A98708 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930A12760A63E00A98708 /* SettingsView.swift */; };
 		88E930AA2760C6E500A98708 /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E930A92760C6E500A98708 /* Acknowledgements.plist */; };
-		88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AB2760D8F800A98708 /* DoseProgressView.swift */; };
+		88E930AC2760D8F800A98708 /* HomeDoseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AB2760D8F800A98708 /* HomeDoseProgressView.swift */; };
 		88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */; };
 		88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265B279B1A66001C2C55 /* TimePicker.swift */; };
 		88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */; };
@@ -230,7 +230,7 @@
 		88E93092275FD7CC00A98708 /* Color-Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		88E930A92760C6E500A98708 /* Acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Acknowledgements.plist; sourceTree = SOURCE_ROOT; };
-		88E930AB2760D8F800A98708 /* DoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseProgressView.swift; sourceTree = "<group>"; };
+		88E930AB2760D8F800A98708 /* HomeDoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDoseProgressView.swift; sourceTree = "<group>"; };
 		88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditPicker.swift; sourceTree = "<group>"; };
 		88EE265B279B1A66001C2C55 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutePicker.swift; sourceTree = "<group>"; };
@@ -329,8 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				8832142A275120D60026D85F /* Info.plist */,
-				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88572051275133A700B4B00C /* Main.xcdatamodeld */,
+				885720562752313600B4B00C /* PainMedsBuddy.entitlements */,
 				88F90681279747B000CBC65E /* Secrets.swift */,
 			);
 			path = Configuration;
@@ -361,7 +361,7 @@
 		8848D45F277898A300F10DC9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				88E930AB2760D8F800A98708 /* DoseProgressView.swift */,
+				88E930AB2760D8F800A98708 /* HomeDoseProgressView.swift */,
 				88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */,
 				881BA3912764047900DA06D7 /* HomeMedRow.swift */,
 				88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */,
@@ -414,22 +414,22 @@
 				889A4D0127764BC500E3B53B /* ChevronRightView.swift */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
+				88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
-				88F906A427988F4E00CBC65E /* TextAreaView.swift */,
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
 				88B53E932793084100DD74FC /* Popups */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
-				88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88F9069D2798115100CBC65E /* TabBarHandler.swift */,
-				88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */,
-				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
+				88F906A427988F4E00CBC65E /* TextAreaView.swift */,
+				88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */,
 				88EE265B279B1A66001C2C55 /* TimePicker.swift */,
+				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
 				889A4CF52775E1B900E3B53B /* VStackFormView.swift */,
 			);
 			path = Shared;
@@ -438,9 +438,9 @@
 		8848D46427789DDB00F10DC9 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */,
 				8883BD86276951F700EF6DCD /* Localizable.strings */,
 				88F2E98D27708AF700081C9C /* Strings.swift */,
-				880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -449,11 +449,11 @@
 			isa = PBXGroup;
 			children = (
 				88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */,
-				88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */,
 				881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */,
 				886C30BD2763913B002A45B1 /* Int+Extensions.swift */,
 				88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */,
 				886C30BB2763912C002A45B1 /* String+Extensions.swift */,
+				88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -461,7 +461,6 @@
 		8848D4742778A1AA00F10DC9 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */,
 				88B6E8322754CDE500790A14 /* Binding-OnChange.swift */,
 				8848D46B2778A04500F10DC9 /* Button+Extensions.swift */,
 				88E93092275FD7CC00A98708 /* Color-Additions.swift */,
@@ -469,6 +468,7 @@
 				8848D46D2778A05100F10DC9 /* Label+Extensions.swift */,
 				8848D4712778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift */,
 				8848D4672778A02400F10DC9 /* Picker+Extensions.swift */,
+				889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */,
 				8848D46F2778A06400F10DC9 /* Text+Extensions.swift */,
 				8848D4652778A01500F10DC9 /* View+Extensions.swift */,
 			);
@@ -490,12 +490,12 @@
 			children = (
 				8848D4862778EC3000F10DC9 /* AssetTest.swift */,
 				8883E39D2779FA8800B9304B /* DevelopmentTests.swift */,
-				880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */,
 				8848D488277913D500F10DC9 /* DoseTests.swift */,
 				8883E3A1277B474800B9304B /* ExtensionTests.swift */,
 				88C74D02277B649D002B2EC6 /* Fixtures */,
 				889C42D0277F9466003B6ED2 /* Helpers.swift */,
 				8848D47E2778E13000F10DC9 /* Info.plist */,
+				880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */,
 				8848D47C2778E13000F10DC9 /* PainMedsBuddyTests.swift */,
 				88C74D07277B8531002B2EC6 /* PerformanceTests.swift */,
 				8883E39B2779A2A000B9304B /* SymbolTests.swift */,
@@ -514,12 +514,12 @@
 		889C42D52781ACE0003B6ED2 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				889C42D62781AD26003B6ED2 /* NavigationBarAccessor.swift */,
-				881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */,
-				88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */,
-				889C42D82781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift */,
 				88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */,
+				889C42D62781AD26003B6ED2 /* NavigationBarAccessor.swift */,
+				889C42D82781AE9A003B6ED2 /* NavigationBarIdentifier-ViewModifier.swift */,
+				881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */,
 				880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */,
+				88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -529,8 +529,8 @@
 			children = (
 				88B53E912793079900DD74FC /* DurationPopupView.swift */,
 				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
-				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
+				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -548,12 +548,12 @@
 			isa = PBXGroup;
 			children = (
 				88DFEA2B2786F96600E3BAFB /* Fastlane */,
-				88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */,
 				8809FBD4278384A70058BD6E /* BasicAction.swift */,
+				8809FBD2278309A40058BD6E /* Elements.swift */,
+				88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */,
+				88C74D11277BAC88002B2EC6 /* Info.plist */,
 				888FC806278B895A006A3E47 /* NoDataTests.swift */,
 				88B53EA02795931A00DD74FC /* OneMedTests.swift */,
-				88C74D11277BAC88002B2EC6 /* Info.plist */,
-				8809FBD2278309A40058BD6E /* Elements.swift */,
 			);
 			path = PainMedsBuddyUITests;
 			sourceTree = "<group>";
@@ -783,7 +783,7 @@
 				88AB7CAD275E83D60055BD9B /* PopUpView.swift in Sources */,
 				8848D46A2778A03400F10DC9 /* DatePicker+Extensions.swift in Sources */,
 				880A1883278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift in Sources */,
-				88E930AC2760D8F800A98708 /* DoseProgressView.swift in Sources */,
+				88E930AC2760D8F800A98708 /* HomeDoseProgressView.swift in Sources */,
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,

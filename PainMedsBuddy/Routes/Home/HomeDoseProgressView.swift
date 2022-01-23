@@ -1,5 +1,5 @@
 //
-//  DoseProgressView.swift
+//  HomeDoseProgressView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -9,7 +9,7 @@ import CircularProgress
 import SwiftUI
 import XNavigation
 
-struct DoseProgressView: View {
+struct HomeDoseProgressView: View {
     @EnvironmentObject var navigation: Navigation
 
     @ObservedObject var dose: Dose
@@ -129,7 +129,7 @@ struct DoseProgressView: View {
 
 struct DoseProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        DoseProgressView(
+        HomeDoseProgressView(
             dose: Dose.example,
             med: Med.example
         )
