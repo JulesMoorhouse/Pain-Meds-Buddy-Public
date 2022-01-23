@@ -27,14 +27,16 @@ struct DoseProgressView: View {
     @State var timer: Timer?
 
     var progress: CGFloat {
-        CGFloat(dose.doseElapsedSeconds) / CGFloat(dose.doseTotalTimeSeconds)
+        let onePercent: CGFloat = 1 / CGFloat(dose.doseTotalTimeSeconds)
+        let percentage = CGFloat(dose.doseElapsedSeconds) * onePercent
+        return 1 - percentage
     }
 
     var circle: some View {
         VStack(alignment: .center) {
             CircularProgressView(
                 count: dose.doseElapsedSeconds,
-                total: dose.doseTotalTimeSeconds,
+                total: 100,
                 progress: progress,
                 fill: gradient,
                 lineWidth: 5.0,
