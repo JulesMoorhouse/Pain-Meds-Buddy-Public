@@ -241,7 +241,7 @@ struct MedEditView: View, DestinationView {
                 .cornerRadius(6)
 
             if item == viewModel.colour {
-                Image(systemName: SFSymbol.checkmarkCircle.systemName)
+                Image(systemName: SFSymbol.checkmarkSquare.systemName)
                     .foregroundColor(.white)
                     .font(.largeTitle)
             }
