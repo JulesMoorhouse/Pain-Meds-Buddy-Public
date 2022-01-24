@@ -18,12 +18,48 @@ extension DoseEditView {
 
         private var medsController: NSFetchedResultsController<Med>
         private var meds: [Med] = []
+        var dataChanged: Bool = false
 
-        @Published var selectedMed: Med
-        @Published var amount: String
-        @Published var takenDate: Date
-        @Published var details: String
-        @Published var remindMe: Bool
+        @Published var selectedMed: Med {
+            didSet(oldValue) {
+                if selectedMed != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var amount: String {
+            didSet(oldValue) {
+                if amount != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var takenDate: Date {
+            didSet(oldValue) {
+                if takenDate != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var details: String {
+            didSet(oldValue) {
+                if details != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var remindMe: Bool {
+            didSet(oldValue) {
+                if remindMe != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
         @Published var showingNotificationError: Bool
 
         lazy var formValidation: FormValidation = {

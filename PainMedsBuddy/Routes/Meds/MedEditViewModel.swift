@@ -14,20 +14,97 @@ extension MedEditView {
         private let med: Med?
         let add: Bool
         let hasRelationship: Bool
+        var dataChanged: Bool = false
 
         private let dataController: DataController
 
-        @Published var title: String
-        @Published var defaultAmount: String
-        @Published var colour: String
-        @Published var symbol: String
-        @Published var dosage: String
-        @Published var durationDate: String
-        @Published var durationGapDate: String
-        @Published var measure: String
-        @Published var form: String
-        @Published var notes: String
-        @Published var remaining: String
+        @Published var title: String {
+            didSet(oldValue) {
+                if title != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var defaultAmount: String {
+            didSet(oldValue) {
+                if defaultAmount != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var colour: String {
+            didSet(oldValue) {
+                if colour != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var symbol: String {
+            didSet(oldValue) {
+                if symbol != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var dosage: String {
+            didSet(oldValue) {
+                if dosage != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var durationDate: String {
+            didSet(oldValue) {
+                if durationDate != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var durationGapDate: String {
+            didSet(oldValue) {
+                if durationGapDate != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var measure: String {
+            didSet(oldValue) {
+                if measure != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var form: String {
+            didSet(oldValue) {
+                if form != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var notes: String {
+            didSet(oldValue) {
+                if notes != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
+
+        @Published var remaining: String {
+            didSet(oldValue) {
+                if remaining != oldValue {
+                    dataChanged = true
+                }
+            }
+        }
 
         lazy var formValidation: FormValidation = {
             FormValidation(validationType: .immediate)

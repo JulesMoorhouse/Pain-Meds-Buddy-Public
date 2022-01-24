@@ -223,8 +223,13 @@ struct MedEditView: View, DestinationView {
             return Alert(
                 title: Text(.medEditInfo),
                 message: Text(.medEditCopied),
-                dismissButton: .default(
-                    Text(.commonOK))
+                dismissButton:
+                .default(
+                    Text(.commonOK),
+                    action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                )
             )
         }
     }
@@ -445,15 +450,17 @@ struct MedEditView: View, DestinationView {
                     .accessibilityIdentifier(.medEditDeleteThisMed)
                 }
 
-                Section {
-                    Button(Strings.medEditCopyThisMed.rawValue) {
-                        activeAlert = .copied
-                        viewModel.copyMed()
-                        showAlert.toggle()
+                if !viewModel.dataChanged {
+                    Section {
+                        Button(Strings.medEditCopyThisMed.rawValue) {
+                            activeAlert = .copied
+                            viewModel.copyMed()
+                            showAlert.toggle()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .accessibilityIdentifier(.medEditCopyThisMed)
+                        .disabled(isSaveDisabled)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .accessibilityIdentifier(.medEditCopyThisMed)
-                    .disabled(isSaveDisabled)
                 }
             }
         }
