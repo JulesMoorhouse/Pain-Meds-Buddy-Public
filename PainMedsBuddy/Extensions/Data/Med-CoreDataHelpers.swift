@@ -178,7 +178,10 @@ extension Med: MedProtocol {
         if num == 0 {
             return word
         } else if num == 1 {
-            return String(word.dropLast())
+            let lastChar = String(word.last!)
+            if lastChar == "s" {
+                return String(word.dropLast())
+            }
         }
         return word
     }

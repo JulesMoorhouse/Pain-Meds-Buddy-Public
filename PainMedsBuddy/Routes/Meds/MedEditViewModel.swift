@@ -167,13 +167,13 @@ extension MedEditView {
 
         lazy var formValidator: ValidationContainer = {
             var field = String(.medEditForm)
-            let message = String(.validationMustEmptySuffixS,
+            let message = String(.validationMustEmpty,
                                  values: [field])
 
             return $form.inlineValidator(
                 form: formValidation,
                 errorMessage: message) { value in
-                    !value.isEmpty && value.count > 1 && value.hasSuffix("s")
+                    !value.isEmpty && value.count > 1
             }
         }()
 

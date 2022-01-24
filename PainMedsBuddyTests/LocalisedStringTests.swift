@@ -65,7 +65,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .validationMustSpecify:
                 output = ""
-            case .validationMustEmptySuffixS:
+            case .validationMustEmpty:
                 output = ""
             // --------------------------
             case .titleHome:
