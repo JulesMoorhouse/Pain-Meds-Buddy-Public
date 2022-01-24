@@ -339,6 +339,9 @@ class DataController: ObservableObject {
     }
 
     func delete(_ object: NSManagedObject) {
+        if let dose = object as? Dose {
+            removeReminders(for: dose)
+        }
         container.viewContext.delete(object)
     }
 
