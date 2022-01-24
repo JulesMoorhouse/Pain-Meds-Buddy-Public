@@ -450,17 +450,15 @@ struct MedEditView: View, DestinationView {
                     .accessibilityIdentifier(.medEditDeleteThisMed)
                 }
 
-                if !viewModel.dataChanged {
-                    Section {
-                        Button(Strings.medEditCopyThisMed.rawValue) {
-                            activeAlert = .copied
-                            viewModel.copyMed()
-                            showAlert.toggle()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .accessibilityIdentifier(.medEditCopyThisMed)
-                        .disabled(isSaveDisabled)
+                Section {
+                    Button(Strings.medEditCopyThisMed.rawValue) {
+                        activeAlert = .copied
+                        viewModel.copyMed()
+                        showAlert.toggle()
                     }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .accessibilityIdentifier(.medEditCopyThisMed)
+                    .disabled(isSaveDisabled || viewModel.dataChanged)
                 }
             }
         }
