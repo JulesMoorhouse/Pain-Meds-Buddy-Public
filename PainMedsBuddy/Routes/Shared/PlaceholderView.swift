@@ -30,7 +30,7 @@ struct PlaceholderView: View {
 struct PlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceholderView(
-            string: .medEditHiddenTitle,
+            string: .medEditLockedField,
             imageString: SFSymbol.pills.systemName
         )
     }

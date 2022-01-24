@@ -409,7 +409,11 @@ class DataController: ObservableObject {
         return nil
     }
 
-    func addCheckReminders(for dose: Dose, add: Bool, completion: @escaping (Bool) -> Void) {
+    func addCheckReminders(
+        for dose: Dose,
+        add: Bool,
+        completion: @escaping (Bool) -> Void)
+    {
         let centre = UNUserNotificationCenter.current()
 
         centre.getNotificationSettings { settings in
@@ -418,7 +422,9 @@ class DataController: ObservableObject {
                 self.requestNotifications { success in
                     if success {
                         if add {
-                            self.placeReminders(for: dose, completion: completion)
+                            self.placeReminders(
+                                for: dose,
+                                completion: completion)
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -428,7 +434,9 @@ class DataController: ObservableObject {
                 }
             case .authorized:
                 if add {
-                    self.placeReminders(for: dose, completion: completion)
+                    self.placeReminders(
+                        for: dose,
+                        completion: completion)
                 }
             default:
                 DispatchQueue.main.async {

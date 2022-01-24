@@ -20,6 +20,7 @@ enum SFSymbol: String, CaseIterable {
     case gearShapeFill = "gearshape.fill"
     case house
     case infoCircle = "info.circle"
+    case lockFill = "lock.fill"
     case pills
     case pillsFill = "pills.fill"
     case plus

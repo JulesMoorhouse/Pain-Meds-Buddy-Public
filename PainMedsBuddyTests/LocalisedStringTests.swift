@@ -18,6 +18,7 @@ class LocalisedStringTests: BaseTestCase {
         // error here, so highlighting that new tests should be considered
         let dose = Dose.example
         let med = Med.example
+        dose.med = med
 
         var output = ""
 
@@ -216,13 +217,13 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditEditMed:
                 output = ""
-            case .medEditHiddenTitle:
-                output = ""
             case .medEditForm:
                 output = ""
             case .medEditImage:
                 output = ""
             case .medEditInfo:
+                output = ""
+            case .medEditLockedField:
                 output = ""
             case .medEditLowToast:
                 output = ""

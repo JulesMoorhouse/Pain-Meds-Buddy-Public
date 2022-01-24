@@ -34,7 +34,12 @@ struct MedEditView: View, DestinationView {
     }
 
     enum ActivePopup {
-        case durationGapInfo, hiddenTitle, durationPicker, durationGapPicker
+        case durationGapInfo,
+             durationPicker,
+             durationGapPicker,
+             lockedTitle,
+             lockedDuration,
+             lockedDurationGap
     }
 
     let types = ["mg", "ml", "Tspn"]
@@ -161,10 +166,10 @@ struct MedEditView: View, DestinationView {
                 )
                 .onAppear { UIApplication.endEditing() }
                 .onTapGesture { UIApplication.endEditing() }
-            case .hiddenTitle:
+            case .lockedTitle, .lockedDuration, .lockedDurationGap:
                 InfoPopupView(
                     showing: $showPopup, title: Strings.medEditInfo.rawValue,
-                    text: Strings.medEditHiddenTitle.rawValue
+                    text: Strings.medEditLockedField.rawValue
                 )
                 .onAppear { UIApplication.endEditing() }
                 .onTapGesture { UIApplication.endEditing() }
@@ -266,6 +271,7 @@ struct MedEditView: View, DestinationView {
 
     func basicSettingsFields() -> some View {
         Group {
+            // --- Title ---
             HStack {
                 if viewModel.hasRelationship {
                     Text($viewModel.title.wrappedValue)
@@ -275,10 +281,10 @@ struct MedEditView: View, DestinationView {
                     Spacer()
 
                     Button(action: {
-                        activePopup = .hiddenTitle
+                        activePopup = .lockedTitle
                         showPopup.toggle()
                     }, label: {
-                        Image(systemName: SFSymbol.infoCircle.systemName)
+                        Image(systemName: SFSymbol.lockFill.systemName)
                     })
                         .buttonStyle(BorderlessButtonStyle())
                 } else {
@@ -292,6 +298,7 @@ struct MedEditView: View, DestinationView {
                 }
             }
 
+            // --- Default Amount ---
             rowFields(label: .medEditDefaultAmount,
                       detailValues: [MedDefault.Sensible.medDefaultAmount()],
                       binding: $viewModel.defaultAmount,
@@ -299,6 +306,7 @@ struct MedEditView: View, DestinationView {
                       rightDetail: viewModel.form,
                       validationContainer: viewModel.defaultAmountValidator)
 
+            // --- Dosage ---
             rowFields(label: .commonDosage,
                       detailValues: [MedDefault.Sensible.medDosage()],
                       binding: $viewModel.dosage,
@@ -306,28 +314,43 @@ struct MedEditView: View, DestinationView {
                       rightDetail: viewModel.measure,
                       validationContainer: viewModel.dosageValidator)
 
-            rowFieldsDate(label: .medEditDuration,
-                          binding: $viewModel.durationDate,
+            // --- Duration ---
+            ZStack(alignment: .leading) {
+                rowLabelWithButton(
+                    label: .medEditDuration,
+                    hasButton: viewModel.hasRelationship,
+                    buttonIcon: SFSymbol.lockFill.systemName
+                ) {
+                    activePopup = .lockedDuration
+                    showPopup.toggle()
+                }
 
-                          validationContainer: viewModel.durationDateValidator,
-                          hourAid: .medEditDurationPickerHourAID,
-                          minuteAid: .medEditDurationPickerMinuteAID) {
-                showPopup = true
-                activePopup = .durationPicker
+                rowFieldsDate(label: .medEditDuration,
+                              binding: $viewModel.durationDate,
+                              validationContainer: viewModel.durationDateValidator,
+                              hourAid: .medEditDurationPickerHourAID,
+                              minuteAid: .medEditDurationPickerMinuteAID) {
+                    showPopup = true
+                    activePopup = .durationPicker
+                }
             }
 
+            // --- Duration Gap ---
             ZStack(alignment: .leading) {
-                HStack {
-                    Text(.medEditDurationGap)
-                        .foregroundColor(Color.clear)
-
-                    Button(action: {
+                rowLabelWithButton(
+                    label: .medEditDurationGap,
+                    hasButton: true,
+                    buttonIcon: viewModel.hasRelationship
+                        ? SFSymbol.lockFill.systemName
+                        : SFSymbol.infoCircle.systemName
+                ) {
+                    if viewModel.hasRelationship {
+                        activePopup = .lockedDurationGap
+                    } else {
                         activePopup = .durationGapInfo
-                        showPopup.toggle()
-                    }, label: {
-                        Image(systemName: SFSymbol.infoCircle.systemName)
-                    })
-                        .buttonStyle(BorderlessButtonStyle())
+                    }
+                    showPopup.toggle()
+
                 }
 
                 rowFieldsDate(label: .medEditDurationGap,
@@ -340,6 +363,7 @@ struct MedEditView: View, DestinationView {
                 }
             }
 
+            // --- Measure ---
             Picker(.medEditMeasure, selection: $viewModel.measure) {
                 ForEach(types, id: \.self) {
                     Text($0)
@@ -349,17 +373,40 @@ struct MedEditView: View, DestinationView {
             .foregroundColor(.secondary)
             .accessibilityIdentifier(.medEditMeasure)
 
+            // --- Form ---
             rowFields(label: .medEditForm,
                       detailValues: [MedDefault.Sensible.form],
                       binding: $viewModel.form,
                       validationContainer: viewModel.formValidator)
 
+            // --- Remaining ---
             rowFields(label: .medEditRemaining,
                       detailValues: [MedDefault.Sensible.medRemaining()],
                       binding: $viewModel.remaining,
                       keyboardType: .numberPad,
                       rightDetail: viewModel.form,
                       validationContainer: viewModel.remainingValidator)
+        }
+    }
+
+    func rowLabelWithButton(
+        label: Strings,
+        hasButton: Bool,
+        buttonIcon: String,
+        actionButtonClosure: @escaping () -> Void
+    ) -> some View {
+        HStack {
+            Text(label)
+                .foregroundColor(Color.clear)
+
+            if hasButton {
+                Button(action: {
+                    actionButtonClosure()
+                }, label: {
+                    Image(systemName: buttonIcon)
+                })
+                    .buttonStyle(BorderlessButtonStyle())
+            }
         }
     }
 

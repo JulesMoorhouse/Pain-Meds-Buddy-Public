@@ -101,10 +101,10 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditDurationPickerHourAID
     case medEditDurationPickerMinuteAID
     case medEditEditMed
-    case medEditHiddenTitle
     case medEditForm
     case medEditImage
     case medEditInfo
+    case medEditLockedField
     case medEditLowToast
     case medEditMeasure
     case medEditMg

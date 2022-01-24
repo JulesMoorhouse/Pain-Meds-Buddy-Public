@@ -175,7 +175,7 @@ extension Med: MedProtocol {
     }
 
     static func formWord(num: Int, word: String) -> String {
-        if num == 0 {
+        if num == 0 || word.isEmpty {
             return word
         } else if num == 1 {
             let lastChar = String(word.last!)
