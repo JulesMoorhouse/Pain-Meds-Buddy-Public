@@ -130,30 +130,30 @@ struct MedEditView: View, DestinationView {
 
                 buttonsSection()
             }
-            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-            .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
-            .toasted(show: $presentableToast.show, message: $presentableToast.message)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                backBarButtonItem
-                saveBarButtonItem
-            }
-            .onReceive(viewModel.formValidation.$allValid) { isValid in
-                self.isSaveDisabled = !isValid
-            }
-            .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-            .alert(isPresented: $showAlert) { alertOption() }
-            .onAppear(perform: {
-                self.tabBarHandler.hideTabBar()
-            })
-            .onDisappear(perform: {
-                self.tabBarHandler.showTabBar()
-            })
 
             if showPopup == true {
                 popupOption()
             }
         }
+        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
+        .toasted(show: $presentableToast.show, message: $presentableToast.message)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            backBarButtonItem
+            saveBarButtonItem
+        }
+        .onReceive(viewModel.formValidation.$allValid) { isValid in
+            self.isSaveDisabled = !isValid
+        }
+        .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
+        .alert(isPresented: $showAlert) { alertOption() }
+        .onAppear(perform: {
+            self.tabBarHandler.hideTabBar()
+        })
+        .onDisappear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     func popupOption() -> some View {
@@ -350,7 +350,6 @@ struct MedEditView: View, DestinationView {
                         activePopup = .durationGapInfo
                     }
                     showPopup.toggle()
-
                 }
 
                 rowFieldsDate(label: .medEditDurationGap,
