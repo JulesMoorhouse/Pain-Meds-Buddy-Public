@@ -74,5 +74,13 @@
    {
       "name": "cross.case.fill",
       "label": "med case filled"
+   },
+   {
+       "name": "cross",
+       "label": "cross"
+   },
+   {
+       "name": "cross.fill",
+       "label": "cross fill"
    }
 ]
