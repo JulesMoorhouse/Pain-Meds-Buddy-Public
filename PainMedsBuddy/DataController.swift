@@ -463,16 +463,22 @@ class DataController: ObservableObject {
     private func requestNotifications(completion: @escaping (Bool) -> Void) {
         let centre = UNUserNotificationCenter.current()
 
-        centre.requestAuthorization(options: [.alert, .sound]) { granted, _ in
+        centre.requestAuthorization(
+            options: [.alert, .sound, .badge]
+        ) { granted, _ in
             completion(granted)
         }
     }
 
-    private func placeReminders(for dose: Dose, completion: @escaping (Bool) -> Void) {
+    private func placeReminders(
+        for dose: Dose,
+        completion: @escaping (Bool) -> Void)
+    {
         if let notificationDate = dose.doseElapsedDate {
             let content = UNMutableNotificationContent()
-            content.title = dose.doseSearchableDisplay
-            content.subtitle = String(.notificationSubtitle)
+            content.title = dose.doseTitle
+            content.body =
+                "\(dose.doseDisplayFull)\n\(String(.notificationSubtitle))"
 
             content.sound = .default
 
@@ -491,15 +497,16 @@ class DataController: ObservableObject {
                 content: content,
                 trigger: trigger)
 
-            UNUserNotificationCenter.current().add(request) { error in
-                DispatchQueue.main.async {
-                    if error == nil {
-                        completion(true)
-                    } else {
-                        completion(false)
+            UNUserNotificationCenter.current()
+                .add(request) { error in
+                    DispatchQueue.main.async {
+                        if error == nil {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
                     }
                 }
-            }
         }
     }
 }

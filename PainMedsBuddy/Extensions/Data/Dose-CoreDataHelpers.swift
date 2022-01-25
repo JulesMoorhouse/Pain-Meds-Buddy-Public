@@ -105,7 +105,9 @@ extension Dose: Comparable {
     }
 
     var doseTotalDosage: String {
-        let temp = ((amount ?? DoseDefault.amount) as Decimal) * ((med?.dosage ?? MedDefault.dosage) as Decimal)
+        let temp =
+            ((amount ?? DoseDefault.amount) as Decimal)
+                * ((med?.dosage ?? MedDefault.dosage) as Decimal)
         return "\(temp)"
     }
 
@@ -139,16 +141,9 @@ extension Dose: Comparable {
         return "\(doseAmount) x \(tempDosage)\(tempMeasure) \(tempForm)"
     }
 
-    var doseSearchableDisplay: String {
-        // name amount x dosage measure form
+    var doseTitle: String {
         let tempName = med?.medTitle ?? MedDefault.title
-        let tempForm
-            = Med.formWord(
-                num: Int(doseAmount) ?? 0,
-                word: med?.form ?? MedDefault.form
-            )
-
-        return "\(tempName) - \(doseAmount) \(tempForm)"
+        return tempName
     }
 
     public static func displayFull(
