@@ -440,6 +440,10 @@ class DataController: ObservableObject {
                     self.placeReminders(
                         for: dose,
                         completion: completion)
+                } else {
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
                 }
             default:
                 DispatchQueue.main.async {

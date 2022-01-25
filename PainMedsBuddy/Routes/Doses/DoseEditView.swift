@@ -23,13 +23,7 @@ struct DoseEditView: View, DestinationView {
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToast
 
-    @State private var showAlert = false
-    @State private var activeAlert: ActiveAlert = .deleteConfirmation
     @State private var isSaveDisabled = false
-
-    enum ActiveAlert {
-        case deleteConfirmation, elapseConfirmation
-    }
 
     var backBarButtonItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -80,105 +74,125 @@ struct DoseEditView: View, DestinationView {
     }
 
     var body: some View {
-        Form {
-            Section(header: Text(.commonBasicSettings)) {
-                DatePicker(
-                    .doseEditDateTime,
-                    selection: $viewModel.takenDate,
-                    displayedComponents: [.hourAndMinute, .date]
-                )
-                .foregroundColor(.secondary)
-                .accessibilityIdentifier(.doseEditDateTime)
-
-                Button(action: {
-                    UIApplication.endEditing()
-                    navigation.pushView(
-                        DoseMedSelectView(
-                            selectedMed: $viewModel.selectedMed.onChange(viewModel.selectionChanged),
-                            dataController: dataController
-                        ),
-                        animated: true
+        ZStack {
+            Form {
+                Section(header: Text(.commonBasicSettings)) {
+                    // --- Time Taken ---
+                    DatePicker(
+                        .doseEditDateTime,
+                        selection: $viewModel.takenDate,
+                        displayedComponents: [.hourAndMinute, .date]
                     )
-                }, label: {
-                    HStack {
-                        TwoColumnView(col1: Strings.doseEditMedication.rawValue,
-                                      col2: viewModel.selectedMed.medTitle,
-                                      hasChevron: true)
-                    }
-                })
-                    .accessibilityIdentifier(.doseEditMedication)
+                    .foregroundColor(.secondary)
+                    .accessibilityIdentifier(.doseEditDateTime)
 
-                HStack {
-                    Text(.doseEditAmount)
-                        .foregroundColor(.secondary)
-                    Spacer()
-
-                    TextField(String(.commonEgString,
-                                     values: [DoseDefault.Sensible.doseAmount()]),
-                              text: $viewModel.amount)
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                        .accessibilityIdentifier(.doseEditAmount)
-                        .textFieldStyle(SelectAllTextFieldStyle())
-
-                    Text(viewModel.selectedMed.medFormPlural)
-                        .foregroundColor(.secondary)
-                }
-                .validation(viewModel.amountValidator)
-
-                Toggle(isOn: $viewModel.remindMe.onChange(remindMeChanged)) {
-                    Text(.doseElapsedReminder)
-                        .foregroundColor(.secondary)
-                        .alert(isPresented: $viewModel.showingNotificationError) {
-                            Alert(
-                                title: Text(.doseElapsedReminderAlertTitle),
-                                message: Text(.doseElapsedReminderAlertMessage),
-                                primaryButton:
-                                .default(Text(.doseElapsedReminderAlertButton),
-                                         action: showAppSettings),
-                                secondaryButton: .cancel()
-                            )
+                    // --- Medication Select ---
+                    Button(action: {
+                        UIApplication.endEditing()
+                        navigation.pushView(
+                            DoseMedSelectView(
+                                selectedMed: $viewModel.selectedMed.onChange(viewModel.selectionChanged),
+                                dataController: dataController
+                            ),
+                            animated: true
+                        )
+                    }, label: {
+                        HStack {
+                            TwoColumnView(col1: Strings.doseEditMedication.rawValue,
+                                          col2: viewModel.selectedMed.medTitle,
+                                          hasChevron: true)
                         }
-                }
-            }
+                    })
+                        .accessibilityIdentifier(.doseEditMedication)
 
-            Section(header: Text(.commonExampleDosage)) {
-                HStack {
-                    Text(display())
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.leading)
-                }
-            }
+                    // --- Amount ---
+                    HStack {
+                        Text(.doseEditAmount)
+                            .foregroundColor(.secondary)
+                        Spacer()
 
-            Section(header: Text(.doseEditDetails)) {
-                TextArea(
-                    Strings.doseEditDetailsPlaceholder.rawValue,
-                    text: $viewModel.details
-                )
-                .frame(minHeight: 50)
-            }
+                        TextField(String(.commonEgString,
+                                         values: [DoseDefault.Sensible.doseAmount()]),
+                                  text: $viewModel.amount)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .accessibilityIdentifier(.doseEditAmount)
+                            .textFieldStyle(SelectAllTextFieldStyle())
 
-            if !viewModel.add {
-                Section {
-                    Button(Strings.doseEditDeleteThisDose.rawValue) {
-                        activeAlert = .deleteConfirmation
-                        showAlert.toggle()
+                        Text(viewModel.selectedMed.medFormPlural)
+                            .foregroundColor(.secondary)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .accentColor(.red)
+                    .validation(viewModel.amountValidator)
+
+                    // ---  Remind Me ---
+                    HStack {
+                        Toggle(isOn: $viewModel.remindMe.onChange(remindMeChanged)) {
+                            Text(.doseElapsedReminder)
+                                .foregroundColor(.secondary)
+                        }
+
+                        // New red triangle
+                        if viewModel.hasStartupNotificationError {
+                            Spacer()
+                                .frame(width: 5)
+
+                            Button(action: {
+                                viewModel.activePopup = .initialNotificationError
+                                viewModel.showPopup.toggle()
+                            }, label: {
+                                Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
+                                    .foregroundColor(Color.red)
+                            })
+                                .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
                 }
 
-                if !viewModel.elapsed {
+                // ---  Example Dosage ---
+                Section(header: Text(.commonExampleDosage)) {
+                    HStack {
+                        Text(display())
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.leading)
+                    }
+                }
+
+                // --- Detail notes ---
+                Section(header: Text(.doseEditDetails)) {
+                    TextArea(
+                        Strings.doseEditDetailsPlaceholder.rawValue,
+                        text: $viewModel.details
+                    )
+                    .frame(minHeight: 50)
+                }
+
+                if !viewModel.add {
+                    // --- Delete Button ---
                     Section {
-                        Button(Strings.doseEditMarkElapsed.rawValue) {
-                            activeAlert = .elapseConfirmation
-                            showAlert.toggle()
+                        Button(Strings.doseEditDeleteThisDose.rawValue) {
+                            viewModel.activeAlert = .deleteConfirmation
+                            viewModel.showAlert.toggle()
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .disabled(viewModel.dataChanged)
+                        .accentColor(.red)
+                    }
 
+                    // --- Elapse Button ---
+                    if !viewModel.elapsed {
+                        Section {
+                            Button(Strings.doseEditMarkElapsed.rawValue) {
+                                viewModel.activeAlert = .elapseConfirmation
+                                viewModel.showAlert.toggle()
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .disabled(viewModel.dataChanged)
+                        }
                     }
                 }
+            }
+
+            if viewModel.showPopup == true {
+                popupOption()
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
@@ -193,30 +207,59 @@ struct DoseEditView: View, DestinationView {
             self.isSaveDisabled = !isValid
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-        .alert(isPresented: $showAlert) { alertOption() }
+        .alert(isPresented: $viewModel.showAlert) { alertOption() }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
 
             viewModel.remindMe = defaultRemindMe
 
-            self.viewModel.checkNotificationAbility()
+            self.viewModel.checkNotificationAbility(startUp: true)
         })
     }
 
+    func popupOption() -> some View {
+        VStack {
+            switch viewModel.activePopup {
+            case .initialNotificationError:
+                // new alert from red triangle icon
+                InfoPopupView(
+                    showing: $viewModel.showPopup,
+                    title: Strings.commonInfo.rawValue,
+                    text: Strings.doseEditInitialNotificationsError.rawValue
+                )
+                .onAppear { UIApplication.endEditing() }
+                .onTapGesture { UIApplication.endEditing() }
+            }
+        }
+    }
+
     func alertOption() -> Alert {
-        switch activeAlert {
+        switch viewModel.activeAlert {
         case .deleteConfirmation:
-            return Alert(title: Text(.doseEditDeleteDose),
-                         message: Text(.doseEditAreYouSureDelete),
-                         primaryButton: .default(Text(.commonDelete),
-                                                 action: delete),
-                         secondaryButton: .cancel())
+            return Alert(
+                title: Text(.doseEditDeleteDose),
+                message: Text(.doseEditAreYouSureDelete),
+                primaryButton: .default(Text(.commonDelete),
+                                        action: delete),
+                secondaryButton: .cancel()
+            )
         case .elapseConfirmation:
-            return Alert(title: Text(.doseEditElapseDose),
-                         message: Text(.doseEditAreYouSureElapse),
-                         primaryButton: .default(Text(.commonOK),
-                                                 action: setElapse),
-                         secondaryButton: .cancel())
+            return Alert(
+                title: Text(.doseEditElapseDose),
+                message: Text(.doseEditAreYouSureElapse),
+                primaryButton: .default(Text(.commonOK),
+                                        action: setElapse),
+                secondaryButton: .cancel()
+            )
+        case .currentNotificationError:
+            return Alert(
+                title: Text(.doseElapsedReminderAlertTitle),
+                message: Text(.doseElapsedReminderAlertMessage),
+                primaryButton:
+                .default(Text(.doseElapsedReminderAlertButton),
+                         action: showAppSettings),
+                secondaryButton: .cancel()
+            )
         }
     }
 

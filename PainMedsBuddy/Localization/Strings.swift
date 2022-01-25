@@ -18,6 +18,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonEgString
     case commonEmptyView
     case commonExampleDosage
+    case commonInfo
     case commonOK
     case commonMedications
     case commonNoDate
@@ -74,6 +75,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case doseEditElapseDose
     case doseEditMarkElapsed
     case doseEditMedication
+    case doseEditInitialNotificationsError
     // --------------------------
     case sortOptimised
     case sortCreatedDate
@@ -106,7 +108,6 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditEditMed
     case medEditForm
     case medEditImage
-    case medEditInfo
     case medEditLockedField
     case medEditLowToast
     case medEditMeasure

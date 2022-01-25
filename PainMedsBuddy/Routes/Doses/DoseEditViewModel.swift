@@ -5,12 +5,24 @@
 //  Created by Jules Moorhouse.
 //
 
+// swiftlint:disable nesting
+
 import CoreData
 import FormValidator
 import Foundation
 
 extension DoseEditView {
     class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
+        enum ActivePopup {
+            case initialNotificationError
+        }
+
+        enum ActiveAlert {
+            case deleteConfirmation,
+                 elapseConfirmation,
+                 currentNotificationError
+        }
+
         private let editedDose: Dose?
         let add: Bool
 
@@ -62,7 +74,11 @@ extension DoseEditView {
 
         @Published var elapsed: Bool
 
-        @Published var showingNotificationError: Bool
+        @Published var hasStartupNotificationError: Bool
+        @Published var showPopup = false
+        @Published var activePopup: ActivePopup = .initialNotificationError
+        @Published var showAlert = false
+        @Published var activeAlert: ActiveAlert = .deleteConfirmation
 
         lazy var formValidation: FormValidation = {
             FormValidation(validationType: .immediate)
@@ -98,8 +114,9 @@ extension DoseEditView {
             takenDate = Date()
             details = DoseDefault.details
             remindMe = true
-            showingNotificationError = false
             elapsed = false
+
+            hasStartupNotificationError = false
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -129,7 +146,8 @@ extension DoseEditView {
             remindMe = dose.remindMe
             elapsed = dose.doseElapsed
 
-            showingNotificationError = false
+            hasStartupNotificationError = false
+
             self.dataController = dataController
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
@@ -211,20 +229,26 @@ extension DoseEditView {
                 dataController.addCheckReminders(for: dose, add: true) { success in
                     if success == false {
                         self.remindMe = false
-                        self.showingNotificationError = true
+                        self.activeAlert = .currentNotificationError
+                        self.showAlert = true
                     }
                 }
-            } else {
-                dataController.removeReminders(for: dose)
             }
         }
 
-        func checkNotificationAbility() {
+        func checkNotificationAbility(startUp: Bool = false) {
             if remindMe {
                 dataController.addCheckReminders(for: Dose(), add: false) { success in
                     if success == false {
                         self.remindMe = false
-                        self.showingNotificationError = true
+                        if startUp {
+                            self.hasStartupNotificationError = true
+                        } else {
+                            self.activeAlert = .currentNotificationError
+                            self.showAlert = true
+                        }
+                    } else {
+                        self.hasStartupNotificationError = false
                     }
                 }
             }

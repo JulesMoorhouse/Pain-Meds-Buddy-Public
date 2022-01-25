@@ -162,14 +162,16 @@ struct MedEditView: View, DestinationView {
             switch activePopup {
             case .durationGapInfo:
                 InfoPopupView(
-                    showing: $showPopup, title: Strings.medEditInfo.rawValue,
+                    showing: $showPopup,
+                    title: Strings.commonInfo.rawValue,
                     text: Strings.medEditGapInfo.rawValue
                 )
                 .onAppear { UIApplication.endEditing() }
                 .onTapGesture { UIApplication.endEditing() }
             case .lockedTitle, .lockedDuration, .lockedDurationGap:
                 InfoPopupView(
-                    showing: $showPopup, title: Strings.medEditInfo.rawValue,
+                    showing: $showPopup,
+                    title: Strings.commonInfo.rawValue,
                     text: Strings.medEditLockedField.rawValue
                 )
                 .onAppear { UIApplication.endEditing() }
@@ -227,7 +229,7 @@ struct MedEditView: View, DestinationView {
             )
         case .copied:
             return Alert(
-                title: Text(.medEditInfo),
+                title: Text(.commonInfo),
                 message: Text(.medEditCopied),
                 dismissButton:
                 .default(

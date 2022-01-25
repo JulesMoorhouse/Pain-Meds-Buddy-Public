@@ -43,6 +43,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonExampleDosage:
                 output = ""
+            case .commonInfo:
+                output = ""
             case .commonOK:
                 output = ""
             case .commonMedications:
@@ -131,7 +133,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .doseEditAreYouSureDelete:
                 output = ""
-            case .doseEditAreYouSureElapse
+            case .doseEditAreYouSureElapse:
                 output = ""
             case .doseEditAmount:
                 output = ""
@@ -162,6 +164,8 @@ class LocalisedStringTests: BaseTestCase {
             case .doseEditMarkElapsed:
                 output = ""
             case .doseEditMedication:
+                output = ""
+            case .doseEditInitialNotificationsError:
                 output = ""
             // --------------------------
             case .sortOptimised:
@@ -226,8 +230,6 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditForm:
                 output = ""
             case .medEditImage:
-                output = ""
-            case .medEditInfo:
                 output = ""
             case .medEditLockedField:
                 output = ""

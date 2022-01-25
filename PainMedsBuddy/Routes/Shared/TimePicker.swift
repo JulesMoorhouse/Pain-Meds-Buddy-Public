@@ -58,6 +58,6 @@ struct TimePicker: View {
 
 struct TimePicker_Previews: PreviewProvider {
     static var previews: some View {
-        TimePicker(hours: true, selected: .constant(5), aId: .medEditInfo)
+        TimePicker(hours: true, selected: .constant(5), aId: .commonInfo)
     }
 }
