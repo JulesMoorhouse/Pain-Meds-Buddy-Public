@@ -86,6 +86,8 @@ class NoDataUITests: XCTestCase {
 
             // Form
             let form = app.textFields[Strings.medEditForm.automatedId()]
+            app.swipeUp(to: form)
+
             form.doubleTap()
             form.clearText()
             "Pills".forEach { char in
@@ -94,13 +96,12 @@ class NoDataUITests: XCTestCase {
 
             // Remaining
             let remaining = app.textFields[Strings.medEditRemaining.automatedId()]
+            app.swipeUp(to: remaining)
             remaining.doubleTap()
             remaining.clearText()
             "100".forEach { char in
                 app.keys["\(char)"].tap()
             }
-
-            app.swipeDown()
 
             // INFO: Save button tap on add med screen
             BasicAction.tapAddMedSaveButton(app)
