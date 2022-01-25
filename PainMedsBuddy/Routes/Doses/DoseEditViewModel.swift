@@ -60,6 +60,8 @@ extension DoseEditView {
             }
         }
 
+        @Published var elapsed: Bool
+
         @Published var showingNotificationError: Bool
 
         lazy var formValidation: FormValidation = {
@@ -97,6 +99,7 @@ extension DoseEditView {
             details = DoseDefault.details
             remindMe = true
             showingNotificationError = false
+            elapsed = false
 
             let request: NSFetchRequest<Med> = Med.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
@@ -116,13 +119,16 @@ extension DoseEditView {
         init(dataController: DataController,
              dose: Dose)
         {
-            editedDose = dose
             add = false
+            editedDose = dose
+
             selectedMed = dose.med!
             amount = dose.doseAmount
             takenDate = dose.doseTakenDate
             details = dose.doseDetails
             remindMe = dose.remindMe
+            elapsed = dose.doseElapsed
+
             showingNotificationError = false
             self.dataController = dataController
 
@@ -156,7 +162,17 @@ extension DoseEditView {
             amount = "\(selectedMed.medDefaultAmount)"
         }
 
+        func setElapsed() {
+            if let dose = editedDose {
+                dose.objectWillChange.send()
+                dose.elapsed = true
+
+                dataController.removeReminders(for: dose)
+            }
+        }
+
         func delete() {
+            // NOTE: Delete button not shown when add set
             if !add {
                 // INFO: Also delete the med if this dose is the only relationship and is hidden.
                 if let med = editedDose!.med {
@@ -167,6 +183,7 @@ extension DoseEditView {
                         }
                     }
                 }
+                // NOTE: removeReminders called in delete method
                 dataController.delete(editedDose!)
             }
         }

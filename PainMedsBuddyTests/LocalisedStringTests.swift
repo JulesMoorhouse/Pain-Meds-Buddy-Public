@@ -129,7 +129,9 @@ class LocalisedStringTests: BaseTestCase {
             // --------------------------
             case .doseEditAddDose:
                 output = ""
-            case .doseEditAreYouSure:
+            case .doseEditAreYouSureDelete:
+                output = ""
+            case .doseEditAreYouSureElapse
                 output = ""
             case .doseEditAmount:
                 output = ""
@@ -154,6 +156,10 @@ class LocalisedStringTests: BaseTestCase {
             case .doseEditDosageElapsed:
                 output = ""
             case .doseEditEditDose:
+                output = ""
+            case .doseEditElapseDose:
+                output = ""
+            case .doseEditMarkElapsed:
                 output = ""
             case .doseEditMedication:
                 output = ""

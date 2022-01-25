@@ -23,8 +23,13 @@ struct DoseEditView: View, DestinationView {
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToast
 
-    @State private var showingDeleteConfirm = false
+    @State private var showAlert = false
+    @State private var activeAlert: ActiveAlert = .deleteConfirmation
     @State private var isSaveDisabled = false
+
+    enum ActiveAlert {
+        case deleteConfirmation, elapseConfirmation
+    }
 
     var backBarButtonItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -156,10 +161,23 @@ struct DoseEditView: View, DestinationView {
             if !viewModel.add {
                 Section {
                     Button(Strings.doseEditDeleteThisDose.rawValue) {
-                        showingDeleteConfirm.toggle()
+                        activeAlert = .deleteConfirmation
+                        showAlert.toggle()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .accentColor(.red)
+                }
+
+                if !viewModel.elapsed {
+                    Section {
+                        Button(Strings.doseEditMarkElapsed.rawValue) {
+                            activeAlert = .elapseConfirmation
+                            showAlert.toggle()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .disabled(viewModel.dataChanged)
+
+                    }
                 }
             }
         }
@@ -175,12 +193,7 @@ struct DoseEditView: View, DestinationView {
             self.isSaveDisabled = !isValid
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-        .alert(isPresented: $showingDeleteConfirm) {
-            Alert(title: Text(.doseEditDeleteDose),
-                  message: Text(.doseEditAreYouSure),
-                  primaryButton: .default(Text(.commonDelete), action: delete),
-                  secondaryButton: .cancel())
-        }
+        .alert(isPresented: $showAlert) { alertOption() }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
 
@@ -188,6 +201,23 @@ struct DoseEditView: View, DestinationView {
 
             self.viewModel.checkNotificationAbility()
         })
+    }
+
+    func alertOption() -> Alert {
+        switch activeAlert {
+        case .deleteConfirmation:
+            return Alert(title: Text(.doseEditDeleteDose),
+                         message: Text(.doseEditAreYouSureDelete),
+                         primaryButton: .default(Text(.commonDelete),
+                                                 action: delete),
+                         secondaryButton: .cancel())
+        case .elapseConfirmation:
+            return Alert(title: Text(.doseEditElapseDose),
+                         message: Text(.doseEditAreYouSureElapse),
+                         primaryButton: .default(Text(.commonOK),
+                                                 action: setElapse),
+                         secondaryButton: .cancel())
+        }
     }
 
     static func navigationTitle(add: Bool) -> Strings {
@@ -215,6 +245,11 @@ struct DoseEditView: View, DestinationView {
         )
 
         return "\(doseFull)\n\(elapses)"
+    }
+
+    func setElapse() {
+        viewModel.setElapsed()
+        presentationMode.wrappedValue.dismiss()
     }
 
     func delete() {
