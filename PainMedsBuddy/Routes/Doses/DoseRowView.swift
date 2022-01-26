@@ -67,7 +67,7 @@ struct DoseRowView: View {
 
                         Spacer()
 
-                        if !dose.doseDetails.isEmpty {
+                        if !dose.doseElapsed || !dose.doseDetails.isEmpty {
                             ChevronView(
                                 direction: chevronIcon)
                         }
@@ -98,6 +98,7 @@ struct DoseRowView: View {
                 .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }
         })
+            .buttonStyle(PlainButtonStyle())
     }
 }
 
