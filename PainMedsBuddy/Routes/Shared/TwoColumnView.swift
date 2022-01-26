@@ -20,7 +20,7 @@ struct TwoColumnView: View {
             Text(col2)
 
             if hasChevron {
-                ChevronRightView()
+                ChevronView()
             }
         }
     }

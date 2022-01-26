@@ -10,11 +10,13 @@ import SwiftUI
 enum SFSymbol: String, CaseIterable {
     case arrowUpArrowDown = "arrow.up.arrow.down"
     case booksVerticalFill = "books.vertical.fill"
-    case clockArrowCirclepath = "clock.arrow.circlepath"
+    case clockArrowCirclePath = "clock.arrow.circlepath"
     case checkmark
     case checkmarkCircle = "checkmark.circle"
     case checkmarkSquare = "checkmark.square"
+    case chevronDown = "chevron.down"
     case chevronRight = "chevron.right"
+    case chevronUp = "chevron.up"
     case eyeDropperHalfFull = "eyedropper.halffull"
     case exclamationMarkTriangle = "exclamationmark.triangle"
     case gearShapeFill = "gearshape.fill"

@@ -51,7 +51,7 @@ struct SettingsView: View {
 
                                 Spacer()
 
-                                ChevronRightView()
+                                ChevronView()
                             }
                             .accessibilityElement()
                             .accessibility(addTraits: .isButton)

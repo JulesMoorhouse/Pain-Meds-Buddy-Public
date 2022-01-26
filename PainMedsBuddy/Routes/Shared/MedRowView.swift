@@ -43,7 +43,7 @@ struct MedRowView: View {
             if hasChevron {
                 Spacer()
 
-                ChevronRightView()
+                ChevronView()
             }
         }
         .accessibilityElement(children: .ignore)
