@@ -24,7 +24,7 @@ struct TimeEditPicker: View {
         }
         .frame(height: 160)
         .mask(Rectangle())
-        .border(Color.secondary.opacity(0.2))
+        .border(Color.semiDisabledBackground)
     }
 }
 

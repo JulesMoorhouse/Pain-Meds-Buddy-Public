@@ -16,13 +16,11 @@ struct HomeLowMedsView: View {
 
     var body: some View {
         Group {
-            if meds.isEmpty {
-                EmptyView()
-            } else {
-                VStack(alignment: .leading) {
-                    HomeHeadingView(.homeMedsRunningOut)
+            VStack(alignment: .leading) {
+                HomeHeadingView(.homeMedsRunningOut)
 
-                    LazyVStack {
+                LazyVStack {
+                    if !meds.isEmpty {
                         ForEach(meds, id: \.self) { med in
                             Button(action: {
                                 navigation.pushView(
@@ -46,6 +44,8 @@ struct HomeLowMedsView: View {
                             })
                                 .panelled()
                         }
+                    } else {
+                        EmptyRowView()
                     }
                 }
             }

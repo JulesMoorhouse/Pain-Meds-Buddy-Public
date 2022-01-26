@@ -65,22 +65,29 @@ class ExistingDataTests: XCTestCase {
     func testHomeHasLowMeds() {
         BasicAction.tapTabHome(app)
 
-        let section = app.otherElements[Strings.homeMedsRunningOut.automatedId()]
+        app.swipeUp()
+
+        let row = app.buttons[
+            Strings.homeAccessibilityIconRemaining.automatedId()
+        ].firstMatch
 
         XCTAssertTrue(
-            section.exists,
-            "Home low meds section not showing"
+            row.exists,
+            "Home low meds row not showing"
         )
     }
 
     func testHomeHasRecentMeds() {
         BasicAction.tapTabHome(app)
 
-        let section = app.otherElements[Strings.homeRecentlyTaken.automatedId()]
-        _ = section.waitForExistence(timeout: 2)
+        let row = app.buttons[
+            Strings.homeAccessibilityIconTakeNow.automatedId()
+        ].firstMatch
+
+        _ = row.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
-            section.exists,
+            row.exists,
             "Home recent meds section not showing"
         )
     }

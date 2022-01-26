@@ -103,6 +103,8 @@
 		88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265B279B1A66001C2C55 /* TimePicker.swift */; };
 		88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */; };
 		88EE266127A154D4001C2C55 /* HomeHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266027A154D4001C2C55 /* HomeHeadingView.swift */; };
+		88EE266327A1890F001C2C55 /* DisabledBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266227A1890E001C2C55 /* DisabledBarView.swift */; };
+		88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266427A18A7F001C2C55 /* EmptyRowView.swift */; };
 		88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF203027526746006037CF /* Med-CoreDataHelpers.swift */; };
 		88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */; };
 		88EF20372753B215006037CF /* MedEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EF20362753B215006037CF /* MedEditView.swift */; };
@@ -236,6 +238,8 @@
 		88EE265B279B1A66001C2C55 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutePicker.swift; sourceTree = "<group>"; };
 		88EE266027A154D4001C2C55 /* HomeHeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadingView.swift; sourceTree = "<group>"; };
+		88EE266227A1890E001C2C55 /* DisabledBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledBarView.swift; sourceTree = "<group>"; };
+		88EE266427A18A7F001C2C55 /* EmptyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRowView.swift; sourceTree = "<group>"; };
 		88EF203027526746006037CF /* Med-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Med-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF2032275268B1006037CF /* Dose-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dose-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		88EF20362753B215006037CF /* MedEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditView.swift; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
 				889A4D0127764BC500E3B53B /* ChevronView.swift */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
+				88EE266427A18A7F001C2C55 /* EmptyRowView.swift */,
+				88EE266227A1890E001C2C55 /* DisabledBarView.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
@@ -770,6 +776,7 @@
 				88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */,
 				88AB7CAB275E83910055BD9B /* ButtonBorderView.swift in Sources */,
 				8852BF432785B9C5000750FB /* DosesViewModel.swift in Sources */,
+				88EE266327A1890F001C2C55 /* DisabledBarView.swift in Sources */,
 				88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */,
 				88AB7C992754EE620055BD9B /* DoseRowView.swift in Sources */,
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
@@ -779,6 +786,7 @@
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */,
+				88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
 				88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */,
 				88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */,

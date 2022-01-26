@@ -12,23 +12,23 @@ struct HomeRecentMedsView: View {
 
     var body: some View {
         Group {
-            if meds.isEmpty {
-                EmptyView()
-            } else {
-                VStack(alignment: .leading) {
-                    HomeHeadingView(.homeRecentlyTaken)
+            VStack(alignment: .leading) {
+                HomeHeadingView(.homeRecentlyTaken)
 
-                    LazyVStack {
+                LazyVStack {
+                    if !meds.isEmpty {
                         ForEach(meds, id: \.self) { med in
                             HomeMedRow(med: med)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(2)
                         }
                         .panelled()
+                    } else {
+                        EmptyRowView()
                     }
                 }
-                .padding(.bottom)
             }
+            .padding(.bottom)
         }
         .accessibilityIdentifier(!meds.isEmpty ? .homeRecentlyTaken : nil)
     }

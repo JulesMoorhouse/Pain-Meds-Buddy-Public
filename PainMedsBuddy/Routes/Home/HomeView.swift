@@ -31,13 +31,17 @@ struct HomeView: View {
     var currentMedCards: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: columns) {
-                ForEach(viewModel.doses, id: \.self) { item in
-                    if let med = item.med {
-                        HomeDoseProgressView(
-                            dose: item,
-                            med: med
-                        )
+                if !viewModel.doses.isEmpty {
+                    ForEach(viewModel.doses, id: \.self) { item in
+                        if let med = item.med {
+                            HomeDoseProgressView(
+                                dose: item,
+                                med: med
+                            )
+                        }
                     }
+                } else {
+                    HomeDoseProgressView(disabled: true)
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -57,12 +61,12 @@ struct HomeView: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
-                            if !viewModel.doses.isEmpty {
-                                HomeHeadingView(.homeCurrentMeds)
-                                    .padding([.leading, .trailing])
+                            // if !viewModel.doses.isEmpty {
+                            HomeHeadingView(.homeCurrentMeds)
+                                .padding([.leading, .trailing])
 
-                                currentMedCards
-                            }
+                            currentMedCards
+                            // }
 
                             VStack(alignment: .leading) {
                                 HomeRecentMedsView(meds: viewModel.canTakeMeds)

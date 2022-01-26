@@ -22,41 +22,41 @@ struct HomeDoseProgressView: View {
     )
 
     var debug = false
-    var emptyView = false
+    var showEmptyView = false
 
     @State var nowDate = Date()
     @State var timer: Timer?
 
-    var disabled: Bool {
-        emptyView || !dose.doseShouldHaveElapsed
-    }
-
     var count: Int {
-        dose.doseElapsedSeconds
+        !showEmptyView ? dose.doseElapsedSeconds : 0
     }
 
     var total: Int {
-        100
+        !showEmptyView ? 100 : 0
     }
 
     var display: String {
-        dose.doseDisplay
+        !showEmptyView ? dose.doseDisplay : ""
     }
 
     var countDown: String {
-        dose.doseShouldHaveElapsed
+        showEmptyView ? "00:00:00" :
+            dose.doseShouldHaveElapsed
             ? String(.doseProgressAvailable)
             : dose.doseCountDownSeconds(nowDate: nowDate)
     }
 
     var progress: CGFloat {
+        if showEmptyView {
+            return 0
+        }
         let onePercent: CGFloat = 1 / CGFloat(dose.doseTotalTimeSeconds)
         let percentage = CGFloat(dose.doseElapsedSeconds) * onePercent
         return 1 - percentage
     }
 
     var title: String {
-        med.medTitle
+        !showEmptyView ? med.medTitle : ""
     }
 
     var circle: some View {
@@ -73,19 +73,30 @@ struct HomeDoseProgressView: View {
             .padding(.top, 10)
             .background(debug ? Color.red : nil)
 
-            Text(title)
-                .font(.caption)
-                .multilineTextAlignment(.center)
-                .frame(height: 40)
-                .background(debug ? Color.red : nil)
-                .foregroundColor(.primary)
+            if !showEmptyView {
+                Text(title)
+                    .font(.caption)
+                    .multilineTextAlignment(.center)
+                    .frame(height: 40)
+                    .background(debug ? Color.red : nil)
+                    .foregroundColor(.primary)
 
-            Text(display)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .background(debug ? Color.red : nil)
-                .padding(.bottom, 10)
+                Text(display)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .background(debug ? Color.red : nil)
+                    .padding(.bottom, 10)
+            } else {
+                DisabledBarView()
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 5)
+                    .padding(.top, 15)
+
+                DisabledBarView()
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 10)
+            }
         }
         .background(debug ? Color.yellow : nil)
         .frame(minWidth: 155, minHeight: 215)
@@ -93,9 +104,14 @@ struct HomeDoseProgressView: View {
 
     var detail: some View {
         VStack {
-            if let med = med {
-                MedSymbolView(med: med, font: .headline, width: 25, height: 25)
-                    .padding(.horizontal, 5)
+            if showEmptyView {
+                Image(systemName: SFSymbol.squareDashed.systemName)
+                    .foregroundColor(.semiDisabledBackground)
+            } else {
+                if let med = med {
+                    MedSymbolView(med: med, font: .headline, width: 25, height: 25)
+                        .padding(.horizontal, 5)
+                }
             }
 
             Button(action: {
@@ -111,7 +127,10 @@ struct HomeDoseProgressView: View {
             })
 
             Text(countDown)
-                .foregroundColor(.primary)
+                .foregroundColor(
+                    showEmptyView
+                        ? .secondary.opacity(0.2)
+                        : .primary)
         }
         .padding(.bottom, 70)
     }
@@ -131,12 +150,13 @@ struct HomeDoseProgressView: View {
             self.timer?.invalidate()
             self.timer = nil
         })
-        .disabled(disabled)
+        .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
-        .accessibilityAddTraits(!disabled ? .isButton : .isStaticText)
-        .accessibilityLabel(accessibilityLabel())
-        .accessibilityIdentifier(accessibilityIdentifier())
+        // .accessibilityAddTraits(dose.doseShouldHaveElapsed ? .isButton : .isStaticText)
+        .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
+        .accessibilityLabel(showEmptyView ? "" : accessibilityLabel())
+        .accessibilityIdentifier(showEmptyView ? .nothing : accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
@@ -159,7 +179,7 @@ struct HomeDoseProgressView: View {
     init(disabled: Bool) {
         self.dose = Dose()
         self.med = Med()
-        self.emptyView = true
+        self.showEmptyView = true
     }
 }
 

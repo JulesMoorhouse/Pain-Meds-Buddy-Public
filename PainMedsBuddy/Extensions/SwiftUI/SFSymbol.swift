@@ -26,6 +26,7 @@ enum SFSymbol: String, CaseIterable {
     case pills
     case pillsFill = "pills.fill"
     case plus
+    case squareDashed = "square.dashed"
     case timer
     case xMark = "xmark"
 
