@@ -122,6 +122,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditTitle
     // --------------------------
     case settingsAcknowledgements
+    case settingsAdvanced
     case settingsAddExampleData
     case settingsAreYouSureDeleteAll
     case settingsAreYouSureExampleData
@@ -131,6 +132,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsDeleteAllAlertTitle
     case settingsDefaultRemindMe
     case settingsDefaultRemindMeFooter
+    case settingsDeveloper
     case settingsExampleDataAlertTitle
     case settingsGenerateTestCrash
     case settingsNoResponsibility

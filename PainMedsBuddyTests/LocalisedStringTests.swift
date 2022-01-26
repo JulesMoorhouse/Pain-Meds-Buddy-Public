@@ -258,6 +258,8 @@ class LocalisedStringTests: BaseTestCase {
             // --------------------------
             case .settingsAcknowledgements:
                 output = ""
+            case .settingsAdvanced:
+                output = ""
             case .settingsAddExampleData:
                 output = ""
             case .settingsAreYouSureDeleteAll:
@@ -275,6 +277,8 @@ class LocalisedStringTests: BaseTestCase {
             case .settingsDefaultRemindMe:
                 output = ""
             case .settingsDefaultRemindMeFooter:
+                output = ""
+            case .settingsDeveloper:
                 output = ""
             case .settingsExampleDataAlertTitle:
                 output = ""
