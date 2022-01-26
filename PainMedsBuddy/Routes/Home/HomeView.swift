@@ -58,9 +58,8 @@ struct HomeView: View {
                     ScrollView {
                         VStack(alignment: .leading) {
                             if !viewModel.doses.isEmpty {
-                                Text(.homeCurrentMeds)
-                                    .foregroundColor(.secondary)
-                                    .padding(.leading)
+                                HomeHeadingView(.homeCurrentMeds)
+                                    .padding([.leading, .trailing])
 
                                 currentMedCards
                             }

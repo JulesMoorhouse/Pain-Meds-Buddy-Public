@@ -16,8 +16,7 @@ struct HomeRecentMedsView: View {
                 EmptyView()
             } else {
                 VStack(alignment: .leading) {
-                    Text(.homeRecentlyTaken)
-                        .foregroundColor(.secondary)
+                    HomeHeadingView(.homeRecentlyTaken)
 
                     LazyVStack {
                         ForEach(meds, id: \.self) { med in
