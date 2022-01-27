@@ -42,7 +42,7 @@ extension String {
         guard check(in: self, forAnyIn: "[]") == true else {
             return nil
         }
-        // abc[123]def
+        // NOTE: abc[123]def
         var processing = false
         var output = ""
 

@@ -61,12 +61,10 @@ struct HomeView: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
-                            // if !viewModel.doses.isEmpty {
                             HomeHeadingView(.homeCurrentMeds)
                                 .padding([.leading, .trailing])
 
                             currentMedCards
-                            // }
 
                             VStack(alignment: .leading) {
                                 HomeRecentMedsView(meds: viewModel.canTakeMeds)

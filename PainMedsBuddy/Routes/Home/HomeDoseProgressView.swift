@@ -148,7 +148,6 @@ struct HomeDoseProgressView: View {
                             .font(.headline)
                     }
                 )
-                .buttonStyle(PlainButtonStyle())
                 .padding(8)
             }
             Spacer()

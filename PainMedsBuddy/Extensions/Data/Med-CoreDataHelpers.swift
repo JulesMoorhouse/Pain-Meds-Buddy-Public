@@ -162,7 +162,7 @@ extension Med: MedProtocol {
     }
 
     var medPredictedNextTimeCanTake: Date {
-        // This will not cater for time asleep, will need those times in a setting in future
+        // NOTE: This will not cater for time asleep, will need those times in a setting in future
         if let date = lastTakenDate {
             return date.adding(seconds: medTotalDurationSeconds)
         }

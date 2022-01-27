@@ -221,7 +221,7 @@ struct DoseEditView: View, DestinationView {
         VStack {
             switch viewModel.activePopup {
             case .initialNotificationError:
-                // new alert from red triangle icon
+                // NOTE: Alert from red triangle icon
                 InfoPopupView(
                     showing: $viewModel.showPopup,
                     title: Strings.commonInfo.rawValue,

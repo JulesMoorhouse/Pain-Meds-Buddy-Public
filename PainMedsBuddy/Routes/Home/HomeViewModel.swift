@@ -94,12 +94,14 @@ extension HomeView {
         }
 
         func filterReaffirmedDoses(loadedDoses: [Dose]) -> [Dose] {
-            return loadedDoses.filter {
+            let filtered = loadedDoses.filter {
                 if let soft = $0.softElapsedDate {
                     return $0.elapsed == false || soft >= Date()
                 }
                 return $0.elapsed == false
             }
+            
+            return filtered.sorted(by: \Dose.doseTakenDate)
         }
 
         // INFO: Get a unique list of medications that don't have currently active doses.
