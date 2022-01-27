@@ -52,6 +52,9 @@ struct SettingsDeveloperView: View, DestinationView {
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
         })
+        .onDisappear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     func alertOption() -> Alert {

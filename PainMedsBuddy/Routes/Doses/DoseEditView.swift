@@ -215,6 +215,9 @@ struct DoseEditView: View, DestinationView {
 
             self.viewModel.checkNotificationAbility(startUp: true)
         })
+        .onDisappear(perform: {
+            self.tabBarHandler.showTabBar()
+        })
     }
 
     func popupOption() -> some View {

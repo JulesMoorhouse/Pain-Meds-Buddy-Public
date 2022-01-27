@@ -42,7 +42,7 @@ struct HomeDoseProgressView: View {
 
     var countDown: String {
         showEmptyView ? "00:00:00" :
-            dose.doseShouldHaveElapsed
+            (dose.doseElapsed || dose.doseShouldHaveElapsed)
             ? String(.doseProgressAvailable)
             : dose.doseCountDownSeconds(nowDate: nowDate)
     }
@@ -60,6 +60,10 @@ struct HomeDoseProgressView: View {
         !showEmptyView ? med.medTitle : ""
     }
 
+    var disabled: Bool {
+        showEmptyView || (!dose.doseShouldHaveElapsed && !dose.elapsed)
+    }
+    
     var circle: some View {
         VStack(alignment: .center) {
             CircularProgressView(
@@ -166,10 +170,10 @@ struct HomeDoseProgressView: View {
     var body: some View {
         ZStack {
             circle
-                .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
+                .disabled(disabled)
 
             detail
-                .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
+                .disabled(disabled)
 
             if dose.elapsed {
                 cornerClose

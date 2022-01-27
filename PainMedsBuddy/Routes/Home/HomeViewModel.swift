@@ -100,7 +100,7 @@ extension HomeView {
                 }
                 return $0.elapsed == false
             }
-            
+
             return filtered.sorted(by: \Dose.doseTakenDate)
         }
 
