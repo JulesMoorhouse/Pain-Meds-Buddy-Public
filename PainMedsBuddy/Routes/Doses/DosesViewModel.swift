@@ -18,22 +18,22 @@ extension DosesView {
         @Published private var doses = [Dose]()
 
         var medsCount: Int {
-            let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
-            return dataController.count(for: fetchRequest)
+            let medRequest = NSFetchRequest<Med>(entityName: "Med")
+            return dataController.count(for: medRequest)
         }
 
         init(dataController: DataController, showElapsedDoses: Bool) {
             self.dataController = dataController
             self.showElapsedDoses = showElapsedDoses
 
-            let request: NSFetchRequest<Dose> = Dose.fetchRequest()
-            request.sortDescriptors = [
+            let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
+            doseRequest.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
             ]
-            request.predicate = NSPredicate(format: "elapsed = %d", showElapsedDoses)
+            doseRequest.predicate = NSPredicate(format: "elapsed = %d", showElapsedDoses)
 
             dosesController = NSFetchedResultsController(
-                fetchRequest: request,
+                fetchRequest: doseRequest,
                 managedObjectContext: dataController.container.viewContext,
                 sectionNameKeyPath: nil,
                 cacheName: nil

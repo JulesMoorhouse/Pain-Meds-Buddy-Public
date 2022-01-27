@@ -118,12 +118,12 @@ extension DoseEditView {
 
             hasStartupNotificationError = false
 
-            let request: NSFetchRequest<Med> = Med.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
-            request.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
+            let medRequest: NSFetchRequest<Med> = Med.fetchRequest()
+            medRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)]
+            medRequest.predicate = !DataController.useHardDelete ? NSPredicate(format: "hidden = false") : nil
 
             medsController = NSFetchedResultsController(
-                fetchRequest: request,
+                fetchRequest: medRequest,
                 managedObjectContext: dataController.container.viewContext,
                 sectionNameKeyPath: nil,
                 cacheName: nil

@@ -35,8 +35,8 @@ class PerformanceTests: BaseTestCase {
             )
         }
 
-        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
-        let items = try dataController.container.viewContext.fetch(fetchRequest)
+        let medRequest = NSFetchRequest<Med>(entityName: "Med")
+        let items = try dataController.container.viewContext.fetch(medRequest)
 
         measure {
             _ = items.filter(dataController.hasRelationship)
@@ -53,8 +53,8 @@ class PerformanceTests: BaseTestCase {
             )
         }
 
-        let fetchRequest = NSFetchRequest<Med>(entityName: "Med")
-        let items = try dataController.container.viewContext.fetch(fetchRequest)
+        let medRequest = NSFetchRequest<Med>(entityName: "Med")
+        let items = try dataController.container.viewContext.fetch(medRequest)
 
         measure {
             _ = dataController.anyRelationships(for: items)
