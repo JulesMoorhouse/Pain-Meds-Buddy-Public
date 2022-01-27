@@ -23,7 +23,7 @@ struct HomeView: View {
     }
 
     var noData: Bool {
-        viewModel.doses.isEmpty &&
+        viewModel.reaffirmedDoses.isEmpty &&
             viewModel.lowMeds.isEmpty &&
             viewModel.canTakeMeds.isEmpty
     }
@@ -31,8 +31,8 @@ struct HomeView: View {
     var currentMedCards: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: columns) {
-                if !viewModel.doses.isEmpty {
-                    ForEach(viewModel.doses, id: \.self) { item in
+                if !viewModel.reaffirmedDoses.isEmpty {
+                    ForEach(viewModel.reaffirmedDoses, id: \.self) { item in
                         if let med = item.med {
                             HomeDoseProgressView(
                                 dose: item,

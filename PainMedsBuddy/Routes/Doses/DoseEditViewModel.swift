@@ -213,6 +213,10 @@ extension DoseEditView {
             dose.elapsed = false
             dose.details = details
 
+            // NOTE: This is fine to set here as elapsed doses
+            // are no longer editable
+            dose.softElapsedDate = dose.doseSoftElapsedDate
+
             dose.med?.lastTakenDate = takenDate
 
             // NOTE: Ensure remaining is zero or above

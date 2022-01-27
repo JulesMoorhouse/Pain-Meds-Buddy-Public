@@ -37,12 +37,9 @@ extension Dose: Comparable {
     }
 
     var doseElapsedSeconds: Int {
-        if elapsed == false {
-            let nowDate = Date()
-            let seconds = Int(nowDate.timeIntervalSince(doseTakenDate))
-            return seconds
-        }
-        return 0
+        let nowDate = Date()
+        let seconds = Int(nowDate.timeIntervalSince(doseTakenDate))
+        return seconds > 0 ? seconds : 0
     }
 
     var doseShouldHaveElapsed: Bool {
@@ -56,6 +53,15 @@ extension Dose: Comparable {
 
                 return modifiedDate
             }
+        }
+
+        return nil
+    }
+
+    var doseSoftElapsedDate: Date? {
+        if let duration = med?.medTotalDurationSeconds {
+            let elapsingDate = doseTakenDate.addingTimeInterval(TimeInterval(duration))
+            return elapsingDate.adding(hours: 3)
         }
 
         return nil
@@ -114,7 +120,6 @@ extension Dose: Comparable {
     func doseCountDownSeconds(nowDate: Date) -> String {
         if elapsed == false {
             if let date = doseElapsedDate {
-                let nowDate = Date()
                 return Int(date.timeIntervalSince(nowDate)).secondsToTimeHMS
             }
         }
@@ -175,6 +180,7 @@ extension Dose: Comparable {
         dose.takenDate = Date()
         dose.details = "This is an example dose"
         dose.remindMe = true
+        dose.softElapsedDate = dose.doseSoftElapsedDate
 
         return dose
     }

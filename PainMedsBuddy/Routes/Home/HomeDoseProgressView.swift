@@ -11,6 +11,7 @@ import XNavigation
 
 struct HomeDoseProgressView: View {
     @EnvironmentObject var navigation: Navigation
+    @EnvironmentObject private var dataController: DataController
 
     @ObservedObject var dose: Dose
     @ObservedObject var med: Med
@@ -135,25 +136,64 @@ struct HomeDoseProgressView: View {
         .padding(.bottom, 70)
     }
 
+    var cornerClose: some View {
+        VStack {
+            HStack(alignment: .top) {
+                Spacer()
+
+                Button(
+                    action: self.close,
+                    label: {
+                        Image(systemName: SFSymbol.xMark.systemName)
+                            .font(.headline)
+                    }
+                )
+                .buttonStyle(PlainButtonStyle())
+                .padding(8)
+            }
+            Spacer()
+
+            /* --- Debugging ---
+             VStack {
+             Text("elapsed=\(String(dose.elapsed))")
+                 Text("taken=\(dose.doseTakenDate.dateToShortDateTime)")
+                 Text("elapsed=\((dose.doseElapsedDate  ?? Date().date1970).dateToShortDateTime)")
+                 Text("soft=\((dose.doseSoftElapsedDate ?? Date().date1970).dateToShortDateTime)")
+             }.background(Color.yellow)
+              */
+        }
+    }
+
     var body: some View {
         ZStack {
             circle
+                .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
+
             detail
+                .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
+
+            if dose.elapsed {
+                cornerClose
+            }
         }
         .panelled(cornerRadius: 15)
         .onAppear(perform: {
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 self.nowDate = Date()
+
+                if dose.elapsed == false, dose.doseShouldHaveElapsed {
+                    dose.objectWillChange.send()
+                    dose.elapsed = true
+                    dataController.save()
+                }
             }
         })
         .onDisappear(perform: {
             self.timer?.invalidate()
             self.timer = nil
         })
-        .disabled(showEmptyView || !dose.doseShouldHaveElapsed)
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
-        // .accessibilityAddTraits(dose.doseShouldHaveElapsed ? .isButton : .isStaticText)
         .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
         .accessibilityLabel(showEmptyView ? "" : accessibilityLabel())
         .accessibilityIdentifier(showEmptyView ? .nothing : accessibilityIdentifier())
@@ -169,6 +209,13 @@ struct HomeDoseProgressView: View {
         dose.doseShouldHaveElapsed
             ? .doseProgressAccessibilityAvailable
             : .doseProgressAccessibilityRemaining
+    }
+
+    func close() {
+        dose.objectWillChange.send()
+        dose.softElapsedDate = Date()
+
+        dataController.save()
     }
 
     init(dose: Dose, med: Med) {

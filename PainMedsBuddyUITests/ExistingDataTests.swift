@@ -32,7 +32,12 @@ class ExistingDataTests: XCTestCase {
     func testEditDose() {
         // Given
         BasicAction.tapTabInProgress(app)
-        app.buttons[Strings.homeAccessibilityIconTaken.automatedId()].firstMatch.tap()
+
+        let row = app.buttons[
+            Strings.homeAccessibilityIconTaken.automatedId()
+        ].firstMatch
+        _ = row.waitForExistence(timeout: 1)
+        row.tap()
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
         textField.doubleTap()

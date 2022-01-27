@@ -16,6 +16,14 @@ extension HomeView {
         @Published var doses = [Dose]()
         private var meds = [Med]()
 
+        var reaffirmedDoses: [Dose] {
+            if !doses.isEmpty {
+                return filterReaffirmedDoses(
+                    loadedDoses: dosesController.fetchedObjects ?? [])
+            }
+            return []
+        }
+
         var canTakeMeds: [Med] {
             if !doses.isEmpty, !meds.isEmpty {
                 return getCanTakeMeds(
@@ -41,7 +49,9 @@ extension HomeView {
 
             // INFO: Construct a fetch request to show all none elapsed doses
             let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
-            doseRequest.predicate = NSPredicate(format: "elapsed == false AND med != nil")
+            doseRequest.predicate = NSPredicate(format:
+                "elapsed == false OR softElapsedDate >= %@", NSDate())
+
             doseRequest.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
             ]
@@ -80,6 +90,15 @@ extension HomeView {
                 meds = medsController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch initial data: \(error)")
+            }
+        }
+
+        func filterReaffirmedDoses(loadedDoses: [Dose]) -> [Dose] {
+            return loadedDoses.filter {
+                if let soft = $0.softElapsedDate {
+                    return $0.elapsed == false || soft >= Date()
+                }
+                return $0.elapsed == false
             }
         }
 

@@ -250,6 +250,8 @@ class DataController: ObservableObject {
                             ? true
                             : dose.doseElapsedDate! < Date()
 
+                        dose.softElapsedDate = dose.doseSoftElapsedDate
+
                         dose.amount = NSDecimalNumber(value: tempAmount)
                         dose.details = "Notes about - \(drug.name) \(tempAmount) x \(drug.mGrams)mg Pills"
                         dose.remindMe = true
