@@ -70,7 +70,7 @@ class BasicAction: XCTestCase {
         _ = Elements.navBarAddDose(app)
     }
 
-    static func tapHistorysAddButton(_ app: XCUIApplication) {
+    static func tapHistoryAddButton(_ app: XCUIApplication) {
         let navBar = Elements.navBarHistory(app)
         navBar.buttons[Strings.doseEditAddDose.automatedId()].tap()
 
@@ -82,7 +82,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarAddDose(app)
         navBar.buttons[Strings.commonSave.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on in progress screen
         _ = Elements.navBarInProgress(app)
     }
 
@@ -90,7 +90,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarEditDose(app)
         navBar.buttons[Strings.commonSave.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on in progress screen
         _ = Elements.navBarInProgress(app)
     }
 
@@ -98,7 +98,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarEditMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on in progress screen
         _ = Elements.navBarInProgress(app)
     }
 
@@ -106,7 +106,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarEditMed(app)
         navBar.buttons[Strings.commonSave.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on medication screen
         _ = Elements.navBarMedications(app)
     }
 
@@ -114,7 +114,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarAddMed(app)
         navBar.buttons[Strings.commonSave.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on medication screen
         _ = Elements.navBarMedications(app)
     }
 
@@ -122,7 +122,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarEditMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on medication screen
         _ = Elements.navBarMedications(app)
     }
 
@@ -130,7 +130,7 @@ class BasicAction: XCTestCase {
         let navBar = Elements.navBarAddMed(app)
         navBar.buttons[Strings.commonCancel.automatedId()].tap()
 
-        // INFO: Confirm on add dose screen
+        // INFO: Confirm on medication screen
         _ = Elements.navBarMedications(app)
     }
 }

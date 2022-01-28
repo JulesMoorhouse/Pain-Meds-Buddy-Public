@@ -98,7 +98,7 @@ struct DoseRowView: View {
                 .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }
         })
-            .buttonStyle(PlainButtonStyle())
+            .contentShape(Rectangle())
     }
 }
 

@@ -54,6 +54,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case doseProgressUnknownMedication
     case doseProgressAccessibilityAvailable
     case doseProgressAccessibilityRemaining
+    case doseProgressAccessibilityCloseButton
     // --------------------------
     case selectMedSelectMed
     // --------------------------

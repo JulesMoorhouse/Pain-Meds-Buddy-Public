@@ -89,6 +89,7 @@ struct HomeDoseProgressView: View {
                     .frame(height: 40)
                     .background(debug ? Color.red : nil)
                     .foregroundColor(.primary)
+                    .accessibilityElement(children: .ignore)
 
                 Text(display)
                     .font(.caption)
@@ -96,6 +97,7 @@ struct HomeDoseProgressView: View {
                     .multilineTextAlignment(.center)
                     .background(debug ? Color.red : nil)
                     .padding(.bottom, 10)
+                    .accessibilityElement(children: .ignore)
             } else {
                 DisabledBarView()
                     .padding(.horizontal, 30)
@@ -118,10 +120,12 @@ struct HomeDoseProgressView: View {
                     .foregroundColor(.semiDisabledBackground)
                     .frame(width: 25, height: 25)
                     .padding(.horizontal, 5)
+                    .accessibilityElement(children: .ignore)
             } else {
                 if let med = med {
                     MedSymbolView(med: med, font: .headline, width: 25, height: 25)
                         .padding(.horizontal, 5)
+                        .accessibilityElement(children: .ignore)
                 }
             }
 
@@ -136,12 +140,17 @@ struct HomeDoseProgressView: View {
                     width: 100
                 )
             })
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
+                .accessibilityLabel(accessibilityLabel())
+                .accessibilityIdentifier(accessibilityIdentifier())
 
             Text(countDown)
                 .foregroundColor(
                     showEmptyView
                         ? .secondary.opacity(0.2)
                         : .primary)
+                .accessibilityElement(children: .ignore)
         }
         .padding(.bottom, 70)
     }
@@ -159,6 +168,8 @@ struct HomeDoseProgressView: View {
                     }
                 )
                 .padding(8)
+                .accessibilityLabel(accessibilityCloseButtonLabel())
+                .accessibilityIdentifier(.doseProgressAccessibilityCloseButton)
             }
             Spacer()
 
@@ -205,11 +216,6 @@ struct HomeDoseProgressView: View {
                 self.timer = nil
             }
         })
-        .accessibilityElement(children: .ignore)
-        .accessibilityRemoveTraits(.isButton)
-        .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
-        .accessibilityLabel(accessibilityLabel())
-        .accessibilityIdentifier(accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
@@ -224,6 +230,11 @@ struct HomeDoseProgressView: View {
             dose.doseShouldHaveElapsed
             ? .doseProgressAccessibilityAvailable
             : .doseProgressAccessibilityRemaining
+    }
+
+    func accessibilityCloseButtonLabel() -> String {
+        showEmptyView ? "" :
+            InterpolatedStrings.doseProgressAccessibilityCloseButton(med: med)
     }
 
     func close() {

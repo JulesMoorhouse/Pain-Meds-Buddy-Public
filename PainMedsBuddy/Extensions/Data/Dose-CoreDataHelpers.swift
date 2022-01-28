@@ -123,7 +123,7 @@ extension Dose: Comparable {
                 return Int(date.timeIntervalSince(nowDate)).secondsToTimeHMS
             }
         }
-        return "0"
+        return ""
     }
 
     var doseDisplayFull: String {

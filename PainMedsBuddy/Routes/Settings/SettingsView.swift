@@ -38,7 +38,7 @@ struct SettingsView: View {
                             }
                             .accessibilityElement()
                             .accessibility(addTraits: .isButton)
-                            // .accessibilityIdentifier(.settingsAcknowledgements)
+                            .accessibilityIdentifier(.settingsAdvanced)
                         })
                     }
 
@@ -59,7 +59,7 @@ struct SettingsView: View {
                             }
                             .accessibilityElement()
                             .accessibility(addTraits: .isButton)
-                            // .accessibilityIdentifier(.settingsAcknowledgements)
+                            .accessibilityIdentifier(.settingsDeveloper)
                         })
                     }
 
@@ -67,7 +67,14 @@ struct SettingsView: View {
                         Button(action: {
                             navigation.pushView(
                                 AcknowledgementsList()
-                                    .navigationTitle(Strings.settingsAcknowledgements.rawValue),
+                                    .navigationTitle(Strings.settingsAcknowledgements.rawValue)
+                                    .navigationBarAccessibilityIdentifier(.settingsAcknowledgements)
+                                    .onAppear {
+                                        self.tabBarHandler.hideTabBar()
+                                    }
+                                    .onDisappear {
+                                        self.tabBarHandler.showTabBar()
+                                    },
                                 animated: true)
 
                         }, label: {

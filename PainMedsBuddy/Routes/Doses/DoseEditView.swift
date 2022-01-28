@@ -215,9 +215,6 @@ struct DoseEditView: View, DestinationView {
 
             self.viewModel.checkNotificationAbility(startUp: true)
         })
-        .onDisappear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     func popupOption() -> some View {
@@ -295,11 +292,13 @@ struct DoseEditView: View, DestinationView {
 
     func setElapse() {
         viewModel.setElapsed()
+        self.tabBarHandler.showTabBar()
         presentationMode.wrappedValue.dismiss()
     }
 
     func delete() {
         viewModel.delete()
+        self.tabBarHandler.showTabBar()
         presentationMode.wrappedValue.dismiss()
     }
 

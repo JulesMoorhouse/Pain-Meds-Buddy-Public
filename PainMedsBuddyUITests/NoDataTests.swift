@@ -18,14 +18,6 @@ class NoDataUITests: XCTestCase {
         app.launch()
     }
 
-    func testAppHas5Tabs() throws {
-        XCTAssertEqual(
-            app.tabBars.buttons.count,
-            5,
-            "There should be 5 tabs in the app."
-        )
-    }
-
     func testAddTwoMedications() {
         // Given
         BasicAction.tapTabMedications(app)
@@ -73,7 +65,13 @@ class NoDataUITests: XCTestCase {
             if picker.exists {
                 picker.selectPicker(value: "3 hrs", timeout: 1)
             } else {
-                app.swipeUp()
+                // INFO: iOS 15
+                let button = app.buttons["3 hrs"]
+                if button.exists {
+                    button.tap()
+                } else {
+                    app.swipeUp()
+                }
             }
 
             let okButton = app.buttons[Strings.commonOK.automatedId()]

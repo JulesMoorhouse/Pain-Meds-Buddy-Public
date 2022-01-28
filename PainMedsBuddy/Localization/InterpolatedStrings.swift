@@ -20,9 +20,15 @@ struct InterpolatedStrings {
     static func doseProgressAccessibilityAvailable(dose: Dose, med: Med) -> String {
         String(.doseProgressAccessibilityAvailable,
                values: [
-                med.medTitle,
-                dose.doseDisplay,
-                dose.doseCountDownSeconds(nowDate: Date())])
+                   med.medTitle,
+                   dose.doseDisplay,
+                   dose.doseCountDownSeconds(nowDate: Date()),
+               ])
+    }
+
+    static func doseProgressAccessibilityCloseButton(med: Med) -> String {
+        String(.doseProgressAccessibilityCloseButton,
+               values: [med.medTitle])
     }
 
     static func homeAccessibilityIconTaken(dose: Dose, med: Med) -> String {

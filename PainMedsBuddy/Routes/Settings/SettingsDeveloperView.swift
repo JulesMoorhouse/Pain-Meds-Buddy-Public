@@ -47,6 +47,7 @@ struct SettingsDeveloperView: View, DestinationView {
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarAccessibilityIdentifier(.settingsDeveloper)
         .alert(isPresented: $showAlert) { alertOption() }
         .toasted(show: $presentableToast.show, message: $presentableToast.message)
         .onAppear(perform: {

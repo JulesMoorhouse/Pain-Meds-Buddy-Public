@@ -111,6 +111,51 @@ class Elements: XCTestCase {
         return settingsScreen
     }
 
+    static func navBarSettingsDeveloper(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
+        let titleId = Strings.settingsDeveloper.automatedId()
+        let settingsScreen = app.navigationBars[titleId]
+        _ = settingsScreen.waitForExistence(timeout: 1)
+
+        if performTest {
+            XCTAssertTrue(
+                settingsScreen.exists,
+                "\(titleId) navigation bar not found"
+            )
+        }
+
+        return settingsScreen
+    }
+
+    static func navBarSettingsAdvanced(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
+        let titleId = Strings.settingsAdvanced.automatedId()
+        let settingsScreen = app.navigationBars[titleId]
+        _ = settingsScreen.waitForExistence(timeout: 1)
+
+        if performTest {
+            XCTAssertTrue(
+                settingsScreen.exists,
+                "\(titleId) navigation bar not found"
+            )
+        }
+
+        return settingsScreen
+    }
+
+    static func navBarSettingsAcknowledgements(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
+        let titleId = Strings.settingsAcknowledgements.automatedId()
+        let settingsScreen = app.navigationBars[titleId]
+        _ = settingsScreen.waitForExistence(timeout: 1)
+
+        if performTest {
+            XCTAssertTrue(
+                settingsScreen.exists,
+                "\(titleId) navigation bar not found"
+            )
+        }
+
+        return settingsScreen
+    }
+
     static func navBarAddDose(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.doseEditAddDose.automatedId()
         let addDoseScreen = app.navigationBars[titleId]
@@ -163,6 +208,18 @@ class Elements: XCTestCase {
         return editMedScreen
     }
 
+    static func navBarMedSelect(_ app: XCUIApplication) -> XCUIElement {
+        let titleId = Strings.selectMedSelectMed.automatedId()
+        let selectMedScreen = app.navigationBars[titleId]
+        _ = selectMedScreen.waitForExistence(timeout: 1)
+
+        XCTAssertTrue(
+            selectMedScreen.exists,
+            "\(titleId) navigation bar not found"
+        )
+
+        return selectMedScreen
+    }
     // ---- Screens ----
 }
 

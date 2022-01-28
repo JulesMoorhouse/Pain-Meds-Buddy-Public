@@ -63,13 +63,13 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             // --------------------------
             case .validationTwoLetters:
-                output = ""
+                output = "" // TO DO
             case .validationOneOrAbove:
-                output = ""
+                output = ""  // TO DO
             case .validationMustSpecify:
-                output = ""
+                output = ""  // TO DO
             case .validationMustEmpty:
-                output = ""
+                output = ""  // TO DO
             // --------------------------
             case .titleHome:
                 output = ""
@@ -110,7 +110,7 @@ class LocalisedStringTests: BaseTestCase {
                         .homeAccessibilityIconTakeNow(med: med)
 
             case .homeAccessibilityAvailable:
-                output = ""
+                output = ""  // TO DO
             // --------------------------
             case .doseProgressAvailable:
                 output = ""
@@ -125,7 +125,8 @@ class LocalisedStringTests: BaseTestCase {
                 output =
                     InterpolatedStrings
                         .doseProgressAccessibilityRemaining(dose: dose, med: med)
-
+            case .doseProgressAccessibilityCloseButton:
+                output = InterpolatedStrings.doseProgressAccessibilityCloseButton(med: med)
             case .selectMedSelectMed:
                 output = ""
             // --------------------------
@@ -156,7 +157,7 @@ class LocalisedStringTests: BaseTestCase {
             case .doseEditDetailsPlaceholder:
                 output = ""
             case .doseEditDosageElapsed:
-                output = ""
+                output = ""  // TO DO
             case .doseEditEditDose:
                 output = ""
             case .doseEditElapseDose:
@@ -234,7 +235,7 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditLockedField:
                 output = ""
             case .medEditLowToast:
-                output = ""
+                output = ""  // TO DO
             case .medEditMeasure:
                 output = ""
             case .medEditMg:
@@ -291,9 +292,9 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             // --------------------------
             case .timePickerHours:
-                output = ""
+                output = ""  // TO DO
             case .timePickerMins:
-                output = ""
+                output = ""  // TO DO
             }
 
             if !output.isEmpty {

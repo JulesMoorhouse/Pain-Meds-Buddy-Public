@@ -40,6 +40,8 @@ class ExistingDataTests: XCTestCase {
         row.tap()
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
+        _ = textField.waitForExistence(timeout: 1)
+        
         textField.doubleTap()
         textField.clearText()
 
@@ -149,4 +151,280 @@ class ExistingDataTests: XCTestCase {
     func TODO_testMedSortTitle() {
         // To Do
     }
+
+    // ---- Home Route ---
+    func testHomeHasTabBar() {
+        BasicAction.tapTabHome(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func homeProgressAddDoseBackHasTabBar() {
+        BasicAction.tapTabHome(app)
+        let nextButton = app.buttons[Strings.doseProgressAccessibilityCloseButton.automatedId()]
+        nextButton.tap()
+
+        // INFO: Confirm on add dose screen
+        _ = Elements.navBarAddDose(app)
+
+        let navBar = Elements.navBarAddDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on home screen
+        _ = Elements.navBarHome(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func homeRecentAddDoseBackHasTabBar() {
+        BasicAction.tapTabHome(app)
+
+        let row = app.buttons[
+            Strings.homeAccessibilityIconTakeNow.automatedId()
+        ].firstMatch
+
+        _ = row.waitForExistence(timeout: 2)
+
+        row.tap()
+
+        let navBar = Elements.navBarEditDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on home screen
+        _ = Elements.navBarHome(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func homeLowEditDoseBackHasTabBar() {
+        BasicAction.tapTabHome(app)
+
+        app.swipeUp()
+
+        let row = app.buttons[
+            Strings.homeAccessibilityIconRemaining.automatedId()
+        ].firstMatch
+
+        _ = row.waitForExistence(timeout: 2)
+
+        row.tap()
+
+        let navBar = Elements.navBarEditDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on home screen
+        _ = Elements.navBarHome(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    // ---- Home Route ---
+
+    // ---- History Route ---
+    func testHistoryHasTabBar() {
+        BasicAction.tapTabHistory(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func testHistoryAddDoseBackHasTabBar() {
+        BasicAction.tapTabHistory(app)
+        BasicAction.tapHistoryAddButton(app)
+
+        let navBar = Elements.navBarAddDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on history screen
+        _ = Elements.navBarHistory(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    // ---- History Route ---
+
+    // ---- In Progress Route ---
+    func testInProgressHasTabBar() {
+        BasicAction.tapTabInProgress(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func testInProgressAddDoseBackHasTabBar() {
+        BasicAction.tapTabInProgress(app)
+        BasicAction.tapInProgressAddButton(app)
+
+        let navBar = Elements.navBarAddDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on in progress screen
+        _ = Elements.navBarInProgress(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    // ---- In Progress Route ---
+
+    // ---- Medication Route ---
+    func testMedicationsHasTabBar() {
+        BasicAction.tapTabMedications(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    func testMedicationsAddDoseBackHasTabBar() {
+        BasicAction.tapTabMedications(app)
+        BasicAction.tapMedicationTabAddButton(app)
+
+        let navBar = Elements.navBarAddMed(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        // INFO: Confirm on med screen
+        _ = Elements.navBarMedications(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    // ---- Medication Route ---
+
+    // ---- Settings Route ---
+    func testSettingsHasTabBar() {
+        BasicAction.tapTabSetting(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            5,
+            "There should be 5 tabs in the app."
+        )
+    }
+
+    // ---- Settings Route ---
+
+    // ---- Sub View Routes ---
+    func testAddDoseHasNoTabBar() {
+        BasicAction.tapTabInProgress(app)
+        BasicAction.tapInProgressAddButton(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+
+    func testAddMedHasNoTabBar() {
+        BasicAction.tapTabMedications(app)
+        BasicAction.tapMedicationTabAddButton(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+
+    func testSelectMedHasNoTabBar() {
+        BasicAction.tapTabInProgress(app)
+        BasicAction.tapInProgressAddButton(app)
+
+        let row = app.buttons[Strings.doseEditMedication.automatedId()]
+        row.tap()
+
+        // INFO: Confirm on med select screen
+        _ = Elements.navBarMedSelect(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+
+    func testSettingsAdvancedHasNoTabBar() {
+        BasicAction.tapTabSetting(app)
+
+        let button = app.buttons[Strings.settingsAdvanced.automatedId()]
+        button.tap()
+
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettingsAdvanced(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+
+    func testSettingsDeveloperOptionsHasNoTabBar() {
+        BasicAction.tapTabSetting(app)
+
+        let button = app.buttons[Strings.settingsDeveloper.automatedId()]
+        button.tap()
+
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+
+    func testSettingsAcknowledgementsHasNoTabBar() {
+        BasicAction.tapTabSetting(app)
+
+        let button = app.buttons[Strings.settingsAcknowledgements.automatedId()]
+        button.tap()
+
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        XCTAssertEqual(
+            app.tabBars.buttons.count,
+            0,
+            "There should be 0 tabs in the app."
+        )
+    }
+    // ---- Sub View Routes ---
 }
