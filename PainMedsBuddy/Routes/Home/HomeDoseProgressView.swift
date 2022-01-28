@@ -63,7 +63,11 @@ struct HomeDoseProgressView: View {
     var disabled: Bool {
         showEmptyView || (!dose.doseShouldHaveElapsed && !dose.elapsed)
     }
-    
+
+    var showCloseCorner: Bool {
+        !showEmptyView && dose.doseElapsed
+    }
+
     var circle: some View {
         VStack(alignment: .center) {
             CircularProgressView(
@@ -112,6 +116,8 @@ struct HomeDoseProgressView: View {
             if showEmptyView {
                 Image(systemName: SFSymbol.squareDashed.systemName)
                     .foregroundColor(.semiDisabledBackground)
+                    .frame(width: 25, height: 25)
+                    .padding(.horizontal, 5)
             } else {
                 if let med = med {
                     MedSymbolView(med: med, font: .headline, width: 25, height: 25)
@@ -175,41 +181,47 @@ struct HomeDoseProgressView: View {
             detail
                 .disabled(disabled)
 
-            if dose.elapsed {
+            if showCloseCorner {
                 cornerClose
             }
         }
         .panelled(cornerRadius: 15)
         .onAppear(perform: {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                self.nowDate = Date()
+            if !showEmptyView {
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                    self.nowDate = Date()
 
-                if dose.elapsed == false, dose.doseShouldHaveElapsed {
-                    dose.objectWillChange.send()
-                    dose.elapsed = true
-                    dataController.save()
+                    if dose.elapsed == false, dose.doseShouldHaveElapsed {
+                        dose.objectWillChange.send()
+                        dose.elapsed = true
+                        dataController.save()
+                    }
                 }
             }
         })
         .onDisappear(perform: {
-            self.timer?.invalidate()
-            self.timer = nil
+            if !showEmptyView {
+                self.timer?.invalidate()
+                self.timer = nil
+            }
         })
         .accessibilityElement(children: .ignore)
         .accessibilityRemoveTraits(.isButton)
         .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
-        .accessibilityLabel(showEmptyView ? "" : accessibilityLabel())
-        .accessibilityIdentifier(showEmptyView ? .nothing : accessibilityIdentifier())
+        .accessibilityLabel(accessibilityLabel())
+        .accessibilityIdentifier(accessibilityIdentifier())
     }
 
     func accessibilityLabel() -> String {
-        dose.doseShouldHaveElapsed
+        showEmptyView ? "" :
+            dose.doseShouldHaveElapsed
             ? InterpolatedStrings.doseProgressAccessibilityAvailable(dose: dose, med: med)
             : InterpolatedStrings.doseProgressAccessibilityRemaining(dose: dose, med: med)
     }
 
     func accessibilityIdentifier() -> Strings {
-        dose.doseShouldHaveElapsed
+        showEmptyView ? .nothing :
+            dose.doseShouldHaveElapsed
             ? .doseProgressAccessibilityAvailable
             : .doseProgressAccessibilityRemaining
     }
