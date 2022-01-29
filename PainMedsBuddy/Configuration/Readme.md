@@ -8,6 +8,7 @@ import Foundation
 
 struct Secrets {
     static let appCenterSecret: String = "Your api key here"
+    static let supportEmail: String = "Your support email address"
 }
 
 ```

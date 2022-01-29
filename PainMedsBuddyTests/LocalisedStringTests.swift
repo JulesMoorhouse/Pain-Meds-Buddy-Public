@@ -287,6 +287,14 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsNoResponsibility:
                 output = ""
+            case .settingSupportButton:
+                output = ""
+            case .settingSupportCopied:
+                output = ""
+            case .settingSupportSubject:
+                output = "" // TO DO
+            case .settingSupportMessage:
+                output = "" // TO DO
             // --------------------------
             case .notificationSubtitle:
                 output = ""

@@ -137,6 +137,10 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsExampleDataAlertTitle
     case settingsGenerateTestCrash
     case settingsNoResponsibility
+    case settingSupportButton
+    case settingSupportCopied
+    case settingSupportSubject
+    case settingSupportMessage
     // --------------------------
     case notificationSubtitle
     // --------------------------

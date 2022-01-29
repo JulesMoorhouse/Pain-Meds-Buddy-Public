@@ -24,6 +24,14 @@ struct PainMedsBuddyApp: App {
         let presentableToast = PresentableToast()
         _presentableToast = StateObject(wrappedValue: presentableToast)
 
+        let defaults = UserDefaults.standard
+        let runCount = defaults.integer(forKey: "runCount")
+        defaults.set(runCount + 1, forKey: "runCount")
+
+        if defaults.string(forKey: "installDate") == nil {
+            defaults.set(Date().dateToShortDateTime, forKey: "installDate")
+        }
+
         AppCenter.start(
             withAppSecret: Secrets.appCenterSecret,
             services: [Crashes.self])

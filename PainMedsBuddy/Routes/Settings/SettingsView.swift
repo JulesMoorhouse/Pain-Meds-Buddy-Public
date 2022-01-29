@@ -13,6 +13,7 @@ struct SettingsView: View {
     static let settingsTag: String? = "Settings"
     static let settingsIcon: String = SFSymbol.gearShapeFill.systemName
 
+    @EnvironmentObject private var dataController: DataController
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToast
@@ -21,6 +22,7 @@ struct SettingsView: View {
         NavigationViewChild {
             ZStack {
                 Form {
+                    // --- Advanced ---
                     Section {
                         Button(action: {
                             navigation.pushView(
@@ -42,6 +44,7 @@ struct SettingsView: View {
                         })
                     }
 
+                    // --- Developer ---
                     Section {
                         Button(action: {
                             navigation.pushView(
@@ -63,6 +66,7 @@ struct SettingsView: View {
                         })
                     }
 
+                    // --- Acknowledgements ---
                     Section {
                         Button(action: {
                             navigation.pushView(
@@ -92,6 +96,12 @@ struct SettingsView: View {
                         })
                     }
 
+                    // --- support ---
+                    Section {
+                        SettingsSupportView(dataController: dataController)
+                    }
+
+                    // --- NoResponsibility ---
                     Section(footer:
                         Text(Strings.settingsNoResponsibility)
                             .multilineTextAlignment(.center)

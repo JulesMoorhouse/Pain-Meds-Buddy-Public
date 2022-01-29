@@ -61,4 +61,15 @@ struct InterpolatedStrings {
     static func medEditCopiedSuffix(title: String) -> String {
         String(.medEditCopiedSuffix, values: [title])
     }
+
+    static func settingSupportMessage(values: [String]) -> String {
+        if values.count != 8 {
+            fatalError("ERROR: settingSupportMessage - wrong number of array items")
+        }
+        return String(.settingSupportMessage, values: values)
+    }
+
+    static func settingSupportSubject(version: String) -> String {
+        return String(.settingSupportSubject, values: [version])
+    }
 }

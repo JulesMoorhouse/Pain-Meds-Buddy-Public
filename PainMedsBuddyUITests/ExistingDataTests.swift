@@ -41,7 +41,7 @@ class ExistingDataTests: XCTestCase {
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
         _ = textField.waitForExistence(timeout: 1)
-        
+
         textField.doubleTap()
         textField.clearText()
 
@@ -382,6 +382,9 @@ class ExistingDataTests: XCTestCase {
     func testSettingsAdvancedHasNoTabBar() {
         BasicAction.tapTabSetting(app)
 
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettings(app)
+        
         let button = app.buttons[Strings.settingsAdvanced.automatedId()]
         button.tap()
 
@@ -398,6 +401,9 @@ class ExistingDataTests: XCTestCase {
     func testSettingsDeveloperOptionsHasNoTabBar() {
         BasicAction.tapTabSetting(app)
 
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettings(app)
+        
         let button = app.buttons[Strings.settingsDeveloper.automatedId()]
         button.tap()
 
@@ -413,6 +419,9 @@ class ExistingDataTests: XCTestCase {
 
     func testSettingsAcknowledgementsHasNoTabBar() {
         BasicAction.tapTabSetting(app)
+
+        // INFO: Confirm on settings screen
+        _ = Elements.navBarSettings(app)
 
         let button = app.buttons[Strings.settingsAcknowledgements.automatedId()]
         button.tap()
