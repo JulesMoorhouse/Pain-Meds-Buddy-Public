@@ -24,14 +24,11 @@ extension HomeView {
             return []
         }
 
-        var canTakeMeds: [Med] {
-            if !doses.isEmpty, !meds.isEmpty {
-                return getCanTakeMeds(
-                    loadedDoses: dosesController.fetchedObjects ?? [],
-                    loadedMeds: medsController.fetchedObjects ?? []
-                )
-            }
-            return []
+        var recentMeds: [Med] {
+            return getRecentMeds(
+                loadedDoses: dosesController.fetchedObjects ?? [],
+                loadedMeds: medsController.fetchedObjects ?? []
+            )
         }
 
         var lowMeds: [Med] {
@@ -105,16 +102,17 @@ extension HomeView {
         }
 
         // INFO: Get a unique list of medications that don't have currently active doses.
-        func getCanTakeMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
+        func getRecentMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
             // INFO: Get unique med doses which have med relationships
             let uniqueDoseMeds = Array(Set(loadedDoses.filter { $0.med != nil }.compactMap(\.med)))
 
             // INFO: Get a list of meds and don't include those unique meds
 
             let temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) }
-            let sorted = temp.sortedItems(using: .lastTaken)
+            let sorted = temp.sortedItems(using: .lastTaken).reversed()
             let count = sorted.isEmpty ? 0 : 3
-            return sorted.prefix(count).map { $0 }
+            let mapped = sorted.prefix(count).map { $0 }
+            return mapped
         }
 
         func getLowMeds(loadedMeds: [Med]) -> [Med] {

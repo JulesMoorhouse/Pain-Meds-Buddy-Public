@@ -384,7 +384,7 @@ class ExistingDataTests: XCTestCase {
 
         // INFO: Confirm on settings screen
         _ = Elements.navBarSettings(app)
-        
+
         let button = app.buttons[Strings.settingsAdvanced.automatedId()]
         button.tap()
 
@@ -403,7 +403,7 @@ class ExistingDataTests: XCTestCase {
 
         // INFO: Confirm on settings screen
         _ = Elements.navBarSettings(app)
-        
+
         let button = app.buttons[Strings.settingsDeveloper.automatedId()]
         button.tap()
 

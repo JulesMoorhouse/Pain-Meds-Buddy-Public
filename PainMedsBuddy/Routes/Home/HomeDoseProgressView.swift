@@ -130,6 +130,7 @@ struct HomeDoseProgressView: View {
             }
 
             Button(action: {
+                close()
                 navigation.pushView(
                     DoseAddView(med: med),
                     animated: true

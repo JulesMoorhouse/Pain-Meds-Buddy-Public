@@ -25,7 +25,7 @@ struct HomeView: View {
     var noData: Bool {
         viewModel.reaffirmedDoses.isEmpty &&
             viewModel.lowMeds.isEmpty &&
-            viewModel.canTakeMeds.isEmpty
+            viewModel.recentMeds.isEmpty
     }
 
     var currentMedCards: some View {
@@ -67,7 +67,7 @@ struct HomeView: View {
                             currentMedCards
 
                             VStack(alignment: .leading) {
-                                HomeRecentMedsView(meds: viewModel.canTakeMeds)
+                                HomeRecentMedsView(meds: viewModel.recentMeds)
                                 HomeLowMedsView(meds: viewModel.lowMeds)
                             }
                             .padding(.horizontal)
