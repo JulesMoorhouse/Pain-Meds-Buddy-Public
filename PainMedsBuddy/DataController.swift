@@ -285,7 +285,8 @@ class DataController: ObservableObject {
         try? createSampleData(
             appStore: appStore,
             medsRequested: 5,
-            medDosesRequired: 4)
+            medDosesRequired: 4
+        )
     }
 
     private func handleSampleDataOptions(appStore: Bool) {
@@ -306,7 +307,8 @@ class DataController: ObservableObject {
                 try createSampleData(
                     appStore: appStore,
                     medsRequested: meds,
-                    medDosesRequired: doses)
+                    medDosesRequired: doses
+                )
             } else {
                 try createSampleData(appStore: appStore)
             }
@@ -417,8 +419,8 @@ class DataController: ObservableObject {
     func addCheckReminders(
         for dose: Dose,
         add: Bool,
-        completion: @escaping (Bool) -> Void)
-    {
+        completion: @escaping (Bool) -> Void
+    ) {
         let centre = UNUserNotificationCenter.current()
 
         centre.getNotificationSettings { settings in
@@ -429,7 +431,8 @@ class DataController: ObservableObject {
                         if add {
                             self.placeReminders(
                                 for: dose,
-                                completion: completion)
+                                completion: completion
+                            )
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -441,7 +444,8 @@ class DataController: ObservableObject {
                 if add {
                     self.placeReminders(
                         for: dose,
-                        completion: completion)
+                        completion: completion
+                    )
                 } else {
                     DispatchQueue.main.async {
                         completion(true)
@@ -474,8 +478,8 @@ class DataController: ObservableObject {
 
     private func placeReminders(
         for dose: Dose,
-        completion: @escaping (Bool) -> Void)
-    {
+        completion: @escaping (Bool) -> Void
+    ) {
         if let notificationDate = dose.doseElapsedDate {
             let content = UNMutableNotificationContent()
             content.title = dose.doseTitle
@@ -487,17 +491,20 @@ class DataController: ObservableObject {
             let components = Calendar.current
                 .dateComponents(
                     [.year, .month, .day, .hour, .minute],
-                    from: notificationDate)
+                    from: notificationDate
+                )
 
             let trigger = UNCalendarNotificationTrigger(
                 dateMatching: components,
-                repeats: true)
+                repeats: true
+            )
 
             let id = dose.objectID.uriRepresentation().absoluteString
             let request = UNNotificationRequest(
                 identifier: id,
                 content: content,
-                trigger: trigger)
+                trigger: trigger
+            )
 
             UNUserNotificationCenter.current()
                 .add(request) { error in

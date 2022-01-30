@@ -16,7 +16,8 @@ struct Toast: ViewModifier {
     private let toastOptions = SimpleToastOptions(
         alignment: .bottom,
         hideAfter: 5,
-        showBackdrop: false)
+        showBackdrop: false
+    )
 
     func body(content: Content) -> some View {
         content

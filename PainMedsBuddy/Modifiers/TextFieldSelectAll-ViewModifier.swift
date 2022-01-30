@@ -17,7 +17,8 @@ struct SelectAllTextFieldStyle: TextFieldStyle {
                 if let textField = obj.object as? UITextField {
                     textField.selectedTextRange = textField.textRange(
                         from: textField.beginningOfDocument,
-                        to: textField.endOfDocument)
+                        to: textField.endOfDocument
+                    )
                 }
             }
     }

@@ -28,7 +28,7 @@ extension DosesView {
 
             let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
             doseRequest.sortDescriptors = [
-                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false)
+                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: false),
             ]
             doseRequest.predicate = NSPredicate(format: "elapsed = %d", showElapsedDoses)
 

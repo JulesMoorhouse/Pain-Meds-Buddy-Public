@@ -45,6 +45,6 @@ extension Bundle {
     }
 
     var fullVersion: String {
-        return "\(shortVersion)(\(buildVersion))"
+        "\(shortVersion)(\(buildVersion))"
     }
 }

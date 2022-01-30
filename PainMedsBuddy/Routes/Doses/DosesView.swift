@@ -44,7 +44,8 @@ struct DosesView: View {
                         string: placeHolderEmptyText(),
                         imageString: viewModel.showElapsedDoses
                             ? DosesView.historyIcon
-                            : DosesView.inProgressIcon)
+                            : DosesView.inProgressIcon
+                    )
                 } else {
                     List {
                         ForEach(data, id: \.self) { (section: [Dose]) in
@@ -97,7 +98,8 @@ struct DosesView: View {
                 string: placeHolderText(),
                 imageString: viewModel.showElapsedDoses
                     ? DosesView.historyIcon
-                    : DosesView.inProgressIcon)
+                    : DosesView.inProgressIcon
+            )
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()

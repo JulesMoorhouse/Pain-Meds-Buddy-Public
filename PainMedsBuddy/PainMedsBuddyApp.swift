@@ -34,7 +34,8 @@ struct PainMedsBuddyApp: App {
 
         AppCenter.start(
             withAppSecret: Secrets.appCenterSecret,
-            services: [Crashes.self])
+            services: [Crashes.self]
+        )
 
         dataController.processDoses()
 
@@ -61,7 +62,8 @@ struct PainMedsBuddyApp: App {
                     .onReceive(
                         NotificationCenter.default.publisher(
                             for: UIApplication.willResignActiveNotification),
-                        perform: save)
+                        perform: save
+                    )
                     .onReceive(NotificationCenter.default.publisher(
                         for: UIApplication.didBecomeActiveNotification),
                     perform: processDoses)

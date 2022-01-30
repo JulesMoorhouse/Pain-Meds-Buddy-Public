@@ -8,8 +8,8 @@
 
 import AckGenUI
 import CoreData
-import SwiftUI
 import Introspect
+import SwiftUI
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?

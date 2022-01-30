@@ -106,9 +106,7 @@ extension MedEditView {
             }
         }
 
-        lazy var formValidation: FormValidation = {
-            FormValidation(validationType: .immediate)
-        }()
+        lazy var formValidation: FormValidation = .init(validationType: .immediate)
 
         lazy var validationErrors = {
             self.formValidation.$validationMessages
@@ -124,8 +122,9 @@ extension MedEditView {
 
             return $title.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    !value.isEmpty && value.count > 1
+                errorMessage: message
+            ) { value in
+                !value.isEmpty && value.count > 1
             }
         }()
 
@@ -136,8 +135,9 @@ extension MedEditView {
 
             return $defaultAmount.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    value.isNumber && (Int(value) ?? 0) > 0
+                errorMessage: message
+            ) { value in
+                value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 
@@ -148,8 +148,9 @@ extension MedEditView {
 
             return $dosage.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    value.isNumber && (Int(value) ?? 0) > 0
+                errorMessage: message
+            ) { value in
+                value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 
@@ -160,8 +161,9 @@ extension MedEditView {
 
             return $durationDate.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    Int(value) != 0
+                errorMessage: message
+            ) { value in
+                Int(value) != 0
             }
         }()
 
@@ -172,8 +174,9 @@ extension MedEditView {
 
             return $form.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    !value.isEmpty && value.count > 1
+                errorMessage: message
+            ) { value in
+                !value.isEmpty && value.count > 1
             }
         }()
 
@@ -184,8 +187,9 @@ extension MedEditView {
 
             return $remaining.inlineValidator(
                 form: formValidation,
-                errorMessage: message) { value in
-                    value.isNumber && (Int(value) ?? 0) > 0
+                errorMessage: message
+            ) { value in
+                value.isNumber && (Int(value) ?? 0) > 0
             }
         }()
 

@@ -64,7 +64,7 @@ extension String {
     }
 
     var isNumber: Bool {
-        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 
     init(_ localisedString: Strings, values: [String]) {

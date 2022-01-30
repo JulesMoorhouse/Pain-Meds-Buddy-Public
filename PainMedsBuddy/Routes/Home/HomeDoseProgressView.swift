@@ -141,10 +141,10 @@ struct HomeDoseProgressView: View {
                     width: 100
                 )
             })
-                .accessibilityRemoveTraits(.isButton)
-                .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
-                .accessibilityLabel(accessibilityLabel())
-                .accessibilityIdentifier(accessibilityIdentifier())
+            .accessibilityRemoveTraits(.isButton)
+            .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
+            .accessibilityLabel(accessibilityLabel())
+            .accessibilityIdentifier(accessibilityIdentifier())
 
             Text(countDown)
                 .foregroundColor(
@@ -250,10 +250,10 @@ struct HomeDoseProgressView: View {
         self.med = med
     }
 
-    init(disabled: Bool) {
-        self.dose = Dose()
-        self.med = Med()
-        self.showEmptyView = true
+    init(disabled _: Bool) {
+        dose = Dose()
+        med = Med()
+        showEmptyView = true
     }
 }
 

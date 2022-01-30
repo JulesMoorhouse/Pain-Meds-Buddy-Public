@@ -65,11 +65,11 @@ class LocalisedStringTests: BaseTestCase {
             case .validationTwoLetters:
                 output = "" // TO DO
             case .validationOneOrAbove:
-                output = ""  // TO DO
+                output = "" // TO DO
             case .validationMustSpecify:
-                output = ""  // TO DO
+                output = "" // TO DO
             case .validationMustEmpty:
-                output = ""  // TO DO
+                output = "" // TO DO
             // --------------------------
             case .titleHome:
                 output = ""
@@ -110,7 +110,7 @@ class LocalisedStringTests: BaseTestCase {
                         .homeAccessibilityIconTakeNow(med: med)
 
             case .homeAccessibilityAvailable:
-                output = ""  // TO DO
+                output = "" // TO DO
             // --------------------------
             case .doseProgressAvailable:
                 output = ""
@@ -157,7 +157,7 @@ class LocalisedStringTests: BaseTestCase {
             case .doseEditDetailsPlaceholder:
                 output = ""
             case .doseEditDosageElapsed:
-                output = ""  // TO DO
+                output = "" // TO DO
             case .doseEditEditDose:
                 output = ""
             case .doseEditElapseDose:
@@ -235,7 +235,7 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditLockedField:
                 output = ""
             case .medEditLowToast:
-                output = ""  // TO DO
+                output = "" // TO DO
             case .medEditMeasure:
                 output = ""
             case .medEditMg:
@@ -300,9 +300,9 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             // --------------------------
             case .timePickerHours:
-                output = ""  // TO DO
+                output = "" // TO DO
             case .timePickerMins:
-                output = ""  // TO DO
+                output = "" // TO DO
             }
 
             if !output.isEmpty {

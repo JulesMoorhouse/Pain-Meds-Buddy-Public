@@ -14,7 +14,7 @@ extension UIApplication {
             .map { $0 as? UIWindowScene }
             .compactMap { $0 }
             .first?.windows
-            .filter { $0.isKeyWindow }.first
+            .filter(\.isKeyWindow).first
         keyWindow?.endEditing(true)
     }
 
@@ -30,15 +30,15 @@ extension UIApplication {
 
 extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecognizer(
-        _ gestureRecognizer: UIGestureRecognizer,
-        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
-    {
-        return false
+        _: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer
+    ) -> Bool {
+        false
     }
 }
 
 class AnyGestureRecognizer: UIGestureRecognizer {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent) {
         if let touchedView = touches.first?.view, touchedView is UIControl {
             state = .cancelled
 
@@ -50,11 +50,11 @@ class AnyGestureRecognizer: UIGestureRecognizer {
         }
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_: Set<UITouch>, with _: UIEvent?) {
         state = .ended
     }
 
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesCancelled(_: Set<UITouch>, with _: UIEvent) {
         state = .cancelled
     }
 }

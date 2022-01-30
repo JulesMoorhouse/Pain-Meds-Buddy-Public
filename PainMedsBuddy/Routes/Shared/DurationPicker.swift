@@ -16,11 +16,12 @@ struct DurationPicker: UIViewRepresentable {
         datePicker.addTarget(
             context.coordinator,
             action: #selector(Coordinator.updateDuration),
-            for: .valueChanged)
+            for: .valueChanged
+        )
         return datePicker
     }
 
-    func updateUIView(_ datePicker: UIDatePicker, context: Context) {
+    func updateUIView(_ datePicker: UIDatePicker, context _: Context) {
         datePicker.countDownDuration = TimeInterval(Int(duration) ?? 0)
     }
 

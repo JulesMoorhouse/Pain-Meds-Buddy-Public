@@ -125,7 +125,7 @@ struct MedsView: View {
                     .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },
                     .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
                     .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
-                    .cancel()
+                    .cancel(),
                 ])
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)

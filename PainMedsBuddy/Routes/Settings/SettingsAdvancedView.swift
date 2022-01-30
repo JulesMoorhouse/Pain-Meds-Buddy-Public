@@ -11,7 +11,8 @@ import XNavigation
 struct SettingsAdvancedView: View, DestinationView {
     var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
         title: String(.settingsAdvanced),
-        displayMode: .automatic)
+        displayMode: .automatic
+    )
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
@@ -66,8 +67,10 @@ struct SettingsAdvancedView: View, DestinationView {
                     Text(.commonDelete),
                     action: {
                         try? dataController.deleteIterateAll()
-                    }),
-                secondaryButton: .cancel())
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
         }
     }
 }

@@ -27,7 +27,8 @@ struct SettingsView: View {
                         Button(action: {
                             navigation.pushView(
                                 SettingsAdvancedView(),
-                                animated: true)
+                                animated: true
+                            )
 
                         }, label: {
                             HStack {
@@ -49,7 +50,8 @@ struct SettingsView: View {
                         Button(action: {
                             navigation.pushView(
                                 SettingsDeveloperView(),
-                                animated: true)
+                                animated: true
+                            )
 
                         }, label: {
                             HStack {
@@ -79,7 +81,8 @@ struct SettingsView: View {
                                     .onDisappear {
                                         self.tabBarHandler.showTabBar()
                                     },
-                                animated: true)
+                                animated: true
+                            )
 
                         }, label: {
                             HStack {

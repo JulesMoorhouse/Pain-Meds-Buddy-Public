@@ -32,7 +32,7 @@ struct NavigationBarAccessor: UIViewControllerRepresentable {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             if let navBar = navigationController {
-                self.callback(navBar.navigationBar)
+                callback(navBar.navigationBar)
             }
         }
     }

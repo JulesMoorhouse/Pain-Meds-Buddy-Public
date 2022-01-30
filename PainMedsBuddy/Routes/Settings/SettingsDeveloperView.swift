@@ -12,7 +12,8 @@ import XNavigation
 struct SettingsDeveloperView: View, DestinationView {
     var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
         title: String(.settingsDeveloper),
-        displayMode: .automatic)
+        displayMode: .automatic
+    )
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
@@ -69,8 +70,10 @@ struct SettingsDeveloperView: View, DestinationView {
                     action: {
                         try? dataController.deleteIterateAll()
                         try? dataController.createSampleData(appStore: false)
-                    }),
-                secondaryButton: .cancel())
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
         case .crashReportTestConfirmation:
             return Alert(
                 title: Text(.settingsCrashTestAlertTitle),
@@ -79,8 +82,10 @@ struct SettingsDeveloperView: View, DestinationView {
                     Text(.commonOK),
                     action: {
                         Crashes.generateTestCrash()
-                    }),
-                secondaryButton: .cancel())
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
         }
     }
 }

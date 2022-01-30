@@ -70,6 +70,6 @@ struct InterpolatedStrings {
     }
 
     static func settingSupportSubject(version: String) -> String {
-        return String(.settingSupportSubject, values: [version])
+        String(.settingSupportSubject, values: [version])
     }
 }

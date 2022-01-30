@@ -11,11 +11,12 @@ struct MedAddView: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        return MedEditView(
+        MedEditView(
             dataController: dataController,
             med: nil,
             add: true,
-            hasRelationship: false)
+            hasRelationship: false
+        )
     }
 }
 

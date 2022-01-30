@@ -289,7 +289,7 @@ struct MedEditView: View, DestinationView {
                     }, label: {
                         Image(systemName: SFSymbol.lockFill.systemName)
                     })
-                        .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(BorderlessButtonStyle())
                 } else {
                     TextField(String(.commonEgString,
                                      values: [MedDefault.Sensible.title]),
@@ -407,7 +407,7 @@ struct MedEditView: View, DestinationView {
                 }, label: {
                     Image(systemName: buttonIcon)
                 })
-                    .buttonStyle(BorderlessButtonStyle())
+                .buttonStyle(BorderlessButtonStyle())
             }
         }
     }
@@ -416,7 +416,7 @@ struct MedEditView: View, DestinationView {
                    detailValues: [String],
                    binding: Binding<String>,
                    keyboardType: UIKeyboardType = .default,
-                   autoCapitalisation: UITextAutocapitalizationType = .none,
+                   autoCapitalisation _: UITextAutocapitalizationType = .none,
                    rightDetail: String? = nil,
                    validationContainer: ValidationContainer) -> some View
     {

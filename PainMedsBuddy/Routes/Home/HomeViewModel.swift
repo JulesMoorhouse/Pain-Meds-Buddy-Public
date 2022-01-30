@@ -25,7 +25,7 @@ extension HomeView {
         }
 
         var recentMeds: [Med] {
-            return getRecentMeds(
+            getRecentMeds(
                 loadedDoses: dosesController.fetchedObjects ?? [],
                 loadedMeds: medsController.fetchedObjects ?? []
             )
@@ -50,7 +50,7 @@ extension HomeView {
                 "elapsed == false OR softElapsedDate >= %@", NSDate())
 
             doseRequest.sortDescriptors = [
-                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true)
+                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
             ]
 
             dosesController = NSFetchedResultsController(
@@ -66,7 +66,7 @@ extension HomeView {
                 ? NSPredicate(format: "hidden = false")
                 : nil
             medRequest.sortDescriptors = [
-                NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true)
+                NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true),
             ]
 
             medsController = NSFetchedResultsController(

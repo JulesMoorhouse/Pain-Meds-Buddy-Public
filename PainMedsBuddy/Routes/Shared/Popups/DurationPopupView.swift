@@ -42,7 +42,8 @@ struct DurationPopupView: View {
                         .accessibility(addTraits: .isButton)
                         .accessibilityIdentifier(.commonOK)
                 })
-            })
+            }
+        )
     }
 }
 
@@ -53,6 +54,7 @@ struct DurationPopupView_Previews: PreviewProvider {
             showing: .constant(true),
             duration: .constant("240"),
             hourAid: .nothing,
-            minuteAid: .nothing)
+            minuteAid: .nothing
+        )
     }
 }

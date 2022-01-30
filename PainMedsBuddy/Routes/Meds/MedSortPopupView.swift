@@ -19,8 +19,8 @@ struct MedSortPopupView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortOptimised.rawValue)
             })
-                .disabled(sortOrder == .optimised)
-                .padding(.bottom, 5)
+            .disabled(sortOrder == .optimised)
+            .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .creationDate
@@ -28,8 +28,8 @@ struct MedSortPopupView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortCreatedDate.rawValue)
             })
-                .disabled(sortOrder == .creationDate)
-                .padding(.bottom, 5)
+            .disabled(sortOrder == .creationDate)
+            .padding(.bottom, 5)
 
             Button(action: {
                 sortOrder = .title
@@ -37,7 +37,7 @@ struct MedSortPopupView: View {
             }, label: {
                 ButtonBorderView(text: Strings.sortTitle.rawValue)
             })
-                .disabled(sortOrder == .title)
+            .disabled(sortOrder == .title)
         },
         leftButton: {},
         rightButton: {

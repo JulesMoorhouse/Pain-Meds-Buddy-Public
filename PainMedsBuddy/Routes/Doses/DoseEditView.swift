@@ -103,7 +103,7 @@ struct DoseEditView: View, DestinationView {
                                           hasChevron: true)
                         }
                     })
-                        .accessibilityIdentifier(.doseEditMedication)
+                    .accessibilityIdentifier(.doseEditMedication)
 
                     // --- Amount ---
                     HStack {
@@ -143,7 +143,7 @@ struct DoseEditView: View, DestinationView {
                                 Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
                                     .foregroundColor(Color.red)
                             })
-                                .buttonStyle(BorderlessButtonStyle())
+                            .buttonStyle(BorderlessButtonStyle())
                         }
                     }
                 }
@@ -292,13 +292,13 @@ struct DoseEditView: View, DestinationView {
 
     func setElapse() {
         viewModel.setElapsed()
-        self.tabBarHandler.showTabBar()
+        tabBarHandler.showTabBar()
         presentationMode.wrappedValue.dismiss()
     }
 
     func delete() {
         viewModel.delete()
-        self.tabBarHandler.showTabBar()
+        tabBarHandler.showTabBar()
         presentationMode.wrappedValue.dismiss()
     }
 

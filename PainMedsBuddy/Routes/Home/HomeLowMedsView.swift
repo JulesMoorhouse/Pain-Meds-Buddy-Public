@@ -42,7 +42,7 @@ struct HomeLowMedsView: View {
                                 }
                                 .padding(2)
                             })
-                                .panelled()
+                            .panelled()
                         }
                     } else {
                         EmptyRowView()

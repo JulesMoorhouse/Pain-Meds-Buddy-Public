@@ -88,7 +88,7 @@ struct SettingsSupportView: View {
             "\(totalDoses)",
             installDate,
             "\(runCount)",
-            "\(Bundle.main.buildDate)"
+            "\(Bundle.main.buildDate)",
         ])
     }
 
@@ -118,7 +118,8 @@ struct SettingsSupportView: View {
                 title: Text(.commonInfo),
                 message: Text(.settingSupportCopied),
                 dismissButton: .default(
-                    Text(.commonOK)))
+                    Text(.commonOK))
+            )
         }
     }
 
@@ -134,13 +135,15 @@ struct SettingsSupportView: View {
             totalMeds: totalMeds,
             totalDoses: totalDoses,
             installDate: installDate,
-            runCount: runCount)
+            runCount: runCount
+        )
 
         _mailData = State(wrappedValue: ComposeMailData(
             subject: SettingsSupportView.getSubject(),
             recipients: [Secrets.supportEmail],
             message: message,
-            attachments: [])
+            attachments: []
+        )
 //            attachments: [AttachmentData(
 //                data: "Some text".data(using: .utf8)!,
 //                mimeType: "text/plain",

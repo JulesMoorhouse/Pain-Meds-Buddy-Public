@@ -18,7 +18,7 @@ struct MedRowView: View {
         self.med = med
         self.hasChevron = hasChevron
 
-        self.remainingFormWord
+        remainingFormWord
             = Med.formWord(
                 num: Int(med.remaining),
                 word: med.form ?? ""

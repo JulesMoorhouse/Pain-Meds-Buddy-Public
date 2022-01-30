@@ -35,28 +35,32 @@ class TabBarHandler: ObservableObject {
             selector: #selector(showTabBarView),
             name: NSNotification.Name(
                 TabBarHandler.NotificationNames.showBottomTabBar.rawValue),
-            object: nil)
+            object: nil
+        )
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(hideTabBarView),
             name: NSNotification.Name(
                 TabBarHandler.NotificationNames.hideBottomTabBar.rawValue),
-            object: nil)
+            object: nil
+        )
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(enableTabBarTouch),
             name: NSNotification.Name(
                 TabBarHandler.NotificationNames.enableTouchTabBar.rawValue),
-            object: nil)
+            object: nil
+        )
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(disableTabBarTouch),
             name: NSNotification.Name(
                 TabBarHandler.NotificationNames.disableTouchTabBar.rawValue),
-            object: nil)
+            object: nil
+        )
     }
 
     @objc private func showTabBarView() {
@@ -81,7 +85,8 @@ class TabBarHandler: ObservableObject {
                 NotificationCenter.default.post(
                     name: NSNotification.Name(
                         TabBarHandler.NotificationNames.showBottomTabBar.rawValue),
-                    object: nil)
+                    object: nil
+                )
             }
         }
     }
@@ -92,7 +97,8 @@ class TabBarHandler: ObservableObject {
                 NotificationCenter.default.post(
                     name: NSNotification.Name(
                         TabBarHandler.NotificationNames.hideBottomTabBar.rawValue),
-                    object: nil)
+                    object: nil
+                )
             }
         }
     }
@@ -103,7 +109,8 @@ class TabBarHandler: ObservableObject {
                 NotificationCenter.default.post(
                     name: NSNotification.Name(
                         TabBarHandler.NotificationNames.enableTouchTabBar.rawValue),
-                    object: nil)
+                    object: nil
+                )
             }
         }
     }
@@ -114,7 +121,8 @@ class TabBarHandler: ObservableObject {
                 NotificationCenter.default.post(
                     name: NSNotification.Name(
                         TabBarHandler.NotificationNames.disableTouchTabBar.rawValue),
-                    object: nil)
+                    object: nil
+                )
             }
         }
     }

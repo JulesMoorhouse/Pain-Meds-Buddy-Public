@@ -13,7 +13,7 @@ struct NavigationViewParent<Content: View>: View {
     var systemVersion = UIDevice.current.systemVersion
 
     var body: some View {
-        if systemVersion.starts(with: "14" ) {
+        if systemVersion.starts(with: "14") {
             NavigationView {
                 content
             }
@@ -33,7 +33,7 @@ struct NavigationViewChild<Content: View>: View {
     var systemVersion = UIDevice.current.systemVersion
 
     var body: some View {
-        if systemVersion.starts(with: "14" ) {
+        if systemVersion.starts(with: "14") {
             NavigationView {
                 content
             }

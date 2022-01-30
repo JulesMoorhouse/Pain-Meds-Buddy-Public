@@ -54,10 +54,10 @@ struct DoseMedSelectView: View, DestinationView {
         }
         .actionSheet(isPresented: $viewModel.showingSortOrder) {
             ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
-                .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised},
+                .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },
                 .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
                 .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
-                .cancel()
+                .cancel(),
             ])
         }
         .onAppear(perform: {

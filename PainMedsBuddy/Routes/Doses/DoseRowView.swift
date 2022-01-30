@@ -41,9 +41,10 @@ struct DoseRowView: View {
                 navigation.pushView(
                     DoseEditView(
                         dataController: dataController,
-                        dose: dose)
-                        .environmentObject(dataController)
-                        .environment(\.managedObjectContext, viewContext))
+                        dose: dose
+                    )
+                    .environmentObject(dataController)
+                    .environment(\.managedObjectContext, viewContext))
             }
         }, label: {
             if let med = dose.med {
@@ -86,7 +87,8 @@ struct DoseRowView: View {
                                     maxWidth: .infinity,
                                     minHeight: 0,
                                     maxHeight: .infinity,
-                                    alignment: .topLeading)
+                                    alignment: .topLeading
+                                )
                                 .padding(.vertical, 2)
                         }
                     }
@@ -98,7 +100,7 @@ struct DoseRowView: View {
                 .accessibilityIdentifier(.homeAccessibilityIconTaken)
             }
         })
-            .contentShape(Rectangle())
+        .contentShape(Rectangle())
     }
 }
 

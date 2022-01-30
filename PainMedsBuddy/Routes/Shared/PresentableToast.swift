@@ -14,6 +14,6 @@ class PresentableToast: ObservableObject {
 
     init(message: String = "") {
         self.message = message
-        self.show = false
+        show = false
     }
 }

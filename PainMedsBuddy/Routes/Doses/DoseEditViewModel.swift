@@ -80,9 +80,7 @@ extension DoseEditView {
         @Published var showAlert = false
         @Published var activeAlert: ActiveAlert = .deleteConfirmation
 
-        lazy var formValidation: FormValidation = {
-            FormValidation(validationType: .immediate)
-        }()
+        lazy var formValidation: FormValidation = .init(validationType: .immediate)
 
         lazy var validationErrors = {
             self.formValidation.$validationMessages

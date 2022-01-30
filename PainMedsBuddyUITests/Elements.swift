@@ -251,7 +251,7 @@ extension XCUIElement {
     }
 
     public func swipeUp(to element: XCUIElement) {
-        while !self.elementIsWithinWindow(element: element) {
+        while !elementIsWithinWindow(element: element) {
             XCUIApplication().gentleSwipe(.up)
         }
     }
@@ -274,11 +274,11 @@ extension XCUIElement {
         let lessThanHalf = half - adjustment
         let moreThanHalf = half + adjustment
 
-        let centre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: half))
-        let aboveCentre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: lessThanHalf))
-        let belowCentre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: moreThanHalf))
-        let leftOfCentre = self.coordinate(withNormalizedOffset: CGVector(dx: lessThanHalf, dy: half))
-        let rightOfCentre = self.coordinate(withNormalizedOffset: CGVector(dx: moreThanHalf, dy: half))
+        let centre = coordinate(withNormalizedOffset: CGVector(dx: half, dy: half))
+        let aboveCentre = coordinate(withNormalizedOffset: CGVector(dx: half, dy: lessThanHalf))
+        let belowCentre = coordinate(withNormalizedOffset: CGVector(dx: half, dy: moreThanHalf))
+        let leftOfCentre = coordinate(withNormalizedOffset: CGVector(dx: lessThanHalf, dy: half))
+        let rightOfCentre = coordinate(withNormalizedOffset: CGVector(dx: moreThanHalf, dy: half))
 
         switch direction {
         case .up:

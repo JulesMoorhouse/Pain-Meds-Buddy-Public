@@ -36,6 +36,7 @@ struct InfoPopupView_Previews: PreviewProvider {
         InfoPopupView(
             showing: .constant(true),
             title: "Info",
-            text: "Some help information which will try to span over multiple lines")
+            text: "Some help information which will try to span over multiple lines"
+        )
     }
 }

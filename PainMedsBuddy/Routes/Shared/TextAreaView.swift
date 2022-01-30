@@ -13,7 +13,7 @@ struct TextArea: View {
 
     init(_ placeholder: LocalizedStringKey, text: Binding<String>) {
         self.placeholder = placeholder
-        self._text = text
+        _text = text
     }
 
     var body: some View {
@@ -31,7 +31,7 @@ struct TextArea: View {
 
 extension String {
     var isBlank: Bool {
-        return allSatisfy { $0.isWhitespace }
+        allSatisfy(\.isWhitespace)
     }
 }
 
