@@ -30,7 +30,7 @@ extension Array where Element: Med {
         case .creationDate:
             return allMeds.sorted(by: \Med.medCreationDate)
         case .remaining:
-            return allMeds.sorted(by: \Med.remaining)
+            return allMeds.sorted(by: \Med.medRemaining)
         case .lastTaken:
             return allMeds.sorted(by: \Med.medLastTakenDate)
         default:

@@ -223,7 +223,7 @@ class DataController: ObservableObject {
             med.color = Med.colours.randomElement()
             med.measure = "mg"
             med.form = "Pills"
-            med.remaining = Int16.random(in: 0 ... 99)
+            med.remaining = NSDecimalNumber(value: Int16.random(in: 0 ... 99))
             med.durationSeconds = drug.duration
             med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date().adding(days: -20)

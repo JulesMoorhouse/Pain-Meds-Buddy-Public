@@ -88,14 +88,18 @@ extension DoseEditView {
 
         lazy var amountValidator: ValidationContainer = {
             var field = String(.doseEditAmount)
-            let message = String(.validationOneOrAbove,
+            let message = String(.validationZeroOrAbove,
                                  values: [field])
 
             return $amount.inlineValidator(
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                value.isNumber && (Int(value) ?? 0) > 0
+                let isDouble = (Double(value) ?? 0.0) > 0.0
+                let isInt = Int(value) != nil
+                let isAboveZero = Int(value) ?? 0 > 0
+                let fiveDigits = value.count <= 5
+                return fiveDigits && ((isInt && isAboveZero) || isDouble)
             }
         }()
 
@@ -218,11 +222,12 @@ extension DoseEditView {
             dose.med?.lastTakenDate = takenDate
 
             // NOTE: Ensure remaining is zero or above
-            let remaining = Int(dose.med?.remaining ?? 0)
-            let tempAmount = Int(amount) ?? 0
+            let remaining = Double(truncating: dose.med?.remaining ?? 0)
+            let tempAmount = Double(amount) ?? Double(truncating: DoseDefault.amount)
 
             if (remaining - tempAmount) >= 0 {
-                dose.med?.remaining -= Int16(tempAmount)
+                dose.med?.remaining =
+                    dose.med?.remaining?.subtracting(NSDecimalNumber(value: tempAmount))
             }
 
             dose.remindMe = remindMe

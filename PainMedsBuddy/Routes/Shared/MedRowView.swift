@@ -20,7 +20,7 @@ struct MedRowView: View {
 
         remainingFormWord
             = Med.formWord(
-                num: Int(med.remaining),
+                num: Int(med.medRemaining) ?? Int(truncating: MedDefault.remaining),
                 word: med.form ?? ""
             )
     }
@@ -35,7 +35,7 @@ struct MedRowView: View {
             VStack(alignment: .leading) {
                 Text(med.medTitle)
                     .foregroundColor(.primary)
-                Text("\(med.remaining) \(remainingFormWord)")
+                Text("\(med.medRemaining) \(remainingFormWord)")
                     .foregroundColor(.secondary)
                     .font(.caption)
             }

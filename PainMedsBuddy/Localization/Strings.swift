@@ -32,6 +32,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case validationOneOrAbove
     case validationMustSpecify
     case validationMustEmpty
+    case validationZeroOrAbove
     // --------------------------
     case titleHome
     case tabTitleHistory

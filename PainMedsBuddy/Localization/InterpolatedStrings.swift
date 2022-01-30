@@ -72,4 +72,45 @@ struct InterpolatedStrings {
     static func settingSupportSubject(version: String) -> String {
         String(.settingSupportSubject, values: [version])
     }
+
+    static func validationTwoLetters(field: String) -> String {
+        String(.validationTwoLetters, values: [field])
+    }
+
+    static func validationOneOrAbove(field: String) -> String {
+        String(.validationOneOrAbove, values: [field])
+    }
+
+    static func validationMustSpecify(field: String) -> String {
+        String(.validationMustSpecify, values: [field])
+    }
+
+    static func validationMustEmpty(field: String) -> String {
+        String(.validationMustEmpty, values: [field])
+    }
+
+    static func validationZeroOrAbove(field: String) -> String {
+        String(.validationZeroOrAbove, values: [field])
+    }
+
+    // NOTE: Not current used
+//    static func homeAccessibilityAvailable() -> String {
+//        String(.homeAccessibilityAvailable, values: [""])
+//    }
+
+    static func doseEditDosageElapsed(shortDateTime: String) -> String {
+        String(.doseEditDosageElapsed, values: [shortDateTime])
+    }
+
+    static func medEditLowToast(med: Med) -> String {
+        String(.medEditLowToast, values: [med.medTitle])
+    }
+
+    static func timePickerHours(number: String) -> String {
+        String(.timePickerHours, values: [number])
+    }
+
+    static func timePickerMins(number: String) -> String {
+        String(.timePickerMins, values: [number])
+    }
 }

@@ -124,7 +124,7 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                !value.isEmpty && value.count > 1
+                !value.isEmpty && value.count > 1 && value.count <= 30
             }
         }()
 
@@ -137,7 +137,11 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                value.isNumber && (Int(value) ?? 0) > 0
+                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isInt = Int(value) != nil
+                let isAboveZero = Int(value) ?? 0 > 0
+                let fiveDigits = value.count <= 5
+                return fiveDigits && ((isInt && isAboveZero) || isDouble)
             }
         }()
 
@@ -150,7 +154,11 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                value.isNumber && (Int(value) ?? 0) > 0
+                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isInt = Int(value) != nil
+                let isAboveZero = Int(value) ?? 0 > 0
+                let fiveDigits = value.count <= 5
+                return fiveDigits && ((isInt && isAboveZero) || isDouble)
             }
         }()
 
@@ -176,20 +184,24 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                !value.isEmpty && value.count > 1
+                !value.isEmpty && value.count > 1 && value.count <= 10
             }
         }()
 
         lazy var remainingValidator: ValidationContainer = {
             var field = String(.medEditRemaining)
-            let message = String(.validationOneOrAbove,
+            let message = String(.validationZeroOrAbove,
                                  values: [field])
 
             return $remaining.inlineValidator(
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                value.isNumber && (Int(value) ?? 0) > 0
+                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isInt = Int(value) != nil
+                let isAboveZero = Int(value) ?? 0 > 0
+                let fiveDigits = value.count <= 5
+                return fiveDigits && ((isInt && isAboveZero) || isDouble)
             }
         }()
 
@@ -263,7 +275,7 @@ extension MedEditView {
             med.measure = measure
             med.form = form
             med.notes = notes
-            med.remaining = Int16(remaining) ?? MedDefault.remaining
+            med.remaining = NSDecimalNumber(string: remaining)
         }
 
         func copyMed() {

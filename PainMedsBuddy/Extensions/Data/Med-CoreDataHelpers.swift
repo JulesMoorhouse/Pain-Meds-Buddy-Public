@@ -111,7 +111,7 @@ extension Med: MedProtocol {
     }
 
     var medRemaining: String {
-        "\(String(describing: remaining))"
+        "\(remaining ?? MedDefault.remaining)"
     }
 
     var medTotalDosage: String {
@@ -124,8 +124,14 @@ extension Med: MedProtocol {
         // divide remain amount by default amount
         // this will give you number of remaining doses
         // if this is 5 or below then it's running low
-        let tempRemaining = Int(remaining)
-        let tempDefaultAmount = Int(truncating: defaultAmount ?? MedDefault.defaultAmount)
+        let tempRemaining =
+            Double(truncating: remaining
+                ?? MedDefault.remaining)
+
+        let tempDefaultAmount =
+            Double(truncating: defaultAmount
+                ?? MedDefault.defaultAmount)
+
         let dosesLeft = tempRemaining / tempDefaultAmount
 
         let isRunningLow = dosesLeft <= 5

@@ -6,6 +6,8 @@
 //
 
 // swiftlint:disable cyclomatic_complexity
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 
 @testable import PainMedsBuddy
 import XCTest
@@ -63,13 +65,30 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             // --------------------------
             case .validationTwoLetters:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .validationTwoLetters(
+                        field: String(.medEditTitle))
+
             case .validationOneOrAbove:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .validationOneOrAbove(
+                        field: String(.commonDosage))
+
             case .validationMustSpecify:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .validationMustSpecify(
+                        field: String(.medEditDuration))
+
             case .validationMustEmpty:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .validationMustEmpty(
+                        field: String(.medEditForm))
+
+            case .validationZeroOrAbove:
+                output = InterpolatedStrings
+                    .validationZeroOrAbove(
+                        field: String(.doseEditAmount))
+
             // --------------------------
             case .titleHome:
                 output = ""
@@ -97,12 +116,14 @@ class LocalisedStringTests: BaseTestCase {
             case .homeAccessibilityIconRemaining:
                 output =
                     InterpolatedStrings
-                        .homeAccessibilityIconRemaining(med: med)
+                        .homeAccessibilityIconRemaining(
+                            med: med)
 
             case .homeAccessibilityIconTaken:
                 output =
                     InterpolatedStrings
-                        .homeAccessibilityIconTaken(dose: dose, med: med)
+                        .homeAccessibilityIconTaken(
+                            dose: dose, med: med)
 
             case .homeAccessibilityIconTakeNow:
                 output =
@@ -110,7 +131,7 @@ class LocalisedStringTests: BaseTestCase {
                         .homeAccessibilityIconTakeNow(med: med)
 
             case .homeAccessibilityAvailable:
-                output = "" // TO DO
+                output = "" // NOTE: No currently used
             // --------------------------
             case .doseProgressAvailable:
                 output = ""
@@ -119,14 +140,20 @@ class LocalisedStringTests: BaseTestCase {
             case .doseProgressAccessibilityAvailable:
                 output =
                     InterpolatedStrings
-                        .doseProgressAccessibilityAvailable(dose: dose, med: med)
+                        .doseProgressAccessibilityAvailable(
+                            dose: dose, med: med)
 
             case .doseProgressAccessibilityRemaining:
                 output =
                     InterpolatedStrings
-                        .doseProgressAccessibilityRemaining(dose: dose, med: med)
+                        .doseProgressAccessibilityRemaining(
+                            dose: dose, med: med)
+
             case .doseProgressAccessibilityCloseButton:
-                output = InterpolatedStrings.doseProgressAccessibilityCloseButton(med: med)
+                output = InterpolatedStrings
+                    .doseProgressAccessibilityCloseButton(
+                        med: med)
+
             case .selectMedSelectMed:
                 output = ""
             // --------------------------
@@ -157,7 +184,10 @@ class LocalisedStringTests: BaseTestCase {
             case .doseEditDetailsPlaceholder:
                 output = ""
             case .doseEditDosageElapsed:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .doseEditDosageElapsed(
+                        shortDateTime: Date().dateToShortDateTime)
+
             case .doseEditEditDose:
                 output = ""
             case .doseEditElapseDose:
@@ -204,7 +234,8 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditCopiedSuffix:
                 output =
                     InterpolatedStrings
-                        .medEditCopiedSuffix(title: "New Medication 1")
+                        .medEditCopiedSuffix(
+                            title: "New Medication 1")
 
             case .medEditDefaultAmount:
                 output = ""
@@ -235,7 +266,9 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditLockedField:
                 output = ""
             case .medEditLowToast:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .medEditLowToast(med: med)
+
             case .medEditMeasure:
                 output = ""
             case .medEditMg:
@@ -292,21 +325,41 @@ class LocalisedStringTests: BaseTestCase {
             case .settingSupportCopied:
                 output = ""
             case .settingSupportSubject:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .settingSupportSubject(version: "1.2.3")
+
             case .settingSupportMessage:
-                output = "" // TO DO
+                let code: String =
+                    Locale.preferredLanguages[0]
+                let language: String =
+                    NSLocale.current.localizedString(forLanguageCode: code)!
+
+                output = InterpolatedStrings
+                    .settingSupportMessage(values: [
+                        "iPhone Xr",
+                        "14.5",
+                        "\(language) (\(code))",
+                        "\(10)",
+                        "\(10)",
+                        "27/01/2022",
+                        "\(30)",
+                        "\(Bundle.main.buildDate)",
+                    ])
             // --------------------------
             case .notificationSubtitle:
                 output = ""
             // --------------------------
             case .timePickerHours:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .timePickerHours(number: "5")
+                
             case .timePickerMins:
-                output = "" // TO DO
+                output = InterpolatedStrings
+                    .timePickerMins(number: "55")
             }
 
             if !output.isEmpty {
-                print("\(item.rawValue.stringKey): \(output)")
+                print("LOCAL: \(item.rawValue.stringKey): \(output)")
                 print(" ")
             }
         }

@@ -53,7 +53,7 @@ struct MedDefault {
     static let duration: Int16 = 0
     static let durationGap: Int16 = 0
     static let dosage: NSDecimalNumber = 0
-    static let remaining: Int16 = 0
+    static let remaining: NSDecimalNumber = 0
     static let measure = String(.medEditMg)
     static let form: String = ""
     static let symbol: String = "pills"
@@ -85,7 +85,7 @@ struct MedDefault {
         med.durationSeconds = MedDefault.Sensible.duration
         med.durationGapSeconds = MedDefault.Sensible.durationGap
         med.dosage = MedDefault.Sensible.dosage
-        med.remaining = MedDefault.Sensible.remaining
+        med.remaining = NSDecimalNumber(value: MedDefault.Sensible.remaining)
         med.measure = "\(MedDefault.Sensible.measure)"
         med.form = MedDefault.Sensible.form
         med.symbol = MedDefault.Sensible.symbol
