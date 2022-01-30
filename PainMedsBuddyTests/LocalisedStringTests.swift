@@ -289,6 +289,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditTitle:
                 output = ""
+            case .medEditTypes:
+                output = ""
             // --------------------------
             case .settingsAcknowledgements:
                 output = ""
@@ -352,7 +354,7 @@ class LocalisedStringTests: BaseTestCase {
             case .timePickerHours:
                 output = InterpolatedStrings
                     .timePickerHours(number: "5")
-                
+
             case .timePickerMins:
                 output = InterpolatedStrings
                     .timePickerMins(number: "55")

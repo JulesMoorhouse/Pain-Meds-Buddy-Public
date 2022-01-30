@@ -21,7 +21,7 @@ struct MedsView: View {
     @EnvironmentObject private var presentableToast: PresentableToast
 
     var items: [Med] {
-        viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
+        viewModel.meds.allMeds.filter { !$0.hidden}.sortedItems(using: viewModel.sortOrder)
     }
 
     var medsList: some View {
@@ -131,11 +131,6 @@ struct MedsView: View {
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
             .toasted(show: $presentableToast.show, message: $presentableToast.message)
-            .alert(isPresented: $viewModel.showDeleteDenied) {
-                Alert(title: Text(.medEditDeleteMed),
-                      message: Text(.medsSorryUsed),
-                      dismissButton: .default(Text(.commonOK)))
-            }
 
             PlaceholderView(
                 string: .medsPleaseSelect,

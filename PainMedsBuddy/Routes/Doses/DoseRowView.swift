@@ -50,7 +50,7 @@ struct DoseRowView: View {
             if let med = dose.med {
                 VStack {
                     HStack {
-                        MedSymbolView(med: med)
+                        MedSymbolView(symbol: med.medSymbol, colour: med.medColor)
 
                         Spacer()
                             .frame(width: 10)

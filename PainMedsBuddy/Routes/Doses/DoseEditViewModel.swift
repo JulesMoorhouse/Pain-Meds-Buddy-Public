@@ -133,6 +133,17 @@ extension DoseEditView {
 
             super.init()
             performFetch()
+
+            // NOTE: Double check selected med is available, shouldn't happen
+            let found = meds.filter {
+                $0.objectID == self.selectedMed.objectID
+                    && !$0.hidden
+            }
+            if found.isEmpty {
+                if let first = meds.first {
+                    self.selectedMed = first
+                }
+            }
         }
 
         init(dataController: DataController,

@@ -24,14 +24,13 @@ struct MedEditView: View, DestinationView {
     @EnvironmentObject private var presentableToast: PresentableToast
 
     @State private var showAlert = false
-    @State private var activeAlert: ActiveAlert = .deleteDenied
+    @State private var activeAlert: ActiveAlert = .deleteConfirmation
     @State private var showPopup = false
     @State private var activePopup: ActivePopup = .durationGapInfo
-    @State private var canDelete = false
     @State private var isSaveDisabled = false
 
     enum ActiveAlert {
-        case deleteDenied, deleteConfirmation, copied
+        case deleteConfirmation, copied
     }
 
     enum ActivePopup {
@@ -43,7 +42,7 @@ struct MedEditView: View, DestinationView {
              lockedDurationGap
     }
 
-    let types = ["mg", "ml", "Tspn"]
+    let types: [String]
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 44)),
@@ -98,6 +97,9 @@ struct MedEditView: View, DestinationView {
 
                 Section(header: Text(.commonExampleDosage)) {
                     HStack {
+                        MedSymbolView(symbol: $viewModel.symbol.wrappedValue,
+                                      colour: $viewModel.colour.wrappedValue)
+
                         Text(viewModel.example)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.secondary)
@@ -219,13 +221,6 @@ struct MedEditView: View, DestinationView {
                     action: delete
                 ),
                 secondaryButton: .cancel()
-            )
-        case .deleteDenied:
-            return Alert(
-                title: Text(.medEditDeleteMed),
-                message: Text(.medEditSorry),
-                dismissButton: .default(
-                    Text(.commonOK))
             )
         case .copied:
             return Alert(
@@ -490,8 +485,7 @@ struct MedEditView: View, DestinationView {
             if !viewModel.add {
                 Section {
                     Button(Strings.medEditDeleteThisMed.rawValue) {
-                        canDelete = viewModel.hasRelationship == false
-                        activeAlert = canDelete ? .deleteConfirmation : .deleteDenied
+                        activeAlert = .deleteConfirmation
                         showAlert.toggle()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -529,6 +523,9 @@ struct MedEditView: View, DestinationView {
             title: title,
             displayMode: .automatic
         )
+
+        let tempTypes = String(.medEditTypes)
+        types = tempTypes.components(separatedBy: ",")
     }
 }
 

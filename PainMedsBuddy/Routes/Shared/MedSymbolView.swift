@@ -8,28 +8,35 @@
 import SwiftUI
 
 struct MedSymbolView: View {
-    @ObservedObject var med: Med
+    let symbol: String
+    let colour: String
     let font: Font
     let width: CGFloat
     let height: CGFloat
 
-    init(med: Med, font: Font = .title, width: CGFloat = 45, height: CGFloat = 45) {
-        self.med = med
+    init(symbol: String,
+         colour: String,
+         font: Font = .title,
+         width: CGFloat = 45,
+         height: CGFloat = 45)
+    {
+        self.symbol = symbol
+        self.colour = colour
         self.font = font
         self.width = width
         self.height = height
     }
 
     var body: some View {
-        Image(systemName: med.medSymbol)
+        Image(systemName: symbol)
             .font(font)
-            .foregroundColor(Color(med.medColor))
+            .foregroundColor(Color(colour))
             .frame(width: width, height: height)
     }
 }
 
 struct MedSymbolView_Previews: PreviewProvider {
     static var previews: some View {
-        MedSymbolView(med: Med())
+        MedSymbolView(symbol: "piils", colour: "red")
     }
 }

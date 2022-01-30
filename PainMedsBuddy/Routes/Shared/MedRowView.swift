@@ -27,7 +27,7 @@ struct MedRowView: View {
 
     var body: some View {
         HStack {
-            MedSymbolView(med: med)
+            MedSymbolView(symbol: med.medSymbol, colour: med.medColor)
 
             Spacer()
                 .frame(width: 10)

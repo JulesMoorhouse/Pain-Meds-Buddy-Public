@@ -123,7 +123,11 @@ struct HomeDoseProgressView: View {
                     .accessibilityElement(children: .ignore)
             } else {
                 if let med = med {
-                    MedSymbolView(med: med, font: .headline, width: 25, height: 25)
+                    MedSymbolView(symbol: med.medSymbol,
+                                  colour: med.medColor,
+                                  font: .headline,
+                                  width: 25,
+                                  height: 25)
                         .padding(.horizontal, 5)
                         .accessibilityElement(children: .ignore)
                 }

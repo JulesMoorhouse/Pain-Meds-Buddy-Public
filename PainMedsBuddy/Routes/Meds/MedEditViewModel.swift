@@ -297,6 +297,7 @@ extension MedEditView {
                 } else {
                     update()
                     med.hidden = true
+                    dataController.save()
                 }
             }
         }

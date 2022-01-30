@@ -93,6 +93,15 @@ extension HomeView {
         func filterReaffirmedDoses(loadedDoses: [Dose]) -> [Dose] {
             let filtered = loadedDoses.filter {
                 if let soft = $0.softElapsedDate {
+                    if let med = $0.med {
+                        // NOTE: Show does which haven't elapsed,
+                        // except for soft elapsed, unless those soft
+                        // elapsed doses are hidden
+                        return $0.elapsed == false || (soft >= Date() && !med.hidden)
+                    }
+
+                    // NOTE: Show doses which haven't elapsed, except if
+                    // they are in the 3 hour window of recently taken
                     return $0.elapsed == false || soft >= Date()
                 }
                 return $0.elapsed == false
@@ -116,7 +125,7 @@ extension HomeView {
         }
 
         func getLowMeds(loadedMeds: [Med]) -> [Med] {
-            let temp = loadedMeds.filter { $0.medIsRunningLow == true }
+            let temp = loadedMeds.filter { $0.medIsRunningLow == true && !$0.hidden }
                 .sortedItems(using: .remaining)
             let count = temp.isEmpty ? 0 : 3
             return temp.prefix(count).map { $0 }

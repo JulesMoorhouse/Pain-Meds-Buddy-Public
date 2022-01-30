@@ -21,7 +21,7 @@ struct DoseMedSelectView: View, DestinationView {
     @Binding var selectedMed: Med
 
     var items: [Med] {
-        viewModel.meds.allMeds.sortedItems(using: viewModel.sortOrder)
+        viewModel.meds.allMeds.filter { !$0.hidden }.sortedItems(using: viewModel.sortOrder)
     }
 
     var sortToolbarItem: some ToolbarContent {

@@ -151,6 +151,11 @@ struct DoseEditView: View, DestinationView {
                 // ---  Example Dosage ---
                 Section(header: Text(.commonExampleDosage)) {
                     HStack {
+                        MedSymbolView(
+                            symbol: viewModel.selectedMed.medSymbol,
+                            colour: viewModel.selectedMed.medColor
+                        )
+
                         Text(display())
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.leading)

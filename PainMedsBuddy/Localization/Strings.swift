@@ -122,6 +122,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditSorry
     case medEditSymbol
     case medEditTitle
+    case medEditTypes
     // --------------------------
     case settingsAcknowledgements
     case settingsAdvanced
