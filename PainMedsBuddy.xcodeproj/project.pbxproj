@@ -599,6 +599,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8832142D275120D60026D85F /* Build configuration list for PBXNativeTarget "PainMedsBuddy" */;
 			buildPhases = (
+				8877418027A846C100D655E8 /* Auto Increment Version Script */,
 				8848D45B277700A300F10DC9 /* SwiftLint */,
 				8832141A275120D40026D85F /* Sources */,
 				8832141B275120D40026D85F /* Frameworks */,
@@ -765,6 +766,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		8877418027A846C100D655E8 /* Auto Increment Version Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Auto Increment Version Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nconfig=${CONFIGURATION}\n\nif [ \"${config}\" = \"Release\"]; then\n# Auto Increment Version Script\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nCFBuildDate=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nCFBundleVersionNew=$(($CFBundleVersion + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersionNew\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\nelse\necho \"info: Skipping build number incrementation in ${config} mode\"\nfi\n";
 		};
 		88E930A02760A51600A98708 /* AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
