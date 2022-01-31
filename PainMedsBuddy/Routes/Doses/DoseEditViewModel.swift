@@ -7,6 +7,7 @@
 
 // swiftlint:disable nesting
 
+import AppCenterCrashes
 import CoreData
 import FormValidator
 import Foundation
@@ -186,6 +187,10 @@ extension DoseEditView {
                 meds = medsController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch our meds: \(error)")
+                Crashes.trackError(error, properties: [
+                    "Position": "DoseEditViewModel.performFetch",
+                    "ErrorLabel": "Failed to fetch our meds",
+                ], attachments: nil)
             }
         }
 

@@ -61,9 +61,12 @@ struct HomeDoseProgressView: View {
     }
 
     var doseNotElapsed: Bool {
-        let doseShouldNotHaveElapsed = !dose.doseShouldHaveElapsed
-        let doseNotElapsed = !dose.elapsed
-        return showEmptyView || (doseShouldNotHaveElapsed && doseNotElapsed)
+        if !showEmptyView {
+            let doseShouldNotHaveElapsed = !dose.doseShouldHaveElapsed
+            let doseNotElapsed = !dose.elapsed
+            return showEmptyView || (doseShouldNotHaveElapsed && doseNotElapsed)
+        }
+        return false
     }
 
     var showCloseCorner: Bool {
@@ -151,12 +154,13 @@ struct HomeDoseProgressView: View {
                 }
             }, label: {
                 ButtonBorderView(
-                    text: doseNotElapsed
+                    text: showEmptyView || doseNotElapsed
                         ? Strings.homeEditDose.rawValue
                         : Strings.homeTakeNext.rawValue,
                     width: 100
                 )
             })
+            .disabled(showEmptyView)
             .accessibilityRemoveTraits(.isButton)
             .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
             .accessibilityLabel(accessibilityLabel())

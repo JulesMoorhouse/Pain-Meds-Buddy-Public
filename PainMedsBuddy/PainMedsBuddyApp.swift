@@ -18,6 +18,13 @@ struct PainMedsBuddyApp: App {
     @State var colourScheme: ColorScheme?
 
     init() {
+        AppCenter.start(
+            withAppSecret: Secrets.appCenterSecret,
+            services: [Crashes.self]
+        )
+
+        AppCenter.logLevel = .verbose
+
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
 
@@ -31,11 +38,6 @@ struct PainMedsBuddyApp: App {
         if defaults.string(forKey: "installDate") == nil {
             defaults.set(Date().dateToShortDateTime, forKey: "installDate")
         }
-
-        AppCenter.start(
-            withAppSecret: Secrets.appCenterSecret,
-            services: [Crashes.self]
-        )
 
         dataController.processDoses()
 

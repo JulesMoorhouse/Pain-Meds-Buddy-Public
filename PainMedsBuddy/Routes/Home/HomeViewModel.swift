@@ -5,6 +5,7 @@
 //  Created by Jules Moorhouse.
 //
 
+import AppCenterCrashes
 import CoreData
 import Foundation
 
@@ -87,6 +88,10 @@ extension HomeView {
                 meds = medsController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch initial data: \(error)")
+                Crashes.trackError(error, properties: [
+                    "Position": "HomeViewModel.init",
+                    "ErrorLabel": "Failed to fetch initial data",
+                ], attachments: nil)
             }
         }
 

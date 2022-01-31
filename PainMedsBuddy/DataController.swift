@@ -5,6 +5,7 @@
 //  Created by Jules Moorhouse.
 //
 
+import AppCenterCrashes
 import CoreData
 import SwiftUI
 import UserNotifications
@@ -53,6 +54,10 @@ class DataController: ObservableObject {
                 semaphore.signal()
             }
             if let error = error as NSError? {
+                Crashes.trackError(error, properties: [
+                    "Position": "DataController.init",
+                    "ErrorLabel": "Fatal error loading store",
+                ], attachments: nil)
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
 
@@ -113,6 +118,10 @@ class DataController: ObservableObject {
         do {
             try dataController.createSampleData(appStore: false)
         } catch {
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.preview",
+                "ErrorLabel": "Fatal error creating preview",
+            ], attachments: nil)
             fatalError("Fatal error creating preview: \(error.localizedDescription)")
         }
 
@@ -122,10 +131,18 @@ class DataController: ObservableObject {
     /// Cache model so the model does not get called more than once
     static let model: NSManagedObjectModel = {
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            Crashes.trackError(NSError(), properties: [
+                "Position": "DataController.model",
+                "ErrorLabel": "Failed to locate model file.",
+            ], attachments: nil)
             fatalError("Failed to locate model file.")
         }
 
         guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            Crashes.trackError(NSError(), properties: [
+                "Position": "DataController.model",
+                "ErrorLabel": "Failed to load model file.",
+            ], attachments: nil)
             fatalError("Failed to load model file.")
         }
 
@@ -143,6 +160,10 @@ class DataController: ObservableObject {
             }
         } catch {
             print("ERROR: Checking data for dose \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.hasRelationship",
+                "ErrorLabel": "Checking data for dose",
+            ], attachments: nil)
         }
 
         return false
@@ -157,6 +178,10 @@ class DataController: ObservableObject {
             return tempDoses.count
         } catch {
             print("ERROR: Checking data for doses \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.anyRelationships",
+                "ErrorLabel": "Checking data for doses",
+            ], attachments: nil)
         }
 
         return 0
@@ -300,8 +325,16 @@ class DataController: ObservableObject {
                 let numbers: [Int] = strings.map { Int($0)! }
                 let (meds, doses) = (numbers[0], numbers[1])
                 if meds == 0, doses > 0 {
+                    Crashes.trackError(NSError(), properties: [
+                        "Position": "DataController.handleSampleDataOptions",
+                        "ErrorLabel": "You can not create sample data with doses and no meds!",
+                    ], attachments: nil)
                     fatalError("ERROR: You can not create sample data with doses and no meds!")
                 } else if meds == 0, doses == 0 {
+                    Crashes.trackError(NSError(), properties: [
+                        "Position": "DataController.handleSampleDataOptions",
+                        "ErrorLabel": "You can not create sample data with doses and no meds!",
+                    ], attachments: nil)
                     fatalError("ERROR: You can not create sample data with no doses and no meds!")
                 }
                 try createSampleData(
@@ -313,7 +346,11 @@ class DataController: ObservableObject {
                 try createSampleData(appStore: appStore)
             }
         } catch {
-            fatalError("Fatal error creating preview: \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.handleSampleDataOptions",
+                "ErrorLabel": "Fatal error creating data",
+            ], attachments: nil)
+            fatalError("Fatal error creating data: \(error.localizedDescription)")
         }
     }
 
@@ -329,6 +366,10 @@ class DataController: ObservableObject {
             save()
         } catch {
             print("ERROR: Checking data for doses \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.processDoses",
+                "ErrorLabel": "Checking data for doses",
+            ], attachments: nil)
         }
     }
 
@@ -341,6 +382,10 @@ class DataController: ObservableObject {
                 try container.viewContext.save()
             } catch let error as NSError {
                 print("ERROR: Could not save. \(error), \(error.userInfo)")
+                Crashes.trackError(error, properties: [
+                    "Position": "DataController.save",
+                    "ErrorLabel": "Could not save",
+                ], attachments: nil)
             }
         }
     }
@@ -372,6 +417,10 @@ class DataController: ObservableObject {
             save()
         } catch {
             print("ERROR: Deleting doses \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.deleteIterateAll",
+                "ErrorLabel": "Deleting doses",
+            ], attachments: nil)
         }
 
         let medRequest = NSFetchRequest<Med>(entityName: "Med")
@@ -383,6 +432,10 @@ class DataController: ObservableObject {
             save()
         } catch {
             print("ERROR: Deleting meds \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.deleteIterateAll",
+                "ErrorLabel": "Deleting meds",
+            ], attachments: nil)
         }
     }
 
@@ -410,6 +463,10 @@ class DataController: ObservableObject {
                 }
             }
         } catch {
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.getFirstMed",
+                "ErrorLabel": "Error loading data",
+            ], attachments: nil)
             fatalError("Error loading data")
         }
 

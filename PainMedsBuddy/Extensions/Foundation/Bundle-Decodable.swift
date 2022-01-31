@@ -37,7 +37,7 @@ extension Bundle {
         } catch let DecodingError.valueNotFound(type, context) {
             fatalError("Failed to decode \(file) from bundle due to missing \(type) value = \(context.debugDescription)")
         } catch DecodingError.dataCorrupted(_) {
-            fatalError("Failed to decode \(file) from bundle becuase it appears to be invalid JSON")
+            fatalError("Failed to decode \(file) from bundle because it appears to be invalid JSON")
         } catch {
             fatalError("Failed to decode \(file) from bundle: \(error.localizedDescription)")
         }
