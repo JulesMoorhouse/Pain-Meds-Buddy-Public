@@ -60,8 +60,10 @@ struct HomeDoseProgressView: View {
         !showEmptyView ? med.medTitle : ""
     }
 
-    var disabled: Bool {
-        showEmptyView || (!dose.doseShouldHaveElapsed && !dose.elapsed)
+    var doseNotElapsed: Bool {
+        let doseShouldNotHaveElapsed = !dose.doseShouldHaveElapsed
+        let doseNotElapsed = !dose.elapsed
+        return showEmptyView || (doseShouldNotHaveElapsed && doseNotElapsed)
     }
 
     var showCloseCorner: Bool {
@@ -134,14 +136,24 @@ struct HomeDoseProgressView: View {
             }
 
             Button(action: {
-                close()
-                navigation.pushView(
-                    DoseAddView(med: med),
-                    animated: true
-                )
+                if !doseNotElapsed {
+                    close()
+                    navigation.pushView(
+                        DoseAddView(med: med),
+                        animated: true
+                    )
+                } else {
+                    navigation.pushView(
+                        DoseEditView(dataController: dataController,
+                                     dose: dose),
+                        animated: true
+                    )
+                }
             }, label: {
                 ButtonBorderView(
-                    text: Strings.homeTakeNext.rawValue,
+                    text: doseNotElapsed
+                        ? Strings.homeEditDose.rawValue
+                        : Strings.homeTakeNext.rawValue,
                     width: 100
                 )
             })
@@ -192,10 +204,10 @@ struct HomeDoseProgressView: View {
     var body: some View {
         ZStack {
             circle
-                .disabled(disabled)
+                .disabled(doseNotElapsed)
 
             detail
-                .disabled(disabled)
+            // .disabled(doseNotElapsed)
 
             if showCloseCorner {
                 cornerClose

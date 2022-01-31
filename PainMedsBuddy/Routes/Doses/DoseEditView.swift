@@ -216,7 +216,9 @@ struct DoseEditView: View, DestinationView {
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
 
-            viewModel.remindMe = defaultRemindMe
+            if viewModel.add {
+                viewModel.remindMe = defaultRemindMe
+            }
 
             self.viewModel.checkNotificationAbility(startUp: true)
         })

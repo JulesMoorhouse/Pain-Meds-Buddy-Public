@@ -105,6 +105,8 @@ class LocalisedStringTests: BaseTestCase {
             // --------------------------
             case .homeCurrentMeds:
                 output = ""
+            case .homeEditDose:
+                output = ""
             case .homeMedsRunningOut:
                 output = ""
             case .homeRecentlyTaken:
