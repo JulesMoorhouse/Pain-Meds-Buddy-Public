@@ -90,22 +90,39 @@ extension HomeView {
             }
         }
 
+        // NOTE: Re-filter core data results, when items are changed
+        // updated / added, as the init method which uses the
+        // predicate isn't called.
         func filterReaffirmedDoses(loadedDoses: [Dose]) -> [Dose] {
-            let filtered = loadedDoses.filter {
+            // NOTE: Produce an array of all doses which are
+            // in the 3 hours soft elapsed date range, these
+            // are elapsed and not hidden
+            let availableSoft = loadedDoses.filter {
                 if let soft = $0.softElapsedDate {
-                    if let med = $0.med {
-                        // NOTE: Show does which haven't elapsed,
-                        // except for soft elapsed, unless those soft
-                        // elapsed doses are hidden
-                        return $0.elapsed == false || (soft >= Date() && !med.hidden)
-                    }
+                    let notPassedSoftElapse = soft >= Date()
+                    let elapsed = $0.elapsed == true
 
-                    // NOTE: Show doses which haven't elapsed, except if
-                    // they are in the 3 hour window of recently taken
-                    return $0.elapsed == false || soft >= Date()
+                    if let med = $0.med {
+                        return elapsed && (notPassedSoftElapse && !med.hidden)
+                    }
                 }
-                return $0.elapsed == false
+                return false
             }
+
+            // NOTE: Produce an array of all doses currently
+            // being taken, even those which may have been hidden.
+            let inProgress = loadedDoses.filter { $0.elapsed == false }
+
+            // NOTE: From the availableSoft array remove any doses
+            // which use the same med as inProgress, aka so the
+            // user doesn't try and take a dose of an available dose
+            // which is currently in progress
+            let noAvailableOverdoses = availableSoft.filter { soft in
+                !inProgress.contains(where: { $0.med?.objectID == soft.med?.objectID })
+            }
+
+            // NOTE: Add the two doses together
+            let filtered = noAvailableOverdoses + inProgress
 
             return filtered.sorted(by: \Dose.doseTakenDate)
         }
