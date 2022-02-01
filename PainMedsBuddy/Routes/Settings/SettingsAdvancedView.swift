@@ -31,6 +31,8 @@ struct SettingsAdvancedView: View, DestinationView {
     var body: some View {
         ZStack {
             Form {
+                Section { }
+
                 Section(footer: Text(Strings.settingsDefaultRemindMeFooter)) {
                     Toggle(Strings.settingsDefaultRemindMe.rawValue,
                            isOn: $defaultRemindMe)

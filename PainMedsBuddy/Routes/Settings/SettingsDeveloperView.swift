@@ -30,6 +30,8 @@ struct SettingsDeveloperView: View, DestinationView {
     var body: some View {
         ZStack {
             Form {
+                Section { }
+
                 Section {
                     Button(Strings.settingsAddExampleData.rawValue) {
                         activeAlert = .exampleDataConfirmation

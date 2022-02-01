@@ -22,6 +22,8 @@ struct SettingsView: View {
         NavigationViewChild {
             ZStack {
                 Form {
+                    Section { }
+
                     // --- Advanced ---
                     Section {
                         Button(action: {
@@ -44,6 +46,7 @@ struct SettingsView: View {
                             .accessibilityIdentifier(.settingsAdvanced)
                         })
                     }
+                    .frame(maxHeight: 50)
 
                     // --- Developer ---
                     Section {
@@ -67,6 +70,7 @@ struct SettingsView: View {
                             .accessibilityIdentifier(.settingsDeveloper)
                         })
                     }
+                    .frame(maxHeight: 50)
 
                     // --- Acknowledgements ---
                     Section {
@@ -98,17 +102,21 @@ struct SettingsView: View {
                             .accessibilityIdentifier(.settingsAcknowledgements)
                         })
                     }
+                    .frame(maxHeight: 50)
 
                     // --- support ---
                     Section {
                         SettingsSupportView(dataController: dataController)
                     }
+                    .frame(maxHeight: 50)
 
                     // --- NoResponsibility ---
                     Section(footer:
                         Text(Strings.settingsNoResponsibility)
                             .multilineTextAlignment(.center)
                     ) {}
+                    .frame(maxHeight: 200)
+
                 }
                 .navigationTitle(Strings.tabTitleSettings.rawValue)
                 .navigationBarAccessibilityIdentifier(.tabTitleSettings)
