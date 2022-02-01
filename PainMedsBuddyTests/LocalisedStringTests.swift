@@ -167,6 +167,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .doseEditAmount:
                 output = ""
+            case .doseElapsedLabel:
+                output = ""
             case .doseElapsedReminder:
                 output = ""
             case .doseElapsedReminderAlertTitle:

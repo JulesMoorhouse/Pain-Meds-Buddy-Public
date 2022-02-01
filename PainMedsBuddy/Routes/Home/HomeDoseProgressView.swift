@@ -48,7 +48,7 @@ struct HomeDoseProgressView: View {
     }
 
     var progress: CGFloat {
-        if showEmptyView {
+        if showEmptyView || dose.elapsed {
             return 0
         }
         let onePercent: CGFloat = 1 / CGFloat(dose.doseTotalTimeSeconds)

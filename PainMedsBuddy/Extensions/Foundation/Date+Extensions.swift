@@ -49,6 +49,13 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    var dateToShortTime: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter.string(from: self)
+    }
+
     func adding(seconds: Int) -> Date {
         Calendar.current.date(byAdding: .second, value: seconds, to: self)!
     }

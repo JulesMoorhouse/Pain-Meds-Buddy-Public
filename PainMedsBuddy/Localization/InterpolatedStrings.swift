@@ -8,6 +8,10 @@
 import Foundation
 
 struct InterpolatedStrings {
+    static func doseElapsedLabel(dose: Dose) -> String {
+        String(.doseElapsedLabel, values: [dose.doseElapsedDateString])
+    }
+
     static func doseProgressAccessibilityRemaining(dose: Dose, med: Med) -> String {
         String(.doseProgressAccessibilityRemaining,
                values: [

@@ -114,6 +114,17 @@ extension HomeView {
                 return false
             }
 
+            // NOTE: Create an array of available soft elapsed doses
+            // with unique meds
+            var uniqueAvailableSoft = [Dose]()
+            for dose in availableSoft {
+                if !uniqueAvailableSoft.contains(where: {
+                    $0.med?.objectID == dose.med?.objectID
+                }) {
+                    uniqueAvailableSoft.append(dose)
+                }
+            }
+
             // NOTE: Produce an array of all doses currently
             // being taken, even those which may have been hidden.
             let inProgress = loadedDoses.filter { $0.elapsed == false }
@@ -122,14 +133,14 @@ extension HomeView {
             // which use the same med as inProgress, aka so the
             // user doesn't try and take a dose of an available dose
             // which is currently in progress
-            let noAvailableOverdoses = availableSoft.filter { soft in
+            let noAvailableOverdoses = uniqueAvailableSoft.filter { soft in
                 !inProgress.contains(where: { $0.med?.objectID == soft.med?.objectID })
             }
 
             // NOTE: Add the two doses together
             let filtered = noAvailableOverdoses + inProgress
 
-            return filtered.sorted(by: \Dose.doseTakenDate)
+            return filtered.sorted(by: \Dose.doseTotalTimeSeconds)
         }
 
         // INFO: Get a unique list of medications that don't have currently active doses.

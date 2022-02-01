@@ -58,6 +58,18 @@ extension Dose: Comparable {
         return nil
     }
 
+    var doseElapsedDateString: String {
+        if let duration = med?.medTotalDurationSeconds {
+            let modifiedDate = doseTakenDate.addingTimeInterval(TimeInterval(duration))
+            let sameDay = Calendar.current.isDate(doseTakenDate, inSameDayAs: modifiedDate)
+
+            return sameDay
+                ? modifiedDate.dateToShortTime
+                : modifiedDate.dateToShortDateTime
+        }
+        return ""
+    }
+
     var doseSoftElapsedDate: Date? {
         if let duration = med?.medTotalDurationSeconds {
             let elapsingDate = doseTakenDate.addingTimeInterval(TimeInterval(duration))
@@ -70,7 +82,7 @@ extension Dose: Comparable {
     var doseFormattedTakenDateLong: String {
         if let date = takenDate {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-dd-MM"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.locale = Locale.current
             return dateFormatter.string(from: date)
         }

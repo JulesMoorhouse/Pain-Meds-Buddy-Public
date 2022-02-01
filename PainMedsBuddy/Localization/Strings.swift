@@ -64,6 +64,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case doseEditAreYouSureDelete
     case doseEditAreYouSureElapse
     case doseEditAmount
+    case doseElapsedLabel
     case doseElapsedReminder
     case doseElapsedReminderAlertTitle
     case doseElapsedReminderAlertMessage

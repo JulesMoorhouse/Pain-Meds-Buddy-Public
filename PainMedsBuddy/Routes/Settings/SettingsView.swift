@@ -116,7 +116,6 @@ struct SettingsView: View {
                             .multilineTextAlignment(.center)
                     ) {}
                     .frame(maxHeight: 200)
-
                 }
                 .navigationTitle(Strings.tabTitleSettings.rawValue)
                 .navigationBarAccessibilityIdentifier(.tabTitleSettings)

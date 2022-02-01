@@ -61,9 +61,20 @@ struct DoseRowView: View {
                             Text(dose.doseDisplay)
                                 .foregroundColor(.secondary)
                                 .font(.caption)
-                            Text(dose.doseFormattedTakenTimeShort)
-                                .foregroundColor(.secondary)
-                                .font(.caption)
+                            HStack {
+                                Text(dose.doseFormattedTakenTimeShort)
+                                    .foregroundColor(.secondary)
+                                    .font(.caption)
+
+                                if dose.doseElapsed {
+                                    Text(InterpolatedStrings
+                                        .doseElapsedLabel(dose: dose))
+                                        .foregroundColor(.secondary)
+                                        .font(.caption)
+                                }
+
+                                Spacer()
+                            }
                         }
 
                         Spacer()
