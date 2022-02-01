@@ -93,6 +93,10 @@
 		88C74D06277B6525002B2EC6 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 88C74D05277B6525002B2EC6 /* DecodableString.json */; };
 		88C74D08277B8531002B2EC6 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C74D07277B8531002B2EC6 /* PerformanceTests.swift */; };
 		88C74D10277BAC88002B2EC6 /* ExistingDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */; };
+		88CE3B3227A9AF22009FB237 /* DataController+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3127A9AF22009FB237 /* DataController+Static.swift */; };
+		88CE3B3427A9AF63009FB237 /* DataController+SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */; };
+		88CE3B3627A9B00D009FB237 /* DataController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */; };
+		88CE3B3827A9B233009FB237 /* DataController+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3727A9B233009FB237 /* DataController+Queries.swift */; };
 		88DFEA2A2786F93700E3BAFB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFEA292786F93700E3BAFB /* SnapshotHelper.swift */; };
 		88DFEA2D2786F98100E3BAFB /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFEA2C2786F98100E3BAFB /* SnapshotUITests.swift */; };
 		88E705DB27872E73003EB471 /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 88E705DA27872E73003EB471 /* CircularProgress */; };
@@ -235,6 +239,10 @@
 		88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PainMedsBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingDataTests.swift; sourceTree = "<group>"; };
 		88C74D11277BAC88002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88CE3B3127A9AF22009FB237 /* DataController+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+Static.swift"; sourceTree = "<group>"; };
+		88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+SampleData.swift"; sourceTree = "<group>"; };
+		88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+Notifications.swift"; sourceTree = "<group>"; };
+		88CE3B3727A9B233009FB237 /* DataController+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+Queries.swift"; sourceTree = "<group>"; };
 		88DFEA292786F93700E3BAFB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		88DFEA2C2786F98100E3BAFB /* SnapshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUITests.swift; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
@@ -328,6 +336,10 @@
 				88AB7CA4275A5A760055BD9B /* Colors.xcassets */,
 				88321423275120D40026D85F /* ContentView.swift */,
 				88572054275139DD00B4B00C /* DataController.swift */,
+				88CE3B3127A9AF22009FB237 /* DataController+Static.swift */,
+				88CE3B3727A9B233009FB237 /* DataController+Queries.swift */,
+				88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */,
+				88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */,
 				88F906AA2799BBF500CBC65E /* AppDelegate.swift */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88321427275120D60026D85F /* Preview Content */,
@@ -826,6 +838,7 @@
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */,
+				88CE3B3427A9AF63009FB237 /* DataController+SampleData.swift in Sources */,
 				88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
 				88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */,
@@ -835,6 +848,7 @@
 				8848D46A2778A03400F10DC9 /* DatePicker+Extensions.swift in Sources */,
 				880A1883278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift in Sources */,
 				88E930AC2760D8F800A98708 /* HomeDoseProgressView.swift in Sources */,
+				88CE3B3627A9B00D009FB237 /* DataController+Notifications.swift in Sources */,
 				88572053275133A700B4B00C /* Main.xcdatamodeld in Sources */,
 				8857205D275239D800B4B00C /* DosesView.swift in Sources */,
 				88B6E8352754D84700790A14 /* MedsView.swift in Sources */,
@@ -872,12 +886,14 @@
 				88AB7CB5275F720A0055BD9B /* PlaceholderView.swift in Sources */,
 				88F906AB2799BBF500CBC65E /* AppDelegate.swift in Sources */,
 				88B6E8332754CDE500790A14 /* Binding-OnChange.swift in Sources */,
+				88CE3B3227A9AF22009FB237 /* DataController+Static.swift in Sources */,
 				88C611BF27A576BD006AAE38 /* SettingsSupportView.swift in Sources */,
 				88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */,
 				88EF203127526746006037CF /* Med-CoreDataHelpers.swift in Sources */,
 				8848D4722778A09D00F10DC9 /* LocalizedStringKey+Extensions.swift in Sources */,
 				88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */,
 				889A4D0227764BC500E3B53B /* ChevronView.swift in Sources */,
+				88CE3B3827A9B233009FB237 /* DataController+Queries.swift in Sources */,
 				88AB7CA7275D351A0055BD9B /* DoseAddView.swift in Sources */,
 				88AB7C9B2754F4F20055BD9B /* DoseEditView.swift in Sources */,
 				8852BF4927861B27000750FB /* DoseMedSelectViewModel.swift in Sources */,
