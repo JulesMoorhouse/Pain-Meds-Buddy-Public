@@ -20,9 +20,11 @@ struct DurationPopupView: View {
             text: title,
             width: 250,
             content: {
-                TimeEditPickerView(duration: $duration,
-                               hourAid: hourAid,
-                               minuteAid: minuteAid)
+                TimeEditPickerView(
+                    duration: $duration,
+                    hourAid: hourAid,
+                    minuteAid: minuteAid
+                )
             },
             leftButton: {},
             rightButton: {
@@ -31,7 +33,10 @@ struct DurationPopupView: View {
                 }, label: {
                     Image(systemName: SFSymbol.xMark.systemName)
                         .font(.headline)
+
                 })
+                .frame(width: 25, height: 25, alignment: .center)
+
             },
             bottomButton: {
                 Button(action: {

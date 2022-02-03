@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct PopUpView<Content: View, RightButton: View, LeftButton: View, BottomButton: View>: View {
+struct PopUpView<Content: View,
+    RightButton: View,
+    LeftButton: View,
+    BottomButton: View>: View
+{
     let text: LocalizedStringKey
     @ViewBuilder var content: Content
     @ViewBuilder var rightButton: RightButton

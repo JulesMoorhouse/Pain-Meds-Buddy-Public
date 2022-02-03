@@ -447,6 +447,7 @@
 				88C8B7C927ABDF400051508F /* Views */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
+				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
@@ -552,7 +553,6 @@
 			children = (
 				88B53E912793079900DD74FC /* DurationPopupView.swift */,
 				88B53E82279026E600DD74FC /* InfoPopupView.swift */,
-				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 				88AB7CAC275E83D60055BD9B /* PopUpView.swift */,
 			);
 			path = Popups;
