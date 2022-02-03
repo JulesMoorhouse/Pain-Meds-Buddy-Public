@@ -1,5 +1,5 @@
 //
-//  HourMinutePicker.swift
+//  HourMinutePickerView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HourMinutePicker: View {
+struct HourMinutePickerView: View {
     @State private var selectedHour: Int = 0
     @State private var selectedMinute: Int = 0
 
@@ -19,20 +19,20 @@ struct HourMinutePicker: View {
     var body: some View {
         if #available(iOS 15, *) {
             HStack {
-                TimePicker(
+                TimePickerView(
                     hours: true,
                     selected: self.$selectedHour.onChange(update),
                     aId: hourAid
                 )
 
-                TimePicker(
+                TimePickerView(
                     hours: false,
                     selected: self.$selectedMinute.onChange(update),
                     aId: minuteAid
                 )
             }
         } else {
-            TimePicker(
+            TimePickerView(
                 hours: true,
                 selected: self.$selectedHour.onChange(update),
                 aId: hourAid
@@ -43,7 +43,7 @@ struct HourMinutePicker: View {
             .clipped()
             .background(Color(UIColor.systemBackground))
 
-            TimePicker(
+            TimePickerView(
                 hours: false,
                 selected: self.$selectedMinute.onChange(update),
                 aId: minuteAid
@@ -79,9 +79,9 @@ struct HourMinutePicker: View {
     }
 }
 
-struct HourMinutePicker_Previews: PreviewProvider {
+struct HourMinutePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        HourMinutePicker(duration: .constant("60"),
+        HourMinutePickerView(duration: .constant("60"),
                          hourAid: .nothing,
                          minuteAid: .nothing)
     }

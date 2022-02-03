@@ -20,7 +20,7 @@ struct DurationPopupView: View {
             text: title,
             width: 250,
             content: {
-                TimeEditPicker(duration: $duration,
+                TimeEditPickerView(duration: $duration,
                                hourAid: hourAid,
                                minuteAid: minuteAid)
             },

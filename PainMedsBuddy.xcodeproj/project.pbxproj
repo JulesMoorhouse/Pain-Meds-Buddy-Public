@@ -107,9 +107,9 @@
 		88E930A22760A63E00A98708 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930A12760A63E00A98708 /* SettingsView.swift */; };
 		88E930AA2760C6E500A98708 /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E930A92760C6E500A98708 /* Acknowledgements.plist */; };
 		88E930AC2760D8F800A98708 /* HomeDoseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E930AB2760D8F800A98708 /* HomeDoseProgressView.swift */; };
-		88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */; };
-		88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265B279B1A66001C2C55 /* TimePicker.swift */; };
-		88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */; };
+		88EE265A279AF2BF001C2C55 /* TimeEditPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE2659279AF2BF001C2C55 /* TimeEditPickerView.swift */; };
+		88EE265C279B1A66001C2C55 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265B279B1A66001C2C55 /* TimePickerView.swift */; };
+		88EE265E279B1D8C001C2C55 /* HourMinutePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE265D279B1D8C001C2C55 /* HourMinutePickerView.swift */; };
 		88EE266127A154D4001C2C55 /* HomeHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266027A154D4001C2C55 /* HomeHeadingView.swift */; };
 		88EE266327A1890F001C2C55 /* DisabledBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266227A1890E001C2C55 /* DisabledBarView.swift */; };
 		88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE266427A18A7F001C2C55 /* EmptyRowView.swift */; };
@@ -250,9 +250,9 @@
 		88E930A12760A63E00A98708 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		88E930A92760C6E500A98708 /* Acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Acknowledgements.plist; sourceTree = SOURCE_ROOT; };
 		88E930AB2760D8F800A98708 /* HomeDoseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDoseProgressView.swift; sourceTree = "<group>"; };
-		88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditPicker.swift; sourceTree = "<group>"; };
-		88EE265B279B1A66001C2C55 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
-		88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutePicker.swift; sourceTree = "<group>"; };
+		88EE2659279AF2BF001C2C55 /* TimeEditPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditPickerView.swift; sourceTree = "<group>"; };
+		88EE265B279B1A66001C2C55 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		88EE265D279B1D8C001C2C55 /* HourMinutePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutePickerView.swift; sourceTree = "<group>"; };
 		88EE266027A154D4001C2C55 /* HomeHeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadingView.swift; sourceTree = "<group>"; };
 		88EE266227A1890E001C2C55 /* DisabledBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledBarView.swift; sourceTree = "<group>"; };
 		88EE266427A18A7F001C2C55 /* EmptyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRowView.swift; sourceTree = "<group>"; };
@@ -444,29 +444,15 @@
 		8848D46327789CCC00F10DC9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
-				889A4D0127764BC500E3B53B /* ChevronView.swift */,
+				88C8B7C927ABDF400051508F /* Views */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
-				88EE266427A18A7F001C2C55 /* EmptyRowView.swift */,
-				88EE266227A1890E001C2C55 /* DisabledBarView.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
-				88EE265D279B1D8C001C2C55 /* HourMinutePicker.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
-				88EF20382753BBA0006037CF /* MedRowView.swift */,
-				88E93090275FCED000A98708 /* MedSymbolView.swift */,
-				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
-				88B53E932793084100DD74FC /* Popups */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
 				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
-				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88F9069D2798115100CBC65E /* TabBarHandler.swift */,
-				88F906A427988F4E00CBC65E /* TextAreaView.swift */,
-				88EE2659279AF2BF001C2C55 /* TimeEditPicker.swift */,
-				88EE265B279B1A66001C2C55 /* TimePicker.swift */,
-				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
-				889A4CF52775E1B900E3B53B /* VStackFormView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -593,6 +579,28 @@
 				88B53EA02795931A00DD74FC /* OneMedTests.swift */,
 			);
 			path = PainMedsBuddyUITests;
+			sourceTree = "<group>";
+		};
+		88C8B7C927ABDF400051508F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88B53E932793084100DD74FC /* Popups */,
+				88AB7CAA275E83910055BD9B /* ButtonBorderView.swift */,
+				889A4D0127764BC500E3B53B /* ChevronView.swift */,
+				88EE266227A1890E001C2C55 /* DisabledBarView.swift */,
+				88EE266427A18A7F001C2C55 /* EmptyRowView.swift */,
+				88EE265D279B1D8C001C2C55 /* HourMinutePickerView.swift */,
+				88EF20382753BBA0006037CF /* MedRowView.swift */,
+				88E93090275FCED000A98708 /* MedSymbolView.swift */,
+				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
+				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
+				88F906A427988F4E00CBC65E /* TextAreaView.swift */,
+				88EE2659279AF2BF001C2C55 /* TimeEditPickerView.swift */,
+				88EE265B279B1A66001C2C55 /* TimePickerView.swift */,
+				88AB7C9E275646EB0055BD9B /* TwoColumnView.swift */,
+				889A4CF52775E1B900E3B53B /* VStackFormView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		88DFEA2B2786F96600E3BAFB /* Fastlane */ = {
@@ -837,7 +845,7 @@
 				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
-				88EE265A279AF2BF001C2C55 /* TimeEditPicker.swift in Sources */,
+				88EE265A279AF2BF001C2C55 /* TimeEditPickerView.swift in Sources */,
 				88CE3B3427A9AF63009FB237 /* DataController+SampleData.swift in Sources */,
 				88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */,
 				8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */,
@@ -868,9 +876,9 @@
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
 				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
-				88EE265C279B1A66001C2C55 /* TimePicker.swift in Sources */,
+				88EE265C279B1A66001C2C55 /* TimePickerView.swift in Sources */,
 				88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */,
-				88EE265E279B1D8C001C2C55 /* HourMinutePicker.swift in Sources */,
+				88EE265E279B1D8C001C2C55 /* HourMinutePickerView.swift in Sources */,
 				88EE266927A1D44F001C2C55 /* SettingsAdvancedView.swift in Sources */,
 				88E930A22760A63E00A98708 /* SettingsView.swift in Sources */,
 				88EF20372753B215006037CF /* MedEditView.swift in Sources */,

@@ -79,6 +79,14 @@ extension Dose: Comparable {
         return nil
     }
 
+    var doseElapsedDateSort: Date {
+        if let date = doseSoftElapsedDate {
+            return date
+        }
+
+        return Date()
+    }
+
     var doseFormattedTakenDateLong: String {
         if let date = takenDate {
             let dateFormatter = DateFormatter()

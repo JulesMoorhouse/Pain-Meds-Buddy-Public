@@ -1,5 +1,5 @@
 //
-//  TimeEditPicker.swift
+//  TimeEditPickerView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimeEditPicker: View {
+struct TimeEditPickerView: View {
     @Binding var duration: String
     let hourAid: Strings
     let minuteAid: Strings
@@ -16,7 +16,7 @@ struct TimeEditPicker: View {
         GeometryReader { _ in
             HStack(spacing: 0) {
                 Spacer()
-                HourMinutePicker(duration: $duration,
+                HourMinutePickerView(duration: $duration,
                                  hourAid: hourAid,
                                  minuteAid: minuteAid)
                 Spacer()
@@ -28,9 +28,9 @@ struct TimeEditPicker: View {
     }
 }
 
-struct TimeEditPicker_Previews: PreviewProvider {
+struct TimeEditPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeEditPicker(duration: .constant("60"),
+        TimeEditPickerView(duration: .constant("60"),
                        hourAid: .nothing,
                        minuteAid: .nothing)
     }

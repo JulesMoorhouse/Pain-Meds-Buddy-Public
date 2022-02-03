@@ -1,5 +1,5 @@
 //
-//  TimePicker.swift
+//  TimePickerView.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimePicker: View {
+struct TimePickerView: View {
     let hours: Bool
 
     var min: [Int] = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
@@ -38,7 +38,7 @@ struct TimePicker: View {
     func contents(hours: Bool) -> some View {
         Group {
             if hours {
-                ForEach(0 ..< 13) {
+                ForEach(0 ..< 25) {
                     let label = String(.timePickerHours, values: ["\($0)"])
                     Text(label)
                         .tag($0)
@@ -56,8 +56,8 @@ struct TimePicker: View {
     }
 }
 
-struct TimePicker_Previews: PreviewProvider {
+struct TimePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimePicker(hours: true, selected: .constant(5), aId: .commonInfo)
+        TimePickerView(hours: true, selected: .constant(5), aId: .commonInfo)
     }
 }

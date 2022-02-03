@@ -455,7 +455,7 @@ struct MedEditView: View, DestinationView {
             Spacer()
 
             if #available(iOS 15, *) {
-                HourMinutePicker(duration: binding,
+                HourMinutePickerView(duration: binding,
                                  hourAid: hourAid,
                                  minuteAid: minuteAid)
                     .buttonStyle(BorderlessButtonStyle())

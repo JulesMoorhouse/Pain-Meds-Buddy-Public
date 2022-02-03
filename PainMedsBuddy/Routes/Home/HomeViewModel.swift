@@ -140,7 +140,7 @@ extension HomeView {
             // NOTE: Add the two doses together
             let filtered = noAvailableOverdoses + inProgress
 
-            return filtered.sorted(by: \Dose.doseTotalTimeSeconds)
+            return filtered.sorted(by: \Dose.doseElapsedDateSort)
         }
 
         // INFO: Get a unique list of medications that don't have currently active doses.
