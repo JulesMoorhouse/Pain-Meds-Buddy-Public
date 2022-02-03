@@ -100,4 +100,14 @@ platform :ios do
       skip_screenshots: false
     )
   end
+
+  desc "Upload localized meta data"
+  lane :upmeta do
+    deliver(
+      submit_for_review: false,
+      skip_binary_upload: true, 
+      skip_app_version_update: true, 
+      skip_screenshots: true
+    )
+  end
 end
