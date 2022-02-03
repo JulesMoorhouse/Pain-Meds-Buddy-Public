@@ -8,24 +8,64 @@
 import AppCenterCrashes
 
 extension DataController {
+    struct Data: Codable {
+        let meds: [MedicationItem]
+        let doses: [DoseItem]
+
+//        enum CodingKeys: String, CodingKey {
+//            case meds, doses
+//        }
+    }
+
+    struct MedicationItem: Codable {
+        var title: String
+        var dosage: Decimal
+        var defaultAmount: Decimal
+        var durationSeconds: Int16
+        var lastTakeDate: Date?
+        var hasDose: Bool
+
+//        enum CodingKeys: String, CodingKey {
+//            case title, dosage, defaultAmount, durationSeconds, lastTakeDate, hasDose
+//        }
+    }
+
+    struct DoseItem: Codable {
+        var amount: Decimal
+        var elapsed: Bool
+        var remindMe: Bool
+        var takeDate: Date
+        var softElapsedDate: Date
+
+//        enum CodingKeys: String, CodingKey {
+//            case amount, elapsed, remindMe, takeDate, softElapsedDate
+//        }
+    }
+
     /// Creates example meds and doses to make manual testing easier.
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
     func createSampleData(appStore: Bool, medsRequested: Int, medDosesRequired: Int) throws {
         let viewContext = container.viewContext
 
-        struct Drug {
-            var name = ""
-            var mGrams = 0
-            var defAmt: Int16 = 0
-            var duration: Int16 = 0
-            var lastTakeDate = Date()
-            var hasDose: Bool
-        }
-
-        let drugs: [Drug] = [
-            Drug(name: "Paracetamol", mGrams: 500, defAmt: 2, duration: (4 * 60) * 60, hasDose: true),
-            Drug(name: "Ibuprofen", mGrams: 200, defAmt: 2, duration: (4 * 60) * 60, hasDose: true),
-            Drug(name: "Codeine", mGrams: 30, defAmt: 2, duration: (4 * 60) * 60, hasDose: false),
+        let drugs: [MedicationItem] = [
+            MedicationItem(
+                title: "Paracetamol",
+                dosage: 500,
+                defaultAmount: 2,
+                durationSeconds: (4 * 60) * 60,
+                hasDose: true),
+            MedicationItem(
+                title: "Ibuprofen",
+                dosage: 200,
+                defaultAmount: 2,
+                durationSeconds: (4 * 60) * 60,
+                hasDose: true),
+            MedicationItem(
+                title: "Codeine",
+                dosage: 30,
+                defaultAmount: 2,
+                durationSeconds: (4 * 60) * 60,
+                hasDose: false),
         ]
 
         let maxMeds = appStore ? min(drugs.count, medsRequested) : medsRequested
@@ -35,15 +75,15 @@ extension DataController {
 
             // INFO: One to one relationship
             let med = Med(context: viewContext)
-            med.title = drug.name
-            med.notes = "Notes about taking \(drug.name) x \(drug.mGrams) Pills"
-            med.defaultAmount = NSDecimalNumber(value: drug.defAmt)
-            med.dosage = NSDecimalNumber(value: drug.mGrams)
+            med.title = drug.title
+            med.notes = "Notes about taking \(drug.title) x \(drug.dosage) Pills"
+            med.defaultAmount = NSDecimalNumber(decimal: drug.defaultAmount)
+            med.dosage = NSDecimalNumber(decimal: drug.dosage)
             med.color = Med.colours.randomElement()
             med.measure = "mg"
             med.form = "Pills"
             med.remaining = NSDecimalNumber(value: Int16.random(in: 0 ... 99))
-            med.durationSeconds = drug.duration
+            med.durationSeconds = drug.durationSeconds
             med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date().adding(days: -20)
             med.lastTakenDate = Date().adding(days: -20)
@@ -57,7 +97,8 @@ extension DataController {
                         let dose = Dose(context: viewContext)
                         dose.med = med
 
-                        let tempAmount = Int16.random(in: 1 ... drug.defAmt)
+                        let tempDefaultAmount: Int = Int("\(drug.defaultAmount)") ?? 0
+                        let tempAmount = Int.random(in: 1 ... tempDefaultAmount)
 
                         let tempTaken: Date = takenDates.first!
                         dose.takenDate = tempTaken
@@ -72,7 +113,7 @@ extension DataController {
                         dose.softElapsedDate = dose.doseSoftElapsedDate
 
                         dose.amount = NSDecimalNumber(value: tempAmount)
-                        dose.details = "Notes about - \(drug.name) \(tempAmount) x \(drug.mGrams)mg Pills"
+                        dose.details = "Notes about - \(drug.title) \(tempAmount) x \(drug.dosage)mg Pills"
                         dose.remindMe = true
 
                         takenDates.remove(at: 0)
@@ -104,8 +145,7 @@ extension DataController {
         try? createSampleData(
             appStore: appStore,
             medsRequested: 5,
-            medDosesRequired: 4
-        )
+            medDosesRequired: 4)
     }
 
     func handleSampleDataOptions(appStore: Bool) {
@@ -134,8 +174,7 @@ extension DataController {
                 try createSampleData(
                     appStore: appStore,
                     medsRequested: meds,
-                    medDosesRequired: doses
-                )
+                    medDosesRequired: doses)
             } else {
                 try createSampleData(appStore: appStore)
             }
@@ -146,5 +185,29 @@ extension DataController {
             ], attachments: nil)
             fatalError("Fatal error creating data: \(error.localizedDescription)")
         }
+    }
+
+    func coreDataToJson() {
+        let tempData = Data(meds: [], doses: [])
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        do {
+            let data = try encoder.encode(tempData)
+            print(String(data: data, encoding: .utf8)!)
+        } catch {}
+    }
+
+    func jsonToCoreData() {
+        let jsonString = ""
+
+        let jsonData = jsonString.data(using: .utf8)!
+        let decoder = JSONDecoder()
+
+        do {
+            let data = try decoder.decode(Data.self, from: jsonData)
+            print(data)
+        } catch {}
     }
 }
