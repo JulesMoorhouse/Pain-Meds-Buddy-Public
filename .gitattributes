@@ -1,1 +1,2 @@
 PainMedsBuddy/Configuration/Secrets.swift filter=git-crypt diff=git-crypt
+fastlane/metadata/en-GB/keywords.txt filter=git-crypt diff=git-crypt
