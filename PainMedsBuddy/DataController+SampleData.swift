@@ -6,42 +6,9 @@
 //
 
 import AppCenterCrashes
+import CoreData
 
 extension DataController {
-    struct Data: Codable {
-        let meds: [MedicationItem]
-        let doses: [DoseItem]
-
-//        enum CodingKeys: String, CodingKey {
-//            case meds, doses
-//        }
-    }
-
-    struct MedicationItem: Codable {
-        var title: String
-        var dosage: Decimal
-        var defaultAmount: Decimal
-        var durationSeconds: Int16
-        var lastTakeDate: Date?
-        var hasDose: Bool
-
-//        enum CodingKeys: String, CodingKey {
-//            case title, dosage, defaultAmount, durationSeconds, lastTakeDate, hasDose
-//        }
-    }
-
-    struct DoseItem: Codable {
-        var amount: Decimal
-        var elapsed: Bool
-        var remindMe: Bool
-        var takeDate: Date
-        var softElapsedDate: Date
-
-//        enum CodingKeys: String, CodingKey {
-//            case amount, elapsed, remindMe, takeDate, softElapsedDate
-//        }
-    }
-
     /// Creates example meds and doses to make manual testing easier.
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
     func createSampleData(appStore: Bool, medsRequested: Int, medDosesRequired: Int) throws {
@@ -97,7 +64,7 @@ extension DataController {
                         let dose = Dose(context: viewContext)
                         dose.med = med
 
-                        let tempDefaultAmount: Int = Int("\(drug.defaultAmount)") ?? 0
+                        let tempDefaultAmount = Int("\(drug.defaultAmount)") ?? 0
                         let tempAmount = Int.random(in: 1 ... tempDefaultAmount)
 
                         let tempTaken: Date = takenDates.first!
@@ -185,29 +152,5 @@ extension DataController {
             ], attachments: nil)
             fatalError("Fatal error creating data: \(error.localizedDescription)")
         }
-    }
-
-    func coreDataToJson() {
-        let tempData = Data(meds: [], doses: [])
-
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-
-        do {
-            let data = try encoder.encode(tempData)
-            print(String(data: data, encoding: .utf8)!)
-        } catch {}
-    }
-
-    func jsonToCoreData() {
-        let jsonString = ""
-
-        let jsonData = jsonString.data(using: .utf8)!
-        let decoder = JSONDecoder()
-
-        do {
-            let data = try decoder.decode(Data.self, from: jsonData)
-            print(data)
-        } catch {}
     }
 }

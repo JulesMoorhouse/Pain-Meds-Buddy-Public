@@ -12,6 +12,7 @@
 		880A187F278D7FFE00FA0C7D /* LocalisedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */; };
 		880A1881278D82DD00FA0C7D /* InterpolatedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */; };
 		880A1883278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */; };
+		880EBBCB27AD22DA00F3F629 /* DataController+ImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */; };
 		881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3912764047900DA06D7 /* HomeMedRow.swift */; };
 		881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39327649C0F00DA06D7 /* MedDefault.swift */; };
 		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
@@ -157,6 +158,7 @@
 		880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisedStringTests.swift; sourceTree = "<group>"; };
 		880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpolatedStrings.swift; sourceTree = "<group>"; };
 		880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldSelectAll-ViewModifier.swift"; sourceTree = "<group>"; };
+		880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+ImportExport.swift"; sourceTree = "<group>"; };
 		881BA3912764047900DA06D7 /* HomeMedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMedRow.swift; sourceTree = "<group>"; };
 		881BA39327649C0F00DA06D7 /* MedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedDefault.swift; sourceTree = "<group>"; };
 		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				88CE3B3727A9B233009FB237 /* DataController+Queries.swift */,
 				88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */,
 				88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */,
+				880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */,
 				88F906AA2799BBF500CBC65E /* AppDelegate.swift */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
 				88321427275120D60026D85F /* Preview Content */,
@@ -885,6 +888,7 @@
 				88EE266727A1ACC8001C2C55 /* SettingsDeveloperView.swift in Sources */,
 				88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */,
 				889C42D72781AD26003B6ED2 /* NavigationBarAccessor.swift in Sources */,
+				880EBBCB27AD22DA00F3F629 /* DataController+ImportExport.swift in Sources */,
 				88AB7CAF275E87340055BD9B /* MedSortPopupView.swift in Sources */,
 				88EE266127A154D4001C2C55 /* HomeHeadingView.swift in Sources */,
 				88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */,
