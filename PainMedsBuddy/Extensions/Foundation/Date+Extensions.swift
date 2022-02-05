@@ -56,6 +56,13 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    var dateToFileString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        formatter.locale = Locale.current
+        return formatter.string(from: self)
+    }
+
     func adding(seconds: Int) -> Date {
         Calendar.current.date(byAdding: .second, value: seconds, to: self)!
     }

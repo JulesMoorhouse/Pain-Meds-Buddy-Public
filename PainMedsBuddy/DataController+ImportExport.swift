@@ -116,29 +116,21 @@ extension DataController {
         }
     }
 
-    func coreDataToJson() -> String {
+    func coreDataToJson() throws -> String {
         var tempData = Data(meds: [], doses: [])
 
         let medRequest = NSFetchRequest<Med>(entityName: "Med")
-        do {
-            let tempMeds = try container.viewContext.fetch(medRequest)
-            for med in tempMeds {
-                let medItem = MedicationItem(med: med)
-                tempData.meds.append(medItem)
-            }
-        } catch {
-            print("ERROR: Med:coreDataToJson \(error.localizedDescription)")
+        let tempMeds = try container.viewContext.fetch(medRequest)
+        for med in tempMeds {
+            let medItem = MedicationItem(med: med)
+            tempData.meds.append(medItem)
         }
 
         let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
-        do {
-            let tempDoses = try container.viewContext.fetch(doseRequest)
-            for dose in tempDoses {
-                let doseItem = DoseItem(dose: dose)
-                tempData.doses.append(doseItem)
-            }
-        } catch {
-            print("ERROR: Dose:coreDataToJson \(error.localizedDescription)")
+        let tempDoses = try container.viewContext.fetch(doseRequest)
+        for dose in tempDoses {
+            let doseItem = DoseItem(dose: dose)
+            tempData.doses.append(doseItem)
         }
 
         let encoder = JSONEncoder()
@@ -146,47 +138,39 @@ extension DataController {
 
         var result = ""
 
-        do {
-            let data = try encoder.encode(tempData)
-            result = String(data: data, encoding: .utf8)!
-        } catch {
-            print("ERROR: coreDataToJson: \(error)")
-        }
+        let data = try encoder.encode(tempData)
+        result = String(data: data, encoding: .utf8)!
 
         return result
     }
 
-    func jsonToCoreData(_ jsonString: String) {
+    func jsonToCoreData(_ jsonString: String) throws {
         let jsonData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
 
-        do {
-            let data = try decoder.decode(Data.self, from: jsonData)
-            print(data)
+        let data = try decoder.decode(Data.self, from: jsonData)
+        print(data)
 
-            try? deleteIterateAll()
+        try deleteIterateAll()
 
-            let viewContext = container.viewContext
+        let viewContext = container.viewContext
 
-            for medItem in data.meds {
-                let med = Med(context: viewContext)
-                medItem.setMed(med: med)
-                med.title = "\(med.medTitle)"
+        for medItem in data.meds {
+            let med = Med(context: viewContext)
+            medItem.setMed(med: med)
+            med.title = "\(med.medTitle)"
 
-                let medDoses = data.doses.filter {
-                    $0.medObjectID == medItem.objectID
-                }
-
-                for doseItem in medDoses {
-                    let tempDose = Dose(context: viewContext)
-                    doseItem.setDose(dose: tempDose)
-                    tempDose.med = med
-                }
+            let medDoses = data.doses.filter {
+                $0.medObjectID == medItem.objectID
             }
 
-            try viewContext.save()
-        } catch {
-            print("ERROR: jsonToCoreData: \(error)")
+            for doseItem in medDoses {
+                let tempDose = Dose(context: viewContext)
+                doseItem.setDose(dose: tempDose)
+                tempDose.med = med
+            }
         }
+
+        try viewContext.save()
     }
 }

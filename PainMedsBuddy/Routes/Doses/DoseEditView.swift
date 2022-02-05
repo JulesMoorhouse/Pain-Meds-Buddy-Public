@@ -254,7 +254,7 @@ struct DoseEditView: View, DestinationView {
             return Alert(
                 title: Text(.doseEditElapseDose),
                 message: Text(.doseEditAreYouSureElapse),
-                primaryButton: .default(Text(.commonOK),
+                primaryButton: .default(Text(.commonYes),
                                         action: setElapse),
                 secondaryButton: .cancel()
             )

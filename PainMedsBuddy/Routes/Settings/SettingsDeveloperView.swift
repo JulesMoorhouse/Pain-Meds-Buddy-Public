@@ -22,16 +22,54 @@ struct SettingsDeveloperView: View, DestinationView {
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .exampleDataConfirmation
+    @State private var showRestore = false
+    @State private var showBackup = false
+    @State private var errorMessage = ""
+    @State private var document: JsonFileDocument?
 
     enum ActiveAlert {
-        case exampleDataConfirmation, crashReportTestConfirmation
+        case exampleDataConfirmation,
+             crashReportTestConfirmation,
+             restoreDataConfirmation,
+             backupFailed,
+             restoreFailed,
+             exampleDataFailed
+    }
+
+    var defaultExportFileName: String {
+        let appInitials = String(.commonAppNameInitials)
+        return "\(appInitials)-\(Date().dateToFileString).json"
     }
 
     var body: some View {
         ZStack {
             Form {
-                Section { }
+                Section {}
 
+                Section(footer:
+                    Text(Strings.settingsBackupFooter)
+                        .multilineTextAlignment(.center)
+                ) {
+                    Button(Strings.settingsBackup.rawValue) {
+                        do {
+                            let data = try dataController.coreDataToJson()
+                            document = JsonFileDocument(initialText: data)
+                            showBackup = true
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            activeAlert = .backupFailed
+                            showAlert.toggle()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+                Section {
+                    Button(Strings.settingsRestore.rawValue) {
+                        activeAlert = .restoreDataConfirmation
+                        showAlert.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
                 Section {
                     Button(Strings.settingsAddExampleData.rawValue) {
                         activeAlert = .exampleDataConfirmation
@@ -47,6 +85,50 @@ struct SettingsDeveloperView: View, DestinationView {
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
+            }
+        }
+        .fileExporter(isPresented: $showBackup,
+                      document: document,
+                      contentType: .json,
+                      defaultFilename: defaultExportFileName)
+        { result in
+            switch result {
+            case .success(let url):
+                print("Saved to \(url)")
+                self.presentableToast.message
+                    = String(.settingsBackupCompletedMessage)
+                self.presentableToast.show = true
+            case .failure(let error):
+                print(error.localizedDescription)
+                errorMessage = error.localizedDescription
+                activeAlert = .backupFailed
+                showAlert.toggle()
+            }
+        }
+        .fileImporter(isPresented: $showRestore,
+                      allowedContentTypes: [.json],
+                      allowsMultipleSelection: false)
+        { result in
+            do {
+                guard let selectedFile: URL = try result.get().first else { return }
+                guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+                do {
+                    try dataController.jsonToCoreData(input)
+                    self.presentableToast.message
+                        = String(.settingsRestoreCompletedMessage)
+                    self.presentableToast.show = true
+                } catch {
+                    errorMessage = error.localizedDescription
+                    activeAlert = .restoreFailed
+                    showAlert.toggle()
+                }
+            } catch {
+                // Handle failure.
+                print("Unable to read file contents")
+                print(error.localizedDescription)
+                errorMessage = error.localizedDescription
+                activeAlert = .restoreFailed
+                showAlert.toggle()
             }
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
@@ -68,10 +150,16 @@ struct SettingsDeveloperView: View, DestinationView {
                 title: Text(.settingsExampleDataAlertTitle),
                 message: Text(.settingsAreYouSureExampleData),
                 primaryButton: .default(
-                    Text(.commonOK),
+                    Text(.commonYes),
                     action: {
-                        try? dataController.deleteIterateAll()
-                        try? dataController.createSampleData(appStore: false)
+                        do {
+                            try dataController.deleteIterateAll()
+                            try dataController.createSampleData(appStore: false)
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            activeAlert = .exampleDataFailed
+                            showAlert.toggle()
+                        }
                     }
                 ),
                 secondaryButton: .cancel()
@@ -81,12 +169,43 @@ struct SettingsDeveloperView: View, DestinationView {
                 title: Text(.settingsCrashTestAlertTitle),
                 message: Text(.settingsAreYouSureCrashTest),
                 primaryButton: .default(
-                    Text(.commonOK),
+                    Text(.commonYes),
                     action: {
                         Crashes.generateTestCrash()
                     }
                 ),
                 secondaryButton: .cancel()
+            )
+        case .restoreDataConfirmation:
+            return Alert(
+                title: Text(.settingsRestoreAlertTitle),
+                message: Text(.settingsRestoreAreYouSure),
+                primaryButton: .default(
+                    Text(.commonYes),
+                    action: {
+                        showRestore = true
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
+        case .backupFailed, .restoreFailed, .exampleDataFailed:
+            let title = activeAlert == .backupFailed
+                ? Strings.settingsBackupAlertTitle
+                : activeAlert == .restoreFailed
+                ? Strings.settingsRestoreAlertTitle
+                : activeAlert == .exampleDataFailed
+                ? Strings.settingsExampleDataAlertTitle
+                : Strings.nothing
+
+            return Alert(
+                title: Text(title),
+                message: Text(InterpolatedStrings
+                    .commonErrorMessage(
+                        error: errorMessage)),
+                dismissButton:
+                .default(
+                    Text(.commonOK)
+                )
             )
         }
     }

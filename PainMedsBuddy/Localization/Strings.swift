@@ -11,6 +11,8 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case nothing
     // --------------------------
     case commonAdd
+    case commonAppName
+    case commonAppNameInitials
     case commonBasicSettings
     case commonCancel
     case commonDelete
@@ -18,6 +20,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonEgString
     case commonEmptyView
     case commonExampleDosage
+    case commonErrorMessage
     case commonInfo
     case commonOK
     case commonMedications
@@ -27,6 +30,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonPleaseAdd
     case commonSave
     case commonSort
+    case commonYes
     // --------------------------
     case validationTwoLetters
     case validationOneOrAbove
@@ -34,7 +38,6 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case validationMustEmpty
     case validationZeroOrAbove
     // --------------------------
-    case titleHome
     case tabTitleHistory
     case tabTitleHome
     case tabTitleInProgress
@@ -132,6 +135,10 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsAreYouSureDeleteAll
     case settingsAreYouSureExampleData
     case settingsAreYouSureCrashTest
+    case settingsBackup
+    case settingsBackupFooter
+    case settingsBackupAlertTitle
+    case settingsBackupCompletedMessage
     case settingsCrashTestAlertTitle
     case settingsDeleteAllData
     case settingsDeleteAllAlertTitle
@@ -141,6 +148,10 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsExampleDataAlertTitle
     case settingsGenerateTestCrash
     case settingsNoResponsibility
+    case settingsRestore
+    case settingsRestoreAlertTitle
+    case settingsRestoreAreYouSure
+    case settingsRestoreCompletedMessage
     case settingSupportButton
     case settingSupportCopied
     case settingSupportSubject

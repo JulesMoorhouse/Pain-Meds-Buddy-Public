@@ -18,6 +18,7 @@
 		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
 		881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */; };
 		881BA39A2764B8B600DA06D7 /* Panel-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */; };
+		882A8ACA27AD8EFD00137897 /* JsonFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */; };
 		88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321421275120D40026D85F /* PainMedsBuddyApp.swift */; };
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
@@ -164,6 +165,7 @@
 		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
 		881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Panel-ViewModifier.swift"; sourceTree = "<group>"; };
+		882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileDocument.swift; sourceTree = "<group>"; };
 		88321421275120D40026D85F /* PainMedsBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyApp.swift; sourceTree = "<group>"; };
 		88321423275120D40026D85F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
+				882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
@@ -920,6 +923,7 @@
 				8852BF452785D648000750FB /* HomeViewModel.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 				88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */,
+				882A8ACA27AD8EFD00137897 /* JsonFileDocument.swift in Sources */,
 				880A1881278D82DD00FA0C7D /* InterpolatedStrings.swift in Sources */,
 				88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */,
 				889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */,

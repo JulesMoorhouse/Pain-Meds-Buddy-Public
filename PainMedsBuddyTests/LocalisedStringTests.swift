@@ -29,6 +29,10 @@ class LocalisedStringTests: BaseTestCase {
             switch item {
             case .nothing:
                 output = ""
+            case .commonAppName:
+                output = ""
+            case .commonAppNameInitials:
+                output = ""
             case .commonAdd:
                 output = ""
             case .commonBasicSettings:
@@ -45,6 +49,10 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonExampleDosage:
                 output = ""
+            case .commonErrorMessage:
+                output = InterpolatedStrings
+                    .commonErrorMessage(
+                        error: "An example error")
             case .commonInfo:
                 output = ""
             case .commonOK:
@@ -62,6 +70,8 @@ class LocalisedStringTests: BaseTestCase {
             case .commonSave:
                 output = ""
             case .commonSort:
+                output = ""
+            case .commonYes:
                 output = ""
             // --------------------------
             case .validationTwoLetters:
@@ -90,8 +100,6 @@ class LocalisedStringTests: BaseTestCase {
                         field: String(.doseEditAmount))
 
             // --------------------------
-            case .titleHome:
-                output = ""
             case .tabTitleHistory:
                 output = ""
             case .tabTitleHome:
@@ -308,6 +316,14 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsAreYouSureCrashTest:
                 output = ""
+            case .settingsBackup:
+                output = ""
+            case .settingsBackupFooter:
+                output = ""
+            case .settingsBackupAlertTitle:
+                output = ""
+            case .settingsBackupCompletedMessage:
+                output = ""
             case .settingsCrashTestAlertTitle:
                 output = ""
             case .settingsDeleteAllData:
@@ -326,14 +342,23 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsNoResponsibility:
                 output = ""
+            case .settingsRestore:
+                output = ""
+            case .settingsRestoreAlertTitle:
+                output = ""
+            case .settingsRestoreAreYouSure:
+                output = ""
+            case .settingsRestoreCompletedMessage:
+                output = ""
             case .settingSupportButton:
                 output = ""
             case .settingSupportCopied:
                 output = ""
             case .settingSupportSubject:
                 output = InterpolatedStrings
-                    .settingSupportSubject(version: "1.2.3")
-
+                    .settingSupportSubject(
+                        appInitials: "PMB",
+                        version: "1.2.3")
             case .settingSupportMessage:
                 let code: String =
                     Locale.preferredLanguages[0]
@@ -342,6 +367,7 @@ class LocalisedStringTests: BaseTestCase {
 
                 output = InterpolatedStrings
                     .settingSupportMessage(values: [
+                        "PMB",
                         "iPhone Xr",
                         "14.5",
                         "\(language) (\(code))",

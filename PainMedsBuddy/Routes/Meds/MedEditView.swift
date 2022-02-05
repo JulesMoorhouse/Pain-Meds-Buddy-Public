@@ -30,7 +30,7 @@ struct MedEditView: View, DestinationView {
     @State private var isSaveDisabled = false
 
     enum ActiveAlert {
-        case deleteConfirmation, copied
+        case deleteConfirmation
     }
 
     enum ActivePopup {
@@ -221,18 +221,6 @@ struct MedEditView: View, DestinationView {
                     action: delete
                 ),
                 secondaryButton: .cancel()
-            )
-        case .copied:
-            return Alert(
-                title: Text(.commonInfo),
-                message: Text(.medEditCopied),
-                dismissButton:
-                .default(
-                    Text(.commonOK),
-                    action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                )
             )
         }
     }
@@ -495,9 +483,11 @@ struct MedEditView: View, DestinationView {
 
                 Section {
                     Button(Strings.medEditCopyThisMed.rawValue) {
-                        activeAlert = .copied
                         viewModel.copyMed()
-                        showAlert.toggle()
+                        presentationMode.wrappedValue.dismiss()
+                        self.presentableToast.message
+                            = String(.medEditCopied)
+                        self.presentableToast.show = true
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .accessibilityIdentifier(.medEditCopyThisMed)

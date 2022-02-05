@@ -67,8 +67,13 @@ struct SettingsSupportView: View {
     }
 
     static func getSubject() -> String {
+        let appInitials = String(.commonAppNameInitials)
         let version = "\(Bundle.main.shortVersion) (\(Bundle.main.buildNumber))"
-        return InterpolatedStrings.settingSupportSubject(version: version)
+
+        return InterpolatedStrings.settingSupportSubject(
+            appInitials: appInitials,
+            version: version
+        )
     }
 
     static func getMessage(totalMeds: Int,
@@ -76,11 +81,13 @@ struct SettingsSupportView: View {
                            installDate: String,
                            runCount: Int) -> String
     {
+        let appName = String(.commonAppName)
         let code: String = Locale.preferredLanguages[0]
         let language: String = NSLocale.current.localizedString(forLanguageCode: code)!
         let iOSVersion: String = Device.current.systemVersion ?? ""
 
         return InterpolatedStrings.settingSupportMessage(values: [
+            appName,
             Device.current.description,
             iOSVersion,
             "\(language) (\(code))",

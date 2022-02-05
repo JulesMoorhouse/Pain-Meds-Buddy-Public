@@ -77,8 +77,8 @@ struct HomeView: View {
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
             .toasted(show: $presentableToast.show, message: $presentableToast.message)
-            .navigationTitle(Strings.titleHome.rawValue)
-            .navigationBarAccessibilityIdentifier(.titleHome)
+            .navigationTitle(Strings.commonAppName.rawValue)
+            .navigationBarAccessibilityIdentifier(.commonAppName)
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()

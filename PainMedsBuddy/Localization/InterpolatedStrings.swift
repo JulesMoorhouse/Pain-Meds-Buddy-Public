@@ -67,14 +67,17 @@ struct InterpolatedStrings {
     }
 
     static func settingSupportMessage(values: [String]) -> String {
-        if values.count != 8 {
+        if values.count != 9 {
             fatalError("ERROR: settingSupportMessage - wrong number of array items")
         }
         return String(.settingSupportMessage, values: values)
     }
 
-    static func settingSupportSubject(version: String) -> String {
-        String(.settingSupportSubject, values: [version])
+    static func settingSupportSubject(
+        appInitials: String,
+        version: String) -> String
+    {
+        String(.settingSupportSubject, values: [appInitials, version])
     }
 
     static func validationTwoLetters(field: String) -> String {
@@ -108,6 +111,10 @@ struct InterpolatedStrings {
 
     static func medEditLowToast(med: Med) -> String {
         String(.medEditLowToast, values: [med.medTitle])
+    }
+
+    static func commonErrorMessage(error: String) -> String {
+        String(.commonErrorMessage, values: [error])
     }
 
     static func timePickerHours(number: String) -> String {

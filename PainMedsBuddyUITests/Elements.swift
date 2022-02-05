@@ -37,7 +37,7 @@ class Elements: XCTestCase {
 
     // ---- Screens ----
     static func navBarHome(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
-        let titleId = Strings.titleHome.automatedId()
+        let titleId = Strings.commonAppName.automatedId()
         let homeScreen = app.navigationBars[titleId]
         _ = homeScreen.waitForExistence(timeout: 1)
 

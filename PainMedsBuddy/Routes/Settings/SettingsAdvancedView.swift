@@ -23,9 +23,10 @@ struct SettingsAdvancedView: View, DestinationView {
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteConfirmation
+    @State private var errorMessage = ""
 
     enum ActiveAlert {
-        case deleteConfirmation
+        case deleteConfirmation, deleteFailed
     }
 
     var body: some View {
@@ -68,10 +69,27 @@ struct SettingsAdvancedView: View, DestinationView {
                 primaryButton: .default(
                     Text(.commonDelete),
                     action: {
-                        try? dataController.deleteIterateAll()
+                        do {
+                        try dataController.deleteIterateAll()
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            activeAlert = .deleteFailed
+                            showAlert.toggle()
+                        }
                     }
                 ),
                 secondaryButton: .cancel()
+            )
+        case .deleteFailed:
+            return Alert(
+                title: Text(.settingsDeleteAllAlertTitle),
+                message: Text(InterpolatedStrings
+                    .commonErrorMessage(
+                        error: errorMessage)),
+                dismissButton:
+                .default(
+                    Text(.commonOK)
+                )
             )
         }
     }
