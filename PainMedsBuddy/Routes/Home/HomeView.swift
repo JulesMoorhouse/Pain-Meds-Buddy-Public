@@ -76,7 +76,7 @@ struct HomeView: View {
                 }
             }
             .background(!noData ? Color.systemGroupedBackground.ignoresSafeArea() : nil)
-            .toasted(show: $presentableToast.show, message: $presentableToast.message)
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
             .navigationTitle(Strings.commonAppName.rawValue)
             .navigationBarAccessibilityIdentifier(.commonAppName)
         }

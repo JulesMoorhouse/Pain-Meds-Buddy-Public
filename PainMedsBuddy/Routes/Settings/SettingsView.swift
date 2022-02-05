@@ -119,7 +119,7 @@ struct SettingsView: View {
                 }
                 .navigationTitle(Strings.tabTitleSettings.rawValue)
                 .navigationBarAccessibilityIdentifier(.tabTitleSettings)
-                .toasted(show: $presentableToast.show, message: $presentableToast.message)
+                .toasted(show: $presentableToast.show, data: $presentableToast.data)
             }
         }
         .onAppear(perform: {

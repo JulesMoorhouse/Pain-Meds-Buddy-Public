@@ -50,7 +50,7 @@ struct SettingsAdvancedView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(.settingsAdvanced)
-        .toasted(show: $presentableToast.show, message: $presentableToast.message)
+        .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .alert(isPresented: $showAlert) { alertOption() }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()

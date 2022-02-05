@@ -140,7 +140,7 @@ struct MedEditView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
-        .toasted(show: $presentableToast.show, message: $presentableToast.message)
+        .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             backBarButtonItem
@@ -444,8 +444,8 @@ struct MedEditView: View, DestinationView {
 
             if #available(iOS 15, *) {
                 HourMinutePickerView(duration: binding,
-                                 hourAid: hourAid,
-                                 minuteAid: minuteAid)
+                                     hourAid: hourAid,
+                                     minuteAid: minuteAid)
                     .buttonStyle(BorderlessButtonStyle())
                     .accessibilityElement()
                     .accessibility(addTraits: .isButton)
@@ -485,8 +485,11 @@ struct MedEditView: View, DestinationView {
                     Button(Strings.medEditCopyThisMed.rawValue) {
                         viewModel.copyMed()
                         presentationMode.wrappedValue.dismiss()
-                        self.presentableToast.message
-                            = String(.medEditCopied)
+                        self.presentableToast.data
+                            = ToastData(
+                                type: .success,
+                                message: String(.medEditCopied)
+                            )
                         self.presentableToast.show = true
                     }
                     .frame(maxWidth: .infinity, alignment: .center)

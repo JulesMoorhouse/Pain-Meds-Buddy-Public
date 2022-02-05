@@ -59,7 +59,11 @@ struct DoseEditView: View, DestinationView {
 
                         if viewModel.selectedMed.medIsRunningLow {
                             let message = String(.medEditLowToast, values: [viewModel.selectedMed.medTitle])
-                            self.presentableToast.message = message
+                            self.presentableToast.data
+                                = ToastData(
+                                    type: .info,
+                                    message: message
+                                )
                             self.presentableToast.show = true
                         }
                     }
@@ -202,7 +206,7 @@ struct DoseEditView: View, DestinationView {
         }
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
-        .toasted(show: $presentableToast.show, message: $presentableToast.message)
+        .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             backBarButtonItem

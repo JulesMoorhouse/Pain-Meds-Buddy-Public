@@ -57,7 +57,7 @@ struct DosesView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .toasted(show: $presentableToast.show, message: $presentableToast.message)
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {

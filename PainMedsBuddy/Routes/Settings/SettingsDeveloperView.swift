@@ -95,8 +95,11 @@ struct SettingsDeveloperView: View, DestinationView {
             switch result {
             case .success(let url):
                 print("Saved to \(url)")
-                self.presentableToast.message
-                    = String(.settingsBackupCompletedMessage)
+                self.presentableToast.data
+                    = ToastData(
+                        type: .success,
+                        message: String(.settingsBackupCompletedMessage)
+                    )
                 self.presentableToast.show = true
             case .failure(let error):
                 print(error.localizedDescription)
@@ -114,8 +117,11 @@ struct SettingsDeveloperView: View, DestinationView {
                 guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
                 do {
                     try dataController.jsonToCoreData(input)
-                    self.presentableToast.message
-                        = String(.settingsRestoreCompletedMessage)
+                    self.presentableToast.data
+                        = ToastData(
+                            type: .success,
+                            message: String(.settingsRestoreCompletedMessage)
+                        )
                     self.presentableToast.show = true
                 } catch {
                     errorMessage = error.localizedDescription
@@ -134,7 +140,7 @@ struct SettingsDeveloperView: View, DestinationView {
         .navigationBarTitle(configuration: navigationBarTitleConfiguration)
         .navigationBarAccessibilityIdentifier(.settingsDeveloper)
         .alert(isPresented: $showAlert) { alertOption() }
-        .toasted(show: $presentableToast.show, message: $presentableToast.message)
+        .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
         })

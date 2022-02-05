@@ -130,7 +130,7 @@ struct MedsView: View {
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
-            .toasted(show: $presentableToast.show, message: $presentableToast.message)
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
 
             PlaceholderView(
                 string: .medsPleaseSelect,

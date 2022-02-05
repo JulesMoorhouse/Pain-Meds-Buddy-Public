@@ -19,6 +19,7 @@
 		881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */; };
 		881BA39A2764B8B600DA06D7 /* Panel-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */; };
 		882A8ACA27AD8EFD00137897 /* JsonFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */; };
+		882A8ACE27AEF82700137897 /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACD27AEF82700137897 /* ToastData.swift */; };
 		88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321421275120D40026D85F /* PainMedsBuddyApp.swift */; };
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
@@ -166,6 +167,7 @@
 		881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Panel-ViewModifier.swift"; sourceTree = "<group>"; };
 		882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileDocument.swift; sourceTree = "<group>"; };
+		882A8ACD27AEF82700137897 /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		88321421275120D40026D85F /* PainMedsBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyApp.swift; sourceTree = "<group>"; };
 		88321423275120D40026D85F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 				882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */,
+				882A8ACD27AEF82700137897 /* ToastData.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
 				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
@@ -881,6 +884,7 @@
 				886C30BC2763912C002A45B1 /* String+Extensions.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
+				882A8ACE27AEF82700137897 /* ToastData.swift in Sources */,
 				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
 				88EE265C279B1A66001C2C55 /* TimePickerView.swift in Sources */,
 				88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */,

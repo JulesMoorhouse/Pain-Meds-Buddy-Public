@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Toast: ViewModifier {
     @Binding var show: Bool
-    @Binding var message: String
+    @Binding var data: ToastData
 
     private let toastOptions = SimpleToastOptions(
         alignment: .bottom,
@@ -19,16 +19,35 @@ struct Toast: ViewModifier {
         showBackdrop: false
     )
 
+    var icon: String {
+        switch data.type {
+        case .info:
+            return SFSymbol.exclamationMarkTriangleFill.systemName
+        case .success:
+            return SFSymbol.checkmarkCircleFill.systemName
+        }
+    }
+
+    var backgroundColor: Color {
+        switch data.type {
+        case .info:
+            return Color.blue.opacity(0.8)
+        case .success:
+            return Color.green.opacity(0.8)
+        }
+    }
+
     func body(content: Content) -> some View {
         content
             .simpleToast(isPresented: $show, options: toastOptions) {
                 HStack {
-                    Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
-                    Text(String(message))
+                    Image(systemName: icon)
+                    Text(String(data.message))
                         .font(.caption)
+                        .bold()
                 }
                 .padding()
-                .background(Color.blue.opacity(0.8))
+                .background(backgroundColor)
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
                 .padding(.vertical, 5)
@@ -37,7 +56,12 @@ struct Toast: ViewModifier {
 }
 
 extension View {
-    func toasted(show: Binding<Bool>, message: Binding<String>) -> some View {
-        modifier(Toast(show: show, message: message))
+    func toasted(show: Binding<Bool>,
+                 data: Binding<ToastData>) -> some View
+    {
+        modifier(Toast(
+            show: show,
+            data: data
+        ))
     }
 }
