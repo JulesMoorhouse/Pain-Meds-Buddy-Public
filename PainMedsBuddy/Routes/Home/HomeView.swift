@@ -82,6 +82,7 @@ struct HomeView: View {
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
+            RequestReview.showReview()
         })
     }
 
