@@ -133,6 +133,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsAdvanced
     case settingsAddExampleData
     case settingsAreYouSureDeleteAll
+    case settingsAreYouSureDeleteAllHistory
     case settingsAreYouSureExampleData
     case settingsAreYouSureCrashTest
     case settingsBackup
@@ -142,6 +143,10 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsCrashTestAlertTitle
     case settingsDeleteAllData
     case settingsDeleteAllAlertTitle
+    case settingsDeleteAllDataCompleted
+    case settingsDeleteAllHistoryData
+    case settingsDeleteAllHistoryAlertTitle
+    case settingsDeleteAllHistoryDataCompleted
     case settingsDefaultRemindMe
     case settingsDefaultRemindMeFooter
     case settingsDeveloper

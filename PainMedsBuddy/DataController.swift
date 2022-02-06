@@ -142,33 +142,30 @@ class DataController: ObservableObject {
 
     func deleteIterateAll() throws {
         let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
-        do {
-            let tempDoses = try container.viewContext.fetch(doseRequest)
-            for dose in tempDoses {
-                delete(dose)
-            }
-            save()
-        } catch {
-            print("ERROR: Deleting doses \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.deleteIterateAll",
-                "ErrorLabel": "Deleting doses",
-            ], attachments: nil)
+        let tempDoses = try container.viewContext.fetch(doseRequest)
+        for dose in tempDoses {
+            delete(dose)
         }
+        save()
 
         let medRequest = NSFetchRequest<Med>(entityName: "Med")
-        do {
-            let tempMeds = try container.viewContext.fetch(medRequest)
-            for med in tempMeds {
-                delete(med)
-            }
-            save()
-        } catch {
-            print("ERROR: Deleting meds \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.deleteIterateAll",
-                "ErrorLabel": "Deleting meds",
-            ], attachments: nil)
+        let tempMeds = try container.viewContext.fetch(medRequest)
+        for med in tempMeds {
+            delete(med)
         }
+        save()
+    }
+
+    func deleteAllDoseHistory() throws {
+        let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
+
+        doseRequest.predicate = NSPredicate(format:
+            "elapsed == true")
+
+        let tempDoses = try container.viewContext.fetch(doseRequest)
+        for dose in tempDoses {
+            delete(dose)
+        }
+        save()
     }
 }

@@ -26,17 +26,28 @@ struct SettingsAdvancedView: View, DestinationView {
     @State private var errorMessage = ""
 
     enum ActiveAlert {
-        case deleteConfirmation, deleteFailed
+        case deleteConfirmation,
+             deleteHistoryConfirmation,
+             deleteFailed,
+             deleteHistoryFailed
     }
 
     var body: some View {
         ZStack {
             Form {
-                Section { }
+                Section {}
 
                 Section(footer: Text(Strings.settingsDefaultRemindMeFooter)) {
                     Toggle(Strings.settingsDefaultRemindMe.rawValue,
                            isOn: $defaultRemindMe)
+                }
+
+                Section {
+                    Button(Strings.settingsDeleteAllHistoryData.rawValue) {
+                        activeAlert = .deleteHistoryConfirmation
+                        showAlert.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
 
                 Section {
@@ -70,7 +81,13 @@ struct SettingsAdvancedView: View, DestinationView {
                     Text(.commonDelete),
                     action: {
                         do {
-                        try dataController.deleteIterateAll()
+                            try dataController.deleteIterateAll()
+                            self.presentableToast.data
+                                = ToastData(
+                                    type: .success,
+                                    message: String(.settingsDeleteAllDataCompleted)
+                                )
+                            self.presentableToast.show = true
                         } catch {
                             errorMessage = error.localizedDescription
                             activeAlert = .deleteFailed
@@ -80,9 +97,39 @@ struct SettingsAdvancedView: View, DestinationView {
                 ),
                 secondaryButton: .cancel()
             )
-        case .deleteFailed:
+        case .deleteHistoryConfirmation:
             return Alert(
-                title: Text(.settingsDeleteAllAlertTitle),
+                title: Text(.settingsDeleteAllHistoryAlertTitle),
+                message: Text(.settingsAreYouSureDeleteAllHistory),
+                primaryButton: .default(
+                    Text(.commonDelete),
+                    action: {
+                        do {
+                            try dataController.deleteAllDoseHistory()
+                            self.presentableToast.data
+                                = ToastData(
+                                    type: .success,
+                                    message: String(.settingsDeleteAllHistoryDataCompleted)
+                                )
+                            self.presentableToast.show = true
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            activeAlert = .deleteHistoryFailed
+                            showAlert.toggle()
+                        }
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
+        case .deleteFailed, .deleteHistoryFailed:
+            let title = activeAlert == .deleteFailed
+                ? Strings.settingsDeleteAllAlertTitle
+                : activeAlert == .deleteHistoryFailed
+                ? Strings.settingsDeleteAllHistoryAlertTitle
+                : Strings.nothing
+
+            return Alert(
+                title: Text(title),
                 message: Text(InterpolatedStrings
                     .commonErrorMessage(
                         error: errorMessage)),

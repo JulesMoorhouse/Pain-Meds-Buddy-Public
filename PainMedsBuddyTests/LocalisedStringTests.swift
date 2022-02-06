@@ -312,6 +312,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsAreYouSureDeleteAll:
                 output = ""
+            case .settingsAreYouSureDeleteAllHistory:
+                output = ""
             case .settingsAreYouSureExampleData:
                 output = ""
             case .settingsAreYouSureCrashTest:
@@ -329,6 +331,14 @@ class LocalisedStringTests: BaseTestCase {
             case .settingsDeleteAllData:
                 output = ""
             case .settingsDeleteAllAlertTitle:
+                output = ""
+            case .settingsDeleteAllDataCompleted:
+                output = ""
+            case .settingsDeleteAllHistoryData:
+                output = ""
+            case .settingsDeleteAllHistoryAlertTitle:
+                output = ""
+            case .settingsDeleteAllHistoryDataCompleted:
                 output = ""
             case .settingsDefaultRemindMe:
                 output = ""

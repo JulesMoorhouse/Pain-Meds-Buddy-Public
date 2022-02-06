@@ -52,12 +52,12 @@ struct SettingsSupportView: View {
         }, label: {
             HStack {
                 Text(.settingSupportButton)
-                    .foregroundColor(Color.primary)
             }
             .accessibilityElement()
             .accessibility(addTraits: .isButton)
             .accessibilityIdentifier(.settingSupportButton)
         })
+        .frame(maxWidth: .infinity, alignment: .center)
         .alert(isPresented: $showAlert) { alertOption() }
         .sheet(isPresented: $showMailView) {
             MailView(data: $mailData) { result in
