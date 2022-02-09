@@ -17,11 +17,6 @@ struct SymbolsView: View {
         [GridItem(.adaptive(minimum: size, maximum: size))]
     }
 
-    init(colour: Color, selectedSymbol: Binding<String>) {
-        self.colour = colour
-        _selectedSymbol = selectedSymbol
-    }
-
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(Symbol.allSymbols) { symbol in
@@ -44,6 +39,11 @@ struct SymbolsView: View {
                 }
             }
         }
+    }
+    
+    init(colour: Color, selectedSymbol: Binding<String>) {
+        self.colour = colour
+        _selectedSymbol = selectedSymbol
     }
 }
 

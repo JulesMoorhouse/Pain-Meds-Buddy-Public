@@ -14,6 +14,13 @@ struct MedSymbolView: View {
     let width: CGFloat
     let height: CGFloat
 
+    var body: some View {
+        Image(systemName: symbol)
+            .font(font)
+            .foregroundColor(Color(colour))
+            .frame(width: width, height: height)
+    }
+    
     init(symbol: String,
          colour: String,
          font: Font = .title,
@@ -25,13 +32,6 @@ struct MedSymbolView: View {
         self.font = font
         self.width = width
         self.height = height
-    }
-
-    var body: some View {
-        Image(systemName: symbol)
-            .font(font)
-            .foregroundColor(Color(colour))
-            .frame(width: width, height: height)
     }
 }
 

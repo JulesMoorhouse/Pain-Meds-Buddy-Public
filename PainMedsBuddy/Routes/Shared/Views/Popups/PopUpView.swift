@@ -21,23 +21,6 @@ struct PopUpView<Content: View,
     var width: CGFloat = 240
     var height: CGFloat = 220
 
-    init(text: LocalizedStringKey,
-         width: CGFloat = 240,
-         height: CGFloat = 220,
-         @ViewBuilder content: () -> Content,
-         @ViewBuilder leftButton: () -> LeftButton,
-         @ViewBuilder rightButton: () -> RightButton,
-         @ViewBuilder bottomButton: () -> BottomButton)
-    {
-        self.text = text
-        self.content = content()
-        self.leftButton = leftButton()
-        self.rightButton = rightButton()
-        self.bottomButton = bottomButton()
-        self.width = width
-        self.height = height
-    }
-
     var body: some View {
         ZStack {
             Color.black.opacity(0.2)
@@ -89,6 +72,23 @@ struct PopUpView<Content: View,
         }
         .dismissKeyboardOnTap()
         .edgesIgnoringSafeArea(.all)
+    }
+    
+    init(text: LocalizedStringKey,
+         width: CGFloat = 240,
+         height: CGFloat = 220,
+         @ViewBuilder content: () -> Content,
+         @ViewBuilder leftButton: () -> LeftButton,
+         @ViewBuilder rightButton: () -> RightButton,
+         @ViewBuilder bottomButton: () -> BottomButton)
+    {
+        self.text = text
+        self.content = content()
+        self.leftButton = leftButton()
+        self.rightButton = rightButton()
+        self.bottomButton = bottomButton()
+        self.width = width
+        self.height = height
     }
 }
 

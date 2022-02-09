@@ -159,6 +159,8 @@ struct MedEditView: View, DestinationView {
         })
     }
 
+    // MARK: -
+    
     func popupOption() -> some View {
         VStack {
             switch activePopup {

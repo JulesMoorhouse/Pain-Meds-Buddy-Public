@@ -56,6 +56,8 @@ struct HourMinutePickerView: View {
         }
     }
 
+    // MARK: -
+    
     func update() {
         duration = getDuration()
     }

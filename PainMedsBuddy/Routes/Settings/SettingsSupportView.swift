@@ -65,6 +65,8 @@ struct SettingsSupportView: View {
             }
         }
     }
+    
+    // MARK: -
 
     static func getSubject() -> String {
         let appInitials = String(.commonAppNameInitials)

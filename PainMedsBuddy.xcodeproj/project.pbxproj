@@ -276,7 +276,7 @@
 		88F493B32796B70200E3D4C2 /* PresentableToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToast.swift; sourceTree = "<group>"; };
 		88F90681279747B000CBC65E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		88F9069D2798115100CBC65E /* TabBarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHandler.swift; sourceTree = "<group>"; };
-		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
+		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/Views/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
 		88F906A427988F4E00CBC65E /* TextAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAreaView.swift; sourceTree = "<group>"; };
 		88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast-ViewModifier.swift"; sourceTree = "<group>"; };
 		88F906AA2799BBF500CBC65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -456,7 +456,6 @@
 				88C8B7C927ABDF400051508F /* Views */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
-				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 				882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */,
 				882A8ACD27AEF82700137897 /* ToastData.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
@@ -604,6 +603,7 @@
 				88EE265D279B1D8C001C2C55 /* HourMinutePickerView.swift */,
 				88EF20382753BBA0006037CF /* MedRowView.swift */,
 				88E93090275FCED000A98708 /* MedSymbolView.swift */,
+				88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */,
 				88AB7CB4275F720A0055BD9B /* PlaceholderView.swift */,
 				88AB7CC0275FB3150055BD9B /* SymbolsView.swift */,
 				88F906A427988F4E00CBC65E /* TextAreaView.swift */,

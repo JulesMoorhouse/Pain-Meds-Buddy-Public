@@ -23,6 +23,8 @@ extension DosesView {
             return dataController.count(for: medRequest)
         }
 
+        // MARK: -
+        
         init(dataController: DataController, showElapsedDoses: Bool) {
             self.dataController = dataController
             self.showElapsedDoses = showElapsedDoses

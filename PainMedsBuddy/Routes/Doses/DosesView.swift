@@ -25,15 +25,6 @@ struct DosesView: View {
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToast
 
-    func rowsView(section: [Dose]) -> some View {
-        ForEach(section, id: \.self) { dose in
-            DoseRowView(dose: dose)
-        }
-        .onDelete { offsets in
-            viewModel.deleteDose(offsets, from: section)
-        }
-    }
-
     var body: some View {
         let data: [[Dose]] = viewModel.resultsToArray()
 
@@ -104,6 +95,17 @@ struct DosesView: View {
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
         })
+    }
+    
+    // MARK: -
+    
+    func rowsView(section: [Dose]) -> some View {
+        ForEach(section, id: \.self) { dose in
+            DoseRowView(dose: dose)
+        }
+        .onDelete { offsets in
+            viewModel.deleteDose(offsets, from: section)
+        }
     }
 
     func placeHolderText() -> Strings {

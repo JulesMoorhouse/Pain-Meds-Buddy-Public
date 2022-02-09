@@ -13,13 +13,6 @@ struct ButtonBorderView: View {
     let font: Font
     let padding: CGFloat
 
-    init(text: LocalizedStringKey, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
-        self.text = text
-        self.width = width
-        self.font = font
-        self.padding = padding
-    }
-
     var body: some View {
         Text(text)
             .font(font)
@@ -29,6 +22,13 @@ struct ButtonBorderView: View {
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke(lineWidth: 2.0)
             )
+    }
+    
+    init(text: LocalizedStringKey, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
+        self.text = text
+        self.width = width
+        self.font = font
+        self.padding = padding
     }
 }
 

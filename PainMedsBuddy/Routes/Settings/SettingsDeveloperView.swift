@@ -149,6 +149,8 @@ struct SettingsDeveloperView: View, DestinationView {
         })
     }
 
+    // MARK: -
+    
     func alertOption() -> Alert {
         switch activeAlert {
         case .exampleDataConfirmation:

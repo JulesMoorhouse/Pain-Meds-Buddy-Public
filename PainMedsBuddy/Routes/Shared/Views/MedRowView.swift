@@ -14,17 +14,6 @@ struct MedRowView: View {
 
     private let remainingFormWord: String
 
-    init(med: Med, hasChevron: Bool = true) {
-        self.med = med
-        self.hasChevron = hasChevron
-
-        remainingFormWord
-            = Med.formWord(
-                num: Int(med.medRemaining) ?? Int(truncating: MedDefault.remaining),
-                word: med.form ?? ""
-            )
-    }
-
     var body: some View {
         HStack {
             MedSymbolView(symbol: med.medSymbol, colour: med.medColor)
@@ -51,6 +40,17 @@ struct MedRowView: View {
             InterpolatedStrings.homeAccessibilityIconRemaining(med: med)
         )
         .accessibilityIdentifier(.homeAccessibilityIconRemaining)
+    }
+    
+    init(med: Med, hasChevron: Bool = true) {
+        self.med = med
+        self.hasChevron = hasChevron
+
+        remainingFormWord
+            = Med.formWord(
+                num: Int(med.medRemaining) ?? Int(truncating: MedDefault.remaining),
+                word: med.form ?? ""
+            )
     }
 }
 

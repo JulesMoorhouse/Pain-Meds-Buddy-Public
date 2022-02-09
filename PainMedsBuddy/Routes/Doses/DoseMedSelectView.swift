@@ -65,6 +65,8 @@ struct DoseMedSelectView: View, DestinationView {
         })
     }
 
+    // MARK: -
+    
     func medRow(med: Med, index: Int) -> some View {
         HStack {
             MedRowView(med: med, hasChevron: false)

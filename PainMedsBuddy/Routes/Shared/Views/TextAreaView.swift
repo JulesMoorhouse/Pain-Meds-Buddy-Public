@@ -11,11 +11,6 @@ struct TextArea: View {
     private let placeholder: LocalizedStringKey
     @Binding var text: String
 
-    init(_ placeholder: LocalizedStringKey, text: Binding<String>) {
-        self.placeholder = placeholder
-        _text = text
-    }
-
     var body: some View {
         TextEditor(text: $text)
             .background(
@@ -26,6 +21,11 @@ struct TextArea: View {
                 .foregroundColor(Color.primary.opacity(0.25))
                 .padding(EdgeInsets(top: 0, leading: 4, bottom: 7, trailing: 0))
             )
+    }
+    
+    init(_ placeholder: LocalizedStringKey, text: Binding<String>) {
+        self.placeholder = placeholder
+        _text = text
     }
 }
 
