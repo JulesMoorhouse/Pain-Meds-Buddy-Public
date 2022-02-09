@@ -28,9 +28,11 @@ struct MedEditView: View, DestinationView {
     @State private var showPopup = false
     @State private var activePopup: ActivePopup = .durationGapInfo
     @State private var isSaveDisabled = false
+    @State private var advancedSectionHidden: Bool = true
 
     enum ActiveAlert {
-        case deleteConfirmation
+        case deleteConfirmation,
+             deleteHistoryConfirmation
     }
 
     enum ActivePopup {
@@ -95,6 +97,7 @@ struct MedEditView: View, DestinationView {
                     basicSettingsFields()
                 }
 
+                // --- Example ---
                 Section(header: Text(.commonExampleDosage)) {
                     HStack {
                         MedSymbolView(symbol: $viewModel.symbol.wrappedValue,
@@ -106,29 +109,34 @@ struct MedEditView: View, DestinationView {
                     }
                 }
 
-                Section(header: Text(.medEditSymbol)) {
-                    Text(.medEditColour)
-                        .foregroundColor(.secondary)
-                    LazyVGrid(columns: colorColumns) {
-                        ForEach(Med.colours, id: \.self, content: colourButton)
+                // --- Colour Selector ---
+                Section(header: symbolHeader()) {
+                    if !$advancedSectionHidden.wrappedValue {
+                        Text(.medEditColour)
+                            .foregroundColor(.secondary)
+                        LazyVGrid(columns: colorColumns) {
+                            ForEach(Med.colours, id: \.self, content: colourButton)
+                        }
+                        .padding(.vertical)
+
+                        Text(.medEditImage)
+                            .foregroundColor(.secondary)
+                        SymbolsView(
+                            colour: Color($viewModel.colour.wrappedValue),
+                            selectedSymbol: $viewModel.symbol
+                        )
+                        .padding(.vertical)
+
+                        // --- Notes ---
+                        Text(.medEditNotes)
+                            .foregroundColor(.secondary)
+
+                        TextArea(
+                            Strings.medEditNotesPlaceholder.rawValue,
+                            text: $viewModel.notes
+                        )
+                        .frame(minHeight: 50)
                     }
-                    .padding(.vertical)
-
-                    Text(.medEditImage)
-                        .foregroundColor(.secondary)
-                    SymbolsView(
-                        colour: Color($viewModel.colour.wrappedValue),
-                        selectedSymbol: $viewModel.symbol
-                    )
-                    .padding(.vertical)
-                }
-
-                Section(header: Text(.medEditNotes)) {
-                    TextArea(
-                        Strings.medEditNotesPlaceholder.rawValue,
-                        text: $viewModel.notes
-                    )
-                    .frame(minHeight: 50)
                 }
 
                 buttonsSection()
@@ -160,7 +168,7 @@ struct MedEditView: View, DestinationView {
     }
 
     // MARK: -
-    
+
     func popupOption() -> some View {
         VStack {
             switch activePopup {
@@ -217,10 +225,20 @@ struct MedEditView: View, DestinationView {
         case .deleteConfirmation:
             return Alert(
                 title: Text(.medEditDeleteMed),
-                message: Text(.medEditAreYouSure),
+                message: Text(.medEditDeleteAreYouSure),
                 primaryButton: .default(
                     Text(.commonDelete),
                     action: delete
+                ),
+                secondaryButton: .cancel()
+            )
+        case .deleteHistoryConfirmation:
+            return Alert(
+                title: Text(.medEditDeleteMedDoseHistory),
+                message: Text(.medEditDeleteHistoryAreYouSure),
+                primaryButton: .default(
+                    Text(.commonDelete),
+                    action: deleteDoseHistory
                 ),
                 secondaryButton: .cancel()
             )
@@ -230,6 +248,25 @@ struct MedEditView: View, DestinationView {
     func delete() {
         viewModel.deleteMed()
         presentationMode.wrappedValue.dismiss()
+    }
+
+    func deleteDoseHistory() {
+        viewModel.deleteMedDoseHistory()
+        presentationMode.wrappedValue.dismiss()
+    }
+
+    func symbolHeader() -> some View {
+        HStack {
+            Text(.medEditSymbol)
+
+            Spacer()
+
+            Button(action: {
+                advancedSectionHidden.toggle()
+            }, label: {
+                ChevronView(direction: $advancedSectionHidden.wrappedValue ? .bottom : .up)
+            })
+        }
     }
 
     func colourButton(for item: String) -> some View {
@@ -473,6 +510,7 @@ struct MedEditView: View, DestinationView {
     func buttonsSection() -> some View {
         Group {
             if !viewModel.add {
+                // --- Delete Button ---
                 Section {
                     Button(Strings.medEditDeleteThisMed.rawValue) {
                         activeAlert = .deleteConfirmation
@@ -483,6 +521,18 @@ struct MedEditView: View, DestinationView {
                     .accessibilityIdentifier(.medEditDeleteThisMed)
                 }
 
+                // --- Delete History Button ---
+                Section {
+                    Button(Strings.medEditDeleteMedDoseHistory.rawValue) {
+                        activeAlert = .deleteHistoryConfirmation
+                        showAlert.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .accentColor(.red)
+                    .accessibilityIdentifier(.medEditDeleteMedDoseHistory)
+                }
+
+                // --- Elapse Button ---
                 Section {
                     Button(Strings.medEditCopyThisMed.rawValue) {
                         viewModel.copyMed()

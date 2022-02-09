@@ -73,7 +73,7 @@ struct PopUpView<Content: View,
         .dismissKeyboardOnTap()
         .edgesIgnoringSafeArea(.all)
     }
-    
+
     init(text: LocalizedStringKey,
          width: CGFloat = 240,
          height: CGFloat = 220,

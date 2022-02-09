@@ -57,7 +57,7 @@ struct HourMinutePickerView: View {
     }
 
     // MARK: -
-    
+
     func update() {
         duration = getDuration()
     }
@@ -84,7 +84,7 @@ struct HourMinutePickerView: View {
 struct HourMinutePickerView_Previews: PreviewProvider {
     static var previews: some View {
         HourMinutePickerView(duration: .constant("60"),
-                         hourAid: .nothing,
-                         minuteAid: .nothing)
+                             hourAid: .nothing,
+                             minuteAid: .nothing)
     }
 }

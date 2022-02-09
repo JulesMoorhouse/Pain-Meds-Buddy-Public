@@ -40,7 +40,7 @@ struct SymbolsView: View {
             }
         }
     }
-    
+
     init(colour: Color, selectedSymbol: Binding<String>) {
         self.colour = colour
         _selectedSymbol = selectedSymbol

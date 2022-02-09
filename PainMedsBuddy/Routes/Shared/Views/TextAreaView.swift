@@ -22,7 +22,7 @@ struct TextArea: View {
                 .padding(EdgeInsets(top: 0, leading: 4, bottom: 7, trailing: 0))
             )
     }
-    
+
     init(_ placeholder: LocalizedStringKey, text: Binding<String>) {
         self.placeholder = placeholder
         _text = text

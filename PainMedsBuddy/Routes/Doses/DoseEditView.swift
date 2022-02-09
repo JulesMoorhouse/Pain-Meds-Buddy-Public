@@ -229,7 +229,7 @@ struct DoseEditView: View, DestinationView {
     }
 
     // MARK: -
-    
+
     func popupOption() -> some View {
         VStack {
             switch viewModel.activePopup {

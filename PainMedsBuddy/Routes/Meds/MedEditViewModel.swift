@@ -137,7 +137,7 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isDouble = (Double(value) ?? 0.0) > 0.0
                 let isInt = Int(value) != nil
                 let isAboveZero = Int(value) ?? 0 > 0
                 let fiveDigits = value.count <= 5
@@ -154,7 +154,7 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isDouble = (Double(value) ?? 0.0) > 0.0
                 let isInt = Int(value) != nil
                 let isAboveZero = Int(value) ?? 0 > 0
                 let fiveDigits = value.count <= 5
@@ -197,7 +197,7 @@ extension MedEditView {
                 form: formValidation,
                 errorMessage: message
             ) { value in
-                let isDouble =  (Double(value) ?? 0.0) > 0.0
+                let isDouble = (Double(value) ?? 0.0) > 0.0
                 let isInt = Int(value) != nil
                 let isAboveZero = Int(value) ?? 0 > 0
                 let fiveDigits = value.count <= 5
@@ -213,7 +213,7 @@ extension MedEditView {
         }
 
         // MARK: -
-        
+
         init(dataController: DataController, med: Med?, add: Bool, hasRelationship: Bool) {
             self.med = med
             self.add = add
@@ -301,6 +301,16 @@ extension MedEditView {
                     med.hidden = true
                     dataController.save()
                 }
+            }
+        }
+
+        func deleteMedDoseHistory() {
+            if let med = med {
+                let tempDoses = dataController.getMedDoses(for: med, elapsed: true)
+                for dose in tempDoses {
+                    dataController.delete(dose)
+                }
+                dataController.save()
             }
         }
 

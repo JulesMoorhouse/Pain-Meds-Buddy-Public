@@ -20,7 +20,7 @@ struct MedSymbolView: View {
             .foregroundColor(Color(colour))
             .frame(width: width, height: height)
     }
-    
+
     init(symbol: String,
          colour: String,
          font: Font = .title,

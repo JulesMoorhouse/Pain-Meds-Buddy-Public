@@ -47,6 +47,7 @@ struct SettingsAdvancedView: View, DestinationView {
                         activeAlert = .deleteHistoryConfirmation
                         showAlert.toggle()
                     }
+                    .accentColor(.red)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
 
@@ -55,6 +56,7 @@ struct SettingsAdvancedView: View, DestinationView {
                         activeAlert = .deleteConfirmation
                         showAlert.toggle()
                     }
+                    .accentColor(.red)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
@@ -72,7 +74,7 @@ struct SettingsAdvancedView: View, DestinationView {
     }
 
     // MARK: -
-    
+
     func alertOption() -> Alert {
         switch activeAlert {
         case .deleteConfirmation:

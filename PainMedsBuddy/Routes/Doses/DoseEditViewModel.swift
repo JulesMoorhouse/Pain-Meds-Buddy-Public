@@ -105,7 +105,7 @@ extension DoseEditView {
         }()
 
         // MARK: -
-        
+
         init(dataController: DataController,
              selectedMed: Med)
         {

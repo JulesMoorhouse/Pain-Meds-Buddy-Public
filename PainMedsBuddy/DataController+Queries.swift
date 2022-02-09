@@ -48,6 +48,23 @@ extension DataController {
         return 0
     }
 
+    func getMedDoses(for med: Med, elapsed: Bool) -> [Dose] {
+        let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
+        doseRequest.predicate = NSPredicate(format: "med == %@", med)
+        do {
+            let tempDoses = try container.viewContext.fetch(doseRequest)
+            return tempDoses
+        } catch {
+            print("ERROR: Checking data for dose \(error.localizedDescription)")
+            Crashes.trackError(error, properties: [
+                "Position": "DataController.getMedDoses",
+                "ErrorLabel": "Checking data for dose",
+            ], attachments: nil)
+        }
+
+        return []
+    }
+
     func createMed() -> Med {
         let med: Med
 

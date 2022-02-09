@@ -24,7 +24,7 @@ extension DosesView {
         }
 
         // MARK: -
-        
+
         init(dataController: DataController, showElapsedDoses: Bool) {
             self.dataController = dataController
             self.showElapsedDoses = showElapsedDoses

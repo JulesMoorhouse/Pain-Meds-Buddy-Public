@@ -97,7 +97,8 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditTitleText
     case medEditGapInfo
     case medEditAddMed
-    case medEditAreYouSure
+    case medEditDeleteAreYouSure
+    case medEditDeleteHistoryAreYouSure
     case medEditColour
     case medEditCopyThisMed
     case medEditCopied
@@ -106,6 +107,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case medEditDefaultText
     case medEditDeleteMed
     case medEditDeleteThisMed
+    case medEditDeleteMedDoseHistory
     case medEditDurationGap
     case medEditDurationGapPickerHourAID
     case medEditDurationGapPickerMinuteAID

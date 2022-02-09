@@ -41,7 +41,7 @@ struct MedRowView: View {
         )
         .accessibilityIdentifier(.homeAccessibilityIconRemaining)
     }
-    
+
     init(med: Med, hasChevron: Bool = true) {
         self.med = med
         self.hasChevron = hasChevron

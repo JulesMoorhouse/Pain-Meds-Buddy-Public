@@ -96,9 +96,9 @@ struct DosesView: View {
             self.tabBarHandler.showTabBar()
         })
     }
-    
+
     // MARK: -
-    
+
     func rowsView(section: [Dose]) -> some View {
         ForEach(section, id: \.self) { dose in
             DoseRowView(dose: dose)

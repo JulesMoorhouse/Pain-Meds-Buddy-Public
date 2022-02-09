@@ -92,6 +92,8 @@ class NoDataUITests: XCTestCase {
                 app.keys["\(char)"].tap()
             }
 
+            app.buttons["return"].tap()
+
             // Remaining
             let remaining = app.textFields[Strings.medEditRemaining.automatedId()]
             app.swipeUp(to: remaining)

@@ -65,7 +65,7 @@ struct SettingsSupportView: View {
             }
         }
     }
-    
+
     // MARK: -
 
     static func getSubject() -> String {

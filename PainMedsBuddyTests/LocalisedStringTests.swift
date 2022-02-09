@@ -235,7 +235,9 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditAddMed:
                 output = ""
-            case .medEditAreYouSure:
+            case .medEditDeleteAreYouSure:
+                output = ""
+            case .medEditDeleteHistoryAreYouSure:
                 output = ""
             case .medEditColour:
                 output = ""
@@ -256,6 +258,8 @@ class LocalisedStringTests: BaseTestCase {
             case .medEditDeleteMed:
                 output = ""
             case .medEditDeleteThisMed:
+                output = ""
+            case.medEditDeleteMedDoseHistory:
                 output = ""
             case .medEditDurationGap:
                 output = ""

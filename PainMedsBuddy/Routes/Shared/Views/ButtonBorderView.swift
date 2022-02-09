@@ -23,7 +23,7 @@ struct ButtonBorderView: View {
                     .stroke(lineWidth: 2.0)
             )
     }
-    
+
     init(text: LocalizedStringKey, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {
         self.text = text
         self.width = width
