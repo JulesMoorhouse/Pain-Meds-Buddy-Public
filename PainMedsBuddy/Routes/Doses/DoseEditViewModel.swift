@@ -258,6 +258,8 @@ extension DoseEditView {
                         self.showAlert = true
                     }
                 }
+            } else {
+                dataController.removeReminders(for: dose)
             }
         }
 
