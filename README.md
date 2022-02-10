@@ -1,6 +1,6 @@
 # Pain Meds Buddy
 
-![Platform](https://img.shields.io/badge/platform-ios-black.svg)  ![iOS Version](https://img.shields.io/badge/iOS-+14.5-green) ![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange) ![Xcode Version](https://img.shields.io/badge/Xcode-12.5%20-blue) ![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=master)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=master) ![Twitter](https://img.shields.io/twitter/follow/MindwarpJules?style=social)
+![Platform](https://img.shields.io/badge/platform-ios-black.svg)  ![iOS Version](https://img.shields.io/badge/iOS-+14.5-green) ![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange) ![Xcode Version](https://img.shields.io/badge/Xcode-12.5%20-blue) ![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=main)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=main) ![Twitter](https://img.shields.io/twitter/follow/MindwarpJules?style=social)
 
 ## Introduction
 
@@ -10,13 +10,20 @@ The app is written with SwiftUI and uses Core Data / Combine.
 
 ## Prerequisites
 
-* The project was written using `Xcode 12.5` and `iOS 14.5`
+* The project was written using `Xcode 13` and `iOS 14.5`
 * For best experience please use `iPhone 8 or later`
 * You will also need [SwiftLint](https://github.com/realm/SwiftLint)
 * The project  uses several swift packages :-
   - [https://github.com/MartinP7r/AckGen.git](https://github.com/MartinP7r/AckGen.git)
-  - [https://github.com/DoubleSymmetry/XNavigation.git](https://github.com/DoubleSymmetry/XNavigation.git)
+  - [https://github.com/microsoft/appcenter-sdk-apple.git](https://github.com/microsoft/appcenter-sdk-apple.git)
   - [https://github.com/ArnavMotwani/CircularProgressSwiftUI](https://github.com/ArnavMotwani/CircularProgressSwiftUI)
+  - [https://github.com/devicekit/DeviceKit.git](https://github.com/devicekit/DeviceKit.git)
+  - [https://github.com/sanzaru/SimpleToast.git](https://github.com/sanzaru/SimpleToast.git)  
+  - [https://github.com/siteline/SwiftUI-Introspect.git](https://github.com/siteline/SwiftUI-Introspect.git)
+  - [https://github.com/globulus/swiftui-mail-view.git](https://github.com/globulus/swiftui-mail-view.git)
+  - [https://github.com/ShabanKamell/SwiftUIFormValidator.git](https://github.com/ShabanKamell/SwiftUIFormValidator.git)
+  - [https://github.com/DoubleSymmetry/XNavigation.git](https://github.com/DoubleSymmetry/XNavigation.git)
+
 * To automate test coverage across multiple devices and produce framed screenshots [Fastlane](https://fastlane.tools) integration has been added, please see these [Setup Instructions](https://docs.fastlane.tools/getting-started/ios/setup/)
 
 ## Approach
@@ -86,7 +93,7 @@ The user can also pick from a range of medical related icons and colours.
 [DosesView.swift](/PainMedsBuddy/Routes/Doses/DosesView.swift) / [DosesViewModel.swift](/PainMedsBuddy/Routes/Doses/DosesViewModel.swift)
 
 ##### Usage
-The 'In Progress' / 'History screen' are very similar and either show available or taken medication.
+The `In Progress` / `History` screens are very similar and either show available or taken medication.
 
 The list of doses is grouped by day.
 
