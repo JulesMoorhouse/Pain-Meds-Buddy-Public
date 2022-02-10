@@ -130,4 +130,3 @@ I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwiths
 
 # Contact
 You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
