@@ -20,7 +20,7 @@ The app is written with SwiftUI and uses Core Data / Combine.
 * To automate test coverage across multiple devices and produce framed screenshots [Fastlane](https://fastlane.tools) integration has been added, please see these [Setup Instructions](https://docs.fastlane.tools/getting-started/ios/setup/)
 
 ## Approach
-The project uses an MVVM architecture approach. However, ViewModels have only been employed  where Core Data fetch requests and more complex has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality. There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
+The project uses an MVVM architecture approach. However, ViewModels have only been employed where Core Data fetch requests and more complex code has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality. There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
 
 ## Design / Screenshots
 
@@ -31,11 +31,12 @@ The project uses an MVVM architecture approach. However, ViewModels have only be
 ##### Code
 [HomeView.swift](/PainMedsBuddy/Routes/Home/HomeView.swift) / [HomeViewModel.swift](/PainMedsBuddy/Routes/Home/HomeViewModel.swift)
 
+##### Usage
 The main screen in the app has been designed to summarise medication and current doses. Here the user can quickly take the next medication and see which medication is running out.
 
-When designing the app it was important to consider the key functions a user would need and these could be performed quickly.
+When designing the app it was important to consider the key functions a user would need and how these could be performed quickly.
 
-The progress circles show how long is left until the the user can take their next medication or whether it has recently become available to take.
+The progress circles show how long is left until the the user can take their next dose or whether medication has recently become available to take.
 
 <img src="gfx/spacer.gif" width="100%" height="5">
 
@@ -51,7 +52,7 @@ The progress circles show how long is left until the the user can take their nex
 ##### Usage
 Here in the medications screen the user can see all the drugs they have setup.
 
-They can also see an icon for their medication which will make it easier to identify the medication at a glance.
+They can also see an icon for which will make it easier to identify the medication at a glance.
 
 A simple sort feature has been provided to make it easier to find medications if the list grows over time.
 
@@ -69,7 +70,7 @@ A simple sort feature has been provided to make it easier to find medications if
 ##### Usage
 The add medication screen allows the user to setup details about their medication, the dose and how long the medication should last.
 
-A gap time can also be used to space out medication taken through-out the day so coverage of the medication can stretch across the day within the maximum dose range for the day.
+A gap time can also be used to space out medication taken through-out the day so coverage of the medication can stretched across the day within the maximum dose range for the day.
 
 The user can also pick from a range of medical related icons and colours.
 
@@ -85,7 +86,7 @@ The user can also pick from a range of medical related icons and colours.
 [DosesView.swift](/PainMedsBuddy/Routes/Doses/DosesView.swift) / [DosesViewModel.swift](/PainMedsBuddy/Routes/Doses/DosesViewModel.swift)
 
 ##### Usage
-The In Progress / History screen are very similar and either show available or taken medication.
+The 'In Progress' / 'History screen' are very similar and either show available or taken medication.
 
 The list of doses is grouped by day.
 
@@ -101,7 +102,7 @@ The list of doses is grouped by day.
 [DoseAddView.swift](/PainMedsBuddy/Routes/Doses/DoseAddView.swift)
 
 ##### Usage
-The add dose screen is quite powerful it uses the medications the user has setup and makes it easy and quick to add a new dose / take medication.
+The add dose screen is quite powerful, it uses the medications the user has setup and makes it easy and quick to add a new dose / take medication.
 
 <img src="gfx/spacer.gif" width="100%" height="5">
 
@@ -128,4 +129,5 @@ Usage is provided under the [MIT License](http://opensource.org/licenses/mit-lic
 I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwithswift.com) for his 100 days courses which I have followed since 2019. 
 
 # Contact
-You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
