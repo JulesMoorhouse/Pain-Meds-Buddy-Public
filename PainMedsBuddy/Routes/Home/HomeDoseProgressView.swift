@@ -94,7 +94,7 @@ struct HomeDoseProgressView: View {
                     .frame(height: 40)
                     .background(debug ? Color.red : nil)
                     .foregroundColor(.primary)
-                    .accessibilityElement(children: .ignore)
+                    .accessibilityHidden(true)
 
                 Text(display)
                     .font(.caption)
@@ -102,7 +102,7 @@ struct HomeDoseProgressView: View {
                     .multilineTextAlignment(.center)
                     .background(debug ? Color.red : nil)
                     .padding(.bottom, 10)
-                    .accessibilityElement(children: .ignore)
+                    .accessibilityHidden(true)
             } else {
                 DisabledBarView()
                     .padding(.horizontal, 30)
@@ -125,7 +125,7 @@ struct HomeDoseProgressView: View {
                     .foregroundColor(.semiDisabledBackground)
                     .frame(width: 25, height: 25)
                     .padding(.horizontal, 5)
-                    .accessibilityElement(children: .ignore)
+                    .accessibilityHidden(true)
             } else {
                 if let med = med {
                     MedSymbolView(symbol: med.medSymbol,
@@ -134,7 +134,7 @@ struct HomeDoseProgressView: View {
                                   width: 25,
                                   height: 25)
                         .padding(.horizontal, 5)
-                        .accessibilityElement(children: .ignore)
+                        .accessibilityHidden(true)
                 }
             }
 
@@ -162,7 +162,7 @@ struct HomeDoseProgressView: View {
             })
             .disabled(showEmptyView)
             .accessibilityRemoveTraits(.isButton)
-            .accessibilityAddTraits(showEmptyView || !dose.doseShouldHaveElapsed ? .isStaticText : .isButton)
+            .accessibilityAddTraits(showEmptyView ? .isStaticText : .isButton)
             .accessibilityLabel(accessibilityLabel())
             .accessibilityIdentifier(accessibilityIdentifier())
 
@@ -171,9 +171,12 @@ struct HomeDoseProgressView: View {
                     showEmptyView
                         ? .secondary.opacity(0.2)
                         : .primary)
-                .accessibilityElement(children: .ignore)
+                .accessibilityHidden(true)
         }
         .padding(.bottom, 70)
+        .if(showEmptyView) { view in
+            view.accessibilityLabel(String(.doseEditAccessibilityNoCurrentMeds))
+        }
     }
 
     var cornerClose: some View {
@@ -193,15 +196,6 @@ struct HomeDoseProgressView: View {
                 .accessibilityIdentifier(.doseProgressAccessibilityCloseButton)
             }
             Spacer()
-
-            /* --- Debugging ---
-             VStack {
-             Text("elapsed=\(String(dose.elapsed))")
-                 Text("taken=\(dose.doseTakenDate.dateToShortDateTime)")
-                 Text("elapsed=\((dose.doseElapsedDate  ?? Date().date1970).dateToShortDateTime)")
-                 Text("soft=\((dose.doseSoftElapsedDate ?? Date().date1970).dateToShortDateTime)")
-             }.background(Color.yellow)
-              */
         }
     }
 
@@ -216,6 +210,17 @@ struct HomeDoseProgressView: View {
             if showCloseCorner {
                 cornerClose
             }
+
+            /* --- Debugging ---
+              VStack {
+                  Text("showEmptyView=\(String(showEmptyView))")
+                  Text("elapsed=\(String(dose.elapsed))")
+                  Text("doseShouldHaveElapsed=\(String(dose.doseShouldHaveElapsed))")
+                  Text("taken=\(dose.doseTakenDate.dateToShortDateTime)")
+                  Text("elapsed=\((dose.doseElapsedDate  ?? Date().date1970).dateToShortDateTime)")
+                  Text("soft=\((dose.doseSoftElapsedDate ?? Date().date1970).dateToShortDateTime)")
+              }.background(Color.yellow).font(.system(size: 10)).accessibilityHidden(true)
+             */
         }
         .panelled(cornerRadius: 15)
         .onAppear(perform: {

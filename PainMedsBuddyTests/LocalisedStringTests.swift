@@ -129,6 +129,11 @@ class LocalisedStringTests: BaseTestCase {
                         .homeAccessibilityIconRemaining(
                             med: med)
 
+            case .homeAccessibilityIconRemainingEdit:
+                output =
+                    InterpolatedStrings.homeAccessibilityIconRemainingEdit(
+                        med: med)
+
             case .homeAccessibilityIconTaken:
                 output =
                     InterpolatedStrings
@@ -167,6 +172,8 @@ class LocalisedStringTests: BaseTestCase {
             case .selectMedSelectMed:
                 output = ""
             // --------------------------
+            case .doseEditAccessibilityNoCurrentMeds:
+                output = ""
             case .doseEditAddDose:
                 output = ""
             case .doseEditAreYouSureDelete:
@@ -259,7 +266,7 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .medEditDeleteThisMed:
                 output = ""
-            case.medEditDeleteMedDoseHistory:
+            case .medEditDeleteMedDoseHistory:
                 output = ""
             case .medEditDurationGap:
                 output = ""

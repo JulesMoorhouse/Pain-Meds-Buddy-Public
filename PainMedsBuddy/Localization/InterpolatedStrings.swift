@@ -15,6 +15,8 @@ struct InterpolatedStrings {
     static func doseProgressAccessibilityRemaining(dose: Dose, med: Med) -> String {
         String(.doseProgressAccessibilityRemaining,
                values: [
+                   med.medColor,
+                   med.medSymbolLabel,
                    med.medTitle,
                    dose.doseDisplay,
                    dose.doseCountDownSeconds(nowDate: Date()),
@@ -24,6 +26,8 @@ struct InterpolatedStrings {
     static func doseProgressAccessibilityAvailable(dose: Dose, med: Med) -> String {
         String(.doseProgressAccessibilityAvailable,
                values: [
+                   med.medColor,
+                   med.medSymbolLabel,
                    med.medTitle,
                    dose.doseDisplay,
                    dose.doseCountDownSeconds(nowDate: Date()),
@@ -55,6 +59,15 @@ struct InterpolatedStrings {
 
     static func homeAccessibilityIconRemaining(med: Med) -> String {
         String(.homeAccessibilityIconRemaining,
+               values: [med.medColor,
+                        med.medSymbolLabel,
+                        med.medTitle,
+                        med.medRemaining,
+                        med.medFormPlural])
+    }
+
+    static func homeAccessibilityIconRemainingEdit(med: Med) -> String {
+        String(.homeAccessibilityIconRemainingEdit,
                values: [med.medColor,
                         med.medSymbolLabel,
                         med.medTitle,

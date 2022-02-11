@@ -22,6 +22,7 @@ struct ButtonBorderView: View {
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke(lineWidth: 2.0)
             )
+            .contentShape(Rectangle())
     }
 
     init(text: LocalizedStringKey, width: CGFloat = 150, font: Font = .body, padding: CGFloat = 10) {

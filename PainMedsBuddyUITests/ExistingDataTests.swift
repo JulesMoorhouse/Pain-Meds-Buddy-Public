@@ -75,7 +75,7 @@ class ExistingDataTests: XCTestCase {
         app.swipeUp()
 
         let row = app.buttons[
-            Strings.homeAccessibilityIconRemaining.automatedId()
+            Strings.homeAccessibilityIconRemainingEdit.automatedId()
         ].firstMatch
 
         XCTAssertTrue(

@@ -43,6 +43,12 @@ struct HomeLowMedsView: View {
                                 .padding(2)
                             })
                             .panelled()
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityAddTraits(.isButton)
+                            .accessibilityIdentifier(.homeAccessibilityIconRemainingEdit)
+                            .accessibilityLabel(
+                                InterpolatedStrings.homeAccessibilityIconRemainingEdit(med: med)
+                            )
                         }
                     } else {
                         EmptyRowView()
