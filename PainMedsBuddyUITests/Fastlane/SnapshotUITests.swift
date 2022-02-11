@@ -27,6 +27,12 @@ class SnapshotUITests: XCTestCase {
         snapshot("02-Medications")
 
         BasicAction.tapMedicationTabAddButton(app)
+
+        // NOTE: Expand color / symbol section
+        app.swipeUp()
+        app.buttons[Strings.medEditAdvancedExpandedAID.automatedId()].tap()
+        app.swipeDown()
+
         snapshot("03-AddMed")
 
         BasicAction.tapBackButton(app)

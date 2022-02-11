@@ -138,6 +138,7 @@ struct MedEditView: View, DestinationView {
                         .frame(minHeight: 50)
                     }
                 }
+                .animation(.easeInOut(duration: 1))
 
                 buttonsSection()
             }
@@ -266,6 +267,7 @@ struct MedEditView: View, DestinationView {
             }, label: {
                 ChevronView(direction: $advancedSectionHidden.wrappedValue ? .bottom : .up)
             })
+            .accessibilityIdentifier(.medEditAdvancedExpandedAID)
         }
     }
 

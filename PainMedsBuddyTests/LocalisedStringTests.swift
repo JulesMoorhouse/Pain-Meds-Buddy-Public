@@ -234,6 +234,8 @@ class LocalisedStringTests: BaseTestCase {
             case .medsPleaseSelect:
                 output = ""
             // --------------------------
+            case .medEditAdvancedExpandedAID:
+                output = ""
             case .medEditTitleLabelAID:
                 output = ""
             case .medEditTitleText:
