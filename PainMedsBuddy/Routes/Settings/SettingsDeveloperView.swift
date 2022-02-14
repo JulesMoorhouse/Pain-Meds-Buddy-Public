@@ -18,7 +18,7 @@ struct SettingsDeveloperView: View, DestinationView {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .exampleDataConfirmation
@@ -96,7 +96,7 @@ struct SettingsDeveloperView: View, DestinationView {
             case .success(let url):
                 print("Saved to \(url)")
                 self.presentableToast.data
-                    = ToastData(
+                    = ToastModel(
                         type: .success,
                         message: String(.settingsBackupCompletedMessage)
                     )
@@ -118,7 +118,7 @@ struct SettingsDeveloperView: View, DestinationView {
                 do {
                     try dataController.jsonToCoreData(input)
                     self.presentableToast.data
-                        = ToastData(
+                        = ToastModel(
                             type: .success,
                             message: String(.settingsRestoreCompletedMessage)
                         )

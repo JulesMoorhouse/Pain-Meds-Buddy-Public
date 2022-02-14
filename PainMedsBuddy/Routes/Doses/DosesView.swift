@@ -23,7 +23,7 @@ struct DosesView: View {
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     var body: some View {
         let data: [[Dose]] = viewModel.resultsToArray()

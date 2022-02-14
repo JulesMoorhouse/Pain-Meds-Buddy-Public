@@ -35,7 +35,7 @@ class ExtensionTests: XCTestCase {
     }
 
     func testBundleDecodingSymbols() {
-        let symbols = Bundle.main.decode([Symbol].self, from: "Symbols.json")
+        let symbols = Bundle.main.decode([SymbolModel].self, from: "Symbols.json")
 
         XCTAssertFalse(symbols.isEmpty, "Symbols.json should decode to a non-empty array.")
     }

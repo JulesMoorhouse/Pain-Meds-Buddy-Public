@@ -11,7 +11,7 @@ import SwiftUI
 import XCTest
 
 class SymbolTests: BaseTestCase {
-    let symbols = Symbol.allSymbols
+    let symbols = SymbolModel.allSymbols
 
     func testSymbolIDMatchesName() {
         for symbol in symbols {
@@ -20,7 +20,7 @@ class SymbolTests: BaseTestCase {
     }
 
     func testSymbolsLabelsValid() {
-        let symbols = Symbol.allSymbols
+        let symbols = SymbolModel.allSymbols
 
         for item in symbols {
             let image: Image? = UIImage(systemName: item.name)

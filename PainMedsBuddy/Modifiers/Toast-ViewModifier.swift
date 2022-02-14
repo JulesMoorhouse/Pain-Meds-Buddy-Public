@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Toast: ViewModifier {
     @Binding var show: Bool
-    @Binding var data: ToastData
+    @Binding var data: ToastModel
 
     private let toastOptions = SimpleToastOptions(
         alignment: .bottom,
@@ -57,7 +57,7 @@ struct Toast: ViewModifier {
 
 extension View {
     func toasted(show: Binding<Bool>,
-                 data: Binding<ToastData>) -> some View
+                 data: Binding<ToastModel>) -> some View
     {
         modifier(Toast(
             show: show,

@@ -19,7 +19,7 @@ struct SettingsAdvancedView: View, DestinationView {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteConfirmation
@@ -87,7 +87,7 @@ struct SettingsAdvancedView: View, DestinationView {
                         do {
                             try dataController.deleteIterateAll()
                             self.presentableToast.data
-                                = ToastData(
+                                = ToastModel(
                                     type: .success,
                                     message: String(.settingsDeleteAllDataCompleted)
                                 )
@@ -111,7 +111,7 @@ struct SettingsAdvancedView: View, DestinationView {
                         do {
                             try dataController.deleteAllDoseHistory()
                             self.presentableToast.data
-                                = ToastData(
+                                = ToastModel(
                                     type: .success,
                                     message: String(.settingsDeleteAllHistoryDataCompleted)
                                 )

@@ -16,7 +16,7 @@ struct SettingsView: View {
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     var body: some View {
         NavigationViewChild {

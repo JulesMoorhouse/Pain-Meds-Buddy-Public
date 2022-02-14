@@ -19,7 +19,7 @@ struct SymbolsView: View {
 
     var body: some View {
         LazyVGrid(columns: columns) {
-            ForEach(Symbol.allSymbols) { symbol in
+            ForEach(SymbolModel.allSymbols) { symbol in
                 ZStack {
                     Image(systemName: symbol.name)
                         .resizable()

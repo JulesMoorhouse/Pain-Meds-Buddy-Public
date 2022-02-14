@@ -16,7 +16,7 @@ struct HomeView: View {
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     var columns: [GridItem] {
         [GridItem(.fixed(200))]

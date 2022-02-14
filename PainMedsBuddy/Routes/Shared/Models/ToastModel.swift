@@ -1,5 +1,5 @@
 //
-//  ToastData.swift
+//  ToastModel.swift
 //  PainMedsBuddy
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ToastData {
+struct ToastModel {
     enum ToastType {
         case info, success
     }

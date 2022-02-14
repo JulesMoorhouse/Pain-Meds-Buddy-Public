@@ -19,7 +19,7 @@
 		881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */; };
 		881BA39A2764B8B600DA06D7 /* Panel-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */; };
 		882A8ACA27AD8EFD00137897 /* JsonFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */; };
-		882A8ACE27AEF82700137897 /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACD27AEF82700137897 /* ToastData.swift */; };
+		882A8ACE27AEF82700137897 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACD27AEF82700137897 /* ToastModel.swift */; };
 		882A8AD027AFFCD800137897 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACF27AFFCD800137897 /* RequestReview.swift */; };
 		88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321421275120D40026D85F /* PainMedsBuddyApp.swift */; };
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
@@ -78,7 +78,7 @@
 		88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB6275F7BE60055BD9B /* MedAddView.swift */; };
 		88AB7CB9275FAA950055BD9B /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */; };
 		88AB7CBD275FB17F0055BD9B /* Symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 88AB7CBC275FB17F0055BD9B /* Symbols.json */; };
-		88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CBE275FB2360055BD9B /* Symbol.swift */; };
+		88AB7CBF275FB2360055BD9B /* SymbolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CBE275FB2360055BD9B /* SymbolModel.swift */; };
 		88AB7CC1275FB3150055BD9B /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB7CC0275FB3150055BD9B /* SymbolsView.swift */; };
 		88B53E83279026E600DD74FC /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E82279026E600DD74FC /* InfoPopupView.swift */; };
 		88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E872791704F00DD74FC /* MedEditViewModel.swift */; };
@@ -127,7 +127,7 @@
 		88F2E98B276FDBC600081C9C /* HomeLowMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */; };
 		88F2E98E27708AF700081C9C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
 		88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 88F493B12796104500E3D4C2 /* SimpleToast */; };
-		88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToast.swift */; };
+		88F493B42796B70200E3D4C2 /* PresentableToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToastModel.swift */; };
 		88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 88F9067E2797460500CBC65E /* AppCenterCrashes */; };
 		88F90682279747B000CBC65E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F90681279747B000CBC65E /* Secrets.swift */; };
 		88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9069D2798115100CBC65E /* TabBarHandler.swift */; };
@@ -168,7 +168,7 @@
 		881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Panel-ViewModifier.swift"; sourceTree = "<group>"; };
 		882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileDocument.swift; sourceTree = "<group>"; };
-		882A8ACD27AEF82700137897 /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
+		882A8ACD27AEF82700137897 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 		882A8ACF27AFFCD800137897 /* RequestReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
 		88321421275120D40026D85F /* PainMedsBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyApp.swift; sourceTree = "<group>"; };
 		88321423275120D40026D85F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 		88AB7CB6275F7BE60055BD9B /* MedAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAddView.swift; sourceTree = "<group>"; };
 		88AB7CB8275FAA940055BD9B /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		88AB7CBC275FB17F0055BD9B /* Symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Symbols.json; sourceTree = "<group>"; };
-		88AB7CBE275FB2360055BD9B /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		88AB7CBE275FB2360055BD9B /* SymbolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolModel.swift; sourceTree = "<group>"; };
 		88AB7CC0275FB3150055BD9B /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		88B53E82279026E600DD74FC /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
 		88B53E872791704F00DD74FC /* MedEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedEditViewModel.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		88F2E988276FD74500081C9C /* HomeRecentMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentMedsView.swift; sourceTree = "<group>"; };
 		88F2E98A276FDBC600081C9C /* HomeLowMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLowMedsView.swift; sourceTree = "<group>"; };
 		88F2E98D27708AF700081C9C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		88F493B32796B70200E3D4C2 /* PresentableToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToast.swift; sourceTree = "<group>"; };
+		88F493B32796B70200E3D4C2 /* PresentableToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableToastModel.swift; sourceTree = "<group>"; };
 		88F90681279747B000CBC65E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		88F9069D2798115100CBC65E /* TabBarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHandler.swift; sourceTree = "<group>"; };
 		88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationViewLevel.swift; path = PainMedsBuddy/Routes/Shared/Views/NavigationViewLevel.swift; sourceTree = SOURCE_ROOT; };
@@ -453,16 +453,14 @@
 		8848D46327789CCC00F10DC9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8890941527BADCA90070C536 /* Models */,
 				88C8B7C927ABDF400051508F /* Views */,
 				881BA39527649FFB00DA06D7 /* DoseDefault.swift */,
 				88B53E9427930CAF00DD74FC /* DurationPicker.swift */,
 				882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */,
-				882A8ACD27AEF82700137897 /* ToastData.swift */,
 				8840F372276B2F4200821046 /* Med-Protocol.swift */,
 				881BA39327649C0F00DA06D7 /* MedDefault.swift */,
-				88F493B32796B70200E3D4C2 /* PresentableToast.swift */,
 				882A8ACF27AFFCD800137897 /* RequestReview.swift */,
-				88AB7CBE275FB2360055BD9B /* Symbol.swift */,
 				88AB7CBC275FB17F0055BD9B /* Symbols.json */,
 				88F9069D2798115100CBC65E /* TabBarHandler.swift */,
 			);
@@ -544,6 +542,16 @@
 				88572058275233A300B4B00C /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8890941527BADCA90070C536 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				88F493B32796B70200E3D4C2 /* PresentableToastModel.swift */,
+				882A8ACD27AEF82700137897 /* ToastModel.swift */,
+				88AB7CBE275FB2360055BD9B /* SymbolModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		889C42D52781ACE0003B6ED2 /* Modifiers */ = {
@@ -855,7 +863,7 @@
 				88AB7C9F275646EB0055BD9B /* TwoColumnView.swift in Sources */,
 				881BA39A2764B8B600DA06D7 /* Panel-ViewModifier.swift in Sources */,
 				88E93091275FCED000A98708 /* MedSymbolView.swift in Sources */,
-				88AB7CBF275FB2360055BD9B /* Symbol.swift in Sources */,
+				88AB7CBF275FB2360055BD9B /* SymbolModel.swift in Sources */,
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
 				88EE265A279AF2BF001C2C55 /* TimeEditPickerView.swift in Sources */,
@@ -884,11 +892,11 @@
 				8852BF4B27862A64000750FB /* DoseEditViewModel.swift in Sources */,
 				881BA3982764AB9A00DA06D7 /* Date+Extensions.swift in Sources */,
 				8848D4702778A06400F10DC9 /* Text+Extensions.swift in Sources */,
-				88F493B42796B70200E3D4C2 /* PresentableToast.swift in Sources */,
+				88F493B42796B70200E3D4C2 /* PresentableToastModel.swift in Sources */,
 				886C30BC2763912C002A45B1 /* String+Extensions.swift in Sources */,
 				88321424275120D40026D85F /* ContentView.swift in Sources */,
 				8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */,
-				882A8ACE27AEF82700137897 /* ToastData.swift in Sources */,
+				882A8ACE27AEF82700137897 /* ToastModel.swift in Sources */,
 				889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */,
 				88EE265C279B1A66001C2C55 /* TimePickerView.swift in Sources */,
 				88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */,

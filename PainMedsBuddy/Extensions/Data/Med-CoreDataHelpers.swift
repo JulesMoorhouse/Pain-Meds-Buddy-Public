@@ -54,7 +54,7 @@ extension Med: MedProtocol {
     }
 
     var medSymbolLabel: String {
-        let item = Symbol.allSymbols.first(where: { $0.id == medSymbol })
+        let item = SymbolModel.allSymbols.first(where: { $0.id == medSymbol })
         if let item = item {
             return item.label
         }
@@ -207,7 +207,7 @@ extension Med: MedProtocol {
         med.measure = "mg"
         med.form = "Pill"
         med.remaining = 99
-        med.symbol = Symbol.allSymbols.randomElement()?.id
+        med.symbol = SymbolModel.allSymbols.randomElement()?.id
         med.creationDate = Date()
         med.lastTakenDate = Date()
         med.hidden = false

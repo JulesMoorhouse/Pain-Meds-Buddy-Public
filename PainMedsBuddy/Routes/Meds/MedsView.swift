@@ -18,7 +18,7 @@ struct MedsView: View {
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     var items: [Med] {
         viewModel.meds.allMeds.filter { !$0.hidden}.sortedItems(using: viewModel.sortOrder)

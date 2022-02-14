@@ -16,6 +16,6 @@ class AssetTest: XCTestCase {
     }
 
     func testJSONLoadsCorrectly() {
-        XCTAssertFalse(Symbol.allSymbols.isEmpty, "Failed to load symbols from JSON")
+        XCTAssertFalse(SymbolModel.allSymbols.isEmpty, "Failed to load symbols from JSON")
     }
 }

@@ -54,7 +54,7 @@ extension DataController {
             med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date().adding(days: -20)
             med.lastTakenDate = Date().adding(days: -20)
-            med.symbol = Symbol.allSymbols.randomElement()?.id
+            med.symbol = SymbolModel.allSymbols.randomElement()?.id
             med.hidden = false
 
             if drug.hasDose {

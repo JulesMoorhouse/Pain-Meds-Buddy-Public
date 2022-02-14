@@ -21,7 +21,7 @@ struct DoseEditView: View, DestinationView {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var isSaveDisabled = false
 
@@ -60,7 +60,7 @@ struct DoseEditView: View, DestinationView {
                         if viewModel.selectedMed.medIsRunningLow {
                             let message = String(.medEditLowToast, values: [viewModel.selectedMed.medTitle])
                             self.presentableToast.data
-                                = ToastData(
+                                = ToastModel(
                                     type: .info,
                                     message: message
                                 )

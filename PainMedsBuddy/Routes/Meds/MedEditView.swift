@@ -21,7 +21,7 @@ struct MedEditView: View, DestinationView {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var tabBarHandler: TabBarHandler
-    @EnvironmentObject private var presentableToast: PresentableToast
+    @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteConfirmation
@@ -540,7 +540,7 @@ struct MedEditView: View, DestinationView {
                         viewModel.copyMed()
                         presentationMode.wrappedValue.dismiss()
                         self.presentableToast.data
-                            = ToastData(
+                            = ToastModel(
                                 type: .success,
                                 message: String(.medEditCopied)
                             )

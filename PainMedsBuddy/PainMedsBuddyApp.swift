@@ -14,7 +14,7 @@ struct PainMedsBuddyApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @StateObject var dataController: DataController
-    @StateObject var presentableToast: PresentableToast
+    @StateObject var presentableToast: PresentableToastModel
     @State var colourScheme: ColorScheme?
 
     init() {
@@ -28,7 +28,7 @@ struct PainMedsBuddyApp: App {
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
 
-        let presentableToast = PresentableToast()
+        let presentableToast = PresentableToastModel()
         _presentableToast = StateObject(wrappedValue: presentableToast)
 
         let defaults = UserDefaults.standard
