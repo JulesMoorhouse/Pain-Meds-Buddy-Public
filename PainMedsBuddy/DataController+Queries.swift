@@ -72,7 +72,7 @@ extension DataController {
             med = first
         } else {
             let newMed = Med(context: container.viewContext)
-            MedDefault.setSensibleDefaults(newMed)
+            newMed.setSensible()
             med = newMed
         }
 
@@ -81,9 +81,9 @@ extension DataController {
 
     func createDose(selectedMed: Med?) -> Dose {
         let dose = Dose(context: container.viewContext)
-        DoseDefault.setSensibleDefaults(dose)
-        if let selectedMed = selectedMed {
-            dose.med = selectedMed
+        dose.setSensible()
+        if let thisMed = selectedMed {
+            dose.med = thisMed
         } else {
             dose.med = createMed()
         }

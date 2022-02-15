@@ -192,6 +192,48 @@ extension Med: MedProtocol {
         return word
     }
 
+    func setDefaults() {
+        title = "\(MedDefault.title)"
+        color = MedDefault.color
+        defaultAmount = MedDefault.defaultAmount
+        lastTakenDate = MedDefault.lastTakeDate
+        creationDate = MedDefault.createdDate
+        durationSeconds = MedDefault.duration
+        durationGapSeconds = MedDefault.durationGap
+        dosage = MedDefault.dosage
+        remaining = MedDefault.remaining
+        measure = "\(MedDefault.measure)"
+        form = MedDefault.form
+        symbol = MedDefault.symbol
+        notes = MedDefault.notes
+        if hidden {
+            // Note: Should be necessary but if set to
+            // false causes a refresh
+            hidden = false
+        }
+    }
+
+    func setSensible() {
+        title = "\(MedDefault.Sensible.title)"
+        color = MedDefault.Sensible.color
+        defaultAmount = MedDefault.Sensible.defaultAmount
+        lastTakenDate = MedDefault.Sensible.lastTakeDate
+        creationDate = MedDefault.Sensible.createdDate
+        durationSeconds = MedDefault.Sensible.duration
+        durationGapSeconds = MedDefault.Sensible.durationGap
+        dosage = MedDefault.Sensible.dosage
+        remaining = NSDecimalNumber(value: MedDefault.Sensible.remaining)
+        measure = "\(MedDefault.Sensible.measure)"
+        form = MedDefault.Sensible.form
+        symbol = MedDefault.Sensible.symbol
+        notes = MedDefault.Sensible.notes
+        if hidden {
+            // Note: Should be necessary but if set to
+            // false causes a refresh
+            hidden = false
+        }
+    }
+
     static var example: Med {
         let controller = DataController.preview
         let viewContext = controller.container.viewContext

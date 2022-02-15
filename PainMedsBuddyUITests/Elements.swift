@@ -39,7 +39,7 @@ class Elements: XCTestCase {
     static func navBarHome(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.commonAppName.automatedId()
         let homeScreen = app.navigationBars[titleId]
-        _ = homeScreen.waitForExistence(timeout: 1)
+        _ = homeScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -54,7 +54,7 @@ class Elements: XCTestCase {
     static func navBarHistory(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleHistory.automatedId()
         let historyScreen = app.navigationBars[titleId]
-        _ = historyScreen.waitForExistence(timeout: 1)
+        _ = historyScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -69,7 +69,7 @@ class Elements: XCTestCase {
     static func navBarInProgress(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleInProgress.automatedId()
         let inProgressScreen = app.navigationBars[titleId]
-        _ = inProgressScreen.waitForExistence(timeout: 1)
+        _ = inProgressScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -84,7 +84,7 @@ class Elements: XCTestCase {
     static func navBarMedications(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleMedications.automatedId()
         let medicationScreen = app.navigationBars[titleId]
-        _ = medicationScreen.waitForExistence(timeout: 1)
+        _ = medicationScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -99,7 +99,7 @@ class Elements: XCTestCase {
     static func navBarSettings(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleSettings.automatedId()
         let settingsScreen = app.navigationBars[titleId]
-        _ = settingsScreen.waitForExistence(timeout: 1)
+        _ = settingsScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -114,7 +114,7 @@ class Elements: XCTestCase {
     static func navBarSettingsDeveloper(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.settingsDeveloper.automatedId()
         let settingsScreen = app.navigationBars[titleId]
-        _ = settingsScreen.waitForExistence(timeout: 1)
+        _ = settingsScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -129,7 +129,7 @@ class Elements: XCTestCase {
     static func navBarSettingsAdvanced(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.settingsAdvanced.automatedId()
         let settingsScreen = app.navigationBars[titleId]
-        _ = settingsScreen.waitForExistence(timeout: 1)
+        _ = settingsScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -144,7 +144,7 @@ class Elements: XCTestCase {
     static func navBarSettingsAcknowledgements(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.settingsAcknowledgements.automatedId()
         let settingsScreen = app.navigationBars[titleId]
-        _ = settingsScreen.waitForExistence(timeout: 1)
+        _ = settingsScreen.waitForExistence(timeout: 2)
 
         if performTest {
             XCTAssertTrue(
@@ -159,7 +159,7 @@ class Elements: XCTestCase {
     static func navBarAddDose(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.doseEditAddDose.automatedId()
         let addDoseScreen = app.navigationBars[titleId]
-        _ = addDoseScreen.waitForExistence(timeout: 1)
+        _ = addDoseScreen.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             addDoseScreen.exists,
@@ -172,7 +172,7 @@ class Elements: XCTestCase {
     static func navBarEditDose(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.doseEditEditDose.automatedId()
         let editDoseScreen = app.navigationBars[titleId]
-        _ = editDoseScreen.waitForExistence(timeout: 1)
+        _ = editDoseScreen.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             editDoseScreen.exists,
@@ -185,7 +185,7 @@ class Elements: XCTestCase {
     static func navBarAddMed(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.medEditAddMed.automatedId()
         let addMedScreen = app.navigationBars[titleId]
-        _ = addMedScreen.waitForExistence(timeout: 1)
+        _ = addMedScreen.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             addMedScreen.exists,
@@ -198,7 +198,7 @@ class Elements: XCTestCase {
     static func navBarEditMed(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.medEditEditMed.automatedId()
         let editMedScreen = app.navigationBars[titleId]
-        _ = editMedScreen.waitForExistence(timeout: 1)
+        _ = editMedScreen.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             editMedScreen.exists,
@@ -211,7 +211,7 @@ class Elements: XCTestCase {
     static func navBarMedSelect(_ app: XCUIApplication) -> XCUIElement {
         let titleId = Strings.selectMedSelectMed.automatedId()
         let selectMedScreen = app.navigationBars[titleId]
-        _ = selectMedScreen.waitForExistence(timeout: 1)
+        _ = selectMedScreen.waitForExistence(timeout: 2)
 
         XCTAssertTrue(
             selectMedScreen.exists,

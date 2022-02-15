@@ -257,32 +257,32 @@ extension MedEditView {
         private func update() {
             // med.dose?.objectWillChange.send()
 
-            if let med = med {
-                update(med: med)
+            if let tempMed = med {
+                update(item: tempMed)
             } else if add {
                 let med = Med(context: dataController.container.viewContext)
-                MedDefault.setSensibleDefaults(med)
-                update(med: med)
+                med.setSensible()
+                update(item: med)
             }
         }
 
-        private func update(med: Med) {
-            med.title = title
-            med.defaultAmount = NSDecimalNumber(string: defaultAmount)
-            med.color = colour
-            med.symbol = symbol
-            med.dosage = NSDecimalNumber(string: dosage)
-            med.durationSeconds = Int16(durationDate) ?? 0
-            med.durationGapSeconds = Int16(durationGapDate) ?? 0
-            med.measure = measure
-            med.form = form
-            med.notes = notes
-            med.remaining = NSDecimalNumber(string: remaining)
+        private func update(item: Med) {
+            item.title = title
+            item.defaultAmount = NSDecimalNumber(string: defaultAmount)
+            item.color = colour
+            item.symbol = symbol
+            item.dosage = NSDecimalNumber(string: dosage)
+            item.durationSeconds = Int16(durationDate) ?? 0
+            item.durationGapSeconds = Int16(durationGapDate) ?? 0
+            item.measure = measure
+            item.form = form
+            item.notes = notes
+            item.remaining = NSDecimalNumber(string: remaining)
         }
 
         func copyMed() {
             let newMed = Med(context: dataController.container.viewContext)
-            update(med: newMed)
+            update(item: newMed)
             newMed.title = InterpolatedStrings.medEditCopiedSuffix(title: newMed.medTitle)
             dataController.save()
         }

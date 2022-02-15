@@ -24,6 +24,16 @@ class OneMedTests: XCTestCase {
         BasicAction.tapTabInProgress(app)
         BasicAction.tapInProgressAddButton(app)
 
+        let textField = app.textFields[Strings.doseEditAmount.automatedId()]
+        _ = textField.waitForExistence(timeout: 2)
+
+        textField.doubleTap()
+        textField.clearText()
+
+        // When
+        app.keys["2"].tap()
+        app.keys["9"].tap()
+
         // INFO: Back button tap on add dose screen
         BasicAction.tapAddDoseSaveButton(app)
 
@@ -39,6 +49,11 @@ class OneMedTests: XCTestCase {
             1,
             "There should be 1 list rows initially."
         )
+
+        let predicate = NSPredicate(format: "label CONTAINS '29'")
+        let element = app.buttons.element(matching: predicate)
+
+        XCTAssertTrue(element.exists, "The added dose should be visible in the list.")
     }
 
     func testEditMed() {

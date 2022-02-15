@@ -190,6 +190,27 @@ extension Dose: Comparable {
         lhs.doseFormattedTakenTimeShort < rhs.doseFormattedTakenTimeShort
     }
 
+    public func setDefaults() {
+        amount = DoseDefault.amount
+        elapsed = DoseDefault.elapsed
+        takenDate = DoseDefault.takenDate
+        remindMe = DoseDefault.remindMe
+    }
+
+    public func setSensible() {
+        amount = DoseDefault.Sensible.amount
+        takenDate = DoseDefault.Sensible.takenDate
+        details = DoseDefault.Sensible.details
+        if !remindMe {
+            remindMe = DoseDefault.Sensible.remindMe
+        }
+        if elapsed {
+            // Note: Should be necessary but if set to
+            // false causes a refresh
+            elapsed = DoseDefault.Sensible.elapsed
+        }
+    }
+
     static var example: Dose {
         let controller = DataController.preview
         let viewContext = controller.container.viewContext

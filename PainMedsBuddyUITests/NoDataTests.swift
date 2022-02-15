@@ -53,6 +53,7 @@ class NoDataUITests: XCTestCase {
             let dosage = app.textFields[Strings.commonDosage.automatedId()]
             dosage.doubleTap()
             dosage.clearText()
+
             "100".forEach { char in
                 app.keys["\(char)"].tap()
             }
@@ -99,7 +100,9 @@ class NoDataUITests: XCTestCase {
             app.swipeUp(to: remaining)
             remaining.doubleTap()
             remaining.clearText()
-            "100".forEach { char in
+
+            let remainAmount = "\(100 + addCount)"
+            remainAmount.forEach { char in
                 app.keys["\(char)"].tap()
             }
 
@@ -117,6 +120,11 @@ class NoDataUITests: XCTestCase {
                 addCount,
                 "There should be \(addCount) list rows initially."
             )
+
+            let predicate = NSPredicate(format: "label CONTAINS '\(remainAmount)'")
+            let element = app.buttons.element(matching: predicate).firstMatch
+
+            XCTAssertTrue(element.exists, "The added med should be visible in the list.")
         }
     }
 

@@ -36,11 +36,11 @@ class ExistingDataTests: XCTestCase {
         let row = app.buttons[
             Strings.homeAccessibilityIconTaken.automatedId()
         ].firstMatch
-        _ = row.waitForExistence(timeout: 1)
+        _ = row.waitForExistence(timeout: 2)
         row.tap()
 
         let textField = app.textFields[Strings.doseEditAmount.automatedId()]
-        _ = textField.waitForExistence(timeout: 1)
+        _ = textField.waitForExistence(timeout: 2)
 
         textField.doubleTap()
         textField.clearText()

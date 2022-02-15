@@ -58,38 +58,4 @@ struct MedDefault {
     static let form: String = ""
     static let symbol: String = "pills"
     static let notes: String = ""
-
-    static func setDefaults(_ med: Med) {
-        med.title = "\(MedDefault.title)"
-        med.color = MedDefault.color
-        med.defaultAmount = MedDefault.defaultAmount
-        med.lastTakenDate = MedDefault.lastTakeDate
-        med.creationDate = MedDefault.createdDate
-        med.durationSeconds = MedDefault.duration
-        med.durationGapSeconds = MedDefault.durationGap
-        med.dosage = MedDefault.dosage
-        med.remaining = MedDefault.remaining
-        med.measure = "\(MedDefault.measure)"
-        med.form = MedDefault.form
-        med.symbol = MedDefault.symbol
-        med.notes = MedDefault.notes
-        med.hidden = false
-    }
-
-    static func setSensibleDefaults(_ med: Med) {
-        med.title = "\(MedDefault.Sensible.title)"
-        med.color = MedDefault.Sensible.color
-        med.defaultAmount = MedDefault.Sensible.defaultAmount
-        med.lastTakenDate = MedDefault.Sensible.lastTakeDate
-        med.creationDate = MedDefault.Sensible.createdDate
-        med.durationSeconds = MedDefault.Sensible.duration
-        med.durationGapSeconds = MedDefault.Sensible.durationGap
-        med.dosage = MedDefault.Sensible.dosage
-        med.remaining = NSDecimalNumber(value: MedDefault.Sensible.remaining)
-        med.measure = "\(MedDefault.Sensible.measure)"
-        med.form = MedDefault.Sensible.form
-        med.symbol = MedDefault.Sensible.symbol
-        med.notes = MedDefault.Sensible.notes
-        med.hidden = false
-    }
 }

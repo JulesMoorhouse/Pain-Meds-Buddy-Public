@@ -80,51 +80,51 @@ class TabBarHandler: ObservableObject {
     }
 
     public func showTabBar() {
-        if #available(iOS 15, *) {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: NSNotification.Name(
-                        TabBarHandler.NotificationNames.showBottomTabBar.rawValue),
-                    object: nil
-                )
-            }
+        //  if #available(iOS 15, *) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: NSNotification.Name(
+                    TabBarHandler.NotificationNames.showBottomTabBar.rawValue),
+                object: nil
+            )
         }
+        //  }
     }
 
     public func hideTabBar() {
-        if #available(iOS 15, *) {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: NSNotification.Name(
-                        TabBarHandler.NotificationNames.hideBottomTabBar.rawValue),
-                    object: nil
-                )
-            }
+        //  if #available(iOS 15, *) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: NSNotification.Name(
+                    TabBarHandler.NotificationNames.hideBottomTabBar.rawValue),
+                object: nil
+            )
         }
+        // }
     }
 
     public func enableTouchTabBar() {
-        if #available(iOS 15, *) {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: NSNotification.Name(
-                        TabBarHandler.NotificationNames.enableTouchTabBar.rawValue),
-                    object: nil
-                )
-            }
+        // if #available(iOS 15, *) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: NSNotification.Name(
+                    TabBarHandler.NotificationNames.enableTouchTabBar.rawValue),
+                object: nil
+            )
         }
+        // }
     }
 
     public func disableTouchTabBar() {
-        if #available(iOS 15, *) {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: NSNotification.Name(
-                        TabBarHandler.NotificationNames.disableTouchTabBar.rawValue),
-                    object: nil
-                )
-            }
+        // if #available(iOS 15, *) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: NSNotification.Name(
+                    TabBarHandler.NotificationNames.disableTouchTabBar.rawValue),
+                object: nil
+            )
         }
+        // }
     }
 
     deinit {
