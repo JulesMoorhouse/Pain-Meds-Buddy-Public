@@ -39,6 +39,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .commonCancel:
                 output = ""
+            case .commonClose:
+                output = ""
             case .commonDelete:
                 output = ""
             case .commonDosage:

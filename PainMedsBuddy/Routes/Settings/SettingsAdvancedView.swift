@@ -11,7 +11,7 @@ import XNavigation
 struct SettingsAdvancedView: View, DestinationView {
     var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
         title: String(.settingsAdvanced),
-        displayMode: .automatic
+        displayMode: .inline
     )
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
@@ -33,36 +33,43 @@ struct SettingsAdvancedView: View, DestinationView {
     }
 
     var body: some View {
-        ZStack {
-            Form {
-                Section {}
-
-                Section(footer: Text(Strings.settingsDefaultRemindMeFooter)) {
-                    Toggle(Strings.settingsDefaultRemindMe.rawValue,
-                           isOn: $defaultRemindMe)
-                }
-
-                Section {
-                    Button(Strings.settingsDeleteAllHistoryData.rawValue) {
-                        activeAlert = .deleteHistoryConfirmation
-                        showAlert.toggle()
+        NavigationViewChild {
+            ZStack {
+                Form {
+                    Section(footer: Text(Strings.settingsDefaultRemindMeFooter)) {
+                        Toggle(Strings.settingsDefaultRemindMe.rawValue,
+                               isOn: $defaultRemindMe)
                     }
-                    .accentColor(.red)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
 
-                Section {
-                    Button(Strings.settingsDeleteAllData.rawValue) {
-                        activeAlert = .deleteConfirmation
-                        showAlert.toggle()
+                    Section {
+                        Button(Strings.settingsDeleteAllHistoryData.rawValue) {
+                            activeAlert = .deleteHistoryConfirmation
+                            showAlert.toggle()
+                        }
+                        .accentColor(.red)
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .accentColor(.red)
-                    .frame(maxWidth: .infinity, alignment: .center)
+
+                    Section {
+                        Button(Strings.settingsDeleteAllData.rawValue) {
+                            activeAlert = .deleteConfirmation
+                            showAlert.toggle()
+                        }
+                        .accentColor(.red)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }
             }
+            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarAccessibilityIdentifier(.settingsAdvanced)
+            .navigationBarItems(leading:
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text(.commonClose)
+                })
+            )
         }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(.settingsAdvanced)
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .alert(isPresented: $showAlert) { alertOption() }
         .onAppear(perform: {

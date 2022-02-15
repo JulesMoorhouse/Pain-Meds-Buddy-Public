@@ -13,25 +13,28 @@ struct SettingsView: View {
     static let settingsTag: String? = "Settings"
     static let settingsIcon: String = SFSymbol.gearShapeFill.systemName
 
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
+    enum ActiveSheet {
+        case advanced, developer, acknowledgements
+    }
+
+    @State private var activeSheet: ActiveSheet = .advanced
+    @State private var showSheet = false
+
     var body: some View {
         NavigationViewChild {
             ZStack {
                 Form {
-                    Section { }
-
                     // --- Advanced ---
                     Section {
                         Button(action: {
-                            navigation.pushView(
-                                SettingsAdvancedView(),
-                                animated: true
-                            )
-
+                            activeSheet = .advanced
+                            showSheet.toggle()
                         }, label: {
                             HStack {
                                 Text(.settingsAdvanced)
@@ -51,11 +54,8 @@ struct SettingsView: View {
                     // --- Developer ---
                     Section {
                         Button(action: {
-                            navigation.pushView(
-                                SettingsDeveloperView(),
-                                animated: true
-                            )
-
+                            activeSheet = .developer
+                            showSheet.toggle()
                         }, label: {
                             HStack {
                                 Text(.settingsDeveloper)
@@ -75,19 +75,8 @@ struct SettingsView: View {
                     // --- Acknowledgements ---
                     Section {
                         Button(action: {
-                            navigation.pushView(
-                                AcknowledgementsList()
-                                    .navigationTitle(Strings.settingsAcknowledgements.rawValue)
-                                    .navigationBarAccessibilityIdentifier(.settingsAcknowledgements)
-                                    .onAppear {
-                                        self.tabBarHandler.hideTabBar()
-                                    }
-                                    .onDisappear {
-                                        self.tabBarHandler.showTabBar()
-                                    },
-                                animated: true
-                            )
-
+                            activeSheet = .acknowledgements
+                            showSheet.toggle()
                         }, label: {
                             HStack {
                                 Text(.settingsAcknowledgements)
@@ -115,16 +104,49 @@ struct SettingsView: View {
                         Text(Strings.settingsNoResponsibility)
                             .multilineTextAlignment(.center)
                     ) {}
-                    .frame(maxHeight: 200)
+                        .frame(maxHeight: 200)
                 }
                 .navigationTitle(Strings.tabTitleSettings.rawValue)
                 .navigationBarAccessibilityIdentifier(.tabTitleSettings)
                 .toasted(show: $presentableToast.show, data: $presentableToast.data)
+                .sheet(isPresented: $showSheet) {
+                    sheetOption()
+                }
             }
         }
         .onAppear(perform: {
             self.tabBarHandler.showTabBar()
         })
+    }
+
+    func sheetOption() -> some View {
+        Group {
+            switch activeSheet {
+            case .advanced:
+                SettingsAdvancedView()
+            case .developer:
+                SettingsDeveloperView()
+            case .acknowledgements:
+                NavigationViewChild {
+                    AcknowledgementsList()
+                        .navigationBarTitle(Strings.settingsAcknowledgements.rawValue, displayMode: .inline)
+                        .navigationBarAccessibilityIdentifier(.settingsAcknowledgements)
+                        .navigationBarItems(leading:
+                            Button(action: {
+                                showSheet = false
+                            }, label: {
+                                Text(.commonClose)
+                            })
+                        )
+                        .onAppear {
+                            self.tabBarHandler.hideTabBar()
+                        }
+                        .onDisappear {
+                            self.tabBarHandler.showTabBar()
+                        }
+                }
+            }
+        }
     }
 }
 

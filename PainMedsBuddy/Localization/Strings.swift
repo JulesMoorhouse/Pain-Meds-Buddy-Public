@@ -15,6 +15,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case commonAppNameInitials
     case commonBasicSettings
     case commonCancel
+    case commonClose
     case commonDelete
     case commonDosage
     case commonEgString

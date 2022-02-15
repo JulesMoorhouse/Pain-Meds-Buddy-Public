@@ -12,7 +12,7 @@ import XNavigation
 struct SettingsDeveloperView: View, DestinationView {
     var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
         title: String(.settingsDeveloper),
-        displayMode: .automatic
+        displayMode: .inline
     )
 
     @Environment(\.presentationMode) var presentationMode
@@ -42,103 +42,110 @@ struct SettingsDeveloperView: View, DestinationView {
     }
 
     var body: some View {
-        ZStack {
-            Form {
-                Section {}
-
-                Section(footer:
-                    Text(Strings.settingsBackupFooter)
-                        .multilineTextAlignment(.center)
-                ) {
-                    Button(Strings.settingsBackup.rawValue) {
-                        do {
-                            let data = try dataController.coreDataToJson()
-                            document = JsonFileDocument(initialText: data)
-                            showBackup = true
-                        } catch {
-                            errorMessage = error.localizedDescription
-                            activeAlert = .backupFailed
+        NavigationViewChild {
+            ZStack {
+                Form {
+                    Section(footer:
+                        Text(Strings.settingsBackupFooter)
+                            .multilineTextAlignment(.center)
+                    ) {
+                        Button(Strings.settingsBackup.rawValue) {
+                            do {
+                                let data = try dataController.coreDataToJson()
+                                document = JsonFileDocument(initialText: data)
+                                showBackup = true
+                            } catch {
+                                errorMessage = error.localizedDescription
+                                activeAlert = .backupFailed
+                                showAlert.toggle()
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    Section {
+                        Button(Strings.settingsRestore.rawValue) {
+                            activeAlert = .restoreDataConfirmation
                             showAlert.toggle()
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
-                Section {
-                    Button(Strings.settingsRestore.rawValue) {
-                        activeAlert = .restoreDataConfirmation
-                        showAlert.toggle()
+                    Section {
+                        Button(Strings.settingsAddExampleData.rawValue) {
+                            activeAlert = .exampleDataConfirmation
+                            showAlert.toggle()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
-                Section {
-                    Button(Strings.settingsAddExampleData.rawValue) {
-                        activeAlert = .exampleDataConfirmation
-                        showAlert.toggle()
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
 
-                Section {
-                    Button(Strings.settingsGenerateTestCrash.rawValue) {
-                        activeAlert = .crashReportTestConfirmation
-                        showAlert.toggle()
+                    Section {
+                        Button(Strings.settingsGenerateTestCrash.rawValue) {
+                            activeAlert = .crashReportTestConfirmation
+                            showAlert.toggle()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
-        }
-        .fileExporter(isPresented: $showBackup,
-                      document: document,
-                      contentType: .json,
-                      defaultFilename: defaultExportFileName)
-        { result in
-            switch result {
-            case .success(let url):
-                print("Saved to \(url)")
-                self.presentableToast.data
-                    = ToastModel(
-                        type: .success,
-                        message: String(.settingsBackupCompletedMessage)
-                    )
-                self.presentableToast.show = true
-            case .failure(let error):
-                print(error.localizedDescription)
-                errorMessage = error.localizedDescription
-                activeAlert = .backupFailed
-                showAlert.toggle()
-            }
-        }
-        .fileImporter(isPresented: $showRestore,
-                      allowedContentTypes: [.json],
-                      allowsMultipleSelection: false)
-        { result in
-            do {
-                guard let selectedFile: URL = try result.get().first else { return }
-                guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
-                do {
-                    try dataController.jsonToCoreData(input)
+            .fileExporter(isPresented: $showBackup,
+                          document: document,
+                          contentType: .json,
+                          defaultFilename: defaultExportFileName)
+            { result in
+                switch result {
+                case .success(let url):
+                    print("Saved to \(url)")
                     self.presentableToast.data
                         = ToastModel(
                             type: .success,
-                            message: String(.settingsRestoreCompletedMessage)
+                            message: String(.settingsBackupCompletedMessage)
                         )
                     self.presentableToast.show = true
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    errorMessage = error.localizedDescription
+                    activeAlert = .backupFailed
+                    showAlert.toggle()
+                }
+            }
+            .fileImporter(isPresented: $showRestore,
+                          allowedContentTypes: [.json],
+                          allowsMultipleSelection: false)
+            { result in
+                do {
+                    guard let selectedFile: URL = try result.get().first else { return }
+                    guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+                    do {
+                        try dataController.jsonToCoreData(input)
+                        self.presentableToast.data
+                            = ToastModel(
+                                type: .success,
+                                message: String(.settingsRestoreCompletedMessage)
+                            )
+                        self.presentableToast.show = true
+                    } catch {
+                        errorMessage = error.localizedDescription
+                        activeAlert = .restoreFailed
+                        showAlert.toggle()
+                    }
                 } catch {
+                    // Handle failure.
+                    print("Unable to read file contents")
+                    print(error.localizedDescription)
                     errorMessage = error.localizedDescription
                     activeAlert = .restoreFailed
                     showAlert.toggle()
                 }
-            } catch {
-                // Handle failure.
-                print("Unable to read file contents")
-                print(error.localizedDescription)
-                errorMessage = error.localizedDescription
-                activeAlert = .restoreFailed
-                showAlert.toggle()
             }
+            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarAccessibilityIdentifier(.settingsDeveloper)
+            .navigationBarItems(leading:
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text(.commonClose)
+                })
+            )
         }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(.settingsDeveloper)
         .alert(isPresented: $showAlert) { alertOption() }
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .onAppear(perform: {
