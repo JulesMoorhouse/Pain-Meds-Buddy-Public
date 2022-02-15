@@ -78,145 +78,141 @@ struct DoseEditView: View, DestinationView {
     }
 
     var body: some View {
-        ZStack {
-            Form {
-                Section(header: Text(.commonBasicSettings)) {
-                    // --- Time Taken ---
-                    DatePicker(
-                        .doseEditDateTime,
-                        selection: $viewModel.takenDate,
-                        displayedComponents: [.hourAndMinute, .date]
-                    )
-                    .foregroundColor(.secondary)
-                    .accessibilityIdentifier(.doseEditDateTime)
+        NavigationViewChild {
+            ZStack {
+                Form {
+                    Section(header: Text(.commonBasicSettings)) {
+                        // --- Time Taken ---
+                        DatePicker(
+                            .doseEditDateTime,
+                            selection: $viewModel.takenDate,
+                            displayedComponents: [.hourAndMinute, .date]
+                        )
+                        .foregroundColor(.secondary)
+                        .accessibilityIdentifier(.doseEditDateTime)
 
-                    // --- Medication Select ---
-                    Button(action: {
-                        UIApplication.endEditing()
-                        navigation.pushView(
+                        // --- Medication Select ---
+                        NavigationLink(destination:
                             DoseMedSelectView(
                                 selectedMed: $viewModel.selectedMed.onChange(viewModel.selectionChanged),
                                 dataController: dataController
-                            ),
-                            animated: true
-                        )
-                    }, label: {
+                            )) { HStack {
+                                TwoColumnView(col1: Strings.doseEditMedication.rawValue,
+                                              col2: viewModel.selectedMed.medTitle,
+                                              hasChevron: false)
+                            } }
+                            .accessibilityIdentifier(.doseEditMedication)
+
+                        // --- Amount ---
                         HStack {
-                            TwoColumnView(col1: Strings.doseEditMedication.rawValue,
-                                          col2: viewModel.selectedMed.medTitle,
-                                          hasChevron: true)
-                        }
-                    })
-                    .accessibilityIdentifier(.doseEditMedication)
+                            Text(.doseEditAmount)
+                                .foregroundColor(.secondary)
+                            Spacer()
 
-                    // --- Amount ---
-                    HStack {
-                        Text(.doseEditAmount)
-                            .foregroundColor(.secondary)
-                        Spacer()
+                            TextField(String(.commonEgString,
+                                             values: [DoseDefault.Sensible.doseAmount()]),
+                                      text: $viewModel.amount)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .accessibilityIdentifier(.doseEditAmount)
+                                .textFieldStyle(SelectAllTextFieldStyle())
 
-                        TextField(String(.commonEgString,
-                                         values: [DoseDefault.Sensible.doseAmount()]),
-                                  text: $viewModel.amount)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .accessibilityIdentifier(.doseEditAmount)
-                            .textFieldStyle(SelectAllTextFieldStyle())
-
-                        Text(viewModel.selectedMed.medFormPlural)
-                            .foregroundColor(.secondary)
-                    }
-                    .validation(viewModel.amountValidator)
-
-                    // ---  Remind Me ---
-                    HStack {
-                        Toggle(isOn: $viewModel.remindMe.onChange(remindMeChanged)) {
-                            Text(.doseElapsedReminder)
+                            Text(viewModel.selectedMed.medFormPlural)
                                 .foregroundColor(.secondary)
                         }
+                        .validation(viewModel.amountValidator)
 
-                        // New red triangle
-                        if viewModel.hasStartupNotificationError {
-                            Spacer()
-                                .frame(width: 5)
+                        // ---  Remind Me ---
+                        HStack {
+                            Toggle(isOn: $viewModel.remindMe.onChange(remindMeChanged)) {
+                                Text(.doseElapsedReminder)
+                                    .foregroundColor(.secondary)
+                            }
 
-                            Button(action: {
-                                viewModel.activePopup = .initialNotificationError
-                                viewModel.showPopup.toggle()
-                            }, label: {
-                                Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
-                                    .foregroundColor(Color.red)
-                            })
-                            .buttonStyle(BorderlessButtonStyle())
+                            // New red triangle
+                            if viewModel.hasStartupNotificationError {
+                                Spacer()
+                                    .frame(width: 5)
+
+                                Button(action: {
+                                    viewModel.activePopup = .initialNotificationError
+                                    viewModel.showPopup.toggle()
+                                }, label: {
+                                    Image(systemName: SFSymbol.exclamationMarkTriangle.systemName)
+                                        .foregroundColor(Color.red)
+                                })
+                                .buttonStyle(BorderlessButtonStyle())
+                            }
                         }
                     }
-                }
 
-                // ---  Example Dosage ---
-                Section(header: Text(.commonExampleDosage)) {
-                    HStack {
-                        MedSymbolView(
-                            symbol: viewModel.selectedMed.medSymbol,
-                            colour: viewModel.selectedMed.medColor
+                    // ---  Example Dosage ---
+                    Section(header: Text(.commonExampleDosage)) {
+                        HStack {
+                            MedSymbolView(
+                                symbol: viewModel.selectedMed.medSymbol,
+                                colour: viewModel.selectedMed.medColor
+                            )
+
+                            Text(display())
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
+
+                    // --- Detail notes ---
+                    Section(header: Text(.doseEditDetails)) {
+                        TextArea(
+                            Strings.doseEditDetailsPlaceholder.rawValue,
+                            text: $viewModel.details
                         )
-
-                        Text(display())
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.leading)
-                    }
-                }
-
-                // --- Detail notes ---
-                Section(header: Text(.doseEditDetails)) {
-                    TextArea(
-                        Strings.doseEditDetailsPlaceholder.rawValue,
-                        text: $viewModel.details
-                    )
-                    .frame(minHeight: 50)
-                }
-
-                if !viewModel.add {
-                    // --- Delete Button ---
-                    Section {
-                        Button(Strings.doseEditDeleteThisDose.rawValue) {
-                            viewModel.activeAlert = .deleteConfirmation
-                            viewModel.showAlert.toggle()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .accentColor(.red)
+                        .frame(minHeight: 50)
                     }
 
-                    // --- Elapse Button ---
-                    if !viewModel.elapsed {
+                    if !viewModel.add {
+                        // --- Delete Button ---
                         Section {
-                            Button(Strings.doseEditMarkElapsed.rawValue) {
-                                viewModel.activeAlert = .elapseConfirmation
+                            Button(Strings.doseEditDeleteThisDose.rawValue) {
+                                viewModel.activeAlert = .deleteConfirmation
                                 viewModel.showAlert.toggle()
                             }
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .disabled(viewModel.dataChanged)
+                            .accentColor(.red)
+                        }
+
+                        // --- Elapse Button ---
+                        if !viewModel.elapsed {
+                            Section {
+                                Button(Strings.doseEditMarkElapsed.rawValue) {
+                                    viewModel.activeAlert = .elapseConfirmation
+                                    viewModel.showAlert.toggle()
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .disabled(viewModel.dataChanged)
+                            }
                         }
                     }
                 }
-            }
 
-            if viewModel.showPopup == true {
-                popupOption()
+                if viewModel.showPopup == true {
+                    popupOption()
+                }
             }
-        }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
-        .toasted(show: $presentableToast.show, data: $presentableToast.data)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            backBarButtonItem
-            saveBarButtonItem
+            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
+            .alert(isPresented: $viewModel.showAlert) { alertOption() }
+
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                backBarButtonItem
+                saveBarButtonItem
+            }
         }
         .onReceive(viewModel.formValidation.$allValid) { isValid in
             self.isSaveDisabled = !isValid
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-        .alert(isPresented: $viewModel.showAlert) { alertOption() }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
 
@@ -339,7 +335,7 @@ struct DoseEditView: View, DestinationView {
 
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
-            displayMode: .automatic
+            displayMode: .inline
         )
     }
 
@@ -357,7 +353,7 @@ struct DoseEditView: View, DestinationView {
 
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
-            displayMode: .automatic
+            displayMode: .inline
         )
     }
 }

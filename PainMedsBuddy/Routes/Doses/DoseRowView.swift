@@ -18,6 +18,7 @@ struct DoseRowView: View {
 
     @State private var showEditView = false
     @State private var buttonToggle = false
+    @State private var showSheet = false
 
     var chevronIcon: ChevronView.Direction {
         let result: ChevronView.Direction
@@ -38,13 +39,7 @@ struct DoseRowView: View {
             if dose.elapsed {
                 buttonToggle.toggle()
             } else {
-                navigation.pushView(
-                    DoseEditView(
-                        dataController: dataController,
-                        dose: dose
-                    )
-                    .environmentObject(dataController)
-                    .environment(\.managedObjectContext, viewContext))
+                showSheet.toggle()
             }
         }, label: {
             if let med = dose.med {
@@ -103,6 +98,14 @@ struct DoseRowView: View {
                                 .padding(.vertical, 2)
                         }
                     }
+                }
+                .sheet(isPresented: $showSheet) {
+                    DoseEditView(
+                        dataController: dataController,
+                        dose: dose
+                    )
+                    .environmentObject(dataController)
+                    .environment(\.managedObjectContext, viewContext)
                 }
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(

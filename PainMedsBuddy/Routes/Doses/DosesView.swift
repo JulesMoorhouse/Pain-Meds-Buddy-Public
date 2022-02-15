@@ -25,6 +25,8 @@ struct DosesView: View {
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
+    @State private var showSheet = false
+
     var body: some View {
         let data: [[Dose]] = viewModel.resultsToArray()
 
@@ -49,6 +51,10 @@ struct DosesView: View {
                 }
             }
             .toasted(show: $presentableToast.show, data: $presentableToast.data)
+            .sheet(isPresented: $showSheet) {
+                DoseAddView(
+                    med: viewModel.createMed())
+            }
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
             .toolbar {
@@ -59,9 +65,7 @@ struct DosesView: View {
                                 .accessibilityHidden(true)
 
                             Button(action: {
-                                navigation.pushView(
-                                    DoseAddView(
-                                        med: viewModel.createMed()))
+                                showSheet.toggle()
                             }, label: {
                                 // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
                                 // "Add Dose" as "Add" no matter what accessibility label

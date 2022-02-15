@@ -16,8 +16,11 @@ struct TwoColumnView: View {
         Group {
             Text(col1)
                 .foregroundColor(.secondary)
+
             Spacer()
+
             Text(col2)
+                .foregroundColor(Color.accentColor)
 
             if hasChevron {
                 ChevronView()

@@ -91,75 +91,77 @@ struct MedEditView: View, DestinationView {
     }
 
     var body: some View {
-        ZStack {
-            Form {
-                Section(header: Text(.commonBasicSettings)) {
-                    basicSettingsFields()
-                }
-
-                // --- Example ---
-                Section(header: Text(.commonExampleDosage)) {
-                    HStack {
-                        MedSymbolView(symbol: $viewModel.symbol.wrappedValue,
-                                      colour: $viewModel.colour.wrappedValue)
-
-                        Text(viewModel.example)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.secondary)
+        NavigationViewChild {
+            ZStack {
+                Form {
+                    Section(header: Text(.commonBasicSettings)) {
+                        basicSettingsFields()
                     }
-                }
 
-                // --- Colour Selector ---
-                Section(header: symbolHeader()) {
-                    if !$advancedSectionHidden.wrappedValue {
-                        Text(.medEditColour)
-                            .foregroundColor(.secondary)
-                        LazyVGrid(columns: colorColumns) {
-                            ForEach(Med.colours, id: \.self, content: colourButton)
+                    // --- Example ---
+                    Section(header: Text(.commonExampleDosage)) {
+                        HStack {
+                            MedSymbolView(symbol: $viewModel.symbol.wrappedValue,
+                                          colour: $viewModel.colour.wrappedValue)
+
+                            Text(viewModel.example)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.secondary)
                         }
-                        .padding(.vertical)
-
-                        Text(.medEditImage)
-                            .foregroundColor(.secondary)
-                        SymbolsView(
-                            colour: Color($viewModel.colour.wrappedValue),
-                            selectedSymbol: $viewModel.symbol
-                        )
-                        .padding(.vertical)
-
-                        // --- Notes ---
-                        Text(.medEditNotes)
-                            .foregroundColor(.secondary)
-
-                        TextArea(
-                            Strings.medEditNotesPlaceholder.rawValue,
-                            text: $viewModel.notes
-                        )
-                        .frame(minHeight: 50)
                     }
+
+                    // --- Colour Selector ---
+                    Section(header: symbolHeader()) {
+                        if !$advancedSectionHidden.wrappedValue {
+                            Text(.medEditColour)
+                                .foregroundColor(.secondary)
+                            LazyVGrid(columns: colorColumns) {
+                                ForEach(Med.colours, id: \.self, content: colourButton)
+                            }
+                            .padding(.vertical)
+
+                            Text(.medEditImage)
+                                .foregroundColor(.secondary)
+                            SymbolsView(
+                                colour: Color($viewModel.colour.wrappedValue),
+                                selectedSymbol: $viewModel.symbol
+                            )
+                            .padding(.vertical)
+
+                            // --- Notes ---
+                            Text(.medEditNotes)
+                                .foregroundColor(.secondary)
+
+                            TextArea(
+                                Strings.medEditNotesPlaceholder.rawValue,
+                                text: $viewModel.notes
+                            )
+                            .frame(minHeight: 50)
+                        }
+                    }
+                    .animation(.easeInOut(duration: 1))
+
+                    buttonsSection()
                 }
-                .animation(.easeInOut(duration: 1))
 
-                buttonsSection()
+                if showPopup == true {
+                    popupOption()
+                }
             }
-
-            if showPopup == true {
-                popupOption()
+            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
+            .navigationBarBackButtonHidden(true)
+            .alert(isPresented: $showAlert) { alertOption() }
+            .toolbar {
+                backBarButtonItem
+                saveBarButtonItem
             }
-        }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
-        .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
-        .toasted(show: $presentableToast.show, data: $presentableToast.data)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            backBarButtonItem
-            saveBarButtonItem
         }
         .onReceive(viewModel.formValidation.$allValid) { isValid in
             self.isSaveDisabled = !isValid
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-        .alert(isPresented: $showAlert) { alertOption() }
         .onAppear(perform: {
             self.tabBarHandler.hideTabBar()
         })
@@ -568,7 +570,7 @@ struct MedEditView: View, DestinationView {
 
         navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
             title: title,
-            displayMode: .automatic
+            displayMode: .inline
         )
 
         let tempTypes = String(.medEditTypes)

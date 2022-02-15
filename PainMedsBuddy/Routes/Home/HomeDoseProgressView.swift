@@ -25,6 +25,12 @@ struct HomeDoseProgressView: View {
     var debug = false
     var showEmptyView = false
 
+    enum ActiveSheet {
+        case add, edit
+    }
+
+    @State private var activeSheet: ActiveSheet = .add
+    @State private var showSheet = false
     @State var nowDate = Date()
     @State var timer: Timer?
 
@@ -141,16 +147,11 @@ struct HomeDoseProgressView: View {
             Button(action: {
                 if !doseNotElapsed {
                     close()
-                    navigation.pushView(
-                        DoseAddView(med: med),
-                        animated: true
-                    )
+                    activeSheet = .add
+                    showSheet.toggle()
                 } else {
-                    navigation.pushView(
-                        DoseEditView(dataController: dataController,
-                                     dose: dose),
-                        animated: true
-                    )
+                    activeSheet = .edit
+                    showSheet.toggle()
                 }
             }, label: {
                 ButtonBorderView(
@@ -160,6 +161,15 @@ struct HomeDoseProgressView: View {
                     width: 100
                 )
             })
+            .sheet(isPresented: $showSheet) {
+                switch activeSheet {
+                case .add:
+                    DoseAddView(med: med)
+                case .edit:
+                    DoseEditView(dataController: dataController,
+                                 dose: dose)
+                }
+            }
             .disabled(showEmptyView)
             .accessibilityRemoveTraits(.isButton)
             .accessibilityAddTraits(showEmptyView ? .isStaticText : .isButton)

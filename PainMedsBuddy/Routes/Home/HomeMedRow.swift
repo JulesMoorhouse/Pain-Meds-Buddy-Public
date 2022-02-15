@@ -13,6 +13,8 @@ struct HomeMedRow: View {
 
     @ObservedObject var med: Med
 
+    @State private var showSheet = false
+
     var detail: some View {
         VStack(alignment: .leading) {
             Text(med.medTitle)
@@ -38,10 +40,7 @@ struct HomeMedRow: View {
             Spacer()
 
             Button(action: {
-                navigation.pushView(
-                    DoseAddView(med: med),
-                    animated: true
-                )
+                showSheet.toggle()
             }, label: {
                 ButtonBorderView(
                     text: Strings.homeTakeNext.rawValue,
@@ -53,6 +52,9 @@ struct HomeMedRow: View {
 
             Spacer()
                 .frame(width: 10)
+        }
+        .sheet(isPresented: $showSheet) {
+            DoseAddView(med: med)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)

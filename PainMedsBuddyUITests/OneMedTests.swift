@@ -63,6 +63,9 @@ class OneMedTests: XCTestCase {
         // INFO: Tap newly added item on medications list
         app.buttons[Strings.homeAccessibilityIconRemaining.automatedId()].tap()
 
+        // INFO: Confirm on med edit screen
+        _ = Elements.navBarEditMed(app)
+
         app.textFields[Strings.medEditTitleText.automatedId()].tap()
 
         // When

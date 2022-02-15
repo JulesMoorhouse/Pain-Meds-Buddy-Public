@@ -20,26 +20,30 @@ struct MedsView: View {
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
+    @State private var showSheetAdd = false
+    @State private var showSheetEdit = false
+
     var items: [Med] {
-        viewModel.meds.allMeds.filter { !$0.hidden}.sortedItems(using: viewModel.sortOrder)
+        viewModel.meds.allMeds.filter { !$0.hidden }.sortedItems(using: viewModel.sortOrder)
     }
 
     var medsList: some View {
         List {
             ForEach(items, id: \.self) { med in
                 Button(action: {
-                    navigation.pushView(
-                        MedEditView(
-                            dataController: dataController,
-                            med: med,
-                            add: false,
-                            hasRelationship: viewModel.hasRelationship(med: med)
-                        ),
-                        animated: true
-                    )
+                    showSheetEdit.toggle()
+
                 }, label: {
                     MedRowView(med: med)
                 })
+                .sheet(isPresented: $showSheetEdit) {
+                    MedEditView(
+                        dataController: dataController,
+                        med: med,
+                        add: false,
+                        hasRelationship: viewModel.hasRelationship(med: med)
+                    )
+                }
             }
             .onDelete { offsets in
                 viewModel.deleteMed(offsets, items: items)
@@ -55,11 +59,7 @@ struct MedsView: View {
                 Text("")
                     .accessibilityHidden(true)
                 Button(action: {
-                    navigation.pushView(
-                        MedAddView()
-                            .environmentObject(dataController),
-                        animated: true
-                    )
+                    showSheetAdd.toggle()
                 }, label: {
                     // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
                     // "Add Med" as "Add" no matter what accessibility label
@@ -127,6 +127,10 @@ struct MedsView: View {
                     .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
                     .cancel(),
                 ])
+            }
+            .sheet(isPresented: $showSheetAdd) {
+                MedAddView()
+                    .environmentObject(dataController)
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)

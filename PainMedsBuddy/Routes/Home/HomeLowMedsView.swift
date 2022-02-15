@@ -12,6 +12,8 @@ struct HomeLowMedsView: View {
     @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var dataController: DataController
 
+    @State private var showSheet = false
+
     let meds: [Med]
 
     var body: some View {
@@ -23,15 +25,7 @@ struct HomeLowMedsView: View {
                     if !meds.isEmpty {
                         ForEach(meds, id: \.self) { med in
                             Button(action: {
-                                navigation.pushView(
-                                    MedEditView(
-                                        dataController: dataController,
-                                        med: med,
-                                        add: false,
-                                        hasRelationship: dataController.hasRelationship(for: med)
-                                    ),
-                                    animated: true
-                                )
+                                showSheet.toggle()
                             }, label: {
                                 HStack {
                                     MedRowView(med: med)
@@ -42,6 +36,14 @@ struct HomeLowMedsView: View {
                                 }
                                 .padding(2)
                             })
+                            .sheet(isPresented: $showSheet) {
+                                MedEditView(
+                                    dataController: dataController,
+                                    med: med,
+                                    add: false,
+                                    hasRelationship: dataController.hasRelationship(for: med)
+                                )
+                            }
                             .panelled()
                             .accessibilityElement(children: .ignore)
                             .accessibilityAddTraits(.isButton)
