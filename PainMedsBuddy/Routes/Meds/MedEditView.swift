@@ -11,11 +11,8 @@
 
 import FormValidator
 import SwiftUI
-import XNavigation
 
-struct MedEditView: View, DestinationView {
-    var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
-
+struct MedEditView: View {
     @StateObject private var viewModel: ViewModel
 
     @EnvironmentObject private var dataController: DataController
@@ -148,7 +145,7 @@ struct MedEditView: View, DestinationView {
                     popupOption()
                 }
             }
-            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarTitle(String(viewModel.navigationTitle(add: viewModel.add)), displayMode: .inline)
             .navigationBarAccessibilityIdentifier(viewModel.navigationTitle(add: viewModel.add))
             .toasted(show: $presentableToast.show, data: $presentableToast.data)
             .navigationBarBackButtonHidden(true)
@@ -565,13 +562,6 @@ struct MedEditView: View, DestinationView {
         )
 
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        let title = String(viewModel.navigationTitle(add: add))
-
-        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-            title: title,
-            displayMode: .inline
-        )
 
         let tempTypes = String(.medEditTypes)
         types = tempTypes.components(separatedBy: ",")

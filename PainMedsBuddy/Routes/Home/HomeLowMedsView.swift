@@ -6,10 +6,8 @@
 //
 
 import SwiftUI
-import XNavigation
 
 struct HomeLowMedsView: View {
-    @EnvironmentObject var navigation: Navigation
     @EnvironmentObject var dataController: DataController
 
     @State private var showSheet = false

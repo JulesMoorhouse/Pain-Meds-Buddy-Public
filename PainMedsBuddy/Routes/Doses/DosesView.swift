@@ -9,7 +9,6 @@
 import CoreData
 import SimpleToast
 import SwiftUI
-import XNavigation
 
 struct DosesView: View {
     static let inProgressTag: String? = "InProgress"
@@ -21,7 +20,6 @@ struct DosesView: View {
         = SFSymbol.booksVerticalFill.systemName
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 

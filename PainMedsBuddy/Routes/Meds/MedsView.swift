@@ -8,14 +8,12 @@
 
 import CoreData
 import SwiftUI
-import XNavigation
 
 struct MedsView: View {
     static let medsTag: String? = "Medications"
     static let medsIcon: String = SFSymbol.pillsFill.systemName
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel

@@ -6,14 +6,8 @@
 //
 
 import SwiftUI
-import XNavigation
 
-struct DoseMedSelectView: View, DestinationView {
-    var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-        title: String(.selectMedSelectMed),
-        displayMode: .automatic
-    )
-
+struct DoseMedSelectView: View {
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var tabBarHandler: TabBarHandler
@@ -44,7 +38,7 @@ struct DoseMedSelectView: View, DestinationView {
             .listStyle(InsetGroupedListStyle())
             .disabled($viewModel.showingSortOrder.wrappedValue == true)
         }
-        .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+        .navigationBarTitle(Strings.selectMedSelectMed.rawValue, displayMode: .automatic)
         .navigationBarAccessibilityIdentifier(.selectMedSelectMed)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

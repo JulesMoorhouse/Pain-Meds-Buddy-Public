@@ -7,7 +7,6 @@
 
 import AckGenUI
 import SwiftUI
-import XNavigation
 
 struct SettingsView: View {
     static let settingsTag: String? = "Settings"
@@ -15,7 +14,6 @@ struct SettingsView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
-    @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 

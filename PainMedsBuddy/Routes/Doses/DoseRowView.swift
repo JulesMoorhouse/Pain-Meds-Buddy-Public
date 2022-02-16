@@ -7,12 +7,10 @@
 // INFO: This view is a row used on the DoseView
 
 import SwiftUI
-import XNavigation
 
 struct DoseRowView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var viewContext
-    @EnvironmentObject var navigation: Navigation
 
     @ObservedObject var dose: Dose
 

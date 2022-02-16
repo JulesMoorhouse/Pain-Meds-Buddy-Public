@@ -6,14 +6,8 @@
 //
 
 import SwiftUI
-import XNavigation
 
-struct SettingsAdvancedView: View, DestinationView {
-    var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-        title: String(.settingsAdvanced),
-        displayMode: .inline
-    )
-
+struct SettingsAdvancedView: View {
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
     @Environment(\.presentationMode) var presentationMode
@@ -60,7 +54,7 @@ struct SettingsAdvancedView: View, DestinationView {
                     }
                 }
             }
-            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarTitle(Strings.settingsAdvanced.rawValue, displayMode: .inline)
             .navigationBarAccessibilityIdentifier(.settingsAdvanced)
             .navigationBarItems(leading:
                 Button(action: {

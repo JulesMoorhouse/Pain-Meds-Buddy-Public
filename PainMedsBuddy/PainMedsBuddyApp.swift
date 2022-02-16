@@ -7,7 +7,6 @@
 
 import AppCenterCrashes
 import SwiftUI
-import XNavigation
 
 @main
 struct PainMedsBuddyApp: App {
@@ -51,26 +50,23 @@ struct PainMedsBuddyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WindowReader { window in
-                ContentView()
-                    .environment(\.managedObjectContext, dataController.container.viewContext)
-                    .environmentObject(dataController)
-                    .environmentObject(presentableToast)
-                    .environmentObject(Navigation(window: window!))
-                    // INFO: Automatically save when we detect that we are no longer
-                    // the foreground app, Use this rather than the scene phase
-                    // API so we can port to macOS, where scene phase won't detect
-                    // out app losing focus as of macOS 11.1.
-                    .onReceive(
-                        NotificationCenter.default.publisher(
-                            for: UIApplication.willResignActiveNotification),
-                        perform: save
-                    )
-                    .onReceive(NotificationCenter.default.publisher(
-                        for: UIApplication.didBecomeActiveNotification),
-                    perform: processDoses)
-                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-            }
+            ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(dataController)
+                .environmentObject(presentableToast)
+                // INFO: Automatically save when we detect that we are no longer
+                // the foreground app, Use this rather than the scene phase
+                // API so we can port to macOS, where scene phase won't detect
+                // out app losing focus as of macOS 11.1.
+                .onReceive(
+                    NotificationCenter.default.publisher(
+                        for: UIApplication.willResignActiveNotification),
+                    perform: save
+                )
+                .onReceive(NotificationCenter.default.publisher(
+                    for: UIApplication.didBecomeActiveNotification),
+                perform: processDoses)
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
     }
 

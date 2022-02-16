@@ -81,15 +81,6 @@
           "revision": "e73fb75cfd698ae7827771c83ee6234d55387d5a",
           "version": "0.13.0"
         }
-      },
-      {
-        "package": "XNavigation",
-        "repositoryURL": "https://github.com/DoubleSymmetry/XNavigation.git",
-        "state": {
-          "branch": null,
-          "revision": "921d0a18b9982cb33499229c4bba381076a30ed5",
-          "version": "0.1.1"
-        }
       }
     ]
   },

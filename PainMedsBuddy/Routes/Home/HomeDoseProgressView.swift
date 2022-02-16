@@ -7,10 +7,8 @@
 
 import CircularProgress
 import SwiftUI
-import XNavigation
 
 struct HomeDoseProgressView: View {
-    @EnvironmentObject var navigation: Navigation
     @EnvironmentObject private var dataController: DataController
 
     @ObservedObject var dose: Dose

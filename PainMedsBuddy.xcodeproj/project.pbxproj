@@ -55,7 +55,6 @@
 		8883E3A2277B474800B9304B /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883E3A1277B474800B9304B /* ExtensionTests.swift */; };
 		888FC807278B895A006A3E47 /* NoDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FC806278B895A006A3E47 /* NoDataTests.swift */; };
 		889A4CF62775E1B900E3B53B /* VStackFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4CF52775E1B900E3B53B /* VStackFormView.swift */; };
-		889A4D00277622A000E3B53B /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 889A4CFF277622A000E3B53B /* XNavigation */; };
 		889A4D0227764BC500E3B53B /* ChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889A4D0127764BC500E3B53B /* ChevronView.swift */; };
 		889C42C5277E0ABB003B6ED2 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42C4277E0ABB003B6ED2 /* SFSymbol.swift */; };
 		889C42D1277F9466003B6ED2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C42D0277F9466003B6ED2 /* Helpers.swift */; };
@@ -297,7 +296,6 @@
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 				88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */,
 				887AEC8727A414FB0038245F /* SwiftUIMailView in Frameworks */,
-				889A4D00277622A000E3B53B /* XNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +652,6 @@
 			packageProductDependencies = (
 				88E9309B2760A4B900A98708 /* AckGen */,
 				88E9309D2760A4B900A98708 /* AckGenUI */,
-				889A4CFF277622A000E3B53B /* XNavigation */,
 				88E705DA27872E73003EB471 /* CircularProgress */,
 				88B53E9A27940E1400DD74FC /* FormValidator */,
 				88F493B12796104500E3D4C2 /* SimpleToast */,
@@ -736,7 +733,6 @@
 			mainGroup = 88321415275120D40026D85F;
 			packageReferences = (
 				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
-				889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */,
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
 				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
@@ -1288,14 +1284,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DoubleSymmetry/XNavigation.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.1;
-			};
-		};
 		88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ShabanKamell/SwiftUIFormValidator.git";
@@ -1359,11 +1347,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */;
 			productName = SwiftUIMailView;
-		};
-		889A4CFF277622A000E3B53B /* XNavigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 889A4CFE277622A000E3B53B /* XCRemoteSwiftPackageReference "XNavigation" */;
-			productName = XNavigation;
 		};
 		88B53E9A27940E1400DD74FC /* FormValidator */ = {
 			isa = XCSwiftPackageProductDependency;

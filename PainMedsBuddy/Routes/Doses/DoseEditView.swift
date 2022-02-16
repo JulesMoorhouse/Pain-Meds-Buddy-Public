@@ -8,18 +8,14 @@
 
 import CoreData
 import SwiftUI
-import XNavigation
 
-struct DoseEditView: View, DestinationView {
-    var navigationBarTitleConfiguration: NavigationBarTitleConfiguration
-
+struct DoseEditView: View {
     @StateObject private var viewModel: ViewModel
 
     @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode
-    @EnvironmentObject private var navigation: Navigation
     @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
@@ -198,11 +194,10 @@ struct DoseEditView: View, DestinationView {
                     popupOption()
                 }
             }
-            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
             .navigationBarAccessibilityIdentifier(DoseEditView.navigationTitle(add: viewModel.add))
             .toasted(show: $presentableToast.show, data: $presentableToast.data)
             .alert(isPresented: $viewModel.showAlert) { alertOption() }
-
+            .navigationBarTitle(String(DoseEditView.navigationTitle(add: viewModel.add)), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 backBarButtonItem
@@ -330,13 +325,6 @@ struct DoseEditView: View, DestinationView {
     {
         let viewModel = ViewModel(dataController: dataController, dose: dose)
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        let title = String(DoseEditView.navigationTitle(add: false))
-
-        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-            title: title,
-            displayMode: .inline
-        )
     }
 
     init(dataController: DataController,
@@ -346,15 +334,7 @@ struct DoseEditView: View, DestinationView {
             dataController: dataController,
             selectedMed: selectedMed
         )
-
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        let title = String(DoseEditView.navigationTitle(add: true))
-
-        navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-            title: title,
-            displayMode: .inline
-        )
     }
 }
 

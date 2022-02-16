@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-import XNavigation
 
 struct HomeMedRow: View {
-    @EnvironmentObject var navigation: Navigation
-
     @ObservedObject var med: Med
 
     @State private var showSheet = false

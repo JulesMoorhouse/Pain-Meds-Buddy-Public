@@ -7,14 +7,8 @@
 
 import AppCenterCrashes
 import SwiftUI
-import XNavigation
 
-struct SettingsDeveloperView: View, DestinationView {
-    var navigationBarTitleConfiguration = NavigationBarTitleConfiguration(
-        title: String(.settingsDeveloper),
-        displayMode: .inline
-    )
-
+struct SettingsDeveloperView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
     @EnvironmentObject var tabBarHandler: TabBarHandler
@@ -136,7 +130,7 @@ struct SettingsDeveloperView: View, DestinationView {
                     showAlert.toggle()
                 }
             }
-            .navigationBarTitle(configuration: navigationBarTitleConfiguration)
+            .navigationBarTitle(Strings.settingsDeveloper.rawValue, displayMode: .inline)
             .navigationBarAccessibilityIdentifier(.settingsDeveloper)
             .navigationBarItems(leading:
                 Button(action: {
