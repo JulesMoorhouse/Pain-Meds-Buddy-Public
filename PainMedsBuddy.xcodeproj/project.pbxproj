@@ -130,7 +130,6 @@
 		88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 88F9067E2797460500CBC65E /* AppCenterCrashes */; };
 		88F90682279747B000CBC65E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F90681279747B000CBC65E /* Secrets.swift */; };
 		88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9069D2798115100CBC65E /* TabBarHandler.swift */; };
-		88F906A12798176200CBC65E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 88F906A02798176200CBC65E /* Introspect */; };
 		88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */; };
 		88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A427988F4E00CBC65E /* TextAreaView.swift */; };
 		88F906A92799AB6000CBC65E /* Toast-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */; };
@@ -287,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */,
-				88F906A12798176200CBC65E /* Introspect in Frameworks */,
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88C611BB27A538A1006AAE38 /* DeviceKit in Frameworks */,
@@ -656,7 +654,6 @@
 				88B53E9A27940E1400DD74FC /* FormValidator */,
 				88F493B12796104500E3D4C2 /* SimpleToast */,
 				88F9067E2797460500CBC65E /* AppCenterCrashes */,
-				88F906A02798176200CBC65E /* Introspect */,
 				887AEC8627A414FB0038245F /* SwiftUIMailView */,
 				88C611BA27A538A1006AAE38 /* DeviceKit */,
 			);
@@ -737,7 +734,6 @@
 				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 				88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
-				88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */,
 				88C611B927A538A1006AAE38 /* XCRemoteSwiftPackageReference "DeviceKit" */,
 			);
@@ -1332,14 +1328,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1382,11 +1370,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
 			productName = AppCenterCrashes;
-		};
-		88F906A02798176200CBC65E /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88F9069F2798176200CBC65E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

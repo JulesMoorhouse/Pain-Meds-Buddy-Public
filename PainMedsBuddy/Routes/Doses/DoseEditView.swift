@@ -16,7 +16,6 @@ struct DoseEditView: View {
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var isSaveDisabled = false
@@ -29,11 +28,11 @@ struct DoseEditView: View {
 
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
-                    self.tabBarHandler.showTabBar()
                 }, label: {
                     Text(.commonCancel)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
+                        .accessibilityLabel(.commonCancel)
                         .accessibilityIdentifier(.commonCancel)
                 })
             }
@@ -51,7 +50,6 @@ struct DoseEditView: View {
                     if valid {
                         viewModel.save()
                         presentationMode.wrappedValue.dismiss()
-                        self.tabBarHandler.showTabBar()
 
                         if viewModel.selectedMed.medIsRunningLow {
                             let message = String(.medEditLowToast, values: [viewModel.selectedMed.medTitle])
@@ -67,6 +65,7 @@ struct DoseEditView: View {
                     Text(viewModel.add ? .commonAdd : .commonSave)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
+                        .accessibilityLabel(.commonSave)
                         .accessibilityIdentifier(.commonSave)
                 })
             }
@@ -209,8 +208,6 @@ struct DoseEditView: View {
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
         .onAppear(perform: {
-            self.tabBarHandler.hideTabBar()
-
             if viewModel.add {
                 viewModel.remindMe = defaultRemindMe
             }
@@ -296,14 +293,11 @@ struct DoseEditView: View {
 
     func setElapse() {
         viewModel.setElapsed()
-        tabBarHandler.showTabBar()
         presentationMode.wrappedValue.dismiss()
     }
 
     func delete() {
         viewModel.delete()
-        tabBarHandler.showTabBar()
-        presentationMode.wrappedValue.dismiss()
     }
 
     func remindMeChanged() {

@@ -20,10 +20,10 @@ struct DosesView: View {
         = SFSymbol.booksVerticalFill.systemName
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showSheet = false
+    @State private var navigationButtonId = UUID()
 
     var body: some View {
         let data: [[Dose]] = viewModel.resultsToArray()
@@ -52,6 +52,10 @@ struct DosesView: View {
             .sheet(isPresented: $showSheet) {
                 DoseAddView(
                     med: viewModel.createMed())
+                    .onDisappear {
+                        // NOTE: Update button id after sheet got closed
+                        self.navigationButtonId = UUID()
+                    }
             }
             .navigationTitle(navigationTitle().rawValue)
             .navigationBarAccessibilityIdentifier(navigationTitle())
@@ -79,10 +83,12 @@ struct DosesView: View {
                                     Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
                                         .accessibilityElement()
                                         .accessibility(addTraits: .isButton)
+                                        .accessibilityLabel(.doseEditAddDose)
                                         .accessibilityIdentifier(.doseEditAddDose)
                                 }
                             })
                         }
+                        .id(self.navigationButtonId) // NOTE: Force new instance creation
                     }
                 }
             }
@@ -94,9 +100,6 @@ struct DosesView: View {
                     : DosesView.inProgressIcon
             )
         }
-        .onAppear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     // MARK: -

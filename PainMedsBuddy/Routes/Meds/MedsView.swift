@@ -15,11 +15,11 @@ struct MedsView: View {
 
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var dataController: DataController
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showSheetAdd = false
     @State private var showSheetEdit = false
+    @State private var navigationButtonId = UUID()
 
     var items: [Med] {
         viewModel.meds.allMeds.filter { !$0.hidden }.sortedItems(using: viewModel.sortOrder)
@@ -77,6 +77,7 @@ struct MedsView: View {
                     }
                 })
             }
+            .id(self.navigationButtonId) // NOTE: Force new instance creation
         }
     }
 
@@ -93,9 +94,11 @@ struct MedsView: View {
                         Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)
                             .accessibilityElement()
                             .accessibility(addTraits: .isButton)
+                            .accessibilityLabel(.commonSort)
                             .accessibilityIdentifier(.commonSort)
                     })
                 }
+                .id(self.navigationButtonId) // NOTE: Force new instance creation
             }
         }
     }
@@ -129,6 +132,10 @@ struct MedsView: View {
             .sheet(isPresented: $showSheetAdd) {
                 MedAddView()
                     .environmentObject(dataController)
+                    .onDisappear {
+                        // NOTE: Update button id after sheet got closed
+                        self.navigationButtonId = UUID()
+                    }
             }
             .navigationTitle(Strings.tabTitleMedications.rawValue)
             .navigationBarAccessibilityIdentifier(.tabTitleMedications)
@@ -139,9 +146,6 @@ struct MedsView: View {
                 imageString: MedsView.medsIcon
             )
         }
-        .onAppear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     init(dataController: DataController) {

@@ -12,7 +12,6 @@ struct SettingsAdvancedView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
-    @EnvironmentObject var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
@@ -66,12 +65,6 @@ struct SettingsAdvancedView: View {
         }
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .alert(isPresented: $showAlert) { alertOption() }
-        .onAppear(perform: {
-            self.tabBarHandler.hideTabBar()
-        })
-        .onDisappear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     // MARK: -

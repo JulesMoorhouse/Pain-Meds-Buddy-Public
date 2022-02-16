@@ -11,7 +11,6 @@ import SwiftUI
 struct SettingsDeveloperView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
-    @EnvironmentObject var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
@@ -142,12 +141,6 @@ struct SettingsDeveloperView: View {
         }
         .alert(isPresented: $showAlert) { alertOption() }
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
-        .onAppear(perform: {
-            self.tabBarHandler.hideTabBar()
-        })
-        .onDisappear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     // MARK: -

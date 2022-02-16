@@ -8,15 +8,12 @@
 
 import AckGenUI
 import CoreData
-import Introspect
 import SwiftUI
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-
-    @StateObject var tabBarHandler: TabBarHandler
 
     var body: some View {
         NavigationViewParent {
@@ -55,17 +52,8 @@ struct ContentView: View {
                         Image(systemName: SettingsView.settingsIcon)
                         Text(.tabTitleSettings)
                     }
-            }.background(Color.green)
-                .introspectTabBarController { tabBarController in
-                    self.tabBarHandler.tabBarController = tabBarController
-                }
-        }.background(Color.yellow)
-            .environmentObject(tabBarHandler)
-    }
-
-    init() {
-        let tabBarHandler = TabBarHandler()
-        _tabBarHandler = StateObject(wrappedValue: tabBarHandler)
+            }
+        }
     }
 }
 

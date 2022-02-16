@@ -10,7 +10,6 @@ import SwiftUI
 struct DoseMedSelectView: View {
     @StateObject private var viewModel: ViewModel
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var tabBarHandler: TabBarHandler
 
     @Binding var selectedMed: Med
 
@@ -54,9 +53,6 @@ struct DoseMedSelectView: View {
                 .cancel(),
             ])
         }
-        .onAppear(perform: {
-            self.tabBarHandler.hideTabBar()
-        })
     }
 
     // MARK: -

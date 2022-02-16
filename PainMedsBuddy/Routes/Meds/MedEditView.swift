@@ -17,7 +17,6 @@ struct MedEditView: View {
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var showAlert = false
@@ -59,6 +58,7 @@ struct MedEditView: View {
                     Text(.commonCancel)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
+                        .accessibilityLabel(.commonCancel)
                         .accessibilityIdentifier(.commonCancel)
                 })
             }
@@ -81,6 +81,7 @@ struct MedEditView: View {
                     Text(viewModel.add ? .commonAdd : .commonSave)
                         .accessibilityElement()
                         .accessibility(addTraits: .isButton)
+                        .accessibilityLabel(.commonSave)
                         .accessibilityIdentifier(.commonSave)
                 })
             }
@@ -159,12 +160,6 @@ struct MedEditView: View {
             self.isSaveDisabled = !isValid
         }
         .onReceive(viewModel.formValidation.$validationMessages) { messages in print("Validation: \(messages)") }
-        .onAppear(perform: {
-            self.tabBarHandler.hideTabBar()
-        })
-        .onDisappear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     // MARK: -

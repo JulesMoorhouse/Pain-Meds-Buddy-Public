@@ -15,7 +15,6 @@ struct HomeView: View {
     static let homeIcon: String = SFSymbol.house.systemName
 
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     var columns: [GridItem] {
@@ -81,7 +80,6 @@ struct HomeView: View {
             .navigationBarAccessibilityIdentifier(.commonAppName)
         }
         .onAppear(perform: {
-            self.tabBarHandler.showTabBar()
             RequestReview.showReview()
         })
     }

@@ -14,7 +14,6 @@ struct SettingsView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController
-    @EnvironmentObject private var tabBarHandler: TabBarHandler
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     enum ActiveSheet {
@@ -112,9 +111,6 @@ struct SettingsView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            self.tabBarHandler.showTabBar()
-        })
     }
 
     func sheetOption() -> some View {
@@ -136,12 +132,6 @@ struct SettingsView: View {
                                 Text(.commonClose)
                             })
                         )
-                        .onAppear {
-                            self.tabBarHandler.hideTabBar()
-                        }
-                        .onDisappear {
-                            self.tabBarHandler.showTabBar()
-                        }
                 }
             }
         }
