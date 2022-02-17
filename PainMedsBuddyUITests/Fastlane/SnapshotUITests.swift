@@ -37,10 +37,15 @@ class SnapshotUITests: XCTestCase {
 
         BasicAction.tapBackButton(app)
 
+        // INFO: Confirm on medications screen
+        _ = Elements.navBarMedications(app)
+
         BasicAction.tapTabHistory(app)
         snapshot("04-History")
 
         BasicAction.tapHistoryAddButton(app)
+
+        // NOTE: Not required for app store, but used in readme
         snapshot("05-AddDose")
     }
 }

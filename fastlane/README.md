@@ -47,13 +47,21 @@ B - Frame localized screenshots
 
 C - Upload localized + framed screenshots
 
+### ios allscreens
+
+```sh
+[bundle exec] fastlane ios allscreens
+```
+
+* - Generate, Frame and Upload
+
 ### ios upmeta
 
 ```sh
 [bundle exec] fastlane ios upmeta
 ```
 
-D - Upload localized meta data
+Upload localized meta data
 
 ----
 

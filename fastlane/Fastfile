@@ -70,15 +70,14 @@ platform :ios do
         ],
         scheme: "FastlaneScreenshots",
         launch_arguments: ["enable-ui-testing"],
-        #output_directory: "../screenshots/PainMedsBuddy", # Causes FrameIt error
         stop_after_first_error: false, 
-        number_of_retries: 1,
+        number_of_retries: 0,
         dark_mode: true,
         output_simulator_logs: true,
         erase_simulator: false,
         clear_previous_screenshots: true,
         concurrent_simulators: true,
-        test_without_building: true, # need to remove when no using ci
+        test_without_building: true, # need to remove when not using ci
         derived_data_path: 'fastlane/derived_data_path'
     )
   end
@@ -88,7 +87,6 @@ platform :ios do
     frame_screenshots(
       white: false,
       path: "/Users/jm/repos/PainMedsBuddy/fastlane/screenshots"
-  #    path: "../screenshots/PainMedsBuddy" # Causes FrameIt error
     )
   end
 
@@ -105,7 +103,14 @@ platform :ios do
     )
   end
 
-  desc "D - Upload localized meta data"
+  desc "* - Generate, Frame and Upload"
+  lane :allscreens do
+    screenshots
+    framescreens
+    UploadScreens
+  end
+
+  desc "Upload localized meta data"
   lane :upmeta do
     deliver(
       submit_for_review: false,
@@ -114,4 +119,5 @@ platform :ios do
       skip_screenshots: true
     )
   end
+
 end
