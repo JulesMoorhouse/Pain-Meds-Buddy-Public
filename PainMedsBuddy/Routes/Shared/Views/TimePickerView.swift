@@ -22,6 +22,8 @@ struct TimePickerView: View {
                 contents(hours: hours)
             }
             .pickerStyle(.menu)
+            .accessibilityElement()
+            .accessibility(addTraits: .isButton)
             .accessibility(identifier: aId.automatedId())
         } else {
             Picker("", selection: self.$selected) {

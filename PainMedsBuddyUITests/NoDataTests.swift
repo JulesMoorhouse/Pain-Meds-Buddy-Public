@@ -62,10 +62,19 @@ class NoDataUITests: XCTestCase {
             }
 
             // Duration
-            let duration = app.buttons[Strings.medEditDuration.automatedId()]
-            duration.press(forDuration: 0.5)
+            let hourButton = app.buttons[Strings.medEditDurationPickerHourAID.automatedId()]
+            // NOTE: iOS 15 hour button
+            if hourButton.exists {
+                hourButton.tap()
+            } else {
+                let duration = app.buttons[Strings.medEditDuration.automatedId()]
+                duration.press(forDuration: 0.5)
+            }
 
             let picker = app.pickers[Strings.medEditDurationPickerHourAID.automatedId()]
+
+            _ = picker.waitForExistence(timeout: 2)
+
             if picker.exists {
                 picker.selectPicker(value: "3 hrs", timeout: 1)
             } else {

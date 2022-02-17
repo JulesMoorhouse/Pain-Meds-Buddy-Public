@@ -492,14 +492,22 @@ struct MedEditView: View {
             Spacer()
 
             if #available(iOS 15, *) {
-                HourMinutePickerView(duration: binding,
-                                     hourAid: hourAid,
-                                     minuteAid: minuteAid)
-                    .buttonStyle(BorderlessButtonStyle())
-                    .accessibilityElement()
-                    .accessibility(addTraits: .isButton)
-                    .accessibilityIdentifier(label)
-                    .disabled(!pickerEnabled)
+                if UIAccessibility.isVoiceOverRunning {
+                    HourMinutePickerView(duration: binding,
+                                         hourAid: hourAid,
+                                         minuteAid: minuteAid)
+                        .buttonStyle(BorderlessButtonStyle())
+                        .accessibilityElement()
+                        .accessibility(addTraits: .isButton)
+                        .accessibilityIdentifier(label)
+                        .disabled(!pickerEnabled)
+                } else {
+                    HourMinutePickerView(duration: binding,
+                                         hourAid: hourAid,
+                                         minuteAid: minuteAid)
+                        .buttonStyle(BorderlessButtonStyle())
+                        .disabled(!pickerEnabled)
+                }
             } else {
                 Button(action: {
                     actionButtonClosure()
