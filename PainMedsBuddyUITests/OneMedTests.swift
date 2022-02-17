@@ -18,44 +18,49 @@ class OneMedTests: XCTestCase {
         app.launch()
     }
 
-    func testAddDose() {
+    func testAddTwoDose() {
         // Given
         // INFO: Add a basic dose
         BasicAction.tapTabInProgress(app)
-        BasicAction.tapInProgressAddButton(app)
 
-        let textField = app.textFields[Strings.doseEditAmount.automatedId()]
-        _ = textField.waitForExistence(timeout: 2)
+        for addCount in 1 ... 2 {
+            BasicAction.tapInProgressAddButton(app)
 
-        textField.doubleTap()
-        textField.clearText()
+            let textField = app.textFields[Strings.doseEditAmount.automatedId()]
+            _ = textField.waitForExistence(timeout: 2)
 
-        // When
-        app.keys["2"].tap()
-        app.keys["9"].tap()
+            textField.doubleTap()
+            textField.clearText()
 
-        // INFO: Back button tap on add dose screen
-        BasicAction.tapAddDoseSaveButton(app)
+            // When
+            app.keys["2"].tap()
+            app.keys["9"].tap()
+            app.keys["\(addCount)"].tap()
 
-        // INFO: Confirm on in progress screen
-        _ = Elements.navBarInProgress(app, performTest: false)
+            // INFO: Back button tap on add dose screen
+            BasicAction.tapAddDoseSaveButton(app)
 
-        // When
-        let rowCount = app.buttons.matching(identifier:
-            Strings.homeAccessibilityIconTaken.automatedId())
-            .count
+            // INFO: Confirm on in progress screen
+            _ = Elements.navBarInProgress(app, performTest: false)
 
-        // Then
-        XCTAssertEqual(
-            rowCount,
-            1,
-            "There should be 1 list rows initially."
-        )
+            // When
+            let rowCount = app.buttons.matching(identifier:
+                Strings.homeAccessibilityIconTaken.automatedId())
+                .count
 
-        let predicate = NSPredicate(format: "label CONTAINS '29'")
-        let element = app.buttons.element(matching: predicate)
+            // Then
+            XCTAssertEqual(
+                rowCount,
+                addCount,
+                "There should be 1 list rows initially."
+            )
 
-        XCTAssertTrue(element.exists, "The added dose should be visible in the list.")
+            let predicate = NSPredicate(format: "label CONTAINS '29\(addCount)'")
+            let element = app.buttons.element(matching: predicate)
+
+            XCTAssertTrue(element.exists, "The added dose should be visible in the list.")
+        }
+
     }
 
     func testEditMed() {
