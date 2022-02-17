@@ -31,7 +31,29 @@ test_devices = [
 ]
 
 platform :ios do
-  desc "Generate new localized screenshots"
+  desc "Run tests on multiple devices"
+  lane :tests do
+    run_tests(
+        scheme: "PainMedsBuddy",
+        devices: test_devices,
+        code_coverage: true,
+        open_report: true,
+        skip_build: false,
+        include_simulator_logs: false,
+        #suppress_xcode_output: true,
+        ensure_devices_found: true,
+        number_of_retries: 2,
+        skip_detect_devices: true,
+        #test_without_building: true,
+        fail_build: false, # If tests fail the build will be failed later based on the result_bundle
+        output_types: '', # Don't generate reports, they be generated from the result_bundle
+        output_style: 'raw', # Disable xcpretty
+        xcargs: '-quiet', # Prevent xcodebuild from spewing output (only shows warnings and errors) now that xcpretty is disabled.
+        result_bundle: true # Needed so that a following tool can generate reports/fail the build
+    )
+  end
+
+  desc "A - Generate new localized screenshots"
   lane :screenshots do
     scan(
         scheme: "FastlaneScreenshots", 
@@ -61,30 +83,7 @@ platform :ios do
     )
   end
 
-  desc "Run tests on multiple devices"
-  lane :tests do
-    run_tests(
-        scheme: "PainMedsBuddy",
-        devices: test_devices,
-        code_coverage: true,
-        open_report: true,
-        skip_build: true,
-        derived_data_path: 'fastlane/derived_data_path',
-        include_simulator_logs: false,
-        #suppress_xcode_output: true,
-        ensure_devices_found: true,
-        number_of_retries: 2,
-        skip_detect_devices: true,
-        test_without_building: true,
-        fail_build: false, # If tests fail the build will be failed later based on the result_bundle
-        output_types: '', # Don't generate reports, they be generated from the result_bundle
-        output_style: 'raw', # Disable xcpretty
-        xcargs: '-quiet', # Prevent xcodebuild from spewing output (only shows warnings and errors) now that xcpretty is disabled.
-        result_bundle: true # Needed so that a following tool can generate reports/fail the build
-    )
-  end
-
-  desc "Frame localized screenshots"
+  desc "B - Frame localized screenshots"
   lane :framescreens do
     frame_screenshots(
       white: false,
@@ -93,7 +92,7 @@ platform :ios do
     )
   end
 
-  desc "Upload localized + framed screenshots"
+  desc "C - Upload localized + framed screenshots"
   lane :UploadScreens do
     deliver(
       submit_for_review: false,
@@ -106,7 +105,7 @@ platform :ios do
     )
   end
 
-  desc "Upload localized meta data"
+  desc "D - Upload localized meta data"
   lane :upmeta do
     deliver(
       submit_for_review: false,

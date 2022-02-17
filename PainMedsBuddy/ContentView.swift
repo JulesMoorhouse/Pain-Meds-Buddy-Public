@@ -109,6 +109,7 @@ struct ContentView: View {
                             .accessibilityIdentifier(.tabTitleSettings)
                         }
                         .listStyle(SidebarListStyle())
+                        .accessibilityIdentifier(.sideBarAID)
                     }, detail: {
                         // NavigationViewParent {
                         // Text("Detail view")

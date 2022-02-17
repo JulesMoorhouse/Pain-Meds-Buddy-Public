@@ -15,14 +15,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios screenshots
-
-```sh
-[bundle exec] fastlane ios screenshots
-```
-
-Generate new localized screenshots
-
 ### ios tests
 
 ```sh
@@ -31,13 +23,21 @@ Generate new localized screenshots
 
 Run tests on multiple devices
 
+### ios screenshots
+
+```sh
+[bundle exec] fastlane ios screenshots
+```
+
+A - Generate new localized screenshots
+
 ### ios framescreens
 
 ```sh
 [bundle exec] fastlane ios framescreens
 ```
 
-Frame localized screenshots
+B - Frame localized screenshots
 
 ### ios UploadScreens
 
@@ -45,7 +45,7 @@ Frame localized screenshots
 [bundle exec] fastlane ios UploadScreens
 ```
 
-Upload localized + framed screenshots
+C - Upload localized + framed screenshots
 
 ### ios upmeta
 
@@ -53,7 +53,7 @@ Upload localized + framed screenshots
 [bundle exec] fastlane ios upmeta
 ```
 
-Upload localized meta data
+D - Upload localized meta data
 
 ----
 

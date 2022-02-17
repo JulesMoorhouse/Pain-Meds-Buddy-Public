@@ -18,7 +18,7 @@ class OneMedTests: XCTestCase {
         app.launch()
     }
 
-    func testAddTwoDose() {
+    func testAddTwoDoses() {
         // Given
         // INFO: Add a basic dose
         BasicAction.tapTabInProgress(app)
