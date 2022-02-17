@@ -17,6 +17,7 @@ struct SettingsAdvancedView: View {
     @State private var showAlert = false
     @State private var activeAlert: ActiveAlert = .deleteConfirmation
     @State private var errorMessage = ""
+    @State private var navigationButtonId = UUID()
 
     enum ActiveAlert {
         case deleteConfirmation,
@@ -56,15 +57,21 @@ struct SettingsAdvancedView: View {
             .navigationBarTitle(Strings.settingsAdvanced.rawValue, displayMode: .inline)
             .navigationBarAccessibilityIdentifier(.settingsAdvanced)
             .navigationBarItems(leading:
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text(.commonClose)
-                })
+                VStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text(.commonClose)
+                    })
+                }
+                .id(self.navigationButtonId) // NOTE: Force new instance creation
             )
         }
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
         .alert(isPresented: $showAlert) { alertOption() }
+        .onRotate { _ in
+            self.navigationButtonId = UUID()
+        }
     }
 
     // MARK: -

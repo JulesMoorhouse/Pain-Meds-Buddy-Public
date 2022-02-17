@@ -19,6 +19,7 @@ struct DoseEditView: View {
     @EnvironmentObject private var presentableToast: PresentableToastModel
 
     @State private var isSaveDisabled = false
+    @State private var navigationButtonId = UUID()
 
     var backBarButtonItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -36,6 +37,7 @@ struct DoseEditView: View {
                         .accessibilityIdentifier(.commonCancel)
                 })
             }
+            .id(self.navigationButtonId) // NOTE: Force new instance creation
         }
     }
 
@@ -69,6 +71,7 @@ struct DoseEditView: View {
                         .accessibilityIdentifier(.commonSave)
                 })
             }
+            .id(self.navigationButtonId) // NOTE: Force new instance creation
         }
     }
 
@@ -202,6 +205,9 @@ struct DoseEditView: View {
                 backBarButtonItem
                 saveBarButtonItem
             }
+        }
+        .onRotate { _ in
+            self.navigationButtonId = UUID()
         }
         .onReceive(viewModel.formValidation.$allValid) { isValid in
             self.isSaveDisabled = !isValid

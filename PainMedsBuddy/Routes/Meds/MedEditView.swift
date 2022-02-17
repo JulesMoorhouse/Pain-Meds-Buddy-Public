@@ -25,6 +25,7 @@ struct MedEditView: View {
     @State private var activePopup: ActivePopup = .durationGapInfo
     @State private var isSaveDisabled = false
     @State private var advancedSectionHidden: Bool = true
+    @State private var navigationButtonId = UUID()
 
     enum ActiveAlert {
         case deleteConfirmation,
@@ -62,6 +63,7 @@ struct MedEditView: View {
                         .accessibilityIdentifier(.commonCancel)
                 })
             }
+            .id(self.navigationButtonId) // NOTE: Force new instance creation
         }
     }
 
@@ -85,6 +87,7 @@ struct MedEditView: View {
                         .accessibilityIdentifier(.commonSave)
                 })
             }
+            .id(self.navigationButtonId) // NOTE: Force new instance creation
         }
     }
 
@@ -155,6 +158,9 @@ struct MedEditView: View {
                 backBarButtonItem
                 saveBarButtonItem
             }
+        }
+        .onRotate { _ in
+            self.navigationButtonId = UUID()
         }
         .onReceive(viewModel.formValidation.$allValid) { isValid in
             self.isSaveDisabled = !isValid

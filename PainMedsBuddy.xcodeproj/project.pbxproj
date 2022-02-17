@@ -21,6 +21,7 @@
 		882A8ACA27AD8EFD00137897 /* JsonFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */; };
 		882A8ACE27AEF82700137897 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACD27AEF82700137897 /* ToastModel.swift */; };
 		882A8AD027AFFCD800137897 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A8ACF27AFFCD800137897 /* RequestReview.swift */; };
+		8831122727BE83CD00B7D8A4 /* DeviceRotation-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831122627BE83CD00B7D8A4 /* DeviceRotation-ViewModifier.swift */; };
 		88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321421275120D40026D85F /* PainMedsBuddyApp.swift */; };
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
@@ -173,6 +174,7 @@
 		882A8AC927AD8EFD00137897 /* JsonFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileDocument.swift; sourceTree = "<group>"; };
 		882A8ACD27AEF82700137897 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 		882A8ACF27AFFCD800137897 /* RequestReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
+		8831122627BE83CD00B7D8A4 /* DeviceRotation-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRotation-ViewModifier.swift"; sourceTree = "<group>"; };
 		88321421275120D40026D85F /* PainMedsBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainMedsBuddyApp.swift; sourceTree = "<group>"; };
 		88321423275120D40026D85F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				881BA3992764B8B600DA06D7 /* Panel-ViewModifier.swift */,
 				8890941C27BADE1E0070C536 /* SplitViewController.swift */,
 				880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */,
+				8831122627BE83CD00B7D8A4 /* DeviceRotation-ViewModifier.swift */,
 				88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */,
 			);
 			path = Modifiers;
@@ -875,6 +878,7 @@
 				88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */,
 				8890941B27BADDED0070C536 /* SplitView.swift in Sources */,
 				88EF20392753BBA0006037CF /* MedRowView.swift in Sources */,
+				8831122727BE83CD00B7D8A4 /* DeviceRotation-ViewModifier.swift in Sources */,
 				88EE265A279AF2BF001C2C55 /* TimeEditPickerView.swift in Sources */,
 				88CE3B3427A9AF63009FB237 /* DataController+SampleData.swift in Sources */,
 				88EE266527A18A7F001C2C55 /* EmptyRowView.swift in Sources */,

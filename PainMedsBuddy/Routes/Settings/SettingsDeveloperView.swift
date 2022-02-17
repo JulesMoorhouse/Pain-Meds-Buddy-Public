@@ -19,6 +19,7 @@ struct SettingsDeveloperView: View {
     @State private var showBackup = false
     @State private var errorMessage = ""
     @State private var document: JsonFileDocument?
+    @State private var navigationButtonId = UUID()
 
     enum ActiveAlert {
         case exampleDataConfirmation,
@@ -132,15 +133,21 @@ struct SettingsDeveloperView: View {
             .navigationBarTitle(Strings.settingsDeveloper.rawValue, displayMode: .inline)
             .navigationBarAccessibilityIdentifier(.settingsDeveloper)
             .navigationBarItems(leading:
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text(.commonClose)
-                })
+                VStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text(.commonClose)
+                    })
+                }
+                .id(self.navigationButtonId) // NOTE: Force new instance creation
             )
         }
         .alert(isPresented: $showAlert) { alertOption() }
         .toasted(show: $presentableToast.show, data: $presentableToast.data)
+        .onRotate { _ in
+            self.navigationButtonId = UUID()
+        }
     }
 
     // MARK: -
