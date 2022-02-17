@@ -49,7 +49,8 @@ extension DataController {
             med.color = Med.colours.randomElement()
             med.measure = "mg"
             med.form = "Pills"
-            med.remaining = NSDecimalNumber(value: Int16.random(in: 0 ... 99))
+            med.remaining = medIndex == 0 ? 2
+                : NSDecimalNumber(value: Int16.random(in: 0 ... 99))
             med.durationSeconds = drug.durationSeconds
             med.durationGapSeconds = Int16("00:20:00".timeToSeconds)
             med.creationDate = Date().adding(days: -20)

@@ -106,6 +106,7 @@
 		88CE3B3427A9AF63009FB237 /* DataController+SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */; };
 		88CE3B3627A9B00D009FB237 /* DataController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */; };
 		88CE3B3827A9B233009FB237 /* DataController+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3B3727A9B233009FB237 /* DataController+Queries.swift */; };
+		88DA65BD27BECCD400EC1F28 /* tabSideBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA65BC27BECCD400EC1F28 /* tabSideBarTests.swift */; };
 		88DFEA2A2786F93700E3BAFB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFEA292786F93700E3BAFB /* SnapshotHelper.swift */; };
 		88DFEA2D2786F98100E3BAFB /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DFEA2C2786F98100E3BAFB /* SnapshotUITests.swift */; };
 		88E705DB27872E73003EB471 /* CircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 88E705DA27872E73003EB471 /* CircularProgress */; };
@@ -261,6 +262,7 @@
 		88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+SampleData.swift"; sourceTree = "<group>"; };
 		88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+Notifications.swift"; sourceTree = "<group>"; };
 		88CE3B3727A9B233009FB237 /* DataController+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+Queries.swift"; sourceTree = "<group>"; };
+		88DA65BC27BECCD400EC1F28 /* tabSideBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabSideBarTests.swift; sourceTree = "<group>"; };
 		88DFEA292786F93700E3BAFB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		88DFEA2C2786F98100E3BAFB /* SnapshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUITests.swift; sourceTree = "<group>"; };
 		88E93090275FCED000A98708 /* MedSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSymbolView.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				88C74D11277BAC88002B2EC6 /* Info.plist */,
 				888FC806278B895A006A3E47 /* NoDataTests.swift */,
 				88B53EA02795931A00DD74FC /* OneMedTests.swift */,
+				88DA65BC27BECCD400EC1F28 /* tabSideBarTests.swift */,
 			);
 			path = PainMedsBuddyUITests;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				8809FBD3278309A40058BD6E /* Elements.swift in Sources */,
 				889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */,
 				88DFEA2A2786F93700E3BAFB /* SnapshotHelper.swift in Sources */,
+				88DA65BD27BECCD400EC1F28 /* tabSideBarTests.swift in Sources */,
 				888FC807278B895A006A3E47 /* NoDataTests.swift in Sources */,
 				88DFEA2D2786F98100E3BAFB /* SnapshotUITests.swift in Sources */,
 				88B53EA12795931A00DD74FC /* OneMedTests.swift in Sources */,
