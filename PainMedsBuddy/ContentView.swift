@@ -11,53 +11,50 @@ import CoreData
 import SwiftUI
 
 struct ContentView: View {
-    @SceneStorage("selectedView") var selectedView: String?
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
-        NavigationViewParent {
-            TabView(selection: $selectedView) {
-                HomeView(dataController: dataController)
-                    .tag(HomeView.homeTag)
-                    .tabItem {
-                        Image(systemName: HomeView.homeIcon)
-                        Text(.tabTitleHome)
-                    }
+        TabbedSidebar(content: [
+            TitledView(
+                tag: "0",
+                automationId: .tabTitleHome,
+                title: String(.tabTitleHome),
+                systemImage: SFSymbol.house.systemName,
+                view: HomeView(dataController: dataController)),
 
-                DosesView(dataController: dataController, showElapsedDoses: true)
-                    .tag(DosesView.historyTag)
-                    .tabItem {
-                        Image(systemName: DosesView.historyIcon)
-                        Text(.tabTitleHistory)
-                    }
+            TitledView(
+                tag: "1",
+                automationId: .tabTitleHistory,
+                title: String(.tabTitleHistory),
+                systemImage: SFSymbol.booksVerticalFill.systemName,
+                view: DosesView(dataController: dataController, showElapsedDoses: true)),
 
-                DosesView(dataController: dataController, showElapsedDoses: false)
-                    .tag(DosesView.inProgressTag)
-                    .tabItem {
-                        Image(systemName: DosesView.inProgressIcon)
-                        Text(.tabTitleInProgress)
-                    }
+            TitledView(
+                tag: "2",
+                automationId: .tabTitleInProgress,
+                title: String(.tabTitleInProgress),
+                systemImage: SFSymbol.timer.systemName,
+                view: DosesView(dataController: dataController, showElapsedDoses: false)),
 
-                MedsView(dataController: dataController)
-                    .tag(MedsView.medsTag)
-                    .tabItem {
-                        Image(systemName: MedsView.medsIcon)
-                        Text(.tabTitleMedications)
-                    }
+            TitledView(
+                tag: "3",
+                automationId: .tabTitleMedications,
+                title: String(.tabTitleMedications),
+                systemImage: SFSymbol.pillsFill.systemName,
+                view: MedsView(dataController: dataController)),
 
-                SettingsView()
-                    .tag(SettingsView.settingsTag)
-                    .tabItem {
-                        Image(systemName: SettingsView.settingsIcon)
-                        Text(.tabTitleSettings)
-                    }
-            }
-        }
+            TitledView(
+                tag: "4",
+                automationId: .tabTitleSettings,
+                title: String(.tabTitleSettings),
+                systemImage: SFSymbol.gearShapeFill.systemName,
+                view: SettingsView())
+        ])
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+ struct ContentView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
@@ -65,4 +62,4 @@ struct ContentView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
-}
+ }

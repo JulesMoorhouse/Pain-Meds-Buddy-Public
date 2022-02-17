@@ -41,7 +41,9 @@ class OneMedTests: XCTestCase {
         _ = Elements.navBarInProgress(app, performTest: false)
 
         // When
-        let rowCount = app.tables.cells.count
+        let rowCount = app.buttons.matching(identifier:
+            Strings.homeAccessibilityIconTaken.automatedId())
+            .count
 
         // Then
         XCTAssertEqual(
@@ -73,7 +75,10 @@ class OneMedTests: XCTestCase {
 
         if UIDevice.current.userInterfaceIdiom != .pad {
             app.keys["more"].tap()
+        } else {
+            app.keys["numbers"].firstMatch.press(forDuration: 0.1)
         }
+
         app.keys["2"].tap()
         app.buttons["Return"].tap()
 

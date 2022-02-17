@@ -153,13 +153,13 @@ class ExistingDataTests: XCTestCase {
     }
 
     // ---- Home Route ---
-    func testHomeHasTabBar() {
+    func testHomeHasTabSideBar() {
         BasicAction.tapTabHome(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
-            "There should be 5 tabs in the app."
+            "There should be 5 tab bar or side bar buttons in the app."
         )
     }
 
@@ -178,7 +178,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarHome(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -202,7 +202,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarHome(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -228,7 +228,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarHome(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -237,17 +237,17 @@ class ExistingDataTests: XCTestCase {
     // ---- Home Route ---
 
     // ---- History Route ---
-    func testHistoryHasTabBar() {
+    func testHistoryHasTabSideBar() {
         BasicAction.tapTabHistory(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
     }
 
-    func testHistoryAddDoseBackHasTabBar() {
+    func testHistoryAddDoseBackHasTabSideBar() {
         BasicAction.tapTabHistory(app)
         BasicAction.tapHistoryAddButton(app)
 
@@ -258,7 +258,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarHistory(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -267,17 +267,17 @@ class ExistingDataTests: XCTestCase {
     // ---- History Route ---
 
     // ---- In Progress Route ---
-    func testInProgressHasTabBar() {
+    func testInProgressHasTabSideBar() {
         BasicAction.tapTabInProgress(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
     }
 
-    func testInProgressAddDoseBackHasTabBar() {
+    func testInProgressAddDoseBackHasTabSideBar() {
         BasicAction.tapTabInProgress(app)
         BasicAction.tapInProgressAddButton(app)
 
@@ -288,7 +288,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarInProgress(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -297,17 +297,17 @@ class ExistingDataTests: XCTestCase {
     // ---- In Progress Route ---
 
     // ---- Medication Route ---
-    func testMedicationsHasTabBar() {
+    func testMedicationsHasTabSideBar() {
         BasicAction.tapTabMedications(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
     }
 
-    func testMedicationsAddDoseBackHasTabBar() {
+    func testMedicationsAddDoseBackHasTabSideBar() {
         BasicAction.tapTabMedications(app)
         BasicAction.tapMedicationTabAddButton(app)
 
@@ -318,7 +318,7 @@ class ExistingDataTests: XCTestCase {
         _ = Elements.navBarMedications(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )
@@ -327,11 +327,11 @@ class ExistingDataTests: XCTestCase {
     // ---- Medication Route ---
 
     // ---- Settings Route ---
-    func testSettingsHasTabBar() {
+    func testSettingsHasTabSideBar() {
         BasicAction.tapTabSetting(app)
 
         XCTAssertEqual(
-            app.tabBars.buttons.count,
+            Elements.tabSideButtonCount(app),
             5,
             "There should be 5 tabs in the app."
         )

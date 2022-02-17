@@ -298,6 +298,7 @@ struct DoseEditView: View {
 
     func delete() {
         viewModel.delete()
+        presentationMode.wrappedValue.dismiss()
     }
 
     func remindMeChanged() {

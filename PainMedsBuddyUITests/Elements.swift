@@ -14,25 +14,52 @@ class Elements: XCTestCase {
 
     // ---- Tabs ----
     static func tabHome(_ app: XCUIApplication) -> XCUIElement {
-        app.tabBars.buttons.element(boundBy: 0)
+        let tabs = app.tabBars
+        if tabs.element.exists {
+            return tabs.buttons.element(boundBy: 0)
+        }
+        return app.buttons[Strings.tabTitleHome.automatedId()]
     }
 
     static func tabHistory(_ app: XCUIApplication) -> XCUIElement {
-        app.tabBars.buttons.element(boundBy: 1)
+        let tabs = app.tabBars
+        if tabs.element.exists {
+            return tabs.buttons.element(boundBy: 1)
+        }
+        return app.buttons[Strings.tabTitleHistory.automatedId()]
     }
 
     static func tabInProgress(_ app: XCUIApplication) -> XCUIElement {
-        app.tabBars.buttons.element(boundBy: 2)
+        let tabs = app.tabBars
+        if tabs.element.exists {
+            return tabs.buttons.element(boundBy: 2)
+        }
+        return app.buttons[Strings.tabTitleInProgress.automatedId()]
     }
 
     static func tabMedications(_ app: XCUIApplication) -> XCUIElement {
-        app.tabBars.buttons.element(boundBy: 3)
+        let tabs = app.tabBars
+        if tabs.element.exists {
+            return tabs.buttons.element(boundBy: 3)
+        }
+        return app.buttons[Strings.tabTitleMedications.automatedId()]
     }
 
     static func tabSettings(_ app: XCUIApplication) -> XCUIElement {
-        app.tabBars.buttons.element(boundBy: 4)
+        let tabs = app.tabBars
+        if tabs.element.exists {
+            return tabs.buttons.element(boundBy: 4)
+        }
+        return app.buttons[Strings.tabTitleSettings.automatedId()]
     }
 
+    static func tabSideButtonCount(_ app: XCUIApplication) -> Int {
+        let buttons = app.tabBars.element.exists
+            ? app.tabBars.buttons
+            : app.tables[Strings.sideBarAID.automatedId()].buttons
+
+        return buttons.count
+    }
     // ---- Tabs ----
 
     // ---- Screens ----

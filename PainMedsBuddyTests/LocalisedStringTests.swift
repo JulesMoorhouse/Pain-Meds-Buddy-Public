@@ -112,6 +112,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .tabTitleSettings:
                 output = ""
+            case .sideBarAID:
+                output = ""
             // --------------------------
             case .homeCurrentMeds:
                 output = ""

@@ -78,4 +78,9 @@ extension View {
                                             to: nil, from: nil, for: nil)
         }
     }
+
+    /// Sets the preferred display mode for SplitView within the environment of self.
+    func splitViewPreferredDisplayMode(_ mode: UISplitViewController.DisplayMode) -> some View {
+        environment(\.splitViewPreferredDisplayMode, mode)
+    }
 }

@@ -22,10 +22,13 @@ class NoDataUITests: XCTestCase {
         // Given
         BasicAction.tapTabMedications(app)
 
-        XCTAssertEqual(
-            app.tables.cells.count,
-            0,
-            "There should be no list rows initially."
+        let labelId = Strings.commonEmptyView.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        // Then
+        XCTAssertTrue(
+            someView.exists,
+            "Medications empty placeholder label not showing"
         )
 
         for addCount in 1 ... 2 {
@@ -60,7 +63,7 @@ class NoDataUITests: XCTestCase {
 
             // Duration
             let duration = app.buttons[Strings.medEditDuration.automatedId()]
-            duration.tap()
+            duration.press(forDuration: 0.5)
 
             let picker = app.pickers[Strings.medEditDurationPickerHourAID.automatedId()]
             if picker.exists {
@@ -112,7 +115,9 @@ class NoDataUITests: XCTestCase {
             // INFO: Confirm on medications screen
             _ = Elements.navBarMedications(app, performTest: false)
 
-            let rowCount = app.tables.cells.count
+            let rowCount = app.buttons.matching(identifier:
+                Strings.homeAccessibilityIconRemaining.automatedId())
+                .count
 
             // Then
             XCTAssertEqual(
@@ -198,10 +203,12 @@ class NoDataUITests: XCTestCase {
         // Given
         BasicAction.tapTabMedications(app)
 
-        XCTAssertEqual(
-            app.tables.cells.count,
-            0,
-            "There should be no list rows initially."
+        let labelId = Strings.commonEmptyView.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        XCTAssertTrue(
+            someView.exists,
+            "Medications empty placeholder label not showing"
         )
 
         // When

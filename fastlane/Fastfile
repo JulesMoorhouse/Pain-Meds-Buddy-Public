@@ -69,13 +69,18 @@ platform :ios do
         code_coverage: true,
         open_report: true,
         skip_build: true,
-        output_style: "standard",
-        output_types: "html",
-        suppress_xcode_output: true,
+        derived_data_path: 'fastlane/derived_data_path',
+        include_simulator_logs: false,
+        #suppress_xcode_output: true,
         ensure_devices_found: true,
         number_of_retries: 2,
-        fail_build: false,
-        skip_detect_devices: true
+        skip_detect_devices: true,
+        test_without_building: true,
+        fail_build: false, # If tests fail the build will be failed later based on the result_bundle
+        output_types: '', # Don't generate reports, they be generated from the result_bundle
+        output_style: 'raw', # Disable xcpretty
+        xcargs: '-quiet', # Prevent xcodebuild from spewing output (only shows warnings and errors) now that xcpretty is disabled.
+        result_bundle: true # Needed so that a following tool can generate reports/fail the build
     )
   end
 

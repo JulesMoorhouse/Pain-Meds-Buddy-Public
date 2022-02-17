@@ -44,6 +44,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case tabTitleInProgress
     case tabTitleMedications
     case tabTitleSettings
+    case sideBarAID
     // --------------------------
     case homeCurrentMeds
     case homeEditDose
