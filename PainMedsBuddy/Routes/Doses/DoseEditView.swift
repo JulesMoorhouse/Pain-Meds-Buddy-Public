@@ -114,6 +114,7 @@ struct DoseEditView: View {
                                 .multilineTextAlignment(.trailing)
                                 .accessibilityIdentifier(.doseEditAmount)
                                 .textFieldStyle(SelectAllTextFieldStyle())
+                                .foregroundColor(.primary)
 
                             Text(viewModel.selectedMed.medFormPlural)
                                 .foregroundColor(.secondary)
