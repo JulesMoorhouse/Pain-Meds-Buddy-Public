@@ -73,11 +73,11 @@ struct HourMinutePickerView: View {
         let hours = (Int(duration.wrappedValue) ?? 0) / 3600
         let minutes = (Int(duration.wrappedValue) ?? 0) / 60 % 60
 
-        selectedHour = hours
-        selectedMinute = minutes
         _duration = duration
         self.hourAid = hourAid
         self.minuteAid = minuteAid
+        selectedHour = hours
+        selectedMinute = minutes
     }
 }
 

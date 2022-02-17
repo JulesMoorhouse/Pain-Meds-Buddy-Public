@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DurationPopupView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     let title: LocalizedStringKey
     @Binding var showing: Bool
     @Binding var duration: String
@@ -25,6 +27,9 @@ struct DurationPopupView: View {
                     hourAid: hourAid,
                     minuteAid: minuteAid
                 )
+                .background(colorScheme == .dark
+                    ? Color(UIColor.systemBackground)
+                    : Color.clear)
             },
             leftButton: {},
             rightButton: {
