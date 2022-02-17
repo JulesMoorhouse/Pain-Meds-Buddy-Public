@@ -365,6 +365,8 @@ class LocalisedStringTests: BaseTestCase {
                 output = ""
             case .settingsExampleDataAlertTitle:
                 output = ""
+            case .settingsExampleDataCompletedMessage:
+                output = ""
             case .settingsGenerateTestCrash:
                 output = ""
             case .settingsNoResponsibility:

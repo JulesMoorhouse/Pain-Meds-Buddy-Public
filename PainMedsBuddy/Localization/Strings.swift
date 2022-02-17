@@ -158,6 +158,7 @@ enum Strings: LocalizedStringKey, CaseIterable {
     case settingsDefaultRemindMeFooter
     case settingsDeveloper
     case settingsExampleDataAlertTitle
+    case settingsExampleDataCompletedMessage
     case settingsGenerateTestCrash
     case settingsNoResponsibility
     case settingsRestore

@@ -164,6 +164,12 @@ struct SettingsDeveloperView: View {
                         do {
                             try dataController.deleteIterateAll()
                             try dataController.createSampleData(appStore: false)
+                            self.presentableToast.data
+                                = ToastModel(
+                                    type: .success,
+                                    message: String(.settingsExampleDataCompletedMessage)
+                                )
+                            self.presentableToast.show = true
                         } catch {
                             errorMessage = error.localizedDescription
                             activeAlert = .exampleDataFailed
