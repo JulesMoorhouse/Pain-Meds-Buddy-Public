@@ -30,75 +30,77 @@ struct DosesView: View {
 
         return NavigationViewChild {
             Group {
-                if data.isEmpty {
-                    PlaceholderView(
-                        string: placeHolderEmptyText(),
-                        imageString: viewModel.showElapsedDoses
-                            ? DosesView.historyIcon
-                            : DosesView.inProgressIcon
-                    )
-                } else {
-                    List {
-                        ForEach(data, id: \.self) { (section: [Dose]) in
-                            Section(header: Text(section[0].doseFormattedMYTakenDate)) {
-                                self.rowsView(section: section)
+                Group {
+                    if data.isEmpty {
+                        PlaceholderView(
+                            string: placeHolderEmptyText(),
+                            imageString: viewModel.showElapsedDoses
+                                ? DosesView.historyIcon
+                                : DosesView.inProgressIcon
+                        )
+                    } else {
+                        List {
+                            ForEach(data, id: \.self) { (section: [Dose]) in
+                                Section(header: Text(section[0].doseFormattedMYTakenDate)) {
+                                    self.rowsView(section: section)
+                                }
                             }
                         }
+                        .listStyle(InsetGroupedListStyle())
                     }
-                    .listStyle(InsetGroupedListStyle())
                 }
+                .sheet(isPresented: $showSheet) {
+                    DoseAddView(
+                        med: viewModel.createMed())
+                        .onDisappear {
+                            // NOTE: Update button id after sheet got closed
+                            self.navigationButtonId = UUID()
+                        }
+                }
+                .navigationTitle(navigationTitle().rawValue)
+                .navigationBarAccessibilityIdentifier(navigationTitle())
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if viewModel.medsCount > 0 {
+                            HStack {
+                                Text("")
+                                    .accessibilityHidden(true)
+
+                                Button(action: {
+                                    showSheet.toggle()
+                                }, label: {
+                                    // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
+                                    // "Add Dose" as "Add" no matter what accessibility label
+                                    // we give this toolbar button when using a label.
+                                    // As a result, when VoiceOver is running, we use a text
+                                    // view for the button instead, forcing a correct reading
+                                    // without losing the original layout.
+                                    if UIAccessibility.isVoiceOverRunning {
+                                        Text(.doseEditAddDose)
+                                            .accessibilityIdentifier(.doseEditAddDose)
+
+                                    } else {
+                                        Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
+                                            .accessibilityElement()
+                                            .accessibility(addTraits: .isButton)
+                                            .accessibilityLabel(.doseEditAddDose)
+                                            .accessibilityIdentifier(.doseEditAddDose)
+                                    }
+                                })
+                            }
+                            .id(self.navigationButtonId) // NOTE: Force new instance creation
+                        }
+                    }
+                }
+
+                PlaceholderView(
+                    string: placeHolderText(),
+                    imageString: viewModel.showElapsedDoses
+                        ? DosesView.historyIcon
+                        : DosesView.inProgressIcon
+                )
             }
             .toasted(show: $presentableToast.show, data: $presentableToast.data)
-            .sheet(isPresented: $showSheet) {
-                DoseAddView(
-                    med: viewModel.createMed())
-                    .onDisappear {
-                        // NOTE: Update button id after sheet got closed
-                        self.navigationButtonId = UUID()
-                    }
-            }
-            .navigationTitle(navigationTitle().rawValue)
-            .navigationBarAccessibilityIdentifier(navigationTitle())
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if viewModel.medsCount > 0 {
-                        HStack {
-                            Text("")
-                                .accessibilityHidden(true)
-
-                            Button(action: {
-                                showSheet.toggle()
-                            }, label: {
-                                // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label
-                                // "Add Dose" as "Add" no matter what accessibility label
-                                // we give this toolbar button when using a label.
-                                // As a result, when VoiceOver is running, we use a text
-                                // view for the button instead, forcing a correct reading
-                                // without losing the original layout.
-                                if UIAccessibility.isVoiceOverRunning {
-                                    Text(.doseEditAddDose)
-                                        .accessibilityIdentifier(.doseEditAddDose)
-
-                                } else {
-                                    Label(.doseEditAddDose, systemImage: SFSymbol.plus.systemName)
-                                        .accessibilityElement()
-                                        .accessibility(addTraits: .isButton)
-                                        .accessibilityLabel(.doseEditAddDose)
-                                        .accessibilityIdentifier(.doseEditAddDose)
-                                }
-                            })
-                        }
-                        .id(self.navigationButtonId) // NOTE: Force new instance creation
-                    }
-                }
-            }
-
-            PlaceholderView(
-                string: placeHolderText(),
-                imageString: viewModel.showElapsedDoses
-                    ? DosesView.historyIcon
-                    : DosesView.inProgressIcon
-            )
         }
     }
 

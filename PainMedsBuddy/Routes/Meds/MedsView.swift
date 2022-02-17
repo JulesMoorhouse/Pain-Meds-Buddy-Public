@@ -106,45 +106,47 @@ struct MedsView: View {
     var body: some View {
         NavigationViewChild {
             Group {
-                if viewModel.meds.isEmpty {
-                    PlaceholderView(
-                        string: .commonEmptyView,
-                        imageString: MedsView.medsIcon
-                    )
-                } else {
-                    ZStack {
-                        medsList
+                Group {
+                    if viewModel.meds.isEmpty {
+                        PlaceholderView(
+                            string: .commonEmptyView,
+                            imageString: MedsView.medsIcon
+                        )
+                    } else {
+                        ZStack {
+                            medsList
+                        }
                     }
                 }
-            }
-            .toolbar {
-                addMedToolbarItem
-                sortToolbarItem
-            }
-            .actionSheet(isPresented: $viewModel.showingSortOrder) {
-                ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
-                    .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },
-                    .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
-                    .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
-                    .cancel(),
-                ])
-            }
-            .sheet(isPresented: $showSheetAdd) {
-                MedAddView()
-                    .environmentObject(dataController)
-                    .onDisappear {
-                        // NOTE: Update button id after sheet got closed
-                        self.navigationButtonId = UUID()
-                    }
-            }
-            .navigationTitle(Strings.tabTitleMedications.rawValue)
-            .navigationBarAccessibilityIdentifier(.tabTitleMedications)
-            .toasted(show: $presentableToast.show, data: $presentableToast.data)
+                .toolbar {
+                    addMedToolbarItem
+                    sortToolbarItem
+                }
+                .actionSheet(isPresented: $viewModel.showingSortOrder) {
+                    ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [
+                        .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },
+                        .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },
+                        .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },
+                        .cancel(),
+                    ])
+                }
+                .sheet(isPresented: $showSheetAdd) {
+                    MedAddView()
+                        .environmentObject(dataController)
+                        .onDisappear {
+                            // NOTE: Update button id after sheet got closed
+                            self.navigationButtonId = UUID()
+                        }
+                }
+                .navigationTitle(Strings.tabTitleMedications.rawValue)
+                .navigationBarAccessibilityIdentifier(.tabTitleMedications)
 
-            PlaceholderView(
-                string: .medsPleaseSelect,
-                imageString: MedsView.medsIcon
-            )
+                PlaceholderView(
+                    string: .medsPleaseSelect,
+                    imageString: MedsView.medsIcon
+                )
+            }
+            .toasted(show: $presentableToast.show, data: $presentableToast.data)
         }
     }
 
