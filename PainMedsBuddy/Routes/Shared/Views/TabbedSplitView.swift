@@ -13,8 +13,16 @@ struct TabbedSidebar: View {
     @State private var selection: String?
     private let views: [TitledView]
 
+    var isLargeiPhone: Bool {
+        widthSizeClass == .regular && heightSizeClass == .compact
+    }
+
+    var useTabBar: Bool {
+        widthSizeClass == .compact || isLargeiPhone
+    }
+
     var body: some View {
-        if widthSizeClass == .compact {
+        if useTabBar {
             NavigationViewParent {
                 TabView(selection: $selection) {
                     ForEach(views, id: \.id) { item in

@@ -1,57 +1,145 @@
-//
-//  ContentView.swift
-//  PainMedsBuddy
-//
-//  Created by Jules Moorhouse.
-//
-// INFO: This view is main view in the app.
-
 import AckGenUI
 import CoreData
 import SwiftUI
 
 struct ContentView: View {
+    @SceneStorage("selectedView") var selectedView: TabSide = .home
+    @SceneStorage("selectedView2") var selectedView2: String?
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.horizontalSizeClass) var widthSizeClass
+    @Environment(\.verticalSizeClass) var heightSizeClass
+
+    enum TabSide: String {
+        case home, history, inProgress, medications, settings
+    }
+
+    var isLargeiPhone: Bool {
+        widthSizeClass == .regular && heightSizeClass == .compact
+    }
+
+    var useTabBar: Bool {
+        widthSizeClass == .compact || isLargeiPhone
+    }
 
     var body: some View {
-        TabbedSidebar(content: [
-            TitledView(
-                tag: "0",
-                automationId: .tabTitleHome,
-                title: String(.tabTitleHome),
-                systemImage: SFSymbol.house.systemName,
-                view: HomeView(dataController: dataController)),
+        Group {
+            if useTabBar {
+                NavigationViewParent {
+                    TabView(selection: $selectedView) {
+                        HomeView(dataController: dataController)
+                            .tag(TabSide.home)
+                            .tabItem {
+                                Image(systemName: HomeView.homeIcon)
+                                Text(.tabTitleHome)
+                                    .accessibilityIdentifier(.tabTitleHome)
+                            }
 
-            TitledView(
-                tag: "1",
-                automationId: .tabTitleHistory,
-                title: String(.tabTitleHistory),
-                systemImage: SFSymbol.booksVerticalFill.systemName,
-                view: DosesView(dataController: dataController, showElapsedDoses: true)),
+                        DosesView(dataController: dataController, showElapsedDoses: true)
+                            .tag(TabSide.history)
+                            .tabItem {
+                                Text(.tabTitleHistory)
+                                    .accessibilityIdentifier(.tabTitleHistory)
+                                Image(systemName: DosesView.historyIcon)
+                            }
 
-            TitledView(
-                tag: "2",
-                automationId: .tabTitleInProgress,
-                title: String(.tabTitleInProgress),
-                systemImage: SFSymbol.timer.systemName,
-                view: DosesView(dataController: dataController, showElapsedDoses: false)),
+                        DosesView(dataController: dataController, showElapsedDoses: false)
+                            .tag(TabSide.inProgress)
+                            .tabItem {
+                                Text(.tabTitleInProgress)
+                                    .accessibilityIdentifier(.tabTitleInProgress)
+                                Image(systemName: DosesView.inProgressIcon)
+                            }
 
-            TitledView(
-                tag: "3",
-                automationId: .tabTitleMedications,
-                title: String(.tabTitleMedications),
-                systemImage: SFSymbol.pillsFill.systemName,
-                view: MedsView(dataController: dataController)),
+                        MedsView(dataController: dataController)
+                            .tag(TabSide.medications)
+                            .tabItem {
+                                Text(.tabTitleMedications)
+                                    .accessibilityIdentifier(.tabTitleMedications)
+                                Image(systemName: MedsView.medsIcon)
+                            }
 
-            TitledView(
-                tag: "4",
-                automationId: .tabTitleSettings,
-                title: String(.tabTitleSettings),
-                systemImage: SFSymbol.gearShapeFill.systemName,
-                view: SettingsView())
-        ])
+                        SettingsView()
+                            .tag(TabSide.settings)
+                            .tabItem {
+                                Text(.tabTitleSettings)
+                                    .accessibilityIdentifier(.tabTitleSettings)
+                                Image(systemName: SettingsView.settingsIcon)
+                            }
+                    }
+                }
+            } else {
+                NavigationViewParent {
+                    SplitView(master: {
+                        List {
+                            Button(action: {
+                                selectedView = TabSide.home
+                            }, label: {
+                                Label(.tabTitleHome, systemImage: HomeView.homeIcon)
+                            })
+                            .accessibilityIdentifier(.tabTitleHome)
+
+                            Button(action: {
+                                selectedView = TabSide.history
+                            }, label: {
+                                Label(.tabTitleHistory, systemImage: DosesView.historyIcon)
+                            })
+                            .accessibilityIdentifier(.tabTitleHistory)
+
+                            Button(action: {
+                                selectedView = TabSide.inProgress
+                            }, label: {
+                                Label(.tabTitleInProgress, systemImage: DosesView.inProgressIcon)
+                            })
+                            .accessibilityIdentifier(.tabTitleInProgress)
+
+                            Button(action: {
+                                selectedView = TabSide.medications
+                            }, label: {
+                                Label(.tabTitleMedications, systemImage: MedsView.medsIcon)
+                            })
+                            .accessibilityIdentifier(.tabTitleMedications)
+
+                            Button(action: {
+                                selectedView = TabSide.settings
+                            }, label: {
+                                Label(.tabTitleSettings, systemImage: SettingsView.settingsIcon)
+                            })
+                            .accessibilityIdentifier(.tabTitleSettings)
+                        }
+                        .listStyle(SidebarListStyle())
+                    }, detail: {
+                        // NavigationViewParent {
+                        // Text("Detail view")
+                        // Text("ws=\(widthSizeClass.debugDescription)")
+                        // Text("hs=\(heightSizeClass.debugDescription)")
+
+                            switch $selectedView.wrappedValue  {
+                            case .home:
+                                HomeView(dataController: dataController)
+                            case .history:
+                                DosesView(dataController: dataController, showElapsedDoses: true)
+                            case .inProgress:
+                                DosesView(dataController: dataController, showElapsedDoses: false)
+                            case .medications:
+                                MedsView(dataController: dataController)
+                            case .settings:
+                                SettingsView()
+                            }
+                    })
+                    .splitViewPreferredDisplayMode(UISplitViewController.DisplayMode.oneBesideSecondary)
+                    .ignoresSafeArea()
+                }
+            }
+        }
     }
+
+//    init() {
+//        if selectedView == nil {
+//            selectedView = HomeView.homeTag
+//        }
+//    }
 }
 
  struct ContentView_Previews: PreviewProvider {
