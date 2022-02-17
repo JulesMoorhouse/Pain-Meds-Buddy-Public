@@ -356,10 +356,12 @@ struct MedEditView: View {
                               binding: $viewModel.durationDate,
                               validationContainer: viewModel.durationDateValidator,
                               hourAid: .medEditDurationPickerHourAID,
-                              minuteAid: .medEditDurationPickerMinuteAID) {
+                              minuteAid: .medEditDurationPickerMinuteAID,
+                              pickerEnabled: !viewModel.hasRelationship) {
                     showPopup = true
                     activePopup = .durationPicker
                 }
+                .disabled(viewModel.hasRelationship)
             }
 
             // --- Duration Gap ---
@@ -383,10 +385,12 @@ struct MedEditView: View {
                               binding: $viewModel.durationGapDate,
                               validationContainer: nil,
                               hourAid: .medEditDurationGapPickerHourAID,
-                              minuteAid: .medEditDurationGapPickerMinuteAID) {
+                              minuteAid: .medEditDurationGapPickerMinuteAID,
+                              pickerEnabled: !viewModel.hasRelationship) {
                     showPopup = true
                     activePopup = .durationGapPicker
                 }
+                .disabled(viewModel.hasRelationship)
             }
 
             // --- Measure ---
@@ -436,14 +440,15 @@ struct MedEditView: View {
         }
     }
 
-    func rowFields(label: Strings,
-                   detailValues: [String],
-                   binding: Binding<String>,
-                   keyboardType: UIKeyboardType = .default,
-                   autoCapitalisation _: UITextAutocapitalizationType = .none,
-                   rightDetail: String? = nil,
-                   validationContainer: ValidationContainer) -> some View
-    {
+    func rowFields(
+        label: Strings,
+        detailValues: [String],
+        binding: Binding<String>,
+        keyboardType: UIKeyboardType = .default,
+        autoCapitalisation _: UITextAutocapitalizationType = .none,
+        rightDetail: String? = nil,
+        validationContainer: ValidationContainer
+    ) -> some View {
         HStack {
             HStack {
                 Text(label)
@@ -470,13 +475,16 @@ struct MedEditView: View {
         }
     }
 
-    func rowFieldsDate(label: Strings,
-                       binding: Binding<String>,
-                       validationContainer: ValidationContainer?,
-                       hourAid: Strings,
-                       minuteAid: Strings,
-                       actionButtonClosure: @escaping () -> Void) -> some View
-    {
+    // swiftlint:disable:next function_parameter_count
+    func rowFieldsDate(
+        label: Strings,
+        binding: Binding<String>,
+        validationContainer: ValidationContainer?,
+        hourAid: Strings,
+        minuteAid: Strings,
+        pickerEnabled: Bool,
+        actionButtonClosure: @escaping () -> Void
+    ) -> some View {
         HStack {
             Text(label)
                 .foregroundColor(.secondary)
@@ -491,6 +499,7 @@ struct MedEditView: View {
                     .accessibilityElement()
                     .accessibility(addTraits: .isButton)
                     .accessibilityIdentifier(label)
+                    .disabled(!pickerEnabled)
             } else {
                 Button(action: {
                     actionButtonClosure()
@@ -502,6 +511,7 @@ struct MedEditView: View {
                         .accessibilityIdentifier(label)
 
                 })
+                .disabled(!pickerEnabled)
             }
         }
         .if(validationContainer != nil) { view in
@@ -554,7 +564,11 @@ struct MedEditView: View {
         }
     }
 
-    init(dataController: DataController, med: Med?, add: Bool, hasRelationship: Bool) {
+    init(dataController: DataController,
+         med: Med?,
+         add: Bool,
+         hasRelationship: Bool)
+    {
         let viewModel = ViewModel(
             dataController: dataController,
             med: med,
