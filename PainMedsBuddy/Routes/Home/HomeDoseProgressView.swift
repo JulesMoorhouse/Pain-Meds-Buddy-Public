@@ -144,9 +144,9 @@ struct HomeDoseProgressView: View {
 
             Button(action: {
                 if !doseNotElapsed {
-                    close()
                     activeSheet = .add
                     showSheet.toggle()
+                    // close()
                 } else {
                     activeSheet = .edit
                     showSheet.toggle()
@@ -159,7 +159,11 @@ struct HomeDoseProgressView: View {
                     width: 100
                 )
             })
-            .sheet(isPresented: $showSheet) {
+            .sheet(isPresented: $showSheet, onDismiss: {
+                if activeSheet == .add {
+                    close()
+                }
+            }, content: {
                 switch activeSheet {
                 case .add:
                     DoseAddView(med: med)
@@ -167,7 +171,7 @@ struct HomeDoseProgressView: View {
                     DoseEditView(dataController: dataController,
                                  dose: dose)
                 }
-            }
+            })
             .disabled(showEmptyView)
             .accessibilityRemoveTraits(.isButton)
             .accessibilityAddTraits(showEmptyView ? .isStaticText : .isButton)

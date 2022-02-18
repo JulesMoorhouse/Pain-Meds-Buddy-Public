@@ -18,5 +18,6 @@ struct SplitViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ splitController: UISplitViewController, context: Context) {
         splitController.preferredDisplayMode = preferredDisplayMode
         splitController.viewControllers = viewControllers
+        splitController.maximumPrimaryColumnWidth = 215
     }
 }
