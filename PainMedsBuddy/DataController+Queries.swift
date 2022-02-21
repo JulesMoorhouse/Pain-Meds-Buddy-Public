@@ -30,10 +30,10 @@ extension DataController {
         return false
     }
 
-    // INFO: Returns true if any Dose has any of the meds specified
+    // INFO: Returns a count if any Dose has any of the meds specified
     func anyRelationships(for meds: [Med]) -> Int {
         let doseRequest = NSFetchRequest<Dose>(entityName: "Dose")
-        doseRequest.predicate = NSPredicate(format: "med IN %@", meds)
+        doseRequest.predicate = NSPredicate(format: "med = %@", argumentArray: meds)
         do {
             let tempDoses = try container.viewContext.fetch(doseRequest)
             return tempDoses.count

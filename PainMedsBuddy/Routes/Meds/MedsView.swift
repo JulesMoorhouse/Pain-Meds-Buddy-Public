@@ -107,7 +107,7 @@ struct MedsView: View {
         NavigationViewChild {
             Group {
                 Group {
-                    if viewModel.meds.isEmpty {
+                    if items.isEmpty {
                         PlaceholderView(
                             string: .commonEmptyView,
                             imageString: MedsView.medsIcon

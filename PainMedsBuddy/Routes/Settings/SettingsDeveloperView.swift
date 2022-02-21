@@ -162,7 +162,7 @@ struct SettingsDeveloperView: View {
                     Text(.commonYes),
                     action: {
                         do {
-                            try dataController.deleteIterateAll()
+                            dataController.deleteAll()
                             try dataController.createSampleData(appStore: false)
                             self.presentableToast.data
                                 = ToastModel(

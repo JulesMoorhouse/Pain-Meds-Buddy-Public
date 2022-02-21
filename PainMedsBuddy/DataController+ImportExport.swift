@@ -151,7 +151,7 @@ extension DataController {
         let data = try decoder.decode(Data.self, from: jsonData)
         print(data)
 
-        try deleteIterateAll()
+        self.deleteAll()
 
         let viewContext = container.viewContext
 

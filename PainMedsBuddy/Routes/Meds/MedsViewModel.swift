@@ -49,16 +49,14 @@ extension MedsView {
         }
 
         func deleteMed(_ offsets: IndexSet, items: [Med]) {
-            let deleteItems = offsets.map { items[$0] }
-
-            let count = dataController.anyRelationships(for: deleteItems)
             for offset in offsets {
-                let item = items[offset]
+                let med = items[offset]
+                let count = dataController.anyRelationships(for: [med])
                 // swiftlint:disable:next empty_count
-                if count == 0 {
-                    dataController.delete(item)
+                if count == 0 && DataController.useHardDelete {
+                    dataController.delete(med)
                 } else {
-                    item.hidden = true
+                    med.hidden = true
                 }
             }
             dataController.save()

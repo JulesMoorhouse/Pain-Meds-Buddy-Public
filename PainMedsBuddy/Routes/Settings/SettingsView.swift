@@ -120,6 +120,7 @@ struct SettingsView: View {
                 SettingsAdvancedView()
             case .developer:
                 SettingsDeveloperView()
+                    .environmentObject(dataController)
             case .acknowledgements:
                 NavigationViewChild {
                     AcknowledgementsList()

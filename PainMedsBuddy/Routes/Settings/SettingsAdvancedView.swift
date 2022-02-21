@@ -85,19 +85,13 @@ struct SettingsAdvancedView: View {
                 primaryButton: .default(
                     Text(.commonDelete),
                     action: {
-                        do {
-                            try dataController.deleteIterateAll()
-                            self.presentableToast.data
-                                = ToastModel(
-                                    type: .success,
-                                    message: String(.settingsDeleteAllDataCompleted)
-                                )
-                            self.presentableToast.show = true
-                        } catch {
-                            errorMessage = error.localizedDescription
-                            activeAlert = .deleteFailed
-                            showAlert.toggle()
-                        }
+                        dataController.deleteAll()
+                        self.presentableToast.data
+                            = ToastModel(
+                                type: .success,
+                                message: String(.settingsDeleteAllDataCompleted)
+                            )
+                        self.presentableToast.show = true
                     }
                 ),
                 secondaryButton: .cancel()

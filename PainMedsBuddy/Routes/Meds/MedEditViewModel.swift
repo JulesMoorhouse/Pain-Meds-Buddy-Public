@@ -291,16 +291,20 @@ extension MedEditView {
             if let med = med {
                 let count = dataController.anyRelationships(for: [med])
 
-                // INFO: If this med only has 1 relationship and we're
+                // INFO: If this med only has 0 relationship and we're
                 // using hard delete, then delete this med. Otherwise
                 // keep the med for use with other doses.
-                if count == 1 || DataController.useHardDelete {
+
+                // swiftlint:disable:next empty_count
+                if count == 0 && DataController.useHardDelete {
                     dataController.delete(med)
                 } else {
                     update()
                     med.hidden = true
                     dataController.save()
                 }
+            } else {
+                print("deleteMed else")
             }
         }
 
