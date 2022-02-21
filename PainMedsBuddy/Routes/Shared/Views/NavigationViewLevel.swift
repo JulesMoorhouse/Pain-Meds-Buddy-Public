@@ -5,6 +5,7 @@
 //  Created by Jules Moorhouse.
 //
 
+import DeviceKit
 import SwiftUI
 
 struct NavigationViewParent<Content: View>: View {
@@ -60,8 +61,18 @@ struct NavigationViewChild<Content: View>: View {
         systemVersion.starts(with: "14")
     }
 
+    // NOTE: Check for iOS 15 bug in Pro Max phones which
+    // causes incorrect size class and different view
+    // below, which causes sheets to dismiss when rotated
+    var isIOS15ProMaxDevice: Bool {
+        let device = Device.current
+        return !isIOS14
+            && device.isPhone
+            && device.description.contains("Pro Max")
+    }
+
     var body: some View {
-        if isLargeIPhone {
+        if isIOS15ProMaxDevice || isLargeIPhone {
             NavigationView {
                 content
             }
