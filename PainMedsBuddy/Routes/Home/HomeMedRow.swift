@@ -52,6 +52,7 @@ struct HomeMedRow: View {
         }
         .sheet(isPresented: $showSheet) {
             DoseAddView(med: med)
+                .allowAutoDismiss(false)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)

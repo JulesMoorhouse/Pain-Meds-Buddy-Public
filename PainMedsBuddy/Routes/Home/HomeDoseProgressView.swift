@@ -167,9 +167,13 @@ struct HomeDoseProgressView: View {
                 switch activeSheet {
                 case .add:
                     DoseAddView(med: med)
+                        .allowAutoDismiss(false)
                 case .edit:
-                    DoseEditView(dataController: dataController,
-                                 dose: dose)
+                    DoseEditView(
+                        dataController: dataController,
+                        dose: dose
+                    )
+                    .allowAutoDismiss(false)
                 }
             })
             .disabled(showEmptyView)

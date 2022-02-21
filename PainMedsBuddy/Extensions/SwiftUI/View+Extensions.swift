@@ -83,4 +83,14 @@ extension View {
     func splitViewPreferredDisplayMode(_ mode: UISplitViewController.DisplayMode) -> some View {
         environment(\.splitViewPreferredDisplayMode, mode)
     }
+
+    /// Control if allow to dismiss the sheet by the user actions
+    public func allowAutoDismiss(_ dismissible: @escaping () -> Bool) -> some View {
+        background(ModalHackView(dismissible: dismissible))
+    }
+
+    /// Control if allow to dismiss the sheet by the user actions
+    public func allowAutoDismiss(_ dismissible: Bool) -> some View {
+        background(ModalHackView(dismissible: { dismissible }))
+    }
 }

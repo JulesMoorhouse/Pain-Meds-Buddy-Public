@@ -52,6 +52,7 @@ struct DosesView: View {
                 .sheet(isPresented: $showSheet) {
                     DoseAddView(
                         med: viewModel.createMed())
+                        .allowAutoDismiss(false)
                         .onDisappear {
                             // NOTE: Update button id after sheet got closed
                             self.navigationButtonId = UUID()

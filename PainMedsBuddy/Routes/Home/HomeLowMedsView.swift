@@ -41,6 +41,7 @@ struct HomeLowMedsView: View {
                                     add: false,
                                     hasRelationship: dataController.hasRelationship(for: med)
                                 )
+                                .allowAutoDismiss(false)
                             }
                             .panelled()
                             .accessibilityElement(children: .ignore)

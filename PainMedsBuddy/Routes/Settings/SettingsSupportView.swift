@@ -63,6 +63,7 @@ struct SettingsSupportView: View {
             MailView(data: $mailData) { result in
                 print(result)
             }
+            .allowAutoDismiss(false)
         }
     }
 

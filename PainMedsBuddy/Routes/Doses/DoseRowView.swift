@@ -102,6 +102,7 @@ struct DoseRowView: View {
                         dataController: dataController,
                         dose: dose
                     )
+                    .allowAutoDismiss(false)
                     .environmentObject(dataController)
                     .environment(\.managedObjectContext, viewContext)
                 }

@@ -118,8 +118,10 @@ struct SettingsView: View {
             switch activeSheet {
             case .advanced:
                 SettingsAdvancedView()
+                    .allowAutoDismiss(false)
             case .developer:
                 SettingsDeveloperView()
+                    .allowAutoDismiss(false)
                     .environmentObject(dataController)
             case .acknowledgements:
                 NavigationViewChild {
@@ -134,6 +136,7 @@ struct SettingsView: View {
                             })
                         )
                 }
+                .allowAutoDismiss(false)
             }
         }
     }

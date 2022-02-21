@@ -41,6 +41,7 @@ struct MedsView: View {
                         add: false,
                         hasRelationship: viewModel.hasRelationship(med: med)
                     )
+                    .allowAutoDismiss(false)
                 }
             }
             .onDelete { offsets in
@@ -132,6 +133,7 @@ struct MedsView: View {
                 }
                 .sheet(isPresented: $showSheetAdd) {
                     MedAddView()
+                        .allowAutoDismiss(false)
                         .environmentObject(dataController)
                         .onDisappear {
                             // NOTE: Update button id after sheet got closed
