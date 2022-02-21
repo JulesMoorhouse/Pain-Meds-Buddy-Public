@@ -91,32 +91,23 @@ struct HomeDoseProgressView: View {
             .padding(.top, 10)
             .background(debug ? Color.red : nil)
 
-            if !showEmptyView {
-                Text(title)
+            Text(!showEmptyView ? title : "-------")
                     .font(.caption)
                     .multilineTextAlignment(.center)
                     .frame(height: 40)
                     .background(debug ? Color.red : nil)
                     .foregroundColor(.primary)
                     .accessibilityHidden(true)
+                    .redacted(reason: showEmptyView ? .placeholder : [])
 
-                Text(display)
+            Text(!showEmptyView ? display : "---------------")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .background(debug ? Color.red : nil)
                     .padding(.bottom, 10)
                     .accessibilityHidden(true)
-            } else {
-                DisabledBarView()
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 5)
-                    .padding(.top, 15)
-
-                DisabledBarView()
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 10)
-            }
+                    .redacted(reason: showEmptyView ? .placeholder : [])
         }
         .background(debug ? Color.yellow : nil)
         .frame(minWidth: 155, minHeight: 215)
@@ -130,6 +121,7 @@ struct HomeDoseProgressView: View {
                     .frame(width: 25, height: 25)
                     .padding(.horizontal, 5)
                     .accessibilityHidden(true)
+                    .redacted(reason: showEmptyView ? .placeholder : [])
             } else {
                 if let med = med {
                     MedSymbolView(symbol: med.medSymbol,
@@ -158,6 +150,7 @@ struct HomeDoseProgressView: View {
                         : Strings.homeTakeNext.rawValue,
                     width: 100
                 )
+                .redacted(reason: showEmptyView ? .placeholder : [])
             })
             .sheet(isPresented: $showSheet, onDismiss: {
                 if activeSheet == .add {
@@ -188,6 +181,7 @@ struct HomeDoseProgressView: View {
                         ? .secondary.opacity(0.2)
                         : .primary)
                 .accessibilityHidden(true)
+                .redacted(reason: showEmptyView ? .placeholder : [])
         }
         .padding(.bottom, 70)
         .if(showEmptyView) { view in
