@@ -82,9 +82,7 @@ extension DosesView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-            if let newDoses = controller.fetchedObjects as? [Dose] {
-                doses = newDoses
-            }
+            doses = dosesController.fetchedObjects ?? []
         }
     }
 }

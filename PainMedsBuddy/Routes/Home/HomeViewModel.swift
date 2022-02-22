@@ -164,11 +164,8 @@ extension HomeView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-            if let newDoses = controller.fetchedObjects as? [Dose] {
-                doses = newDoses
-            } else if let newMeds = controller.fetchedObjects as? [Med] {
-                meds = newMeds
-            }
+            doses = dosesController.fetchedObjects ?? []
+            meds = medsController.fetchedObjects ?? []
         }
     }
 }

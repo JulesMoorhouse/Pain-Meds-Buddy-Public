@@ -68,9 +68,7 @@ extension MedsView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-            if let newMeds = controller.fetchedObjects as? [Med] {
-                meds = newMeds
-            }
+            meds = medsController.fetchedObjects ?? []
         }
     }
 }
