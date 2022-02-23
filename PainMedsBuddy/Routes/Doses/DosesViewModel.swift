@@ -82,6 +82,7 @@ extension DosesView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            print("### DosesViewModel - controllerDidChangeContent")
             doses = dosesController.fetchedObjects ?? []
         }
     }

@@ -68,6 +68,7 @@ extension MedsView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            print("### MedsViewModel - controllerDidChangeContent")
             meds = medsController.fetchedObjects ?? []
         }
     }

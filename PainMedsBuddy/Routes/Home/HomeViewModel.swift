@@ -164,6 +164,7 @@ extension HomeView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            print("### HomeViewModel - controllerDidChangeContent")
             doses = dosesController.fetchedObjects ?? []
             meds = medsController.fetchedObjects ?? []
         }

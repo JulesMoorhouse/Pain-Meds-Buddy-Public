@@ -295,6 +295,7 @@ extension DoseEditView {
         }
 
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            print("### DoseEditViewModel - controllerDidChangeContent")
             meds = medsController.fetchedObjects ?? []
         }
     }

@@ -66,6 +66,19 @@ class DataController: ObservableObject {
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
         _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        _container.viewContext.undoManager = nil
+        _container.viewContext.shouldDeleteInaccessibleFaults = true
+
+        do {
+            try _container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+            fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        }
+
+        // Observe Core Data remote change notifications.
+//        NotificationCenter.default.addObserver(
+//            self, selector: #selector(type(of: self).storeRemoteChange(_:)),
+//            name: .NSPersistentStoreRemoteChange, object: container)
     }
 
     static var preview: DataController = {
@@ -105,6 +118,13 @@ class DataController: ObservableObject {
 
         return managedObjectModel
     }()
+
+    /**
+     Handle remote store change notifications (.NSPersistentStoreRemoteChange).
+     */
+//    @objc func storeRemoteChange(_ notification: Notification) {
+//        print("### \(#function): Merging changes from the other persistent store coordinator.")
+//    }
 
     /// Saves our Core Data context if there are changes. This silently ignores
     /// any errors caused by saving, but this should be fine because our
