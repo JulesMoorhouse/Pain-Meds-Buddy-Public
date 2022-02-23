@@ -62,6 +62,10 @@ struct SettingsAdvancedView: View {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text(.commonClose)
+                            .accessibilityElement()
+                            .accessibility(addTraits: .isButton)
+                            .accessibilityLabel(.commonClose)
+                            .accessibilityIdentifier(.commonClose)
                     })
                 }
                 .id(self.navigationButtonId) // NOTE: Force new instance creation

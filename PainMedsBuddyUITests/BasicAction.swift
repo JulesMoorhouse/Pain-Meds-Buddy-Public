@@ -133,4 +133,25 @@ class BasicAction: XCTestCase {
         // INFO: Confirm on medication screen
         _ = Elements.navBarMedications(app)
     }
+
+    static func tapSettingsAdvancedButton(_ app: XCUIApplication) {
+        app.buttons[Strings.settingsAdvanced.automatedId()].tap()
+
+        // INFO: Confirm on medication screen
+        _ = Elements.navBarSettingsAdvanced(app)
+    }
+
+    static func tapSettingsDeveloperButton(_ app: XCUIApplication) {
+        app.buttons[Strings.settingsDeveloper.automatedId()].tap()
+
+        // INFO: Confirm on medication screen
+        _ = Elements.navBarSettingsDeveloper(app)
+    }
+
+    static func tapSettingsAcknowledgementsButton(_ app: XCUIApplication) {
+        app.buttons[Strings.settingsAcknowledgements.automatedId()].tap()
+
+        // INFO: Confirm on medication screen
+        _ = Elements.navBarSettingsAcknowledgements(app)
+    }
 }

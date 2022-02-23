@@ -231,6 +231,36 @@ class NoDataUITests: XCTestCase {
         )
     }
 
+    func testEnsureMedAddSheetRotateStays() {
+        let device = XCUIDevice.shared
+
+        BasicAction.tapTabMedications(app)
+        BasicAction.tapMedicationTabAddButton(app)
+
+        _ = Elements.navBarAddMed(app)
+
+        device.orientation = .landscapeLeft
+
+        _ = Elements.navBarAddMed(app)
+
+        device.orientation = .portraitUpsideDown
+
+        _ = Elements.navBarAddMed(app)
+
+        device.orientation = .landscapeRight
+
+        _ = Elements.navBarAddMed(app)
+
+        device.orientation = .portrait
+
+        _ = Elements.navBarAddMed(app)
+
+        let navBar = Elements.navBarAddMed(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        _ = Elements.navBarMedications(app)
+    }
+
     func testSettingsHasAcknowledgements() {
         // Given
         BasicAction.tapTabSetting(app)
@@ -242,5 +272,93 @@ class NoDataUITests: XCTestCase {
             ackButton.exists,
             "Settings acknowledgements button not found"
         )
+    }
+
+    func testSettingsAdvancedSheetRotateStays() {
+        let device = XCUIDevice.shared
+
+        BasicAction.tapTabSetting(app)
+        BasicAction.tapSettingsAdvancedButton(app)
+
+        _ = Elements.navBarSettingsAdvanced(app)
+
+        device.orientation = .landscapeLeft
+
+        _ = Elements.navBarSettingsAdvanced(app)
+
+        device.orientation = .portraitUpsideDown
+
+        _ = Elements.navBarSettingsAdvanced(app)
+
+        device.orientation = .landscapeRight
+
+        _ = Elements.navBarSettingsAdvanced(app)
+
+        device.orientation = .portrait
+
+        let navBar = Elements.navBarSettingsAdvanced(app)
+        navBar.buttons[Strings.commonClose.automatedId()].tap()
+
+        _ = Elements.navBarSettings(app)
+    }
+
+    func testSettingsDeveloperSheetRotateStays() {
+        let device = XCUIDevice.shared
+
+        BasicAction.tapTabSetting(app)
+        BasicAction.tapSettingsDeveloperButton(app)
+
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        device.orientation = .landscapeLeft
+
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        device.orientation = .portraitUpsideDown
+
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        device.orientation = .landscapeRight
+
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        device.orientation = .portrait
+
+        _ = Elements.navBarSettingsDeveloper(app)
+
+        let navBar = Elements.navBarSettingsDeveloper(app)
+        navBar.buttons[Strings.commonClose.automatedId()].tap()
+
+        _ = Elements.navBarSettings(app)
+    }
+
+    func testSettingsAcknowledgementsSheetRotateStays() {
+        let device = XCUIDevice.shared
+
+        BasicAction.tapTabSetting(app)
+        BasicAction.tapSettingsAcknowledgementsButton(app)
+
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        device.orientation = .landscapeLeft
+
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        device.orientation = .portraitUpsideDown
+
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        device.orientation = .landscapeRight
+
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        device.orientation = .portrait
+
+        _ = Elements.navBarSettingsAcknowledgements(app)
+
+        let navBar = Elements.navBarSettingsAcknowledgements(app)
+        navBar.buttons[Strings.commonClose.automatedId()].tap()
+
+        _ = Elements.navBarSettings(app)
     }
 }

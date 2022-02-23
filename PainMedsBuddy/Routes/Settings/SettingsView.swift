@@ -133,6 +133,10 @@ struct SettingsView: View {
                                 showSheet = false
                             }, label: {
                                 Text(.commonClose)
+                                    .accessibilityElement()
+                                    .accessibility(addTraits: .isButton)
+                                    .accessibilityLabel(.commonClose)
+                                    .accessibilityIdentifier(.commonClose)
                             })
                         )
                 }

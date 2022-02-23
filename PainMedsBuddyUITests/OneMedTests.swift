@@ -60,7 +60,6 @@ class OneMedTests: XCTestCase {
 
             XCTAssertTrue(element.exists, "The added dose should be visible in the list.")
         }
-
     }
 
     func testEditMed() {
@@ -94,5 +93,33 @@ class OneMedTests: XCTestCase {
         let element = app.buttons.element(matching: predicate)
 
         XCTAssertTrue(element.exists, "The edited medication should be visible in the list.")
+    }
+
+    func testDoseAddSheetRotateStays() {
+        let device = XCUIDevice.shared
+
+        BasicAction.tapTabInProgress(app)
+        BasicAction.tapInProgressAddButton(app)
+
+        _ = Elements.navBarAddDose(app)
+
+        device.orientation = .landscapeLeft
+
+        _ = Elements.navBarAddDose(app)
+
+        device.orientation = .portraitUpsideDown
+
+        _ = Elements.navBarAddDose(app)
+
+        device.orientation = .landscapeRight
+
+        _ = Elements.navBarAddDose(app)
+
+        device.orientation = .portrait
+
+        let navBar = Elements.navBarAddDose(app)
+        navBar.buttons[Strings.commonCancel.automatedId()].tap()
+
+        _ = Elements.navBarInProgress(app)
     }
 }
