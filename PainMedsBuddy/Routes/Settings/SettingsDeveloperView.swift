@@ -107,7 +107,11 @@ struct SettingsDeveloperView: View {
             { result in
                 do {
                     guard let selectedFile: URL = try result.get().first else { return }
+                    _ = selectedFile.startAccessingSecurityScopedResource()
+
                     guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+                    selectedFile.stopAccessingSecurityScopedResource()
+
                     do {
                         try dataController.jsonToCoreData(input)
                         self.presentableToast.data

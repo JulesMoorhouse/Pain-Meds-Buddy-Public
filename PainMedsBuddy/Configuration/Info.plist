@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBuildDate</key>
-	<string>Wed Feb 23 09:28:21 GMT 2022</string>
+	<string>Wed Feb 23 14:02:26 GMT 2022</string>
 	<key>CFBuildNumber</key>
-	<string>34</string>
+	<string>35</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>34</string>
+	<string>35</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mailto</string>
