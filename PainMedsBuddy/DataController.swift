@@ -66,19 +66,17 @@ class DataController: ObservableObject {
         }
         _container.viewContext.automaticallyMergesChangesFromParent = true
         _container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        _container.viewContext.undoManager = nil
-        _container.viewContext.shouldDeleteInaccessibleFaults = true
 
-        do {
-            try _container.viewContext.setQueryGenerationFrom(.current)
-        } catch {
-            fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        if !DataController.isUITesting && !DataController.isUnitTesting {
+            _container.viewContext.undoManager = nil
+            _container.viewContext.shouldDeleteInaccessibleFaults = true
+
+            do {
+                try _container.viewContext.setQueryGenerationFrom(.current)
+            } catch {
+                fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+            }
         }
-
-        // Observe Core Data remote change notifications.
-//        NotificationCenter.default.addObserver(
-//            self, selector: #selector(type(of: self).storeRemoteChange(_:)),
-//            name: .NSPersistentStoreRemoteChange, object: container)
     }
 
     static var preview: DataController = {
