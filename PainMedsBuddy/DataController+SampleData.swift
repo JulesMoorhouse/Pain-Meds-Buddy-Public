@@ -133,16 +133,13 @@ extension DataController {
                     ], attachments: nil)
                     fatalError("ERROR: You can not create sample data with doses and no meds!")
                 } else if meds == 0, doses == 0 {
-                    Crashes.trackError(NSError(), properties: [
-                        "Position": "DataController.handleSampleDataOptions",
-                        "ErrorLabel": "You can not create sample data with doses and no meds!",
-                    ], attachments: nil)
-                    fatalError("ERROR: You can not create sample data with no doses and no meds!")
+                    self.processArgumentsForTesting()
+                } else {
+                    try createSampleData(
+                        appStore: appStore,
+                        medsRequested: meds,
+                        medDosesRequired: doses)
                 }
-                try createSampleData(
-                    appStore: appStore,
-                    medsRequested: meds,
-                    medDosesRequired: doses)
             } else {
                 try createSampleData(appStore: appStore)
             }

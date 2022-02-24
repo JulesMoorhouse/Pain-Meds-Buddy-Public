@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880183CC27C6F18B006A8415 /* 1dose-1med.json in Resources */ = {isa = PBXBuildFile; fileRef = 88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */; };
+		880183F327C79B59006A8415 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 880183F227C79B59006A8415 /* SwiftyJSON */; };
+		880183F727C7D8B0006A8415 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880183F627C7D8B0006A8415 /* DataFile.swift */; };
 		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
 		8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD4278384A70058BD6E /* BasicAction.swift */; };
 		880A187F278D7FFE00FA0C7D /* LocalisedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */; };
@@ -143,6 +146,8 @@
 		88F906A527988F4E00CBC65E /* TextAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A427988F4E00CBC65E /* TextAreaView.swift */; };
 		88F906A92799AB6000CBC65E /* Toast-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */; };
 		88F906AB2799BBF500CBC65E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906AA2799BBF500CBC65E /* AppDelegate.swift */; };
+		88FE32F727C6D9D400344D6E /* DataController+TestFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE32F627C6D9D400344D6E /* DataController+TestFile.swift */; };
+		88FE32F927C6DAB100344D6E /* JsonDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE32F827C6DAB100344D6E /* JsonDataTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +168,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		880183F627C7D8B0006A8415 /* DataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFile.swift; sourceTree = "<group>"; };
 		8809FBD2278309A40058BD6E /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		8809FBD4278384A70058BD6E /* BasicAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAction.swift; sourceTree = "<group>"; };
 		880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisedStringTests.swift; sourceTree = "<group>"; };
@@ -296,6 +302,9 @@
 		88F906A427988F4E00CBC65E /* TextAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAreaView.swift; sourceTree = "<group>"; };
 		88F906A82799AB6000CBC65E /* Toast-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast-ViewModifier.swift"; sourceTree = "<group>"; };
 		88F906AA2799BBF500CBC65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88FE32F627C6D9D400344D6E /* DataController+TestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+TestFile.swift"; sourceTree = "<group>"; };
+		88FE32F827C6DAB100344D6E /* JsonDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDataTests.swift; sourceTree = "<group>"; };
+		88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "1dose-1med.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,12 +335,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880183F327C79B59006A8415 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		880183F427C7D7A6006A8415 /* DataFiles */ = {
+			isa = PBXGroup;
+			children = (
+				88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */,
+			);
+			path = DataFiles;
+			sourceTree = "<group>";
+		};
+		880183F527C7D862006A8415 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				8809FBD2278309A40058BD6E /* Elements.swift */,
+				8809FBD4278384A70058BD6E /* BasicAction.swift */,
+				880183F627C7D8B0006A8415 /* DataFile.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
 		88321415275120D40026D85F = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +390,7 @@
 				88CE3B3727A9B233009FB237 /* DataController+Queries.swift */,
 				88CE3B3327A9AF63009FB237 /* DataController+SampleData.swift */,
 				88CE3B3527A9B00D009FB237 /* DataController+Notifications.swift */,
+				88FE32F627C6D9D400344D6E /* DataController+TestFile.swift */,
 				880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */,
 				88F906AA2799BBF500CBC65E /* AppDelegate.swift */,
 				88321421275120D40026D85F /* PainMedsBuddyApp.swift */,
@@ -609,10 +638,11 @@
 		88C74D0E277BAC88002B2EC6 /* PainMedsBuddyUITests */ = {
 			isa = PBXGroup;
 			children = (
+				880183F527C7D862006A8415 /* Setup */,
+				880183F427C7D7A6006A8415 /* DataFiles */,
 				88DFEA2B2786F96600E3BAFB /* Fastlane */,
-				8809FBD4278384A70058BD6E /* BasicAction.swift */,
-				8809FBD2278309A40058BD6E /* Elements.swift */,
 				88C74D0F277BAC88002B2EC6 /* ExistingDataTests.swift */,
+				88FE32F827C6DAB100344D6E /* JsonDataTests.swift */,
 				88C74D11277BAC88002B2EC6 /* Info.plist */,
 				888FC806278B895A006A3E47 /* NoDataTests.swift */,
 				88B53EA02795931A00DD74FC /* OneMedTests.swift */,
@@ -720,6 +750,9 @@
 				88C74D13277BAC88002B2EC6 /* PBXTargetDependency */,
 			);
 			name = PainMedsBuddyUITests;
+			packageProductDependencies = (
+				880183F227C79B59006A8415 /* SwiftyJSON */,
+			);
 			productName = PainMedsBuddyUITests;
 			productReference = 88C74D0D277BAC88002B2EC6 /* PainMedsBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -763,6 +796,7 @@
 				88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */,
 				88C611B927A538A1006AAE38 /* XCRemoteSwiftPackageReference "DeviceKit" */,
+				880183F127C79B59006A8415 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -802,6 +836,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880183CC27C6F18B006A8415 /* 1dose-1med.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +997,7 @@
 				886C30BE2763913B002A45B1 /* Int+Extensions.swift in Sources */,
 				88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */,
 				8852BF452785D648000750FB /* HomeViewModel.swift in Sources */,
+				88FE32F727C6D9D400344D6E /* DataController+TestFile.swift in Sources */,
 				88321422275120D40026D85F /* PainMedsBuddyApp.swift in Sources */,
 				88EF2033275268B1006037CF /* Dose-CoreDataHelpers.swift in Sources */,
 				8890941927BADDBE0070C536 /* TabbedSplitView.swift in Sources */,
@@ -996,9 +1032,11 @@
 				889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */,
 				88C74D10277BAC88002B2EC6 /* ExistingDataTests.swift in Sources */,
 				8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */,
+				880183F727C7D8B0006A8415 /* DataFile.swift in Sources */,
 				8809FBD3278309A40058BD6E /* Elements.swift in Sources */,
 				889C42DB2781EBAE003B6ED2 /* LocalizedStringKey+Extensions.swift in Sources */,
 				88DFEA2A2786F93700E3BAFB /* SnapshotHelper.swift in Sources */,
+				88FE32F927C6DAB100344D6E /* JsonDataTests.swift in Sources */,
 				88DA65BD27BECCD400EC1F28 /* tabSideBarTests.swift in Sources */,
 				888FC807278B895A006A3E47 /* NoDataTests.swift in Sources */,
 				88DFEA2D2786F98100E3BAFB /* SnapshotUITests.swift in Sources */,
@@ -1308,6 +1346,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		880183F127C79B59006A8415 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-mail-view.git";
@@ -1367,6 +1413,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		880183F227C79B59006A8415 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880183F127C79B59006A8415 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		887AEC8627A414FB0038245F /* SwiftUIMailView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */;

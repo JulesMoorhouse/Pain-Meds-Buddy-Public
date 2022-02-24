@@ -148,29 +148,33 @@ extension DataController {
         let jsonData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
 
-        let data = try decoder.decode(Data.self, from: jsonData)
-        print(data)
 
-        self.deleteAll()
+        do {
+            let viewContext = container.viewContext
 
-        let viewContext = container.viewContext
+            let data = try decoder.decode(Data.self, from: jsonData)
 
-        for medItem in data.meds {
-            let med = Med(context: viewContext)
-            medItem.setMed(med: med)
-            med.title = "\(med.medTitle)"
+            deleteAll()
 
-            let medDoses = data.doses.filter {
-                $0.medObjectID == medItem.objectID
+            for medItem in data.meds {
+                let med = Med(context: viewContext)
+                medItem.setMed(med: med)
+                med.title = "\(med.medTitle)"
+
+                let medDoses = data.doses.filter {
+                    $0.medObjectID == medItem.objectID
+                }
+
+                for doseItem in medDoses {
+                    let tempDose = Dose(context: viewContext)
+                    doseItem.setDose(dose: tempDose)
+                    tempDose.med = med
+                }
             }
+            try viewContext.save()
 
-            for doseItem in medDoses {
-                let tempDose = Dose(context: viewContext)
-                doseItem.setDose(dose: tempDose)
-                tempDose.med = med
-            }
+        } catch {
+            print("\(error.localizedDescription)")
         }
-
-        try viewContext.save()
     }
 }
