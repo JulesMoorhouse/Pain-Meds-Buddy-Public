@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		880183CC27C6F18B006A8415 /* 1dose-1med.json in Resources */ = {isa = PBXBuildFile; fileRef = 88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */; };
 		880183F327C79B59006A8415 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 880183F227C79B59006A8415 /* SwiftyJSON */; };
 		880183F727C7D8B0006A8415 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880183F627C7D8B0006A8415 /* DataFile.swift */; };
 		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
@@ -31,6 +30,7 @@
 		88321424275120D40026D85F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88321423275120D40026D85F /* ContentView.swift */; };
 		88321426275120D60026D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321425275120D60026D85F /* Assets.xcassets */; };
 		88321429275120D60026D85F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88321428275120D60026D85F /* Preview Assets.xcassets */; };
+		88340C2E27C8092F00277E1D /* 5dose-5med.json in Resources */ = {isa = PBXBuildFile; fileRef = 88340C2D27C8092F00277E1D /* 5dose-5med.json */; };
 		8840F373276B2F4200821046 /* Med-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840F372276B2F4200821046 /* Med-Protocol.swift */; };
 		8848D4662778A01500F10DC9 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4652778A01500F10DC9 /* View+Extensions.swift */; };
 		8848D4682778A02400F10DC9 /* Picker+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848D4672778A02400F10DC9 /* Picker+Extensions.swift */; };
@@ -191,6 +191,7 @@
 		88321425275120D60026D85F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88321428275120D60026D85F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8832142A275120D60026D85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88340C2D27C8092F00277E1D /* 5dose-5med.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5dose-5med.json"; sourceTree = "<group>"; };
 		8840F372276B2F4200821046 /* Med-Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Med-Protocol.swift"; sourceTree = "<group>"; };
 		8848D4652778A01500F10DC9 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		8848D4672778A02400F10DC9 /* Picker+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Picker+Extensions.swift"; sourceTree = "<group>"; };
@@ -304,7 +305,6 @@
 		88F906AA2799BBF500CBC65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88FE32F627C6D9D400344D6E /* DataController+TestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+TestFile.swift"; sourceTree = "<group>"; };
 		88FE32F827C6DAB100344D6E /* JsonDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDataTests.swift; sourceTree = "<group>"; };
-		88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "1dose-1med.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,7 +345,7 @@
 		880183F427C7D7A6006A8415 /* DataFiles */ = {
 			isa = PBXGroup;
 			children = (
-				88FE32FA27C6DCFB00344D6E /* 1dose-1med.json */,
+				88340C2D27C8092F00277E1D /* 5dose-5med.json */,
 			);
 			path = DataFiles;
 			sourceTree = "<group>";
@@ -836,7 +836,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880183CC27C6F18B006A8415 /* 1dose-1med.json in Resources */,
+				88340C2E27C8092F00277E1D /* 5dose-5med.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

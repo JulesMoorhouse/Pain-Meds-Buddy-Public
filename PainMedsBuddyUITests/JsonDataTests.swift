@@ -1,5 +1,5 @@
 //
-//  JsonDataTexts.swift
+//  JsonDataTests.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -15,15 +15,18 @@ class JsonDataTests: XCTestCase {
         continueAfterFailure = false
 
         do {
-            var json: JSON = try DataFile.readBundleJson()
+            var json: JSON = try DataFile.readBundleJson(fileSuffix: "5dose-5med")
 
             // --- Setup ---
             let newDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
 
             json["doses"][0]["takeDate"].doubleValue = Double(newDouble)
             json["doses"][0]["elapsed"].boolValue = false
+            json["doses"].arrayObject?.removeLast(3)
+
             json["meds"][0]["title"].stringValue = "Water"
             json["meds"][0]["remaining"].int16Value = 123
+            json["meds"].arrayObject?.removeLast(3)
             // --- Setup ---
 
             let string: String = "\(json)"
@@ -33,7 +36,6 @@ class JsonDataTests: XCTestCase {
 
                 app.launchArguments = ["enable-ui-testing", "[0,0]"]
                 app.launchArguments.append("-fileUrlPath")
-                // app.launchArguments.append(sampleTextFileURL().path)
                 app.launchArguments.append(url.path)
                 app.launchArguments.append("-fileName")
                 app.launchArguments.append("data.json")
@@ -51,5 +53,3 @@ class JsonDataTests: XCTestCase {
         app.swipeUp()
     }
 }
-
-extension String: Error {}

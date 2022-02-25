@@ -9,13 +9,13 @@ import Foundation
 import SwiftyJSON
 
 class DataFile {
-    static func sampleTextFileURL() -> URL {
+    static func sampleTextFileURL(fileSuffix: String) -> URL {
         let bundle = Bundle(for: JsonDataTests.self)
-        return bundle.url(forResource: "1dose-1med", withExtension: "json")!
+        return bundle.url(forResource: fileSuffix, withExtension: "json")!
     }
 
-    static func readBundleJson() throws -> JSON {
-        let contents: String = try String(contentsOf: sampleTextFileURL())
+    static func readBundleJson(fileSuffix: String) throws -> JSON {
+        let contents: String = try String(contentsOf: sampleTextFileURL(fileSuffix: fileSuffix))
         print(contents)
         if let string = contents.data(using: .utf8, allowLossyConversion: false) {
             let json: JSON = try JSON(data: string)
@@ -44,3 +44,5 @@ class DataFile {
         return paths[0]
     }
 }
+
+extension String: Error {}

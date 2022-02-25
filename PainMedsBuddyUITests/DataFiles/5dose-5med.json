@@ -1,0 +1,131 @@
+{
+  "doses" : [
+    {
+      "amount" : 2,
+      "takeDate" : 667419518.70137,
+      "softElapsedDate" : 667445918.70137,
+      "medObjectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p81",
+      "elapsed" : false,
+      "remindMe" : true
+    },
+    {
+      "amount" : 2,
+      "takeDate" : 667414118.70167506,
+      "softElapsedDate" : 667440518.70167506,
+      "medObjectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p82",
+      "elapsed" : false,
+      "remindMe" : true
+    },
+    {
+      "amount" : 2,
+      "takeDate" : 667420118.70166898,
+      "softElapsedDate" : 667446518.70166898,
+      "medObjectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p82",
+      "elapsed" : false,
+      "remindMe" : true
+    },
+    {
+      "amount" : 2,
+      "takeDate" : 667416038.70137799,
+      "softElapsedDate" : 667442438.70137799,
+      "medObjectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p81",
+      "elapsed" : false,
+      "remindMe" : true
+    },
+    {
+      "amount" : 2,
+      "takeDate" : 667418798.69924104,
+      "softElapsedDate" : 667445198.69924104,
+      "medObjectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p83",
+      "elapsed" : false,
+      "remindMe" : true
+    }
+  ],
+  "meds" : [
+    {
+      "objectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p81",
+      "symbol" : "cross.case.fill",
+      "durationSeconds" : 14400,
+      "hasDose" : true,
+      "color" : "Midnight",
+      "dosage" : 500,
+      "notes" : "Notes about taking Paracetamol x 500 Pills",
+      "title" : "Paracetamol",
+      "remaining" : 19,
+      "durationGapSeconds" : 1200,
+      "form" : "Pills",
+      "defaultAmount" : 2,
+      "measure" : "mg",
+      "hidden" : false,
+      "creationDate" : 665692838.70135295
+    },
+    {
+      "objectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p82",
+      "symbol" : "pills",
+      "durationSeconds" : 14400,
+      "hasDose" : true,
+      "color" : "Green",
+      "dosage" : 200,
+      "notes" : "Notes about taking Ibuprofen x 200 Pills",
+      "title" : "Ibuprofen",
+      "remaining" : 14,
+      "durationGapSeconds" : 1200,
+      "form" : "Pills",
+      "defaultAmount" : 2,
+      "measure" : "mg",
+      "hidden" : false,
+      "creationDate" : 665692838.70164895
+    },
+    {
+      "objectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p83",
+      "symbol" : "drop.fill",
+      "durationSeconds" : 14400,
+      "hasDose" : true,
+      "color" : "Purple",
+      "dosage" : 500,
+      "notes" : "Notes about taking Paracetamol x 500 Pills",
+      "title" : "Paracetamol",
+      "remaining" : 2,
+      "durationGapSeconds" : 1200,
+      "form" : "Pills",
+      "defaultAmount" : 2,
+      "measure" : "mg",
+      "hidden" : false,
+      "creationDate" : 665692838.69907105
+    },
+    {
+      "objectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p84",
+      "symbol" : "circle.fill",
+      "durationSeconds" : 14400,
+      "hasDose" : true,
+      "color" : "Dark Gray",
+      "dosage" : 30,
+      "notes" : "Notes about taking Codeine x 30 Pills",
+      "title" : "Codeine",
+      "remaining" : 13,
+      "durationGapSeconds" : 1200,
+      "form" : "Pills",
+      "defaultAmount" : 2,
+      "measure" : "mg",
+      "hidden" : false,
+      "creationDate" : 665692838.70124602
+    },
+    {
+      "objectID" : "x-coredata:\/\/64BD2C84-8E49-4BDF-93E7-AD6AFA12C419\/Med\/p85",
+      "symbol" : "oval.portrait.fill",
+      "durationSeconds" : 14400,
+      "hasDose" : true,
+      "color" : "Gold",
+      "dosage" : 30,
+      "notes" : "Notes about taking Codeine x 30 Pills",
+      "title" : "Codeine",
+      "remaining" : 54,
+      "durationGapSeconds" : 1200,
+      "form" : "Pills",
+      "defaultAmount" : 2,
+      "measure" : "mg",
+      "hidden" : false,
+      "creationDate" : 665692838.70130599
+    }
+  ]
+}
