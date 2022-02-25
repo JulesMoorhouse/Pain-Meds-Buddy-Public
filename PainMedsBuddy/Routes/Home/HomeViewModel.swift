@@ -149,8 +149,9 @@ extension HomeView {
             let uniqueDoseMeds = filterReaffirmedDoses(loadedDoses: loadedDoses).compactMap(\.med)
 
             // INFO: Get a list of meds and don't include those unique meds
-            let temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) && !$0.hidden }
-            let sorted = temp.sortedItems(using: .lastTaken).reversed()
+            // let temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) && !$0.hidden }
+            // INFO: Removed meds filter as this included meds with no doses
+            let sorted = uniqueDoseMeds.sortedItems(using: .lastTaken).reversed()
             let count = sorted.isEmpty ? 0 : 3
             let mapped = sorted.prefix(count).map { $0 }
             return mapped
