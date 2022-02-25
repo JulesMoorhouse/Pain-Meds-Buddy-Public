@@ -1,5 +1,5 @@
 //
-//  JsonDataTests.swift
+//  JsonData5d5mTests.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -8,7 +8,7 @@
 import SwiftyJSON
 import XCTest
 
-class JsonDataTests: XCTestCase {
+class JsonData5d5mTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {

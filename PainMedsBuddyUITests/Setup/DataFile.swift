@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class DataFile {
     static func sampleTextFileURL(fileSuffix: String) -> URL {
-        let bundle = Bundle(for: JsonDataTests.self)
+        let bundle = Bundle(for: DataFile.self)
         return bundle.url(forResource: fileSuffix, withExtension: "json")!
     }
 

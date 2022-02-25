@@ -177,6 +177,7 @@ struct DoseEditView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .center)
                             .accentColor(.red)
+                            .accessibilityIdentifier(.doseEditDeleteThisDose)
                         }
 
                         // --- Elapse Button ---
@@ -187,6 +188,7 @@ struct DoseEditView: View {
                                     viewModel.showAlert.toggle()
                                 }
                                 .frame(maxWidth: .infinity, alignment: .center)
+                                .accessibilityIdentifier(.doseEditMarkElapsed)
                                 .disabled(viewModel.dataChanged)
                             }
                         }
