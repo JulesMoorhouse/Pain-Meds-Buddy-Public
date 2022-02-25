@@ -64,7 +64,33 @@ extension String {
     }
 
     var isNumber: Bool {
-        !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        isInt() || isDouble()
+    }
+
+    func isInt() -> Bool {
+        if Int(self) != nil {
+            return true
+        }
+        return false
+    }
+
+    func isDouble() -> Bool {
+        if Double(self) != nil {
+            return true
+        }
+        return false
+    }
+
+    func doubleOrIntString() -> String {
+        let double: Double = self.isDouble() ? Double(self) ?? 0.0 : 0.0
+        let int: Int = self.isInt() ? Int(self) ?? 0 : 0
+
+        let output: String =
+            self.isDouble()
+        ? "\(String(describing: double))"
+                : self.isInt() ? "\(String(describing: int))"
+                : "0"
+        return output
     }
 
     init(_ localisedString: Strings, values: [String]) {

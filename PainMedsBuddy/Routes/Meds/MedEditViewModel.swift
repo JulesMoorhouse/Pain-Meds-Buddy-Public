@@ -206,10 +206,13 @@ extension MedEditView {
         }()
 
         var example: String {
-            let amount: Int = defaultAmount.isNumber ? Int(defaultAmount) ?? 0 : 0
-            let dose: Int = dosage.isNumber ? Int(dosage) ?? 0 : 0
-            let formWord = Med.formWord(num: amount, word: form)
-            return "\(amount) x \(dose)\(measure) \(formWord) = \(amount * dose)\(measure)"
+            let amountDouble: Double = defaultAmount.isDouble() ? Double(defaultAmount) ?? 0.0 : 0.0
+            let dosageDouble: Double = dosage.isDouble() ? Double(dosage) ?? 0.0 : 0.0
+            let measureCalc: String = (amountDouble * dosageDouble).removeZerosFromEnd()
+            let formWord = Med.formWord(num: Int(defaultAmount) ?? 0, word: form)
+
+            // swiftlint:disable:next line_length
+            return "\(amountDouble.removeZerosFromEnd()) x \(dosageDouble.removeZerosFromEnd())\(measure) \(formWord) = \(measureCalc)\(measure)"
         }
 
         // MARK: -
@@ -296,7 +299,7 @@ extension MedEditView {
                 // keep the med for use with other doses.
 
                 // swiftlint:disable:next empty_count
-                if count == 0 && DataController.useHardDelete {
+                if count == 0, DataController.useHardDelete {
                     dataController.delete(med)
                 } else {
                     update()

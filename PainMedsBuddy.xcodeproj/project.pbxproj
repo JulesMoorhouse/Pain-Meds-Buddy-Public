@@ -15,6 +15,7 @@
 		880A1881278D82DD00FA0C7D /* InterpolatedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */; };
 		880A1883278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */; };
 		880EBBCB27AD22DA00F3F629 /* DataController+ImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */; };
+		88166CEF27C90792004B2D53 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88166CEE27C90792004B2D53 /* Double+Extensions.swift */; };
 		881BA3922764047900DA06D7 /* HomeMedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA3912764047900DA06D7 /* HomeMedRow.swift */; };
 		881BA39427649C0F00DA06D7 /* MedDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39327649C0F00DA06D7 /* MedDefault.swift */; };
 		881BA39627649FFB00DA06D7 /* DoseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BA39527649FFB00DA06D7 /* DoseDefault.swift */; };
@@ -175,6 +176,7 @@
 		880A1880278D82DD00FA0C7D /* InterpolatedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpolatedStrings.swift; sourceTree = "<group>"; };
 		880A1882278E351300FA0C7D /* TextFieldSelectAll-ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldSelectAll-ViewModifier.swift"; sourceTree = "<group>"; };
 		880EBBCA27AD22DA00F3F629 /* DataController+ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController+ImportExport.swift"; sourceTree = "<group>"; };
+		88166CEE27C90792004B2D53 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		881BA3912764047900DA06D7 /* HomeMedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMedRow.swift; sourceTree = "<group>"; };
 		881BA39327649C0F00DA06D7 /* MedDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedDefault.swift; sourceTree = "<group>"; };
 		881BA39527649FFB00DA06D7 /* DoseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseDefault.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				88C611BC27A54146006AAE38 /* Bundle+Extensions.swift */,
 				881BA3972764AB9A00DA06D7 /* Date+Extensions.swift */,
 				886C30BD2763913B002A45B1 /* Int+Extensions.swift */,
+				88166CEE27C90792004B2D53 /* Double+Extensions.swift */,
 				88AB7CB2275F68260055BD9B /* Sequence-Sorting.swift */,
 				8823D9B827C4117E00717518 /* UIViewController+Extensions.swift */,
 				886C30BB2763912C002A45B1 /* String+Extensions.swift */,
@@ -995,6 +998,7 @@
 				8857205B275234C400B4B00C /* HomeView.swift in Sources */,
 				8848D46C2778A04500F10DC9 /* Button+Extensions.swift in Sources */,
 				886C30BE2763913B002A45B1 /* Int+Extensions.swift in Sources */,
+				88166CEF27C90792004B2D53 /* Double+Extensions.swift in Sources */,
 				88AB7CB7275F7BE60055BD9B /* MedAddView.swift in Sources */,
 				8852BF452785D648000750FB /* HomeViewModel.swift in Sources */,
 				88FE32F727C6D9D400344D6E /* DataController+TestFile.swift in Sources */,
