@@ -31,7 +31,7 @@ struct SymbolsView: View {
                     if symbol.id == selectedSymbol {
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(lineWidth: 2)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.primary)
                     }
                 }
                 .onTapGesture {
