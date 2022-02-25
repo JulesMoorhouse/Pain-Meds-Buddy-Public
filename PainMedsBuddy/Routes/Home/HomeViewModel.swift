@@ -142,11 +142,14 @@ extension HomeView {
 
         // INFO: Get a unique list of medications that don't have currently active doses.
         func getRecentMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
-            // INFO: Get unique med doses which are in progress
-            let currentMeds = reaffirmedDoses.compactMap(\.med)
+            // INFO: Get med doses which are in progress
+            let currentMeds = reaffirmedDoses.map(\.med)
 
             // INFO: Get in progress doses which aren't hidden
-            let uniqueDoseMeds = Array(Set(loadedDoses.filter { $0.med != nil && !$0.med!.hidden }.compactMap(\.med)))
+            let uniqueDoseMeds = Array(Set(loadedDoses.filter {
+                $0.med != nil
+                && !$0.med!.hidden
+                && $0.med!.lastTakenDate != nil }.compactMap(\.med)))
 
             // INFO: Remove current meds from in progress array
             let temp = uniqueDoseMeds.filter { !currentMeds.contains($0) }

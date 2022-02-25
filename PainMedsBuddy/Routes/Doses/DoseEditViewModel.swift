@@ -237,8 +237,9 @@ extension DoseEditView {
             // are no longer editable
             dose.softElapsedDate = dose.doseSoftElapsedDate
 
-            dose.med?.lastTakenDate = takenDate
-
+            if let thisMed = dose.med {
+                thisMed.lastTakenDate = takenDate
+            }
             // NOTE: Ensure remaining is zero or above
             let remaining = Double(truncating: dose.med?.remaining ?? 0)
             let tempAmount = Double(amount) ?? Double(truncating: DoseDefault.amount)

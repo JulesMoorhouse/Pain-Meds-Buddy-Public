@@ -61,6 +61,7 @@ extension DataController {
             self.dosage = med.medDosageDecimal
             self.defaultAmount = med.medDefaultAmountDecimal
             self.durationSeconds = med.durationSeconds
+            self.lastTakeDate = med.medLastTakenDate
             self.hasDose = med.dose != nil
             self.notes = med.notes
             self.color = med.color
@@ -78,6 +79,7 @@ extension DataController {
             med.dosage = NSDecimalNumber(decimal: dosage)
             med.defaultAmount = NSDecimalNumber(decimal: defaultAmount)
             med.durationSeconds = durationSeconds
+            med.lastTakenDate = lastTakeDate
             med.notes = notes
             med.color = color
             med.measure = measure
