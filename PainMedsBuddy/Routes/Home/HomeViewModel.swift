@@ -47,9 +47,6 @@ extension HomeView {
 
             // INFO: Construct a fetch request to show all none elapsed doses
             let doseRequest: NSFetchRequest<Dose> = Dose.fetchRequest()
-            doseRequest.predicate = NSPredicate(format:
-                "elapsed == false OR softElapsedDate >= %@", NSDate())
-
             doseRequest.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),
             ]
@@ -145,13 +142,17 @@ extension HomeView {
 
         // INFO: Get a unique list of medications that don't have currently active doses.
         func getRecentMeds(loadedDoses: [Dose], loadedMeds: [Med]) -> [Med] {
-            // INFO: Get unique med doses which are in progress and not hidden
-            let uniqueDoseMeds = filterReaffirmedDoses(loadedDoses: loadedDoses).compactMap(\.med)
+            // INFO: Get unique med doses which are in progress
+            let currentMeds = reaffirmedDoses.compactMap(\.med)
 
-            // INFO: Get a list of meds and don't include those unique meds
-            // let temp = loadedMeds.filter { !uniqueDoseMeds.contains($0) && !$0.hidden }
+            // INFO: Get in progress doses which aren't hidden
+            let uniqueDoseMeds = Array(Set(loadedDoses.filter { $0.med != nil && !$0.med!.hidden }.compactMap(\.med)))
+
+            // INFO: Remove current meds from in progress array
+            let temp = uniqueDoseMeds.filter { !currentMeds.contains($0) }
+
             // INFO: Removed meds filter as this included meds with no doses
-            let sorted = uniqueDoseMeds.sortedItems(using: .lastTaken).reversed()
+            let sorted = temp.sortedItems(using: .lastTaken).reversed()
             let count = sorted.isEmpty ? 0 : 3
             let mapped = sorted.prefix(count).map { $0 }
             return mapped
