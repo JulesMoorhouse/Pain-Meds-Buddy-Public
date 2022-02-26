@@ -7,7 +7,7 @@
 
 import XCTest
 
-class NoDataUITests: XCTestCase {
+class NoDataTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {

@@ -26,7 +26,9 @@ struct HomeMedRow: View {
     }
 
     var body: some View {
-        HStack {
+        Button(action: {
+            showSheet.toggle()
+        }, label: {
             MedSymbolView(symbol: med.medSymbol, colour: med.medColor)
 
             Spacer()
@@ -36,20 +38,18 @@ struct HomeMedRow: View {
 
             Spacer()
 
-            Button(action: {
-                showSheet.toggle()
-            }, label: {
-                ButtonBorderView(
-                    text: Strings.homeTakeNext.rawValue,
-                    width: 80,
-                    font: .footnote,
-                    padding: 8
-                )
-            })
+            ButtonBorderView(
+                text: Strings.homeTakeNext.rawValue,
+                width: 80,
+                font: .footnote,
+                padding: 8
+            )
 
             Spacer()
                 .frame(width: 10)
-        }
+        })
+        .contentShape(Rectangle())
+
         .sheet(isPresented: $showSheet) {
             DoseAddView(med: med)
                 .allowAutoDismiss(false)

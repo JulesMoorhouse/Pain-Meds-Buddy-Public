@@ -1,5 +1,5 @@
 //
-//  OneMedTests.swift
+//  BasicOneMedTests.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-class OneMedTests: XCTestCase {
+class BasicOneMedTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {

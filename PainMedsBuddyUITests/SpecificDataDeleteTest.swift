@@ -1,5 +1,5 @@
 //
-//  JsonData1d1mTests.swift
+//  SpecificDataDeleteTest.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -8,7 +8,7 @@
 import SwiftyJSON
 import XCTest
 
-class JsonData1d1mTests: XCTestCase {
+class SpecificDataDeleteTest: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -162,5 +162,4 @@ class JsonData1d1mTests: XCTestCase {
             "In Progress empty placeholder label not showing"
         )
     }
-
 }

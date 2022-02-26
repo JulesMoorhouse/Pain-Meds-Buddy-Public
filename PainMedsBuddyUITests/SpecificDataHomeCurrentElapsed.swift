@@ -1,5 +1,5 @@
 //
-//  JsonData5d5mTests.swift
+//  SpecificDataHomeCurrentElapsed.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -8,7 +8,7 @@
 import SwiftyJSON
 import XCTest
 
-class JsonData5d5mTests: XCTestCase {
+class SpecificDataHomeCurrentElapsed: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -18,15 +18,15 @@ class JsonData5d5mTests: XCTestCase {
             var json: JSON = try DataFile.readBundleJson(fileSuffix: "5dose-5med")
 
             // --- Setup ---
-            let newDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
+            let nowDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
 
-            json["doses"][0]["takeDate"].doubleValue = Double(newDouble)
-            json["doses"][0]["elapsed"].boolValue = false
-            json["doses"].arrayObject?.removeLast(3)
+            json["doses"][0]["takeDate"].doubleValue = Double(nowDouble)
+            json["doses"][0]["elapsed"].boolValue = true
+            json["doses"].arrayObject?.removeLast(4)
 
             json["meds"][0]["title"].stringValue = "Water"
-            json["meds"][0]["remaining"].int16Value = 123
-            json["meds"].arrayObject?.removeLast(3)
+            json["meds"][0]["hidden"].boolValue = false
+            json["meds"].arrayObject?.removeLast(4)
             // --- Setup ---
 
             let string: String = "\(json)"
@@ -40,6 +40,7 @@ class JsonData5d5mTests: XCTestCase {
                 app.launchArguments.append("-fileName")
                 app.launchArguments.append("data.json")
                 app.launch()
+                sleep(1)
             }
 
         } catch {
@@ -47,9 +48,18 @@ class JsonData5d5mTests: XCTestCase {
         }
     }
 
-    func testJsonDataFile() {
-        BasicAction.tapTabMedications(app)
+    func testHomeProgressCurrentNoElapsed() {
+        BasicAction.tapTabHome(app)
 
-        app.swipeUp()
+        _ = Elements.navBarHome(app, performTest: false)
+
+        let labelId = Strings.commonEmptyView.automatedId()
+        let someView = app.staticTexts[labelId]
+
+        // Then
+        XCTAssertTrue(
+            someView.exists,
+            "Home empty placeholder label not showing"
+        )
     }
 }

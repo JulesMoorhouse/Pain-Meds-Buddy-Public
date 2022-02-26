@@ -7,7 +7,7 @@
 
 import XCTest
 
-class BasicAction: XCTestCase {
+class BasicAction {
     static func tapBackButton(_ app: XCUIApplication) {
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
@@ -31,6 +31,7 @@ class BasicAction: XCTestCase {
 
     static func tapTabInProgress(_ app: XCUIApplication) {
         let tab = Elements.tabInProgress(app)
+        _ = tab.waitForExistence(timeout: 2)
         tab.tap()
 
         // INFO: Confirm on in progress screen
@@ -39,6 +40,7 @@ class BasicAction: XCTestCase {
 
     static func tapTabMedications(_ app: XCUIApplication) {
         let tab = Elements.tabMedications(app)
+        _ = tab.waitForExistence(timeout: 2)
         tab.tap()
 
         // INFO: Confirm on medications screen

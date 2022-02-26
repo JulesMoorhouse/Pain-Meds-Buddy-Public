@@ -70,6 +70,7 @@ struct DoseMedSelectView: View {
         }
         .contentShape(Rectangle())
         .foregroundColor(.primary)
+        .accessibilityAddTraits(.isButton)
         .onTapGesture {
             self.selectedMed = med
             self.presentationMode.wrappedValue.dismiss()

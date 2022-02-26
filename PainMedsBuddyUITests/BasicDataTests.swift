@@ -1,5 +1,5 @@
 //
-//  PainMedsBuddyUITests.swift
+//  BasicDataTests.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-class ExistingDataTests: XCTestCase {
+class BasicDataTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -82,73 +82,5 @@ class ExistingDataTests: XCTestCase {
             row.exists,
             "Home low meds row not showing"
         )
-    }
-
-    func testHomeHasRecentMeds() {
-        BasicAction.tapTabHome(app)
-
-        let row = app.buttons[
-            Strings.homeAccessibilityIconTakeNow.automatedId()
-        ].firstMatch
-
-        _ = row.waitForExistence(timeout: 2)
-
-        XCTAssertTrue(
-            row.exists,
-            "Home recent meds section not showing"
-        )
-    }
-
-    func TODO_testSortOrder() {
-        // To Do
-        // test sort order popup shows and changes sort order of items
-        // do on med select and meds view
-    }
-
-    func TODO_testMedSelection() {
-        // To Do
-    }
-
-    func TODO_testHomeProgressAvailable() {
-        // To Do
-        // test that the home progress circles, once available
-        // disappear after a set period
-    }
-
-    func TODO_testHomeLowMedsAreCorrect() {
-        // To Do
-        // test that only low meds are show at the set low value
-    }
-
-    func TODO_testHomeLowMedsShowEditedValues() {
-        // To Do
-    }
-
-    func TODO_testHomeRecentMedsShowEditedValues() {
-        // To Do
-    }
-
-    func TODO_testHomeInProgressDosesShowEditedValues() {
-        // To Do
-    }
-
-    func TODO_testMedDeleteFromEditScreen() {
-        // To Do
-    }
-
-    func TODO_testMedDeleteFromListScreen() {
-        // To Do
-    }
-
-    func TODO_testDoseDeleteFromEditScreen() {
-        // To Do
-    }
-
-    func TODO_testDoseDeleteFromListScreen() {
-        // To Do
-    }
-
-    func TODO_testMedSortTitle() {
-        // To Do
     }
 }

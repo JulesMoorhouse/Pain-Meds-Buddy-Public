@@ -7,7 +7,7 @@
 
 import XCTest
 
-class Elements: XCTestCase {
+class Elements {
     // INFO: These helper methods should not have any
     // parameters and should perform simple actions
     // and confirm the action occurred
@@ -96,7 +96,7 @@ class Elements: XCTestCase {
     static func navBarInProgress(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleInProgress.automatedId()
         let inProgressScreen = app.navigationBars[titleId]
-        _ = inProgressScreen.waitForExistence(timeout: 2)
+        _ = inProgressScreen.waitForExistence(timeout: 3)
 
         if performTest {
             XCTAssertTrue(
@@ -111,7 +111,7 @@ class Elements: XCTestCase {
     static func navBarMedications(_ app: XCUIApplication, performTest: Bool = true) -> XCUIElement {
         let titleId = Strings.tabTitleMedications.automatedId()
         let medicationScreen = app.navigationBars[titleId]
-        _ = medicationScreen.waitForExistence(timeout: 2)
+        _ = medicationScreen.waitForExistence(timeout: 3)
 
         if performTest {
             XCTAssertTrue(
@@ -317,5 +317,9 @@ extension XCUIElement {
         case .right:
             centre.press(forDuration: pressDuration, thenDragTo: rightOfCentre)
         }
+    }
+
+    func forceTap() {
+        coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 }

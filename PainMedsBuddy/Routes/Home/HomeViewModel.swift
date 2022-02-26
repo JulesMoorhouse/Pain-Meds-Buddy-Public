@@ -105,7 +105,8 @@ extension HomeView {
                     let elapsed = $0.elapsed == true
 
                     if let med = $0.med {
-                        return elapsed && (notPassedSoftElapse && !med.hidden)
+                        let result = elapsed && (notPassedSoftElapse && !med.hidden)
+                        return result
                     }
                 }
                 return false

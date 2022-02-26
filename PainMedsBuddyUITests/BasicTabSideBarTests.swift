@@ -1,5 +1,5 @@
 //
-//  tabSideBarTests.swift
+//  BasicTabSideBarTests.swift
 //  PainMedsBuddyUITests
 //
 //  Created by Jules Moorhouse.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-class TabSideBarTests: XCTestCase {
+class BasicTabSideBarTests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -28,78 +28,6 @@ class TabSideBarTests: XCTestCase {
             "There should be 5 tab bar or side bar buttons in the app."
         )
     }
-
-    func homeProgressAddDoseBackHasTabBar() {
-        BasicAction.tapTabHome(app)
-        let nextButton = app.buttons[Strings.doseProgressAccessibilityCloseButton.automatedId()]
-        nextButton.tap()
-
-        // INFO: Confirm on add dose screen
-        _ = Elements.navBarAddDose(app)
-
-        let navBar = Elements.navBarAddDose(app)
-        navBar.buttons[Strings.commonCancel.automatedId()].tap()
-
-        // INFO: Confirm on home screen
-        _ = Elements.navBarHome(app)
-
-        XCTAssertEqual(
-            Elements.tabSideButtonCount(app),
-            5,
-            "There should be 5 tabs in the app."
-        )
-    }
-
-    func homeRecentAddDoseBackHasTabBar() {
-        BasicAction.tapTabHome(app)
-
-        let row = app.buttons[
-            Strings.homeAccessibilityIconTakeNow.automatedId()
-        ].firstMatch
-
-        _ = row.waitForExistence(timeout: 2)
-
-        row.tap()
-
-        let navBar = Elements.navBarEditDose(app)
-        navBar.buttons[Strings.commonCancel.automatedId()].tap()
-
-        // INFO: Confirm on home screen
-        _ = Elements.navBarHome(app)
-
-        XCTAssertEqual(
-            Elements.tabSideButtonCount(app),
-            5,
-            "There should be 5 tabs in the app."
-        )
-    }
-
-    func homeLowEditDoseBackHasTabBar() {
-        BasicAction.tapTabHome(app)
-
-        app.swipeUp()
-
-        let row = app.buttons[
-            Strings.homeAccessibilityIconRemaining.automatedId()
-        ].firstMatch
-
-        _ = row.waitForExistence(timeout: 2)
-
-        row.tap()
-
-        let navBar = Elements.navBarEditDose(app)
-        navBar.buttons[Strings.commonCancel.automatedId()].tap()
-
-        // INFO: Confirm on home screen
-        _ = Elements.navBarHome(app)
-
-        XCTAssertEqual(
-            Elements.tabSideButtonCount(app),
-            5,
-            "There should be 5 tabs in the app."
-        )
-    }
-
     // ---- Home Route ---
 
     // ---- History Route ---
