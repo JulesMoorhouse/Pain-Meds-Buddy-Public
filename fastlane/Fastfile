@@ -66,6 +66,8 @@ platform :ios do
         '~/**/DerivedData/*'
       ]
     )
+
+    sh("cp -r /Users/jm/repos/PainMedsBuddy/fastlane/test_output/slather-output/ /Users/jm/repos/web/static/pmb/slather")
   end
 
   desc "Generate test coverage using Slather"
@@ -83,6 +85,8 @@ platform :ios do
         '~/**/DerivedData/*'
       ]
     )
+
+    sh("cp -r /Users/jm/repos/PainMedsBuddy/fastlane/test_output/slather-output/ /Users/jm/repos/web/static/pmb/slather")
   end
 
   desc "A - Generate new localized screenshots"
