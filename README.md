@@ -27,7 +27,7 @@ The app is written with SwiftUI and uses Core Data / Combine.
 * To automate test coverage across multiple devices and produce framed screenshots [Fastlane](https://fastlane.tools) integration has been added, please see these [Setup Instructions](https://docs.fastlane.tools/getting-started/ios/setup/)
 
 ## Approach
-The project uses an MVVM architecture approach. However, ViewModels have only been employed where Core Data fetch requests and more complex code has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality, please see coverage <a target="_blank" href="https://www.julesmoorhouse.com/static/pmb/slather/index.html">here</a>. There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
+The project uses an MVVM architecture approach. However, ViewModels have only been employed where Core Data fetch requests and more complex code has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality, please see coverage <a target="_blank" href="https://julesmoorhouse.github.io/PainMedsBuddy/fastlane/test_output/slather-output">here</a>. There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
 
 ## Design / Screenshots
 
