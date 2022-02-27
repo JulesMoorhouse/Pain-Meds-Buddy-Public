@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		880183F327C79B59006A8415 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 880183F227C79B59006A8415 /* SwiftyJSON */; };
 		880183F727C7D8B0006A8415 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880183F627C7D8B0006A8415 /* DataFile.swift */; };
+		8806475C27CAE10800454C0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8806475B27CAE10800454C0C /* Date+Extensions.swift */; };
 		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
 		8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD4278384A70058BD6E /* BasicAction.swift */; };
 		880A187F278D7FFE00FA0C7D /* LocalisedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */; };
@@ -178,6 +179,7 @@
 
 /* Begin PBXFileReference section */
 		880183F627C7D8B0006A8415 /* DataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFile.swift; sourceTree = "<group>"; };
+		8806475B27CAE10800454C0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		8809FBD2278309A40058BD6E /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		8809FBD4278384A70058BD6E /* BasicAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAction.swift; sourceTree = "<group>"; };
 		880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisedStringTests.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				8809FBD2278309A40058BD6E /* Elements.swift */,
 				8809FBD4278384A70058BD6E /* BasicAction.swift */,
+				8806475B27CAE10800454C0C /* Date+Extensions.swift */,
 				880183F627C7D8B0006A8415 /* DataFile.swift */,
 			);
 			path = Setup;
@@ -1059,6 +1062,7 @@
 			files = (
 				889C42DA2781EBA2003B6ED2 /* Strings.swift in Sources */,
 				88166CF327CA47EF004B2D53 /* SpecificDataHomeRecent.swift in Sources */,
+				8806475C27CAE10800454C0C /* Date+Extensions.swift in Sources */,
 				88C74D10277BAC88002B2EC6 /* BasicDataTests.swift in Sources */,
 				8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */,
 				88166CF927CA835E004B2D53 /* SpecificDataHomeAvailable.swift in Sources */,

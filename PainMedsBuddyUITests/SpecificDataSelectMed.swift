@@ -19,19 +19,14 @@ class SpecificDataSelectMed: XCTestCase {
 
             // --- Setup ---
             let oneDayAgo: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-
-            let oneDayAgoDouble: TimeInterval = oneDayAgo.timeIntervalSinceReferenceDate
-
             let twoDayAgo: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
-
-            let twoDayAgoDouble: TimeInterval = twoDayAgo.timeIntervalSinceReferenceDate
 
             // So have 2 meds, first med selection is determined by lastTakenDate
             json["meds"][0]["title"].stringValue = "Bronze"
-            json["meds"][0]["lastTakeDate"].doubleValue = Double(oneDayAgoDouble)
+            json["meds"][0]["lastTakeDate"].stringValue = oneDayAgo.dataFileFormat
 
             json["meds"][1]["title"].stringValue = "Silver"
-            json["meds"][1]["lastTakeDate"].doubleValue = Double(twoDayAgoDouble)
+            json["meds"][1]["lastTakeDate"].stringValue = twoDayAgo.dataFileFormat
 
             json["meds"].arrayObject?.removeLast(2)
             // --- Setup ---

@@ -18,9 +18,7 @@ class SpecificDataHomeCurrent: XCTestCase {
             var json: JSON = try DataFile.readBundleJson(fileSuffix: "5dose-5med")
 
             // --- Setup ---
-            let nowDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
-
-            json["doses"][0]["takeDate"].doubleValue = Double(nowDouble)
+            json["doses"][0]["takeDate"].stringValue = Date().dataFileFormat
             json["doses"][0]["elapsed"].boolValue = false
             json["doses"].arrayObject?.removeLast(4)
 

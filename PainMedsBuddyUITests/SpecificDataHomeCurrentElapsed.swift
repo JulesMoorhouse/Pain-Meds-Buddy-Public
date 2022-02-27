@@ -18,14 +18,14 @@ class SpecificDataHomeCurrentElapsed: XCTestCase {
             var json: JSON = try DataFile.readBundleJson(fileSuffix: "5dose-5med")
 
             // --- Setup ---
-            let nowDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
-
-            json["doses"][0]["takeDate"].doubleValue = Double(nowDouble)
+            json["doses"][0]["takeDate"].stringValue = Date().dataFileFormat
             json["doses"][0]["elapsed"].boolValue = true
             json["doses"].arrayObject?.removeLast(4)
 
             json["meds"][0]["title"].stringValue = "Water"
             json["meds"][0]["hidden"].boolValue = false
+            json["meds"][0]["remaining"].int16Value = 123
+            json["meds"][0]["lastTakeDate"].stringValue = Date().dataFileFormat
             json["meds"].arrayObject?.removeLast(4)
             // --- Setup ---
 
@@ -53,13 +53,14 @@ class SpecificDataHomeCurrentElapsed: XCTestCase {
 
         _ = Elements.navBarHome(app, performTest: false)
 
-        let labelId = Strings.commonEmptyView.automatedId()
-        let someView = app.staticTexts[labelId]
+        let row = app.buttons[
+            Strings.doseProgressAccessibilityRemaining.automatedId()
+        ]
 
         // Then
-        XCTAssertTrue(
-            someView.exists,
-            "Home empty placeholder label not showing"
+        XCTAssertFalse(
+            row.exists,
+            "Home current meds are showing"
         )
     }
 }

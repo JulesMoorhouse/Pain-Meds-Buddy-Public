@@ -19,20 +19,16 @@ class SpecificDataHomeAvailable: XCTestCase {
 
             // --- Setup ---
             let threeHoursAgo: Date = Calendar.current.date(byAdding: .hour, value: -3, to: Date())!
-            let threeHoursAgoDouble: TimeInterval = threeHoursAgo.timeIntervalSinceReferenceDate
-
             let sevenHoursAhead: Date = Calendar.current.date(byAdding: .hour, value: 7, to: Date())!
-            let sevenHoursAheadDouble: TimeInterval = sevenHoursAhead.timeIntervalSinceReferenceDate
 
-            json["doses"][0]["takeDate"].doubleValue = Double(threeHoursAgoDouble)
-            json["doses"][0]["softElapsedDate"].doubleValue = Double(sevenHoursAheadDouble)
+            json["doses"][0]["takeDate"].stringValue = threeHoursAgo.dataFileFormat
+            json["doses"][0]["softElapsedDate"].stringValue = sevenHoursAhead.dataFileFormat
             json["doses"][0]["elapsed"].boolValue = true
             json["doses"].arrayObject?.removeLast(4)
 
             json["meds"][0]["title"].stringValue = "Water"
             json["meds"][0]["hidden"].boolValue = false
-            json["meds"][0]["lastTakeDate"].doubleValue = Double(threeHoursAgoDouble)
-
+            json["meds"][0]["lastTakeDate"].stringValue = threeHoursAgo.dataFileFormat
             json["meds"].arrayObject?.removeLast(4)
             // --- Setup ---
 

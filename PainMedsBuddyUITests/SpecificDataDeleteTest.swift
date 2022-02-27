@@ -18,14 +18,13 @@ class SpecificDataDeleteTest: XCTestCase {
             var json: JSON = try DataFile.readBundleJson(fileSuffix: "5dose-5med")
 
             // --- Setup ---
-            let newDouble: TimeInterval = Date().timeIntervalSinceReferenceDate
-
-            json["doses"][0]["takeDate"].doubleValue = Double(newDouble)
+            json["doses"][0]["takeDate"].stringValue = Date().dataFileFormat
             json["doses"][0]["elapsed"].boolValue = false
             json["doses"].arrayObject?.removeLast(4)
 
             json["meds"][0]["title"].stringValue = "Water"
             json["meds"][0]["remaining"].int16Value = 123
+            json["meds"][0]["lastTakeDate"].stringValue = Date().dataFileFormat
             json["meds"].arrayObject?.removeLast(4)
             // --- Setup ---
 

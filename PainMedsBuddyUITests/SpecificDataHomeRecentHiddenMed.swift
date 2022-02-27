@@ -19,14 +19,10 @@ class SpecificDataHomeRecentHiddenMed: XCTestCase {
 
             // --- Setup ---
             let threeMinutesAgo: Date = Calendar.current.date(byAdding: .minute, value: -3, to: Date())!
-            let threeMinutesAgoDouble: TimeInterval = threeMinutesAgo.timeIntervalSinceReferenceDate
-
             let oneDayAgo: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
 
-            let oneDayAgoDouble: TimeInterval = oneDayAgo.timeIntervalSinceReferenceDate
-
-            json["doses"][0]["takeDate"].doubleValue = Double(threeMinutesAgoDouble)
-            json["doses"][0]["softDateElapsed"].doubleValue = Double(threeMinutesAgoDouble)
+            json["doses"][0]["takeDate"].stringValue = threeMinutesAgo.dataFileFormat
+            json["doses"][0]["softDateElapsed"].stringValue = threeMinutesAgo.dataFileFormat
             json["doses"][0]["elapsed"].boolValue = true
             json["doses"].arrayObject?.removeLast(4)
 
@@ -34,7 +30,7 @@ class SpecificDataHomeRecentHiddenMed: XCTestCase {
             json["meds"][0]["hidden"].boolValue = true
             json["meds"][0]["remaining"].int16Value = 123
             json["meds"][0]["durationSeconds"].int16Value = 14400
-            json["meds"][0]["lastTakeDate"].doubleValue = Double(oneDayAgoDouble)
+            json["meds"][0]["lastTakeDate"].stringValue = oneDayAgo.dataFileFormat
             json["meds"].arrayObject?.removeLast(4)
             // --- Setup ---
 

@@ -42,7 +42,8 @@ platform :ios do
         include_simulator_logs: false,
         #suppress_xcode_output: true,
         ensure_devices_found: true,
-        number_of_retries: 2,
+        reset_simulator: true,
+        number_of_retries: 3,
         skip_detect_devices: true,
         #test_without_building: true,
         fail_build: false, # If tests fail the build will be failed later based on the result_bundle
