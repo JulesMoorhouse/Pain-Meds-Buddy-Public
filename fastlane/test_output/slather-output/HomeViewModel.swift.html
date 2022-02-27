@@ -1,0 +1,912 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>HomeViewModel.swift - Slather</title>
+<link href="slather.css" media="all" rel="stylesheet">
+</head>
+<body>
+<header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
+<h2 class="cov_title">
+<span>Coverage for "HomeViewModel.swift" : </span><span>Lines: </span><span class="cov_medium">77.93%</span><span> Branches: </span><span class="cov_low">69.23%</span>
+</h2>
+<h4 class="cov_subtitle">(113 of 145 relevant lines covered)</h4>
+<h4 class="cov_filepath">PainMedsBuddy/Routes/Home/HomeViewModel.swift</h4>
+<table class="source_code">
+<tr class="never">
+<td class="num">1</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">2</td>
+<td class="src"><pre><code class="objc">//  HomeViewModel.swift</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">3</td>
+<td class="src"><pre><code class="objc">//  PainMedsBuddy</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">4</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">5</td>
+<td class="src"><pre><code class="objc">//  Created by Jules Moorhouse.</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">6</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">7</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">8</td>
+<td class="src"><pre><code class="objc">import AppCenterCrashes</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">9</td>
+<td class="src"><pre><code class="objc">import CoreData</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">10</td>
+<td class="src"><pre><code class="objc">import Foundation</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">11</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">12</td>
+<td class="src"><pre><code class="objc">extension HomeView {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">13</td>
+<td class="src"><pre><code class="objc">    class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">14</td>
+<td class="src"><pre><code class="objc">        private let dosesController: NSFetchedResultsController&lt;Dose&gt;</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">15</td>
+<td class="src"><pre><code class="objc">        private let medsController: NSFetchedResultsController&lt;Med&gt;</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">16</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">17</td>
+<td class="src"><pre><code class="objc">        @Published var doses = [Dose]()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">18</td>
+<td class="src"><pre><code class="objc">        private var meds = [Med]()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="never">
+<td class="num">19</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">20</td>
+<td class="src"><pre><code class="objc">        var reaffirmedDoses: [Dose] {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">21</td>
+<td class="src"><pre><code class="objc">            if !doses.isEmpty {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">22</td>
+<td class="src"><pre><code class="objc">                return filterReaffirmedDoses(</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="missed">
+<td class="num">23</td>
+<td class="src"><pre><code class="objc">                    loadedDoses: dosesController.fetchedObjects ?? [])</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">24</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">25</td>
+<td class="src"><pre><code class="objc">            return []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">26</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="never">
+<td class="num">27</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">28</td>
+<td class="src"><pre><code class="objc">        var recentMeds: [Med] {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">29</td>
+<td class="src"><pre><code class="objc">            getRecentMeds(</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="missed">
+<td class="num">30</td>
+<td class="src"><pre><code class="objc">                loadedDoses: dosesController.fetchedObjects ?? [],</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">31</td>
+<td class="src"><pre><code class="objc">                loadedMeds: medsController.fetchedObjects ?? []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">32</td>
+<td class="src"><pre><code class="objc">            )</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">33</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="never">
+<td class="num">34</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">35</td>
+<td class="src"><pre><code class="objc">        var lowMeds: [Med] {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">36</td>
+<td class="src"><pre><code class="objc">            if !meds.isEmpty {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">37</td>
+<td class="src"><pre><code class="objc">                return getLowMeds(</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="missed">
+<td class="num">38</td>
+<td class="src"><pre><code class="objc">                    loadedMeds: medsController.fetchedObjects ?? [])</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">39</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">40</td>
+<td class="src"><pre><code class="objc">            return []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">41</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="never">
+<td class="num">42</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">43</td>
+<td class="src"><pre><code class="objc">        private let dataController: DataController</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">44</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">45</td>
+<td class="src"><pre><code class="objc">        init(dataController: DataController) {</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">46</td>
+<td class="src"><pre><code class="objc">            self.dataController = dataController</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">47</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">48</td>
+<td class="src"><pre><code class="objc">            // INFO: Construct a fetch request to show all none elapsed doses</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">49</td>
+<td class="src"><pre><code class="objc">            let doseRequest: NSFetchRequest&lt;Dose&gt; = Dose.fetchRequest()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">50</td>
+<td class="src"><pre><code class="objc">            doseRequest.sortDescriptors = [</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">51</td>
+<td class="src"><pre><code class="objc">                NSSortDescriptor(keyPath: \Dose.takenDate, ascending: true),</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">52</td>
+<td class="src"><pre><code class="objc">            ]</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">53</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">54</td>
+<td class="src"><pre><code class="objc">            dosesController = NSFetchedResultsController(</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">55</td>
+<td class="src"><pre><code class="objc">                fetchRequest: doseRequest,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">56</td>
+<td class="src"><pre><code class="objc">                managedObjectContext: dataController.container.viewContext,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">57</td>
+<td class="src"><pre><code class="objc">                sectionNameKeyPath: nil,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">58</td>
+<td class="src"><pre><code class="objc">                cacheName: nil</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">59</td>
+<td class="src"><pre><code class="objc">            )</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">60</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">61</td>
+<td class="src"><pre><code class="objc">            // INFO: Construct a fetch request to show all none hidden meds</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">62</td>
+<td class="src"><pre><code class="objc">            let medRequest: NSFetchRequest&lt;Med&gt; = Med.fetchRequest()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">63</td>
+<td class="src"><pre><code class="objc">            medRequest.predicate = !DataController.useHardDelete</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="missed">
+<td class="num">64</td>
+<td class="src"><pre><code class="objc">                ? NSPredicate(format: "hidden = false")</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">65</td>
+<td class="src"><pre><code class="objc">                : nil</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">66</td>
+<td class="src"><pre><code class="objc">            medRequest.sortDescriptors = [</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">67</td>
+<td class="src"><pre><code class="objc">                NSSortDescriptor(keyPath: \Med.lastTakenDate, ascending: true),</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">68</td>
+<td class="src"><pre><code class="objc">            ]</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">69</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">70</td>
+<td class="src"><pre><code class="objc">            medsController = NSFetchedResultsController(</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">71</td>
+<td class="src"><pre><code class="objc">                fetchRequest: medRequest,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">72</td>
+<td class="src"><pre><code class="objc">                managedObjectContext: dataController.container.viewContext,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">73</td>
+<td class="src"><pre><code class="objc">                sectionNameKeyPath: nil,</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">74</td>
+<td class="src"><pre><code class="objc">                cacheName: nil</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">75</td>
+<td class="src"><pre><code class="objc">            )</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">76</td>
+<td class="src"><pre><code class="objc">            super.init()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">77</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">78</td>
+<td class="src"><pre><code class="objc">            dosesController.delegate = self</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">79</td>
+<td class="src"><pre><code class="objc">            medsController.delegate = self</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">80</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">81</td>
+<td class="src"><pre><code class="objc">            do {</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">82</td>
+<td class="src"><pre><code class="objc">                try dosesController.performFetch()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">83</td>
+<td class="src"><pre><code class="objc">                try medsController.performFetch()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="missed">
+<td class="num">84</td>
+<td class="src"><pre><code class="objc">                doses = dosesController.fetchedObjects ?? []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">85</td>
+<td class="src"><pre><code class="objc">                meds = medsController.fetchedObjects ?? []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">86</td>
+<td class="src"><pre><code class="objc">            } catch {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">87</td>
+<td class="src"><pre><code class="objc">                print("ERROR: Failed to fetch initial data: \(error)")</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">88</td>
+<td class="src"><pre><code class="objc">                Crashes.trackError(error, properties: [</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">89</td>
+<td class="src"><pre><code class="objc">                    "Position": "HomeViewModel.init",</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">90</td>
+<td class="src"><pre><code class="objc">                    "ErrorLabel": "Failed to fetch initial data",</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">91</td>
+<td class="src"><pre><code class="objc">                ], attachments: nil)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">92</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">93</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="never">
+<td class="num">94</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">95</td>
+<td class="src"><pre><code class="objc">        // NOTE: Re-filter core data results, when items are changed</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">96</td>
+<td class="src"><pre><code class="objc">        // updated / added, as the init method which uses the</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">97</td>
+<td class="src"><pre><code class="objc">        // predicate isn't called.</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">98</td>
+<td class="src"><pre><code class="objc">        func filterReaffirmedDoses(loadedDoses: [Dose]) -&gt; [Dose] {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">99</td>
+<td class="src"><pre><code class="objc">            // NOTE: Produce an array of all doses which are</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">100</td>
+<td class="src"><pre><code class="objc">            // in the 3 hours soft elapsed date range, these</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">101</td>
+<td class="src"><pre><code class="objc">            // are elapsed and not hidden</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">102</td>
+<td class="src"><pre><code class="objc">            let availableSoft = loadedDoses.filter {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">103</td>
+<td class="src"><pre><code class="objc">                if let soft = $0.softElapsedDate {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">104</td>
+<td class="src"><pre><code class="objc">                    let notPassedSoftElapse = soft &gt;= Date()</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">105</td>
+<td class="src"><pre><code class="objc">                    let elapsed = $0.elapsed == true</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">106</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">107</td>
+<td class="src"><pre><code class="objc">                    if let med = $0.med {</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">108</td>
+<td class="src"><pre><code class="objc">                        let result = elapsed &amp;&amp; (notPassedSoftElap</code><code class="objc missed">se &amp;&amp; !med.</code><code class="objc">hidden)</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="missed">
+<td class="num">109</td>
+<td class="src"><pre><code class="objc">                        return result</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">110</td>
+<td class="src"><pre><code class="objc">                    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">111</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">112</td>
+<td class="src"><pre><code class="objc">                return false</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">113</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">114</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">115</td>
+<td class="src"><pre><code class="objc">            // NOTE: Create an array of available soft elapsed doses</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">116</td>
+<td class="src"><pre><code class="objc">            // with unique meds</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="missed">
+<td class="num">117</td>
+<td class="src"><pre><code class="objc">            var uniqueAvailableSoft = [Dose]()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">118</td>
+<td class="src"><pre><code class="objc">            for dose in availableSoft {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">119</td>
+<td class="src"><pre><code class="objc">                if !uniqueAvailableSoft.contains(where: {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">120</td>
+<td class="src"><pre><code class="objc">                    $0.med?.objectID == dose.med?.objectID</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">121</td>
+<td class="src"><pre><code class="objc">                }) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">122</td>
+<td class="src"><pre><code class="objc">                    uniqueAvailableSoft.append(dose)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">123</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">124</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">125</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">126</td>
+<td class="src"><pre><code class="objc">            // NOTE: Produce an array of all doses currently</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">127</td>
+<td class="src"><pre><code class="objc">            // being taken, even those which may have been hidden.</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">128</td>
+<td class="src"><pre><code class="objc">            let inProgress = loadedDoses.filter { $0.elapsed == false }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">129</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">130</td>
+<td class="src"><pre><code class="objc">            // NOTE: From the availableSoft array remove any doses</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">131</td>
+<td class="src"><pre><code class="objc">            // which use the same med as inProgress, aka so the</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">132</td>
+<td class="src"><pre><code class="objc">            // user doesn't try and take a dose of an available dose</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="missed">
+<td class="num">133</td>
+<td class="src"><pre><code class="objc">            // which is currently in progress</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">134</td>
+<td class="src"><pre><code class="objc">            let noAvailableOverdoses = uniqueAvailableSoft.filter { soft in</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">135</td>
+<td class="src"><pre><code class="objc">                !inProgress.contains(where: { $0.med?.objectID == soft.med?.objectID })</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">136</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">137</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">138</td>
+<td class="src"><pre><code class="objc">            // NOTE: Add the two doses together</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">139</td>
+<td class="src"><pre><code class="objc">            let filtered = noAvailableOverdoses + inProgress</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">140</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">141</td>
+<td class="src"><pre><code class="objc">            return filtered.sorted(by: \Dose.doseElapsedDateSort)</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="never">
+<td class="num">142</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">143</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">144</td>
+<td class="src"><pre><code class="objc">        // INFO: Get a unique list of medications that don't have currently active doses.</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">145</td>
+<td class="src"><pre><code class="objc">        func getRecentMeds(loadedDoses: [Dose], loadedMeds: [Med]) -&gt; [Med] {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">146</td>
+<td class="src"><pre><code class="objc">            // INFO: Get med doses which are in progress</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">147</td>
+<td class="src"><pre><code class="objc">            let currentMeds = reaffirmedDoses.map(\.med)</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">148</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">149</td>
+<td class="src"><pre><code class="objc">            // INFO: Get in progress doses which aren't hidden</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">150</td>
+<td class="src"><pre><code class="objc">            let uniqueDoseMeds = Array(Set(loadedDoses.filter {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">151</td>
+<td class="src"><pre><code class="objc">                $0.med != nil</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">152</td>
+<td class="src"><pre><code class="objc">                &amp;&amp; !$0.med!.hidden</code></pre></td>
+<td class="coverage">24x</td>
+</tr>
+<tr class="covered">
+<td class="num">153</td>
+<td class="src"><pre><code class="objc">                &amp;&amp; $0.med!.lastTakenDate != nil }.compactMap(\.med)))</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">154</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">155</td>
+<td class="src"><pre><code class="objc">            // INFO: Remove current meds from in progress array</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">156</td>
+<td class="src"><pre><code class="objc">            let temp = uniqueDoseMeds.filter { !currentMeds.contains($0) }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">157</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">158</td>
+<td class="src"><pre><code class="objc">            // INFO: Removed meds filter as this included meds with no doses</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">159</td>
+<td class="src"><pre><code class="objc">            let sorted = temp.sortedItems</code><code class="objc missed">(</code><code class="objc">using: .lastTaken).reversed()</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">160</td>
+<td class="src"><pre><code class="objc">            let count = sorted.isEmpty ? 0 : 3</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">161</td>
+<td class="src"><pre><code class="objc">            let mapped = sorted.prefix(count).map { $0 }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">162</td>
+<td class="src"><pre><code class="objc">            return mapped</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="never">
+<td class="num">163</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">164</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">165</td>
+<td class="src"><pre><code class="objc">func</code><code class="objc missed"></code><code class="objc">getLowMeds(loadedMeds: [Med]) -&gt; [Med] {</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">166</td>
+<td class="src"><pre><code class="objc">            let temp = loadedMeds.filter { $0.medIsRunningLow == true &amp;&amp; !$0.hidden }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="covered">
+<td class="num">167</td>
+<td class="src"><pre><code class="objc">                .sortedItems(us</code><code class="objc missed">i</code><code class="objc">ng: .remaining)</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="missed">
+<td class="num">168</td>
+<td class="src"><pre><code class="objc">            let count = temp.isEmpty ? 0 : 3</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">169</td>
+<td class="src"><pre><code class="objc">            return temp.prefix(count).map { $0 }</code></pre></td>
+<td class="coverage">12x</td>
+</tr>
+<tr class="never">
+<td class="num">170</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">171</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">172</td>
+<td class="src"><pre><code class="objc">        func controllerDidChangeContent(_ controller: NSFetchedResultsController&lt;NSFetchRequestResult&gt;) {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">173</td>
+<td class="src"><pre><code class="objc">            print("### HomeViewModel - controllerDidChangeContent")</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">174</td>
+<td class="src"><pre><code class="objc">            doses = dosesController.fetchedObjects ?? []</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">175</td>
+<td class="src"><pre><code class="objc">            meds = medsController.fetchedObjects ?? []</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">176</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">177</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">178</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+</table>
+</div></div>
+<footer><div class="row">
+<p><a href="https://github.com/SlatherOrg/slather">Fork me on Github</a></p>
+<p>&copy; 2022 Slather</p>
+</div></footer><script src="highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

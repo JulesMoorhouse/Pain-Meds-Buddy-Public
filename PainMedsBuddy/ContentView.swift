@@ -4,7 +4,6 @@ import SwiftUI
 
 struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: TabSide = .home
-    @SceneStorage("selectedView2") var selectedView2: String?
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext

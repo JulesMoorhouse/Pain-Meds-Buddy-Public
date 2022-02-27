@@ -12,7 +12,7 @@ import SwiftUI
 struct DoseEditView: View {
     @StateObject private var viewModel: ViewModel
 
-    @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
+    @AppStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode

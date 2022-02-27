@@ -1,0 +1,852 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>MedsView.swift - Slather</title>
+<link href="slather.css" media="all" rel="stylesheet">
+</head>
+<body>
+<header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
+<h2 class="cov_title">
+<span>Coverage for "MedsView.swift" : </span><span>Lines: </span><span class="cov_low">63.50%</span><span> Branches: </span><span class="cov_low">68.00%</span>
+</h2>
+<h4 class="cov_subtitle">(87 of 137 relevant lines covered)</h4>
+<h4 class="cov_filepath">PainMedsBuddy/Routes/Meds/MedsView.swift</h4>
+<table class="source_code">
+<tr class="never">
+<td class="num">1</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">2</td>
+<td class="src"><pre><code class="objc">//  MedicationsView.swift</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">3</td>
+<td class="src"><pre><code class="objc">//  PainMedsBuddy</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">4</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">5</td>
+<td class="src"><pre><code class="objc">//  Created by Jules Moorhouse.</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">6</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">7</td>
+<td class="src"><pre><code class="objc">// INFO: This view shows all the available medication</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">8</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">9</td>
+<td class="src"><pre><code class="objc">import CoreData</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">10</td>
+<td class="src"><pre><code class="objc">import SwiftUI</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">11</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">12</td>
+<td class="src"><pre><code class="objc">struct MedsView: View {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">13</td>
+<td class="src"><pre><code class="objc">    static let medsTag: String? = "Medications"</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">14</td>
+<td class="src"><pre><code class="objc">    static let medsIcon: String = SFSymbol.pillsFill.systemName</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">15</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">16</td>
+<td class="src"><pre><code class="objc">    @StateObject private var viewModel: ViewModel</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">17</td>
+<td class="src"><pre><code class="objc">    @EnvironmentObject private var dataController: DataController</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">18</td>
+<td class="src"><pre><code class="objc">    @EnvironmentObject private var presentableToast: PresentableToastModel</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="never">
+<td class="num">19</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">20</td>
+<td class="src"><pre><code class="objc">    @State private var showSheetAdd = false</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">21</td>
+<td class="src"><pre><code class="objc">    @State private var showSheetEdit = false</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">22</td>
+<td class="src"><pre><code class="objc">    @State private var navigationButtonId = UUID()</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="never">
+<td class="num">23</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">24</td>
+<td class="src"><pre><code class="objc">    var items: [Med] {</code></pre></td>
+<td class="coverage">6x</td>
+</tr>
+<tr class="covered">
+<td class="num">25</td>
+<td class="src"><pre><code class="objc">        viewModel.meds.allMeds.filter { !$0.hidden }.sortedItems(using: viewModel.sortOrder)</code></pre></td>
+<td class="coverage">6x</td>
+</tr>
+<tr class="covered">
+<td class="num">26</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">6x</td>
+</tr>
+<tr class="never">
+<td class="num">27</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">28</td>
+<td class="src"><pre><code class="objc">    var medsList: some View {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">29</td>
+<td class="src"><pre><code class="objc">        List {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">30</td>
+<td class="src"><pre><code class="objc">            ForEach(items, id: \.self) { med in</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">31</td>
+<td class="src"><pre><code class="objc">                Button(action: {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">32</td>
+<td class="src"><pre><code class="objc">                    showSheetEdit.toggle()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">33</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">34</td>
+<td class="src"><pre><code class="objc">                }, label: {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">35</td>
+<td class="src"><pre><code class="objc">                    MedRowView(med: med)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">36</td>
+<td class="src"><pre><code class="objc">                })</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">37</td>
+<td class="src"><pre><code class="objc">                .sheet(isPresented: $showSheetEdit) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">38</td>
+<td class="src"><pre><code class="objc">                    MedEditView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">39</td>
+<td class="src"><pre><code class="objc">                        dataController: dataController,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">40</td>
+<td class="src"><pre><code class="objc">                        med: med,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">41</td>
+<td class="src"><pre><code class="objc">                        add: false,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">42</td>
+<td class="src"><pre><code class="objc">                        hasRelationship: viewModel.hasRelationship(med: med)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">43</td>
+<td class="src"><pre><code class="objc">                    )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">44</td>
+<td class="src"><pre><code class="objc">                    .allowAutoDismiss(false)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">45</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">46</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">47</td>
+<td class="src"><pre><code class="objc">            .onDelete { offsets in</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">48</td>
+<td class="src"><pre><code class="objc">                viewModel.deleteMed(offsets, items: items)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">49</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">50</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">51</td>
+<td class="src"><pre><code class="objc">        .listStyle(InsetGroupedListStyle())</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">52</td>
+<td class="src"><pre><code class="objc">        .disabled(viewModel.showingSortOrder == true)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">53</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">54</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">55</td>
+<td class="src"><pre><code class="objc">    var addMedToolbarItem: some ToolbarContent {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">56</td>
+<td class="src"><pre><code class="objc">        ToolbarItem(placement: .navigationBarTrailing) {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">57</td>
+<td class="src"><pre><code class="objc">            HStack {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">58</td>
+<td class="src"><pre><code class="objc">                Text("")</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">59</td>
+<td class="src"><pre><code class="objc">                    .accessibilityHidden(true)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">60</td>
+<td class="src"><pre><code class="objc">                Button(action: {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">61</td>
+<td class="src"><pre><code class="objc">                    showSheetAdd.toggle()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">62</td>
+<td class="src"><pre><code class="objc">                }, label: {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">63</td>
+<td class="src"><pre><code class="objc">                    // INFO: In iOS 14.3 VoiceOver has a glitch that reads the label</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">64</td>
+<td class="src"><pre><code class="objc">                    // "Add Med" as "Add" no matter what accessibility label</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">65</td>
+<td class="src"><pre><code class="objc">                    // we give this toolbar button when using a label.</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">66</td>
+<td class="src"><pre><code class="objc">                    // As a result, when VoiceOver is running, we use a text</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">67</td>
+<td class="src"><pre><code class="objc">                    // view for the button instead, forcing a correct reading</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">68</td>
+<td class="src"><pre><code class="objc">                    // without losing the original layout.</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">69</td>
+<td class="src"><pre><code class="objc">                    if UIAccessibility.isVoiceOverRunning </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">70</td>
+<td class="src"><pre><code class="objc">                        Text(.medEditAddMed)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">71</td>
+<td class="src"><pre><code class="objc">                            .accessibilityIdentifier(.medEditAddMed)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">72</td>
+<td class="src"><pre><code class="objc">                    } else {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">73</td>
+<td class="src"><pre><code class="objc">                        Label(.medEditAddMed, systemImage: SFSymbol.plus.systemName)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">74</td>
+<td class="src"><pre><code class="objc">                            .accessibilityElement()</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">75</td>
+<td class="src"><pre><code class="objc">                            .accessibility(addTraits: .isButton)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">76</td>
+<td class="src"><pre><code class="objc">                            .accessibilityLabel(.medEditAddMed)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">77</td>
+<td class="src"><pre><code class="objc">                            .accessibilityIdentifier(.medEditAddMed)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">78</td>
+<td class="src"><pre><code class="objc">                    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">79</td>
+<td class="src"><pre><code class="objc">                })</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">80</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">81</td>
+<td class="src"><pre><code class="objc">            .id(self.navigationButtonId) // NOTE: Force new instance creation</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">82</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">83</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">84</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">85</td>
+<td class="src"><pre><code class="objc">    var sortToolbarItem: some ToolbarContent {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">86</td>
+<td class="src"><pre><code class="objc">        ToolbarItem(placement: .navigationBarLeading) {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">87</td>
+<td class="src"><pre><code class="objc">            if !viewModel.meds.isEmpty {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">88</td>
+<td class="src"><pre><code class="objc">                HStack {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">89</td>
+<td class="src"><pre><code class="objc">                    Text("")</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">90</td>
+<td class="src"><pre><code class="objc">                        .accessibilityHidden(true)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">91</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">92</td>
+<td class="src"><pre><code class="objc">                    Button(action: {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">93</td>
+<td class="src"><pre><code class="objc">                        viewModel.showingSortOrder = true</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">94</td>
+<td class="src"><pre><code class="objc">                    }, label: {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">95</td>
+<td class="src"><pre><code class="objc">                        Label(.commonSort, systemImage: SFSymbol.arrowUpArrowDown.systemName)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">96</td>
+<td class="src"><pre><code class="objc">                            .accessibilityElement()</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">97</td>
+<td class="src"><pre><code class="objc">                            .accessibility(addTraits: .isButton)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">98</td>
+<td class="src"><pre><code class="objc">                            .accessibilityLabel(.commonSort)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">99</td>
+<td class="src"><pre><code class="objc">                            .accessibilityIdentifier(.commonSort)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">100</td>
+<td class="src"><pre><code class="objc">                    })</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">101</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">102</td>
+<td class="src"><pre><code class="objc">                .id(self.navigationButtonId) // NOTE: Force new instance creation</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">103</td>
+<td class="src"><pre><code class="objc">            </code><code class="objc missed">}</code><code class="objc"></code></pre></td>
+<td class="coverage">6x</td>
+</tr>
+<tr class="covered">
+<td class="num">104</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">6x</td>
+</tr>
+<tr class="covered">
+<td class="num">105</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">106</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">107</td>
+<td class="src"><pre><code class="objc">    var body: some View {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">108</td>
+<td class="src"><pre><code class="objc">        NavigationViewChild {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">109</td>
+<td class="src"><pre><code class="objc">            Group {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">110</td>
+<td class="src"><pre><code class="objc">                Group {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">111</td>
+<td class="src"><pre><code class="objc">                    if items.isEmpty </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">112</td>
+<td class="src"><pre><code class="objc">                        PlaceholderView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">113</td>
+<td class="src"><pre><code class="objc">                            string: .commonEmptyView,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">114</td>
+<td class="src"><pre><code class="objc">                            imageString: MedsView.medsIcon</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">115</td>
+<td class="src"><pre><code class="objc">                        )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">116</td>
+<td class="src"><pre><code class="objc">                    } else {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">117</td>
+<td class="src"><pre><code class="objc">                        ZStack {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">118</td>
+<td class="src"><pre><code class="objc">                            medsList</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">119</td>
+<td class="src"><pre><code class="objc">                        }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">120</td>
+<td class="src"><pre><code class="objc">                    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">121</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">122</td>
+<td class="src"><pre><code class="objc">                .toolbar {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">123</td>
+<td class="src"><pre><code class="objc">                    addMedToolbarItem</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">124</td>
+<td class="src"><pre><code class="objc">                    sortToolbarItem</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">125</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="missed">
+<td class="num">126</td>
+<td class="src"><pre><code class="objc">                .actionSheet(isPresented: $viewModel.showingSortOrder) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">127</td>
+<td class="src"><pre><code class="objc">                    ActionSheet(title: Text(Strings.sortSortOrder.rawValue), buttons: [</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">128</td>
+<td class="src"><pre><code class="objc">                        .default(Text(Strings.sortOptimised.rawValue)) { viewModel.sortOrder = .optimised },</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">129</td>
+<td class="src"><pre><code class="objc">                        .default(Text(Strings.sortCreatedDate.rawValue)) { viewModel.sortOrder = .creationDate },</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">130</td>
+<td class="src"><pre><code class="objc">                        .default(Text(Strings.sortTitle.rawValue)) { viewModel.sortOrder = .title },</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">131</td>
+<td class="src"><pre><code class="objc">                        .cancel(),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">132</td>
+<td class="src"><pre><code class="objc">                    ])</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">133</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">134</td>
+<td class="src"><pre><code class="objc">                .sheet(isPresented: $showSheetAdd) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">135</td>
+<td class="src"><pre><code class="objc">                    MedAddView()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">136</td>
+<td class="src"><pre><code class="objc">                        .allowAutoDismiss(false)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">137</td>
+<td class="src"><pre><code class="objc">                        .environmentObject(dataController)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">138</td>
+<td class="src"><pre><code class="objc">                        .onDisappear {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">139</td>
+<td class="src"><pre><code class="objc">                            // NOTE: Update button id after sheet got closed</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">140</td>
+<td class="src"><pre><code class="objc">                            self.navigationButtonId = UUID()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">141</td>
+<td class="src"><pre><code class="objc">                        }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">142</td>
+<td class="src"><pre><code class="objc">                }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="covered">
+<td class="num">143</td>
+<td class="src"><pre><code class="objc">                .navigationTitle(Strings.tabTitleMedications.rawValue)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">144</td>
+<td class="src"><pre><code class="objc">                .navigationBarAccessibilityIdentifier(.tabTitleMedications)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">145</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">146</td>
+<td class="src"><pre><code class="objc">                PlaceholderView(</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">147</td>
+<td class="src"><pre><code class="objc">                    string: .medsPleaseSelect,</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">148</td>
+<td class="src"><pre><code class="objc">                    imageString: MedsView.medsIcon</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">149</td>
+<td class="src"><pre><code class="objc">                )</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">150</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">151</td>
+<td class="src"><pre><code class="objc">            .toasted(show: $presentableToast.show, data: $presentableToast.data)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">152</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">153</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">154</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">155</td>
+<td class="src"><pre><code class="objc">    init(dataController: DataController) {</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">156</td>
+<td class="src"><pre><code class="objc">        let viewModel = ViewModel(dataController: dataController)</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">157</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="covered">
+<td class="num">158</td>
+<td class="src"><pre><code class="objc">        _viewModel = StateObject(wrappedValue: viewModel)</code></pre></td>
+<td class="coverage">1x</td>
+</tr>
+<tr class="covered">
+<td class="num">159</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">2x</td>
+</tr>
+<tr class="never">
+<td class="num">160</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">161</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">162</td>
+<td class="src"><pre><code class="objc">struct MedicationsView_Previews: PreviewProvider {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">163</td>
+<td class="src"><pre><code class="objc">    static var previews: some View {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">164</td>
+<td class="src"><pre><code class="objc">        MedsView(dataController: DataController.preview)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">165</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">166</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+</table>
+</div></div>
+<footer><div class="row">
+<p><a href="https://github.com/SlatherOrg/slather">Fork me on Github</a></p>
+<p>&copy; 2022 Slather</p>
+</div></footer><script src="highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

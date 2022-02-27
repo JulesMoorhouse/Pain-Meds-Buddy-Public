@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsAdvancedView: View {
-    @SceneStorage("defaultRemindMe") var defaultRemindMe: Bool = true
+    @AppStorage("defaultRemindMe") var defaultRemindMe: Bool = true
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var dataController: DataController

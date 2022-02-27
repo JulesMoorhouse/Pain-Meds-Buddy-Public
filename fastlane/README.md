@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Run tests on multiple devices
 
+### ios SlatherLane
+
+```sh
+[bundle exec] fastlane ios SlatherLane
+```
+
+Slather
+
 ### ios screenshots
 
 ```sh

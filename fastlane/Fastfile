@@ -52,6 +52,37 @@ platform :ios do
         xcargs: '-quiet', # Prevent xcodebuild from spewing output (only shows warnings and errors) now that xcpretty is disabled.
         result_bundle: true # Needed so that a following tool can generate reports/fail the build
     )
+
+    slather(
+      html: true,
+      output_directory: "fastlane/test_output/slather-output", 
+      scheme: "PainMedsBuddy",
+      proj: "PainMedsBuddy.xcodeproj",
+      verbose: true,
+      show: true,
+      ignore: [
+        '../../Library/*',
+        '../Library/Developer/*',
+        '~/**/DerivedData/*'
+      ]
+    )
+  end
+
+  desc "Generate test coverage using Slather"
+  lane :SlatherLane do
+    slather(
+      html: true,
+      output_directory: "fastlane/test_output/slatherOutput", 
+      scheme: "PainMedsBuddy",
+      proj: "PainMedsBuddy.xcodeproj",
+      verbose: true,
+      show: true,
+      ignore: [
+        '../../Library/*',
+        '../Library/Developer/*',
+        '~/**/DerivedData/*'
+      ]
+    )
   end
 
   desc "A - Generate new localized screenshots"

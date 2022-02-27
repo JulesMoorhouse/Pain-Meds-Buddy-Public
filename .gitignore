@@ -27,7 +27,9 @@ Podfile.lock
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
-fastlane/test_output
+fastlane/test_output/PainMedsBuddy.xcresult
+fastlane/test_output/report.html
+fastlane/test_output/report.junit
 fastlane/derived_data_path/
 
 

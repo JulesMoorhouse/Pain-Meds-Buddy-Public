@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>NavigationBarAccessor.swift - Slather</title>
+<link href="slather.css" media="all" rel="stylesheet">
+</head>
+<body>
+<header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
+<h2 class="cov_title">
+<span>Coverage for "NavigationBarAccessor.swift" : </span><span>Lines: </span><span class="cov_high">92.31%</span><span> Branches: </span><span class="cov_high">85.71%</span>
+</h2>
+<h4 class="cov_subtitle">(12 of 13 relevant lines covered)</h4>
+<h4 class="cov_filepath">PainMedsBuddy/Modifiers/NavigationBarAccessor.swift</h4>
+<table class="source_code">
+<tr class="never">
+<td class="num">1</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">2</td>
+<td class="src"><pre><code class="objc">//  NavigationBarAccessor.swift</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">3</td>
+<td class="src"><pre><code class="objc">//  PainMedsBuddy</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">4</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">5</td>
+<td class="src"><pre><code class="objc">//  Created by Jules Moorhouse.</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">6</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">7</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">8</td>
+<td class="src"><pre><code class="objc">import Foundation</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">9</td>
+<td class="src"><pre><code class="objc">import SwiftUI</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">10</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">11</td>
+<td class="src"><pre><code class="objc">struct NavigationBarAccessor: UIViewControllerRepresentable {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">12</td>
+<td class="src"><pre><code class="objc">    var callback: (UINavigationBar) -&gt; Void</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">13</td>
+<td class="src"><pre><code class="objc">    private let proxyController = ViewController()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">14</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">15</td>
+<td class="src"><pre><code class="objc">    func makeUIViewController(</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">16</td>
+<td class="src"><pre><code class="objc">        context _: UIViewControllerRepresentableContext&lt;NavigationBarAccessor&gt;</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">17</td>
+<td class="src"><pre><code class="objc">    ) -&gt; UIViewController {</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="covered">
+<td class="num">18</td>
+<td class="src"><pre><code class="objc">        proxyController.callback = callback</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="covered">
+<td class="num">19</td>
+<td class="src"><pre><code class="objc">        return proxyController</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="covered">
+<td class="num">20</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="never">
+<td class="num">21</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">22</td>
+<td class="src"><pre><code class="objc">    func updateUIViewController(</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">23</td>
+<td class="src"><pre><code class="objc">        _: UIViewController,</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">24</td>
+<td class="src"><pre><code class="objc">        context _: UIViewControllerRepresentableContext&lt;NavigationBarAccessor&gt;</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">25</td>
+<td class="src"><pre><code class="objc">    ) {}</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="never">
+<td class="num">26</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">27</td>
+<td class="src"><pre><code class="objc">    typealias UIViewControllerType = UIViewController</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">28</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">29</td>
+<td class="src"><pre><code class="objc">    private class ViewController: UIViewController {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">30</td>
+<td class="src"><pre><code class="objc">        var callback: (UINavigationBar) -&gt; Void = { _ in }</code></pre></td>
+<td class="coverage">4x</td>
+</tr>
+<tr class="never">
+<td class="num">31</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="covered">
+<td class="num">32</td>
+<td class="src"><pre><code class="objc">        override func viewWillAppear(_ animated: Bool) {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">33</td>
+<td class="src"><pre><code class="objc">            super.viewWillAppear(animated)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">34</td>
+<td class="src"><pre><code class="objc">            if let navBar = navigationController {</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">35</td>
+<td class="src"><pre><code class="objc">                callback(navBar.navigationBar)</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">36</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="covered">
+<td class="num">37</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">3x</td>
+</tr>
+<tr class="never">
+<td class="num">38</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">39</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+</table>
+</div></div>
+<footer><div class="row">
+<p><a href="https://github.com/SlatherOrg/slather">Fork me on Github</a></p>
+<p>&copy; 2022 Slather</p>
+</div></footer><script src="highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

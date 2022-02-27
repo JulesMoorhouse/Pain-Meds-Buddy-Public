@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>HourMinutePickerView.swift - Slather</title>
+<link href="slather.css" media="all" rel="stylesheet">
+</head>
+<body>
+<header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
+<h2 class="cov_title">
+<span>Coverage for "HourMinutePickerView.swift" : </span><span>Lines: </span><span class="cov_low">0.00%</span><span> Branches: </span><span class="cov_low">0.00%</span>
+</h2>
+<h4 class="cov_subtitle">(0 of 63 relevant lines covered)</h4>
+<h4 class="cov_filepath">PainMedsBuddy/Routes/Shared/Views/HourMinutePickerView.swift</h4>
+<table class="source_code">
+<tr class="never">
+<td class="num">1</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">2</td>
+<td class="src"><pre><code class="objc">//  HourMinutePickerView.swift</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">3</td>
+<td class="src"><pre><code class="objc">//  PainMedsBuddy</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">4</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">5</td>
+<td class="src"><pre><code class="objc">//  Created by Jules Moorhouse.</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">6</td>
+<td class="src"><pre><code class="objc">//</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">7</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">8</td>
+<td class="src"><pre><code class="objc">import SwiftUI</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">9</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">10</td>
+<td class="src"><pre><code class="objc">struct HourMinutePickerView: View {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">11</td>
+<td class="src"><pre><code class="objc">    @State private var selectedHour: Int = 0</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">12</td>
+<td class="src"><pre><code class="objc">    @State private var selectedMinute: Int = 0</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">13</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">14</td>
+<td class="src"><pre><code class="objc">    @Binding var duration: String</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">15</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">16</td>
+<td class="src"><pre><code class="objc">    let hourAid: Strings</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">17</td>
+<td class="src"><pre><code class="objc">    let minuteAid: Strings</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">18</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">19</td>
+<td class="src"><pre><code class="objc">    var body: some View {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">20</td>
+<td class="src"><pre><code class="objc">        if #available(iOS 15, *) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">21</td>
+<td class="src"><pre><code class="objc">            HStack {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">22</td>
+<td class="src"><pre><code class="objc">                TimePickerView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">23</td>
+<td class="src"><pre><code class="objc">                    hours: true,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">24</td>
+<td class="src"><pre><code class="objc">                    selected: self.$selectedHour.onChange(update),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">25</td>
+<td class="src"><pre><code class="objc">                    aId: hourAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">26</td>
+<td class="src"><pre><code class="objc">                )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">27</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">28</td>
+<td class="src"><pre><code class="objc">                TimePickerView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">29</td>
+<td class="src"><pre><code class="objc">                    hours: false,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">30</td>
+<td class="src"><pre><code class="objc">                    selected: self.$selectedMinute.onChange(update),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">31</td>
+<td class="src"><pre><code class="objc">                    aId: minuteAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">32</td>
+<td class="src"><pre><code class="objc">                )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">33</td>
+<td class="src"><pre><code class="objc">            }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">34</td>
+<td class="src"><pre><code class="objc">        } else {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">35</td>
+<td class="src"><pre><code class="objc">            TimePickerView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">36</td>
+<td class="src"><pre><code class="objc">                hours: true,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">37</td>
+<td class="src"><pre><code class="objc">                selected: self.$selectedHour.onChange(update),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">38</td>
+<td class="src"><pre><code class="objc">                aId: hourAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">39</td>
+<td class="src"><pre><code class="objc">            )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">40</td>
+<td class="src"><pre><code class="objc">            .labelsHidden()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">41</td>
+<td class="src"><pre><code class="objc">            .fixedSize(horizontal: true, vertical: true)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">42</td>
+<td class="src"><pre><code class="objc">            .frame(width: 65, height: 160)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">43</td>
+<td class="src"><pre><code class="objc">            .clipped()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">44</td>
+<td class="src"><pre><code class="objc">            .background(Color(UIColor.systemBackground))</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">45</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">46</td>
+<td class="src"><pre><code class="objc">            TimePickerView(</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">47</td>
+<td class="src"><pre><code class="objc">                hours: false,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">48</td>
+<td class="src"><pre><code class="objc">                selected: self.$selectedMinute.onChange(update),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">49</td>
+<td class="src"><pre><code class="objc">                aId: minuteAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">50</td>
+<td class="src"><pre><code class="objc">            )</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">51</td>
+<td class="src"><pre><code class="objc">            .labelsHidden()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">52</td>
+<td class="src"><pre><code class="objc">            .fixedSize(horizontal: true, vertical: true)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">53</td>
+<td class="src"><pre><code class="objc">            .frame(width: 65, height: 160)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">54</td>
+<td class="src"><pre><code class="objc">            .clipped()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">55</td>
+<td class="src"><pre><code class="objc">            .background(Color(UIColor.systemBackground))</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">56</td>
+<td class="src"><pre><code class="objc">        }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">57</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">58</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">59</td>
+<td class="src"><pre><code class="objc">    // MARK: -</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">60</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">61</td>
+<td class="src"><pre><code class="objc">    func update() {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">62</td>
+<td class="src"><pre><code class="objc">        duration = getDuration()</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">63</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">64</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">65</td>
+<td class="src"><pre><code class="objc">    func getDuration() -&gt; String {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">66</td>
+<td class="src"><pre><code class="objc">        let hours = selectedHour &lt; 10 ? "0\(selectedHour)" : "\(selectedHour)"</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">67</td>
+<td class="src"><pre><code class="objc">        let minutes = selectedMinute &lt; 10 ? "0\(selectedMinute)" : "\(selectedMinute)"</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">68</td>
+<td class="src"><pre><code class="objc">        let seconds = "\(hours):\(minutes):00".timeToSeconds</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">69</td>
+<td class="src"><pre><code class="objc">        return "\(seconds)"</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">70</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">71</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">72</td>
+<td class="src"><pre><code class="objc">    init(duration: Binding&lt;String&gt;, hourAid: Strings, minuteAid: Strings) {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">73</td>
+<td class="src"><pre><code class="objc">        let hours = (Int(duration.wrappedValue) ?? 0) / 3600</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">74</td>
+<td class="src"><pre><code class="objc">        let minutes = (Int(duration.wrappedValue) ?? 0) / 60 % 60</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">75</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">76</td>
+<td class="src"><pre><code class="objc">        _duration = duration</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">77</td>
+<td class="src"><pre><code class="objc">        self.hourAid = hourAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">78</td>
+<td class="src"><pre><code class="objc">        self.minuteAid = minuteAid</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">79</td>
+<td class="src"><pre><code class="objc">        selectedHour = hours</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">80</td>
+<td class="src"><pre><code class="objc">        selectedMinute = minutes</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">81</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">82</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">83</td>
+<td class="src"><pre><code class="objc"></code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="never">
+<td class="num">84</td>
+<td class="src"><pre><code class="objc">struct HourMinutePickerView_Previews: PreviewProvider {</code></pre></td>
+<td class="coverage"></td>
+</tr>
+<tr class="missed">
+<td class="num">85</td>
+<td class="src"><pre><code class="objc">    static var previews: some View {</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">86</td>
+<td class="src"><pre><code class="objc">        HourMinutePickerView(duration: .constant("60"),</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">87</td>
+<td class="src"><pre><code class="objc">                             hourAid: .nothing,</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">88</td>
+<td class="src"><pre><code class="objc">                             minuteAid: .nothing)</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="missed">
+<td class="num">89</td>
+<td class="src"><pre><code class="objc">    }</code></pre></td>
+<td class="coverage">!</td>
+</tr>
+<tr class="never">
+<td class="num">90</td>
+<td class="src"><pre><code class="objc">}</code></pre></td>
+<td class="coverage"></td>
+</tr>
+</table>
+</div></div>
+<footer><div class="row">
+<p><a href="https://github.com/SlatherOrg/slather">Fork me on Github</a></p>
+<p>&copy; 2022 Slather</p>
+</div></footer><script src="highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

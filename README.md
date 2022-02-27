@@ -19,16 +19,15 @@ The app is written with SwiftUI and uses Core Data / Combine.
   - [https://github.com/ArnavMotwani/CircularProgressSwiftUI](https://github.com/ArnavMotwani/CircularProgressSwiftUI)
   - [https://github.com/devicekit/DeviceKit.git](https://github.com/devicekit/DeviceKit.git)
   - [https://github.com/sanzaru/SimpleToast.git](https://github.com/sanzaru/SimpleToast.git)  
-  - [https://github.com/siteline/SwiftUI-Introspect.git](https://github.com/siteline/SwiftUI-Introspect.git)
   - [https://github.com/globulus/swiftui-mail-view.git](https://github.com/globulus/swiftui-mail-view.git)
   - [https://github.com/ShabanKamell/SwiftUIFormValidator.git](https://github.com/ShabanKamell/SwiftUIFormValidator.git)
-  - [https://github.com/DoubleSymmetry/XNavigation.git](https://github.com/DoubleSymmetry/XNavigation.git)
+
 </details>
 
 * To automate test coverage across multiple devices and produce framed screenshots [Fastlane](https://fastlane.tools) integration has been added, please see these [Setup Instructions](https://docs.fastlane.tools/getting-started/ios/setup/)
 
 ## Approach
-The project uses an MVVM architecture approach. However, ViewModels have only been employed where Core Data fetch requests and more complex code has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality. There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
+The project uses an MVVM architecture approach. However, ViewModels have only been employed where Core Data fetch requests and more complex code has cluttered the SwiftUI Views. Unit Tests cover most of the code where it is difficult to visual test functionality, please see coverage [here](/fastlane/test_output/slather-output/index.html). There is also some UI Testing which covers the main functionality of the app e.g. adding / editing. The project also has good accessibility coverage.
 
 ## Design / Screenshots
 
