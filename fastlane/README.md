@@ -29,7 +29,7 @@ Run tests on multiple devices
 [bundle exec] fastlane ios SlatherLane
 ```
 
-Slather
+Generate test coverage using Slather
 
 ### ios screenshots
 
@@ -70,6 +70,14 @@ C - Upload localized + framed screenshots
 ```
 
 Upload localized meta data
+
+### ios upbuild
+
+```sh
+[bundle exec] fastlane ios upbuild
+```
+
+Upload beta
 
 ----
 

@@ -133,7 +133,7 @@ Usage is provided under the [MIT License](http://opensource.org/licenses/mit-lic
 
 
 # Acknowledgements
-I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwithswift.com) for his 100 days courses which I have followed since 2019. 
+I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwithswift.com) for his 100 days courses. 
 
 # Contact
 You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a>
