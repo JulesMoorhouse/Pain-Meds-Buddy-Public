@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import SwiftUI
 
 struct SettingsDeveloperView: View {
@@ -23,7 +22,6 @@ struct SettingsDeveloperView: View {
 
     enum ActiveAlert {
         case exampleDataConfirmation,
-             crashReportTestConfirmation,
              restoreDataConfirmation,
              backupFailed,
              restoreFailed,
@@ -70,14 +68,6 @@ struct SettingsDeveloperView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                     }
-
-                    Section {
-                        Button(Strings.settingsGenerateTestCrash.rawValue) {
-                            activeAlert = .crashReportTestConfirmation
-                            showAlert.toggle()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    }
                 }
             }
             .fileExporter(isPresented: $showBackup,
@@ -106,10 +96,20 @@ struct SettingsDeveloperView: View {
                           allowsMultipleSelection: false)
             { result in
                 do {
-                    guard let selectedFile: URL = try result.get().first else { return }
+                    guard let selectedFile: URL = try result.get().first else {
+                        return
+                    }
+
                     _ = selectedFile.startAccessingSecurityScopedResource()
 
-                    guard let input = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+                    let fileData = try Data(contentsOf: selectedFile)
+
+                    // swiftlint:disable non_optional_string_data_conversion
+                    guard let input = String(data: fileData, encoding: .utf8) else {
+                        return
+                    }
+                    // swiftlint:enable non_optional_string_data_conversion
+
                     selectedFile.stopAccessingSecurityScopedResource()
 
                     do {
@@ -183,18 +183,6 @@ struct SettingsDeveloperView: View {
                             activeAlert = .exampleDataFailed
                             showAlert.toggle()
                         }
-                    }
-                ),
-                secondaryButton: .cancel()
-            )
-        case .crashReportTestConfirmation:
-            return Alert(
-                title: Text(.settingsCrashTestAlertTitle),
-                message: Text(.settingsAreYouSureCrashTest),
-                primaryButton: .default(
-                    Text(.commonYes),
-                    action: {
-                        Crashes.generateTestCrash()
                     }
                 ),
                 secondaryButton: .cancel()

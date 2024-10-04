@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import CoreData
 
 extension DataController {
@@ -127,10 +126,6 @@ extension DataController {
                 let numbers: [Int] = strings.map { Int($0)! }
                 let (meds, doses) = (numbers[0], numbers[1])
                 if meds == 0, doses > 0 {
-                    Crashes.trackError(NSError(), properties: [
-                        "Position": "DataController.handleSampleDataOptions",
-                        "ErrorLabel": "You can not create sample data with doses and no meds!",
-                    ], attachments: nil)
                     fatalError("ERROR: You can not create sample data with doses and no meds!")
                 } else if meds == 0, doses == 0 {
                     self.processArgumentsForTesting()
@@ -144,10 +139,6 @@ extension DataController {
                 try createSampleData(appStore: appStore)
             }
         } catch {
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.handleSampleDataOptions",
-                "ErrorLabel": "Fatal error creating data",
-            ], attachments: nil)
             fatalError("Fatal error creating data: \(error.localizedDescription)")
         }
     }

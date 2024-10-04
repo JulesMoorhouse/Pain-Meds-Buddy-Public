@@ -15,7 +15,12 @@ struct TextArea: View {
         TextEditor(text: $text)
             .background(
                 HStack(alignment: .top) {
-                    text.isBlank ? Text(placeholder) : Text("")
+                    if text.isBlank {
+                        Text(placeholder)
+                    } else {
+                        Text("")
+                    }
+
                     Spacer()
                 }
                 .foregroundColor(Color.primary.opacity(0.25))

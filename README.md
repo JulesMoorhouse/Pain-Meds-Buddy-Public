@@ -1,6 +1,6 @@
 # Pain Meds Buddy
 
-[![Platform](https://img.shields.io/badge/platform-ios-black.svg)](https://developer.apple.com/resources/) [![iOS Version](https://img.shields.io/badge/iOS-+14.5-green)](https://developer.apple.com/ios/]) [![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://swift.org/blog/swift-5-released/) [![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange)](https://developer.apple.com/xcode/swiftui/) [![Xcode Version](https://img.shields.io/badge/Xcode-13%20-blue)](https://developer.apple.com/xcode) [![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=main)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=main) ![Twitter](https://img.shields.io/twitter/follow/MindwarpJules?style=social)
+[![Platform](https://img.shields.io/badge/platform-ios-black.svg)](https://developer.apple.com/resources/) [![iOS Version](https://img.shields.io/badge/iOS-+14.5-green)](https://developer.apple.com/ios/]) [![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://swift.org/blog/swift-5-released/) [![SwiftUI Version](https://img.shields.io/badge/SwiftUI-2.0-orange)](https://developer.apple.com/xcode/swiftui/) [![Xcode Version](https://img.shields.io/badge/Xcode-13%20-blue)](https://developer.apple.com/xcode) [![GitHub License](https://img.shields.io/github/license/JulesMoorhouse/sttv1.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy.svg?branch=main)](https://travis-ci.org/JulesMoorhouse/PainsMedBuddy?branch=main)
 
 ## Introduction
 
@@ -136,4 +136,4 @@ Usage is provided under the [MIT License](http://opensource.org/licenses/mit-lic
 I'd like to thank Paul Hudson from [Hacking with Swift](https://www.hackingwithswift.com) for his 100 days courses. 
 
 # Contact
-You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns at <a href="https://twitter.com/intent/tweet?screen_name=MindwarpJules&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@MindwarpJules</a>
+You may [Contact me](https://www.julesmoorhouse.com/contactme/) with any questions or concerns.

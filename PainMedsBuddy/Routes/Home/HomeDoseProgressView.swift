@@ -123,15 +123,13 @@ struct HomeDoseProgressView: View {
                     .accessibilityHidden(true)
                     .redacted(reason: showEmptyView ? .placeholder : [])
             } else {
-                if let med = med {
-                    MedSymbolView(symbol: med.medSymbol,
-                                  colour: med.medColor,
-                                  font: .headline,
-                                  width: 25,
-                                  height: 25)
-                        .padding(.horizontal, 5)
-                        .accessibilityHidden(true)
-                }
+                MedSymbolView(symbol: med.medSymbol,
+                              colour: med.medColor,
+                              font: .headline,
+                              width: 25,
+                              height: 25)
+                    .padding(.horizontal, 5)
+                    .accessibilityHidden(true)
             }
 
             Button(action: {

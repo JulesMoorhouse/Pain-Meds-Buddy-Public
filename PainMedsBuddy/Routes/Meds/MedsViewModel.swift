@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import CoreData
 import Foundation
 
@@ -41,10 +40,6 @@ extension MedsView {
                 meds = medsController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch our meds: \(error)")
-                Crashes.trackError(error, properties: [
-                    "Position": "MedsViewModel.init",
-                    "ErrorLabel": "Failed to fetch our meds",
-                ], attachments: nil)
             }
         }
 

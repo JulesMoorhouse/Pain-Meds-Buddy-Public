@@ -1,7 +1,9 @@
 disabled_rules:
   - opening_brace
   - trailing_comma
-
+  - blanket_disable_command
+  - for_where
+  
 identifier_name:
   excluded:
     - id

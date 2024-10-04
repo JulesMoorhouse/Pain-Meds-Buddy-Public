@@ -10,6 +10,7 @@
 		880183F327C79B59006A8415 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 880183F227C79B59006A8415 /* SwiftyJSON */; };
 		880183F727C7D8B0006A8415 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880183F627C7D8B0006A8415 /* DataFile.swift */; };
 		8806475C27CAE10800454C0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8806475B27CAE10800454C0C /* Date+Extensions.swift */; };
+		8806A4DB2CB001A7007F1656 /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 8806A4DA2CB001A7007F1656 /* FormValidator */; };
 		8809FBD3278309A40058BD6E /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD2278309A40058BD6E /* Elements.swift */; };
 		8809FBD5278384A70058BD6E /* BasicAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809FBD4278384A70058BD6E /* BasicAction.swift */; };
 		880A187F278D7FFE00FA0C7D /* LocalisedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880A187E278D7FFE00FA0C7D /* LocalisedStringTests.swift */; };
@@ -104,7 +105,6 @@
 		88B53E882791704F00DD74FC /* MedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E872791704F00DD74FC /* MedEditViewModel.swift */; };
 		88B53E922793079900DD74FC /* DurationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E912793079900DD74FC /* DurationPopupView.swift */; };
 		88B53E9527930CAF00DD74FC /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9427930CAF00DD74FC /* DurationPicker.swift */; };
-		88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 88B53E9A27940E1400DD74FC /* FormValidator */; };
 		88B53E9D279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9C279429C300DD74FC /* DismissKeyboardOnTap-ViewModifier.swift */; };
 		88B53E9F2794AFA800DD74FC /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53E9E2794AFA800DD74FC /* UIApplication+Extensions.swift */; };
 		88B53EA12795931A00DD74FC /* BasicOneMedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B53EA02795931A00DD74FC /* BasicOneMedTests.swift */; };
@@ -149,7 +149,6 @@
 		88F2E98E27708AF700081C9C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2E98D27708AF700081C9C /* Strings.swift */; };
 		88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 88F493B12796104500E3D4C2 /* SimpleToast */; };
 		88F493B42796B70200E3D4C2 /* PresentableToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F493B32796B70200E3D4C2 /* PresentableToastModel.swift */; };
-		88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 88F9067E2797460500CBC65E /* AppCenterCrashes */; };
 		88F90682279747B000CBC65E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F90681279747B000CBC65E /* Secrets.swift */; };
 		88F9069E2798115100CBC65E /* TabBarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9069D2798115100CBC65E /* TabBarHandler.swift */; };
 		88F906A327981FCC00CBC65E /* NavigationViewLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F906A227981FCC00CBC65E /* NavigationViewLevel.swift */; };
@@ -332,11 +331,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B53E9B27940E1400DD74FC /* FormValidator in Frameworks */,
+				8806A4DB2CB001A7007F1656 /* FormValidator in Frameworks */,
 				88E705DB27872E73003EB471 /* CircularProgress in Frameworks */,
 				88572059275233A300B4B00C /* CloudKit.framework in Frameworks */,
 				88C611BB27A538A1006AAE38 /* DeviceKit in Frameworks */,
-				88F9067F2797460500CBC65E /* AppCenterCrashes in Frameworks */,
 				88E9309C2760A4B900A98708 /* AckGen in Frameworks */,
 				88E9309E2760A4B900A98708 /* AckGenUI in Frameworks */,
 				88F493B22796104500E3D4C2 /* SimpleToast in Frameworks */,
@@ -738,11 +736,10 @@
 				88E9309B2760A4B900A98708 /* AckGen */,
 				88E9309D2760A4B900A98708 /* AckGenUI */,
 				88E705DA27872E73003EB471 /* CircularProgress */,
-				88B53E9A27940E1400DD74FC /* FormValidator */,
 				88F493B12796104500E3D4C2 /* SimpleToast */,
-				88F9067E2797460500CBC65E /* AppCenterCrashes */,
 				887AEC8627A414FB0038245F /* SwiftUIMailView */,
 				88C611BA27A538A1006AAE38 /* DeviceKit */,
+				8806A4DA2CB001A7007F1656 /* FormValidator */,
 			);
 			productName = PainMedsBuddy;
 			productReference = 889A8D86275122DA00AB1868 /* PainMedsBuddy.app */;
@@ -821,12 +818,11 @@
 			packageReferences = (
 				88E9309A2760A4B900A98708 /* XCRemoteSwiftPackageReference "AckGen" */,
 				88E705D927872E73003EB471 /* XCRemoteSwiftPackageReference "CircularProgressSwiftUI" */,
-				88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 				88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */,
 				88C611B927A538A1006AAE38 /* XCRemoteSwiftPackageReference "DeviceKit" */,
 				880183F127C79B59006A8415 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				8806A4D92CB001A7007F1656 /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 			);
 			productRefGroup = 88321415275120D40026D85F;
 			projectDirPath = "";
@@ -875,6 +871,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8848D45B277700A300F10DC9 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -889,7 +886,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		8877418027A846C100D655E8 /* Auto Increment Version Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -912,7 +909,8 @@
 		};
 		88E930A02760A51600A98708 /* AckGen */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -924,7 +922,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "DIR=$PROJECT_TEMP_DIR/../../../SourcePackages/checkouts/AckGen\nif [ -d \"$DIR\" ]; then\n  cd $DIR\n  SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n  swift run ackgen\nelse\n  echo \"warning: AckGen not found. Please install the package via SPM (https://github.com/MartinP7r/AckGen#installation)\"\nfi\n";
 		};
@@ -1394,20 +1392,20 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8806A4D92CB001A7007F1656 /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Open-Bytes/SwiftUIFormValidator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 		887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-mail-view.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ShabanKamell/SwiftUIFormValidator.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
 			};
 		};
 		88C611B927A538A1006AAE38 /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
@@ -1442,14 +1440,6 @@
 				minimumVersion = 0.5.0;
 			};
 		};
-		88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1458,15 +1448,15 @@
 			package = 880183F127C79B59006A8415 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
+		8806A4DA2CB001A7007F1656 /* FormValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8806A4D92CB001A7007F1656 /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */;
+			productName = FormValidator;
+		};
 		887AEC8627A414FB0038245F /* SwiftUIMailView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 887AEC8527A414FB0038245F /* XCRemoteSwiftPackageReference "swiftui-mail-view" */;
 			productName = SwiftUIMailView;
-		};
-		88B53E9A27940E1400DD74FC /* FormValidator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88B53E9927940E1400DD74FC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */;
-			productName = FormValidator;
 		};
 		88C611BA27A538A1006AAE38 /* DeviceKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1492,11 +1482,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88F493B02796104500E3D4C2 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
-		};
-		88F9067E2797460500CBC65E /* AppCenterCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88F9067D2797460500CBC65E /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterCrashes;
 		};
 /* End XCSwiftPackageProductDependency section */
 

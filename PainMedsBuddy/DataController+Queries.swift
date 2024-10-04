@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import CoreData
 import SwiftUI
 
@@ -21,10 +20,6 @@ extension DataController {
             }
         } catch {
             print("ERROR: Checking data for dose \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.hasRelationship",
-                "ErrorLabel": "Checking data for dose",
-            ], attachments: nil)
         }
 
         return false
@@ -39,10 +34,6 @@ extension DataController {
             return tempDoses.count
         } catch {
             print("ERROR: Checking data for doses \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.anyRelationships",
-                "ErrorLabel": "Checking data for doses",
-            ], attachments: nil)
         }
 
         return 0
@@ -56,10 +47,6 @@ extension DataController {
             return tempDoses
         } catch {
             print("ERROR: Checking data for dose \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.getMedDoses",
-                "ErrorLabel": "Checking data for dose",
-            ], attachments: nil)
         }
 
         return []
@@ -104,10 +91,6 @@ extension DataController {
             save()
         } catch {
             print("ERROR: Checking data for doses \(error.localizedDescription)")
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.processDoses",
-                "ErrorLabel": "Checking data for doses",
-            ], attachments: nil)
         }
     }
 
@@ -135,10 +118,6 @@ extension DataController {
                 }
             }
         } catch {
-            Crashes.trackError(error, properties: [
-                "Position": "DataController.getFirstMed",
-                "ErrorLabel": "Error loading data",
-            ], attachments: nil)
             fatalError("Error loading data")
         }
 

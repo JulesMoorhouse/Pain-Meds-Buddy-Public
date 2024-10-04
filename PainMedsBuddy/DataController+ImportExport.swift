@@ -148,8 +148,10 @@ extension DataController {
         var result = ""
 
         let data = try encoder.encode(tempData)
+        // swiftlint:disable non_optional_string_data_conversion
         result = String(data: data, encoding: .utf8)!
-
+        // swiftlint:enable non_optional_string_data_conversion
+    
         return result
     }
 

@@ -1,88 +1,69 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AckGen",
-        "repositoryURL": "https://github.com/MartinP7r/AckGen.git",
-        "state": {
-          "branch": null,
-          "revision": "02fd7f75c36c4be919de1cfef967e4ee83b0dfa6",
-          "version": "0.1.0"
-        }
-      },
-      {
-        "package": "AppCenter",
-        "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple.git",
-        "state": {
-          "branch": null,
-          "revision": "b84bc8a39ff04bc8d5ae7b4d230c171c562891aa",
-          "version": "4.4.1"
-        }
-      },
-      {
-        "package": "CircularProgress",
-        "repositoryURL": "https://github.com/JulesForks/CircularProgressSwiftUI.git",
-        "state": {
-          "branch": "1-1-0",
-          "revision": "d8d1e60e1c24b7586178dbaccac80bf44878eda1",
-          "version": null
-        }
-      },
-      {
-        "package": "DeviceKit",
-        "repositoryURL": "https://github.com/devicekit/DeviceKit.git",
-        "state": {
-          "branch": null,
-          "revision": "da57c444cbb7b6159aa871534d4cf2616d1d55c6",
-          "version": "4.5.2"
-        }
-      },
-      {
-        "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
-        "state": {
-          "branch": null,
-          "revision": "6b27393cad517c067dceea85fadf050e70c4ceaa",
-          "version": "1.10.1"
-        }
-      },
-      {
-        "package": "SimpleToast",
-        "repositoryURL": "https://github.com/sanzaru/SimpleToast.git",
-        "state": {
-          "branch": null,
-          "revision": "2ad636d63fdb611f867c8cd7ccbdcea907cdf189",
-          "version": "0.5.0"
-        }
-      },
-      {
-        "package": "SwiftUIMailView",
-        "repositoryURL": "https://github.com/globulus/swiftui-mail-view.git",
-        "state": {
-          "branch": null,
-          "revision": "dad1d289cb904d477f2fbabcca5ba82bfcfb2ea6",
-          "version": "1.0.1"
-        }
-      },
-      {
-        "package": "SwiftUIFormValidator",
-        "repositoryURL": "https://github.com/ShabanKamell/SwiftUIFormValidator.git",
-        "state": {
-          "branch": null,
-          "revision": "e73fb75cfd698ae7827771c83ee6234d55387d5a",
-          "version": "0.13.0"
-        }
-      },
-      {
-        "package": "SwiftyJSON",
-        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
-        "state": {
-          "branch": null,
-          "revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
-          "version": "5.0.1"
-        }
+  "originHash" : "81216d21d2ef14cd6587f5ef63076dcc5d3456f7a6fc6b22d1ec8a2f673780c0",
+  "pins" : [
+    {
+      "identity" : "ackgen",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MartinP7r/AckGen.git",
+      "state" : {
+        "revision" : "02fd7f75c36c4be919de1cfef967e4ee83b0dfa6",
+        "version" : "0.1.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "circularprogressswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JulesForks/CircularProgressSwiftUI.git",
+      "state" : {
+        "branch" : "1-1-0",
+        "revision" : "d8d1e60e1c24b7586178dbaccac80bf44878eda1"
+      }
+    },
+    {
+      "identity" : "devicekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devicekit/DeviceKit.git",
+      "state" : {
+        "revision" : "da57c444cbb7b6159aa871534d4cf2616d1d55c6",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "simpletoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sanzaru/SimpleToast.git",
+      "state" : {
+        "revision" : "2ad636d63fdb611f867c8cd7ccbdcea907cdf189",
+        "version" : "0.5.0"
+      }
+    },
+    {
+      "identity" : "swiftui-mail-view",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/globulus/swiftui-mail-view.git",
+      "state" : {
+        "revision" : "dad1d289cb904d477f2fbabcca5ba82bfcfb2ea6",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "swiftuiformvalidator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Open-Bytes/SwiftUIFormValidator",
+      "state" : {
+        "revision" : "f53df07ac1384c2f9ee488bd229821d0ab341174",
+        "version" : "0.20.0"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 3
 }

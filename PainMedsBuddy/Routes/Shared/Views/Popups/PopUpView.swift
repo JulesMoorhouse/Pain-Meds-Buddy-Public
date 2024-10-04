@@ -60,11 +60,10 @@ struct PopUpView<Content: View,
                 Spacer()
                     .frame(height: 5)
 
-                if let bottomButton = bottomButton {
                     bottomButton
+
                     Spacer()
                         .frame(height: 5)
-                }
             }
             .padding()
             .frame(width: width)

@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import SwiftUI
 
 @main
@@ -17,13 +16,6 @@ struct PainMedsBuddyApp: App {
     @State var colourScheme: ColorScheme?
 
     init() {
-        AppCenter.start(
-            withAppSecret: Secrets.appCenterSecret,
-            services: [Crashes.self]
-        )
-
-        AppCenter.logLevel = .verbose
-
         let dataController = DataController()
         _dataController = StateObject(wrappedValue: dataController)
 

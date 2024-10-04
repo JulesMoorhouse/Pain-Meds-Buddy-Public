@@ -5,7 +5,6 @@
 //  Created by Jules Moorhouse.
 //
 
-import AppCenterCrashes
 import CoreData
 import Foundation
 
@@ -50,10 +49,6 @@ extension DosesView {
                 doses = dosesController.fetchedObjects ?? []
             } catch {
                 print("ERROR: Failed to fetch our doses: \(error)")
-                Crashes.trackError(error, properties: [
-                    "Position": "DosesViewModel.init",
-                    "ErrorLabel": "ailed to fetch our doses",
-                ], attachments: nil)
             }
         }
 
